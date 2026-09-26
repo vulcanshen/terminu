@@ -26,21 +26,49 @@ terminu family 的 app 實際收斂出來的具體值與慣例。**照用最省�
 - **窄寬門檻**：寬度 < 72 欄（側欄較窄的 app 用 60 欄）時只畫 focus 那一側。
 - **空狀態**：置中寫一句事實，加上一句點名按鍵的提示（例如「沒有 host —— 按 `[A]` 或 `Space`」）。
 
-## D2 色彩（catppuccin-mocha）
+## D2 色彩系統
+
+一整套配色的**呈現規則 + 計算方式 + 色碼**。不想處理配色的 app 整套照用；要自訂的 app
+自己決定用哪些、不用哪些。意義要不要同時用顏色以外的方式（框線、符號）表達，也由 app 決定。
+
+**呈現規則**
+
+1. **最少錨點，其餘推導**：先選三個錨點 —— 底色、使用者足跡、popup 最上層 —— 其餘層次
+   從錨點推導，不為每個元素各挑顏色。
+2. **明度是 z 軸，不反轉**：從底色到最上層的 popup，明度單向遞進，越上層越亮。TUI 沒有
+   陰影與高度，明度是唯一能表達「哪個在上面」的工具。
+3. **明度帶專職**：每個意義佔一條明度帶，其他意義不用同一條（Principle P4）。例：
+   「使用者足跡」用了 lavender，popup 邊框就不用 lavender。
+4. **警示色不參與 z 軸**：錯誤、警告色在任何一層都是同一個顏色，不跟著層級變亮變暗。
+5. **同鍵兩處指示**（Rules M9）：會觸發的那個亮、不會的那個暗。
+6. **失焦只換邊框**：非 focus 的 panel 只換邊框色與框線，內容不變暗。
+
+**計算方式：popup 邊框依層數插值**
+
+```
+layer K 的邊框色 = lerp(使用者足跡, popup 最上層, K / N)    N = 4
+K ≥ N 時固定為 popup 最上層
+```
+
+以 catppuccin-mocha 代入（Lavender → Sapphire）：
+
+| layer | 1 | 2 | 3 | 4+ |
+|---|---|---|---|---|
+| 邊框色 | `#A4C0FA` | `#94C3F5` | `#84C5F0` | `#74c7ec` |
+
+**色碼（catppuccin-mocha）**
 
 | 用途 | 色 |
 |---|---|
 | 底色 | Base `#1e1e2e` |
 | focus 邊框 | Blue `#89b4fa`，雙線 `╔═╗` |
 | 非 focus 邊框 | Surface2 `#585b70`，圓角 `╭─╮`（跟雙線同寬，切換零位移） |
-| popup 邊框 layer 1 → 4+ | `#A4C0FA` → `#94C3F5` → `#84C5F0` → Sapphire `#74c7ec` |
-| 正在編輯的東西、使用者足跡 | Lavender `#b4befe`（**popup 邊框不用 lavender**） |
+| popup 邊框 | 見上表 |
+| 正在編輯的東西、使用者足跡 | Lavender `#b4befe` |
 | 錯誤 | Red `#f38ba8` |
 | 值得注意、但沒壞 | Peach `#fab387` |
 | 選取 | Yellow `#f9e2af` |
 | 暗字、hint | Overlay0 `#6c7086` |
-
-- 非 focus 的 panel **只換邊框**，內容不變暗。
 
 ## D3 Popup
 
@@ -88,6 +116,7 @@ terminu family 的 app 實際收斂出來的具體值與慣例。**照用最省�
 - 設定在 `$XDG_CONFIG_HOME/<app>`（fallback `~/.config/<app>`），可用 `<APP>_CONFIG` 覆寫；
   資料在 `~/.<app>/`。
 - 需要 Nerd Font；PUA glyph 在程式碼裡寫成 code point。
+- 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（Rules L4）。
 - `docs/icon.svg` 是家族 mark；splash 由 icon 逐格畫出，有測試守住一致。
 - demo gif 用 VHS 錄，腳本放在 `.local/demos/`；README 只放一張代表性的 gif。
 
