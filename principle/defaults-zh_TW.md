@@ -156,3 +156,7 @@ K ≥ N 時固定為 popup 最上層
 ```
 
 **`docs/<app>-terminu-fix.md`**：尚未符合 tdp 的地方，逐條待修（違反了哪一條、在哪裡、現況、該怎麼改）。
+
+**其他設計文件**（`ui.md`、`ux.md`、`function.md`……）由各 app 自己決定要不要有、怎麼切，
+tdp 不規定；dev-remarks 的「設計文件導讀」一節負責指路。不另外維護「逐條對照 tdp」的文件
+—— 符合的不必記，偏離的寫在 dev-remarks，違反的寫在 fix.md。

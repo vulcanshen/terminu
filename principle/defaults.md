@@ -185,3 +185,9 @@ releasing (including pitfalls hit).
 
 **`docs/<app>-terminu-fix.md`**: where the app does not yet follow tdp, item by item, to
 fix (which rule is violated, where, the current state, and how to fix it).
+
+**Other design documents** (`ui.md`, `ux.md`, `function.md`…) are each app's own
+business — whether to have them and how to split them is not tdp's concern; the design
+documents guide in dev-remarks points to them. There is no separate clause-by-clause map
+against tdp: what complies needs no record, departures go in dev-remarks, violations in
+the fix file.
