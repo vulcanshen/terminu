@@ -7,7 +7,7 @@ tdp 是 [terminu design](../README-zh_TW.md) 的細節規範，分三層：
 | 層 | 文件 | 性質 |
 |---|---|---|
 | **Principle** | 本文件 | 精神：要達成什麼、為什麼 |
-| **Rules** | [rules-zh_TW.md](rules-zh_TW.md) | 必須遵守。每條附理由；app 可依自身性質偏離，但要寫明原因 |
+| **Rules** | [rules-zh_TW.md](rules-zh_TW.md) | 必須遵守，每條附理由；分固定區與概念區（P5） |
 | **Family defaults** | [defaults-zh_TW.md](defaults-zh_TW.md) | terminu family 共用的具體值與慣例。照用最省事，偏離不算違規 |
 
 tdp 回答一個問題：**在 terminal UI 上，什麼樣的設計能讓使用者不看文件就能用？**
@@ -33,11 +33,6 @@ tdp 是過去 UX 決策的結晶，不是未來 UX 的枷鎖。**規則跟它原
 使用者**不需要讀文件、不需要事先記熱鍵**，靠一組**跨畫面、跨 app 意義不變的
 core key**，就能用完整個 app。學一次，走遍整個 app，換到家族裡另一個 app 也不必重學。
 
-這個承諾只涵蓋一個維度：**不需事先學習**。它不管熱鍵好不好按、學會之後快不快、
-能不能組合 —— 那些是 hotkey ergonomics，是另一個維度（見 P5）。
-**符合 tdp ≠ 好 app，不符合 ≠ 爛 app。** 有意識地選擇不走這條路（例如 vim）是
-合法的設計決定；tdp 是給想走這條路的設計者用的。
-
 ## P2 揭露是唯一的機制
 
 做到 P1 的方法只有一個：**把使用者能做的事揭露出來，讓他不用事先學就找得到。**
@@ -53,14 +48,10 @@ core key**，就能用完整個 app。學一次，走遍整個 app，換到家�
 | 形式 | 從看到到執行 | 算揭露 |
 |---|---|---|
 | 互動 menu（`j/k` 選、`Enter` 執行） | 1 步 | ✓ |
-| 常駐 cheatsheet（看到鍵、立刻按） | 1 步 | ✓ |
-| app 內的說明文件（讀 → 找 → 記 → 打） | 多步、要記憶 | ✗ |
+| 常駐提示（footer 上看到鍵、立刻按） | 1 步 | ✓ |
+| 說明文字（讀 → 找 → 記 → 打） | 多步、要記憶 | ✗ |
 
-vim 的 `:help` 是典型反例：它在 app 內、開機畫面也提示它存在，但它是文件，不是動作清單。
-
-**揭露可以是疊上去的一層。** 同一個 vim core，疊上 which-key（LazyVim 的預設）
-就從「幾乎無從揭露」變成「幾乎完整揭露」—— core 一字未動。揭露跟 app core 可以
-分開；評估一個 app 時要講清楚是「預設狀態」還是「加上揭露層之後」。
+把說明文件搬進 app 裡，不會讓它變成揭露 —— 使用者仍然在讀文件。
 
 ## P3 操作分三種範圍
 
@@ -70,11 +61,20 @@ vim 的 `:help` 是典型反例：它在 app 內、開機畫面也提示它存�
 |---|---|---|
 | **item operation** | cursor 指的那**一個**項目 | 開啟、重新命名、刪除這一列 |
 | **panel operation** | 當前 focus 的 panel（或它的 tab）**整體** | 搜尋、排序、新增、重新整理、對整批標記動手 |
-| **global operation** | 不屬於任何 focus，屬於整個 app | 切換 context、開設定、切換畫面、離開 |
+| **global operation** | 不屬於任何 panel，屬於整個 app | 切換畫面、開設定、切換 context、離開 |
 
 判準永遠是**作用對象在哪裡**，不是「這個動作重不重要」。一個便利小功能只要作用在
-cursor 上，就是 item operation，必須進入口；一個關鍵的全域開關不屬於任何 focus，
-就是 global operation。
+cursor 上，就是 item operation；一個關鍵的全域開關不屬於任何 panel，就是 global operation。
+
+邊界情況：
+
+- **對整批標記的項目做事**是 panel operation —— 作用對象是「這個 panel 裡標記的那一批」，
+  不是 cursor 上的那一個。例：filu 把 marks 複製到當前目錄、sshu 的 transfer all。
+- **只跟另一個 panel 有關的動作**，只出現在**它所屬 panel** 的 menu 裡，不塞進當前 focus，
+  也不升格成 global。使用者 `Tab` 過去就找得到。例：filu focus 在 `[1]` 時，「清空 marks」
+  只屬於 `[3]`；但「把 marks 貼到這裡」作用在 `[1]` 的目錄，所以是 `[1]` 的 panel operation。
+- **切換畫面**是 global operation。例：sshu 的 `[M]anage` / `[F]ile transfer` / `[S]SH`、
+  webu 的 `[W]eb` / `[B]ookmarks` / `[H]istory`。
 
 三種範圍各有明確的位置（Rules M 章）：`Space` 開出「當前 focus 能做的事」，依
 item → panel → global 排列；`?` 開出「整個 app 能做的事」，global operation 可以直接執行。
@@ -90,48 +90,110 @@ item → panel → global 排列；`?` 開出「整個 app 能做的事」，glo
 
 兼職的代價是使用者要學兩套規則，直接違反 P1。這條也是檢驗新規則是否站得住的試紙。
 
-## P5 範圍之外：letter hotkey
+## P5 固定區與概念區
 
-tdp **只規定 core key 的意義**，**不規定任何 letter hotkey**。哪個字母做什麼、刪除用
-`D` 還是 `x`、大小寫要不要分層、要不要 chord、要不要 `Alt`、要不要用 `Shift-Tab` 反向切換 —— 全部由各 app 決定。
+每一條 rule 屬於兩區之一：
 
-**為什麼不定義：**
+| 區 | tdp 規定什麼 | app 能做什麼 |
+|---|---|---|
+| **固定區** | 行為本身 | 照做，不能改，不能偏離 |
+| **概念區** | 語意 —— 這件事要達成什麼 | 自己決定具體怎麼做，只要滿足語意；性質不合時可偏離，但要寫明原因 |
 
-- **熱鍵依賴領域。** kbu 的 `S` 是 shell、filu 的 `S` 是排序；sshu 的 `D` 是複製一列、
-  kbu 的 `D` 是拖曳。每個 app 的動詞不同，硬性統一只會產出一堆某些 app 必須違反的規則（P0）。
-- **熱鍵不在「不需事先學習」的路徑上。** 使用者要找的東西都在 `Space` 與 `?` 裡，
-  熱鍵只是給已經知道的人的加速（Rules M3）。熱鍵選得好不好，影響的是 ergonomics，
-  不影響 P1。
-- **統一熱鍵會跟 P2 搶責任。** 如果使用者要靠「家族共用的熱鍵表」才能跨 app 操作，
-  等於又回到了事先學習。跨 app 不變的是 **core key 的角色**，不是字母。
+以 core key 為例：
 
-tdp 仍然管熱鍵的兩件事：它們**必須出現在 menu 裡、用 `[]` 標出來**（Rules M3、M5），
-而且**不能佔用 core key**（Rules K 章）。家族常見的熱鍵慣例收在 defaults，當作參考。
+- `Space` 在**固定區**：非輸入態下按 `Space` 一定開 / 關 Space menu。唯一的例外（輸入態時
+  是空白字元）也由 tdp 寫死。
+- `Enter` 在**概念區**：tdp 規定它是「對 focus 項目最直觀的那個動作」，不規定那個動作
+  是什麼 —— filu 是進目錄，sshu 是連線，locku 是翻轉設定值。
 
-同樣明確劃出去的還有**符號語彙**：用哪套 icon font、哪個 glyph、在各種終端機與
-CJK 字型下畫幾格 —— 這些綁在具體環境上，由各 app 自行決定。其他規則仍然約束符號的
-使用方式（P4 專職化、Rules L2 寬度穩定、M5 熱鍵要顯式標記）。
+**tdp 不規定的：**
 
-## P6 靜止可見的 UI，與只存在於時間軸的 UX
-
-UI 規則在截圖上看得到，可以早期規劃；有些 UX 規則只在使用流程裡才存在（Rules T 章），
-要 app 長到一定完整度才會浮現。任何「v0.1 就寫完的 UI/UX 規範」必然缺後者 ——
-tdp 會隨實作持續修訂。
+- **letter hotkey**。哪個字母做什麼、大小寫要不要分層、要不要 chord 或 `Alt`、要不要
+  `Shift-Tab` 反向切換，由各 app 決定。熱鍵依賴領域（kbu 的 `S` 是 shell、filu 的 `S` 是排序），
+  而且不在「不需事先學習」的路徑上 —— 使用者要找的都在 `Space` 與 `?` 裡。tdp 只管熱鍵的
+  兩件事：**必須出現在 menu 裡、用 `[]` 標出**，以及**不能佔用 core key**。
+- **符號語彙**。用哪套 icon font、哪個 glyph、在各種終端機與 CJK 字型下畫幾格，綁在具體
+  環境上，由各 app 決定。其他規則仍然約束符號的使用方式（P4 專職化、寬度穩定、熱鍵要顯式標記）。
 
 ---
 
 ## 術語
 
-**Surface** —— 能取得 focus、跟使用者直接互動的 UI 容器，主要是 **panel** 與
-**popup**。statusbar、footer 等常駐顯示區不是 surface。
+### Surface
 
-**Focus** —— 使用者當下能直接操作的位置，分兩層：**surface 層**（哪個 panel 或 popup）
-與**位置層**（該 surface 內 cursor 指的列、選中的 tab）。
+能取得 focus、跟使用者直接互動的 UI 容器，分成 **panel** 與 **popup** 兩種。常駐顯示區
+（footer、statusbar、tab 列）不是 surface —— focus 不會停在上面。
 
-**Popup** —— 疊在 panel 之上的暫時性 surface：menu、confirm、input、viewport、toast、
-PTY 等。
+### Screen（畫面）
 
-**輸入態** —— 使用者正在打字的狀態：表單欄位、input 框、搜尋列。
+一組同時顯示的 panel。有些 app 只有一個畫面，有些有多個，用 global operation 切換。
 
-**偏離** —— app 有意不照某條 rule 做，並在自己的 `docs/dev-remarks.md` 寫明原因。
-沒寫原因的不照做叫**違反**，列進該 app 的 `docs/<app>-terminu-fix.md` 待修。
+- 單畫面：kbu、filu、locku
+- 多畫面：sshu 的 `[M]anage` / `[F]ile transfer` / `[S]SH`；webu 的 `[W]eb` / `[B]ookmarks` /
+  `[H]istory` / `[D]ownloads` / `[S]ettings`
+
+### Panel
+
+畫面上常駐的一塊區域，有自己的 cursor 與內容，用 `[N]` 編號。
+
+- kbu：`[1]` 資源種類側欄、`[2]` 資源清單、`[3]` 詳細資料
+- filu：`[1]` 檔案清單、`[2]` 預覽、`[3]` Marks / Tasks / Favorites
+- locku：`[1]` 側欄（Profiles、Savers、Integration、Settings）、`[2]` cursor 所在項目的屬性表
+
+### Panel tab
+
+同一個 panel 內可切換的幾頁內容。切換 panel tab 不換 panel、不換畫面。
+
+- kbu `[3]` 的 Logs / Events / Conditions / Relatives / History
+- filu `[1]` 最多 5 個目錄 tab；`[3]` 的 Marks / Tasks / Favorites
+
+### Popup
+
+疊在 panel 之上的暫時性 surface，關掉之後回到底下的東西。例：
+
+- menu：Space menu、kbu 的排序選擇器
+- confirm：filu 刪除前的確認
+- input：filu 的重新命名、locku 的 PIN 輸入
+- viewport：kbu 的 YAML 檢視、兩個資源的 Compare
+- toast：操作完成或失敗的短訊息
+- PTY：kbu 的 Alterm、filu 的 shell —— 一個跑在 popup 裡的子程序
+
+### Focus
+
+使用者當下按鍵會送到的位置，分兩層：
+
+1. **surface 層**：哪個 panel 或 popup。例：kbu 的 `[2]`，或疊在上面的 Space menu
+2. **位置層**：該 surface 裡 cursor 指的那一列、選中的那個 panel tab。例：kbu `[2]` 裡
+   cursor 所在的那個 pod
+
+「作用對象在 focus 範圍內」指作用對象是當前 surface 本身，或它位置層上的那一項。
+
+### 輸入態
+
+使用者正在打字的狀態：focus 在一個會把按鍵當字元收下的欄位上。例：filu 的重新命名框、
+sshu 的 host 表單、webu 的網址列（`L`）、locku 的 PIN 輸入、任何 `/` 搜尋列。
+
+### Core key
+
+tdp 規定意義、在所有 surface 意義不變的鍵：`Tab`、`Enter`、`Esc`、`Space`、`?`（Rules K 章）。
+
+### Letter hotkey
+
+app 自己指定、用來直接執行 menu 裡某一列的鍵。例：filu 的 `[r]ename`、kbu 的 `[C]ompare`、
+sshu 的 `[t]ransfer` 與 `[T]ransfer all`。它是捷徑，不是額外的功能（Rules M3）。
+
+### Source 與 target
+
+從 popup A 開出 popup B 時，A 是 source、B 是 target。例：kbu 在 Compare viewport 上按
+`Space` 開出版面切換 menu —— Compare 是 source，menu 是 target。
+
+### 串流內容
+
+持續有新資訊流入的內容。例：kbu `[3]` 的 Logs、sshu 的 SSH session、filu 的搜尋結果逐筆出現。
+
+### 偏離與違反
+
+- **偏離**：app 在概念區有意不照某條 rule 做，並在自己的 `docs/dev-remarks.md`「偏離 tdp」
+  一節寫明哪一條、在哪裡、為什麼。例：locku 的鎖定畫面不顯示 footer（M1），因為唯一的
+  動作是按任意鍵叫出 PIN。
+- **違反**：沒寫原因的不照做，或是不照固定區做。列進該 app 的 `docs/<app>-terminu-fix.md` 待修。
