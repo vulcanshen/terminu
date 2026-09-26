@@ -93,7 +93,7 @@ item → panel → global 排列；`?` 開出「整個 app 能做的事」，glo
 ## P5 範圍之外：letter hotkey
 
 tdp **只規定 core key 的意義**，**不規定任何 letter hotkey**。哪個字母做什麼、刪除用
-`D` 還是 `x`、大小寫要不要分層、要不要 chord、要不要 `Alt` —— 全部由各 app 決定。
+`D` 還是 `x`、大小寫要不要分層、要不要 chord、要不要 `Alt`、要不要用 `Shift-Tab` 反向切換 —— 全部由各 app 決定。
 
 **為什麼不定義：**
 

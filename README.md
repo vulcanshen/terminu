@@ -1,0 +1,63 @@
+# terminu design
+
+**Language**: English · [繁體中文](README-zh_TW.md)
+
+**Terminal UIs you can use without reading the docs.**
+
+terminu design is a design language for terminal UIs: a handful of keys that mean the
+same thing on every screen of every app, plus two entry points that are always there —
+`Space` tells you what you can do here, `?` tells you what you can do anywhere in the
+app. Learn it once and every app in the family works the same way.
+
+---
+
+## Five keys
+
+| Key | Meaning |
+|---|---|
+| `Tab` | Move to the next pane |
+| `Enter` | Do the obvious thing to what is selected |
+| `Esc` | Cancel, close the top layer — one layer at a time, never closes the app |
+| `Space` | What can I do here? |
+| `?` | What can I do in this app? |
+
+When in doubt, press `Space`.
+
+## The spirit
+
+- **Disclosure, not documentation.** Everything you can do is in a list you can open
+  with one key and run straight from.
+- **Three scopes of operation.** On this item, on this panel, on the whole app — menus
+  are always ordered that way.
+- **One element, one meaning.** A colour, a key, a border style each stand for exactly
+  one thing.
+- **Rules serve the UX.** When a rule gets in the way of good UX, the rule is extended,
+  not the UX sacrificed.
+
+The details are in the **[terminu design principle (tdp)](principle/)**:
+
+| | |
+|---|---|
+| [Principle](principle/README.md) | The spirit: what it aims for and why |
+| [Rules](principle/rules.md) | What must hold, each with its reason |
+| [Family defaults](principle/defaults.md) | The concrete values the family shares: colours, motion, layout, key habits |
+
+## The terminu family
+
+| App | What it is |
+|---|---|
+| [kbu](https://github.com/vulcanshen/kbu) | A Kubernetes TUI dashboard |
+| [filu](https://github.com/vulcanshen/filu) | A terminal file manager you don't have to learn |
+| [sshu](https://github.com/vulcanshen/sshu) | A terminal front end for ssh and sftp |
+| [webu](https://github.com/vulcanshen/webu) | A terminal browser that reads a web page as a document |
+| [locku](https://github.com/vulcanshen/locku) | A screensaver with a PIN lock, for the terminal |
+
+## History
+
+terminu design grew out of VTP, a TUI design principle that started inside kbu and was
+later extracted. How it turned into what it is now is recorded (in Traditional Chinese)
+in [vtp/](vtp/).
+
+## License
+
+[CC BY 4.0](LICENSE)

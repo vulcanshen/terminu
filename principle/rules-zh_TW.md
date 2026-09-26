@@ -17,7 +17,7 @@
 | [M](#m-menu-與揭露) | Menu 與揭露 |
 | [L](#l-版面) | 版面 |
 | [C](#c-色彩) | 色彩 |
-| [P](#p-popup) | Popup |
+| [F](#f-popup) | Popup |
 | [X](#x-mouse) | Mouse |
 | [T](#t-時間軸) | 時間軸 |
 
@@ -46,7 +46,7 @@ core key 一旦指定，同樣在所有 surface 意義不變。letter hotkey 不
 ### K2 `Tab` 在當前畫面的 surface 之間輪轉
 
 `Tab` 把 focus 移到當前畫面的下一個 panel，最後一個之後回到第一個。它不跨畫面、
-不跨 tab 頁。
+不跨 tab 頁。反向切換（例如 `Shift-Tab`）是熱鍵，由 app 決定要不要做。
 
 **為什麼**：使用者按 `Tab` 期待的是「換一塊」，不是「換一個畫面」。跨畫面的切換
 屬於 global operation（M4）。
@@ -320,9 +320,9 @@ focus 按下去會觸發哪一個**：會觸發的亮，不會的暗。
 
 ---
 
-## P Popup
+## F Popup
 
-### P1 每個 popup 只屬於一類
+### F1 每個 popup 只屬於一類
 
 app 定義自己的 popup 分類（例如 menu、confirm、input、viewport、toast、PTY），每類
 有固定的版面；**一個 popup 只屬於一類**，不做混血（例如同時是 menu 又是可捲動的 viewport）。
@@ -330,40 +330,40 @@ app 定義自己的 popup 分類（例如 menu、confirm、input、viewport、to
 **為什麼**：類別就是使用者對「這個框裡按鍵會怎樣」的預期。混血的 popup 讓同一組鍵在
 框裡有兩種可能。
 
-### P2 開關都有動畫，100–200ms
+### F2 開關都有動畫，100–200ms
 
 popup 打開與關閉都要有動畫，長度在 100–200ms 之間。
 
 **為什麼**：沒有動畫，使用者感受不到 z 軸變化；太長會打斷節奏。
 
-### P3 邊框色由層數決定
+### F3 邊框色由層數決定
 
 popup 邊框色依它的堆疊層數從錨點推導（C1、C2），不寫死、不反轉。
 
 **為什麼**：邊框色是使用者判斷「這個框在上面」的唯一線索。
 
-### P4 `Esc` 立刻關閉任何 popup
+### F4 `Esc` 立刻關閉任何 popup
 
 任何看得到的 popup —— 包括會自動消失的 toast —— 按 `Esc` 都要**立即**關閉，不等動畫。
 正在關閉中的 popup 不再接收按鍵。
 
 **為什麼**：使用者沒有等倒數的義務。關閉中的 popup 還吃鍵，使用者下一個按鍵就會送錯地方。
 
-### P5 預設保留 source
+### F5 預設保留 source
 
 從 popup A 開出 popup B 時，A 預設留在底下；取消 B 回到 A。
 
 **為什麼**：使用者沒有撤掉 A，只是在 B 上做了一次互動。取消 B 卻連 A 一起不見，
 使用者要重新走一遍。（完成 B 之後 A 還要不要留，見 T1。）
 
-### P6 錯誤立刻看得到，但不擋住 app
+### F6 錯誤立刻看得到，但不擋住 app
 
 錯誤必須立刻出現（toast 或 popup），`Esc` 可關，且**不能阻塞 app**。有沒有錯誤歷史
 可查由 app 決定。
 
 **為什麼**：看不到的錯誤等於沒發生；擋住 app 的錯誤讓使用者無法處理錯誤本身。
 
-### P7 Confirm：`Enter` 接受、`Esc` 取消，說出後果
+### F7 Confirm：`Enter` 接受、`Esc` 取消，說出後果
 
 - `Enter` 接受，`Esc` 取消（K3、K4）。
 - 提示寫出**接受會做的事**（動詞與對象），而不是抽象的 OK。
@@ -397,7 +397,7 @@ popup 邊框色依它的堆疊層數從錨點推導（C1、C2），不寫死、�
 
 ### T1 完成 target 之後，source 還有意義嗎？
 
-預設保留 source（P5）。只有在功能上明確判斷「使用者完成 target 之後，source 已經
+預設保留 source（F5）。只有在功能上明確判斷「使用者完成 target 之後，source 已經
 失去意義」，target 才在進場前清掉 source：
 
 | target | 清掉 source？ | 判斷 |
