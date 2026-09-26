@@ -415,11 +415,12 @@ breaking the rhythm depends on the popup's size and the app's pace, so it is not
 
 ### F3 `Esc` closes any popup at once `fixed`
 
-Any visible popup — auto-dismissing toasts included — closes **immediately** on `Esc`,
-without waiting for an animation. A popup that is closing no longer takes keys.
+Any visible popup — auto-dismissing toasts included — starts closing **immediately** on
+`Esc`, without waiting for a toast's countdown. Closing is animated as usual (F2); a popup
+already running its closing animation ignores `Esc` and takes no other keys either.
 
-**Why**: users are not obliged to wait out a countdown. If a closing popup still eats
-keys, the user's next key goes to the wrong place.
+**Why**: users are not obliged to wait out a countdown. If a popup that is already closing
+takes another `Esc`, or still eats keys, the user's next key goes to the wrong place.
 
 ### F4 The source stays by default `fixed`
 
