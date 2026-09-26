@@ -49,7 +49,6 @@ terminu family 的 app 實際收斂出來的具體值與慣例。**照用最省�
 - 動畫：8 格 × 16ms ≈ 128ms。
 - toast：顯示 2200ms，固定在畫面底部。
 - `Esc` 只在一個地方處理（`closeTop`）。
-- 在任何**非輸入** popup 上按 `Space` 會關掉它。
 - confirm 的下框 hint：`Enter <動詞> · Esc cancel`。
 - 取消回到 source；完成動作清掉整個 stack（T1 的常見答案）。
 
@@ -60,12 +59,11 @@ terminu family 的 app 實際收斂出來的具體值與慣例。**照用最省�
   否則放前面（`[n] New`）。core key 直接寫進 label：`[Enter] Edit`。
 - menu 內：`j/k` 移動（頭尾相接），`Enter` 執行，熱鍵直接執行；下框 hint
   `j/k move · Enter run · Esc close`。
-- 只有一列可執行時，`Space` 直接執行它，不開 menu。
 - menu 標題是 focus panel 的 `[N] label`。
 
 ## D5 按鍵慣例
 
-**這些是熱鍵，tdp 不規定**（[Principle P5](README-zh_TW.md#p5-範圍之外letter-hotkey)），列在這裡是因為家族多數成員這樣做：
+**這些是熱鍵，tdp 不規定**（[Principle P5](README-zh_TW.md#p5-固定區與概念區)），列在這裡是因為家族多數成員這樣做：
 
 | 鍵 | 慣例 |
 |---|---|
@@ -75,10 +73,10 @@ terminu family 的 app 實際收斂出來的具體值與慣例。**照用最省�
 | `h` `l` | 切換 panel 內的 tab |
 | `/` | 搜尋 |
 | `1`–`9` | 直接跳到 `[N]` panel |
-| `q` | 離開；有東西會遺失（進行中的傳輸、未存的草稿）時先 confirm |
 | `V` | splash 彩蛋，啟動時不播，不列進 menu |
 | `z` / `Z` | zoom |
 
+- **離開流程**（tdp K9）：有東西會遺失（進行中的傳輸、未存的草稿）時先 confirm。
 - **導覽字母不綁動作**：`j k u d g G h l` 保留給移動，任何動作不佔用。
 - **大小寫分層**：小寫作用在 item，大寫作用在 panel 或全域。
 - **刪除用 `x`**（`d` 是半頁）。
