@@ -21,6 +21,7 @@
 | [F](#f-popup) | Popup |
 | [X](#x-mouse) | Mouse |
 | [T](#t-時間軸) | 時間軸 |
+| [S](#s-splash) | Splash（家族彩蛋） |
 
 ---
 
@@ -430,3 +431,54 @@ app 若讓失焦的 panel 變暗，只能用在靜態內容；**串流內容（l
 流過，變暗等於切斷使用者用餘光掃過的路徑。這也是「規則服務 UX」（Principle P0）的典型
 例子：「失焦變暗」的 origin UX 是「不搶焦點」，串流的 UX 是「用餘光看更新」—— 兩個目標
 剛好落在同一個 panel 上，規則該擴充，而不是犧牲串流。
+
+---
+
+## S Splash
+
+splash 是 terminu family 共同的彩蛋，也是 tdp 裡**唯一刻意不揭露**的東西。揭露規則
+（M1、M3、M4）與 core key 規則（K1）對它不適用；它也不是 popup，F 章不適用。
+splash 只記載在 tdp，不寫進任何 app 的 README 或 app 內的 menu、help。
+
+### S1 每個 app 都有 splash，用 `V` 打開 `固定`
+
+每個 terminu app 都有 splash，在 panel 上按 **`V`** 打開。`V` 保留給 splash：
+
+- 某個 panel 的 panel operation 真的需要 `V` 時，**該 panel** 可以把 `V` 給 app 自己用，
+  那個 panel 上就叫不出 splash。
+- 但 app 裡**至少要有一個 panel** 的 `V` 仍然是 splash。
+
+**為什麼**：彩蛋要在家族每個成員都按得出來，才是「家族的」彩蛋；而某些 app 的領域動作
+確實需要 `V`（例：選取模式），讓一個 panel 讓出去，比讓整個 app 失去彩蛋好。
+
+### S2 不揭露 `固定`
+
+splash 不出現在 Space menu、`?` menu、key reference、footer、panel hint，也不寫進 README。
+
+**為什麼**：彩蛋被列出來就不是彩蛋了。它是 tdp「揭露是唯一機制」（Principle P2）的唯一
+例外，而且只有這一個 —— 所以寫在這裡，不寫在任何 app 裡。
+
+### S3 任意鍵只關掉 splash `固定`
+
+splash 開著時，**任何鍵都只會關掉它**，包括 `q`、`Ctrl-C`、`Esc`、`Space`、`?`；那個鍵
+不會再做別的事。第一次按 `Ctrl-C` 只關 splash，不離開 app。
+
+**為什麼**：使用者看到一個沒見過的畫面，第一反應是隨便按個鍵讓它消失。那一鍵若同時
+觸發了別的動作（離開、開 menu），彩蛋就變成陷阱。
+
+### S4 只在 panel 上、只在按了之後 `固定`
+
+- 啟動時不播。
+- 只能在 panel 上用 `V` 叫出來；popup 開著、輸入態、PTY 裡按 `V` 都不叫出 splash
+  （輸入態的 `V` 是字元，K8；PTY 的 `V` 屬於子程序，K10）。
+
+**為什麼**：啟動就播的 splash 是每次都要等的開場，不是彩蛋；而在 popup、輸入框、PTY 裡
+冒出來，會打斷使用者正在做的事。
+
+### S5 內容是家族 icon `固定`
+
+splash 畫的是該 app 的 `docs/icon.svg` —— terminu family 的 mark —— 一格對一格，帶揭露
+動畫。動畫怎麼跑由 app 決定。
+
+**為什麼**：splash 是家族的簽名。每個成員畫的都是自己那一版的家族 mark，按下 `V` 就認得出
+這是同一家的東西。

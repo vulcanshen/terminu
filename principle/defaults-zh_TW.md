@@ -102,7 +102,6 @@ K ≥ N 時固定為 popup 最上層
 | `h` `l` | 切換 panel 內的 tab |
 | `/` | 搜尋 |
 | `1`–`9` | 直接跳到 `[N]` panel |
-| `V` | splash 彩蛋，啟動時不播，不列進 menu |
 | `z` / `Z` | zoom |
 
 - **離開流程**（tdp K9）：有東西會遺失（進行中的傳輸、未存的草稿）時先 confirm。
@@ -118,7 +117,8 @@ K ≥ N 時固定為 popup 最上層
   資料在 `~/.<app>/`。
 - 需要 Nerd Font；PUA glyph 在程式碼裡寫成 code point。
 - 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（Rules L4）。
-- `docs/icon.svg` 是家族 mark；splash 由 icon 逐格畫出，有測試守住一致。
+- `docs/icon.svg` 是家族 mark；splash（Rules S 章）由它逐格畫出，用測試守住兩者一致。
+- `V` 保留給 splash（Rules S1）。
 - demo gif 用 VHS 錄，腳本放在 `.local/demos/`；README 只放一張代表性的 gif。
 
 ## D7 文件
