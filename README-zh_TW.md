@@ -55,4 +55,4 @@ terminu design 的前身是 VTP，一份先長在 kbu 裡、後來抽出來的 T
 
 ## License
 
-（待定）
+[CC BY 4.0](LICENSE)
