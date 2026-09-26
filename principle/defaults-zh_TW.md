@@ -89,9 +89,10 @@ K ≥ N 時固定為 popup 最上層
   `j/k move · Enter run · Esc close`。
 - menu 標題是 focus panel 的 `[N] label`。
 
-## D5 按鍵慣例
+## D5 熱鍵參考
 
-**這些是熱鍵，tdp 不規定**（[Principle P5](README-zh_TW.md#p5-固定區與概念區)），列在這裡是因為家族多數成員這樣做：
+**tdp 不規定熱鍵**（[Principle P5](README-zh_TW.md#p5-固定區與概念區)），這裡只記錄家族目前的做法，
+新 app 想省事可以照用：
 
 | 鍵 | 慣例 |
 |---|---|
@@ -122,7 +123,36 @@ K ≥ N 時固定為 popup 最上層
 
 ## D7 文件
 
-- `README.md`（英文）與 `README-zh_TW.md`（繁中）內容對齊，只寫使用者需要知道的。
-- `docs/dev-remarks.md`（繁中）：開發過程的決策、理由、已否決的做法、偏離 tdp 的地方、
-  建置與發布。
-- `docs/<app>-terminu-fix.md`：尚未符合 tdp 的地方，逐條待修。
+**README**：`README.md`（英文）與 `README-zh_TW.md`（繁中）內容對齊，只寫使用者需要知道的：
+
+1. 標題、badge、語言切換（`English · 繁體中文`）
+2. 一句話定位 + 一段「它能做什麼」
+3. **一張**代表性的 demo gif
+4. 特色：使用者拿到什麼，不寫怎麼做到的
+5. 安裝：前置需求、安裝方式、第一次啟動會發生什麼、移除
+6. 快速開始
+7. 使用方式與按鍵
+8. 設定與資料存放位置
+9. 限制（用使用者的語言寫）
+10. 相關連結：CHANGELOG、`docs/dev-remarks.md`
+11. terminu family：遵循 terminu design、列出家族其他成員
+12. License
+
+不寫死版本號的「現況」段 —— 版本交給 badge 與 CHANGELOG。
+
+**`docs/dev-remarks.md`**（繁中）：開發者開發過程中要提醒自己、或 AI 協作時記下的決策。
+
+```
+# <app> 開發者備忘
+前言（一句話 + 遵循 terminu design principle）
+## 運作方式
+## 設計決定（決定 + 理由）
+## 已否決，不要重提
+## 已知的牆與未做
+## 偏離 tdp（哪一條、在哪裡、為什麼）
+## 設計文件導讀
+## 建置與開發
+## 發布（含踩過的坑）
+```
+
+**`docs/<app>-terminu-fix.md`**：尚未符合 tdp 的地方，逐條待修（違反了哪一條、在哪裡、現況、該怎麼改）。
