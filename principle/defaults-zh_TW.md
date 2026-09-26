@@ -74,7 +74,7 @@ K ≥ N 時固定為 popup 最上層
 
 - 一個 popup 一個檔、一個 animator。
 - 標題放在上框：glyph + 文字；hint 嵌在下框；內容上下各留一列空白。
-- 動畫：8 格 × 16ms ≈ 128ms。
+- 動畫（Rules F2）：8 格 × 16ms ≈ 128ms，開啟與關閉對稱。
 - toast：顯示 2200ms，固定在畫面底部。
 - `Esc` 只在一個地方處理（`closeTop`）。
 - confirm 的下框 hint：`Enter <動詞> · Esc cancel`。
