@@ -115,7 +115,6 @@ records what the family does today, for a new app that wants the easy path:
 | `h` `l` | Switch tabs within a panel |
 | `/` | Search |
 | `1`–`9` | Jump to panel `[N]` |
-| `V` | Splash easter egg; not played at start-up, not listed in menus |
 | `z` / `Z` | Zoom |
 
 - **Quit flow** (tdp K9): confirm first when something would be lost (a transfer in
@@ -134,8 +133,9 @@ records what the family does today, for a new app that wants the easy path:
 - Requires a Nerd Font; PUA glyphs are written as code points in the source.
 - Screen tests across sizes: at several terminal sizes, every line is exactly the terminal
   width (Rules L4).
-- `docs/icon.svg` is the family mark; the splash is drawn from the icon cell for cell,
-  with a test keeping the two identical.
+- `docs/icon.svg` is the family mark; the splash (Rules, chapter S) is drawn from it cell
+  for cell, with a test keeping the two identical.
+- `V` is reserved for the splash (Rules S1).
 - Demo gifs are recorded with VHS, scripts in `.local/demos/`; the README carries a single
   representative gif.
 

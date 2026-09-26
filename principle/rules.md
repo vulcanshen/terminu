@@ -22,6 +22,7 @@ renumbered; a retired rule keeps its ID and is marked retired.
 | [F](#f-popups) | Popups |
 | [X](#x-mouse) | Mouse |
 | [T](#t-time-axis) | Time axis |
+| [S](#s-splash) | Splash (the family easter egg) |
 
 ---
 
@@ -504,3 +505,61 @@ This is also the textbook case of "rules serve the UX" (Principle P0): the origi
 "dim on blur" is "don't compete for focus", while streaming's UX is "catch updates from
 the corner of the eye" — two goals that happen to land on the same panel, so the rule is
 extended rather than streaming sacrificed.
+
+---
+
+## S Splash
+
+The splash is the terminu family's shared easter egg, and the **only thing in tdp that is
+deliberately not disclosed**. The disclosure rules (M1, M3, M4) and the core-key rule (K1)
+do not apply to it; it is not a popup either, so chapter F does not apply. The splash is
+documented only in tdp — never in an app's README, menus or help.
+
+### S1 Every app has a splash, opened with `V` `fixed`
+
+Every terminu app has a splash, opened with **`V`** on a panel. `V` is reserved for it:
+
+- When a panel operation of some panel genuinely needs `V`, **that panel** may give `V`
+  to the app; the splash cannot be summoned on that panel.
+- But **at least one panel** in the app keeps `V` for the splash.
+
+**Why**: an easter egg belongs to the family only if every member has it; and some apps'
+domains really do need `V` (e.g. a selection mode) — giving up one panel is better than
+the whole app losing the egg.
+
+### S2 Not disclosed `fixed`
+
+The splash does not appear in the Space menu, the `?` menu, the key reference, the
+footer or panel hints, and is not written in the README.
+
+**Why**: a listed easter egg is no longer an easter egg. It is the one and only exception
+to "disclosure is the only mechanism" (Principle P2) — which is why it is written here
+and in no app.
+
+### S3 Any key only closes the splash `fixed`
+
+While the splash is showing, **any key only closes it** — `q`, `Ctrl-C`, `Esc`, `Space`
+and `?` included; the key does nothing else. A first `Ctrl-C` only closes the splash; it
+does not quit the app.
+
+**Why**: faced with a screen they have never seen, users press any key to make it go
+away. If that key also did something else (quit, open a menu), the egg would be a trap.
+
+### S4 On a panel only, and only when asked for `fixed`
+
+- It is not played at start-up.
+- It can only be summoned with `V` on a panel; with a popup open, in input state or in a
+  PTY, `V` does not summon it (in input state `V` is a character, K8; in a PTY it belongs
+  to the subprocess, K10).
+
+**Why**: a splash played at start-up is an intro everyone waits through every time, not
+an easter egg; and one that pops up inside a popup, an input box or a PTY interrupts what
+the user is doing.
+
+### S5 The content is the family icon `fixed`
+
+The splash draws the app's `docs/icon.svg` — the terminu family mark — cell for cell,
+with a reveal animation. How the animation runs is up to the app.
+
+**Why**: the splash is the family's signature. Each member draws its own version of the
+family mark, so pressing `V` tells you at once that this comes from the same family.

@@ -61,6 +61,9 @@ you can run directly**, not documentation:
 Moving the documentation into the app does not turn it into disclosure — the user is
 still reading documentation.
 
+The one thing deliberately left undisclosed is the family easter egg, the splash (Rules,
+chapter S).
+
 ## P3 Three scopes of operation
 
 Every action the user meets in an app belongs to one scope, decided by **what it acts on**:
