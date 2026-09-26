@@ -11,15 +11,16 @@ app. Learn it once and every app in the family works the same way.
 
 ---
 
-## Five keys
+## Six keys
 
 | Key | Meaning |
 |---|---|
-| `Tab` | Move to the next pane |
-| `Enter` | Do the obvious thing to what is selected |
+| `Tab` | Move to the next thing on the same level: between panels, between form fields |
+| `Enter` | Do the obvious thing to what is selected; in a form, submit |
 | `Esc` | Cancel, close the top layer — one layer at a time, never closes the app |
 | `Space` | What can I do here? |
-| `?` | What can I do in this app? |
+| `?` | What can I do in this app? In a popup: how does this box work? |
+| `q` | Quit the app (so does `Ctrl-C`) |
 
 When in doubt, press `Space`.
 
@@ -33,14 +34,17 @@ When in doubt, press `Space`.
   one thing.
 - **Rules serve the UX.** When a rule gets in the way of good UX, the rule is extended,
   not the UX sacrificed.
+- **What is fixed, and what is left to the app, is spelled out.** Core-key behaviour is
+  fixed; everything else states what must be achieved and leaves the how to each app;
+  colour and hotkeys are family defaults an app can adopt as they are.
 
 The details are in the **[terminu design principle (tdp)](principle/)**:
 
 | | |
 |---|---|
 | [Principle](principle/README.md) | The spirit: what it aims for and why |
-| [Rules](principle/rules.md) | What must hold, each with its reason |
-| [Family defaults](principle/defaults.md) | The concrete values the family shares: colours, motion, layout, key habits |
+| [Rules](principle/rules.md) | What must hold, each with its reason, split into a fixed and a concept zone |
+| [Family defaults](principle/defaults.md) | Family default recommendations: colour system, popups, menus, hotkey reference, document skeletons |
 
 ## The terminu family
 

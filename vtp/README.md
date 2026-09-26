@@ -94,27 +94,35 @@ Y = core-key role 數量（≤ 5 不扣分）
 
 | VTP | tdp | VTP | tdp |
 |---|---|---|---|
-| §0 Meta | P0 | §2.4 Override 色 | C4 |
-| 術語定義 | Principle 術語 | §2.5 layer 插值 | F3、D2 |
-| §A VTP 核心 | P1、P3 | §2.6 panel-aware 消歧 | C5 |
+| §0 Meta | P0 | §2.4 Override 色 | D2 |
+| 術語定義 | Principle 術語 | §2.5 layer 插值 | D2 |
+| §A VTP 核心 | P1、P3 | §2.6 panel-aware 消歧 | M9 |
 | §A.0 揭露 | P2 | §3 符號語彙 | P5 |
-| §A.0.L 可疊加 layer | P2 | §4.1 core key | K1 |
-| §A.0.B 範圍邊界 | P1、P5 | §4.2 letter hotkey ⊆ 入口 | M3 |
-| §A.0.K core-key 語意 | K1、K7 | §4.3 `Esc` 通殺 | K4、F4 |
+| §A.0.L 可疊加 layer | （移除） | §4.1 core key | K1 |
+| §A.0.B 範圍邊界 | P5 | §4.2 letter hotkey ⊆ 入口 | M3 |
+| §A.0.K core-key 語意 | K1、K7 | §4.3 `Esc` 通殺 | K4、F3 |
 | §A.1 Space 入口 | K5、M1、M2 | §4.4 熱鍵標記 | M5 |
 | §A.1.1 menu 分區 | M2 | §4.5 輸入態屏蔽 | K8 |
 | §A.1.2 `[]` 標記 | M5 | §5.1 / §5.2 Mouse | X1 / X2 |
 | §A.1.3 名稱 + 說明、完整性 | M5、M3 | §6.1 浮層分類 | F1 |
 | §A.2 `?` 入口 | K6、M1、M4 | §6.2 動畫 | F2 |
-| 入口不能沒回應 | M7 | §6.3 border 色 | F3 |
-| §B 元素專職化 | P4 | §6.4 保留 source | F5 |
-| §1.1 窄寬可用 | L1 | §6.5 auto-dismiss 也算 | F4 |
+| 入口不能沒回應 | M7 | §6.3 border 色 | D2 |
+| §B 元素專職化 | P4 | §6.4 保留 source | F4 |
+| §1.1 窄寬可用 | L1 | §6.5 auto-dismiss 也算 | F3 |
 | §1.2 Width stability | L2 | §6.6 menu cursor-first | M2、M8 |
-| §1.3 footer 行數固定 | L3 | §6.7 錯誤呈現 | F6 |
-| §2.1 最少錨點 | C1 | §7.1 source 是否仍有意義 | T1 |
-| §2.2 明度 z 軸 | C2 | §7.2 streaming 不退階 | C6、T2 |
-| §2.3 顏色帶專職 | C3 | | |
+| §1.3 footer 行數固定 | L3 | §6.7 錯誤呈現 | F5 |
+| §2.1 最少錨點 | D2 | §7.1 source 是否仍有意義 | T1 |
+| §2.2 明度 z 軸 | D2 | §7.2 streaming 不退階 | T2 |
+| §2.3 顏色帶專職 | D2 | 結語 | （移除） |
 
-tdp 新增、VTP 沒有的：K2（`Tab` 不跨畫面）、K9（一定出得去）、M6（變暗並說明）、
-L4（每列等於終端機寬度）、L5（focus 不位移）、F7（confirm）、`global operation`
-（P3、M2 第三區、M4 可執行區）。
+tdp 相對 VTP 的主要變動：
+
+- **新增**：`global operation`（P3、M2 第三區、M4 可執行區）、K2 `Tab` 在同層物件間切換、
+  K3 `Enter` 在 input popup 裡 submit 並驗證、K9 `q` 成為 core key 並與 `Ctrl-C` 同義、
+  K10 PTY、M6 暫不可執行的列變暗、L1 最低 80×40、L4 每列等於終端機寬度、L5 focus 不位移、
+  F6 confirm
+- **收窄**：K5 `Space` 只在 panel 上開關 Space menu、在其他 popup 上不作用；K6 `?` 在 popup 上
+  只顯示該 popup 的 help；F2 動畫必須有、長度不規定
+- **移到 defaults**：整個色彩章（D2）
+- **移除**：VTP 與外部工具（vim、which-key、nano）的比較、可疊加 layer 論證、結語
+- **新結構**：每條 rule 分 `固定` 與 `概念`；defaults 是通用預設建議，不照用不算違規
