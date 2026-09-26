@@ -34,8 +34,8 @@
 | `Tab` | focus 移到同層的下一個物件 | K2 |
 | `Enter` | 對 focus 項目做最直觀的那個動作；在 input popup 裡是 submit | K3 |
 | `Esc` | 取消 / 關閉最上層 | K4 |
-| `Space` | 開 / 關當前 focus 的 Space menu | K5、M2 |
-| `?` | 開 / 關 `?` menu（整個 app 能做的事） | K6、M4 |
+| `Space` | 在 panel 上開 / 關 Space menu（這裡能做什麼） | K5、M2 |
+| `?` | 開 / 關 help：在 panel 上是 `?` menu（整個 app 能做的事），在 popup 上是該 popup 的 help | K6、M4 |
 | `q` | 離開 app | K9 |
 
 表上的鍵在**每一個 surface** 都是這個意義，例外只有輸入態（K8）與 PTY（K10）。app 可以
@@ -93,25 +93,33 @@ core key 一旦指定，同樣在所有 surface 意義不變。**letter hotkey �
 `Esc` 就變成危險鍵，使用者不敢按，也就失去了「取消」這個安全出口。離開 app 有自己的
 鍵（K9）。
 
-### K5 `Space` 開關 Space menu，只關它自己開的 `固定`
+### K5 `Space` 在 panel 上開關 Space menu `固定`
 
-- `Space` 打開**當前 focus** 的 Space menu（M2）。focus 在 popup 上時，開的是那個 popup 的
-  Space menu。
-- Space menu 開著時，再按 `Space` 關掉它。`Esc` 也能關。
-- **`Space` 只關 Space menu。** 其他 popup（由 `Enter` 或熱鍵打開的 confirm、input、
-  viewport……）不因 `Space` 關閉，它們由 `Esc` 或自己的流程關閉。
+- focus 在 panel 上時，`Space` 打開 Space menu（M2）；Space menu 開著時，再按 `Space` 關掉它。
+  `Esc` 也能關。
+- **`Space` 只關它自己開的 Space menu。** 其他 popup（由 `Enter` 或熱鍵打開的 confirm、input、
+  viewport……）上按 `Space` **不作用**，它們由 `Esc` 或自己的流程關閉。
+- popup 自己的操作（例：切換 viewport 的版面）用熱鍵執行，揭露在 popup 下框的 hint 與
+  該 popup 的 `?` help（K6），不在 popup 上再疊一個 Space menu。
 
 **為什麼**：只能開、不能用同一個鍵關的入口是陷阱 —— 使用者伸手按同一個鍵想退出，
-結果沒反應。但 `Space` 若也能關 confirm，它就兼了 `Esc` 的「取消」（P4），而且在 confirm
-上按 `Space` 的使用者，可能其實想看「這裡能做什麼」。
+結果沒反應。但 `Space` 若也能關 confirm，它就兼了 `Esc` 的「取消」（P4）；若能在 popup
+上再疊 menu，框上疊框的層數就沒有盡頭。家族的流程一律是：panel 上 `Space` 開 menu，
+選一列 `Enter`，才打開下一個 popup。
 
-### K6 `?` 隨時開關 `?` menu `固定`
+### K6 `?` 隨時開關 help `固定`
 
-`?` 在任何 surface 都能打開 `?` menu（M4），包括疊在任何 popup 之上；再按一次 `?`
-關掉，`Esc` 也能關。輸入態與 PTY 依 K8、K10。
+`?` 在任何 surface 都有回應，再按一次 `?` 關掉，`Esc` 也能關。內容依 focus 而定：
 
-**為什麼**：`?` 是迷路時最後的出口。如果它在某些 popup 裡按不出來，使用者正好在最需要
-它的時候找不到它。
+| focus 在 | `?` 打開 |
+|---|---|
+| panel | `?` menu：可執行的 global operation + key reference（M4） |
+| popup（包括 Space menu） | **只有這個 popup 的 help**：在這個框裡能按什麼鍵、做什麼，沒有 item / panel / global |
+
+輸入態與 PTY 依 K8、K10。
+
+**為什麼**：`?` 是迷路時最後的出口，所以在任何地方都要按得出來。但在 popup 裡迷路的
+使用者，要的是「這個框怎麼用」，不是整個 app 的全域動作 —— 全域動作等回到 panel 再做。
 
 ### K7 別名要完整 `固定`
 
@@ -166,23 +174,23 @@ PTY 是陷阱，所以出口鍵必須存在，而且看得到。
 
 ## M Menu 與揭露
 
-### M1 入口要被看得到
+### M1 入口要被看得到 `固定`
 
 非輸入態的每一個畫面都必須**常駐顯示** `Space` 與 `?` 這兩個入口，讓第一次打開
-app、沒讀過任何文件的使用者看得到。形式由 app 決定（footer、側欄、空狀態提示）。
+app、沒讀過任何文件的使用者看得到。顯示形式由 app 決定（footer、側欄、空狀態提示）。
 
 **為什麼**：使用者不可能按一個不知道存在的鍵。入口沒被揭露，後面揭露得再完整也
 等於不存在（Principle P2）。
 
-### M2 Space menu：item → panel → global 三區
+### M2 Space menu：item → panel → global 三區 `固定`
 
-Space menu 列出**當前 focus 能做的所有事**，依作用對象（Principle P3）分區，順序固定：
+Space menu 列出**當前 panel 能做的所有事**，依作用對象（Principle P3）分區，順序固定：
 
 | 順序 | 區塊標題 | 內容 |
 |---|---|---|
 | 1 | `item operation` | cursor 指的那一個項目能做的事 |
 | 2 | `panel operation` | 當前 panel（或它的 tab）整體能做的事 |
-| 3 | `global operation` | 整個 app 的全域動作，與 `?` menu 的 global operation 同一份清單、同一順序 |
+| 3 | `global operation` | 整個 app 的**全部**全域動作，與 `?` menu 的 global operation 同一份清單、同一順序 |
 
 - **區塊標題字串固定**，全 app、全家族都用上表的英文原字。
 - **沒有對象就沒有那一區**：空清單沒有 item，item operation 連標題一起不出現。
@@ -192,33 +200,36 @@ Space menu 列出**當前 focus 能做的所有事**，依作用對象（Princip
 **為什麼**：使用者從上往下讀，先看到「對我選的這個東西能做什麼」，再看到「對這一整塊」，
 最後才是全域。固定的標題字串讓使用者一眼認出「這是同一種 menu」—— 措辭不同的 menu
 會被讀成另一**種**選單。global 區放在最後，讓使用者只要記得 `Space` 一個鍵就找得到
-所有事，又不會把當前 focus 的動作擠到下面。
+所有事，又不會把當前 panel 的動作擠到下面。
 
-### M3 每個動作都要能從 menu 找到
+### M3 每個動作都要能從 menu 找到 `固定`
 
-- 當前 focus 的每個 item operation 與 panel operation 都在 Space menu 裡。
+- 每個 panel 的每個 item operation 與 panel operation，都在該 panel 的 Space menu 裡。
 - 每個 global operation 都在 `?` menu 與 Space menu 的 global 區裡。
-- **letter hotkey 是 menu 裡某一列的捷徑，不是額外的功能**。只能靠熱鍵觸發、menu 裡
+- popup 自己的操作，都在該 popup 的 `?` help 與下框 hint 裡（K5、K6）。
+- **letter hotkey 是某個清單裡某一列的捷徑，不是額外的功能**。只能靠熱鍵觸發、哪裡都
   找不到的動作是違反。
 
 判斷一個動作該進哪一區，只看**作用對象**，不看它重不重要（Principle P3）。
 
-**為什麼**：沒看過熱鍵的新使用者只靠 `Space` 與 `?`，就要能在每個 focus 做完所有事。
+**為什麼**：沒看過熱鍵的新使用者只靠 `Space` 與 `?`，就要能在每個地方做完所有事。
 只要有一個動作要靠事先學，「不看文件就能用」就破了一個洞。
 
-### M4 `?` menu：可執行的 global operation + 按鍵參考
+### M4 `?` menu：可執行的 global operation + key reference `固定`
 
-`?` menu 有兩部分：
+focus 在 panel 上時，`?` menu 有兩部分：
 
 1. **`global operation` 區**：app 所有全域動作，**可以直接執行**（`j/k` 選、`Enter`
    執行、有熱鍵的列按熱鍵執行）。離開 app 必須在這裡（K9）。
-2. **`key reference` 區**：唯讀的按鍵對照，至少列出 app 用到的 core key，其餘（導覽
-   鍵、熱鍵）由 app 決定。
+2. **`key reference` 區**：唯讀的按鍵對照，至少列出 app 用到的 core key；其餘（導覽
+   鍵、熱鍵）列不列由 app 決定。
+
+focus 在 popup 上時，`?` 只顯示該 popup 的 help（K6）。
 
 **為什麼**：只能讀的說明頁是文件，不是揭露（Principle P2）。全域動作不屬於任何
-focus，所以需要一個在任何 surface 都叫得出來、而且能直接執行的地方。
+panel，所以需要一個在任何 panel 都叫得出來、而且能直接執行的地方。
 
-### M5 每一列 = 名稱 + 說明，熱鍵用 `[]` 標出
+### M5 每一列 = 名稱 + 說明，熱鍵用 `[]` 標出 `固定`
 
 menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 
@@ -234,7 +245,7 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
  [q]uit                                            leave the app
 ```
 
-熱鍵標記規則，全 app 一套（menu、footer、panel hint 都一樣）：
+熱鍵標記規則，全 app 一套（menu、footer、panel hint、popup hint 都一樣）：
 
 | 情境 | 寫法 |
 |---|---|
@@ -246,31 +257,32 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 
 - **括號裡印的就是要按的鍵，大小寫算數**：`[A]dd` 是 `Shift+A`。
 - 不能只用顏色或 glyph 暗示「這是熱鍵」，要顯式標出來。
+- 說明寫什麼由 app 決定，但必須是單行。
 
 **為什麼**：名稱回答「這是什麼動作」，說明回答「它會對什麼做什麼」—— 同一個動詞在
-不同 focus 可能意義不同（刪檔案還是取消收藏？）。說明寫不進一行，通常是動作的
+不同 panel 可能意義不同（刪檔案還是取消收藏？）。說明寫不進一行，通常是動作的
 命名有問題。數字不嵌進字裡，因為 `432hz` 會被畫成 `4[3]2hz`。
 
-### M6 暫時不能執行的動作：變暗並說明原因
+### M6 暫時不能執行的動作：變暗 `固定`
 
 - **對象不存在**：那一列（或那一區）不出現（M2）。
-- **對象存在、但現在不能執行**：列照樣出現，**變暗**並寫出原因，cursor 可以停在上面，
-  熱鍵不作用。
+- **對象存在、但現在不能執行**：列照樣出現、**變暗**，說明欄維持原本那句，不另外寫原因；
+  cursor 可以停在上面，按 `Enter` 或熱鍵都不作用。
 
-**為什麼**：藏起來的動作，使用者會以為 app 不支援；變暗加原因，使用者知道「有這件事，
-只是現在不行，因為……」。
+**為什麼**：藏起來的動作，使用者會以為 app 不支援；變暗讓使用者知道「有這件事，只是
+現在不行」。不另寫原因，是因為原因千變萬化，塞進單行說明會讓每一列的字數失控（M5）。
 
-### M7 入口永遠有回應
+### M7 panel 上的入口永遠有回應 `固定`
 
-`Space` 與 `?` 在任何 surface 按下去都要打開 menu，不能沒反應。沒有可執行的動作時
-照樣打開，顯示「沒有可做的事」與關閉方式。
+focus 在 panel 上時，`Space` 與 `?` 按下去都要打開 menu，不能沒反應。沒有可執行的動作
+時照樣打開，顯示「沒有可做的事」與關閉方式。在 popup 上，永遠有回應的是 `?`（K6）。
 
 **為什麼**：按下去沒反應，使用者會以為鍵壞了，而不是「這裡沒事可做」。
 
-### M8 其他分組 menu：cursor 相關的放最前
+### M8 其他分組 menu：cursor 相關的放最前 `概念`
 
-Space menu 以外的 menu 若要分組，第一組是跟當前 cursor 相關的動作，其後每組加上
-說明類型的標題。不需要分組時直接列出。
+Space menu 以外的 menu（例：排序選擇器、open-with 清單）若要分組，第一組是跟當前
+cursor 相關的動作，其後每組加上說明類型的標題。不需要分組時直接列出。
 
 **為什麼**：同 M2 —— 使用者先找「對著我選的東西」。
 
