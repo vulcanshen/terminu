@@ -1,6 +1,6 @@
 # Changelog
 
-## tdp v0.1.0 — 2026-09-26
+## v0.1.0 — 2026-09-26
 
 First release of terminu design and the terminu design principle, grown out of VTP
 (see [vtp/](vtp/), which also maps every VTP clause to its tdp ID).
