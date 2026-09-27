@@ -40,7 +40,7 @@ renumbered; a retired rule keeps its ID and is marked retired.
 | `q` | Quit the app | K9 |
 
 These keys carry this meaning on **every surface**; the only exceptions are input state
-(K8) and PTY (K10). An app need not use all of them (a single-panel app has no use for
+(K8), PTY (K10) and modes (K11). An app need not use all of them (a single-panel app has no use for
 `Tab`), and may designate core keys of its own; once designated, those also keep their
 meaning on every surface. **No letter hotkey may take over a key in this table.**
 
@@ -196,6 +196,27 @@ permanently while focus is in the PTY.
 breaks it. But a PTY with no way out is a trap, so the exit key must exist, and it must
 be visible.
 
+### K11 Core keys inside a mode `fixed`
+
+With focus inside a mode (see the term), the core keys act like this:
+
+| Key | Inside a mode |
+|---|---|
+| `Space` | Opens / closes **the mode's key list**: the keys that work in the mode, each row runnable (its key or `Enter`), the list closing once one runs. The list need not be split into item / panel / global regions |
+| `?` | The mode's help (read-only) |
+| `Esc` | Leaves the mode (K4), back to where it was entered |
+| `q`, `Ctrl-C` | Run the quit flow, as K9 |
+| `Tab` | A mode may suspend `Tab`, but pressing it must respond, saying to leave the mode with `Esc` first (e.g. a toast) |
+
+- The footer still shows `Space` and `?` inside a mode (M1).
+- The mode's own keys (move, select, drag) need not be in the Space menu, but must be in the
+  mode's key list (M3, as it applies inside a mode).
+
+**Why**: the keys of a mode are mostly movement and selection, not actions on an item —
+laid out as an item / panel / global menu they read worse; but a user lost inside a mode
+must still find "what can I press here" with `Space`, get out with `Esc` and quit with `q`
+(webu's visual mode, settled 2026-09-27).
+
 ---
 
 ## M Menus and disclosure
@@ -224,7 +245,7 @@ The Space menu lists **everything the current panel can do**, split by what it a
   and the family.
 - **No target, no region**: an empty list has no item, so item operation disappears,
   header and all.
-- **When only one region is left, it has no header** and is listed directly.
+- **A panel's Space menu always carries region headers**: the global region is always there, so there are at least two regions. Listing without headers is only for other, ungrouped menus (M8).
 - Regions are separated by a divider line.
 
 **Why**: users read top down, so they see "what can I do to the thing I picked" first,

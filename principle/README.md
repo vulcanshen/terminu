@@ -210,6 +210,13 @@ While the user is typing: focus is on a field that takes keys as characters. E.g
 rename box, sshu's host form, webu's address bar (`L`), locku's PIN entry, any `/`
 search line.
 
+### Mode
+
+A temporary state inside a panel or popup: once in it, some keys take on the mode's own
+meaning, and `Esc` leaves it. E.g. webu's visual mode (selecting text), kbu's drag mode
+(reordering pins), sshu's `Alt+v` selection mode, the selection in filu's yank viewport.
+A mode is not input state — keys do not become characters. See Rules K11.
+
 ### Core key
 
 A key whose meaning is specified by tdp and never changes on any surface: `Tab`,

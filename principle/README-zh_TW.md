@@ -177,6 +177,12 @@ item → panel → global 排列；`?` 開出「整個 app 能做的事」，glo
 使用者正在打字的狀態：focus 在一個會把按鍵當字元收下的欄位上。例：filu 的重新命名框、
 sshu 的 host 表單、webu 的網址列（`L`）、locku 的 PIN 輸入、任何 `/` 搜尋列。
 
+### 模式
+
+panel 或 popup 裡的一個暫時狀態：進入之後，一部分鍵換成這個模式自己的意思，`Esc` 離開。
+例：webu 的 visual mode（選字）、kbu 的拖曳模式（排 pin 的順序）、sshu 的 `Alt+v` 選取模式、
+filu yank viewport 裡的選取。模式不是輸入態 —— 按鍵不會變成字元。規則見 Rules K11。
+
 ### Core key
 
 tdp 規定意義、在所有 surface 意義不變的鍵：`Tab`、`Enter`、`Esc`、`Space`、`?`（Rules K 章）。
