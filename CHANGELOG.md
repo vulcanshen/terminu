@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.7 — 2026-09-28
+
+- M2: the Space menu's global row carries **no region header** — `global operation` over a single
+  `Global operation` row only repeated itself; a divider still separates it. The item and panel
+  regions keep their headers on a panel's Space menu
+
 ## v0.1.6 — 2026-09-27
 
 - K2: in a single input box with a greyed-out suggestion, `Tab` **accepts** it (was: the app *may*);

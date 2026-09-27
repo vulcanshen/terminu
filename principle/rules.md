@@ -264,13 +264,14 @@ The Space menu lists **everything the current panel can do**, split by what it a
 |---|---|---|
 | 1 | `item operation` | what can be done to the one item under the cursor |
 | 2 | `panel operation` | what can be done to the current panel (or its tab) as a whole |
-| 3 | `global operation` | **always a single row**, `Global operation`: `Enter` opens the global operation popup (M4) — even when the app has only one global action |
+| 3 | (no header) | **always a single row**, `Global operation`: `Enter` opens the global operation popup (M4) — even when the app has only one global action |
 
 - **The header strings are fixed**, word for word as in the table above, across the app
   and the family.
+- **The global row carries no region header**: its label `Global operation` already says what it is, and a `global operation` header above it only repeats it; a divider still separates it from the regions above.
 - **No target, no region**: an empty list has no item, so item operation disappears,
   header and all.
-- **A panel's Space menu always carries region headers**: the global region is always there, so there are at least two regions. Listing without headers is only for other, ungrouped menus (M8).
+- **On a panel's Space menu, the item and panel regions always carry their headers** (even when only one of them is left): the global row is always there, so the menu never holds just one kind of thing. Only the global row, and other ungrouped menus (M8), go without headers.
 - Regions are separated by a divider line.
 
 **Why**: users read top down, so they see "what can I do to the thing I picked" first,
