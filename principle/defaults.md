@@ -88,6 +88,8 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
 - Animation (Rules F2): 8 frames × 16 ms ≈ 128 ms, symmetric for opening and closing.
 - Toast: shown for 2200 ms, fixed at the bottom of the screen.
 - `Esc` is handled in one place only (`closeTop`).
+- When the `?` help sits on another popup, it is on top in key routing and in drawing alike; boxes such as confirm and options take keys before the `?` menu.
+- Whether a layer is "still there" is judged by opening-or-open (`owns()`), never by an `isActive()` that includes closing (Rules F3).
 - Confirm hint on the bottom border: `Enter <verb> · Esc cancel`.
 - Cancelling returns to the source; completing an action clears the whole stack (the
   usual answer to T1).
@@ -101,6 +103,8 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
 - Inside a menu: `j/k` move (wrapping), `Enter` runs, hotkeys run directly; bottom hint
   `j/k move · Enter run · Esc close`.
 - The menu title is the focused panel's `[N] label`.
+- `key reference` rows are not selectable: the cursor skips them and their keys are not taken, the same check as headers and separators.
+- A label that already shows its key (`[/] Search`) is not bracketed again.
 
 ## D5 Hotkey reference
 

@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.1.1 — 2026-09-27
+
+What locku and webu taught while being brought to v0.1.0.
+
+- **Modes** (new term, Rules K11): inside a mode `Space` lists the mode's keys, `?` is the mode's help,
+  `Esc` leaves, `q` / `Ctrl-C` quit as K9, `Tab` may be suspended but must answer
+- M2: a panel's Space menu always carries region headers (the global region is always there)
+- D3: the `?` help is on top in routing and drawing; judge a layer by `owns()`, not `isActive()`
+- D4: `key reference` rows are not selectable; a label that shows its key is not bracketed again
+
 ## v0.1.0 — 2026-09-26
 
 First release of terminu design and the terminu design principle, grown out of VTP
