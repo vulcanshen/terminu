@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.5 — 2026-09-27
+
+- K8, K2: in the writing state of multi-line text `Tab` is a character (an indent), like `Enter`
+  is a newline there (K3); leave the writing state to switch fields. `\t` or spaces is the app's call
+  (webu's editor popup)
+
 ## v0.1.4 — 2026-09-27
 
 - K10: a PTY needs **at least** one exit key; whether the app keeps other chords of its own in
