@@ -64,6 +64,7 @@ wrapping from the last to the first:
 - **When there is no other object on the same level** (e.g. an input with a single field),
   the app may use `Tab` to accept a greyed-out suggestion (autocomplete), and for nothing
   else.
+- In the writing state of multi-line text, `Tab` is an indent character, not a field switch (K8).
 - Cycling backwards (e.g. `Shift-Tab`) is a hotkey; whether to offer it is up to the app.
 
 **Why**: users press `Tab` expecting "the next one" — the next panel on a screen, the
@@ -167,10 +168,14 @@ a character is a character** and triggers nothing:
 | letter hotkeys, `Space`, `?`, `q` | typed as characters |
 | `Esc` | cancels the input (K4) |
 | `Enter` | submits (K3) |
-| `Tab` | switches fields (K2) |
+| `Tab` | switches fields (K2); in the writing state of multi-line text, a character (indent) |
 | `Ctrl-C` | starts the quit flow (K9) |
 
 Normal behaviour returns the moment focus leaves the input surface.
+
+**In the writing state of multi-line text**, `Tab` is a character (an indent), just as
+`Enter` is a newline (K3); to switch fields or submit, leave the writing state first.
+Whether the indent inserts `\t` or spaces is up to the app.
 
 **Why**: `Space`, `?` and `q` are all printable. Without this, users could never type a
 file name with a space or a password with a question mark. `Esc` and `Enter` stay,
