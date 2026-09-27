@@ -224,11 +224,12 @@ Space menu 列出**當前 panel 能做的所有事**，依作用對象（Princip
 |---|---|---|
 | 1 | `item operation` | cursor 指的那一個項目能做的事 |
 | 2 | `panel operation` | 當前 panel（或它的 tab）整體能做的事 |
-| 3 | `global operation` | **固定一列** `Global operation`：`Enter` 打開 global operation popup（M4）。全域動作只有一個時也一樣 |
+| 3 | （不加標題） | **固定一列** `Global operation`：`Enter` 打開 global operation popup（M4）。全域動作只有一個時也一樣 |
 
 - **區塊標題字串固定**，全 app、全家族都用上表的英文原字。
+- **global 那一列不加區塊標題**：列名 `Global operation` 已經說明它是什麼，再掛一個 `global operation` 標題只是重複；它跟上面的區塊之間照樣用分隔線隔開。
 - **沒有對象就沒有那一區**：空清單沒有 item，item operation 連標題一起不出現。
-- **panel 上的 Space menu 一律加區塊標題**：global 區永遠在，所以至少有兩區。不加標題只適用於不分區的其他 menu（M8）。
+- **panel 上的 Space menu，item 與 panel 兩區一律加區塊標題**（即使只剩其中一區）：global 那一列永遠在，menu 永遠不只一種東西。不加標題只適用於 global 那一列，與不分區的其他 menu（M8）。
 - 區塊之間用分隔線隔開。
 
 **為什麼**：使用者從上往下讀，先看到「對我選的這個東西能做什麼」，再看到「對這一整塊」，
