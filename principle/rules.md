@@ -36,7 +36,7 @@ renumbered; a retired rule keeps its ID and is marked retired.
 | `Enter` | Do the most obvious action to the focused item; in an input popup, submit | K3 |
 | `Esc` | Cancel / close the top layer | K4 |
 | `Space` | On a panel, open / close the Space menu (what can be done here) | K5, M2 |
-| `?` | Open / close help: on a panel, the `?` menu (what the whole app can do); on a popup, that popup's help | K6, M4 |
+| `?` | Open / close the key reference: what keys work on the frontmost surface (read-only) | K6, M4 |
 | `q` | Quit the app | K9 |
 
 These keys carry this meaning on **every surface**; the only exceptions are input state
@@ -58,9 +58,9 @@ wrapping from the last to the first:
 |---|---|
 | a screen | panels |
 | an input popup with several fields | fields |
-| a panel made of several cells (e.g. sshu's SSH grid) | cells |
 
 - `Tab` does not cross screens or leave the current popup.
+- With focus in a PTY, `Tab` belongs to the subprocess (K10).
 - **When there is no other object on the same level** (e.g. an input with a single field),
   the app may use `Tab` to accept a greyed-out suggestion (autocomplete), and for nothing
   else.
@@ -100,6 +100,10 @@ both leave the user stuck.
 or goes up one level — what "up one level" means is defined by the app. **One layer per
 press**, and **`Esc` never leaves the app** — at the top it does nothing.
 
+When a popup opens another (e.g. Space menu → global operation popup → confirm), `Esc`
+**closes only the topmost one**; the popups underneath stay exactly as they were and are
+shown as before; the next press closes the next layer (F4).
+
 **Why**: a lost user presses `Esc` repeatedly to get back somewhere safe. If the end of
 that sequence is the app closing, `Esc` becomes a dangerous key, users stop pressing it,
 and the safe way out that "cancel" provides is gone. Quitting has its own key (K9).
@@ -121,21 +125,23 @@ double as `Esc`'s "cancel" (P4); and if it could stack a menu on a popup, boxes 
 would have no end. The family's flow is always: `Space` on a panel opens the menu, `Enter`
 on a row, and only then does the next popup open.
 
-### K6 `?` opens and closes help from anywhere `fixed`
+### K6 `?` opens and closes the key reference from anywhere `fixed`
 
-`?` responds on any surface; `?` again closes it, and so does `Esc`. What it shows
-depends on focus:
+`?` responds on any surface; `?` again closes it, and so does `Esc`. It opens **the key
+reference of the frontmost surface**: read-only and scrollable, with no cursor and nothing
+to run (M4).
 
-| Focus is on | `?` opens |
+| Focus is on | The key reference lists |
 |---|---|
-| a panel | the `?` menu: runnable global operations + key reference (M4) |
-| a popup (the Space menu included) | **only this popup's help**: which keys work in this box and what they do; no item / panel / global |
+| a panel | the keys that work on this panel, and the core keys |
+| a popup (the Space menu and the global operation popup included) | **only this popup's** keys |
 
-Input state and PTY follow K8 and K10.
+Input state, PTY and modes follow K8, K10 and K11.
 
-**Why**: `?` is the last way out for a lost user, so it must work everywhere. But a user
-lost in a popup wants "how does this box work", not the whole app's global actions —
-those can wait until they are back on a panel.
+**Why**: whoever presses `?` wants to **read** "what can I press here". Putting reading
+and doing in one box leaves the user standing on a list with a cursor where every row can
+be pressed — and afraid to move (F1: a popup belongs to exactly one class). What can be
+done is under `Space`; what can be pressed is under `?`.
 
 ### K7 Aliases are complete `fixed`
 
@@ -175,26 +181,31 @@ with no exit.
   the user choose whether to switch the shell to the last directory.
 - **Pressing `Ctrl-C` again during the quit flow quits at once**, with no further
   questions.
-- Quitting is listed among the global operations of the `?` menu (M4).
+- Quitting is listed in the global operation popup (M4).
 
 **Why**: `Ctrl-C` is in every terminal user's muscle memory, and `q` is the TUI
 convention; if the two behaved differently, users would have to remember which one asks
 and which one doesn't. Pressing `Ctrl-C` twice to force quit means users can never be
 trapped by their own confirm box.
 
-### K10 PTY: keys belong to the subprocess, the app keeps one way out `concept`
+### K10 PTY: every key belongs to the subprocess, with one exit key `fixed`
 
 With focus in a PTY (a shell, editor or remote session running inside the app), **every
-key goes to the subprocess**, core keys included — vim needs `Esc`, the shell needs `Tab`
-and `Ctrl-C`.
+key goes to the subprocess**: core keys and all of the app's hotkeys stop working — vim
+needs `Esc`, the shell needs `Tab` and `Ctrl-C`, a remote program may want any chord.
 
-The app must provide **one** key that moves focus out of the PTY, choosing a combination
-the subprocess almost never uses (e.g. kbu's `Alt-t`, sshu's `Alt+Esc`), and disclose it
-permanently while focus is in the PTY.
+- The app designates **one** exit key that moves focus out of the PTY (a combination the
+  subprocess almost never uses, e.g. kbu's `Alt-t`, sshu's `Alt+Esc`) and discloses it
+  permanently while focus is in the PTY. The exit key is the only key in the PTY that
+  belongs to the app.
+- App actions on a PTY (zoom, move to another cell, scroll history, select…) are done
+  **after leaving the PTY**: they are item / panel operations of the panel focus lands on,
+  and go in its Space menu as M2 and M3 require.
 
-**Why**: the program in the PTY has its own key language, and any key the app intercepts
-breaks it. But a PTY with no way out is a trap, so the exit key must exist, and it must
-be visible.
+**Why**: with focus in a PTY, everything the user does is the PTY's business, not the
+app's. Any key the app intercepts breaks the subprocess, and turns "who owns this key
+right now" into something to remember. But a PTY with no way out is a trap, so the exit
+key must exist, and it must be visible.
 
 ### K11 Core keys inside a mode `fixed`
 
@@ -209,6 +220,7 @@ With focus inside a mode (see the term), the core keys act like this:
 | `Tab` | A mode may suspend `Tab`, but pressing it must respond, saying to leave the mode with `Esc` first (e.g. a toast) |
 
 - The footer still shows `Space` and `?` inside a mode (M1).
+- When the mode's keys overlap the navigation keys (e.g. a selection mode on `h j k l`), the key list moves with the arrow keys only; every other key runs its row.
 - The mode's own keys (move, select, drag) need not be in the Space menu, but must be in the
   mode's key list (M3, as it applies inside a mode).
 
@@ -239,7 +251,7 @@ The Space menu lists **everything the current panel can do**, split by what it a
 |---|---|---|
 | 1 | `item operation` | what can be done to the one item under the cursor |
 | 2 | `panel operation` | what can be done to the current panel (or its tab) as a whole |
-| 3 | `global operation` | **all** of the app's global actions — the same list, in the same order, as the global operations of the `?` menu |
+| 3 | `global operation` | **always a single row**, `Global operation`: `Enter` opens the global operation popup (M4) — even when the app has only one global action |
 
 - **The header strings are fixed**, word for word as in the table above, across the app
   and the family.
@@ -251,15 +263,17 @@ The Space menu lists **everything the current panel can do**, split by what it a
 **Why**: users read top down, so they see "what can I do to the thing I picked" first,
 then "to this whole panel", and global last. Fixed header strings let users recognise
 "this is the same kind of menu" at a glance — a menu worded differently reads as a
-different **kind** of menu. Putting global last means remembering the one key `Space` is
-enough to find everything, without pushing the current panel's actions down.
+different **kind** of menu. Putting global last, as a single row, means remembering the one key `Space` is enough to
+find everything, without the global actions outgrowing the panel's own; and every app in
+the family has a Space menu of the same shape.
 
 ### M3 Every action can be found in a menu `fixed`
 
 - Every item operation and panel operation of every panel is in that panel's Space menu.
-- Every global operation is in the `?` menu and in the global region of the Space menu.
-- A popup's own operations are all in that popup's `?` help and bottom-border hint (K5,
-  K6).
+- Every global operation is in the global operation popup (opened from the Space menu's
+  global row).
+- A popup's own operations are all in that popup's bottom-border hint and `?` key
+  reference (K5, K6).
 - **A letter hotkey is a shortcut to a row in some list, not an extra feature.** An
   action triggered only by hotkey and found nowhere else is a violation.
 
@@ -270,22 +284,29 @@ important it is (Principle P3).
 with `Space` and `?` alone. Each action that has to be learned in advance is a hole in
 "usable without the docs".
 
-### M4 `?` menu: runnable global operations + key reference `fixed`
+### M4 The global operation popup and the key reference `fixed`
 
-With focus on a panel, the `?` menu has two parts:
+**The global operation popup** (doing)
 
-1. **A `global operation` region**: every global action of the app, **runnable in
-   place** (`j/k` to pick, `Enter` to run, or the row's hotkey where it has one).
-   Quitting the app must be here (K9).
-2. **A `key reference` region**: a read-only key table listing at least the core keys
-   the app uses; whether to list anything else (navigation keys, hotkeys) is up to the
-   app.
+- Opened with `Enter` on the Space menu's global row (M2), over the Space menu; it is a
+  menu (F1) listing **all** of the app's global actions — `j/k` to pick, `Enter` or the
+  row's hotkey to run. Quitting the app must be here (K9).
+- `Esc` goes back to the Space menu (F4); an action that closes the whole stack follows T1.
+- The row that switches to the current screen is dimmed as M6 says (e.g. `[M]anage` while
+  on `[M]anage`).
 
-With focus on a popup, `?` shows only that popup's help (K6).
+**The key reference** (reading)
 
-**Why**: a help page you can only read is documentation, not disclosure (Principle P2).
-Global actions belong to no panel, so they need a place that can be summoned from any
-panel and run from directly.
+- Opened with `?` (K6). Read-only and scrollable, with no cursor and nothing to run — not a
+  menu.
+- On a panel it lists at least the core keys and the keys that work on this panel; on a
+  popup, the keys that work in that popup. Anything more is up to the app.
+
+**Why**: a read-only help page cannot replace a list you can run (Principle P2) — what
+can be done is under `Space` and in the global operation popup, one step from running;
+`?` is a cheatsheet to glance at alongside. Reading and doing live in two boxes, each of
+one class (F1). With the global actions gathered in one popup, no Space menu has to list
+them again.
 
 ### M5 Each row = name + description, hotkeys marked with `[]` `fixed`
 
@@ -447,6 +468,8 @@ takes another `Esc`, or still eats keys, the user's next key goes to the wrong p
 ### F4 The source stays by default `fixed`
 
 When popup A opens popup B, A stays underneath by default; cancelling B returns to A.
+The same holds at any depth: `Esc` closes only the topmost, and the stack underneath is
+shown as it was (K4).
 
 **Why**: the user did not dismiss A, they just did one interaction in B. If cancelling B
 also removes A, they have to walk the whole way again. (Whether A stays after B
@@ -550,7 +573,7 @@ the whole app losing the egg.
 
 ### S2 Not disclosed `fixed`
 
-The splash does not appear in the Space menu, the `?` menu, the key reference, the
+The splash does not appear in the Space menu, the global operation popup, the key reference, the
 footer or panel hints, and is not written in the README.
 
 **Why**: a listed easter egg is no longer an easter egg. It is the one and only exception

@@ -19,7 +19,7 @@ app. Learn it once and every app in the family works the same way.
 | `Enter` | Do the obvious thing to what is selected; in a form, submit |
 | `Esc` | Cancel, close the top layer — one layer at a time, never closes the app |
 | `Space` | What can I do here? |
-| `?` | What can I do in this app? In a popup: how does this box work? |
+| `?` | Which keys work here? (read-only) |
 | `q` | Quit the app (so does `Ctrl-C`) |
 
 When in doubt, press `Space`.

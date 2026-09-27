@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.1.2 — 2026-09-27
+
+What sshu taught while being brought to tdp.
+
+- **`?` only reads** (K6, M4): it opens the key reference of the frontmost surface — read-only,
+  scrollable, nothing to run. The runnable global actions move to a **global operation popup**,
+  opened from the Space menu's global region, which is now **always a single row** (M2), even with
+  one global action; quitting lives there (K9)
+- **PTY** (K10): in a PTY every key, core keys and all app hotkeys, belongs to the subprocess;
+  only the exit key is the app's; app actions on a PTY are done after leaving it
+- K2: the SSH-grid example is gone; `Tab` in a PTY belongs to the subprocess
+- K4, F4: with popups stacked, `Esc` closes only the topmost and the stack below stays as it was
+- K11: a mode whose keys overlap navigation moves its key list with the arrow keys only
+- D3: the quit confirm is its own popup; "on top" is routing, `closeTop` and drawing alike.
+  D4: key reference width follows its longest description
+
 ## v0.1.1 — 2026-09-27
 
 What locku and webu taught while being brought to v0.1.0.

@@ -35,7 +35,7 @@
 | `Enter` | 對 focus 項目做最直觀的那個動作；在 input popup 裡是 submit | K3 |
 | `Esc` | 取消 / 關閉最上層 | K4 |
 | `Space` | 在 panel 上開 / 關 Space menu（這裡能做什麼） | K5、M2 |
-| `?` | 開 / 關 help：在 panel 上是 `?` menu（整個 app 能做的事），在 popup 上是該 popup 的 help | K6、M4 |
+| `?` | 開 / 關 key reference：最前端那個 surface 能按什麼鍵（唯讀） | K6、M4 |
 | `q` | 離開 app | K9 |
 
 表上的鍵在**每一個 surface** 都是這個意義，例外只有輸入態（K8）、PTY（K10）與模式（K11）。app 可以
@@ -54,9 +54,9 @@ core key 一旦指定，同樣在所有 surface 意義不變。**letter hotkey �
 |---|---|
 | 畫面 | panel |
 | 有多個欄位的 input popup | 欄位 |
-| 由多個 cell 組成的 panel（例：sshu 的 SSH grid） | cell |
 
 - `Tab` 不跨畫面、不離開當前 popup。
+- focus 在 PTY 裡時，`Tab` 屬於子程序（K10）。
 - **沒有同層物件時**（例：只有一個欄位的 input），app 可以把 `Tab` 用來接受灰字提議
   （自動完成），不做其他用途。
 - 反向切換（例如 `Shift-Tab`）是熱鍵，由 app 決定要不要做。
@@ -89,6 +89,9 @@ core key 一旦指定，同樣在所有 surface 意義不變。**letter hotkey �
 當前模式（搜尋、選取、拖曳）或往上一層 —— 「上一層」是什麼由 app 定義。**一次一層**，
 而且 **`Esc` 永遠不會離開 app**，到了最上層就什麼都不做。
 
+popup 開出 popup 時（例：Space menu → global operation popup → confirm），`Esc` **只關最上層那一個**，
+底下的 popup 階層原樣留著、照原樣呈現；再按一次才關下一層（F4）。
+
 **為什麼**：使用者迷路時會連按 `Esc` 想回到安全的地方。如果連按的終點是 app 被關掉，
 `Esc` 就變成危險鍵，使用者不敢按，也就失去了「取消」這個安全出口。離開 app 有自己的
 鍵（K9）。
@@ -107,19 +110,20 @@ core key 一旦指定，同樣在所有 surface 意義不變。**letter hotkey �
 上再疊 menu，框上疊框的層數就沒有盡頭。家族的流程一律是：panel 上 `Space` 開 menu，
 選一列 `Enter`，才打開下一個 popup。
 
-### K6 `?` 隨時開關 help `固定`
+### K6 `?` 隨時開關 key reference `固定`
 
-`?` 在任何 surface 都有回應，再按一次 `?` 關掉，`Esc` 也能關。內容依 focus 而定：
+`?` 在任何 surface 都有回應，再按一次 `?` 關掉，`Esc` 也能關。它打開的是**最前端那個 surface 的
+key reference**：唯讀、可以捲動，沒有游標、不能執行（M4）。
 
-| focus 在 | `?` 打開 |
+| focus 在 | key reference 列出 |
 |---|---|
-| panel | `?` menu：可執行的 global operation + key reference（M4） |
-| popup（包括 Space menu） | **只有這個 popup 的 help**：在這個框裡能按什麼鍵、做什麼，沒有 item / panel / global |
+| panel | 這個 panel 能按的鍵，以及 core key |
+| popup（包括 Space menu、global operation popup） | **只有這個 popup** 能按的鍵 |
 
-輸入態與 PTY 依 K8、K10。
+輸入態、PTY、模式依 K8、K10、K11。
 
-**為什麼**：`?` 是迷路時最後的出口，所以在任何地方都要按得出來。但在 popup 裡迷路的
-使用者，要的是「這個框怎麼用」，不是整個 app 的全域動作 —— 全域動作等回到 panel 再做。
+**為什麼**：按 `?` 的人是想**讀**「這裡能按什麼」。讀與做放在同一個框裡，使用者站在一個有游標、
+每一列都按得下去的清單上，反而不敢動（F1：一個 popup 只屬於一類）。能做的事在 `Space`，能讀的鍵在 `?`。
 
 ### K7 別名要完整 `固定`
 
@@ -154,21 +158,24 @@ core key 一旦指定，同樣在所有 surface 意義不變。**letter hotkey �
 - **離開流程由 app 決定**（概念）：直接離開、先確認，或讓使用者選擇離開的方式。
   例：sshu 有 session 開著時先問要不要關掉；filu 讓使用者選要不要把 shell 切到最後的目錄。
 - **離開流程進行中再按一次 `Ctrl-C`，立刻離開**，不再詢問。
-- 離開列在 `?` menu 的 global operation 裡（M4）。
+- 離開列在 global operation popup 裡（M4）。
 
 **為什麼**：`Ctrl-C` 是所有終端機使用者的肌肉記憶，`q` 是 TUI 的慣例；兩者行為不同，
 使用者就得記哪個會問、哪個不會。連按兩次 `Ctrl-C` 強制離開，讓使用者不會被自己的確認框困住。
 
-### K10 PTY：按鍵屬於子程序，app 留一個出口 `概念`
+### K10 PTY：所有按鍵屬於子程序，只留一個出口鍵 `固定`
 
-focus 在 PTY（跑在 app 裡的 shell、編輯器、遠端 session）時，**所有按鍵都送給子程序**，
-包括 core key —— vim 需要 `Esc`、shell 需要 `Tab` 與 `Ctrl-C`。
+focus 在 PTY（跑在 app 裡的 shell、編輯器、遠端 session）時，**所有按鍵都送給子程序**：core key
+與 app 的所有熱鍵都失效 —— vim 需要 `Esc`、shell 需要 `Tab` 與 `Ctrl-C`、遠端程式可能要任何一個組合鍵。
 
-app 必須提供**一個**讓 focus 離開 PTY 的鍵，選一個子程序幾乎不會用到的組合（例：kbu 的
-`Alt-t`、sshu 的 `Alt+Esc`），並在 focus 位於 PTY 時常駐揭露它。
+- app 指定**一個**出口鍵，讓 focus 離開 PTY（選一個子程序幾乎不會用到的組合，例：kbu 的 `Alt-t`、
+  sshu 的 `Alt+Esc`），並在 focus 位於 PTY 時常駐揭露它。出口鍵是 PTY 裡唯一屬於 app 的鍵。
+- 對 PTY 的 app 動作（放大、換一格、捲歷史、選取……）**先離開 PTY 再做**：它們是離開之後那個 panel 的
+  item / panel operation，照 M2、M3 進 Space menu。
 
-**為什麼**：PTY 裡的程式有自己的按鍵語言，app 攔下任何一個鍵都會弄壞它。但沒有出口的
-PTY 是陷阱，所以出口鍵必須存在，而且看得到。
+**為什麼**：focus 在 PTY 裡時，使用者做的每一件事都是 PTY 裡的事，不是 app 的事。app 攔下任何一個鍵都會
+弄壞子程序，也讓「這個鍵現在屬於誰」變成要記的東西。但沒有出口的 PTY 是陷阱，所以出口鍵必須存在，
+而且看得到。
 
 ### K11 模式裡的 core key `固定`
 
@@ -183,6 +190,7 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 | `Tab` | 模式可以暫停 `Tab`，但按了要有回應，說明先 `Esc` 離開模式（例：toast） |
 
 - 模式裡 footer 照樣顯示 `Space` 與 `?`（M1）。
+- 模式的鍵跟導覽鍵重疊時（例：選取模式用 `h j k l`），按鍵清單只用方向鍵移動，其餘鍵一律是「執行那一列」。
 - 模式自己的鍵（移動、選取、拖曳）不必進 Space menu，但必須出現在模式的按鍵清單裡（M3 在模式裡的樣子）。
 
 **為什麼**：模式裡的鍵多半是移動與選取，不是對某個 item 的動作，排成 item / panel / global 的 menu
@@ -209,7 +217,7 @@ Space menu 列出**當前 panel 能做的所有事**，依作用對象（Princip
 |---|---|---|
 | 1 | `item operation` | cursor 指的那一個項目能做的事 |
 | 2 | `panel operation` | 當前 panel（或它的 tab）整體能做的事 |
-| 3 | `global operation` | 整個 app 的**全部**全域動作，與 `?` menu 的 global operation 同一份清單、同一順序 |
+| 3 | `global operation` | **固定一列** `Global operation`：`Enter` 打開 global operation popup（M4）。全域動作只有一個時也一樣 |
 
 - **區塊標題字串固定**，全 app、全家族都用上表的英文原字。
 - **沒有對象就沒有那一區**：空清單沒有 item，item operation 連標題一起不出現。
@@ -218,14 +226,14 @@ Space menu 列出**當前 panel 能做的所有事**，依作用對象（Princip
 
 **為什麼**：使用者從上往下讀，先看到「對我選的這個東西能做什麼」，再看到「對這一整塊」，
 最後才是全域。固定的標題字串讓使用者一眼認出「這是同一種 menu」—— 措辭不同的 menu
-會被讀成另一**種**選單。global 區放在最後，讓使用者只要記得 `Space` 一個鍵就找得到
-所有事，又不會把當前 panel 的動作擠到下面。
+會被讀成另一**種**選單。global 區放在最後、只佔一列，讓使用者只要記得 `Space` 一個鍵就找得到所有事，又不會讓全域動作
+比當前 panel 自己的動作還長；家族每個 app 的 Space menu 都長成同一個樣子。
 
 ### M3 每個動作都要能從 menu 找到 `固定`
 
 - 每個 panel 的每個 item operation 與 panel operation，都在該 panel 的 Space menu 裡。
-- 每個 global operation 都在 `?` menu 與 Space menu 的 global 區裡。
-- popup 自己的操作，都在該 popup 的 `?` help 與下框 hint 裡（K5、K6）。
+- 每個 global operation 都在 global operation popup 裡（從 Space menu 的 global 列打開）。
+- popup 自己的操作，都在該 popup 的下框 hint 與 `?` key reference 裡（K5、K6）。
 - **letter hotkey 是某個清單裡某一列的捷徑，不是額外的功能**。只能靠熱鍵觸發、哪裡都
   找不到的動作是違反。
 
@@ -234,19 +242,23 @@ Space menu 列出**當前 panel 能做的所有事**，依作用對象（Princip
 **為什麼**：沒看過熱鍵的新使用者只靠 `Space` 與 `?`，就要能在每個地方做完所有事。
 只要有一個動作要靠事先學，「不看文件就能用」就破了一個洞。
 
-### M4 `?` menu：可執行的 global operation + key reference `固定`
+### M4 global operation popup 與 key reference `固定`
 
-focus 在 panel 上時，`?` menu 有兩部分：
+**global operation popup**（能做）
 
-1. **`global operation` 區**：app 所有全域動作，**可以直接執行**（`j/k` 選、`Enter`
-   執行、有熱鍵的列按熱鍵執行）。離開 app 必須在這裡（K9）。
-2. **`key reference` 區**：唯讀的按鍵對照，至少列出 app 用到的 core key；其餘（導覽
-   鍵、熱鍵）列不列由 app 決定。
+- 從 Space menu 的 global 列（M2）按 `Enter` 打開，疊在 Space menu 上；是一種 menu（F1），
+  列出 app **全部**全域動作，`j/k` 選、`Enter` 或熱鍵執行。離開 app 必須在這裡（K9）。
+- `Esc` 回到 Space menu（F4）；執行了會關掉整疊的動作，照 T1。
+- 目前所在畫面的切換列照 M6 變暗（例：在 `[M]anage` 上的 `[M]anage`）。
 
-focus 在 popup 上時，`?` 只顯示該 popup 的 help（K6）。
+**key reference**（能讀）
 
-**為什麼**：只能讀的說明頁是文件，不是揭露（Principle P2）。全域動作不屬於任何
-panel，所以需要一個在任何 panel 都叫得出來、而且能直接執行的地方。
+- `?` 打開（K6）。唯讀、可以捲動，沒有游標、不能執行，不是 menu。
+- panel 上至少列出 core key 與這個 panel 能按的鍵；popup 上列出這個 popup 能按的鍵。其餘列不列由 app 決定。
+
+**為什麼**：只能讀的說明頁不能取代可執行的清單（Principle P2）—— 能做的事都在 `Space` 與
+global operation popup，一步就能執行；`?` 是在旁邊對照的常駐 cheatsheet。讀與做分成兩個框，
+各自只屬於一類（F1）。全域動作集中在一個 popup，就不用在每個 Space menu 各列一次。
 
 ### M5 每一列 = 名稱 + 說明，熱鍵用 `[]` 標出 `固定`
 
@@ -380,7 +392,8 @@ popup 打開與關閉**都要有動畫**。動畫的形式與長度由 app 決�
 
 ### F4 預設保留 source `固定`
 
-從 popup A 開出 popup B 時，A 預設留在底下；取消 B 回到 A。
+從 popup A 開出 popup B 時，A 預設留在底下；取消 B 回到 A。多層時也一樣：`Esc` 只關最上層，
+底下的階層原樣呈現（K4）。
 
 **為什麼**：使用者沒有撤掉 A，只是在 B 上做了一次互動。取消 B 卻連 A 一起不見，
 使用者要重新走一遍。（完成 B 之後 A 還要不要留，見 T1。）
@@ -472,7 +485,7 @@ splash 只記載在 tdp，不寫進任何 app 的 README 或 app 內的 menu、h
 
 ### S2 不揭露 `固定`
 
-splash 不出現在 Space menu、`?` menu、key reference、footer、panel hint，也不寫進 README。
+splash 不出現在 Space menu、global operation popup、key reference、footer、panel hint，也不寫進 README。
 
 **為什麼**：彩蛋被列出來就不是彩蛋了。它是 tdp「揭露是唯一機制」（Principle P2）的唯一
 例外，而且只有這一個 —— 所以寫在這裡，不寫在任何 app 裡。
