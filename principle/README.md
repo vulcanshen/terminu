@@ -91,9 +91,9 @@ Edge cases:
 - **Switching screens** is a global operation. E.g. sshu's `[M]anage` /
   `[F]ile transfer` / `[S]SH`, webu's `[W]eb` / `[B]ookmarks` / `[H]istory`.
 
-Each scope has a definite place (Rules, chapter M): `Space` opens what the current focus
-can do, ordered item → panel → global; `?` opens what the whole app can do, with global
-operations runnable right there.
+Each scope has a definite place (Rules, chapter M): `Space` opens what the current panel
+can do, ordered item → panel → global, the global region being one row that opens the
+global operation popup; `?` only lists which keys work here, read-only.
 
 ## P4 One element, one meaning
 

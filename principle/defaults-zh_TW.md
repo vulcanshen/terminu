@@ -77,7 +77,9 @@ K ≥ N 時固定為 popup 最上層
 - 動畫（Rules F2）：8 格 × 16ms ≈ 128ms，開啟與關閉對稱。
 - toast：顯示 2200ms，固定在畫面底部。
 - `Esc` 只在一個地方處理（`closeTop`）。
-- `?` 的 help 疊在其他 popup 上時，按鍵路由與繪製都把它放在最上層；confirm、options 等框排在 `?` menu 之前拿鍵。
+- 離開的 confirm 用自己的 popup，疊在整疊最上面：`Ctrl-C` 可能在另一個 confirm 開著時按下，借用同一個會蓋掉使用者正在回答的問題。
+- 「放在最上層」要同時改三處：按鍵路由、`closeTop`、繪製順序。
+- `?` 的 key reference 疊在其他 popup 上時，按鍵路由與繪製都把它放在最上層；confirm、options 等框排在底下的 menu 之前拿鍵。
 - 判斷一層「還在不在」用開啟中或已開（`owns()`），不用含關閉中的 `isActive()`（Rules F3）。
 - confirm 的下框 hint：`Enter <動詞> · Esc cancel`。
 - 取消回到 source；完成動作清掉整個 stack（T1 的常見答案）。
@@ -90,7 +92,7 @@ K ≥ N 時固定為 popup 最上層
 - menu 內：`j/k` 移動（頭尾相接），`Enter` 執行，熱鍵直接執行；下框 hint
   `j/k move · Enter run · Esc close`。
 - menu 標題是 focus panel 的 `[N] label`。
-- `key reference` 的列不能選：游標跳過，熱鍵不認，跟區塊標題、分隔線同一種判斷。
+- key reference 的寬度依最長的說明計算：截掉的正是「這個鍵做什麼」那一半。
 - label 本身已經寫出鍵的列（`[/] Search`）不要再括一次。
 
 ## D5 熱鍵參考

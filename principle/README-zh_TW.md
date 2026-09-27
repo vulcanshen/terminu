@@ -78,8 +78,8 @@ cursor 上，就是 item operation；一個關鍵的全域開關不屬於任何 
 - **切換畫面**是 global operation。例：sshu 的 `[M]anage` / `[F]ile transfer` / `[S]SH`、
   webu 的 `[W]eb` / `[B]ookmarks` / `[H]istory`。
 
-三種範圍各有明確的位置（Rules M 章）：`Space` 開出「當前 focus 能做的事」，依
-item → panel → global 排列；`?` 開出「整個 app 能做的事」，global operation 可以直接執行。
+三種範圍各有明確的位置（Rules M 章）：`Space` 開出「當前 panel 能做的事」，依 item → panel →
+global 排列，global 區一列打開 global operation popup；`?` 只列出「這裡能按什麼鍵」，唯讀。
 
 ## P4 一個元素、一個意義
 
