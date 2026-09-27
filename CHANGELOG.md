@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.4 — 2026-09-27
+
+- K10: a PTY needs **at least** one exit key; whether the app keeps other chords of its own in
+  the PTY is up to the app, disclosed like the exit key (sshu's grid)
+
 ## v0.1.3 — 2026-09-27
 
 - K3: `Enter` always submits — the whole input group or a single field, as the app decides.
