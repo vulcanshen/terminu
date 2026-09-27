@@ -78,11 +78,16 @@ always gets the same action within an app.
 
 **In an input popup, `Enter` submits** (fixed):
 
-- Before submitting, check **every** field. Submit only if all of them are valid.
-- If any field is invalid, **don't submit, and disclose the error**: which field, and
-  why. How to disclose it is up to the app (a mark beside the field, a suffix on the box
-  title, focus jumping to the first invalid field…).
-- `Enter` does not stand in for `Tab` to move to the next field (K2).
+- **`Enter` always submits.** What it submits may be the whole input group (the whole
+  input popup) or a single field, as the app decides; either way it is a submit.
+- Submitting the whole input group checks **every** field, and submits only if all are
+  valid.
+- If any field is invalid, **nothing is submitted**: focus jumps to **the first invalid
+  field**, and the error is disclosed (which field, and why; how is up to the app). It
+  looks like `Tab`, but the logic is entirely different — it points at the problem after a
+  failed submit; it does not move to the next field.
+- `Enter` does not stand in for `Tab` to move to the next field; moving field by field is
+  `Tab` alone (K2).
 - In **multi-line text input**, `Enter` is a newline; submitting is triggered instead by
   `Enter` after leaving the writing state.
 
@@ -198,6 +203,7 @@ needs `Esc`, the shell needs `Tab` and `Ctrl-C`, a remote program may want any c
   subprocess almost never uses, e.g. kbu's `Alt-t`, sshu's `Alt+Esc`) and discloses it
   permanently while focus is in the PTY. The exit key is the only key in the PTY that
   belongs to the app.
+- Where focus lands after the exit key is up to the app.
 - App actions on a PTY (zoom, move to another cell, scroll history, select…) are done
   **after leaving the PTY**: they are item / panel operations of the panel focus lands on,
   and go in its Space menu as M2 and M3 require.
