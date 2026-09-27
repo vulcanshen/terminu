@@ -71,10 +71,12 @@ core key 一旦指定，同樣在所有 surface 意義不變。**letter hotkey �
 
 **在 input popup 裡，`Enter` 是 submit**（固定）：
 
-- submit 前檢查**所有**欄位。全部合格才送出。
-- 有任何欄位不合格就**不送出，並揭露錯誤**：哪個欄位、為什麼。揭露方式由 app 決定
-  （欄位旁標示、框標題尾綴、focus 跳到第一個錯誤欄位……）。
-- `Enter` 不代替 `Tab` 移到下一個欄位（K2）。
+- **`Enter` 一定是 submit**。submit 的對象可以是整個 input group（整個 input popup），也可以是單一欄位，
+  由 app 決定；兩者都是 submit。
+- submit 整個 input group 時，檢查**所有**欄位，全部合格才送出。
+- 有任何欄位不合格就**不送出**：focus 自動跳到**第一個不合格的欄位**，並揭露錯誤（哪個欄位、為什麼；
+  揭露方式由 app 決定）。這看起來像 `Tab`，邏輯完全不同 —— 它是 submit 失敗後指出問題，不是移到下一欄。
+- `Enter` 不代替 `Tab` 移到下一個欄位；依序換欄位只有 `Tab`（K2）。
 - **多行文字輸入**時，`Enter` 是換行；submit 改由離開寫入狀態後的 `Enter` 觸發。
 
 在其他 popup（menu、confirm）裡，`Enter` 是執行 cursor 所在列 / 接受。
@@ -170,6 +172,7 @@ focus 在 PTY（跑在 app 裡的 shell、編輯器、遠端 session）時，**�
 
 - app 指定**一個**出口鍵，讓 focus 離開 PTY（選一個子程序幾乎不會用到的組合，例：kbu 的 `Alt-t`、
   sshu 的 `Alt+Esc`），並在 focus 位於 PTY 時常駐揭露它。出口鍵是 PTY 裡唯一屬於 app 的鍵。
+- 按了出口鍵之後 focus 落在哪裡，由 app 決定。
 - 對 PTY 的 app 動作（放大、換一格、捲歷史、選取……）**先離開 PTY 再做**：它們是離開之後那個 panel 的
   item / panel operation，照 M2、M3 進 Space menu。
 

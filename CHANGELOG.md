@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.3 — 2026-09-27
+
+- K3: `Enter` always submits — the whole input group or a single field, as the app decides.
+  A failed group submit moves focus to the first invalid field and discloses the error; that is
+  not `Tab`, which alone moves field by field
+- K10: where focus lands after the PTY exit key is up to the app
+
 ## v0.1.2 — 2026-09-27
 
 What sshu taught while being brought to tdp.
