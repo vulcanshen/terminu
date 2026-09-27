@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.6 — 2026-09-27
+
+- K2: in a single input box with a greyed-out suggestion, `Tab` **accepts** it (was: the app *may*);
+  in an input group `Tab` only switches fields and the app picks another key for suggestions (e.g. `→`)
+
 ## v0.1.5 — 2026-09-27
 
 - K8, K2: in the writing state of multi-line text `Tab` is a character (an indent), like `Enter`

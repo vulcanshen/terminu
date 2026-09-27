@@ -61,9 +61,10 @@ wrapping from the last to the first:
 
 - `Tab` does not cross screens or leave the current popup.
 - With focus in a PTY, `Tab` belongs to the subprocess (K10).
-- **When there is no other object on the same level** (e.g. an input with a single field),
-  the app may use `Tab` to accept a greyed-out suggestion (autocomplete), and for nothing
-  else.
+- **In a single input box** (no other field to move to) with a greyed-out suggestion, `Tab`
+  **accepts the suggestion** (autocomplete), and does nothing else. In an input group
+  (several fields) `Tab` only switches fields; a suggestion there is accepted with a key the
+  app chooses (e.g. `→`).
 - In the writing state of multi-line text, `Tab` is an indent character, not a field switch (K8).
 - Cycling backwards (e.g. `Shift-Tab`) is a hotkey; whether to offer it is up to the app.
 
