@@ -193,25 +193,26 @@ convention; if the two behaved differently, users would have to remember which o
 and which one doesn't. Pressing `Ctrl-C` twice to force quit means users can never be
 trapped by their own confirm box.
 
-### K10 PTY: every key belongs to the subprocess, with one exit key `fixed`
+### K10 PTY: keys belong to the subprocess, with at least one exit key `fixed`
 
-With focus in a PTY (a shell, editor or remote session running inside the app), **every
-key goes to the subprocess**: core keys and all of the app's hotkeys stop working — vim
-needs `Esc`, the shell needs `Tab` and `Ctrl-C`, a remote program may want any chord.
+With focus in a PTY (a shell, editor or remote session running inside the app), **keys go
+to the subprocess**: core keys and the app's hotkeys stop working — vim needs `Esc`, the
+shell needs `Tab` and `Ctrl-C`, a remote program may want any chord.
 
-- The app designates **one** exit key that moves focus out of the PTY (a combination the
-  subprocess almost never uses, e.g. kbu's `Alt-t`, sshu's `Alt+Esc`) and discloses it
-  permanently while focus is in the PTY. The exit key is the only key in the PTY that
-  belongs to the app.
+- The app designates **at least** one exit key that moves focus out of the PTY (a
+  combination the subprocess almost never uses, e.g. kbu's `Alt-t`, sshu's `Alt+Esc`) and
+  discloses it permanently while focus is in the PTY.
+- Whether the app keeps other chords of its own inside the PTY besides the exit key (e.g.
+  sshu's zoom, move to another cell and history scroll inside a cell) is up to the app.
+  Any it keeps are disclosed permanently, like the exit key (M3).
 - Where focus lands after the exit key is up to the app.
-- App actions on a PTY (zoom, move to another cell, scroll history, select…) are done
-  **after leaving the PTY**: they are item / panel operations of the panel focus lands on,
-  and go in its Space menu as M2 and M3 require.
 
-**Why**: with focus in a PTY, everything the user does is the PTY's business, not the
-app's. Any key the app intercepts breaks the subprocess, and turns "who owns this key
-right now" into something to remember. But a PTY with no way out is a trap, so the exit
-key must exist, and it must be visible.
+**Why**: with focus in a PTY, nearly everything the user does is the PTY's business; the
+more keys the app intercepts, the likelier it breaks the subprocess, and the more "who
+owns this key right now" becomes something to remember. But a PTY with no way out is a
+trap, so there must be at least one exit key, and it must be visible; whether to take
+more depends on how the app's PTY is used — a single shell and a whole grid of live
+remote sessions have different answers.
 
 ### K11 Core keys inside a mode `fixed`
 
