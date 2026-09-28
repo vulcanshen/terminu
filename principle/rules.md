@@ -77,6 +77,9 @@ global operation (P3).
 `Enter` does **the most obvious action** to the focused item — enter a directory,
 connect, open, flip a setting. What exactly is up to the app, but the same kind of item
 always gets the same action within an app.
+When the panel itself is a content area with no "item" to pick (e.g. a preview, a log),
+`Enter` does the most obvious action to the whole panel, as the app decides (e.g. open a
+scrollable view).
 
 **In an input popup, `Enter` submits** (fixed):
 
@@ -526,7 +529,9 @@ user from dealing with the error itself.
 ### F6 Confirm: `Enter` accepts, `Esc` cancels, and it says what will happen `fixed`
 
 - **Which actions need a confirm is up to the app**, regardless of whether they are
-  reversible. Once an action is set to be confirmed, it is confirmed every time.
+  reversible. Once an action is set to be confirmed, it is confirmed every time. The
+  exception: a choice made explicitly in a picker may count as the confirmation (e.g.
+  picking the default app from an "open with" list), as the app decides.
 - `Enter` accepts, `Esc` cancels (K3, K4). A confirm may have hotkeys of its own (e.g.
   `y` / `n`), listed in the confirm's `?` help (K6).
 - The prompt says **what accepting will do** (verb and object), not an abstract OK.
@@ -543,7 +548,14 @@ such as "reversible means no need to ask" can judge it.
   terminal, at most 120 columns; centred horizontally.
 - **Height**: follows the content, **fixed when the popup opens** and not resized with the
   content afterwards; at most the screen height less top and bottom margins, scrolling
-  inside the box beyond that.
+  inside the box beyond that. Only two cases may change the height while the popup is open:
+  - **Loading**: a popup whose content is not known when it opens (streaming, loading)
+    may change height while loading. Loading is disclosed by a spinning loading icon
+    after the popup title (the icon webu shows while loading a URL); when loading ends the
+    icon goes and the height is fixed.
+  - **A change the user made**: when the user's own action in this popup changes its row
+    count (removing a row, a choice that adds a row, filtering candidates as they type),
+    the height follows at once — the user expects that change.
 - **Position**: centred vertically. The toast is the exception: fixed at the bottom of the
   screen, its width by the same rule.
 - **An input whose submit can fail reserves an error row**: it opens with one error row in
@@ -568,6 +580,12 @@ row or one opens inside another: only the topmost is ever bright.
 
 - Streaming content underneath (logs, remote sessions) and warning colours (D2) are dimmed
   too (the exception to T2).
+- **How to dim: fade every colour — foreground and background alike — toward the base,
+  leaving shapes and layout untouched.** Never strip the colours and redraw, never drop
+  backgrounds, never turn every foreground into one dim colour: that breaks whatever is
+  drawn with a background (the body of a powerline capsule, a cursor bar, a selection).
+  Layer colours, warning colours and streaming content go through the same fade and so
+  become dimmed versions of themselves. The calculation is in D2.
 - **A toast does not trigger dimming**: it holds no keys and is not a layer.
 - **Borders are dimmed too, but keep their layer colour**: the borders of the popups below
   are drawn in a dimmed version of their own layer colour (D2), not one common dim colour —

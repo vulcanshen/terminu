@@ -53,6 +53,20 @@ than colour (borders, symbols) is up to the app as well.
 6. **Blur changes only the border**: an unfocused panel changes only its border colour
    and line style; its content is not dimmed.
 
+**Calculation: dim (Rules F8)**
+
+Rewrite every colour code (SGR) in the already-drawn screen, leaving text and layout alone:
+
+```
+dim(c) = c × 0.45 + base × 0.55        base = #1e1e2e
+```
+
+- Both foreground and background go through it; 16- and 256-colour codes are turned into
+  RGB first.
+- Text with no foreground of its own gets the dimmed default text colour (`dim(Text #cdd6f4)`).
+- Bold, reverse, cursor movement and the text itself are untouched.
+- filu's `internal/ui/dim.go` is the reference implementation.
+
 **Calculation: popup borders interpolated by layer**
 
 ```

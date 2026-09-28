@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.1.11 — 2026-09-28
+
+What filu, locku, webu and sshu taught while aligning to v0.1.8–v0.1.10.
+
+- K3: when the panel is a content area with no item, `Enter` does the most obvious action to the
+  whole panel, as the app decides
+- F6: a choice made explicitly in a picker may count as the confirmation, as the app decides
+- F7: the height fixed at opening may change in two cases only — while **loading** (disclosed by a
+  spinning icon after the popup title) and when **the user's own action** changes the row count
+- F8: dimming fades every colour, foreground and background, toward the base; never strip colours,
+  drop backgrounds or collapse foregrounds to one dim colour (that broke powerline capsules)
+- D2: the dim calculation, `c × 0.45 + base × 0.55`, with filu's `dim.go` as the reference
+
 ## v0.1.10 — 2026-09-28
 
 - K11: inside a mode `Space` opens nothing — the mode's key list (runnable rows) is gone. `?` is
