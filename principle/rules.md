@@ -226,21 +226,23 @@ With focus inside a mode (see the term), the core keys act like this:
 
 | Key | Inside a mode |
 |---|---|
-| `Space` | Opens / closes **the mode's key list**: the keys that work in the mode, each row runnable (its key or `Enter`), the list closing once one runs. The list need not be split into item / panel / global regions |
-| `?` | The mode's help (read-only) |
-| `Esc` | Leaves the mode (K4), back to where it was entered |
-| `q`, `Ctrl-C` | Run the quit flow, as K9 |
-| `Tab` | A mode may suspend `Tab`, but pressing it must respond, saying to leave the mode with `Esc` first (e.g. a toast) |
+| `Space` | **opens no menu**; does nothing |
+| `?` | the mode's key reference (read-only, K6): which keys work in the mode and what they do |
+| `Esc` | leaves the mode (K4), back to where it was entered |
+| `q`, `Ctrl-C` | run the quit flow, as K9 |
+| `Tab` | a mode may suspend `Tab`, but pressing it must respond, saying to leave the mode with `Esc` first (e.g. a toast) |
 
-- The footer still shows `Space` and `?` inside a mode (M1).
-- When the mode's keys overlap the navigation keys (e.g. a selection mode on `h j k l`), the key list moves with the arrow keys only; every other key runs its row.
-- The mode's own keys (move, select, drag) need not be in the Space menu, but must be in the
-  mode's key list (M3, as it applies inside a mode).
+- A mode has no Space menu and no list of keys to run. The mode's own keys (move, select,
+  drag) are pressed directly; they are disclosed in the `?` key reference and in the footer
+  / bottom-border hint (M3, as it applies inside a mode).
+- The footer still shows `?` inside a mode (M1); `Space` does nothing there and need not
+  be listed.
 
-**Why**: the keys of a mode are mostly movement and selection, not actions on an item —
-laid out as an item / panel / global menu they read worse; but a user lost inside a mode
-must still find "what can I press here" with `Space`, get out with `Esc` and quit with `q`
-(webu's visual mode, settled 2026-09-27).
+**Why**: a mode is always a special case; its keys are movement and selection, pressed
+directly and in runs, not actions on an item, and there is no item / panel / global to
+split them by. Turning them into a list you pick and run from (even `h j k l` run from a
+list) only adds a detour; all the user needs is "what can I press here", which is exactly
+`?`'s job.
 
 ---
 

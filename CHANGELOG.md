@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.10 — 2026-09-28
+
+- K11: inside a mode `Space` opens nothing — the mode's key list (runnable rows) is gone. `?` is
+  the mode's key reference; the mode's keys are pressed directly and disclosed in `?` and the
+  footer / hint. Also removes the v0.1.2 note about moving that list with the arrow keys
+
 ## v0.1.9 — 2026-09-28
 
 - F1: a finder's `Tab` moves focus between typing and its list, `Esc` closes the whole finder; an
