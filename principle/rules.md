@@ -550,12 +550,17 @@ such as "reversible means no need to ask" can judge it.
   content afterwards; at most the screen height less top and bottom margins, scrolling
   inside the box beyond that. Only two cases may change the height while the popup is open:
   - **Loading**: a popup whose content is not known when it opens (streaming, loading)
-    may change height while loading. Loading is disclosed by a spinning loading icon
-    after the popup title (the icon webu shows while loading a URL); when loading ends the
-    icon goes and the height is fixed.
+    may change height while loading; when loading ends the height is fixed.
   - **A change the user made**: when the user's own action in this popup changes its row
     count (removing a row, a choice that adds a row, filtering candidates as they type),
-    the height follows at once — the user expects that change.
+    the height **may** follow — the user expects that change; the app may also keep the
+    height. The principle is that what is disclosed is correct.
+- **Loading is always disclosed**: while a popup is loading, a spinning loading icon
+  **always** sits after its title (spec in D3), whether or not its height changes; the
+  icon goes when loading ends. Loading here means the content of the **whole popup** has
+  not arrived (e.g. the list's items are not all loaded). If just **one item** is itself a
+  continuous stream of data (e.g. a connection that keeps sending), it is that item that is
+  loading, not the popup — how to disclose it is up to the app.
 - **Position**: centred vertically. The toast is the exception: fixed at the bottom of the
   screen, its width by the same rule.
 - **An input whose submit can fail reserves an error row**: it opens with one error row in
