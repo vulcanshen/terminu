@@ -52,6 +52,8 @@ dim(c) = c × 0.45 + base × 0.55        base = #1e1e2e
 ```
 
 - 前景與背景都照這個算；16 色、256 色先換成 RGB 再算。
+- **淡化絕不讓顏色變亮**：每個通道取原值與淡化值較小的那個 —— 比 base 還暗的顏色（例：`#000000`）淡化後會變亮，那就維持原色。
+- 輸出一律是 24-bit（`38;2;…` / `48;2;…`）：家族要求 truecolor terminal（D6），dim 不必照色彩深度降階。
 - 沒有指定前景的文字，給淡化後的預設字色（`dim(Text #cdd6f4)`）。
 - bold、reverse、游標移動、文字本身不動。
 - filu 的 `internal/ui/dim.go` 是參考實作。
@@ -88,6 +90,12 @@ K ≥ N 時固定為 popup 最上層
 - 一個 popup 一個檔、一個 animator。
 - 標題放在上框：glyph + 文字；hint 嵌在下框；內容上下各留一列空白。
 - 動畫（Rules F2）：8 格 × 16ms ≈ 128ms，開啟與關閉對稱。
+- **loading icon**（Rules F7；出自 webu 載入網址時的 icon）：
+  - 字形：Nerd Font `nf-md-circle_slice_1` 到 `_8`（U+F0A9E–U+F0AA5）八格，一個圓一片一片填滿，滿了再從頭。
+  - 速度：一格 90ms，一圈 720ms。
+  - 哪一格由時鐘決定：`frames[(now / 90ms) % 8]`，不是計數；tick 只在有東西 loading 時續排。
+  - 寬度：一格；跟它取代的靜止 glyph 同寬，換上換下不位移（braille 點字的形狀與寬度不合，不用）。
+  - 顏色：跟旁邊的字同色；放在 popup 標題後面時用該層的層色（bold）。
 - toast：顯示 2200ms，固定在畫面底部。
 - `Esc` 只在一個地方處理（`closeTop`）。
 - 離開的 confirm 用自己的 popup，疊在整疊最上面：`Ctrl-C` 可能在另一個 confirm 開著時按下，借用同一個會蓋掉使用者正在回答的問題。
@@ -135,6 +143,7 @@ K ≥ N 時固定為 popup 最上層
 - 設定在 `$XDG_CONFIG_HOME/<app>`（fallback `~/.config/<app>`），可用 `<APP>_CONFIG` 覆寫；
   資料在 `~/.<app>/`。
 - 需要 Nerd Font；PUA glyph 在程式碼裡寫成 code point。
+- 需要 truecolor terminal（24-bit 色）：catppuccin 的淡色與 D2 的層色漸變在 256 色下分不出來，dim 也一律輸出 24-bit（D2）。README 的需求段跟 Nerd Font 並列寫明。
 - 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（Rules L4）。
 - `docs/icon.svg` 是家族 mark；splash（Rules S 章）由它逐格畫出，用測試守住兩者一致。
 - `V` 保留給 splash（Rules S1）。

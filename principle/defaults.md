@@ -63,6 +63,11 @@ dim(c) = c × 0.45 + base × 0.55        base = #1e1e2e
 
 - Both foreground and background go through it; 16- and 256-colour codes are turned into
   RGB first.
+- **Dimming never lightens a colour**: each channel takes the smaller of its original and
+  dimmed value — a colour darker than base (e.g. `#000000`) would get lighter, so it keeps
+  its original.
+- Output is always 24-bit (`38;2;…` / `48;2;…`): the family requires a truecolor terminal
+  (D6), so dimming need not step down to the terminal's colour depth.
 - Text with no foreground of its own gets the dimmed default text colour (`dim(Text #cdd6f4)`).
 - Bold, reverse, cursor movement and the text itself are untouched.
 - filu's `internal/ui/dim.go` is the reference implementation.
@@ -100,6 +105,15 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
 - Title on the top border: glyph + text; hint set into the bottom border; one blank row
   above and below the content.
 - Animation (Rules F2): 8 frames × 16 ms ≈ 128 ms, symmetric for opening and closing.
+- **Loading icon** (Rules F7; taken from the icon webu shows while loading a URL):
+  - Glyphs: Nerd Font `nf-md-circle_slice_1` to `_8` (U+F0A9E–U+F0AA5), eight frames, a
+    circle filling slice by slice, then starting over.
+  - Speed: 90 ms a frame, 720 ms a turn.
+  - The frame comes from the clock, `frames[(now / 90ms) % 8]`, not a counter; the tick is
+    only rescheduled while something is loading.
+  - Width: one cell, the same as the static glyph it replaces, so nothing shifts (braille
+    dots were tried; their shape and width don't fit).
+  - Colour: the same as the text beside it; after a popup title, that layer's colour (bold).
 - Toast: shown for 2200 ms, fixed at the bottom of the screen.
 - `Esc` is handled in one place only (`closeTop`).
 - The quit confirm is a popup of its own, on top of the whole stack: `Ctrl-C` may come while another confirm is open, and borrowing that one would overwrite the question the user is answering.
@@ -151,6 +165,7 @@ records what the family does today, for a new app that wants the easy path:
 - Config in `$XDG_CONFIG_HOME/<app>` (falling back to `~/.config/<app>`), overridable
   with `<APP>_CONFIG`; data in `~/.<app>/`.
 - Requires a Nerd Font; PUA glyphs are written as code points in the source.
+- Requires a truecolor (24-bit) terminal: catppuccin's pale colours and D2's layer gradient are indistinguishable in 256 colours, and dimming always outputs 24-bit (D2). READMEs say so in their requirements, next to the Nerd Font.
 - Screen tests across sizes: at several terminal sizes, every line is exactly the terminal
   width (Rules L4).
 - `docs/icon.svg` is the family mark; the splash (Rules, chapter S) is drawn from it cell

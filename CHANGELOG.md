@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.1.12 — 2026-09-28
+
+What the v0.1.11 audits of filu, locku, webu and sshu raised.
+
+- F7: a loading popup **always** shows the spinning icon after its title, whether or not its height
+  changes; loading means the whole popup's content, while one streaming item is that item's loading,
+  disclosed as the app decides. A height change caused by the user's own action is allowed, not
+  required — what is disclosed must be correct
+- D2: dimming never lightens a colour (each channel keeps the smaller of original and dimmed); output
+  is always 24-bit
+- D3: the loading icon spec (webu's circle slices, 90 ms, clock-driven, one cell, layer colour)
+- D6: the family requires a truecolor terminal
+
 ## v0.1.11 — 2026-09-28
 
 What filu, locku, webu and sshu taught while aligning to v0.1.8–v0.1.10.
