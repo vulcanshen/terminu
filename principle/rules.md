@@ -85,7 +85,7 @@ always gets the same action within an app.
 - Submitting the whole input group checks **every** field, and submits only if all are
   valid.
 - If any field is invalid, **nothing is submitted**: focus jumps to **the first invalid
-  field**, and the error is disclosed (which field, and why; how is up to the app). It
+  field**, and the error (which field, and why) is written in the input popup's reserved error row (F7). It
   looks like `Tab`, but the logic is entirely different — it points at the problem after a
   failed submit; it does not move to the next field.
 - `Enter` does not stand in for `Tab` to move to the next field; moving field by field is
@@ -452,14 +452,31 @@ focus moves, the eye has to find its place again.
 
 ## F Popups
 
-### F1 A popup belongs to exactly one class `fixed`
+### F1 Popups come in six classes, one class at a time `fixed`
 
-The app defines its own popup classes (e.g. menu, confirm, input, viewport, toast, PTY),
-each with a fixed layout; **a popup belongs to exactly one class** — no hybrids (such as
-something that is both a menu and a scrolling viewport).
+The family's popups come in these six classes only, each with fixed key meanings:
 
-**Why**: the class is the user's expectation of "what keys do inside this box". A hybrid
-popup gives the same keys two possible meanings inside one box.
+| Class | What the user can do | E.g. |
+|---|---|---|
+| **menu** | `j/k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, option lists |
+| **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6) | confirm before delete, the quit confirm |
+| **input** | type (input state, K8), `Enter` submits (K3), `Tab` switches field or accepts a suggestion (K2) | rename, address bar, host form |
+| **note** | read-only, scroll with `j/k/u/d`; no list of rows to run with `Enter` | key reference, YAML viewer, app log |
+| **toast** | a one-line message from the bottom, gone on `Esc` or on its timer; holds no keys | "Copied", an operation failed |
+| **terminal** | a subprocess running in the box; every key is its, only the exit key is the app's (K10) | kbu's Alterm, filu's shell |
+
+- **A note may have hotkeys and modes of its own**: e.g. the YAML viewer's `/` search, `y`
+  copy, `v` select (a mode, K11). Its hotkeys are disclosed in the bottom-border hint and
+  in `?`; but once it has a list of rows to run with `Enter`, it is a menu, not a note.
+- **A popup may change class by phase, but belongs to one class at a time.** E.g. a finder
+  is an input while typing and a menu once `Enter` hands over its results; `Esc` / `Tab`
+  go back to typing. A preview beside it takes no focus and is not another surface.
+- Not in these six: the splash (chapter S), and panel content an app draws as a box (e.g.
+  webu's page dialogs, webu's departure).
+
+**Why**: the class is the user's expectation of "what keys do inside this box". With six
+classes, each of fixed meaning, nothing is relearned from one app to the next; a popup of
+two classes at once gives the same keys two possible meanings inside one box.
 
 ### F2 Opening and closing are both animated `fixed`
 
@@ -511,6 +528,41 @@ confirm depends on how much the action weighs for the user — launching an exte
 program, cutting a session, deleting a file: the app knows the weight best, and no rule
 such as "reversible means no need to ask" can judge it.
 
+### F7 Popup size and position `fixed`
+
+- **Width**: `min(terminal width − 2, 120)` — one column spare on either side of the
+  terminal, at most 120 columns; centred horizontally.
+- **Height**: follows the content, **fixed when the popup opens** and not resized with the
+  content afterwards; at most the screen height less top and bottom margins, scrolling
+  inside the box beyond that.
+- **Position**: centred vertically. The toast is the exception: fixed at the bottom of the
+  screen, its width by the same rule.
+- **An input reserves an error row**: an input popup opens with one error row in its
+  height, blank while there is no error; a failed submit writes its error there (K3), and
+  the box keeps its height.
+
+**Why**: when every popup sizes itself by its content, nobody can tell what it will look
+like before it opens, and the box jumps whenever the content changes (L2). A common width
+and a height fixed at opening make every box predictable; the 120-column cap keeps a menu's
+names and descriptions from drifting apart on a wide screen. The error row lives inside the
+box rather than in a popup of its own: the error stays in view while the user fixes it,
+with no extra key to dismiss it first.
+
+### F8 With popups stacked, everything below the top one is dimmed `fixed`
+
+While a popup is open, **everything but the topmost popup** — the popups beneath it and
+the whole base screen — is drawn in the dim colour. The same holds when popups open in a
+row or one opens inside another: only the topmost is ever bright.
+
+- Streaming content underneath (logs, remote sessions) and warning colours (D2) are dimmed
+  too (the exception to T2).
+- **A toast does not trigger dimming**: it holds no keys and is not a layer.
+- Popup border colours by layer (D2) stay as they are.
+
+**Why**: all popups share one width (F7), so an upper one hides the side borders of the one
+below and the boxes no longer show the layers; brightness is the one cue left, and it is
+exactly what "lightness is the z-axis" (D2) means: only the layer being worked on is bright.
+
 ---
 
 ## X Mouse
@@ -555,7 +607,8 @@ the user still want to see the source?" answers it.
 
 If an app dims unfocused panels, that may apply only to static content; **streaming
 content (logs, live output, remote sessions) is not dimmed on blur**. If the app doesn't
-dim on blur, this rule does not apply.
+dim on blur, this rule does not apply. The exception is a popup on top: attention is on
+the popup then, and everything below is dimmed as F8 says.
 
 **Why**: dimming says "focus is elsewhere, look later". Streaming content has no later —
 information is passing by, and dimming it cuts off the glance from the corner of the eye.

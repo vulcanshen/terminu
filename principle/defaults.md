@@ -105,7 +105,7 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
 - Inside a menu: `j/k` move (wrapping), `Enter` runs, hotkeys run directly; bottom hint
   `j/k move · Enter run · Esc close`.
 - The menu title is the focused panel's `[N] label`.
-- The key reference is as wide as its longest description: what gets cut off otherwise is exactly the "what this key does" half.
+- Popup width follows Rules F7 throughout; a description too long for it wraps or is cut inside the box, never widening the box.
 - A label that already shows its key (`[/] Search`) is not bracketed again.
 
 ## D5 Hotkey reference
