@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.1.9 — 2026-09-28
+
+- F1: a finder's `Tab` moves focus between typing and its list, `Esc` closes the whole finder; an
+  input may carry a candidate list (arrows move, `j`/`k` stay characters, `Enter` submits the
+  chosen one) and is still an input; each step of a multi-step flow is its own popup
+- F7: only an input whose submit can fail reserves the error row; the terminal class takes the
+  whole available area, no 120 cap
+- F8: borders below the top are dimmed too, each in a dimmed version of its own layer colour
+
 ## v0.1.8 — 2026-09-28
 
 - F1: popups come in **six classes** — menu, confirm, input, note, toast, terminal — each with fixed

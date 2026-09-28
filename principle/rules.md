@@ -469,8 +469,15 @@ The family's popups come in these six classes only, each with fixed key meanings
   copy, `v` select (a mode, K11). Its hotkeys are disclosed in the bottom-border hint and
   in `?`; but once it has a list of rows to run with `Enter`, it is a menu, not a note.
 - **A popup may change class by phase, but belongs to one class at a time.** E.g. a finder
-  is an input while typing and a menu once `Enter` hands over its results; `Esc` / `Tab`
-  go back to typing. A preview beside it takes no focus and is not another surface.
+  is an input while typing and a menu while its result list has focus; `Tab` moves focus
+  between typing and the list, and `Esc` closes the whole finder (K4: a phase is not a
+  layer). A preview beside it takes no focus and is not another surface.
+- **An input may carry a candidate list** (a list filtered as you type): printable keys are
+  always characters (`j` and `k` too, K8), only the arrow keys move among candidates, and
+  `Enter` submits the chosen one. It is still an input, not two classes at once.
+- **Each step of a multi-step flow is its own popup**: e.g. sorting by picking a column,
+  then a direction, is two stacked popups (F4 keeps the source), not one box changing its
+  content — each step has its own UX, and its own height fixed at opening (F7).
 - Not in these six: the splash (chapter S), and panel content an app draws as a box (e.g.
   webu's page dialogs, webu's departure).
 
@@ -537,9 +544,12 @@ such as "reversible means no need to ask" can judge it.
   inside the box beyond that.
 - **Position**: centred vertically. The toast is the exception: fixed at the bottom of the
   screen, its width by the same rule.
-- **An input reserves an error row**: an input popup opens with one error row in its
-  height, blank while there is no error; a failed submit writes its error there (K3), and
-  the box keeps its height.
+- **An input whose submit can fail reserves an error row**: it opens with one error row in
+  its height, blank while there is no error; a failed submit writes its error there (K3),
+  and the box keeps its height. An input whose submit cannot fail (e.g. a multi-line editor)
+  need not reserve one.
+- **The terminal class is the exception**: it takes the whole available area (terminal
+  width − 2 × height − 2), with no 120-column cap; the subprocess needs the room.
 
 **Why**: when every popup sizes itself by its content, nobody can tell what it will look
 like before it opens, and the box jumps whenever the content changes (L2). A common width
@@ -557,7 +567,9 @@ row or one opens inside another: only the topmost is ever bright.
 - Streaming content underneath (logs, remote sessions) and warning colours (D2) are dimmed
   too (the exception to T2).
 - **A toast does not trigger dimming**: it holds no keys and is not a layer.
-- Popup border colours by layer (D2) stay as they are.
+- **Borders are dimmed too, but keep their layer colour**: the borders of the popups below
+  are drawn in a dimmed version of their own layer colour (D2), not one common dim colour —
+  dark, yet still showing which layer each is.
 
 **Why**: all popups share one width (F7), so an upper one hides the side borders of the one
 below and the boxes no longer show the layers; brightness is the one cue left, and it is
