@@ -463,8 +463,8 @@ The family's popups come in these six classes only, each with fixed key meanings
 
 | Class | What the user can do | E.g. |
 |---|---|---|
-| **menu** | `j/k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, option lists |
-| **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6) | confirm before delete, the quit confirm |
+| **menu** | `j/k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, option lists, a jobs list (`Enter` opens the row in full) |
+| **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6) | confirm before delete, the quit confirm, "Connect to X?" under the host's details |
 | **input** | type (input state, K8), `Enter` submits (K3), `Tab` switches field or accepts a suggestion (K2) | rename, address bar, host form |
 | **note** | read-only, scroll with `j/k/u/d`; no list of rows to run with `Enter` | key reference, YAML viewer, app log |
 | **toast** | a one-line message from the bottom, gone on `Esc` or on its timer; holds no keys | "Copied", an operation failed |
@@ -473,6 +473,13 @@ The family's popups come in these six classes only, each with fixed key meanings
 - **A note may have hotkeys and modes of its own**: e.g. the YAML viewer's `/` search, `y`
   copy, `v` select (a mode, K11). Its hotkeys are disclosed in the bottom-border hint and
   in `?`; but once it has a list of rows to run with `Enter`, it is a menu, not a note.
+- **A menu's `Enter` may open the row in full**: a list with a cursor and no other action
+  of its own (e.g. a jobs list) may open a note with the row's whole content on `Enter`; it
+  is still a menu.
+- **A confirm may carry content to read before answering**: the question is why a confirm
+  exists, and above it may sit what to look at before answering (e.g. the host's details
+  above "Connect to X?"), scrolled with `j/k` when long; it is still just a confirm, not a
+  note plus a confirm, and need not be split into two popups.
 - **A popup may change class by phase, but belongs to one class at a time.** E.g. a finder
   is an input while typing and a menu while its result list has focus; `Tab` moves focus
   between typing and the list, and `Esc` closes the whole finder (K4: a phase is not a

@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.13 — 2026-09-28
+
+- F1: a menu's `Enter` may open the row in full (a list with a cursor and nothing else to do, e.g.
+  sshu's jobs); a confirm may carry content to read before answering, scrolled with `j/k`, and is
+  still just a confirm (sshu's host details above "Connect to X?", no longer a departure)
+
 ## v0.1.12 — 2026-09-28
 
 What the v0.1.11 audits of filu, locku, webu and sshu raised.

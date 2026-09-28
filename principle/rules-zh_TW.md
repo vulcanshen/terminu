@@ -383,8 +383,8 @@ focus 所在的 surface 必須一眼可辨（怎麼標示由 app 決定），而
 
 | 類別 | 使用者能做什麼 | 例 |
 |---|---|---|
-| **menu** | `j/k` 移動 cursor，`Enter` 或熱鍵執行那一列 | Space menu、global operation popup、選項清單 |
-| **confirm** | 讀一段提醒或警告，`Enter` 接受、`Esc` 取消（F6） | 刪除前的確認、離開的確認 |
+| **menu** | `j/k` 移動 cursor，`Enter` 或熱鍵執行那一列 | Space menu、global operation popup、選項清單、工作清單（`Enter` 打開那一列的全文） |
+| **confirm** | 讀一段提醒或警告，`Enter` 接受、`Esc` 取消（F6） | 刪除前的確認、離開的確認、帶著明細的「連線到 X？」 |
 | **input** | 打字（輸入態，K8），`Enter` 送出（K3），`Tab` 換欄或接受提議（K2） | 重新命名、網址列、host 表單 |
 | **note** | 唯讀，`j/k/u/d` 捲動；沒有可用 `Enter` 執行的選項清單 | key reference、YAML 檢視、App log |
 | **toast** | 從下方彈出的一行訊息，`Esc` 或時間到就收掉，不握鍵盤 | 「已複製」、操作失敗 |
@@ -392,6 +392,10 @@ focus 所在的 surface 必須一眼可辨（怎麼標示由 app 決定），而
 
 - **note 可以有自己的熱鍵與模式**：例如 YAML 檢視的 `/` 搜尋、`y` 複製、`v` 選取（模式，K11）。熱鍵揭露在下框 hint 與
   `?`；但一旦有可用 `Enter` 執行的選項清單，它就是 menu，不是 note。
+- **menu 的 `Enter` 可以打開那一列的全文**：有 cursor、本身沒有別的動作的清單（例：工作清單），`Enter` 開一個 note 顯示
+  那一列的完整內容，它仍是 menu。
+- **confirm 可以帶一段回答前要看的內容**：問句是 confirm 存在的理由，上面可以放回答前要看的資訊（例：「連線到 X？」上面是
+  X 的明細），內容長時用 `j/k` 捲動；它仍然只是 confirm，不是 note 加 confirm，不必拆成兩個 popup。
 - **一個 popup 可以依階段換類別，但同一時間只屬於一類**。例：finder 打字時是 input，結果清單取得 focus 時是 menu；
   `Tab` 在打字與清單之間切換 focus，`Esc` 關掉整個 finder（K4：階段不是一層）。旁邊的預覽不取得 focus，不算另一個 surface。
 - **input 可以附候選清單**（邊打字邊篩選的清單）：可列印的鍵一律是字元（`j`、`k` 也是，K8），只有方向鍵在候選之間移動，
