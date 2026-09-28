@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.1.14 — 2026-09-29
+
+What kbu's migration raised.
+
+- F1, F8, K11: a toast takes no key but `Esc`; in a mode, the first `Esc` closes the toast that
+  answered `Tab` (wording only, behaviour unchanged)
+- K10, D5: the family's PTY exit key is `Alt-Esc`; an exit key that ends the subprocess confirms
+  first, since a fast double `Esc` in vim can arrive as `Alt-Esc`
+- Terms: switching the layout (zoom) is not a mode, so `Esc` need not leave it
+- M5: how keys are written covers the key reference and the README; brackets belong in labels,
+  while hints, the footer and the key reference write "key + word"; modifiers are joined with `-`
+  (`Alt-t`, `Ctrl-C`, `Shift-Tab`)
+- M6: the key reference follows the same rule as menu rows (a key that can't run now is listed,
+  dimmed); hints may list only what works now
+
 ## v0.1.13 — 2026-09-28
 
 - F1: a menu's `Enter` may open the row in full (a list with a cursor and nothing else to do, e.g.

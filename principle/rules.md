@@ -209,7 +209,7 @@ to the subprocess**: core keys and the app's hotkeys stop working — vim needs 
 shell needs `Tab` and `Ctrl-C`, a remote program may want any chord.
 
 - The app designates **at least** one exit key that moves focus out of the PTY (a
-  combination the subprocess almost never uses, e.g. kbu's `Alt-t`, sshu's `Alt+Esc`) and
+  combination the subprocess almost never uses; the family uses `Alt-Esc`, see D5) and
   discloses it permanently while focus is in the PTY.
 - Whether the app keeps other chords of its own inside the PTY besides the exit key (e.g.
   sshu's zoom, move to another cell and history scroll inside a cell) is up to the app.
@@ -233,7 +233,7 @@ With focus inside a mode (see the term), the core keys act like this:
 | `?` | the mode's key reference (read-only, K6): which keys work in the mode and what they do |
 | `Esc` | leaves the mode (K4), back to where it was entered |
 | `q`, `Ctrl-C` | run the quit flow, as K9 |
-| `Tab` | a mode may suspend `Tab`, but pressing it must respond, saying to leave the mode with `Esc` first (e.g. a toast) |
+| `Tab` | a mode may suspend `Tab`, but pressing it must respond, saying to leave the mode with `Esc` first (e.g. a toast); while the toast is up, the first `Esc` closes it (K4) |
 
 - A mode has no Space menu and no list of keys to run. The mode's own keys (move, select,
   drag) are pressed directly; they are disclosed in the `?` key reference and in the footer
@@ -344,8 +344,8 @@ right:
  [q]uit                                            leave the app
 ```
 
-Hotkey marking is one rule for the whole app (menus, footer, panel hints and popup hints
-alike):
+How keys are written is one rule for the whole app (menus, footer, panel hints, popup
+hints, the key reference, and the README). Marking inside a label:
 
 | Case | Form |
 |---|---|
@@ -356,7 +356,12 @@ alike):
 | No hotkey | no brackets |
 
 - **What is in the brackets is exactly the key to press, case included**: `[A]dd` is
-  `Shift+A`.
+  `Shift-A`.
+- **Brackets belong in labels only** (menu rows, statusbar chips, panel titles); hints, the
+  footer and the key reference write "key + word" without brackets (e.g. `Enter run · Esc
+  close`).
+- **Modifiers are joined with `-`**: `Alt-t`, `Ctrl-C`, `Shift-Tab`, `Alt-Esc`; the same on
+  screen and in the README.
 - Colour or a glyph alone must not be the hint that "this is a hotkey"; mark it
   explicitly.
 - What the description says is up to the app, but it must fit on one line.
@@ -373,6 +378,9 @@ the action is badly named. Digits stay out of words because `432hz` would render
 - **A target, but the action can't run right now**: the row is still shown, **dimmed**,
   keeping its usual description with no reason added; the cursor can land on it, and
   neither `Enter` nor its hotkey does anything.
+- **The `?` key reference follows the same rule**: a key whose target exists but can't run
+  now is still listed, dimmed; with no target it is not listed. Hints and the footer, short
+  on room and always on screen, may list only the keys that work now; that is up to the app.
 
 **Why**: users take a hidden action to mean the app doesn't support it; dimming tells
 them "this exists, just not now". No reason is added because the reasons vary endlessly,
@@ -467,7 +475,7 @@ The family's popups come in these six classes only, each with fixed key meanings
 | **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6) | confirm before delete, the quit confirm, "Connect to X?" under the host's details |
 | **input** | type (input state, K8), `Enter` submits (K3), `Tab` switches field or accepts a suggestion (K2) | rename, address bar, host form |
 | **note** | read-only, scroll with `j/k/u/d`; no list of rows to run with `Enter` | key reference, YAML viewer, app log |
-| **toast** | a one-line message from the bottom, gone on `Esc` or on its timer; holds no keys | "Copied", an operation failed |
+| **toast** | a one-line message from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it | "Copied", an operation failed |
 | **terminal** | a subprocess running in the box; every key is its, only the exit key is the app's (K10) | kbu's Alterm, filu's shell |
 
 - **A note may have hotkeys and modes of its own**: e.g. the YAML viewer's `/` search, `y`
@@ -598,7 +606,7 @@ row or one opens inside another: only the topmost is ever bright.
   drawn with a background (the body of a powerline capsule, a cursor bar, a selection).
   Layer colours, warning colours and streaming content go through the same fade and so
   become dimmed versions of themselves. The calculation is in D2.
-- **A toast does not trigger dimming**: it holds no keys and is not a layer.
+- **A toast does not trigger dimming**: it takes no key but `Esc` (F1) and is not a layer.
 - **Borders are dimmed too, but keep their layer colour**: the borders of the popups below
   are drawn in a dimmed version of their own layer colour (D2), not one common dim colour —
   dark, yet still showing which layer each is.

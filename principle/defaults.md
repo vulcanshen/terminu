@@ -150,6 +150,7 @@ records what the family does today, for a new app that wants the easy path:
 | `/` | Search |
 | `1`–`9` | Jump to panel `[N]` |
 | `z` / `Z` | Zoom |
+| `Alt-Esc` | The PTY exit key (Rules K10); what it does is up to the app |
 
 - **Quit flow** (tdp K9): confirm first when something would be lost (a transfer in
   progress, an unsaved draft).
@@ -157,6 +158,9 @@ records what the family does today, for a new app that wants the easy path:
   movement, and no action takes them.
 - **Case carries scope**: lower case acts on the item, upper case on the panel or the app.
 - **Delete is `x`** (`d` is half a page).
+- **An exit key that ends the subprocess confirms first**: bubbletea reads Alt from "`Esc`
+  followed at once by another byte", so a fast double `Esc` in vim can arrive as `Alt-Esc`.
+  An exit key that only moves focus out, leaving the subprocess running, need not ask.
 
 ## D6 Distribution and environment
 
