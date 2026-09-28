@@ -214,8 +214,10 @@ search line.
 
 A temporary state inside a panel or popup: once in it, some keys take on the mode's own
 meaning, and `Esc` leaves it. E.g. webu's visual mode (selecting text), kbu's drag mode
-(reordering pins), sshu's `Alt+v` selection mode, the selection in filu's yank viewport.
-A mode is not input state — keys do not become characters. See Rules K11.
+(reordering pins), sshu's `Alt-v` selection mode, the selection in filu's yank viewport.
+A mode is not input state — keys do not become characters. Switching the layout (e.g. zoom,
+which fills the screen with one panel) is not a mode either: no key changes meaning, `Esc`
+need not leave it, and its own key restores it. See Rules K11.
 
 ### Core key
 
