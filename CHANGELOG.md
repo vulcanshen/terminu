@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.1.8 — 2026-09-28
+
+- F1: popups come in **six classes** — menu, confirm, input, note, toast, terminal — each with fixed
+  key meanings; a note may have its own hotkeys and modes; a popup may change class by phase (a
+  finder: input, then menu) but is one class at a time
+- F7 (new): every popup is `min(terminal width − 2, 120)` wide, centred; its height follows the
+  content but is fixed when it opens, scrolling beyond the screen; the toast sits at the bottom;
+  an input reserves one error row, where K3's failed submit writes its error
+- F8 (new): with a popup open, everything below the topmost — popups and base screen, streaming
+  content and warning colours included — is dimmed; a toast does not dim; border layer colours stay
+- T2: a popup on top is the exception (F8). D4: the old "key reference as wide as its longest
+  description" gives way to F7
+
 ## v0.1.7 — 2026-09-28
 
 - M2: the Space menu's global row carries **no region header** — `global operation` over a single

@@ -92,7 +92,7 @@ K ≥ N 時固定為 popup 最上層
 - menu 內：`j/k` 移動（頭尾相接），`Enter` 執行，熱鍵直接執行；下框 hint
   `j/k move · Enter run · Esc close`。
 - menu 標題是 focus panel 的 `[N] label`。
-- key reference 的寬度依最長的說明計算：截掉的正是「這個鍵做什麼」那一半。
+- popup 寬度統一照 Rules F7；說明太長時在框裡換行或截尾，不為了它加寬框。
 - label 本身已經寫出鍵的列（`[/] Search`）不要再括一次。
 
 ## D5 熱鍵參考
