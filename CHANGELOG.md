@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.17 — 2026-09-29
+
+- M5: keys mentioned in the description column of a menu or the key reference count as a
+  sentence (square brackets); the README marks keys in prose as Markdown code; another tool's own
+  keys (tmux's `prefix l`) keep that tool's notation
+
 ## v0.1.16 — 2026-09-29
 
 - D5: `Alt-Esc` always confirms when it would move focus out of the PTY or end the subprocess,
