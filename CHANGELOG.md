@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.1.18 — 2026-09-29
+
+What the v0.1.17 migration of the five apps raised.
+
+- F1, D3: which side of a finder has focus must show; the family look greys the filter row
+  (Overlay0, not F8's fade) and gives the list's cursor row the layer colour
+- K11, D2: a mode shows its name at the right of its frame's top border and turns the frame
+  Yellow
+- D2: hints on an unfocused panel's border use Overlay0 / Surface2, keeping Blue for focus
+- D3: a bottom-border hint that doesn't fit drops whole items from the end
+- D6: detect the icons' real cell width (CJK icon fonts draw them two wide) and measure every
+  width with one display-width function; filu's `width.go` is the reference
+- K10, K9: an app may hold keys back while the subprocess is not ready (still connecting);
+  `q` and `Ctrl-C` belong to the subprocess in a PTY
+
 ## v0.1.17 — 2026-09-29
 
 - M5: keys mentioned in the description column of a menu or the key reference count as a

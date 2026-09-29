@@ -189,7 +189,8 @@ with no exit.
 ### K9 `q` and `Ctrl-C` quit the app `fixed`
 
 - `q` and `Ctrl-C` do **the same thing**: start the app's quit flow. `q` is a character
-  in input state (K8); `Ctrl-C` still works there.
+  in input state (K8); `Ctrl-C` still works there. With focus in a PTY both belong to the
+  subprocess (K10).
 - **The quit flow is up to the app** (concept): quit at once, confirm first, or let the
   user choose how to quit. E.g. sshu asks whether to close open sessions first; filu lets
   the user choose whether to switch the shell to the last directory.
@@ -215,6 +216,9 @@ shell needs `Tab` and `Ctrl-C`, a remote program may want any chord.
   sshu's zoom, move to another cell and history scroll inside a cell) is up to the app.
   Any it keeps are disclosed permanently, like the exit key (M3).
 - Where focus lands after the exit key is up to the app.
+- While the subprocess is not ready for keys yet (e.g. the remote end is still connecting),
+  the app may hold keys back instead of forwarding them; the exit key still works and is
+  still disclosed.
 
 **Why**: with focus in a PTY, nearly everything the user does is the PTY's business; the
 more keys the app intercepts, the likelier it breaks the subprocess, and the more "who
@@ -240,6 +244,10 @@ With focus inside a mode (see the term), the core keys act like this:
   / bottom-border hint (M3, as it applies inside a mode).
 - The footer still shows `?` inside a mode (M1); `Space` does nothing there and need not
   be listed.
+- **A mode shows itself**: its name always appears at the **right of the top border** of
+  the frame it lives in (panel or popup), and the frame turns the mode colour (family
+  default in D2); leaving the mode restores both. A focused panel keeps its focus line style
+  (L5) in a mode; only the colour changes.
 
 **Why**: a mode is always a special case; its keys are movement and selection, pressed
 directly and in runs, not actions on an item, and there is no item / panel / global to
@@ -518,7 +526,8 @@ The family's popups come in these six classes only, each with fixed key meanings
 - **A popup may change class by phase, but belongs to one class at a time.** E.g. a finder
   is an input while typing and a menu while its result list has focus; `Tab` moves focus
   between typing and the list, and `Esc` closes the whole finder (K4: a phase is not a
-  layer). A preview beside it takes no focus and is not another surface.
+  layer). A preview beside it takes no focus and is not another surface. **Which side has
+  focus must show**: only the side holding the keys is lit (family default in D3).
 - **An input may carry a candidate list** (a list filtered as you type): printable keys are
   always characters (`j` and `k` too, K8), only the arrow keys move among candidates, and
   `Enter` submits the chosen one. It is still an input, not two classes at once.
