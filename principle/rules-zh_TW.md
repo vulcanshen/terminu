@@ -314,12 +314,15 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 | 位置 | 寫法 | 例子 |
 |---|---|---|
 | label（menu 的列、statusbar chip、panel 標題） | 上表的括號標記 | `[r]ename`、`[Alt-t]erm` |
-| 句子（空狀態、toast、錯誤訊息） | 鍵一律加方括號 | `Press [A] or [Space]`、`see App Log [!]` |
+| 句子（空狀態、toast、錯誤訊息，以及 menu 與 key reference 說明欄裡提到的鍵） | 鍵一律加方括號 | `Press [A] or [Space]`、`see App Log [!]`、`next tab [h]/[l]` |
 | hint、footer | `鍵:說明`，冒號前後不空格，項目之間一個空格 | `j/k:move Enter:run Esc:close` |
 | key reference | 兩欄：鍵、說明；鍵不加括號、不加冒號 | 鍵欄 `Esc`、說明欄 `close this popup` |
 
 - hint 與 footer 的鍵和說明用不同顏色分開：鍵一個色，冒號與說明另一個色（家族預設見 D2）。說明可以是幾個詞，項目靠鍵的
   顏色分得出來。
+- **README**：內文提到的鍵用 Markdown 的 code 標（`` `Enter` ``、`` `Ctrl-C` ``），不加方括號；鍵名與寫法照上面。引用畫面上的
+  label 照畫面寫（`[A]dd`）。
+- **別的工具自己的按鍵**（例：tmux 的 `prefix l`、`C-a x`）照那個工具的寫法：使用者要把它打進那個工具的設定、或對照它的文件。
 
 **為什麼**：名稱回答「這是什麼動作」，說明回答「它會對什麼做什麼」—— 同一個動詞在
 不同 panel 可能意義不同（刪檔案還是取消收藏？）。說明寫不進一行，通常是動作的

@@ -377,13 +377,18 @@ hints, the key reference, and the README). Marking inside a label:
 | Place | Form | Example |
 |---|---|---|
 | Label (menu rows, statusbar chips, panel titles) | the bracket marking above | `[r]ename`, `[Alt-t]erm` |
-| Sentence (empty states, toasts, error messages) | every key in square brackets | `Press [A] or [Space]`, `see App Log [!]` |
+| Sentence (empty states, toasts, error messages, and keys mentioned in the description column of a menu or the key reference) | every key in square brackets | `Press [A] or [Space]`, `see App Log [!]`, `next tab [h]/[l]` |
 | Hint, footer | `key:description`, no space around the colon, one space between items | `j/k:move Enter:run Esc:close` |
 | Key reference | two columns, key and description; no brackets, no colon on the key | key column `Esc`, description column `close this popup` |
 
 - In hints and the footer the key and its description are told apart by colour: the key in
   one colour, the colon and description in another (family default in D2). A description
   may run to several words; the key's colour still shows where each item starts.
+- **README**: keys in the prose are Markdown code (`` `Enter` ``, `` `Ctrl-C` ``), not
+  square brackets; names and notation as above. A label quoted from the screen is written as
+  on screen (`[A]dd`).
+- **Another tool's own keys** (e.g. tmux's `prefix l`, `C-a x`) are written the way that tool
+  writes them: the user types them into that tool's config or reads them in its docs.
 
 **Why**: the name answers "what action is this", the description answers "what does it
 do to what" — the same verb can mean different things on different panels (delete the
