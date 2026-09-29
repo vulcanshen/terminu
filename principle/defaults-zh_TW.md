@@ -82,10 +82,11 @@ K ≥ N 時固定為 popup 最上層
 | 正在編輯的東西、使用者足跡 | Lavender `#b4befe` |
 | 錯誤 | Red `#f38ba8` |
 | 值得注意、但沒壞 | Peach `#fab387` |
-| 選取 | Yellow `#f9e2af` |
+| 選取；模式（外框與右上角的模式名，Rules K11） | Yellow `#f9e2af` |
 | 暗字；hint 與 footer 的冒號與說明 | Overlay0 `#6c7086` |
 | hint、footer、key reference 裡的鍵 | Blue `#89b4fa` |
 | key reference 的說明 | Text `#cdd6f4` |
+| 失焦 panel 邊框上的 hint：鍵 / 冒號與說明 | Overlay0 `#6c7086` / Surface2 `#585b70`（Blue 是 focus 的顏色，只給拿鍵的地方） |
 
 ## D3 Popup
 
@@ -105,6 +106,10 @@ K ≥ N 時固定為 popup 最上層
 - `?` 的 key reference 疊在其他 popup 上時，按鍵路由與繪製都把它放在最上層；confirm、options 等框排在底下的 menu 之前拿鍵。
 - 判斷一層「還在不在」用開啟中或已開（`owns()`），不用含關閉中的 `isActive()`（Rules F3）。
 - confirm 的下框 hint：`Enter:<動詞> Esc:cancel`（例：`Enter:delete Esc:cancel`）。
+- 下框 hint 放不下時，從尾端整組捨棄（跟 D1 的 footer 一樣），不截在項目中間。
+- **finder 的 focus**（Rules F1）：打字時篩選列亮、清單的 cursor 列是淡的反白；`Tab` 到清單後，篩選列整列用灰色
+  （Overlay0，D2 的暗字）畫，不用 F8 的淡化、也不畫反白與游標，清單的 cursor 列換成 popup 層色底加深色粗體字
+  （跟 menu 的 cursor 列一樣）。只有拿鍵的那一邊是亮的，跟 F8「只有最上層亮」同一套語言（kbu `40a0573`）。
 - 取消回到 source；完成動作清掉整個 stack（T1 的常見答案）。
 
 ## D4 Menu
@@ -155,6 +160,10 @@ K ≥ N 時固定為 popup 最上層
 - 需要 Nerd Font；PUA glyph 在程式碼裡寫成 code point。
 - 需要 truecolor terminal（24-bit 色）：catppuccin 的淡色與 D2 的層色漸變在 256 色下分不出來，dim 也一律輸出 24-bit（D2）。README 的需求段跟 Nerd Font 並列寫明。
 - 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（Rules L4）。
+- **icon 的實際寬度**：有些 CJK 用的 Nerd Font（例：Maple Mono NF CN）把 icon 畫成兩格，lipgloss 卻量成一格，框線就歪。
+  app 啟動時探測 icon 佔幾格，所有量寬度的地方（補空白、截斷、框線、疊 popup）都走同一個顯示寬度函式；L4 的畫面測試
+  也跑一次「icon 佔兩格」。參考實作：filu `internal/ui/width.go`（`DetectIconWidth()`、`isWideIcon()`、`dispWidth()`、
+  `dispClip()`）。
 - `docs/icon.svg` 是家族 mark；splash（Rules S 章）由它逐格畫出，用測試守住兩者一致。
 - `V` 保留給 splash（Rules S1）。
 - demo gif 用 VHS 錄，腳本放在 `.local/demos/`；README 只放一張代表性的 gif。

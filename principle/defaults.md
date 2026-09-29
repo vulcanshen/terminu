@@ -97,10 +97,11 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
 | What is being edited, user footprint | Lavender `#b4befe` |
 | Error | Red `#f38ba8` |
 | Worth noticing, not broken | Peach `#fab387` |
-| Selection | Yellow `#f9e2af` |
+| Selection; a mode (its frame and the mode name at top right, Rules K11) | Yellow `#f9e2af` |
 | Dim text; the colon and description in hints and the footer | Overlay0 `#6c7086` |
 | Keys in hints, the footer and the key reference | Blue `#89b4fa` |
 | Descriptions in the key reference | Text `#cdd6f4` |
+| Hints on an unfocused panel's border: key / colon and description | Overlay0 `#6c7086` / Surface2 `#585b70` (Blue is the focus colour, kept for where the keys are) |
 
 ## D3 Popups
 
@@ -124,6 +125,14 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
 - When the `?` key reference sits on another popup, it is on top in key routing and in drawing alike; boxes such as confirm and options take keys before the menu under them.
 - Whether a layer is "still there" is judged by opening-or-open (`owns()`), never by an `isActive()` that includes closing (Rules F3).
 - Confirm hint on the bottom border: `Enter:<verb> Esc:cancel` (e.g. `Enter:delete Esc:cancel`).
+- When a bottom-border hint doesn't fit, whole items are dropped from the end (like the
+  footer in D1), never cut mid-item.
+- **Finder focus** (Rules F1): while typing, the filter row is lit and the list's cursor row
+  is a faint highlight; after `Tab` to the list, the filter row is drawn all in grey
+  (Overlay0, D2's dim text) rather than F8's fade, with no highlight or cursor, and the
+  list's cursor row turns to the popup's layer colour behind dark bold text (like a menu's
+  cursor row). Only the side holding the keys is lit, the same language as F8's "only the
+  top is lit" (kbu `40a0573`).
 - Cancelling returns to the source; completing an action clears the whole stack (the
   usual answer to T1).
 
@@ -183,6 +192,12 @@ records what the family does today, for a new app that wants the easy path:
 - Requires a truecolor (24-bit) terminal: catppuccin's pale colours and D2's layer gradient are indistinguishable in 256 colours, and dimming always outputs 24-bit (D2). READMEs say so in their requirements, next to the Nerd Font.
 - Screen tests across sizes: at several terminal sizes, every line is exactly the terminal
   width (Rules L4).
+- **The icons' real width**: some Nerd Fonts made for CJK (e.g. Maple Mono NF CN) draw icons
+  two cells wide while lipgloss measures one, and the borders go crooked. The app detects
+  at startup how many cells an icon takes, and every width measurement (padding, clipping,
+  borders, overlaying popups) goes through one display-width function; the L4 screen tests
+  also run once with two-cell icons. Reference implementation: filu `internal/ui/width.go`
+  (`DetectIconWidth()`, `isWideIcon()`, `dispWidth()`, `dispClip()`).
 - `docs/icon.svg` is the family mark; the splash (Rules, chapter S) is drawn from it cell
   for cell, with a test keeping the two identical.
 - `V` is reserved for the splash (Rules S1).
