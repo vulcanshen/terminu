@@ -207,6 +207,7 @@ records what the family does today, for a new app that wants the easy path:
   | `<APP>__DATA` | the data directory |
   | `<APP>__CACHE` | the cache directory |
   | `<APP>__ICON_WIDTH` | manual override of an icon's cell width (see the icons' real width below) |
+  | `TERMINU__ICON_WIDTH` | shared by the family: an app with a PTY sets it for its child to say how wide an icon is (see below) |
 
   The exception: variables meant for another program follow that program's needs (e.g. the
   `LC_SSHU_COLORTERM` sshu carries over ssh to the remote end — OpenSSH forwards only `LANG`
@@ -232,9 +233,17 @@ records what the family does today, for a new app that wants the easy path:
   - Manual override: the environment variable `<APP>__ICON_WIDTH` (filu's is
     `FILU__ICON_WIDTH`). Detection runs on unix only; Windows defaults to one cell,
     overridden by the variable.
+  - **Inside another app's PTY**: the probe is answered by the outer app's terminal
+    emulator, which counts an icon as one cell, so the real width can't be measured. An app
+    with a PTY therefore sets `TERMINU__ICON_WIDTH=<the cells it uses>` in its child's
+    environment, and every app takes the icon width from `<APP>__ICON_WIDTH`, then
+    `TERMINU__ICON_WIDTH`, then the probe. Any family app running inside another's PTY then
+    gets it right (filu in kbu's Alterm, kbu in filu's shell). Environment variables don't
+    cross ssh; remote nesting relies on the app's own channel (sshu's nesting channel).
   - An overlaid popup may be wider or taller than the screen (the frame drawn during a
     resize still has the old size): start at 0 and clip what falls off the screen, and
-    **never panic**; the edge-case tests include it (kbu's `TestD6_CompositeDisp`).
+    **never panic**; when it is larger in both directions it is clipped too, never handed
+    back whole. The edge-case tests cover all three (filu's `TestD6CompositeDispOversized`).
   - Done means: apart from the width functions themselves, `internal/ui` has no calls to
     `lipgloss.Width`, `lipgloss.Size`, `lipgloss.Place`, `ansi.StringWidth` or
     `ansi.Truncate`.
