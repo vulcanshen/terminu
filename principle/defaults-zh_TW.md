@@ -141,6 +141,7 @@ K ≥ N 時固定為 popup 最上層
 | `1`–`9` | 直接跳到 `[N]` panel |
 | `z` / `Z` | zoom |
 | `Alt-Esc` | PTY 的出口鍵（Rules K10）；按了之後做什麼由 app 決定 |
+| 選取文字的模式裡：`h/j/k/l`、`w/b/e`、`0/$`、`gg/G`、`u/d` | 照 vim 移動：一格、一個字（`w` 下一個字頭、`b` 上一個字頭、`e` 字尾）、行首行尾、頭尾、半頁 |
 
 - **離開流程**（tdp K9）：有東西會遺失（進行中的傳輸、未存的草稿）時先 confirm。
 - **導覽字母不綁動作**：`j k u d g G h l` 保留給移動，任何動作不佔用。
@@ -158,8 +159,20 @@ K ≥ N 時固定為 popup 最上層
 
 - 單一靜態 binary，goreleaser 建置；`install.sh` / `uninstall.sh`（`curl | sh`、免 sudo），
   另發到 Homebrew tap `vulcanshen/homebrew-tap`。
-- 設定在 `$XDG_CONFIG_HOME/<app>`（fallback `~/.config/<app>`），可用 `<APP>_CONFIG` 覆寫；
-  資料在 `~/.<app>/`。
+- 設定在 `$XDG_CONFIG_HOME/<app>`（fallback `~/.config/<app>`）；資料在 `~/.<app>/`。
+- **環境變數的命名**：`<大寫 app 名>__<變數名>` —— app 名後面兩個底線，變數名全大寫、單字之間一個底線（例：`FILU__ICON_WIDTH`、
+  `KBU__ALTERM_LOGIN_SHELL`）。app 自己讀的變數（含測試用、傳給自己子程序的）都照這個寫。共用的名字：
+
+  | 變數 | 意思 |
+  |---|---|
+  | `<APP>__CONFIG` | 設定**目錄**（設定檔在裡面） |
+  | `<APP>__STATE` | 狀態目錄（app 有另外存狀態時） |
+  | `<APP>__DATA` | 資料目錄 |
+  | `<APP>__CACHE` | 快取目錄 |
+  | `<APP>__ICON_WIDTH` | icon 佔幾格的手動覆寫（見下方 icon 的實際寬度） |
+
+  例外：給別的程式讀的變數照對方的要求（例：sshu 經 ssh 帶到遠端的 `LC_SSHU_COLORTERM` —— OpenSSH 預設只轉送 `LANG` 與
+  `LC_*`）。改名時不留舊名。
 - 需要 Nerd Font；PUA glyph 在程式碼裡寫成 code point。
 - 需要 truecolor terminal（24-bit 色）：catppuccin 的淡色與 D2 的層色漸變在 256 色下分不出來，dim 也一律輸出 24-bit（D2）。README 的需求段跟 Nerd Font 並列寫明。
 - 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（Rules L4）。
@@ -171,7 +184,9 @@ K ≥ N 時固定為 popup 最上層
     `compositeDisp()`（取代 overlay 的 `Composite`，介面相同）、`centerDisp()`（取代 `lipgloss.Place`）、`joinH()` / `joinV()`
     （取代 `lipgloss.JoinHorizontal` / `JoinVertical`）；探測在 `iconwidth_unix.go` 的 `DetectIconWidth()`，在 `tea.NewProgram`
     之前呼叫；測試照 `d6_test.go`。
-  - 手動覆寫：環境變數 `<APP>_ICON_WIDTH`（filu 是 `FILU_ICON_WIDTH`）。探測只在 unix 做；Windows 預設一格，靠環境變數覆寫。
+  - 手動覆寫：環境變數 `<APP>__ICON_WIDTH`（filu 是 `FILU__ICON_WIDTH`）。探測只在 unix 做；Windows 預設一格，靠環境變數覆寫。
+  - 疊 popup 時 popup 可能比畫面寬或高（調整終端機大小的那一格還是舊尺寸）：起點取 0、超出畫面的部分切掉，**不可以 panic**；
+    測試的邊界要含這種情況（kbu 的 `TestD6_CompositeDisp`）。
   - 做完的驗收：`internal/ui` 裡除了寬度函式本身，找不到 `lipgloss.Width`、`lipgloss.Size`、`lipgloss.Place`、
     `ansi.StringWidth`、`ansi.Truncate` 的呼叫。
 - `docs/icon.svg` 是家族 mark；splash（Rules S 章）由它逐格畫出，用測試守住兩者一致。

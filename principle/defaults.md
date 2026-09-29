@@ -169,6 +169,7 @@ records what the family does today, for a new app that wants the easy path:
 | `1`–`9` | Jump to panel `[N]` |
 | `z` / `Z` | Zoom |
 | `Alt-Esc` | The PTY exit key (Rules K10); what it does is up to the app |
+| In a text-selection mode: `h/j/k/l`, `w/b/e`, `0/$`, `gg/G`, `u/d` | Move as vim does: a cell, a word (`w` next word start, `b` previous word start, `e` word end), line start and end, top and bottom, half a page |
 
 - **Quit flow** (tdp K9): confirm first when something would be lost (a transfer in
   progress, an unsaved draft).
@@ -192,8 +193,24 @@ records what the family does today, for a new app that wants the easy path:
 
 - A single static binary built with goreleaser; `install.sh` / `uninstall.sh`
   (`curl | sh`, no sudo), also published to the Homebrew tap `vulcanshen/homebrew-tap`.
-- Config in `$XDG_CONFIG_HOME/<app>` (falling back to `~/.config/<app>`), overridable
-  with `<APP>_CONFIG`; data in `~/.<app>/`.
+- Config in `$XDG_CONFIG_HOME/<app>` (falling back to `~/.config/<app>`); data in
+  `~/.<app>/`.
+- **Environment variable names**: `<APP IN CAPITALS>__<NAME>` — two underscores after the app
+  name, the name in capitals with single underscores between words (e.g. `FILU__ICON_WIDTH`,
+  `KBU__ALTERM_LOGIN_SHELL`). Every variable the app itself reads (tests and its own child
+  processes included) is named this way. Shared names:
+
+  | Variable | Meaning |
+  |---|---|
+  | `<APP>__CONFIG` | the config **directory** (the config file lives in it) |
+  | `<APP>__STATE` | the state directory (when the app keeps state separately) |
+  | `<APP>__DATA` | the data directory |
+  | `<APP>__CACHE` | the cache directory |
+  | `<APP>__ICON_WIDTH` | manual override of an icon's cell width (see the icons' real width below) |
+
+  The exception: variables meant for another program follow that program's needs (e.g. the
+  `LC_SSHU_COLORTERM` sshu carries over ssh to the remote end — OpenSSH forwards only `LANG`
+  and `LC_*` by default). Renamed variables do not keep their old names.
 - Requires a Nerd Font; PUA glyphs are written as code points in the source.
 - Requires a truecolor (24-bit) terminal: catppuccin's pale colours and D2's layer gradient are indistinguishable in 256 colours, and dimming always outputs 24-bit (D2). READMEs say so in their requirements, next to the Nerd Font.
 - Screen tests across sizes: at several terminal sizes, every line is exactly the terminal
@@ -212,9 +229,12 @@ records what the family does today, for a new app that wants the easy path:
     `joinV()` (replace `lipgloss.JoinHorizontal` / `JoinVertical`); detection is
     `DetectIconWidth()` in `iconwidth_unix.go`, called before `tea.NewProgram`; tests follow
     `d6_test.go`.
-  - Manual override: the environment variable `<APP>_ICON_WIDTH` (filu's is
-    `FILU_ICON_WIDTH`). Detection runs on unix only; Windows defaults to one cell, overridden
-    by the variable.
+  - Manual override: the environment variable `<APP>__ICON_WIDTH` (filu's is
+    `FILU__ICON_WIDTH`). Detection runs on unix only; Windows defaults to one cell,
+    overridden by the variable.
+  - An overlaid popup may be wider or taller than the screen (the frame drawn during a
+    resize still has the old size): start at 0 and clip what falls off the screen, and
+    **never panic**; the edge-case tests include it (kbu's `TestD6_CompositeDisp`).
   - Done means: apart from the width functions themselves, `internal/ui` has no calls to
     `lipgloss.Width`, `lipgloss.Size`, `lipgloss.Place`, `ansi.StringWidth` or
     `ansi.Truncate`.
