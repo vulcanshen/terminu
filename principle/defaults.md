@@ -133,6 +133,12 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
   list's cursor row turns to the popup's layer colour behind dark bold text (like a menu's
   cursor row). Only the side holding the keys is lit, the same language as F8's "only the
   top is lit" (kbu `40a0573`).
+- **The mode name label** (Rules K11): the junctions take the frame's colour and follow its
+  line style — `╡` `╞` on a double frame, `┤` `├` on a single one; the name is bold in the
+  mode colour; one word if possible (`Drag`, `Visual`, `Select`: a narrow panel has no room
+  for two, and the whole top-right text would be dropped); when space runs out the title is
+  clipped first and the mode name stays. A panel's `[N] label` capsule turns the mode colour
+  with its frame (kbu `248f883`).
 - Cancelling returns to the source; completing an action clears the whole stack (the
   usual answer to T1).
 
@@ -192,12 +198,26 @@ records what the family does today, for a new app that wants the easy path:
 - Requires a truecolor (24-bit) terminal: catppuccin's pale colours and D2's layer gradient are indistinguishable in 256 colours, and dimming always outputs 24-bit (D2). READMEs say so in their requirements, next to the Nerd Font.
 - Screen tests across sizes: at several terminal sizes, every line is exactly the terminal
   width (Rules L4).
-- **The icons' real width**: some Nerd Fonts made for CJK (e.g. Maple Mono NF CN) draw icons
-  two cells wide while lipgloss measures one, and the borders go crooked. The app detects
-  at startup how many cells an icon takes, and every width measurement (padding, clipping,
-  borders, overlaying popups) goes through one display-width function; the L4 screen tests
-  also run once with two-cell icons. Reference implementation: filu `internal/ui/width.go`
-  (`DetectIconWidth()`, `isWideIcon()`, `dispWidth()`, `dispClip()`).
+- **The icons' real width**: with some fonts an icon takes two cells (the cursor moves two),
+  while lipgloss measures one, and the borders go crooked. What counts is **how far the
+  cursor actually moves**: a font whose icon looks wider than a cell but moves the cursor one
+  (the glyph spills into the next cell) counts as one. The app detects this at startup (CPR:
+  print an icon, ask for the cursor position), and every width measurement (padding,
+  clipping, centring, joining, borders, overlaying popups) goes through one display-width
+  function; the L4 screen tests also run once with two-cell icons, opening each kind of popup
+  and measuring the bare box and the whole screen with it overlaid.
+  - Reference implementation: filu `internal/ui/width.go` — `isWideIcon()`, `dispWidth()`,
+    `dispClip()`, `padDisp()`, `dispCutLeft()`, `compositeDisp()` (replaces overlay's
+    `Composite`, same interface), `centerDisp()` (replaces `lipgloss.Place`), `joinH()` /
+    `joinV()` (replace `lipgloss.JoinHorizontal` / `JoinVertical`); detection is
+    `DetectIconWidth()` in `iconwidth_unix.go`, called before `tea.NewProgram`; tests follow
+    `d6_test.go`.
+  - Manual override: the environment variable `<APP>_ICON_WIDTH` (filu's is
+    `FILU_ICON_WIDTH`). Detection runs on unix only; Windows defaults to one cell, overridden
+    by the variable.
+  - Done means: apart from the width functions themselves, `internal/ui` has no calls to
+    `lipgloss.Width`, `lipgloss.Size`, `lipgloss.Place`, `ansi.StringWidth` or
+    `ansi.Truncate`.
 - `docs/icon.svg` is the family mark; the splash (Rules, chapter S) is drawn from it cell
   for cell, with a test keeping the two identical.
 - `V` is reserved for the splash (Rules S1).

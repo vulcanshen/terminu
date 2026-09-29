@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.1.20 — 2026-09-29
+
+- K11, D3: the mode name sits between two border junctions (`╡Drag╞` on a double frame,
+  `┤Visual├` on a single one), bold in the mode colour, one word if possible; the title is
+  clipped first; a panel's capsule turns the mode colour with its frame
+- D6: the icon width is how far the cursor actually moves (no font named as the example); the
+  full reference from filu (`compositeDisp`, `centerDisp`, `joinH`/`joinV`), the
+  `<APP>_ICON_WIDTH` override, unix-only detection, and what done looks like
+
 ## v0.1.19 — 2026-09-29
 
 - L5: focus is not told by colour alone, since a mode recolours its frame (K11); the family

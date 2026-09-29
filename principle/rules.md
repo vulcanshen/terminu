@@ -250,6 +250,8 @@ With focus inside a mode (see the term), the core keys act like this:
   the frame it lives in (panel or popup), and the frame turns the mode colour (family
   default in D2); leaving the mode restores both. A focused panel keeps its focus line style
   (L5) in a mode; only the colour changes.
+- **The mode name sits between two border junctions**, like a label set into the frame:
+  `╔═[1] Kinds════╡Drag╞═╗`, `╭─ YAML ────┤Visual├─╮` (how the junctions are drawn is in D3).
 
 **Why**: a mode is always a special case; its keys are movement and selection, pressed
 directly and in runs, not actions on an item, and there is no item / panel / global to
