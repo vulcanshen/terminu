@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.19 — 2026-09-29
+
+- L5: focus is not told by colour alone, since a mode recolours its frame (K11); the family
+  default stays the double line for focus
+- K10: while the subprocess is not ready, ordinary keys may be held back but `Ctrl-C` is still
+  forwarded; in a PTY every key is the PTY's except the disclosed exit key and kept chords
+
 ## v0.1.18 — 2026-09-29
 
 What the v0.1.17 migration of the five apps raised.

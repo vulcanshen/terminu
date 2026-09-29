@@ -217,8 +217,10 @@ shell needs `Tab` and `Ctrl-C`, a remote program may want any chord.
   Any it keeps are disclosed permanently, like the exit key (M3).
 - Where focus lands after the exit key is up to the app.
 - While the subprocess is not ready for keys yet (e.g. the remote end is still connecting),
-  the app may hold keys back instead of forwarding them; the exit key still works and is
-  still disclosed.
+  the app may hold ordinary keys back (so they don't land minutes later), but **`Ctrl-C` is
+  still forwarded to the subprocess**, and the exit key still works and is still disclosed.
+  With focus in a PTY the user takes every key as pressed inside the PTY; the only
+  exceptions are the disclosed exit key and the chords the app keeps.
 
 **Why**: with focus in a PTY, nearly everything the user does is the PTY's business; the
 more keys the app intercepts, the likelier it breaks the subprocess, and the more "who
@@ -492,6 +494,11 @@ the usual cause.
 
 The focused surface must be recognisable at a glance (how to mark it is up to the app),
 and moving focus **must not shift any content**.
+
+- **Focus is not told by colour alone**: something besides colour must differ (e.g. the
+  line style). A mode turns its frame the mode colour (K11); with colour alone, focus
+  vanishes the moment a mode starts. The family default is a double line `╔═╗` for focus
+  and rounded `╭─╮` otherwise, the same width (D2).
 
 **Why**: users need to know where their keys will go; and if the screen jumps every time
 focus moves, the eye has to find its place again.
