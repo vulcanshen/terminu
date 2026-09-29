@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.16 — 2026-09-29
+
+- D5: `Alt-Esc` always confirms when it would move focus out of the PTY or end the subprocess,
+  since a busy app reads two `Esc` presses as `Alt-Esc` (measured with bubbletea v1.3.10); other
+  Alt-chord exit keys confirm as the app decides
+- M6: a separately titled key reference section describing another surface is shown at full
+  brightness
+
 ## v0.1.15 — 2026-09-29
 
 How keys are written, settled while preparing the v0.1.14 fix lists.

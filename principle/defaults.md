@@ -161,9 +161,17 @@ records what the family does today, for a new app that wants the easy path:
   movement, and no action takes them.
 - **Case carries scope**: lower case acts on the item, upper case on the panel or the app.
 - **Delete is `x`** (`d` is half a page).
-- **An exit key that ends the subprocess confirms first**: bubbletea reads Alt from "`Esc`
-  followed at once by another byte", so a fast double `Esc` in vim can arrive as `Alt-Esc`.
-  An exit key that only moves focus out, leaving the subprocess running, need not ask.
+- **`Alt-Esc` always confirms first**: whenever it would move focus out of the PTY or end the
+  subprocess, whether or not the subprocess stays alive, a confirm comes first (`Enter`
+  leaves, `Esc` returns to the PTY); what it does inside the PTY (e.g. stepping zoom down
+  one level) needs no confirm. Why: terminals send an Alt chord as "`Esc` plus the key", so
+  `Alt-Esc` is byte for byte two `Esc`s. When the app is busy the reading end stalls, and two
+  `Esc` presses pile up and are read as `Alt-Esc` (measured 2026-09-29 with bubbletea
+  v1.3.10: with keys already queued, two `Esc`s 150 ms apart still merged). Pressing `Esc`
+  twice is common in vim; the confirm lets whoever misfired press `Esc` to go back.
+- **Other Alt-chord exit keys** (e.g. kbu's `Alt-t` hiding Alterm, sshu's `Alt-Enter` on a
+  locked cell) can be spelled the same way by "`Esc` then that key"; whether they confirm is
+  up to the app.
 
 ## D6 Distribution and environment
 
