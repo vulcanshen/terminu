@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.1.15 — 2026-09-29
+
+How keys are written, settled while preparing the v0.1.14 fix lists.
+
+- M5: key names are the key-cap names in UpperCamelCase with no abbreviations of our own
+  (`Esc`, `Backspace`, `PgUp`); letters in the case pressed, the letter after `Ctrl` upper case;
+  alternatives joined with `/`, ranges with `–`. By place: labels keep the bracket marking,
+  sentences put every key in square brackets (`[A]`, `[Space]`, `[!]`), hints and the footer
+  write `key:description` separated by one space (`j/k:move Enter:run Esc:close`), and the key
+  reference is two columns with bare keys
+- D1, D2, D3, D4, D5: the footer, confirm and menu hint examples follow M5; keys in hints, the
+  footer and the key reference are Blue, the colon and description in hints Overlay0, the key
+  reference's descriptions Text; `Ctrl-U` `Ctrl-D`
+
 ## v0.1.14 — 2026-09-29
 
 What kbu's migration raised.

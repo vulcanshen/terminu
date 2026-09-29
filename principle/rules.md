@@ -357,14 +357,33 @@ hints, the key reference, and the README). Marking inside a label:
 
 - **What is in the brackets is exactly the key to press, case included**: `[A]dd` is
   `Shift-A`.
-- **Brackets belong in labels only** (menu rows, statusbar chips, panel titles); hints, the
-  footer and the key reference write "key + word" without brackets (e.g. `Enter run · Esc
-  close`).
-- **Modifiers are joined with `-`**: `Alt-t`, `Ctrl-C`, `Shift-Tab`, `Alt-Esc`; the same on
-  screen and in the README.
 - Colour or a glyph alone must not be the hint that "this is a hotkey"; mark it
   explicitly.
 - What the description says is up to the app, but it must fit on one line.
+
+**Key names** (the same everywhere on screen and in the README):
+
+- The name printed on the key cap, UpperCamelCase, no abbreviations of our own: `Esc`,
+  `Tab`, `Enter`, `Space`, `Backspace`, `Delete`, `Home`, `End`, `PgUp`, `PgDn`; arrows
+  `↑` `↓` `←` `→`.
+- Letters in the case actually pressed: `q`, `A` (that is `Shift-A`), `Alt-z`. The letter
+  after `Ctrl` is always upper case (`Ctrl-C`, `Ctrl-U`): terminals can't tell the case of a
+  `Ctrl` chord.
+- Modifiers are joined with `-`: `Alt-t`, `Ctrl-C`, `Shift-Tab`, `Alt-Esc`.
+- Several keys doing one thing are joined with `/`: `j/k`, `h/l`; a range uses `–`: `1–9`.
+
+**By place**:
+
+| Place | Form | Example |
+|---|---|---|
+| Label (menu rows, statusbar chips, panel titles) | the bracket marking above | `[r]ename`, `[Alt-t]erm` |
+| Sentence (empty states, toasts, error messages) | every key in square brackets | `Press [A] or [Space]`, `see App Log [!]` |
+| Hint, footer | `key:description`, no space around the colon, one space between items | `j/k:move Enter:run Esc:close` |
+| Key reference | two columns, key and description; no brackets, no colon on the key | key column `Esc`, description column `close this popup` |
+
+- In hints and the footer the key and its description are told apart by colour: the key in
+  one colour, the colon and description in another (family default in D2). A description
+  may run to several words; the key's colour still shows where each item starts.
 
 **Why**: the name answers "what action is this", the description answers "what does it
 do to what" — the same verb can mean different things on different panels (delete the
