@@ -138,8 +138,13 @@ K ≥ N 時固定為 popup 最上層
 - **導覽字母不綁動作**：`j k u d g G h l` 保留給移動，任何動作不佔用。
 - **大小寫分層**：小寫作用在 item，大寫作用在 panel 或全域。
 - **刪除用 `x`**（`d` 是半頁）。
-- **會結束子程序的出口鍵先 confirm**：bubbletea 靠「`Esc` 後面緊跟另一個 byte」判斷 Alt，在 vim 裡快速連按兩次 `Esc`
-  會被讀成 `Alt-Esc`。只讓 focus 離開、子程序留著的出口鍵可以不問。
+- **`Alt-Esc` 一律先 confirm**：按了會讓 focus 離開 PTY 或結束子程序時，不論子程序留不留著，都先跳 confirm（`Enter` 離開、
+  `Esc` 回到 PTY）；在 PTY 裡面的動作（例：退一階 zoom）不用問。理由：終端機把 Alt 組合送成「`Esc` 加那個鍵」，`Alt-Esc`
+  跟兩次 `Esc` 的 byte 一模一樣。app 忙的時候，讀鍵的一端卡住，兩次 `Esc` 就會疊在一起被讀成 `Alt-Esc`（2026-09-29 用
+  bubbletea v1.3.10 實測：前面有鍵在排隊時，間隔 150ms 的兩次 `Esc` 也會黏在一起）。vim 裡連按 `Esc` 很常見，confirm 讓
+  誤觸的人按 `Esc` 回到 PTY。
+- **其他 Alt 組合的出口鍵**（例：kbu 的 `Alt-t` 隱藏 Alterm、sshu 鎖住的格子的 `Alt-Enter`）同樣會被「`Esc` 再按那個鍵」
+  拼出來；要不要 confirm 由 app 決定。
 
 ## D6 發布與環境
 

@@ -400,6 +400,9 @@ the action is badly named. Digits stay out of words because `432hz` would render
 - **The `?` key reference follows the same rule**: a key whose target exists but can't run
   now is still listed, dimmed; with no target it is not listed. Hints and the footer, short
   on room and always on screen, may list only the keys that work now; that is up to the app.
+- A separately titled section of the key reference describing **another surface** (e.g. the
+  `ssh grid` section of sshu's list `?`, since a cell has no key reference of its own) is not
+  this surface's keys and is shown at full brightness.
 
 **Why**: users take a hidden action to mean the app doesn't support it; dimming tells
 them "this exists, just not now". No reason is added because the reasons vary endlessly,
