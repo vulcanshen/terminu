@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.1.23 — 2026-09-29
+
+- D7: a README names both `<APP>__ICON_WIDTH` and the family-wide `TERMINU__ICON_WIDTH` where it
+  talks about the icon width, and names no font as always two cells wide
+
 ## v0.1.22 — 2026-09-29
 
 - D6: an app with a PTY sets `TERMINU__ICON_WIDTH` for its child, and every app reads

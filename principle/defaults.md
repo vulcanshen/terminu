@@ -274,6 +274,13 @@ step, and cover only what users need to know:
 No "status" section with a hard-coded version number — versions are left to the badge and
 the CHANGELOG.
 
+Where the README talks about the icon width (usually the Nerd Font part of the
+prerequisites), it names both `<APP>__ICON_WIDTH` and `TERMINU__ICON_WIDTH`, and says the
+latter is shared by the whole family: set it once and every family app reads it; inside a
+family app's PTY the outer app sets it (D6). The form is free (a table or a sentence). It
+names no font as "always two cells" — the same font may move the cursor differently on
+different terminals.
+
 **`docs/dev-remarks.md`** (Traditional Chinese): what developers need to remind themselves
 of during development, and decisions recorded while working with AI.
 
