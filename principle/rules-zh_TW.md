@@ -297,11 +297,29 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 | 沒有熱鍵 | 不加括號 |
 
 - **括號裡印的就是要按的鍵，大小寫算數**：`[A]dd` 是 `Shift-A`。
-- **括號只用在 label 裡**（menu 的列、statusbar chip、panel 標題）；hint、footer、key reference 寫「鍵 + 字」，不加括號
-  （例：`Enter run · Esc close`）。
-- **modifier 一律用 `-` 連接**：`Alt-t`、`Ctrl-C`、`Shift-Tab`、`Alt-Esc`；畫面上與 README 同一種寫法。
 - 不能只用顏色或 glyph 暗示「這是熱鍵」，要顯式標出來。
 - 說明寫什麼由 app 決定，但必須是單行。
+
+**鍵名**（畫面上所有地方與 README 都一樣）：
+
+- 用鍵帽上的名字，大駝峰、不自創縮寫：`Esc`、`Tab`、`Enter`、`Space`、`Backspace`、`Delete`、`Home`、`End`、`PgUp`、
+  `PgDn`；方向鍵 `↑` `↓` `←` `→`。
+- 字母照實際要按的大小寫：`q`、`A`（就是 `Shift-A`）、`Alt-z`。`Ctrl` 後面的字母一律大寫（`Ctrl-C`、`Ctrl-U`）：終端機
+  分不出 `Ctrl` 組合的大小寫。
+- modifier 用 `-` 連接：`Alt-t`、`Ctrl-C`、`Shift-Tab`、`Alt-Esc`。
+- 幾個鍵做同一件事用 `/`：`j/k`、`h/l`；範圍用 `–`：`1–9`。
+
+**依位置的寫法**：
+
+| 位置 | 寫法 | 例子 |
+|---|---|---|
+| label（menu 的列、statusbar chip、panel 標題） | 上表的括號標記 | `[r]ename`、`[Alt-t]erm` |
+| 句子（空狀態、toast、錯誤訊息） | 鍵一律加方括號 | `Press [A] or [Space]`、`see App Log [!]` |
+| hint、footer | `鍵:說明`，冒號前後不空格，項目之間一個空格 | `j/k:move Enter:run Esc:close` |
+| key reference | 兩欄：鍵、說明；鍵不加括號、不加冒號 | 鍵欄 `Esc`、說明欄 `close this popup` |
+
+- hint 與 footer 的鍵和說明用不同顏色分開：鍵一個色，冒號與說明另一個色（家族預設見 D2）。說明可以是幾個詞，項目靠鍵的
+  顏色分得出來。
 
 **為什麼**：名稱回答「這是什麼動作」，說明回答「它會對什麼做什麼」—— 同一個動詞在
 不同 panel 可能意義不同（刪檔案還是取消收藏？）。說明寫不進一行，通常是動作的

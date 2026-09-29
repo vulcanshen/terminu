@@ -15,16 +15,16 @@ terminu family 的 app 實際收斂出來的具體值與慣例。**照用最省�
 - **footer 一列**，內容固定為：
 
   ```
-  space menu   ? help   tab/1-N panels   q quit
+  Space:menu ?:help Tab/1–N:panels q:quit
   ```
 
-  寬度不夠時從尾端整組捨棄；key 用亮色、說明用暗色。
+  寫法照 Rules M5 的 hint；寬度不夠時從尾端整組捨棄；鍵 Blue、冒號與說明 Overlay0（D2）。
 - **panel 膠囊**：每個 panel 的上框有 `[N] label` 膠囊（powerline 圓角），`N` 同時是
   直接跳到該 panel 的數字鍵。
 - **多畫面的 app**：上方一列畫面 chip（`[W]eb ╱ [B]ookmarks …`），下方一條全寬分隔線，
   長時間工作時兼當進度條。
 - **窄寬門檻**：寬度 < 72 欄（側欄較窄的 app 用 60 欄）時只畫 focus 那一側。
-- **空狀態**：置中寫一句事實，加上一句點名按鍵的提示（例如「沒有 host —— 按 `[A]` 或 `Space`」）。
+- **空狀態**：置中寫一句事實，加上一句點名按鍵的提示（例如「沒有 host —— 按 `[A]` 或 `[Space]`」）。
 
 ## D2 色彩系統
 
@@ -83,7 +83,9 @@ K ≥ N 時固定為 popup 最上層
 | 錯誤 | Red `#f38ba8` |
 | 值得注意、但沒壞 | Peach `#fab387` |
 | 選取 | Yellow `#f9e2af` |
-| 暗字、hint | Overlay0 `#6c7086` |
+| 暗字；hint 與 footer 的冒號與說明 | Overlay0 `#6c7086` |
+| hint、footer、key reference 裡的鍵 | Blue `#89b4fa` |
+| key reference 的說明 | Text `#cdd6f4` |
 
 ## D3 Popup
 
@@ -102,7 +104,7 @@ K ≥ N 時固定為 popup 最上層
 - 「放在最上層」要同時改三處：按鍵路由、`closeTop`、繪製順序。
 - `?` 的 key reference 疊在其他 popup 上時，按鍵路由與繪製都把它放在最上層；confirm、options 等框排在底下的 menu 之前拿鍵。
 - 判斷一層「還在不在」用開啟中或已開（`owns()`），不用含關閉中的 `isActive()`（Rules F3）。
-- confirm 的下框 hint：`Enter <動詞> · Esc cancel`。
+- confirm 的下框 hint：`Enter:<動詞> Esc:cancel`（例：`Enter:delete Esc:cancel`）。
 - 取消回到 source；完成動作清掉整個 stack（T1 的常見答案）。
 
 ## D4 Menu
@@ -111,7 +113,7 @@ K ≥ N 時固定為 popup 最上層
 - 熱鍵字母是 label 的第一個字母就原地加括號（`[r]ename`），在字中間就原地包（`UR[L]`），
   否則放前面（`[n] New`）。core key 直接寫進 label：`[Enter] Edit`。
 - menu 內：`j/k` 移動（頭尾相接），`Enter` 執行，熱鍵直接執行；下框 hint
-  `j/k move · Enter run · Esc close`。
+  `j/k:move Enter:run Esc:close`。
 - menu 標題是 focus panel 的 `[N] label`。
 - popup 寬度統一照 Rules F7；說明太長時在框裡換行或截尾，不為了它加寬框。
 - label 本身已經寫出鍵的列（`[/] Search`）不要再括一次。
@@ -124,7 +126,7 @@ K ≥ N 時固定為 popup 最上層
 | 鍵 | 慣例 |
 |---|---|
 | `j` `k` / `↑` `↓` | 上下移動；有 cursor 的清單頭尾相接 |
-| `u` `d` / `Ctrl-u` `Ctrl-d` | 半頁 |
+| `u` `d` / `Ctrl-U` `Ctrl-D` | 半頁 |
 | `gg` `G` | 到頂、到底 |
 | `h` `l` | 切換 panel 內的 tab |
 | `/` | 搜尋 |

@@ -16,10 +16,11 @@ Cite as `tdp D3` and so on.
 - **A one-row footer**, always reading:
 
   ```
-  space menu   ? help   tab/1-N panels   q quit
+  Space:menu ?:help Tab/1–N:panels q:quit
   ```
 
-  When too narrow, whole pairs are dropped from the end; keys are bright, descriptions dim.
+  Written like a hint (Rules M5); when too narrow, whole pairs are dropped from the end; keys
+  Blue, colon and description Overlay0 (D2).
 - **Panel capsules**: each panel's top border carries an `[N] label` capsule (powerline,
   rounded); `N` is also the digit key that jumps straight to that panel.
 - **Apps with several screens**: a row of screen chips on top (`[W]eb ╱ [B]ookmarks …`),
@@ -27,7 +28,7 @@ Cite as `tdp D3` and so on.
 - **Narrow threshold**: below 72 columns (60 for apps with a narrower sidebar) only the
   focused side is drawn.
 - **Empty states**: one centred fact, plus a hint naming the key (e.g. "No hosts — press
-  `[A]` or `Space`").
+  `[A]` or `[Space]`").
 
 ## D2 Colour system
 
@@ -97,7 +98,9 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
 | Error | Red `#f38ba8` |
 | Worth noticing, not broken | Peach `#fab387` |
 | Selection | Yellow `#f9e2af` |
-| Dim text, hints | Overlay0 `#6c7086` |
+| Dim text; the colon and description in hints and the footer | Overlay0 `#6c7086` |
+| Keys in hints, the footer and the key reference | Blue `#89b4fa` |
+| Descriptions in the key reference | Text `#cdd6f4` |
 
 ## D3 Popups
 
@@ -120,7 +123,7 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
 - "On top" means three places at once: key routing, `closeTop`, and drawing order.
 - When the `?` key reference sits on another popup, it is on top in key routing and in drawing alike; boxes such as confirm and options take keys before the menu under them.
 - Whether a layer is "still there" is judged by opening-or-open (`owns()`), never by an `isActive()` that includes closing (Rules F3).
-- Confirm hint on the bottom border: `Enter <verb> · Esc cancel`.
+- Confirm hint on the bottom border: `Enter:<verb> Esc:cancel` (e.g. `Enter:delete Esc:cancel`).
 - Cancelling returns to the source; completing an action clears the whole stack (the
   usual answer to T1).
 
@@ -131,7 +134,7 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
   inside the word, bracket it there (`UR[L]`); otherwise put it in front (`[n] New`).
   Core keys are written into the label: `[Enter] Edit`.
 - Inside a menu: `j/k` move (wrapping), `Enter` runs, hotkeys run directly; bottom hint
-  `j/k move · Enter run · Esc close`.
+  `j/k:move Enter:run Esc:close`.
 - The menu title is the focused panel's `[N] label`.
 - Popup width follows Rules F7 throughout; a description too long for it wraps or is cut inside the box, never widening the box.
 - A label that already shows its key (`[/] Search`) is not bracketed again.
@@ -144,7 +147,7 @@ records what the family does today, for a new app that wants the easy path:
 | Key | Habit |
 |---|---|
 | `j` `k` / `↑` `↓` | Move up and down; lists with a cursor wrap |
-| `u` `d` / `Ctrl-u` `Ctrl-d` | Half a page |
+| `u` `d` / `Ctrl-U` `Ctrl-D` | Half a page |
 | `gg` `G` | Top, bottom |
 | `h` `l` | Switch tabs within a panel |
 | `/` | Search |
