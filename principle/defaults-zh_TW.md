@@ -170,6 +170,7 @@ K ≥ N 時固定為 popup 最上層
   | `<APP>__DATA` | 資料目錄 |
   | `<APP>__CACHE` | 快取目錄 |
   | `<APP>__ICON_WIDTH` | icon 佔幾格的手動覆寫（見下方 icon 的實際寬度） |
+  | `TERMINU__ICON_WIDTH` | 家族共用：有 PTY 的 app 設給子程序，告訴它 icon 佔幾格（見下方） |
 
   例外：給別的程式讀的變數照對方的要求（例：sshu 經 ssh 帶到遠端的 `LC_SSHU_COLORTERM` —— OpenSSH 預設只轉送 `LANG` 與
   `LC_*`）。改名時不留舊名。
@@ -185,8 +186,12 @@ K ≥ N 時固定為 popup 最上層
     （取代 `lipgloss.JoinHorizontal` / `JoinVertical`）；探測在 `iconwidth_unix.go` 的 `DetectIconWidth()`，在 `tea.NewProgram`
     之前呼叫；測試照 `d6_test.go`。
   - 手動覆寫：環境變數 `<APP>__ICON_WIDTH`（filu 是 `FILU__ICON_WIDTH`）。探測只在 unix 做；Windows 預設一格，靠環境變數覆寫。
+  - **在別的 app 的 PTY 裡**：探測由外層 app 的終端模擬器回答，它把 icon 當一格，量不到真的寬度。所以有 PTY 的 app 開子程序時，
+    在子程序的環境設 `TERMINU__ICON_WIDTH=<自己用的格數>`；每個 app 取 icon 寬度的順序是 `<APP>__ICON_WIDTH` → `TERMINU__ICON_WIDTH`
+    → 探測。這樣家族裡任何一個 app 跑在另一個的 PTY 裡都對（filu 在 kbu 的 Alterm 裡、kbu 在 filu 的 shell 裡）。環境變數過不了
+    ssh，遠端巢狀要靠 app 自己的通道（sshu 的巢狀指令通道）。
   - 疊 popup 時 popup 可能比畫面寬或高（調整終端機大小的那一格還是舊尺寸）：起點取 0、超出畫面的部分切掉，**不可以 panic**；
-    測試的邊界要含這種情況（kbu 的 `TestD6_CompositeDisp`）。
+    寬、高兩邊都比畫面大時也一樣切，不可以把整個框原樣交出去。測試的邊界要含這三種情況（filu 的 `TestD6CompositeDispOversized`）。
   - 做完的驗收：`internal/ui` 裡除了寬度函式本身，找不到 `lipgloss.Width`、`lipgloss.Size`、`lipgloss.Place`、
     `ansi.StringWidth`、`ansi.Truncate` 的呼叫。
 - `docs/icon.svg` 是家族 mark；splash（Rules S 章）由它逐格畫出，用測試守住兩者一致。

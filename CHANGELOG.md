@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.22 — 2026-09-29
+
+- D6: an app with a PTY sets `TERMINU__ICON_WIDTH` for its child, and every app reads
+  `<APP>__ICON_WIDTH`, then `TERMINU__ICON_WIDTH`, then probes — so the icon width is right in any
+  family app running inside another's PTY
+- D6: an overlay larger than the screen in both directions is clipped too; the edge-case tests
+  point at filu's `TestD6CompositeDispOversized`
+
 ## v0.1.21 — 2026-09-29
 
 - D5: a text-selection mode moves as vim does (`h/j/k/l`, `w/b/e`, `0/$`, `gg/G`, `u/d`)
