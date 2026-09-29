@@ -110,6 +110,9 @@ K ≥ N 時固定為 popup 最上層
 - **finder 的 focus**（Rules F1）：打字時篩選列亮、清單的 cursor 列是淡的反白；`Tab` 到清單後，篩選列整列用灰色
   （Overlay0，D2 的暗字）畫，不用 F8 的淡化、也不畫反白與游標，清單的 cursor 列換成 popup 層色底加深色粗體字
   （跟 menu 的 cursor 列一樣）。只有拿鍵的那一邊是亮的，跟 F8「只有最上層亮」同一套語言（kbu `40a0573`）。
+- **模式名的標籤**（Rules K11）：接頭跟框同色、線型跟著框 —— 雙線框用 `╡` `╞`，單線框用 `┤` `├`；模式名用模式色加粗；
+  盡量一個詞（`Drag`、`Visual`、`Select`：窄的 panel 放不下兩個詞，右上角的字會整個被丟掉）；放不下時先截標題，模式名
+  留著。panel 的 `[N] label` 膠囊跟著外框換成模式色（kbu `248f883`）。
 - 取消回到 source；完成動作清掉整個 stack（T1 的常見答案）。
 
 ## D4 Menu
@@ -160,10 +163,17 @@ K ≥ N 時固定為 popup 最上層
 - 需要 Nerd Font；PUA glyph 在程式碼裡寫成 code point。
 - 需要 truecolor terminal（24-bit 色）：catppuccin 的淡色與 D2 的層色漸變在 256 色下分不出來，dim 也一律輸出 24-bit（D2）。README 的需求段跟 Nerd Font 並列寫明。
 - 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（Rules L4）。
-- **icon 的實際寬度**：有些 CJK 用的 Nerd Font（例：Maple Mono NF CN）把 icon 畫成兩格，lipgloss 卻量成一格，框線就歪。
-  app 啟動時探測 icon 佔幾格，所有量寬度的地方（補空白、截斷、框線、疊 popup）都走同一個顯示寬度函式；L4 的畫面測試
-  也跑一次「icon 佔兩格」。參考實作：filu `internal/ui/width.go`（`DetectIconWidth()`、`isWideIcon()`、`dispWidth()`、
-  `dispClip()`）。
+- **icon 的實際寬度**：有些字型讓 icon 佔兩格（游標前進兩格），lipgloss 卻量成一格，框線就歪。要量的是**游標實際前進幾格**：
+  icon 看起來比一格寬、但游標只前進一格的字型（glyph 溢出到隔壁），照一格算。app 啟動時探測（CPR：印一個 icon、問游標位置），
+  所有量寬度的地方（補空白、截斷、置中、並排、框線、疊 popup）都走同一個顯示寬度函式；L4 的畫面測試也跑一次「icon 佔兩格」，
+  每一種 popup 各開一次，量單獨的框與疊上去的整個畫面。
+  - 參考實作：filu `internal/ui/width.go` —— `isWideIcon()`、`dispWidth()`、`dispClip()`、`padDisp()`、`dispCutLeft()`、
+    `compositeDisp()`（取代 overlay 的 `Composite`，介面相同）、`centerDisp()`（取代 `lipgloss.Place`）、`joinH()` / `joinV()`
+    （取代 `lipgloss.JoinHorizontal` / `JoinVertical`）；探測在 `iconwidth_unix.go` 的 `DetectIconWidth()`，在 `tea.NewProgram`
+    之前呼叫；測試照 `d6_test.go`。
+  - 手動覆寫：環境變數 `<APP>_ICON_WIDTH`（filu 是 `FILU_ICON_WIDTH`）。探測只在 unix 做；Windows 預設一格，靠環境變數覆寫。
+  - 做完的驗收：`internal/ui` 裡除了寬度函式本身，找不到 `lipgloss.Width`、`lipgloss.Size`、`lipgloss.Place`、
+    `ansi.StringWidth`、`ansi.Truncate` 的呼叫。
 - `docs/icon.svg` 是家族 mark；splash（Rules S 章）由它逐格畫出，用測試守住兩者一致。
 - `V` 保留給 splash（Rules S1）。
 - demo gif 用 VHS 錄，腳本放在 `.local/demos/`；README 只放一張代表性的 gif。
