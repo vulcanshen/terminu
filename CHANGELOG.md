@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.1.21 — 2026-09-29
+
+- D5: a text-selection mode moves as vim does (`h/j/k/l`, `w/b/e`, `0/$`, `gg/G`, `u/d`)
+- D6: environment variables are named `<APP>__<NAME>` with shared names for the config, state,
+  data and cache directories and the icon width; variables meant for another program are the
+  exception; renamed variables keep no old names
+- D6: an overlaid popup larger than the screen starts at 0 and is clipped, never panics
+
 ## v0.1.20 — 2026-09-29
 
 - K11, D3: the mode name sits between two border junctions (`╡Drag╞` on a double frame,
