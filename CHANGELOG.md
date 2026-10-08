@@ -1,5 +1,89 @@
 # Changelog
 
+## v0.3.0 — 2026-10-08
+
+A from-scratch review of the whole spec, before the apps implement the components.
+
+**How the spec reads**
+
+- Everything in the Rules and the Components is a requirement, except four things: parts marked as left to the app,
+  examples, the **Why** paragraphs, and blocks marked "implementation reference (not a requirement)". A fixed rule may
+  mark a part "(concept)", and a concept rule a part "(fixed)"
+- Dates, "decided by the user", first-person notes, the story of how a decision was reached, and each app's current
+  state are gone from the spec; the reasons stay. App status moved to the per-app fix lists
+- The Components count as the fixed zone: an app that departs from one writes why in its dev-remarks and reports it as
+  a gap in tdp
+- What used to be Family defaults is now required, not only colour: the footer, the screen chips, the narrow width, the
+  128 ms animation, the toast's duration, the menu's look. Where the old numbers went:
+
+  | Old number | Now |
+  |---|---|
+  | D1 footer, screen chips, narrow threshold, empty states | components/layout/screen |
+  | D1 panel capsules, D3 mode name label | components/layout/panel |
+  | D2 colour system | components/color |
+  | D3 popup frame, animation, loading icon, cancelling and completing, implementation notes | components/layout/popup |
+  | D3 confirm hint, toast, finder focus | components dialog/confirm, dialog/toast, input/finder |
+  | D4 Menus | components/dialog/menu |
+  | D5 navigation letters, text motions (`w/b/e`, `0/$`) | Rules K12 |
+  | D5 `Alt-Esc` always confirms first | Rules K10 |
+  | D5 the rest (hotkey table, case carrying scope, `x` deletes) | dropped: tdp does not assign hotkeys on panels (P5) |
+  | D6 distribution and environment | Rules E2–E6 |
+  | D7 documentation | Rules E7 |
+
+**Principle**
+
+- P4 covers the interface elements tdp defines; the colours and symbols of the content itself are the app's
+- P5: what tdp leaves to apps is now hotkeys on panels and domain symbols and colours; keys and glyphs inside a
+  component are part of the component
+- P6 (new): the bright place is where the focus is — everything else is faded
+- Terms: core keys include `q`; the input state is "typed text is the content"; popups listed by the seven F1 classes;
+  a source/target example that K5 allows
+
+**Rules**
+
+- K1: `Enter` means "the obvious thing; on a value, confirm it"; a form is an exception for `q`
+- K2: on a typing row `Tab` goes to its list; an input popup with one area takes a suggestion with `Tab`, otherwise
+  `Tab` does nothing; a form's error row and action row are stops
+- K3 rewritten: `Enter` acts on the focused part and **never moves the focus**; a value that did not change is not
+  written back; a typing row's `Enter` moves to the list; a form submits only with its button
+- K4: search is not a mode; `Esc` clears a panel filter
+- K5: in a checkbox popup's list, `Space` toggles (the one exception)
+- K8: the input state is a typing row with focus; lists, pickers, a textarea's move state and forms are not
+- K9: `q` does nothing on a form
+- K11: a mode names itself on its frame; the look moved to components
+- K12: `g` only starts two-key combinations (`gg`, and hotkeys such as `[go]to`); in text, `w/b/e` and `0/$` move too
+- M1: `Space` need not be shown in a mode; M2: the `Global operation` row has no hotkey; M3: a popup with only a typing
+  row lists every action in its hint; M4: global hotkeys work directly on a panel (the panel's own key wins a clash);
+  M5: the example has the single unheaded `Global operation` row, and the marker table covers mid-word, prefix and core
+  keys; M6: disabled rows use the disabled colour and the cursor skips them; M7 rewritten; M9 is now fixed
+- F1: a menu is a list without search, a list with search is a finder; an input enters or chooses one value; a toast is
+  not a layer; a terminal also lets the app keep reserved keys
+- F3 lists its exceptions (PTY, a textarea while writing, a changed form or textarea)
+- F7: two widths — content known when it opens means content + 4, otherwise `min(width − 2, 120)`; at most the screen
+  height − 2; the toast sits bottom-centre; the error row is for values only, a failed action opens an error popup; a
+  terminal keeps the statusbar and covers the footer
+- F8: the drawn screen is faded once; T1: a value popup that writes back to its form or picker keeps the source
+- E: E3 gives the state and cache locations; E5 separates the requirements from the implementation reference
+
+**Components**
+
+- `input/README` (new) holds the rules every input shares; `input/search` is now `input/finder`, and select, the
+  checkbox popup and file-picker are kinds of finder
+- color: the layer colour is a gradient from Lavender to Sapphire; one meaning per colour (Blue focus, Surface2 not
+  available, Green in effect, Yellow mode, Peach warning); Subtext1 for the panel cursor, Surface1 for the button
+- layout/screen: the footer for a single panel, a mode, a panel filter and a PTY; the screen chips; the statusbar
+- layout/panel: one capsule chain for panel titles, panel tabs and screen chips; list panels (cursor, header with sort
+  arrows, `N of M`, marks, truncation, loading and errors); every panel has a hint on its bottom border
+- layout/popup: a title glyph per class; the order of hint items; dividers do not touch the frame
+- form: no `Ctrl-S` — submit with the button (`G` jumps to it); typing on a field opens a short note; at most five
+  options drawn on the form
+- menu: label Text, description Overlay0 on the right; hint `Enter:run Esc:close`
+- confirm: shield glyph, the question last, warnings in Peach; note: closed with `Esc` (the error popup and the typing
+  note also with `Enter`), the key reference's look; toast: Info, Warning and Error with their own glyphs, bottom-centre,
+  centred text up to three lines; terminal: `Alt-Esc:exit` or `Alt-Esc:leave`
+- checkbox: a filled tick; the popup toggles with `Space` and applies with `Enter`; datetime-picker: hours and minutes
+  in two columns, a six-row calendar; select opens on its list; file-picker shows the directory in its title
+
 ## v0.2.0 — 2026-10-08
 
 - **Components** (new, `components/`): the component specs under tdp, and they are required — an app picks only among

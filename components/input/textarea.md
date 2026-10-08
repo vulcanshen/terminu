@@ -4,11 +4,12 @@
 
 ## Purpose
 
-Entering several lines of text: a comment or a description in a web form. Content where a line is a line (code, config files) goes to the user's `$EDITOR`.
+Entering several lines of text: a comment or a description in a web form. Content where a line is a line, such as code
+and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not to a textarea.
 
 ## Look
 
-**Long lines wrap, with line numbers on the left** (settled by the user, 2026-10-07):
+**Long lines wrap, with line numbers on the left**:
 
 ```
 │  1 Thanks for the quick reply. The new   │
@@ -18,35 +19,35 @@ Entering several lines of text: a comment or a description in a web form. Conten
 ```
 
 - A line wider than the box continues on the next row, never scrolling sideways. Wrapping is only on screen; no line
-  break is added to the value. Width is display width, and a character is never split.
-- **Line numbers**: the first row of each line carries its number, right-aligned to the width of the largest number,
-  followed by a space; wrapped rows leave the number column blank — so rows of one line are seen as one (the user). Numbers
-  in Overlay0, the cursor's line number in Text (added by me).
-- Content where a line is a line (code, config files) goes to the user's `$EDITOR` (as sshu's File transfer does); the
-  components add no sideways-scrolling textarea.
-- Today: webu scrolls only the cursor's line sideways, cuts the other lines at the edge and measures width in characters;
-  it changes.
+  break is added to the value. Width is display width, and a character is never split in two.
+- **Line numbers**: the first row of each line carries its number, right-aligned to the digits of the largest number,
+  followed by a space; wrapped rows leave the number column blank — so the rows of one line are seen as one. Numbers in
+  Overlay0, the cursor's line number in Text.
+- **Width**: the content is not known, so it takes the maximum of Rules F7.
 
 ## Keys
 
-**Two states and submitting** (settled by the user, 2026-10-07):
+**Two states**:
 
 | State | What | Hint |
 |---|---|---|
-| **Write** | typing. `Enter` breaks the line, `Tab` indents (K8). It opens here | `Esc:move` |
-| **Move** | entered with `Esc` from Write. `h`/`j`/`k`/`l` move the cursor, `i`, `a`, `o` return to Write; **`Enter` saves** | `Enter:save i:write Esc:cancel` |
+| **Write** | typing (the input state). `Enter` breaks the line, `Tab` indents (Rules K8). It opens here | `Esc:move` |
+| **Move** | entered with `Esc` from Write. Moves the cursor; `i`, `a`, `o` return to Write; **`Enter` confirms** | `Enter:save i:write Esc:cancel` |
 
-- **Submitting is `Enter` in Move; there is no `Ctrl-S`** (changed by the user, 2026-10-07: the textarea has its two
-  states already, so `Ctrl-S` is one too many; first settled as `Ctrl-S` submitting from either state). `Ctrl-S` stays in
-  forms only, where `Enter` opens a field and another key is needed to submit.
-- `Esc`: from Write into Move (the hint turns to `Enter:save`, which tells how to save); from Move it closes (with a
-  confirm first when the content changed, see the next point).
-- The two states are webu's way today, and rules K3 and K8 say so; they stay because the user wants hjkl (as in forms).
+- **Confirming is `Enter` in Move.**
+- `Esc`: from Write into Move (the hint turns to `Enter:save`, which tells how to save); from Move it closes. When the
+  content has changed, a confirm first asks whether to discard it ("Cancel" in [`dialog/form`](../dialog/form.md)).
+- **Editing keys in Write**: the set in [`input/README`](README.md), plus what several lines need — `↑`/`↓` to the row
+  above or below (rows as drawn, a wrapped row counting as one); `←`/`→` at the start or end of a line cross to the
+  previous or next line; `Backspace` at the start of a line joins it to the line above. A pasted line break is a real
+  line break.
+- **Keys in Move**: movement follows Rules K12 — `h/j/k/l`, `w/b/e`, `0/$`, `u/d`, `gg/G`. `i` starts writing before the
+  cursor, `a` after the cursor, `o` opens a new line below and writes there (as in vim).
+- Move is not a mode, nor the input state: core keys follow Rules K1 (`?` opens the key reference).
 
-**Editing keys in Write** (following from what is settled): text's set, plus what several lines need — `↑`/`↓` to the row
-above or below (rows as drawn, a wrapped row counting as one); `←`/`→` at the start or end of a line cross to the previous
-or next line; `Backspace` at the start of a line joins it to the one above. A pasted line break is a real line break (the
-paste rule leaves the textarea out; webu puts pasted line breaks inside one line today and changes).
+**Why**: with several lines, `Enter` is needed to break lines, so confirming takes either another key or another state;
+with two states, `hjkl` in Move can move and `Enter` can confirm, with no extra submit key.
 
-- When the content has changed, `Esc` first opens a confirm asking whether to discard, as a form does (see "Cancel" in
-  [`dialog/form`](../dialog/form.md); the user, 2026-10-07).
+## Value
+
+In a form or a panel: the first line, with `…` when more follows ([`input/README`](README.md)).

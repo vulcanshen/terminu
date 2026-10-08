@@ -8,24 +8,7 @@ tdp 是 [terminu design](../README-zh_TW.md) 的細節規範，分三層：
 |---|---|---|
 | **Principle** | 本文件 | 精神：要達成什麼、為什麼 |
 | **Rules** | [rules-zh_TW.md](rules-zh_TW.md) | 必須遵守，每條附理由；分固定區與概念區（P5） |
-| **Components** | [components](../components/README-zh_TW.md) | 元件規格：框、dialog、每一種 input 的樣子與操作；必須照做，只能在列出的方案裡挑 |
-
-**Family defaults 拆掉了**（2026-10-07，tdp v0.2.0）：原本的第三層「Family defaults」（D1–D7）裡，全家族一定要照做的搬進 Rules
-或 [Components](../components/README-zh_TW.md)，其餘拿掉。舊編號的去處：
-
-| 舊編號 | 現在在哪 |
-|---|---|
-| D1 footer、多畫面的 chip 列、窄寬門檻、空狀態 | [components/layout/screen](../components/layout/screen-zh_TW.md) |
-| D1 panel 膠囊、D3 模式名的標籤 | [components/layout/panel](../components/layout/panel-zh_TW.md) |
-| D2 色彩系統 | [components/color](../components/color-zh_TW.md) |
-| D3 popup 的框、開關動畫、loading icon、取消與完成、實作提醒 | [components/layout/popup](../components/layout/popup-zh_TW.md) |
-| D3 confirm 的 hint、toast、finder 的 focus | components 的 [dialog/confirm](../components/dialog/confirm-zh_TW.md)、[dialog/toast](../components/dialog/toast-zh_TW.md)、[input/search](../components/input/search-zh_TW.md) |
-| D4 Menu | [components/dialog/menu](../components/dialog/menu-zh_TW.md) |
-| D5 導覽字母保留給移動 | Rules K12 |
-| D5 `Alt-Esc` 一律先 confirm | Rules K10 |
-| D5 其他（熱鍵表、大小寫分層、`x` 刪除） | 拿掉：tdp 不規定熱鍵（P5），各 app 的 README 寫自己的熱鍵 |
-| D6 發布與環境 | Rules E2–E6 |
-| D7 文件 | Rules E7 |
+| **Components** | [components](../components/README-zh_TW.md) | 元件規格：配色、框、dialog、每一種 input 的樣子與操作；必須照做，只能在列出的方案裡挑 |
 
 tdp 回答一個問題：**在 terminal UI 上，什麼樣的設計能讓使用者不看文件就能用？**
 
@@ -100,14 +83,17 @@ global 排列，global 區一列打開 global operation popup；`?` 只列出「
 
 ## P4 一個元素、一個意義
 
-任何視覺或互動元素 —— 顏色、明度帶、符號、按鍵、框線樣式、固定版位 —— 一旦被
+任何視覺或互動元素 —— 顏色、符號、按鍵、框線樣式、固定版位 —— 一旦被
 指派一個意義，就**專職化**，其他意義不能借用它。
 
-- 某個顏色代表「使用者足跡」，浮層邊框就不能用同一個明度，即使好看
+- 某個顏色代表「使用者足跡」，浮層邊框就不能用同一個顏色，即使好看
 - `Esc` 代表「取消」，就不能在某個畫面拿來「確認」
 - 標籤上的某個版位代表「這是哪一類畫面」，就不能兼當裝飾
 
 兼職的代價是使用者要學兩套規則，直接違反 P1。這條也是檢驗新規則是否站得住的試紙。
+
+P4 管的是 tdp 定的介面元素（框、cursor、hint、label、膠囊……）。內容本身的顏色與符號（檔案類型、pod 狀態、log 等級、
+語法上色）屬於領域，由 app 決定（P5）。
 
 ## P5 固定區與概念區
 
@@ -125,16 +111,30 @@ global 排列，global 區一列打開 global operation popup；`?` 只列出「
 - `Enter` 在**概念區**：tdp 規定它是「對 focus 項目最直觀的那個動作」，不規定那個動作
   是什麼 —— filu 是進目錄，sshu 是連線，locku 是翻轉設定值。
 
+components 全部算固定區（Rules 開頭的「偏離」）。
+
 **tdp 不規定的：**
 
-- **letter hotkey**。哪個字母做什麼、大小寫要不要分層、要不要 chord 或 `Alt`、要不要
-  `Shift-Tab` 反向切換，由各 app 決定。熱鍵依賴領域（kbu 的 `S` 是 shell、filu 的 `S` 是排序），
+- **panel 上的領域熱鍵**。哪個字母做哪個動作、大小寫要不要分層、要不要 chord 或 `Alt`、要不要 `Shift-Tab` 反向切換
+  （表單除外），由各 app 決定。熱鍵依賴領域（kbu 的 `S` 是 shell、filu 的 `S` 是排序），
   而且不在「不需事先學習」的路徑上 —— 使用者要找的都在 `Space` 與 `?` 裡。tdp 只管熱鍵的
-  兩件事：**必須出現在 menu 裡、用 `[]` 標出**，以及**不能佔用 core key**。
-- **符號語彙**。用哪套 icon font、哪個 glyph、在各種終端機與 CJK 字型下畫幾格，綁在具體
-  環境上，由各 app 決定。其他規則仍然約束符號的使用方式（P4 專職化、寬度穩定、熱鍵要顯式標記）。
+  幾件事：**必須出現在 menu 裡、用 `[]` 標出**，**不能佔用 core key**，**不能佔用移動的字母**（Rules K12）。
+  元件裡的鍵（例：表單的 `e`、datetime picker 的 `t`、textarea 的 `i`/`a`/`o`）是元件規格的一部分。
+- **領域的符號與顏色**。檔案類型的 icon、狀態的 glyph、內容本身的顏色，綁在具體領域上，由各 app 決定。元件裡的 glyph
+  （radio、checkbox、loading icon、框線、各類 popup 的標題）與配色是元件規格的一部分；家族需要 Nerd Font（Rules E4）。
+  其他規則仍然約束符號的使用方式（P4 專職化、寬度穩定、熱鍵要顯式標記）。
 
-配色原本也在這張清單裡；2026-10-07 起由 tdp 規定，見 [components/color](../components/color-zh_TW.md)。
+## P6 亮的地方就是有 focus 的地方
+
+畫面上只有使用者當下按鍵會送到的那一塊是亮的，其他都淡化：
+
+- 最上層的 popup 亮，底下的一切淡化（Rules F8）。
+- 有 focus 的 panel 亮，失焦的淡化（Rules T2）。
+- finder 裡有 focus 的那一塊亮，另一塊淡化（Rules F1）。
+- 同一個熱鍵有兩處指示時，會觸發的那個亮（Rules M9）。
+- 沒有 focus 的那一塊上的 cursor，也跟著淡化。
+
+使用者不用讀任何字，看哪裡亮就知道按鍵會送到哪裡。淡化不是隱藏：底下的東西照樣看得到，只是說「現在不在這裡」。
 
 ---
 
@@ -170,14 +170,15 @@ global 排列，global 區一列打開 global operation popup；`?` 只列出「
 
 ### Popup
 
-疊在 panel 之上的暫時性 surface，關掉之後回到底下的東西。例：
+疊在 panel 之上的暫時性 surface，關掉之後回到底下的東西。分七類（Rules F1）：
 
 - menu：Space menu、kbu 的排序選擇器
 - confirm：filu 刪除前的確認
-- input：filu 的重新命名、locku 的 PIN 輸入
-- viewport：kbu 的 YAML 檢視、兩個資源的 Compare
+- input：filu 的重新命名、locku 的 PIN 輸入、選一個值的 select
+- form：sshu 的 Host 表單
+- note：kbu 的 YAML 檢視、key reference
 - toast：操作完成或失敗的短訊息
-- PTY：kbu 的 Alterm、filu 的 shell —— 一個跑在 popup 裡的子程序
+- terminal：kbu 的 Alterm、filu 的 shell —— 一個跑在 popup 裡的子程序（PTY）
 
 ### Focus
 
@@ -191,8 +192,8 @@ global 排列，global 區一列打開 global operation popup；`?` 只列出「
 
 ### 輸入態
 
-使用者正在打字的狀態：focus 在一個會把按鍵當字元收下的欄位上。例：filu 的重新命名框、
-sshu 的 host 表單、webu 的網址列（`L`）、locku 的 PIN 輸入、任何 `/` 搜尋列。
+以打字輸入的文字當內容的狀況：focus 在一個打字列上，打的字就是那一列的內容。例：filu 的重新命名框、webu 的網址列（`L`）、
+locku 的 PIN 輸入、panel filter 與 finder 的打字列。select 與 picker 的清單、表單本身都不是輸入態。規則見 Rules K8。
 
 ### 模式
 
@@ -203,7 +204,7 @@ filu yank viewport 裡的選取。模式不是輸入態 —— 按鍵不會變�
 
 ### Core key
 
-tdp 規定意義、在所有 surface 意義不變的鍵：`Tab`、`Enter`、`Esc`、`Space`、`?`（Rules K 章）。
+tdp 規定意義、在所有 surface 意義不變的鍵：`Tab`、`Enter`、`Esc`、`Space`、`?`、`q`（Rules K 章）。
 
 ### Letter hotkey
 
@@ -212,8 +213,8 @@ sshu 的 `[t]ransfer` 與 `[T]ransfer all`。它是捷徑，不是額外的功�
 
 ### Source 與 target
 
-從 popup A 開出 popup B 時，A 是 source、B 是 target。例：kbu 在 Compare viewport 上按
-`Space` 開出版面切換 menu —— Compare 是 source，menu 是 target。
+從 popup A 開出 popup B 時，A 是 source、B 是 target。例：從 Space menu 的 global 列打開 global operation popup ——
+Space menu 是 source，global operation popup 是 target。
 
 ### 串流內容
 
@@ -221,7 +222,5 @@ sshu 的 `[t]ransfer` 與 `[T]ransfer all`。它是捷徑，不是額外的功�
 
 ### 偏離與違反
 
-- **偏離**：app 有意不照某條 rule 的固定部分做，並在自己的 `docs/dev-remarks.md`「偏離 tdp」
-  一節寫明哪一條、在哪裡、為什麼。例：locku 的鎖定畫面不顯示 footer（M1），因為唯一的
-  動作是按任意鍵叫出 PIN。
-- **違反**：沒寫原因就不照固定的部分做。列進該 app 的 `docs/<app>-terminu-fix.md` 待修。
+app 有意不照固定的部分做、並寫明原因，是**偏離**；沒寫原因就是**違反**。定義與要寫在哪裡，見 Rules 開頭的「偏離」。
+例：locku 的鎖定畫面不顯示 footer（M1），因為唯一的動作是按任意鍵叫出 PIN —— 這寫在 locku 的 dev-remarks，是偏離。
