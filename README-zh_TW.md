@@ -31,7 +31,7 @@ terminu design 是一套 terminal UI 的設計語言：一組跨畫面、跨 app
 - **一個元素、一個意義。** 一個顏色、一個鍵、一種框線，只代表一件事。
 - **規則服務 UX。** 規則擋住了好的 UX 時，擴充規則，而不是犧牲 UX。
 - **固定的與交給 app 的分清楚。** core key 的行為寫死；其餘只規定要達成什麼，
-  怎麼做由各 app 決定；配色與熱鍵是可以直接套用的家族預設。
+  怎麼做由各 app 決定；配色與元件的樣子由 components 規定，熱鍵由各 app 決定。
 
 完整內容在 **[terminu design principle（tdp）](principle/README-zh_TW.md)**：
 
@@ -39,7 +39,7 @@ terminu design 是一套 terminal UI 的設計語言：一組跨畫面、跨 app
 |---|---|
 | [Principle](principle/README-zh_TW.md) | 精神：要達成什麼、為什麼 |
 | [Rules](principle/rules-zh_TW.md) | 必須遵守的規則，每條附理由，分固定區與概念區 |
-| [Family defaults](principle/defaults-zh_TW.md) | 通用預設建議：色彩系統、popup、menu、熱鍵參考、文件骨架 |
+| [Components](components/README-zh_TW.md) | 元件規格：配色、框、dialog、每一種 input 的樣子與操作 |
 
 ## terminu family
 

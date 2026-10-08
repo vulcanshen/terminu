@@ -36,7 +36,7 @@ When in doubt, press `Space`.
   not the UX sacrificed.
 - **What is fixed, and what is left to the app, is spelled out.** Core-key behaviour is
   fixed; everything else states what must be achieved and leaves the how to each app;
-  colour and hotkeys are family defaults an app can adopt as they are.
+  colour and how components look are set by the components; hotkeys are each app's own.
 
 The details are in the **[terminu design principle (tdp)](principle/)**:
 
@@ -44,7 +44,7 @@ The details are in the **[terminu design principle (tdp)](principle/)**:
 |---|---|
 | [Principle](principle/README.md) | The spirit: what it aims for and why |
 | [Rules](principle/rules.md) | What must hold, each with its reason, split into a fixed and a concept zone |
-| [Family defaults](principle/defaults.md) | Family default recommendations: colour system, popups, menus, hotkey reference, document skeletons |
+| [Components](components/README.md) | Component specs: colour, frames, dialogs, and how each kind of input looks and works |
 
 ## The terminu family
 

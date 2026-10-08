@@ -8,7 +8,24 @@ tdp 是 [terminu design](../README-zh_TW.md) 的細節規範，分三層：
 |---|---|---|
 | **Principle** | 本文件 | 精神：要達成什麼、為什麼 |
 | **Rules** | [rules-zh_TW.md](rules-zh_TW.md) | 必須遵守，每條附理由；分固定區與概念區（P5） |
-| **Family defaults** | [defaults-zh_TW.md](defaults-zh_TW.md) | 通用預設建議：terminu family 共用的具體值、配色系統與慣例。照用最省事，不照用不算違規 |
+| **Components** | [components](../components/README-zh_TW.md) | 元件規格：框、dialog、每一種 input 的樣子與操作；必須照做，只能在列出的方案裡挑 |
+
+**Family defaults 拆掉了**（2026-10-07，tdp v0.2.0）：原本的第三層「Family defaults」（D1–D7）裡，全家族一定要照做的搬進 Rules
+或 [Components](../components/README-zh_TW.md)，其餘拿掉。舊編號的去處：
+
+| 舊編號 | 現在在哪 |
+|---|---|
+| D1 footer、多畫面的 chip 列、窄寬門檻、空狀態 | [components/layout/screen](../components/layout/screen-zh_TW.md) |
+| D1 panel 膠囊、D3 模式名的標籤 | [components/layout/panel](../components/layout/panel-zh_TW.md) |
+| D2 色彩系統 | [components/color](../components/color-zh_TW.md) |
+| D3 popup 的框、開關動畫、loading icon、取消與完成、實作提醒 | [components/layout/popup](../components/layout/popup-zh_TW.md) |
+| D3 confirm 的 hint、toast、finder 的 focus | components 的 [dialog/confirm](../components/dialog/confirm-zh_TW.md)、[dialog/toast](../components/dialog/toast-zh_TW.md)、[input/search](../components/input/search-zh_TW.md) |
+| D4 Menu | [components/dialog/menu](../components/dialog/menu-zh_TW.md) |
+| D5 導覽字母保留給移動 | Rules K12 |
+| D5 `Alt-Esc` 一律先 confirm | Rules K10 |
+| D5 其他（熱鍵表、大小寫分層、`x` 刪除） | 拿掉：tdp 不規定熱鍵（P5），各 app 的 README 寫自己的熱鍵 |
+| D6 發布與環境 | Rules E2–E6 |
+| D7 文件 | Rules E7 |
 
 tdp 回答一個問題：**在 terminal UI 上，什麼樣的設計能讓使用者不看文件就能用？**
 
@@ -114,10 +131,10 @@ global 排列，global 區一列打開 global operation popup；`?` 只列出「
   `Shift-Tab` 反向切換，由各 app 決定。熱鍵依賴領域（kbu 的 `S` 是 shell、filu 的 `S` 是排序），
   而且不在「不需事先學習」的路徑上 —— 使用者要找的都在 `Space` 與 `?` 裡。tdp 只管熱鍵的
   兩件事：**必須出現在 menu 裡、用 `[]` 標出**，以及**不能佔用 core key**。
-- **配色**。tdp 在 [Family defaults D2](defaults-zh_TW.md#d2-色彩系統) 提供一整套呈現規則、計算方式與
-  色碼，不想處理配色的 app 直接套用；要不要遵循、意義要不要只靠顏色表達，由各 app 決定。
 - **符號語彙**。用哪套 icon font、哪個 glyph、在各種終端機與 CJK 字型下畫幾格，綁在具體
   環境上，由各 app 決定。其他規則仍然約束符號的使用方式（P4 專職化、寬度穩定、熱鍵要顯式標記）。
+
+配色原本也在這張清單裡；2026-10-07 起由 tdp 規定，見 [components/color](../components/color-zh_TW.md)。
 
 ---
 

@@ -22,6 +22,7 @@ renumbered; a retired rule keeps its ID and is marked retired.
 | [F](#f-popups) | Popups |
 | [X](#x-mouse) | Mouse |
 | [T](#t-time-axis) | Time axis |
+| [E](#e-app-and-environment) | App and environment: command line, environment variables, requirements, releases, documents |
 | [S](#s-splash) | Splash (the family easter egg) |
 
 ---
@@ -57,16 +58,17 @@ wrapping from the last to the first:
 | Focus is on | `Tab` switches between |
 |---|---|
 | a screen | panels |
-| an input popup with several fields | fields |
+| a form ([components/dialog/form](../components/dialog/form.md)) | fields (one field at a time; the options inside a field move with hjkl, K12) |
+| a popup with two areas (a finder, a datetime picker) | areas |
 
 - `Tab` does not cross screens or leave the current popup.
 - With focus in a PTY, `Tab` belongs to the subprocess (K10).
-- **In a single input box** (no other field to move to) with a greyed-out suggestion, `Tab`
-  **accepts the suggestion** (autocomplete), and does nothing else. In an input group
-  (several fields) `Tab` only switches fields; a suggestion there is accepted with a key the
-  app chooses (e.g. `→`).
+- **An input popup always has a single field** (several fields make a form, see the table): with a greyed-out
+  suggestion, `Tab` **accepts the suggestion** (autocomplete), and does nothing else. (Since 2026-10-07; before, `Tab`
+  switched fields in an input group and a suggestion there was accepted with a key the app chose, e.g. `→`.)
 - In the writing state of multi-line text, `Tab` is an indent character, not a field switch (K8).
-- Cycling backwards (e.g. `Shift-Tab`) is a hotkey; whether to offer it is up to the app.
+- Cycling backwards (e.g. `Shift-Tab`) is a hotkey; whether to offer it is up to the app; a form always has
+  `Shift-Tab` (components dialog/form).
 
 **Why**: users press `Tab` expecting "the next one" — the next panel on a screen, the
 next field in a form. It is the same role at different levels. Switching screens is a
@@ -83,18 +85,18 @@ scrollable view).
 
 **In an input popup, `Enter` submits** (fixed):
 
-- **`Enter` always submits.** What it submits may be the whole input group (the whole
-  input popup) or a single field, as the app decides; either way it is a submit.
-- Submitting the whole input group checks **every** field, and submits only if all are
-  valid.
-- If any field is invalid, **nothing is submitted**: focus jumps to **the first invalid
-  field**, and the error (which field, and why) is written in the input popup's reserved error row (F7). It
-  looks like `Tab`, but the logic is entirely different — it points at the problem after a
-  failed submit; it does not move to the next field.
-- `Enter` does not stand in for `Tab` to move to the next field; moving field by field is
-  `Tab` alone (K2).
+- **`Enter` always submits** the one value. If the value is invalid, **nothing is submitted**: the error goes in the
+  reserved error row (F7) and the popup stays.
 - In **multi-line text input**, `Enter` is a newline; submitting is triggered instead by
   `Enter` after leaving the writing state.
+- **A typing row with a candidate list** (a finder, a select's filter): `Enter` moves the focus to the list, and a second
+  `Enter` there submits (F1).
+
+**A form** ([components/dialog/form](../components/dialog/form.md)) is not an input popup: in a form, `Enter` acts on the focused item — opening that field's input popup,
+choosing a radio option, flipping a checkbox, pressing the button; submitting is the button or `Ctrl-S`, which checks
+**every** field, submits nothing if any is invalid, and moves the focus to the first invalid field. Once an input popup is
+confirmed, the form's focus moves on to the next field — the result of confirming a field, not `Enter` standing in for
+`Tab`. (Since 2026-10-07; before, several fields shared one input popup, and `Enter` in any of them submitted the whole.)
 
 In other popups (menu, confirm), `Enter` runs the row under the cursor / accepts.
 
@@ -164,21 +166,21 @@ and where it doesn't".
 
 ### K8 Input state: hotkeys are all off `fixed`
 
-While the user is typing (form field, input box, search line), **every key that produces
-a character is a character** and triggers nothing:
+While the user is typing (an input popup, a search row; a form itself is not in the input state, see components
+dialog/form), **every key that produces a character is a character** and triggers nothing:
 
 | Key | In input state |
 |---|---|
 | letter hotkeys, `Space`, `?`, `q` | typed as characters |
 | `Esc` | cancels the input (K4) |
 | `Enter` | submits (K3) |
-| `Tab` | switches fields (K2); in the writing state of multi-line text, a character (indent) |
+| `Tab` | accepts a grey suggestion (K2); in a popup with two areas, moves to the other; in the writing state of multi-line text, a character (indent) |
 | `Ctrl-C` | starts the quit flow (K9) |
 
 Normal behaviour returns the moment focus leaves the input surface.
 
 **In the writing state of multi-line text**, `Tab` is a character (an indent), just as
-`Enter` is a newline (K3); to switch fields or submit, leave the writing state first.
+`Enter` is a newline (K3); to submit, leave the writing state first (`Esc`), then press `Enter`.
 Whether the indent inserts `\t` or spaces is up to the app.
 
 **Why**: `Space`, `?` and `q` are all printable. Without this, users could never type a
@@ -210,8 +212,19 @@ to the subprocess**: core keys and the app's hotkeys stop working — vim needs 
 shell needs `Tab` and `Ctrl-C`, a remote program may want any chord.
 
 - The app designates **at least** one exit key that moves focus out of the PTY (a
-  combination the subprocess almost never uses; the family uses `Alt-Esc`, see D5) and
-  discloses it permanently while focus is in the PTY.
+  combination the subprocess almost never uses; the family uses `Alt-Esc`) and discloses it
+  permanently while focus is in the PTY.
+- **`Alt-Esc` always confirms first**: whenever it would move focus out of the PTY or end the
+  subprocess, whether or not the subprocess stays alive, a confirm comes first (`Enter`
+  leaves, `Esc` returns to the PTY); what it does inside the PTY (e.g. stepping zoom down
+  one level) needs no confirm. Why: terminals send an Alt chord as "`Esc` plus the key", so
+  `Alt-Esc` is byte for byte two `Esc`s. When the app is busy the reading end stalls, and two
+  `Esc` presses pile up and are read as `Alt-Esc` (measured 2026-09-29 with bubbletea
+  v1.3.10: with keys already queued, two `Esc`s 150 ms apart still merged). Pressing `Esc`
+  twice is common in vim; the confirm lets whoever misfired press `Esc` to go back.
+- **Other Alt-chord exit keys** (e.g. kbu's `Alt-t` hiding Alterm, sshu's `Alt-Enter` on a
+  locked cell) can be spelled the same way by "`Esc` then that key"; whether they confirm is
+  up to the app.
 - Whether the app keeps other chords of its own inside the PTY besides the exit key (e.g.
   sshu's zoom, move to another cell and history scroll inside a cell) is up to the app.
   Any it keeps are disclosed permanently, like the exit key (M3).
@@ -247,17 +260,37 @@ With focus inside a mode (see the term), the core keys act like this:
 - The footer still shows `?` inside a mode (M1); `Space` does nothing there and need not
   be listed.
 - **A mode shows itself**: its name always appears at the **right of the top border** of
-  the frame it lives in (panel or popup), and the frame turns the mode colour (family
-  default in D2); leaving the mode restores both. A focused panel keeps its focus line style
+  the frame it lives in (panel or popup), and the frame turns the mode colour (see
+  [components/color](../components/color.md)); leaving the mode restores both. A focused panel keeps its focus line style
   (L5) in a mode; only the colour changes.
 - **The mode name sits between two border junctions**, like a label set into the frame:
-  `╔═[1] Kinds════╡Drag╞═╗`, `╭─ YAML ────┤Visual├─╮` (how the junctions are drawn is in D3).
+  `╔═[1] Kinds════╡Drag╞═╗`, `╭─ YAML ────┤Visual├─╮` (how the junctions are drawn is in
+  [components/layout/panel](../components/layout/panel.md)).
 
 **Why**: a mode is always a special case; its keys are movement and selection, pressed
 directly and in runs, not actions on an item, and there is no item / panel / global to
 split them by. Turning them into a list you pick and run from (even `h j k l` run from a
 list) only adds a detour; all the user needs is "what can I press here", which is exactly
 `?`'s job.
+
+### K12 Navigation letters are kept for movement; hjkl are the arrow keys `fixed`
+
+Where nothing is typed, `j k u d g G h l` are kept for movement, and no action takes them. `h`/`j`/`k`/`l` are
+`←`/`↓`/`↑`/`→`, meaning what the layout makes them mean:
+
+- **With a left-right structure** (tabs, two sides, a grid): up, down, left and right. `j`/`k` move up and down a list,
+  `h`/`l` go left and right — to another tab, to the other side, to the day before or after in a calendar.
+- **In a plain one-dimensional list with no left-right structure** (a form, a one-value-per-row panel without tabs, a
+  menu): `h`/`k` (`←`/`↑`) go back, `j`/`l` (`↓`/`→`) go on, whether options run across or down.
+- A one-dimensional list in a panel with tabs: `h`/`l` go to the tabs, `j`/`k` still move in the list.
+- **`u`/`d` move half a page, `gg`/`G` to the top and the bottom.** `gg`, not a single `g`; `Ctrl-U`/`Ctrl-D` are
+  not taken as aliases (the user, 2026-10-07).
+
+**Why**: in the family hjkl are the arrow keys — forms, panels and lists all move with them; an app binding one to an
+action has users trigger an action while they think they are moving. With a left-right structure, left and right are
+left and right (filu's, kbu's and webu's `h`/`l` switch tabs, sshu's cross to the other side); without one, the left and
+right keys are idle and get "back" and "on", so users need not wonder whether options run across or down. It used to be
+a habit in Family defaults D5 ("`h` `l` switch tabs within a panel"); the user made it a rule on 2026-10-07.
 
 ---
 
@@ -390,11 +423,11 @@ hints, the key reference, and the README). Marking inside a label:
 |---|---|---|
 | Label (menu rows, statusbar chips, panel titles) | the bracket marking above | `[r]ename`, `[Alt-t]erm` |
 | Sentence (empty states, toasts, error messages, and keys mentioned in the description column of a menu or the key reference) | every key in square brackets | `Press [A] or [Space]`, `see App Log [!]`, `next tab [h]/[l]` |
-| Hint, footer | `key:description`, no space around the colon, one space between items | `j/k:move Enter:run Esc:close` |
+| Hint, footer | `key:description`, no space around the colon, one space between items | `Enter:delete Esc:cancel` |
 | Key reference | two columns, key and description; no brackets, no colon on the key | key column `Esc`, description column `close this popup` |
 
 - In hints and the footer the key and its description are told apart by colour: the key in
-  one colour, the colon and description in another (family default in D2). A description
+  one colour, the colon and description in another (see [components/color](../components/color.md)). A description
   may run to several words; the key's colour still shows where each item starts.
 - **README**: keys in the prose are Markdown code (`` `Enter` ``, `` `Ctrl-C` ``), not
   square brackets; names and notation as above. A label quoted from the screen is written as
@@ -448,7 +481,7 @@ group a header naming its kind. A menu that needs no grouping is listed directly
 When a hotkey does different things on different panels and both indicators are **on
 screen at the same time**, the user must be able to see at a glance **which one fires on
 the current focus**. How to mark it is up to the app; the family's way is that the one
-that fires is bright, the other dim (D2).
+that fires is bright, the other dim ([components/color](../components/color.md)).
 
 **Why**: with two identical keys on screen at once, the user has no way to tell which
 thing pressing it will do.
@@ -500,7 +533,7 @@ and moving focus **must not shift any content**.
 - **Focus is not told by colour alone**: something besides colour must differ (e.g. the
   line style). A mode turns its frame the mode colour (K11); with colour alone, focus
   vanishes the moment a mode starts. The family default is a double line `╔═╗` for focus
-  and rounded `╭─╮` otherwise, the same width (D2).
+  and rounded `╭─╮` otherwise, the same width ([components/color](../components/color.md)).
 
 **Why**: users need to know where their keys will go; and if the screen jumps every time
 focus moves, the eye has to find its place again.
@@ -509,15 +542,16 @@ focus moves, the eye has to find its place again.
 
 ## F Popups
 
-### F1 Popups come in six classes, one class at a time `fixed`
+### F1 Popups come in seven classes, one class at a time `fixed`
 
-The family's popups come in these six classes only, each with fixed key meanings:
+The family's popups come in these seven classes only, each with fixed key meanings:
 
 | Class | What the user can do | E.g. |
 |---|---|---|
 | **menu** | `j/k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, option lists, a jobs list (`Enter` opens the row in full) |
 | **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6) | confirm before delete, the quit confirm, "Connect to X?" under the host's details |
-| **input** | type (input state, K8), `Enter` submits (K3), `Tab` switches field or accepts a suggestion (K2) | rename, address bar, host form |
+| **input** | type (input state, K8), `Enter` submits (K3), `Tab` accepts a suggestion (K2); one value per popup | rename, address bar |
+| **form** | one value per row; `Tab` jumps a field at a time, hjkl move item by item (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing the button), the button or `Ctrl-S` submits ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Sign in and Add bookmark |
 | **note** | read-only, scroll with `j/k/u/d`; no list of rows to run with `Enter` | key reference, YAML viewer, app log |
 | **toast** | a one-line message from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it | "Copied", an operation failed |
 | **terminal** | a subprocess running in the box; every key is its, only the exit key is the app's (K10) | kbu's Alterm, filu's shell |
@@ -536,34 +570,44 @@ The family's popups come in these six classes only, each with fixed key meanings
   is an input while typing and a menu while its result list has focus; `Tab` moves focus
   between typing and the list, and `Esc` closes the whole finder (K4: a phase is not a
   layer). A preview beside it takes no focus and is not another surface. **Which side has
-  focus must show**: only the side holding the keys is lit (family default in D3).
+  focus must show**: only the side holding the keys is lit (how it looks: [components/input/search](../components/input/search.md)).
 - **An input may carry a candidate list** (a list filtered as you type): printable keys are
   always characters (`j` and `k` too, K8), only the arrow keys move among candidates, and
-  `Enter` submits the chosen one. It is still an input, not two classes at once.
+  `Enter` moves the focus to the chosen one in the list, where a second `Enter` submits it
+  (the user, 2026-10-07; before, `Enter` while typing submitted at once — see
+  [components/input/search](../components/input/search.md)). It is still an input, not two
+  classes at once.
 - **Each step of a multi-step flow is its own popup**: e.g. sorting by picking a column,
   then a direction, is two stacked popups (F4 keeps the source), not one box changing its
   content — each step has its own UX, and its own height fixed at opening (F7).
-- Not in these six: the splash (chapter S), and panel content an app draws as a box (e.g.
+- **form is the seventh class, added 2026-10-07** (by the user): several fields used to share one input popup (the
+  example read "host form"); once a form only shows values and opens an input popup per field, it is no input, and none
+  of the other five classes either.
+- Not in these seven: the splash (chapter S), and panel content an app draws as a box (e.g.
   webu's page dialogs, webu's departure).
 
-**Why**: the class is the user's expectation of "what keys do inside this box". With six
+**Why**: the class is the user's expectation of "what keys do inside this box". With seven
 classes, each of fixed meaning, nothing is relearned from one app to the next; a popup of
 two classes at once gives the same keys two possible meanings inside one box.
 
 ### F2 Opening and closing are both animated `fixed`
 
-Popups **must animate** both when opening and when closing. The form and length of the
-animation are up to the app (for the family's way, see D3).
+Popups **must animate** both when opening and when closing. The length is the same across
+the family (see [components/layout/popup](../components/layout/popup.md)); the form of the
+animation is up to the app.
 
 **Why**: without animation, a popup "suddenly appears, suddenly vanishes", and users don't
-feel the change of layer as it stacks on and steps back. How long it can be without
-breaking the rhythm depends on the popup's size and the app's pace, so it is not fixed.
+feel the change of layer as it stacks on and steps back. The length used to be up to the
+app; on 2026-10-07 the user made it the same across the family.
 
 ### F3 `Esc` closes any popup at once `fixed`
 
 Any visible popup — auto-dismissing toasts included — starts closing **immediately** on
 `Esc`, without waiting for a toast's countdown. Closing is animated as usual (F2); a popup
 already running its closing animation ignores `Esc` and takes no other keys either.
+
+**The exception**: a form or a textarea whose content changed first opens a confirm asking whether to discard it
+(components dialog/form, input/textarea; since 2026-10-07).
 
 **Why**: users are not obliged to wait out a countdown. If a popup that is already closing
 takes another `Esc`, or still eats keys, the user's next key goes to the wrong place.
@@ -616,7 +660,7 @@ such as "reversible means no need to ask" can judge it.
     the height **may** follow — the user expects that change; the app may also keep the
     height. The principle is that what is disclosed is correct.
 - **Loading is always disclosed**: while a popup is loading, a spinning loading icon
-  **always** sits after its title (spec in D3), whether or not its height changes; the
+  **always** sits after its title (spec in [components/layout/popup](../components/layout/popup.md)), whether or not its height changes; the
   icon goes when loading ends. Loading here means the content of the **whole popup** has
   not arrived (e.g. the list's items are not all loaded). If just **one item** is itself a
   continuous stream of data (e.g. a connection that keeps sending), it is that item that is
@@ -643,22 +687,22 @@ While a popup is open, **everything but the topmost popup** — the popups benea
 the whole base screen — is drawn in the dim colour. The same holds when popups open in a
 row or one opens inside another: only the topmost is ever bright.
 
-- Streaming content underneath (logs, remote sessions) and warning colours (D2) are dimmed
+- Streaming content underneath (logs, remote sessions) and warning colours (components/color) are dimmed
   too (the exception to T2).
 - **How to dim: fade every colour — foreground and background alike — toward the base,
   leaving shapes and layout untouched.** Never strip the colours and redraw, never drop
   backgrounds, never turn every foreground into one dim colour: that breaks whatever is
   drawn with a background (the body of a powerline capsule, a cursor bar, a selection).
   Layer colours, warning colours and streaming content go through the same fade and so
-  become dimmed versions of themselves. The calculation is in D2.
+  become dimmed versions of themselves. The calculation is in [components/color](../components/color.md).
 - **A toast does not trigger dimming**: it takes no key but `Esc` (F1) and is not a layer.
 - **Borders are dimmed too, but keep their layer colour**: the borders of the popups below
-  are drawn in a dimmed version of their own layer colour (D2), not one common dim colour —
+  are drawn in a dimmed version of their own layer colour (components/color), not one common dim colour —
   dark, yet still showing which layer each is.
 
 **Why**: all popups share one width (F7), so an upper one hides the side borders of the one
 below and the boxes no longer show the layers; brightness is the one cue left, and it is
-exactly what "lightness is the z-axis" (D2) means: only the layer being worked on is bright.
+exactly what "lightness is the z-axis" (components/color) means: only the layer being worked on is bright.
 
 ---
 
@@ -700,12 +744,12 @@ has lost its meaning":
 a screenshot can't show it either. Only reasoning about "once done with the target, does
 the user still want to see the source?" answers it.
 
-### T2 Streaming content is not dimmed on blur `fixed`
+### T2 Unfocused panels are dimmed, streaming content excepted `fixed`
 
-If an app dims unfocused panels, that may apply only to static content; **streaming
-content (logs, live output, remote sessions) is not dimmed on blur**. If the app doesn't
-dim on blur, this rule does not apply. The exception is a popup on top: attention is on
-the popup then, and everything below is dimmed as F8 says.
+An unfocused panel **has its content dimmed the same way as F8** (its border being components/color's
+unfocused border); **streaming content (logs, live output, remote sessions) is not dimmed
+on blur**. The exception is a popup on top: attention is on the popup then, and everything
+below is dimmed as F8 says.
 
 **Why**: dimming says "focus is elsewhere, look later". Streaming content has no later —
 information is passing by, and dimming it cuts off the glance from the corner of the eye.
@@ -713,6 +757,10 @@ This is also the textbook case of "rules serve the UX" (Principle P0): the origi
 "dim on blur" is "don't compete for focus", while streaming's UX is "catch updates from
 the corner of the eye" — two goals that happen to land on the same panel, so the rule is
 extended rather than streaming sacrificed.
+
+Dimming on blur used to be up to the app (the family default was not to); on 2026-10-07 the
+user made it required across the family: only where the keys go is lit, the same as F8
+(only the top layer is lit) and F1 (only the side of a finder holding the keys is lit).
 
 ---
 
@@ -771,3 +819,177 @@ with a reveal animation. How the animation runs is up to the app.
 
 **Why**: the splash is the family's signature. Each member draws its own version of the
 family mark, so pressing `V` tells you at once that this comes from the same family.
+
+---
+
+## E App and environment
+
+What an app does off screen: the command line, environment variables, requirements, icon width, releases, documents.
+Moved from Family defaults D6 and D7 on 2026-10-07 (the defaults were dissolved; see the table in the
+[README](README.md)).
+
+### E1 Command line: `version` and `help` `fixed`
+
+Every app has:
+
+- **`<app> version`**: prints the version. `--version` and `-v` may be aliases.
+- **`<app> help`**: prints the command-line usage (unrelated to the `?` key reference inside the app). `-h` and `--help`
+  may be aliases.
+
+Other commands (e.g. `filu iconwidth`, `locku lock`, `webu <url>`) are up to the app.
+
+**Why**: `help` and `version` are the first things anyone tries on a command-line tool. kbu once had only `--version`, so
+one family app could not be asked its version with `<app> version` (set by the user, 2026-10-07).
+
+### E2 Environment variable names `fixed`
+
+`<APP IN CAPITALS>__<NAME>` — two underscores after the app
+name, the name in capitals with single underscores between words (e.g. `FILU__ICON_WIDTH`,
+`KBU__ALTERM_LOGIN_SHELL`). Every variable the app itself reads (tests and its own child
+processes included) is named this way. Shared names:
+
+| Variable | Meaning |
+|---|---|
+| `<APP>__CONFIG` | the config **directory** (the config file lives in it) |
+| `<APP>__STATE` | the state directory (when the app keeps state separately) |
+| `<APP>__DATA` | the data directory |
+| `<APP>__CACHE` | the cache directory |
+| `<APP>__ICON_WIDTH` | manual override of an icon's cell width (see the icons' real width below) |
+| `TERMINU__ICON_WIDTH` | shared by the family: an app with a PTY sets it for its child to say how wide an icon is (see below) |
+
+The exception: variables meant for another program follow that program's needs (e.g. the
+`LC_SSHU_COLORTERM` sshu carries over ssh to the remote end — OpenSSH forwards only `LANG`
+and `LC_*` by default). Renamed variables do not keep their old names.
+
+**Why**: a variable shows at a glance which app it belongs to, and `TERMINU__` at once means the whole family (a family
+rule the user set in v0.1.21).
+
+### E3 Where config and data live `fixed`
+
+Config in `$XDG_CONFIG_HOME/<app>` (falling back to `~/.config/<app>`); data in
+  `~/.<app>/`.
+
+**Why**: with the five apps in the same places, users know where to look and what to back up.
+
+### E4 Requirements: a Nerd Font and truecolor `fixed`
+
+- Requires a Nerd Font; PUA glyphs are written as code points in the source.
+- Requires a truecolor (24-bit) terminal: catppuccin's pale colours and components/color's layer gradient are indistinguishable in 256 colours, and dimming always outputs 24-bit (components/color). READMEs say so in their requirements, next to the Nerd Font.
+
+**Why**: the family's icons, loading icon, and radio and checkbox glyphs are Nerd Font glyphs; the reason for truecolor is
+given above.
+
+### E5 The icons' real width `fixed`
+
+with some fonts an icon takes two cells (the cursor moves two),
+while lipgloss measures one, and the borders go crooked. What counts is **how far the
+cursor actually moves**: a font whose icon looks wider than a cell but moves the cursor one
+(the glyph spills into the next cell) counts as one. The app detects this at startup (CPR:
+print an icon, ask for the cursor position), and every width measurement (padding,
+clipping, centring, joining, borders, overlaying popups) goes through one display-width
+function; the L4 screen tests also run once with two-cell icons, opening each kind of popup
+and measuring the bare box and the whole screen with it overlaid.
+
+- Reference implementation: filu `internal/ui/width.go` — `isWideIcon()`, `dispWidth()`,
+  `dispClip()`, `padDisp()`, `dispCutLeft()`, `compositeDisp()` (replaces overlay's
+  `Composite`, same interface), `centerDisp()` (replaces `lipgloss.Place`), `joinH()` /
+  `joinV()` (replace `lipgloss.JoinHorizontal` / `JoinVertical`); detection is
+  `DetectIconWidth()` in `iconwidth_unix.go`, called before `tea.NewProgram`; tests follow
+  `d6_test.go`.
+- Manual override: the environment variable `<APP>__ICON_WIDTH` (filu's is
+  `FILU__ICON_WIDTH`). Detection runs on unix only; Windows defaults to one cell,
+  overridden by the variable.
+- **Inside another app's PTY**: the probe is answered by the outer app's terminal
+  emulator, which counts an icon as one cell, so the real width can't be measured. An app
+  with a PTY therefore sets `TERMINU__ICON_WIDTH=<the cells it uses>` in its child's
+  environment, and every app takes the icon width from `<APP>__ICON_WIDTH`, then
+  `TERMINU__ICON_WIDTH`, then the probe. Any family app running inside another's PTY then
+  gets it right (filu in kbu's Alterm, kbu in filu's shell). Environment variables don't
+  cross ssh; remote nesting relies on the app's own channel (sshu's nesting channel).
+- An overlaid popup may be wider or taller than the screen (the frame drawn during a
+  resize still has the old size): start at 0 and clip what falls off the screen, and
+  **never panic**; when it is larger in both directions it is clipped too, never handed
+  back whole. The edge-case tests cover all three (filu's `TestD6CompositeDispOversized`).
+- Done means: apart from the width functions themselves, `internal/ui` has no calls to
+  `lipgloss.Width`, `lipgloss.Size`, `lipgloss.Place`, `ansi.StringWidth` or
+  `ansi.Truncate`.
+
+**Why**: crooked borders make the whole screen unreadable, and the same font can move the cursor differently on different
+terminals, so it can only be measured at run time.
+
+### E6 Releases, tests and family assets `fixed`
+
+- A single static binary built with goreleaser; `install.sh` / `uninstall.sh`
+  (`curl | sh`, no sudo), also published to the Homebrew tap `vulcanshen/homebrew-tap`.
+- Screen tests across sizes: at several terminal sizes, every line is exactly the terminal
+  width (L4).
+- `docs/icon.svg` is the family mark; the splash (chapter S) is drawn from it cell
+  for cell, with a test keeping the two identical.
+- `V` is reserved for the splash (S1).
+- Demo gifs are recorded with VHS, scripts in `.local/demos/`; the README carries a single
+  representative gif.
+
+**Why**: the five apps install, uninstall and release the same way; having installed one, users can install the others.
+
+### E7 Documents `fixed`
+
+**README**: `README.md` (English) and `README-zh_TW.md` (Traditional Chinese) stay in
+step, and cover only what users need to know:
+
+1. Title, badges, language switch (`English · 繁體中文`)
+2. A one-line positioning plus a paragraph on what it can do
+3. **One** representative demo gif
+4. Features: what users get, not how it is done
+5. Installation: prerequisites, how to install, what happens on first launch, removal
+6. Quick start
+7. Usage and keys
+8. Configuration and where data is stored
+9. Limitations (written in the user's language)
+10. Related links: CHANGELOG, `docs/dev-remarks.md`
+11. terminu family: follows terminu design, lists the other family members
+12. License
+
+No "status" section with a hard-coded version number — versions are left to the badge and
+the CHANGELOG.
+
+Where the README talks about the icon width (usually the Nerd Font part of the
+prerequisites), it names both `<APP>__ICON_WIDTH` and `TERMINU__ICON_WIDTH`, and says the
+latter is shared by the whole family: set it once and every family app reads it; inside a
+family app's PTY the outer app sets it (E5). The form is free (a table or a sentence). It
+names no font as "always two cells" — the same font may move the cursor differently on
+different terminals.
+
+**`docs/dev-remarks.md`** (Traditional Chinese): what developers need to remind themselves
+of during development, and decisions recorded while working with AI.
+
+```
+# <app> 開發者備忘
+前言（一句話 + 遵循 terminu design principle）
+## 運作方式
+## 設計決定（決定 + 理由）
+## 已否決，不要重提
+## 已知的牆與未做
+## 偏離 tdp（哪一條、在哪裡、為什麼）
+## 設計文件導讀
+## 建置與開發
+## 發布（含踩過的坑）
+```
+
+The skeleton above is kept in Chinese because the file itself is written in Chinese. In
+order: title (`<app>` developer notes), a preface (one sentence + follows the terminu
+design principle), how it works, design decisions (decision + reason), rejected — do not
+raise again, known walls and not done, the "偏離 tdp" section (departures from tdp:
+which rule, where, why), a guide to the design documents, building and development,
+releasing (including pitfalls hit).
+
+**`docs/<app>-terminu-fix.md`**: where the app does not yet follow tdp, item by item, to
+fix (which rule is violated, where, the current state, and how to fix it).
+
+**Other design documents** (`ui.md`, `ux.md`, `function.md`…) are each app's own
+business — whether to have them and how to split them is not tdp's concern; the design
+documents guide in dev-remarks points to them. There is no separate clause-by-clause map
+against tdp: what complies needs no record, departures go in dev-remarks, violations in
+the fix file.
+
+**Why**: a README introduces the tool, and developer notes go elsewhere (the user's README rule, set in webu on
+2026-09-26).
