@@ -22,6 +22,7 @@
 | [X](#x-mouse) | Mouse |
 | [T](#t-時間軸) | 時間軸 |
 | [S](#s-splash) | Splash（家族彩蛋） |
+| [E](#e-app-與環境) | App 與環境：命令列、環境變數、需求、發布、文件 |
 
 ---
 
@@ -53,14 +54,15 @@ core key 一旦指定，同樣在所有 surface 意義不變。**letter hotkey �
 | focus 所在 | `Tab` 在什麼之間切換 |
 |---|---|
 | 畫面 | panel |
-| 有多個欄位的 input popup | 欄位 |
+| 表單（[components/dialog/form](../components/dialog/form-zh_TW.md)） | 欄位（一次跳一欄；欄位裡的選項用 hjkl，K12） |
+| 有兩塊的 popup（finder、datetime picker） | 塊 |
 
 - `Tab` 不跨畫面、不離開當前 popup。
 - focus 在 PTY 裡時，`Tab` 屬於子程序（K10）。
-- **單一輸入框**（沒有其他欄位可換）有灰字提議時，`Tab` **接受提議**（自動完成），不做其他用途。
-  input group（多個欄位）裡 `Tab` 只換欄位；那裡的提議由 app 另外指定按鍵接受（例：`→`）。
+- **input popup 永遠只有一個欄位**（好幾個欄位是表單，見上表）：有灰字提議時，`Tab` **接受提議**（自動完成），不做其他用途。
+  （2026-10-07 起；原本 input group 裡 `Tab` 換欄位、提議另外指定按鍵接受，例：`→`。）
 - 多行文字的寫入狀態下，`Tab` 是縮排字元，不是換欄位（K8）。
-- 反向切換（例如 `Shift-Tab`）是熱鍵，由 app 決定要不要做。
+- 反向切換（例如 `Shift-Tab`）是熱鍵，由 app 決定要不要做；表單裡一定有 `Shift-Tab`（components dialog/form）。
 
 **為什麼**：使用者按 `Tab` 期待的是「換下一塊」—— 在畫面上是下一個 panel，在表單裡是
 下一個欄位。這是同一個角色在不同層級的樣子。跨畫面切換屬於 global operation（P3）。
@@ -74,13 +76,14 @@ panel 本身是一個內容區、沒有「項目」可選時（例：預覽、lo
 
 **在 input popup 裡，`Enter` 是 submit**（固定）：
 
-- **`Enter` 一定是 submit**。submit 的對象可以是整個 input group（整個 input popup），也可以是單一欄位，
-  由 app 決定；兩者都是 submit。
-- submit 整個 input group 時，檢查**所有**欄位，全部合格才送出。
-- 有任何欄位不合格就**不送出**：focus 自動跳到**第一個不合格的欄位**，並把錯誤（哪個欄位、為什麼）寫在
-  input popup 預留的錯誤列（F7）。這看起來像 `Tab`，邏輯完全不同 —— 它是 submit 失敗後指出問題，不是移到下一欄。
-- `Enter` 不代替 `Tab` 移到下一個欄位；依序換欄位只有 `Tab`（K2）。
+- **`Enter` 一定是 submit**：送出這一個值。值不合格就**不送出**，錯誤寫在預留的錯誤列（F7），popup 不關。
 - **多行文字輸入**時，`Enter` 是換行；submit 改由離開寫入狀態後的 `Enter` 觸發。
+- **附候選清單的打字列**（finder、select 的篩選）：`Enter` 把 focus 移到清單，在清單上再按 `Enter` 才送出（F1）。
+
+**表單**（[components/dialog/form](../components/dialog/form-zh_TW.md)）不是 input popup：表單裡的 `Enter` 對 focus 的項目做事 —— 打開那一欄的 input popup、選 radio、翻 checkbox、
+按按鈕；送出是按鈕或 `Ctrl-S`，那時檢查**所有**欄位，有不合格的就不送出，focus 跳到第一個不合格的欄位。input popup 確定後，
+表單的 focus 自動移到下一欄 —— 這是確定一欄的結果，不是拿 `Enter` 代替 `Tab`。（2026-10-07 起；原本多個欄位放在同一個 input
+popup 裡，`Enter` 在任何一欄都是送出整張。）
 
 在其他 popup（menu、confirm）裡，`Enter` 是執行 cursor 所在列 / 接受。
 
@@ -139,7 +142,7 @@ key reference**：唯讀、可以捲動，沒有游標、不能執行（M4）。
 
 ### K8 輸入態：熱鍵全部失效 `固定`
 
-使用者在打字時（表單欄位、input 框、搜尋列），**所有會產生字元的鍵都是字元**，
+使用者在打字時（input popup、搜尋列；表單本身不是輸入態，見 components dialog/form），**所有會產生字元的鍵都是字元**，
 不觸發任何動作：
 
 | 鍵 | 輸入態下 |
@@ -147,13 +150,13 @@ key reference**：唯讀、可以捲動，沒有游標、不能執行（M4）。
 | letter hotkey、`Space`、`?`、`q` | 當成字元輸入 |
 | `Esc` | 取消輸入（K4） |
 | `Enter` | submit（K3） |
-| `Tab` | 切換欄位（K2）；多行文字的寫入狀態下是字元（縮排） |
+| `Tab` | 接受灰字提議（K2）；有兩塊的 popup 裡換到另一塊；多行文字的寫入狀態下是字元（縮排） |
 | `Ctrl-C` | 離開流程（K9） |
 
 離開輸入面立刻恢復。
 
-**多行文字的寫入狀態**：`Tab` 是字元（縮排），就像 `Enter` 是換行（K3）；要換欄位或送出，先離開寫入
-狀態。縮排插入 `\t` 還是空白，由 app 決定。
+**多行文字的寫入狀態**：`Tab` 是字元（縮排），就像 `Enter` 是換行（K3）；要送出，先離開寫入狀態（`Esc`），
+再按 `Enter`。縮排插入 `\t` 還是空白，由 app 決定。
 
 **為什麼**：`Space`、`?`、`q` 都是可列印字元。不屏蔽的話，使用者打不出含空白的檔名、
 含問號的密碼。`Esc` 與 `Enter` 保留，因為它們不跟字元競爭，而且少了它們輸入框就是
@@ -176,8 +179,15 @@ key reference**：唯讀、可以捲動，沒有游標、不能執行（M4）。
 focus 在 PTY（跑在 app 裡的 shell、編輯器、遠端 session）時，**按鍵都送給子程序**：core key 與 app 的
 熱鍵都失效 —— vim 需要 `Esc`、shell 需要 `Tab` 與 `Ctrl-C`、遠端程式可能要任何一個組合鍵。
 
-- app **至少**指定一個出口鍵，讓 focus 離開 PTY（選一個子程序幾乎不會用到的組合；家族用 `Alt-Esc`，
-  見 D5），並在 focus 位於 PTY 時常駐揭露它。
+- app **至少**指定一個出口鍵，讓 focus 離開 PTY（選一個子程序幾乎不會用到的組合；家族用 `Alt-Esc`），
+  並在 focus 位於 PTY 時常駐揭露它。
+- **`Alt-Esc` 一律先 confirm**：按了會讓 focus 離開 PTY 或結束子程序時，不論子程序留不留著，都先跳 confirm（`Enter` 離開、
+  `Esc` 回到 PTY）；在 PTY 裡面的動作（例：退一階 zoom）不用問。理由：終端機把 Alt 組合送成「`Esc` 加那個鍵」，`Alt-Esc`
+  跟兩次 `Esc` 的 byte 一模一樣。app 忙的時候，讀鍵的一端卡住，兩次 `Esc` 就會疊在一起被讀成 `Alt-Esc`（2026-09-29 用
+  bubbletea v1.3.10 實測：前面有鍵在排隊時，間隔 150ms 的兩次 `Esc` 也會黏在一起）。vim 裡連按 `Esc` 很常見，confirm 讓
+  誤觸的人按 `Esc` 回到 PTY。
+- **其他 Alt 組合的出口鍵**（例：kbu 的 `Alt-t` 隱藏 Alterm、sshu 鎖住的格子的 `Alt-Enter`）同樣會被「`Esc` 再按那個鍵」
+  拼出來；要不要 confirm 由 app 決定。
 - 出口鍵以外，PTY 裡要不要再保留其他 app 的組合鍵（例：sshu 在格子裡的放大、換格、捲歷史），由 app 決定。
   保留的鍵跟出口鍵一樣常駐揭露（M3）。
 - 按了出口鍵之後 focus 落在哪裡，由 app 決定。
@@ -204,14 +214,30 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 - 模式裡沒有 Space menu，也沒有任何可以執行的按鍵清單。模式自己的鍵（移動、選取、拖曳）直接按；它們揭露在
   `?` 的 key reference 與 footer / 下框 hint（M3 在模式裡的樣子）。
 - 模式裡 footer 照樣顯示 `?`（M1）；`Space` 在模式裡不作用，不必列出。
-- **模式要標示自己**：模式名一律顯示在模式所在的框（panel 或 popup）的**上框右側**，外框換成模式色（家族預設見 D2）；
+- **模式要標示自己**：模式名一律顯示在模式所在的框（panel 或 popup）的**上框右側**，外框換成模式色（見 [components/color](../components/color-zh_TW.md)）；
   離開模式就恢復。focus 的 panel 在模式裡照樣是 focus 的線型（L5），只有顏色換掉。
 - **模式名夾在兩個框線接頭之間**，像框上嵌了一個標籤：`╔═[1] Kinds════╡Drag╞═╗`、`╭─ YAML ────┤Visual├─╮`（接頭的寫法見
-  D3）。
+  [components/layout/panel](../components/layout/panel-zh_TW.md)）。
 
 **為什麼**：模式一定是特殊情況，裡面的鍵是移動、選取這類要直接、連續按的鍵，不是對某個 item 的動作，也沒有
 item / panel / global 可分。把它們做成一個能選、能執行的清單（連 `h j k l` 都要從清單執行）只是多繞一層；使用者
 要的只是「這裡能按什麼」，那正是 `?` 的工作。
+
+### K12 導覽字母保留給移動，hjkl 是方向鍵 `固定`
+
+不在打字的地方，`j k u d g G h l` 保留給移動，任何動作都不佔用。`h`/`j`/`k`/`l` 就是 `←`/`↓`/`↑`/`→`，意思看畫面的排法：
+
+- **有左右結構時**（tab、左右兩側、格子）：上下左右。`j`/`k` 在清單裡上下，`h`/`l` 往左右 —— 切 tab、跨到另一側、日曆的
+  前後一天。
+- **只有一維清單、沒有左右結構時**（表單、沒有 tab 的「一列一個值」panel、menu）：`h`/`k`（`←`/`↑`）往前，`j`/`l`（`↓`/`→`）
+  往後，不分選項橫排還是直排。
+- 一維清單放在有 tab 的 panel 裡：`h`/`l` 給 tab，`j`/`k` 照樣在清單裡移。
+- **`u`/`d` 半頁，`gg`/`G` 到頭、到尾**。用 `gg`，不用單按 `g`；不收 `Ctrl-U`/`Ctrl-D` 當別名（user 2026-10-07）。
+
+**為什麼**：hjkl 在家族裡是方向鍵，表單、panel、清單都靠它移動；一個 app 把其中一個綁成動作，使用者以為在移動，卻觸發
+了動作。有左右結構時左右就是左右（filu、kbu、webu 的 `h`/`l` 切 tab，sshu 的 `h`/`l` 跨到另一側）；沒有左右結構時左右鍵閒著，
+給它「往前往後」，使用者不用想選項是橫排還是直排。原本寫在 Family defaults D5 當成習慣（「`h` `l` 切換 panel 內的 tab」），
+2026-10-07 user 定成規則。
 
 ---
 
@@ -322,10 +348,10 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 |---|---|---|
 | label（menu 的列、statusbar chip、panel 標題） | 上表的括號標記 | `[r]ename`、`[Alt-t]erm` |
 | 句子（空狀態、toast、錯誤訊息，以及 menu 與 key reference 說明欄裡提到的鍵） | 鍵一律加方括號 | `Press [A] or [Space]`、`see App Log [!]`、`next tab [h]/[l]` |
-| hint、footer | `鍵:說明`，冒號前後不空格，項目之間一個空格 | `j/k:move Enter:run Esc:close` |
+| hint、footer | `鍵:說明`，冒號前後不空格，項目之間一個空格 | `Enter:delete Esc:cancel` |
 | key reference | 兩欄：鍵、說明；鍵不加括號、不加冒號 | 鍵欄 `Esc`、說明欄 `close this popup` |
 
-- hint 與 footer 的鍵和說明用不同顏色分開：鍵一個色，冒號與說明另一個色（家族預設見 D2）。說明可以是幾個詞，項目靠鍵的
+- hint 與 footer 的鍵和說明用不同顏色分開：鍵一個色，冒號與說明另一個色（見 [components/color](../components/color-zh_TW.md)）。說明可以是幾個詞，項目靠鍵的
   顏色分得出來。
 - **README**：內文提到的鍵用 Markdown 的 code 標（`` `Enter` ``、`` `Ctrl-C` ``），不加方括號；鍵名與寫法照上面。引用畫面上的
   label 照畫面寫（`[A]dd`）。
@@ -365,7 +391,7 @@ cursor 相關的動作，其後每組加上說明類型的標題。不需要分�
 ### M9 同一個鍵有兩處指示時，標出哪個會觸發 `概念`
 
 同一個熱鍵在不同 panel 做不同事、而兩處指示**同時看得到**時，要讓使用者一眼看出**在當前
-focus 按下去會觸發哪一個**。標示方式由 app 決定；家族的做法是會觸發的亮、不會的暗（D2）。
+focus 按下去會觸發哪一個**。標示方式由 app 決定；家族的做法是會觸發的亮、不會的暗（[components/color](../components/color-zh_TW.md)）。
 
 **為什麼**：兩個一樣的鍵同時出現在畫面上，使用者無從判斷按下去會做哪一件。
 
@@ -407,7 +433,7 @@ icon 的寬度估錯是最常見的來源。
 focus 所在的 surface 必須一眼可辨（怎麼標示由 app 決定），而切換 focus **不能讓任何內容位移**。
 
 - **focus 不能只靠顏色分辨**：要有顏色以外的差別（例：線型）。模式會把外框換成模式色（K11），只靠顏色的話，一進模式
-  就看不出 focus 在哪。家族預設是 focus 雙線 `╔═╗`、失焦圓角 `╭─╮`，兩者同寬（D2）。
+  就看不出 focus 在哪。家族預設是 focus 雙線 `╔═╗`、失焦圓角 `╭─╮`，兩者同寬（[components/color](../components/color-zh_TW.md)）。
 
 **為什麼**：使用者要知道按鍵會送到哪裡；而 focus 一換畫面就跳，眼睛就得重新定位。
 
@@ -415,15 +441,16 @@ focus 所在的 surface 必須一眼可辨（怎麼標示由 app 決定），而
 
 ## F Popup
 
-### F1 popup 分六類，一個時間只屬於一類 `固定`
+### F1 popup 分七類，一個時間只屬於一類 `固定`
 
-家族的 popup 只有這六類，每一類的按鍵意義固定：
+家族的 popup 只有這七類，每一類的按鍵意義固定：
 
 | 類別 | 使用者能做什麼 | 例 |
 |---|---|---|
 | **menu** | `j/k` 移動 cursor，`Enter` 或熱鍵執行那一列 | Space menu、global operation popup、選項清單、工作清單（`Enter` 打開那一列的全文） |
 | **confirm** | 讀一段提醒或警告，`Enter` 接受、`Esc` 取消（F6） | 刪除前的確認、離開的確認、帶著明細的「連線到 X？」 |
-| **input** | 打字（輸入態，K8），`Enter` 送出（K3），`Tab` 換欄或接受提議（K2） | 重新命名、網址列、host 表單 |
+| **input** | 打字（輸入態，K8），`Enter` 送出（K3），`Tab` 接受提議（K2）；一個 popup 一個值 | 重新命名、網址列 |
+| **form** | 一列一個值；`Tab` 一次跳一欄、hjkl 一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕或 `Ctrl-S` 送出（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark |
 | **note** | 唯讀，`j/k/u/d` 捲動；沒有可用 `Enter` 執行的選項清單 | key reference、YAML 檢視、App log |
 | **toast** | 從下方彈出的一行訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它 | 「已複製」、操作失敗 |
 | **terminal** | 跑在框裡的子程序，按鍵都給它，只有出口鍵屬於 app（K10） | kbu 的 Alterm、filu 的 shell |
@@ -436,27 +463,33 @@ focus 所在的 surface 必須一眼可辨（怎麼標示由 app 決定），而
   X 的明細），內容長時用 `j/k` 捲動；它仍然只是 confirm，不是 note 加 confirm，不必拆成兩個 popup。
 - **一個 popup 可以依階段換類別，但同一時間只屬於一類**。例：finder 打字時是 input，結果清單取得 focus 時是 menu；
   `Tab` 在打字與清單之間切換 focus，`Esc` 關掉整個 finder（K4：階段不是一層）。旁邊的預覽不取得 focus，不算另一個 surface。
-  **focus 在哪一邊要看得出來**：只有拿鍵的那一邊是亮的（家族預設見 D3）。
+  **focus 在哪一邊要看得出來**：只有拿鍵的那一邊是亮的（樣子見 [components/input/search](../components/input/search-zh_TW.md)）。
 - **input 可以附候選清單**（邊打字邊篩選的清單）：可列印的鍵一律是字元（`j`、`k` 也是，K8），只有方向鍵在候選之間移動，
-  `Enter` 送出選中的那一筆。它仍是 input，不是同時兩類。
+  `Enter` 把 focus 移到清單上選中的那一筆，在清單上再按 `Enter` 才送出（2026-10-07 user 定；原本是打字時 `Enter` 直接送出，
+  見 [components/input/search](../components/input/search-zh_TW.md)）。它仍是 input，不是同時兩類。
 - **多步驟的流程，每一步是自己的 popup**：例如排序先選欄位、再選方向，是兩個疊起來的 popup（F4 保留 source），不在同一個框裡
   換內容 —— 每一步有自己的 UX，也有自己打開時定好的高度（F7）。
-- 不屬於這六類的：splash（S 章）、app 自己畫成框的 panel 內容（例：webu 頁面自己的彈窗，webu 的偏離）。
+- **form 是 2026-10-07 加的第七類**（user 定）：原本多個欄位放在同一個 input popup 裡（例子寫「host 表單」）；表單改成只顯示值、
+  每一欄另開 input popup 之後，它不再是 input，也不屬於其他五類。
+- 不屬於這七類的：splash（S 章）、app 自己畫成框的 panel 內容（例：webu 頁面自己的彈窗，webu 的偏離）。
 
-**為什麼**：類別就是使用者對「這個框裡按鍵會怎樣」的預期。家族只有六類、每類意義固定，換一個 app
+**為什麼**：類別就是使用者對「這個框裡按鍵會怎樣」的預期。家族只有七類、每類意義固定，換一個 app
 也不用重學；同一時間混兩類的 popup，會讓同一組鍵在框裡有兩種可能。
 
 ### F2 開關都有動畫 `固定`
 
-popup 打開與關閉**都要有動畫**。動畫的形式與長度由 app 決定（家族的做法見 D3）。
+popup 打開與關閉**都要有動畫**。長度全家族統一（見 [components/layout/popup](../components/layout/popup-zh_TW.md)）；
+動畫的形式由 app 決定。
 
 **為什麼**：沒有動畫，popup 是「突然出現、突然消失」，使用者感受不到它疊上來、退下去
-的層次變化。多長才不打斷節奏，跟 popup 的大小與 app 的步調有關，所以不寫死。
+的層次變化。長度原本由 app 決定，2026-10-07 user 定為全家族統一。
 
 ### F3 `Esc` 立刻關閉任何 popup `固定`
 
 任何看得到的 popup —— 包括會自動消失的 toast —— 按 `Esc` 都**立即**開始關閉，不必等 toast
 倒數結束。關閉照常有動畫（F2）；已經在跑關閉動畫的 popup 不再理會 `Esc`，也不再接收其他按鍵。
+
+**例外**：內容改過的表單與 textarea，按 `Esc` 先開 confirm 問要不要放棄（components dialog/form、input/textarea；2026-10-07 起）。
 
 **為什麼**：使用者沒有等倒數的義務。已經在關的 popup 再收一次 `Esc`，或還吃其他鍵，使用者的
 下一個按鍵就會送錯地方。
@@ -497,7 +530,7 @@ popup 打開與關閉**都要有動畫**。動畫的形式與長度由 app 決�
   - **loading**：打開時內容還不確定（串流、載入中）的 popup，在 loading 期間高度可以變。loading 結束，高度就定下來。
   - **使用者操作造成的改變**：使用者在這個 popup 裡的動作讓列數改變（刪了一列、選了一項後多出一列、打字篩選候選），
     高度**可以**跟著變 —— 這是使用者預期的改變；app 也可以維持原高。原則是揭露的資訊要正確。
-- **loading 一定要揭露**：popup 在 loading 時，標題後面**一定**放一個輪轉的 loading icon（規格見 D3），跟高度會不會變無關；
+- **loading 一定要揭露**：popup 在 loading 時，標題後面**一定**放一個輪轉的 loading icon（規格見 [components/layout/popup](../components/layout/popup-zh_TW.md)），跟高度會不會變無關；
   loading 結束 icon 就消失。這裡的 loading 指的是**整個 popup** 的內容還沒到（例：清單的項目還沒載完）。若只是**某一個
   項目**本身是持續進來的資料流（例：一筆一直有資料的連線），loading 的是那個項目，不是 popup —— 那個項目怎麼揭露由 app 決定。
 - **位置**：垂直置中。toast 例外：固定在畫面下方，寬度照同一條規則。
@@ -514,16 +547,16 @@ popup：使用者修正時錯誤一直看得到，也不必先多按一次鍵關
 有 popup 開著時，**最上層那個 popup 以外的一切** —— 底下的 popup 與整個 base 畫面 —— 都用 dim 色畫。
 連續開 popup、popup 裡再開 popup 時也一樣：永遠只有最上層是亮的。
 
-- 底下的串流內容（log、遠端 session）與警示色（D2）也一起 dim（T2 的例外）。
+- 底下的串流內容（log、遠端 session）與警示色（components/color）也一起 dim（T2 的例外）。
 - **dim 的做法：把每一個顏色 —— 前景與背景 —— 都往底色淡化，形狀與版面原封不動。** 不可以剝掉顏色重畫、不可以丟掉
   背景、不可以把所有前景換成同一個 dim 色：那會拆掉靠背景畫出來的元素（powerline 膠囊的本體、cursor bar、選取反白）。
-  層色、警示色、串流內容照同一個淡化，自然成為各自顏色的 dim 版本。計算方式見 D2。
+  層色、警示色、串流內容照同一個淡化，自然成為各自顏色的 dim 版本。計算方式見 [components/color](../components/color-zh_TW.md)。
 - **toast 不觸發 dim**：除了 `Esc` 它不收鍵（F1），不是一層。
-- **邊框也一起 dim，但保留層色**：底下那幾層 popup 的邊框畫成它自己層色（D2）的 dim 版本，不是統一的 dim 色 ——
+- **邊框也一起 dim，但保留層色**：底下那幾層 popup 的邊框畫成它自己層色（components/color）的 dim 版本，不是統一的 dim 色 ——
   暗了，但仍看得出它是第幾層。
 
 **為什麼**：popup 都一樣寬（F7），上層會蓋住下層的左右邊界，看框已經分不出層次；亮暗是唯一還分得出來的線索，
-也正是「明度是 z 軸」（D2）的意思：只有正在操作的那一層是亮的。
+也正是「明度是 z 軸」（components/color）的意思：只有正在操作的那一層是亮的。
 
 ---
 
@@ -561,15 +594,18 @@ popup：使用者修正時錯誤一直看得到，也不必先多按一次鍵關
 **為什麼**：這個判斷寫不成通則 —— code 裡兩者長得一樣，截圖上也看不出來，只能從
 「使用者用完 target 之後，心裡還想不想看 source」推演。
 
-### T2 串流內容失焦不變暗 `固定`
+### T2 失焦的 panel 變暗，串流內容除外 `固定`
 
-app 若讓失焦的 panel 變暗，只能用在靜態內容；**串流內容（log、即時輸出、遠端 session）
-失焦時不變暗**。app 不做失焦變暗時，這條不適用。popup 蓋在上面時例外：那時注意力在 popup 上，底下一切照 F8 dim。
+失焦的 panel **用 F8 同一套 dim 把內容變暗**（邊框照 components/color 的失焦邊框）；**串流內容（log、即時輸出、遠端 session）
+失焦時不變暗**。popup 蓋在上面時例外：那時注意力在 popup 上，底下一切照 F8 dim。
 
 **為什麼**：變暗的意思是「焦點不在這，晚點再看也行」。串流內容沒有晚點 —— 資訊正在
 流過，變暗等於切斷使用者用餘光掃過的路徑。這也是「規則服務 UX」（Principle P0）的典型
 例子：「失焦變暗」的 origin UX 是「不搶焦點」，串流的 UX 是「用餘光看更新」—— 兩個目標
 剛好落在同一個 panel 上，規則該擴充，而不是犧牲串流。
+
+失焦變暗原本由 app 決定（家族預設不變暗）；2026-10-07 user 定為全家族一定要做：只有拿鍵的地方是亮的，跟 F8（只有最上層
+亮）、F1（finder 只有拿鍵的那一邊亮）同一套。
 
 ---
 
@@ -621,3 +657,134 @@ splash 畫的是該 app 的 `docs/icon.svg` —— terminu family 的 mark —�
 
 **為什麼**：splash 是家族的簽名。每個成員畫的都是自己那一版的家族 mark，按下 `V` 就認得出
 這是同一家的東西。
+
+---
+
+## E App 與環境
+
+app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度、發布、文件。2026-10-07 從 Family defaults 的 D6、D7 搬來（defaults
+拆掉，見 [README](README-zh_TW.md) 的對照表）。
+
+### E1 命令列：`version` 與 `help` `固定`
+
+每個 app 都要有：
+
+- **`<app> version`**：印出版號。`--version`、`-v` 可以當別名。
+- **`<app> help`**：印出命令列的用法（跟 app 裡 `?` 的 key reference 無關）。`-h`、`--help` 可以當別名。
+
+其他指令（例：`filu iconwidth`、`locku lock`、`webu <網址>`）由 app 決定。
+
+**為什麼**：使用者遇到一個命令列工具，第一個會試的就是 `help` 與 `version`。kbu 原本只有 `--version`，家族裡就有一個 app
+用 `<app> version` 問不到版號（2026-10-07 user 定）。
+
+### E2 環境變數的命名 `固定`
+
+`<大寫 app 名>__<變數名>` —— app 名後面兩個底線，變數名全大寫、單字之間一個底線（例：`FILU__ICON_WIDTH`、
+`KBU__ALTERM_LOGIN_SHELL`）。app 自己讀的變數（含測試用、傳給自己子程序的）都照這個寫。共用的名字：
+
+| 變數 | 意思 |
+|---|---|
+| `<APP>__CONFIG` | 設定**目錄**（設定檔在裡面） |
+| `<APP>__STATE` | 狀態目錄（app 有另外存狀態時） |
+| `<APP>__DATA` | 資料目錄 |
+| `<APP>__CACHE` | 快取目錄 |
+| `<APP>__ICON_WIDTH` | icon 佔幾格的手動覆寫（見下方 icon 的實際寬度） |
+| `TERMINU__ICON_WIDTH` | 家族共用：有 PTY 的 app 設給子程序，告訴它 icon 佔幾格（見下方） |
+
+例外：給別的程式讀的變數照對方的要求（例：sshu 經 ssh 帶到遠端的 `LC_SSHU_COLORTERM` —— OpenSSH 預設只轉送 `LANG` 與
+`LC_*`）。改名時不留舊名。
+
+**為什麼**：一眼看出變數屬於哪個 app，`TERMINU__` 一看就是全家族共用的（v0.1.21 user 定的家族規則）。
+
+### E3 設定與資料的位置 `固定`
+
+設定在 `$XDG_CONFIG_HOME/<app>`（fallback `~/.config/<app>`）；資料在 `~/.<app>/`。
+
+**為什麼**：五個 app 放在同一套位置，使用者知道去哪裡找、要備份哪些。
+
+### E4 需求：Nerd Font 與 truecolor `固定`
+
+- 需要 Nerd Font；PUA glyph 在程式碼裡寫成 code point。
+- 需要 truecolor terminal（24-bit 色）：catppuccin 的淡色與 components/color 的層色漸變在 256 色下分不出來，dim 也一律輸出 24-bit（components/color）。README 的需求段跟 Nerd Font 並列寫明。
+
+**為什麼**：家族的 icon、loading icon、radio 與 checkbox 的 glyph 都是 Nerd Font 的字；truecolor 的理由寫在上面。
+
+### E5 icon 的實際寬度 `固定`
+
+有些字型讓 icon 佔兩格（游標前進兩格），lipgloss 卻量成一格，框線就歪。要量的是**游標實際前進幾格**：
+icon 看起來比一格寬、但游標只前進一格的字型（glyph 溢出到隔壁），照一格算。app 啟動時探測（CPR：印一個 icon、問游標位置），
+所有量寬度的地方（補空白、截斷、置中、並排、框線、疊 popup）都走同一個顯示寬度函式；L4 的畫面測試也跑一次「icon 佔兩格」，
+每一種 popup 各開一次，量單獨的框與疊上去的整個畫面。
+
+- 參考實作：filu `internal/ui/width.go` —— `isWideIcon()`、`dispWidth()`、`dispClip()`、`padDisp()`、`dispCutLeft()`、
+  `compositeDisp()`（取代 overlay 的 `Composite`，介面相同）、`centerDisp()`（取代 `lipgloss.Place`）、`joinH()` / `joinV()`
+  （取代 `lipgloss.JoinHorizontal` / `JoinVertical`）；探測在 `iconwidth_unix.go` 的 `DetectIconWidth()`，在 `tea.NewProgram`
+  之前呼叫；測試照 `d6_test.go`。
+- 手動覆寫：環境變數 `<APP>__ICON_WIDTH`（filu 是 `FILU__ICON_WIDTH`）。探測只在 unix 做；Windows 預設一格，靠環境變數覆寫。
+- **在別的 app 的 PTY 裡**：探測由外層 app 的終端模擬器回答，它把 icon 當一格，量不到真的寬度。所以有 PTY 的 app 開子程序時，
+  在子程序的環境設 `TERMINU__ICON_WIDTH=<自己用的格數>`；每個 app 取 icon 寬度的順序是 `<APP>__ICON_WIDTH` → `TERMINU__ICON_WIDTH`
+  → 探測。這樣家族裡任何一個 app 跑在另一個的 PTY 裡都對（filu 在 kbu 的 Alterm 裡、kbu 在 filu 的 shell 裡）。環境變數過不了
+  ssh，遠端巢狀要靠 app 自己的通道（sshu 的巢狀指令通道）。
+- 疊 popup 時 popup 可能比畫面寬或高（調整終端機大小的那一格還是舊尺寸）：起點取 0、超出畫面的部分切掉，**不可以 panic**；
+  寬、高兩邊都比畫面大時也一樣切，不可以把整個框原樣交出去。測試的邊界要含這三種情況（filu 的 `TestD6CompositeDispOversized`）。
+- 做完的驗收：`internal/ui` 裡除了寬度函式本身，找不到 `lipgloss.Width`、`lipgloss.Size`、`lipgloss.Place`、
+  `ansi.StringWidth`、`ansi.Truncate` 的呼叫。
+
+**為什麼**：框線歪掉，整個畫面就讀不下去；而同一個字型在不同終端機上，游標前進的格數可能不同，只能在執行時量。
+
+### E6 發布、測試與家族資產 `固定`
+
+- 單一靜態 binary，goreleaser 建置；`install.sh` / `uninstall.sh`（`curl | sh`、免 sudo），
+  另發到 Homebrew tap `vulcanshen/homebrew-tap`。
+- 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（L4）。
+- `docs/icon.svg` 是家族 mark；splash（S 章）由它逐格畫出，用測試守住兩者一致。
+- `V` 保留給 splash（S1）。
+- demo gif 用 VHS 錄，腳本放在 `.local/demos/`；README 只放一張代表性的 gif。
+
+**為什麼**：五個 app 同一種安裝、移除與發布方式，使用者裝過一個就會裝其他的。
+
+### E7 文件 `固定`
+
+**README**：`README.md`（英文）與 `README-zh_TW.md`（繁中）內容對齊，只寫使用者需要知道的：
+
+1. 標題、badge、語言切換（`English · 繁體中文`）
+2. 一句話定位 + 一段「它能做什麼」
+3. **一張**代表性的 demo gif
+4. 特色：使用者拿到什麼，不寫怎麼做到的
+5. 安裝：前置需求、安裝方式、第一次啟動會發生什麼、移除
+6. 快速開始
+7. 使用方式與按鍵
+8. 設定與資料存放位置
+9. 限制（用使用者的語言寫）
+10. 相關連結：CHANGELOG、`docs/dev-remarks.md`
+11. terminu family：遵循 terminu design、列出家族其他成員
+12. License
+
+不寫死版本號的「現況」段 —— 版本交給 badge 與 CHANGELOG。
+
+README 講 icon 寬度的地方（通常在前置需求的 Nerd Font 那一段），寫出 `<APP>__ICON_WIDTH` 與 `TERMINU__ICON_WIDTH` 兩個變數，並說明
+後者是全家族共用的：設一次，家族每個 app 都讀到；在家族 app 的 PTY 裡跑時，外層 app 會替它設好（E5）。寫法不限（表格或一句話）。
+不舉「一定佔兩格」的字型當例子 —— 同一個字型在不同終端機上游標前進的格數可能不同。
+
+**`docs/dev-remarks.md`**（繁中）：開發者開發過程中要提醒自己、或 AI 協作時記下的決策。
+
+```
+# <app> 開發者備忘
+前言（一句話 + 遵循 terminu design principle）
+## 運作方式
+## 設計決定（決定 + 理由）
+## 已否決，不要重提
+## 已知的牆與未做
+## 偏離 tdp（哪一條、在哪裡、為什麼）
+## 設計文件導讀
+## 建置與開發
+## 發布（含踩過的坑）
+```
+
+**`docs/<app>-terminu-fix.md`**：尚未符合 tdp 的地方，逐條待修（違反了哪一條、在哪裡、現況、該怎麼改）。
+
+**其他設計文件**（`ui.md`、`ux.md`、`function.md`……）由各 app 自己決定要不要有、怎麼切，
+tdp 不規定；dev-remarks 的「設計文件導讀」一節負責指路。不另外維護「逐條對照 tdp」的文件
+—— 符合的不必記，偏離的寫在 dev-remarks，違反的寫在 fix.md。
+
+**為什麼**：README 是工具的介紹，開發者的備忘另外放（user 的 README 規範，2026-09-26 在 webu 立）。

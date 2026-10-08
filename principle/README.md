@@ -8,7 +8,25 @@ tdp is the detailed specification behind [terminu design](../README.md), in thre
 |---|---|---|
 | **Principle** | this document | The spirit: what it aims for, and why |
 | **Rules** | [rules.md](rules.md) | Must hold, each with its reason; split into a fixed zone and a concept zone (P5) |
-| **Family defaults** | [defaults.md](defaults.md) | Family default recommendations: the concrete values, colour system and habits the terminu family shares. Using them is the easy path; not using them is not a violation |
+| **Components** | [components](../components/README.md) | Component specs: frames, dialogs, and how each kind of input looks and works; required, choosing only among the listed options |
+
+**Family defaults were dissolved** (2026-10-07, tdp v0.2.0): of the former third layer, Family defaults (D1–D7), what the
+whole family must follow moved into the Rules or the [Components](../components/README.md), and the rest went. Where the
+old numbers went:
+
+| Old number | Now |
+|---|---|
+| D1 footer, screen chips, narrow threshold, empty states | [components/layout/screen](../components/layout/screen.md) |
+| D1 panel capsules, D3 mode name label | [components/layout/panel](../components/layout/panel.md) |
+| D2 colour system | [components/color](../components/color.md) |
+| D3 popup frame, opening and closing animation, loading icon, cancelling and completing, implementation notes | [components/layout/popup](../components/layout/popup.md) |
+| D3 confirm hint, toast, finder focus | the components [dialog/confirm](../components/dialog/confirm.md), [dialog/toast](../components/dialog/toast.md), [input/search](../components/input/search.md) |
+| D4 Menus | [components/dialog/menu](../components/dialog/menu.md) |
+| D5 navigation letters kept for movement | Rules K12 |
+| D5 `Alt-Esc` always confirms first | Rules K10 |
+| D5 the rest (hotkey table, case carrying scope, `x` deletes) | dropped: tdp does not define hotkeys (P5); each app's README gives its own |
+| D6 distribution and environment | Rules E2–E6 |
+| D7 documentation | Rules E7 |
 
 tdp answers one question: **what makes a terminal UI usable without reading the docs?**
 
@@ -136,14 +154,12 @@ Take core keys as an example:
   not on the no-prior-learning path — everything the user looks for is in `Space` and
   `?`. tdp governs only two things about hotkeys: they **must appear in a menu, marked
   with `[]`**, and they **may not take over a core key**.
-- **Colour.** tdp provides a complete set of presentation rules, calculations and colour
-  codes in [Family defaults D2](defaults.md#d2-colour-system), which an app that doesn't
-  want to deal with colour can adopt as is; whether to follow it, and whether meaning may
-  rely on colour alone, is up to each app.
 - **Symbol vocabulary.** Which icon font, which glyphs, how many cells they take in which
   terminal and CJK font — all bound to concrete environments and left to each app. Other
   rules still constrain how symbols are used (P4 dedication, stable width, explicitly
   marked hotkeys).
+
+Colour used to be on this list too; since 2026-10-07 tdp sets it, see [components/color](../components/color.md).
 
 ---
 

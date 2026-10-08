@@ -1,5 +1,32 @@
 # Changelog
 
+## v0.2.0 — 2026-10-08
+
+- **Components** (new, `components/`): the component specs under tdp, and they are required — an app picks only among
+  the listed options, and a missing option is a gap in tdp. Three nouns: a *popup* is the floating frame
+  (`layout/popup`), an *input* is a popup for one kind of value (`input/`), a *dialog* is any other popup
+  (`dialog/`: form, menu, confirm, note, toast, terminal). Also `color`, `layout/screen` and `layout/panel`, and
+  twelve inputs: text, password, number, textarea, search, select, radio, checkbox, slider, datetime-picker,
+  color-picker, file-picker
+- **Family defaults dissolved**: what the family must follow moved into the Rules or the Components, the rest went; the
+  principle README maps D1–D7 to where they are now. Colour (former D2) is now set by tdp
+- K2: a form switches fields with `Tab` and always has `Shift-Tab`; an input popup has one field, so `Tab` accepts a
+  suggestion; a popup with two areas switches areas
+- K3: in an input popup `Enter` submits the one value; in a form `Enter` acts on the focused item and the button or
+  `Ctrl-S` submits
+- K8: a form is not in the input state; `Tab` in the input state accepts a suggestion or switches areas
+- K10: `Alt-Esc` always confirms first (from D5)
+- K12 (new): `j k u d g G h l` are kept for movement; hjkl are the arrow keys — directions where there is a left-right
+  structure, back and on in a one-dimensional list; `u`/`d` half a page, `gg`/`G` top and bottom
+- F1: **form** is a seventh class (a form shows values and opens an input popup per field, so it is no longer an input);
+  a typing row with a candidate list moves the focus to the list on `Enter`, and a second `Enter` submits
+- F2: the animation length is the same across the family (components/layout/popup)
+- F3: the exception — a changed form or textarea asks before discarding on `Esc`
+- M5: the hint example lists no movement keys (hints never do)
+- T2: unfocused panels are dimmed as in F8, streaming content excepted — now required
+- E (new chapter, App and environment): E1 every app has `<app> version` and `<app> help`; E2–E6 from D6
+  (environment variables, paths, Nerd Font and truecolor, icon width, releases); E7 from D7 (documents)
+
 ## v0.1.23 — 2026-09-29
 
 - D7: a README names both `<APP>__ICON_WIDTH` and the family-wide `TERMINU__ICON_WIDTH` where it
