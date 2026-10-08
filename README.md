@@ -6,8 +6,7 @@
 
 terminu design is a design language for terminal UIs: a handful of keys that mean the
 same thing on every screen of every app, plus two entry points that are always there —
-`Space` tells you what you can do here, `?` tells you what you can do anywhere in the
-app. Learn it once and every app in the family works the same way.
+`Space` tells you what you can do here, `?` tells you which keys work here. Learn it once and every app in the family works the same way.
 
 ---
 
@@ -16,7 +15,7 @@ app. Learn it once and every app in the family works the same way.
 | Key | Meaning |
 |---|---|
 | `Tab` | Move to the next thing on the same level: between panels, between form fields |
-| `Enter` | Do the obvious thing to what is selected; in a form, submit |
+| `Enter` | Do the obvious thing to what is selected; in an input popup, confirm the value |
 | `Esc` | Cancel, close the top layer — one layer at a time, never closes the app |
 | `Space` | What can I do here? |
 | `?` | Which keys work here? (read-only) |
@@ -36,7 +35,8 @@ When in doubt, press `Space`.
   not the UX sacrificed.
 - **What is fixed, and what is left to the app, is spelled out.** Core-key behaviour is
   fixed; everything else states what must be achieved and leaves the how to each app;
-  colour and how components look are set by the components; hotkeys are each app's own.
+  colour and how components look are set by the components; hotkeys on panels are each
+  app's own.
 
 The details are in the **[terminu design principle (tdp)](principle/)**:
 

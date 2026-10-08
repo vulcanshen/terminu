@@ -5,8 +5,8 @@
 **不看文件就能用的 terminal UI。**
 
 terminu design 是一套 terminal UI 的設計語言：一組跨畫面、跨 app 意義不變的按鍵，
-加上兩個永遠找得到的入口 —— `Space` 告訴你「這裡能做什麼」，`?` 告訴你「整個 app
-能做什麼」。學一次，家族裡每個 app 都一樣。
+加上兩個永遠找得到的入口 —— `Space` 告訴你「這裡能做什麼」，`?` 告訴你「這裡能按
+什麼鍵」。學一次，家族裡每個 app 都一樣。
 
 ---
 
@@ -15,7 +15,7 @@ terminu design 是一套 terminal UI 的設計語言：一組跨畫面、跨 app
 | 鍵 | 意義 |
 |---|---|
 | `Tab` | 換到同一層的下一塊：panel 之間、表單欄位之間 |
-| `Enter` | 對選中的東西做那件理所當然的事；在表單裡是送出 |
+| `Enter` | 對選中的東西做那件理所當然的事；在 input popup 裡是確定這個值 |
 | `Esc` | 取消、關掉最上層，一次一層，永遠不會把 app 關掉 |
 | `Space` | 這裡能做什麼 |
 | `?` | 這裡能按什麼鍵（唯讀） |
@@ -31,7 +31,7 @@ terminu design 是一套 terminal UI 的設計語言：一組跨畫面、跨 app
 - **一個元素、一個意義。** 一個顏色、一個鍵、一種框線，只代表一件事。
 - **規則服務 UX。** 規則擋住了好的 UX 時，擴充規則，而不是犧牲 UX。
 - **固定的與交給 app 的分清楚。** core key 的行為寫死；其餘只規定要達成什麼，
-  怎麼做由各 app 決定；配色與元件的樣子由 components 規定，熱鍵由各 app 決定。
+  怎麼做由各 app 決定；配色與元件的樣子由 components 規定，panel 上的熱鍵由各 app 決定。
 
 完整內容在 **[terminu design principle（tdp）](principle/README-zh_TW.md)**：
 

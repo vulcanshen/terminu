@@ -1,35 +1,36 @@
-# checkbox（開關）
+# checkbox（開關，或勾好幾個）
 
 **Language**: [English](checkbox.md) · 繁體中文
 
 ## 用途
 
-一個開關，或從一組裡勾好幾個。開關與選項少的一組直接在表單或 panel 上翻；選項多的開 popup。
+一個開關，或從一組裡勾好幾個。開關與五個以內的一組，直接畫在表單或 panel 上、在原地翻；超過五個，開 checkbox popup
+（例：kbu 的 namespace picker）。checkbox popup 是 finder 的一種（[`input/finder`](finder-zh_TW.md)）：這裡只寫不同的地方。
 
 ## 長相
 
-選好幾個值的 popup（kbu 的 namespace picker）的列，跟 [`select`](select-zh_TW.md) 用同一套標記：
+- glyph：勾了 `nf-md-checkbox_marked`（U+F0132，實心打勾）、沒勾 `nf-md-checkbox_blank_outline`（U+F0131）。勾了的字是 Green（生效中）。
+- **checkbox popup**：finder 的骨架，沒有預覽；每一列前面放 checkbox glyph（finder 的「清單的標記」）；寬度照選項確定。
 
-**每一列最前面放標記**（user 2026-10-07 定，照 kbu 的呈現方式）：
-
-| | 每一列前面 | 選中的那一列 |
-|---|---|---|
-| **select（單選）** | radio glyph：選中 `󰐾`、沒選 `󰐽` | 字是 Green |
-| **checkbox 組（多選）** | checkbox glyph：勾了、沒勾 | 字是 Green |
-
-- 標記在左邊，眼睛往下掃就看得到；所有列的字對齊；選中的那一列有顏色（[`color`](../color-zh_TW.md) 的 Green 是「選中的值」）。
-  cursor 停在選中的列上時，底色照 cursor 列、字照樣是 Green。
-- 單選用 radio glyph（表單上的 radio 欄位也是這一組），多選用 checkbox glyph：看 glyph 就知道是單選還是多選，畫在表單上
-  還是 popup 裡都一樣。
-- 現況：kbu 的 namespace picker 就是多選這樣；kbu 的 context picker 用 `* `、webu 的 select 在右邊寫灰字 `current`，要改。
+**為什麼**：方框打勾、圓框一點（radio），是 GUI 表單的慣例，誰都看得懂（Principle P1）。打勾用實心的那一個：TUI 裡 outline 的
+glyph 線條可能太細，看不清楚。
 
 ## 按鍵
 
-**選好幾個的 popup**（user 2026-10-07 定，照 kbu 的 namespace picker）：
+**表單或 panel 上**：`Enter` 在原地翻，focus 不動，馬上生效。
 
-- **`Enter`**：勾或取消勾 cursor 那一列，**立刻生效**，popup 不關。從表單打開的，立刻寫回表單那一欄（表單記「改過了」）；
-  單獨打開的，立刻套用（kbu：panel 2 馬上重抓）。
-- **`Esc`**：關掉。勾一下本身就是確定，沒有東西要取消 —— 跟表單上的開關按 `Enter` 立刻翻是同一回事。
-- hint：`Enter:toggle Esc:close`。選項多時 `/` 篩選，照 [`select`](select-zh_TW.md)。
-- 不加 `Ctrl-S`（user：kbu 的做法比較直觀）。我先提「勾的先記著、`Ctrl-S` 才確定、`Esc` 放棄」，理由是套用表單那一輪的
-  「input popup 的 `Esc` 是這一欄不改了」—— 那條是替要打字、`Enter` 才確定的 input popup 定的，不適用勾選。
+**checkbox popup**：
+
+- 打開時 focus 在清單上。
+- **`Space`**：勾或取消勾 cursor 那一列 —— 只改畫面上的勾，不寫回、不生效（Rules K5 的例外）。
+- **`Enter`**：把目前勾的整組一次寫回去、popup 關掉，這時才生效。從表單打開的，寫回那一欄、表單記成改過、focus 留在那一欄；
+  單獨打開的，這時才套用（例：kbu 的 panel 2 這時才重抓）。什麼都沒改就按 `Enter`：不改，關掉。
+- **`Esc`**：取消，勾的都不算，值維持打開時的樣子。不先問：一個 popup 只有一個值。
+- 打字列照 finder；選項多時打字篩選。
+- **hint**：清單 `Enter:apply Space:toggle Tab:filter Esc:cancel`；打字列 `Enter/Tab:list Esc:cancel`。
+
+例：打開時勾的是 `default`。依序按 `j` `Space`（勾 `kube-system`）、`j` `Space`（勾 `monitoring`），這時 panel 2 還沒變。按 `Enter`，
+三個一起生效；按 `Esc`，還是只有 `default`。
+
+**為什麼**：`Space` 勾選是大家熟的做法（GUI 的核取方塊、很多 TUI 的多選清單）；`Enter` 留給確定整組，跟其他 input popup 一樣；
+`Esc` 也就回到「取消」。

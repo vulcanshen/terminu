@@ -1,26 +1,57 @@
-# menu (choose a row from a list)
+# menu (choose a row to run)
 
 **Language**: English · [繁體中文](menu-zh_TW.md)
 
-Look and keys moved here from defaults D4 on 2026-10-07 (from a default to a requirement).
-
 ## Purpose
 
-Choosing a row from a list and running it (F1): the Space menu, the global operation popup, option lists, task lists (`Enter` opening a row's full text).
+A list without search, choosing a row to run it (Rules F1): the Space menu, the global operation popup, a sort picker, a
+jobs list (`Enter` opening the row's full text). A list that needs search is a finder
+([`input/finder`](../input/finder.md)); choosing a value to be written back is a select
+([`input/select`](../input/select.md)).
 
 ## Look
 
-- Menu rows: ` [k]label` left-aligned, description right-aligned and dim.
-- If the hotkey is the label's first letter, bracket it in place (`[r]ename`); if it is inside the word, bracket it there
-  (`UR[L]`); otherwise put it in front (`[n] New`). Core keys are written into the label: `[Enter] Edit`.
-- A label that already shows its key (`[/] Search`) is not bracketed again.
-- The cursor row: the popup's layer colour as background, dark bold text (defaults D3's finder paragraph says "like a
-  menu's cursor row").
-- The menu title is the focused panel's `[N] label`.
-- Popup width follows Rules F7 throughout; a description too long for it wraps or is cut inside the box, never widening
-  the box.
+```
+╭─ ≡ [2] Hosts ─────────────────────────────────╮
+│                                               │
+│ item operation                                │  ← section title
+│▓[Enter] Connect▓▓▓▓▓▓▓▓▓▓▓what it is, then in▓│  ← cursor
+│ [E]dit                       change this host │
+│ [X] Delete             remove from hosts.yaml │
+│ ───────────────────────────────────────────── │  ← separator
+│ panel operation                               │
+│ [A]dd                              a new host │
+│ [/] Search          name, user, host, port, … │  ← description too long
+│ ───────────────────────────────────────────── │
+│ Global operation    actions for the whole app │
+│                                               │
+╰─ Enter:run Esc:close ─────────────────────────╯
+```
+
+(`≡` stands for `nf-fa-bars`.)
+
+- **Each row**: the label in Text, `[x]` in the label's colour; how hotkeys are marked is in Rules M5. The description in
+  Overlay0, right-aligned, one cell from the right border; when too long it is cut at the end with `…` (M5: one line).
+- **Section titles**: Overlay0, indented one cell, not bold; the cursor skips them.
+- **Separators**: drawn like the separator in [`layout/popup`](../layout/popup.md) (not joined to the border, Overlay0);
+  the cursor skips them.
+- **The cursor**: the layer colour as background, bold Base text, filling the whole inner width; the whole row is in
+  Base.
+- **Disabled rows**: the whole row in Surface2; the cursor skips them, and their hotkeys do nothing (Rules M6).
+- **Title**: `nf-fa-bars` plus text. The Space menu shows the focused panel's `[N] label` (what it lists is what that
+  panel can do); any other menu says what it does (`Global operation`, `Sort by`).
+- **The `Global operation` row** (Rules M2): no hotkey, and the description is always `actions for the whole app`.
+- **Width**: every row is known when it opens, so it follows "content width known when it opens" in
+  [`layout/popup`](../layout/popup.md).
+
+**Why**: with descriptions right-aligned, names and descriptions form two columns, and the eye running down the names is
+not interrupted by the descriptions. The cursor takes the layer colour as background: in a family popup, the block on the
+layer colour is where `Enter` acts (in a form too).
 
 ## Keys
 
-- `j/k` move (wrapping), `Enter` runs, hotkeys run directly; bottom hint `Enter:run Esc:close` (no movement keys, see the hint in
-  [`layout/popup`](../layout/popup.md); D4 had `j/k:move Enter:run Esc:close`).
+- `j/k` move, wrapping at both ends; `u/d` half a page, `gg/G` to the top and the bottom (Rules K12).
+- `Enter` runs the cursor row; a hotkey runs its row directly.
+- `Esc` closes it (the global operation popup returns to the Space menu, Rules F4); the Space menu also closes on another
+  `Space` (Rules K5).
+- **Hint**: `Enter:run Esc:close` (no movement keys, see the hint in [`layout/popup`](../layout/popup.md)).

@@ -4,28 +4,33 @@
 
 ## Purpose
 
-A value within a range, where a position says more than a number (e.g. a ratio, a brightness). It has three attributes: bottom, top and step.
+A value within a range, used where a position says more than a number (e.g. a ratio, a brightness). For typing an exact
+number use [`number`](number.md).
 
 ## Look
 
-Settled by the user, 2026-10-07.
+In a form or a panel: a track and the number.
 
 ```
 Red          ━━━━━━●━━━━━ 128
 ```
 
-- **In a form or a panel**: a track and the number. The track is a heavy line `━` (the user: the old `─` was too thin),
-  with `●` where the value is. Its width and colour are the app's (webu and locku use 12 cells; locku draws the track in
-  its channel's colour).
-- **What `Enter` opens is a [`select`](select.md)** whose options are the numbers from bottom to top, one per step: a
-  radio glyph before every row, the chosen one in Green (webu's and locku's `current` changes), the cursor opening on the
-  current value, `j`/`k` to move, `Enter` to choose, and **`/` to filter by typing a number** (`20` leaves 20, 120,
-  200–209…; the user: "do it"). A slider has no keys of its own; in a one-value-per-row panel `h`/`l` move between items,
-  so they cannot drag it in place.
+- The track is a heavy line `━`, with `●` where the value is. The track's width and colour are the app's choice (e.g.
+  webu and locku use 12 cells; locku draws the track in its channel's colour).
+
+**Why**: a thin `─` is too faint in many fonts to be seen as a track.
+
+## Keys
+
+- `Enter` opens a [`select`](select.md) whose options are the numbers from bottom to top, one per step: the cursor opens
+  on the current value, `j`/`k` move, `Enter` chooses; typing a number filters (typing `20` leaves 20, 120, 200–209…).
+- A slider has no keys of its own; in a one-value-per-row panel `h`/`l` move between items, so they cannot drag it in
+  place.
 
 ## Value
 
-- **Every slider has three attributes, bottom, top and step** (the user, 2026-10-07): without them the number list cannot
-  know how many options it has. An unset step is `(top − bottom) / 10`. A step may be a fraction (webu lists integers
-  only today; noted as not done).
-- webu's "multiply the step by 10 beyond 10000 rows" gives way to the step; a long list is narrowed with `/`.
+- **Every slider must have three attributes, bottom, top and step**: without them the number list cannot know how many
+  options it has. An unset step is `(top − bottom) / 10`. A step may be a fraction.
+
+**Why**: ten steps by default keep the list short enough to take in at a glance while still telling sizes apart; a list
+with many rows relies on filtering.
