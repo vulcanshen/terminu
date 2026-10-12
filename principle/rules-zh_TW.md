@@ -747,7 +747,9 @@ app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度�
 | `<APP>__DATA` | 資料目錄 |
 | `<APP>__CACHE` | 快取目錄 |
 | `<APP>__ICON_WIDTH` | icon 佔幾格的手動覆寫（E5） |
+| `<APP>__POWERLINE_WIDTH` | powerline 符號佔幾格的手動覆寫（E5） |
 | `TERMINU__ICON_WIDTH` | 家族共用：有 PTY 的 app 設給子程序，告訴它 icon 佔幾格（E5） |
+| `TERMINU__POWERLINE_WIDTH` | 家族共用：有 PTY 的 app 設給子程序，告訴它 powerline 符號佔幾格（E5） |
 
 例外：給別的程式讀的變數照對方的要求（例：sshu 經 ssh 帶到遠端的 `LC_SSHU_COLORTERM` —— OpenSSH 預設只轉送 `LANG` 與
 `LC_*`）。改名時不留舊名。
@@ -779,25 +781,37 @@ app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度�
 有些字型讓 icon 佔兩格（游標前進兩格），量寬度的函式卻量成一格，框線就歪。要量的是**游標實際前進幾格**：
 icon 看起來比一格寬、但游標只前進一格的字型（glyph 溢出到隔壁），照一格算。
 
-- **執行時量**：app 啟動時探測（CPR：印一個 icon、問游標位置）。所有量寬度的地方（補空白、截斷、置中、並排、框線、
-  疊 popup）都走同一個顯示寬度函式。
-- **覆寫與順序**：取 icon 寬度的順序是 `<APP>__ICON_WIDTH` → `TERMINU__ICON_WIDTH` → 探測。探測只在 unix 做；Windows
-  預設一格，靠環境變數覆寫。
-- **在別的 app 的 PTY 裡**：探測由外層 app 的終端模擬器回答，它把 icon 當一格，量不到真的寬度。所以有 PTY 的 app 開子程序時，
-  在子程序的環境設 `TERMINU__ICON_WIDTH=<自己用的格數>`。這樣家族裡任何一個 app 跑在另一個的 PTY 裡都對（filu 在 kbu 的
-  Alterm 裡、kbu 在 filu 的 shell 裡）。環境變數過不了 ssh，遠端巢狀要靠 app 自己的通道（sshu 的巢狀指令通道）。
+- **量兩種字，各自記**：
+  - **icon**：Nerd Font 的 icon，也就是 Private Use Area 的字（U+E000–U+F8FF、U+F0000–U+FFFFD），下面的 powerline 符號除外
+    （例：menu 區塊標題的六角形 U+F02D8 是 icon）。
+  - **powerline 符號**：U+E0A0–U+E0D7 —— 膠囊的兩端與接縫、popup 標題的圓角、cursor 尾端的箭頭。
+- **執行時量**：app 啟動時探測（CPR：印一個 icon、問游標位置；再印一個 powerline 符號、再問一次）。所有量寬度的地方
+  （補空白、截斷、置中、並排、框線、疊 popup）都走同一個顯示寬度函式。
+- **覆寫與順序**：兩種各自照這個順序取 —— icon 是 `<APP>__ICON_WIDTH` → `TERMINU__ICON_WIDTH` → 探測；powerline 符號是
+  `<APP>__POWERLINE_WIDTH` → `TERMINU__POWERLINE_WIDTH` → 探測。探測只在 unix 做；Windows 預設一格，靠環境變數覆寫。
+- **在別的 app 的 PTY 裡**：探測由外層 app 的終端模擬器回答，它把兩種都當一格，量不到真的寬度。所以有 PTY 的 app 開子程序時，
+  在子程序的環境設 `TERMINU__ICON_WIDTH` 與 `TERMINU__POWERLINE_WIDTH`（自己用的格數）。這樣家族裡任何一個 app 跑在另一個的
+  PTY 裡都對（filu 在 kbu 的 Alterm 裡、kbu 在 filu 的 shell 裡）。環境變數過不了 ssh，遠端巢狀要靠 app 自己的通道（sshu 的
+  巢狀指令通道）。
 - **疊 popup 不能當掉**：popup 可能比畫面寬或高（調整終端機大小的那一格還是舊尺寸）：起點取 0、超出畫面的部分切掉，
   **不可以 panic**；寬、高兩邊都比畫面大時也一樣切，不可以把整個框原樣交出去。
-- **測試**：L4 的畫面測試也跑一次「icon 佔兩格」，每一種 popup 各開一次，量單獨的框與疊上去的整個畫面；邊界要含 popup
-  比畫面寬、比畫面高、兩邊都大三種情況。
+- **測試**：L4 的畫面測試另外跑兩次 ——「icon 佔兩格、powerline 符號一格」與「兩種都佔兩格」，每一種 popup 各開一次，量單獨的框
+  與疊上去的整個畫面；邊界要含 popup 比畫面寬、比畫面高、兩邊都大三種情況。
 
 > **實作參考（不是規定）**：filu `internal/ui/width.go` —— `isWideIcon()`、`dispWidth()`、`dispClip()`、`padDisp()`、
 > `dispCutLeft()`、`compositeDisp()`（取代 overlay 的 `Composite`，介面相同）、`centerDisp()`（取代 `lipgloss.Place`）、
 > `joinH()` / `joinV()`（取代 `lipgloss.JoinHorizontal` / `JoinVertical`）；探測在 `iconwidth_unix.go` 的 `DetectIconWidth()`，
 > 在 `tea.NewProgram` 之前呼叫；測試照 `d6_test.go` 與 `TestD6CompositeDispOversized`。做完可以這樣驗：`internal/ui` 裡除了
 > 寬度函式本身，找不到 `lipgloss.Width`、`lipgloss.Size`、`lipgloss.Place`、`ansi.StringWidth`、`ansi.Truncate` 的呼叫。
+> filu 只量 icon，powerline 符號一律當一格；powerline 符號的寬度照同樣的方式另外加一個。
+>
+> bubbletea v1 的 renderer 會在它量起來比終端機窄的列後面補「清到行尾」（`ESC [ K`），它量寬度時 icon 算一格。icon 佔兩格時
+> 那一列其實已經寫滿、游標停在最後一欄，照 xterm 規矩的終端機這時會把最後一格（右框）一起清掉。L4 保證每一列都滿寬，這個清除
+> 永遠多餘：在輸出那一層拿掉它。
 
-**為什麼**：框線歪掉，整個畫面就讀不下去；而同一個字型在不同終端機上，游標前進的格數可能不同，只能在執行時量。
+**為什麼**：框線歪掉，整個畫面就讀不下去；而同一個字型在不同終端機上，游標前進的格數可能不同，只能在執行時量。icon 與
+powerline 符號分開量，是因為同一台終端機上兩者可能不同：Nerd Font 把 powerline 符號做成一格、好跟框線接起來，所以 icon
+佔兩格的地方它們常常仍是一格；也有讓兩者都佔兩格的設定。只用一個寬度，總有一種情況會歪。
 
 ### E6 發布、測試與家族資產 `固定`
 
@@ -829,8 +843,9 @@ icon 看起來比一格寬、但游標只前進一格的字型（glyph 溢出到
 
 不寫死版本號的「現況」段 —— 版本交給 badge 與 CHANGELOG。
 
-README 講 icon 寬度的地方（通常在前置需求的 Nerd Font 那一段），寫出 `<APP>__ICON_WIDTH` 與 `TERMINU__ICON_WIDTH` 兩個變數，並說明
-後者是全家族共用的：設一次，家族每個 app 都讀到；在家族 app 的 PTY 裡跑時，外層 app 會替它設好（E5）。寫法不限（表格或一句話）。
+README 講 icon 寬度的地方（通常在前置需求的 Nerd Font 那一段），寫出 icon 的 `<APP>__ICON_WIDTH`、`TERMINU__ICON_WIDTH` 與
+powerline 符號的 `<APP>__POWERLINE_WIDTH`、`TERMINU__POWERLINE_WIDTH`，並說明 `TERMINU__` 的是全家族共用的：設一次，家族每個
+app 都讀到；在家族 app 的 PTY 裡跑時，外層 app 會替它設好（E5）。寫法不限（表格或一句話）。
 不舉「一定佔兩格」的字型當例子 —— 同一個字型在不同終端機上游標前進的格數可能不同。
 
 **`docs/dev-remarks.md`**（繁中）：開發者開發過程中要提醒自己、或 AI 協作時記下的決策。
@@ -868,7 +883,7 @@ tdp 不規定；dev-remarks 的「設計文件導讀」一節負責指路。不�
 | E2 環境變數的命名 | lib 自己讀的變數掛在 app 的名字底下（例：`<APP>__ICON_WIDTH`） | 照 E2（例：`SHOWCASE__…`） | 自己的變數照 E2 |
 | E3 設定與資料的位置 | — | 不存東西，不適用 | 自己做 |
 | E4 需求 | README 寫明 | — | README 寫明 |
-| E5 icon 的實際寬度 | 做到：探測、顯示寬度函式、替子程序設 `TERMINU__ICON_WIDTH` | — | lib 給的 |
+| E5 icon 的實際寬度 | 做到：探測（icon 與 powerline 符號）、顯示寬度函式、替子程序設 `TERMINU__ICON_WIDTH` 與 `TERMINU__POWERLINE_WIDTH` | — | lib 給的 |
 | E6 發布 | 打 git tag（Go module），沒有 binary；L4 的畫面測試要有 | 不發布；L4 的畫面測試要有 | 照 E6 |
 | S5 splash 畫的 icon | splash 的機制 | 家族 mark | 自己的 `docs/icon.svg` |
 | E7 README | lib 自己的結構：安裝是 `go get`、快速開始是程式碼、寫明範例 app 怎麼跑 | 不另外寫 | 照 E7 |

@@ -11,8 +11,8 @@ in [`screen`](screen.md).
   the same width, so switching shifts nothing (Rules L5, [`color`](../color.md)). Unfocused, the content is dimmed, streaming
   content excepted (Rules T2).
 - **Left of the top border: the `[N] label` capsule**, right after the corner. `N` is also the digit key that jumps
-  straight to that panel (within the current screen only, Rules K1). When the panel has tabs, they follow the capsule
-  (see the capsule chain below). While the panel is loading, the loading icon sits after the whole capsule chain (tabs
+  straight to that panel (within the current screen only, Rules K1). When the panel has tabs, `[N]` is a part of its
+  own, the tabs follow it, and the first tab's name is the label (see the capsule chain below). While the panel is loading, the loading icon sits after the whole capsule chain (tabs
   included), with one space on each side (e.g. `┏[2] PODSEVENTSYAML 󰪞 ━━━┓`; the loading in [`popup`](popup.md)).
 - **Right of the top border: the mode name** (Rules K11), set between two border junctions like a tag inlaid in the
   frame: `┏[1] KINDS━━━┫Drag┣━┓`, `┏━YAML━━━━┫Visual┣━┓`. The junctions take the frame's colour and follow its
@@ -61,8 +61,28 @@ are all drawn the same way:
 - **Unselected**: no fill, text in the chain's colour.
 - **Joins**: U+E0B0 (`nf-pl-left_hard_divider`) where the colour changes, U+E0B1 (`nf-pl-left_soft_divider`) between
   parts of the same colour.
+- **Colours of the ends and joins** (as in Powerline): the foreground is the fill of the part on the left, the
+  background the fill of the part on the right; an unselected part's fill counts as Base, and outside the chain is the
+  terminal's own background.
+  - Selected → unselected: U+E0B0, foreground the chain's colour, background Base; unselected → selected: U+E0B0,
+    foreground Base, background the chain's colour.
+  - Both unselected: U+E0B1 in the chain's colour; both selected: U+E0B1, foreground Base, background the chain's colour.
+  - Each end takes the fill of the part beside it: when the first or last part is unselected, that end is Base
+    (invisible on a Base terminal background, leaving one empty cell).
+  - Every end and join takes one cell (the powerline symbol width of Rules E5), so changing the selected part shifts no
+    text.
 - No space before or after the text inside a capsule: `[1] TABS`. The text is uppercase, the letters in a hotkey marker
   as written ("Uppercase" in the [components](../README.md)).
+- **A panel's tabs**: `[N]` is a part of its own and always selected; each tab after it is a part, and only the current
+  tab is selected. The panel has no other name: the first tab's name is the label. When `[N]` and the first tab are
+  both selected (on the first tab), a space joins them instead of a seam, so it looks like a panel without tabs:
+
+  ```
+  ┏[2] PODSEVENTSYAML━━━━━━━━━┓   ← on PODS: "[2] PODS" filled
+  ┏[2]PODSEVENTSYAML━━━━━━━━━┓   ← on EVENTS: "[2]" and "EVENTS" filled
+  ```
+
+- **Tabs after a popup title**: one line segment away from the rounded title (the title in [`popup`](popup.md)).
 - **When it does not fit**: first shrink the unselected ones to their first character or glyph (`[M] [F] [S]`); if it
   still does not fit, fold away unselected ones from the end and draw a `…` instead. The selected one always stays, and
   the frame is never stretched wider (Rules L4).
@@ -70,8 +90,12 @@ are all drawn the same way:
 **Why**: in the family a capsule means "a name" — what the panel is called, which page, which screen (Principle P4).
 With all these uses sharing one look, the user who recognises one recognises them all. Unselected ones do not use
 Surface2: Surface2 means disabled, and unselected pages would look as if they could not be switched to. The joins use the
-two symbols of the original Powerline, the most widely supported by fonts. Slanted ends here and a rounded popup title:
-a panel fixed on the screen and a popup floating above it can be told apart by the ends of their capsules.
+two symbols of the original Powerline, the most widely supported by fonts; they are coloured as in Powerline too, so a
+block of colour appears only on the selected part, which shows at a glance which one is selected, and no coloured point
+sticks out beside an unselected one. `[N]` is a part of its own: apart from the number only the current tab is lit, so
+there are never two blocks that both look current; on the first tab a space joins them, the same as a panel without tabs,
+and no panel with tabs needs a name of its own. Slanted ends here and a rounded popup title: a panel fixed on the screen
+and a popup floating above it can be told apart by the ends of their capsules.
 
 ## Ordinary lists
 
@@ -88,8 +112,10 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
 ```
 
 - **Cursor**: Subtext1 background, Base bold, across the whole inner width; the whole cursor row is Base text, and the
-  columns' own colours are not kept. Its rightmost cell (the right padding) holds U+E0B0 (`nf-pl-left_hard_divider`) in
-  Subtext1, an arrow pointing at the row; the text keeps one cell from the frame and does not move. When the panel is unfocused it is dimmed as a whole (Rules T2), the cursor with it,
+  columns' own colours are not kept. Its right padding holds U+E0B0 (`nf-pl-left_hard_divider`) in Subtext1, an arrow
+  pointing at the row. The padding is as wide as the arrow (the powerline symbol width of Rules E5: one cell as a rule;
+  on a terminal where it takes two, every row keeps two on the right), so the arrow fits and the text does not move.
+  When the panel is unfocused it is dimmed as a whole (Rules T2), the cursor with it,
   not given another colour.
 - **Header**: Blue, not bold, uppercase, fixed at the top and never scrolled. Each column holds numbers or text: numbers align right
   and sort by value (`9` before `10`), text aligns left and sorts as text. Two cells between columns
@@ -140,7 +166,7 @@ A panel with one value per row, like a settings screen (locku's preference, webu
   popup, and a switch or radio option the moment it is chosen in place. So there is no action row, and no "ask first when
   changed".
 - **The focus block**: a Subtext1 background with Base bold text, drawn the same way as the cursor of an ordinary list
-  (its rightmost cell is the arrow); it spans as in a form, from the start of the item to the panel's inner right edge (from the value for a field, from the
+  (its right padding is the arrow); it spans as in a form, from the start of the item to the panel's inner right edge (from the value for a field, from the
   option for an option).
 - **Labels**: uppercase; Blue normally, Surface2 when disabled, Red when its value has an error (over any other colour). They are
   dimmed with the panel when it is unfocused (T2). The label column is as wide as the longest label, with two cells

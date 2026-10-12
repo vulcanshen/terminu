@@ -872,7 +872,9 @@ for tests and ones passed to its own subprocesses) is named this way. Shared nam
 | `<APP>__DATA` | the data directory |
 | `<APP>__CACHE` | the cache directory |
 | `<APP>__ICON_WIDTH` | manual override of how many cells an icon takes (E5) |
+| `<APP>__POWERLINE_WIDTH` | manual override of how many cells a powerline symbol takes (E5) |
 | `TERMINU__ICON_WIDTH` | shared by the family: an app with a PTY sets it for its subprocess, telling it how many cells an icon takes (E5) |
+| `TERMINU__POWERLINE_WIDTH` | shared by the family: an app with a PTY sets it for its subprocess, telling it how many cells a powerline symbol takes (E5) |
 
 The exception: variables meant for another program follow that program's needs (e.g. the `LC_SSHU_COLORTERM` sshu
 carries over ssh to the remote end — OpenSSH forwards only `LANG` and `LC_*` by default). Renamed variables do not keep
@@ -908,22 +910,28 @@ With some fonts an icon takes two cells (the cursor moves two), while the width-
 borders go crooked. What is measured is **how far the cursor actually moves**: a font whose icon looks wider than a cell
 but moves the cursor one (the glyph spills into the next cell) counts as one.
 
-- **Measured at run time**: the app probes at startup (CPR: print an icon, ask for the cursor position). Every width
-  measurement (padding, clipping, centring, joining side by side, borders, overlaying popups) goes through one
-  display-width function.
-- **Overrides and order**: the icon width is taken from `<APP>__ICON_WIDTH`, then `TERMINU__ICON_WIDTH`, then the probe.
-  The probe runs on unix only; Windows defaults to one cell, overridden by the environment variables.
-- **Inside another app's PTY**: the probe is answered by the outer app's terminal emulator, which counts an icon as one
-  cell, so the real width can't be measured. An app with a PTY therefore sets `TERMINU__ICON_WIDTH=<the cells it uses>`
-  in its subprocess's environment when it starts one. Any family app running inside another's PTY then gets it right
-  (filu in kbu's Alterm, kbu in filu's shell). Environment variables don't cross ssh; remote nesting relies on the app's
-  own channel (sshu's nested command channel).
+- **Two kinds of glyph, each measured on its own**:
+  - **Icons**: Nerd Font icons, the Private Use Area (U+E000–U+F8FF, U+F0000–U+FFFFD), except the powerline symbols below
+    (e.g. the hexagon U+F02D8 before a menu section title is an icon).
+  - **Powerline symbols**: U+E0A0–U+E0D7 — the ends and seams of capsules, the round ends of a popup title, the arrow at
+    the end of the cursor.
+- **Measured at run time**: the app probes at startup (CPR: print an icon, ask for the cursor position; print a powerline
+  symbol, ask again). Every width measurement (padding, clipping, centring, joining side by side, borders, overlaying
+  popups) goes through one display-width function.
+- **Overrides and order**: each is taken in this order — icons from `<APP>__ICON_WIDTH`, then `TERMINU__ICON_WIDTH`, then
+  the probe; powerline symbols from `<APP>__POWERLINE_WIDTH`, then `TERMINU__POWERLINE_WIDTH`, then the probe. The probe
+  runs on unix only; Windows defaults to one cell, overridden by the environment variables.
+- **Inside another app's PTY**: the probe is answered by the outer app's terminal emulator, which counts both as one
+  cell, so the real width can't be measured. An app with a PTY therefore sets `TERMINU__ICON_WIDTH` and
+  `TERMINU__POWERLINE_WIDTH` (the cells it uses) in its subprocess's environment when it starts one. Any family app
+  running inside another's PTY then gets it right (filu in kbu's Alterm, kbu in filu's shell). Environment variables
+  don't cross ssh; remote nesting relies on the app's own channel (sshu's nested command channel).
 - **Overlaying a popup must not crash**: a popup may be wider or taller than the screen (the frame drawn during a resize
   still has the old size): start at 0 and clip what falls off the screen, and **never panic**; when it is larger in both
   directions it is clipped too, never handed back whole.
-- **Tests**: the L4 screen tests also run once with "icons take two cells", opening each kind of popup once and measuring
-  both the bare box and the whole screen with it overlaid; the edge cases include all three: the popup wider than the
-  screen, taller than it, and larger both ways.
+- **Tests**: the L4 screen tests run twice more — "icons take two cells, powerline symbols one" and "both take two
+  cells" — opening each kind of popup once and measuring both the bare box and the whole screen with it overlaid; the
+  edge cases include all three: the popup wider than the screen, taller than it, and larger both ways.
 
 > **Implementation reference (not a requirement)**: filu `internal/ui/width.go` — `isWideIcon()`, `dispWidth()`,
 > `dispClip()`, `padDisp()`, `dispCutLeft()`, `compositeDisp()` (replaces overlay's `Composite`, same interface),
@@ -931,10 +939,19 @@ but moves the cursor one (the glyph spills into the next cell) counts as one.
 > `JoinVertical`); detection is `DetectIconWidth()` in `iconwidth_unix.go`, called before `tea.NewProgram`; tests follow
 > `d6_test.go` and `TestD6CompositeDispOversized`. Once done, it can be checked like this: apart from the width functions
 > themselves, `internal/ui` has no calls to `lipgloss.Width`, `lipgloss.Size`, `lipgloss.Place`, `ansi.StringWidth` or
-> `ansi.Truncate`.
+> `ansi.Truncate`. filu measures icons only and counts powerline symbols as one cell; the powerline width is added the
+> same way.
+>
+> bubbletea v1's renderer appends "erase to end of line" (`ESC [ K`) to a line it measures as narrower than the
+> terminal, and it counts an icon as one cell. Where icons take two cells, that line is in fact already full and the
+> cursor sits in the last column; a terminal following the xterm rules then erases the last cell (the right border) as
+> well. L4 keeps every line full width, so this erase is always redundant: remove it in the output layer.
 
 **Why**: crooked borders make the whole screen unreadable, and the same font can move the cursor differently on different
-terminals, so it can only be measured at run time.
+terminals, so it can only be measured at run time. Icons and powerline symbols are measured separately because the two
+can differ on the same terminal: Nerd Fonts make the powerline symbols one cell so they join the borders, so where icons
+take two cells they often still take one; and some setups make both take two. With a single width, one of the two
+cases goes crooked.
 
 ### E6 Releases, tests and family assets `fixed`
 
@@ -968,9 +985,10 @@ need to know:
 
 No "status" section with a hard-coded version number — versions are left to the badge and the CHANGELOG.
 
-Where the README talks about the icon width (usually the Nerd Font part of the prerequisites), it names both
-`<APP>__ICON_WIDTH` and `TERMINU__ICON_WIDTH`, and says the latter is shared by the whole family: set it once and every
-family app reads it; inside a family app's PTY the outer app sets it (E5). The form is free (a table or a sentence).
+Where the README talks about the icon width (usually the Nerd Font part of the prerequisites), it names the icon's
+`<APP>__ICON_WIDTH` and `TERMINU__ICON_WIDTH` and the powerline symbols' `<APP>__POWERLINE_WIDTH` and
+`TERMINU__POWERLINE_WIDTH`, and says the `TERMINU__` ones are shared by the whole family: set once and every family app
+reads them; inside a family app's PTY the outer app sets them (E5). The form is free (a table or a sentence).
 It names no font as "always two cells" — the same font may move the cursor differently on different terminals.
 
 **`docs/dev-remarks.md`** (Traditional Chinese): what developers need to remind themselves of during development, and
@@ -1018,7 +1036,7 @@ when an app uses the lib, which rules the lib covers and which stay with the app
 | E2 naming environment variables | the variables the lib reads hang under the app's name (e.g. `<APP>__ICON_WIDTH`) | as E2 (e.g. `SHOWCASE__…`) | its own variables follow E2 |
 | E3 where config and data live | — | stores nothing, not applicable | its own |
 | E4 requirements | stated in the README | — | stated in the README |
-| E5 the actual icon width | covers it: the probe, the display-width functions, setting `TERMINU__ICON_WIDTH` for subprocesses | — | from the lib |
+| E5 the actual icon width | covers it: the probe (icons and powerline symbols), the display-width functions, setting `TERMINU__ICON_WIDTH` and `TERMINU__POWERLINE_WIDTH` for subprocesses | — | from the lib |
 | E6 releases | a git tag (a Go module), no binary; the L4 screen tests are required | not released; the L4 screen tests are required | as E6 |
 | S5 the icon the splash draws | the splash mechanism | the family mark | its own `docs/icon.svg` |
 | E7 README | a structure of its own: installation is `go get`, the quick start is code, and it says how to run the example app | none of its own | as E7 |
