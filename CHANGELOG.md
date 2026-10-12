@@ -1,5 +1,36 @@
 # Changelog
 
+## v0.5.1 — 2026-10-12
+
+The second round of gaps found while building the shared lib from the spec.
+
+**Widths**
+
+- E5: two kinds of glyph are measured separately — icons (the Private Use Area) and powerline symbols (U+E0A0–U+E0D7:
+  capsule ends and joins, a popup title's round ends, the cursor's arrow). Each is taken from the app's variable, then
+  the family's, then the probe; the new `<APP>__POWERLINE_WIDTH` and `TERMINU__POWERLINE_WIDTH` pair with the icon ones
+  (E2), an app with a PTY sets both `TERMINU__` variables for its subprocess, and READMEs name all four (E7). The L4
+  tests run with "icons two cells, powerline symbols one" and with "both two"
+- E5's implementation reference: remove the "erase to end of line" that bubbletea v1's renderer appends to a line it
+  measures as short — where icons take two cells it erases the right border
+- The right padding beside a cursor across a whole row is as wide as its arrow (the powerline symbol width), so the arrow
+  never covers text or pushes the frame out; menu descriptions sit against that padding
+- layout/popup: the PIN example is 43 cells, not 27 — the frame was always at least as wide as the hint (its width + 6)
+
+**Capsule chains**
+
+- The ends and joins are coloured as in Powerline: the foreground is the fill on the left, the background the fill on
+  the right, an unselected part counting as Base — colour appears only on the selected parts
+- A panel's tabs: `[N]` is a part of its own and always lit, and only the current tab is lit; the first tab's name is the
+  label, joined to `[N]` by a space while it is current, so it looks like a panel without tabs
+- Tabs after a popup title keep one line segment away from the title
+- The chip row in dialog/terminal is drawn as a chain
+
+**Finder**
+
+- The preview box is in the layer colour, never dimmed, with nothing on its bottom border: P6's "only the focused area is
+  lit" means the areas the focus can rest on
+
 ## v0.5.0 — 2026-10-12
 
 A new look for the family: sharper frames, slanted capsules and a fixed popup animation. The colours are unchanged

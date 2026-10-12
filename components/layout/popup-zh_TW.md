@@ -21,7 +21,8 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
 - **標題**：glyph + 文字，做成一個膠囊放在上框 `┏━` 後面：兩端是圓角，左 U+E0B6（`nf-ple-left_half_circle_thick`）、右 U+E0B4
   （`nf-ple-right_half_circle_thick`）；填層色，字 Base 粗體、大寫（[components](../README-zh_TW.md) 的「大寫」）。文字寫這個
   popup 是做什麼的（`RENAME`、`NEW HOST`、`ADD BOOKMARK`）；裡面的名稱、路徑是內容，大小寫照原樣（`ALTERM: myhost`、
-  `IDENTITY FILE · ~/.ssh`）；太長從尾端截，加 `…`。標題後面接 tab 時，tab 照 [`panel`](panel-zh_TW.md) 的膠囊串畫。glyph：
+  `IDENTITY FILE · ~/.ssh`）；太長從尾端截，加 `…`。標題後面接 tab 時，tab 照 [`panel`](panel-zh_TW.md) 的膠囊串畫，跟標題之間隔一段線
+  （例：`┏━TITLE━CONSOLENETWORK━┓`）。glyph：
 
   | popup | glyph |
   |---|---|
@@ -41,17 +42,20 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
 - **下框右邊**：內容放不下時的捲動位置（見下面的「內容放不下時」）。
 - **框上的字與角之間一律隔一段線**：標題 `┏━TITLE`、hint `┗━ Enter:run`、捲動位置 `4 of 12 ━┛`（panel 也一樣，只有
   panel 的膠囊緊接著角，[`panel`](panel-zh_TW.md)）。
-- **留白**：內容上下各留一列空白，左右離框一格。每一種 popup 都有，viewer 也一樣；只有 terminal 例外：上下左右都不留白
+- **留白**：內容上下各留一列空白，左右離框一格（有整列 cursor 的，右邊的留白跟箭頭一樣寬，見下一條）。每一種 popup 都有，
+  viewer 也一樣；只有 terminal 例外：上下左右都不留白
   （[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
 - **cursor 色塊蓋住留白**：清單的 cursor 從框貼到框，蓋住左右的留白，色塊上的字照樣離框一格（[`dialog/menu`](../dialog/menu-zh_TW.md)、
   [`input/finder`](../input/finder-zh_TW.md)）；表單的 focus 色塊從值開始、一直到框，蓋住右邊的留白（[`dialog/form`](../dialog/form-zh_TW.md)）。
-  最右邊那一格（右邊的留白）畫 U+E0B0（`nf-pl-left_hard_divider`），色塊的顏色，像一個箭頭指著這一列（[`panel`](panel-zh_TW.md)
-  的一般清單）。只有整列的 cursor 有箭頭；datetime picker 的日子、時、分這種一格一格的 cursor 沒有。
+  右邊的留白畫 U+E0B0（`nf-pl-left_hard_divider`），色塊的顏色，像一個箭頭指著這一列（[`panel`](panel-zh_TW.md)
+  的一般清單）。有整列 cursor 的 popup，右邊的留白跟箭頭一樣寬（Rules E5 的 powerline 符號寬度：多半是一格；佔兩格的終端機上，
+  每一列右邊都留兩格），箭頭剛好放得進去。只有整列的 cursor 有箭頭；datetime picker 的日子、時、分這種一格一格的 cursor 沒有。
 - **分隔線**：popup 裡的分隔線不接框 —— 橫的左右各留一格空白，直的不畫進上下的留白。顏色 Overlay0。
 
 **為什麼**：標題、hint、留白的位置固定，每一個 popup 一打開，使用者的眼睛就知道去哪裡找「這是什麼」「能按什麼」。
 分隔線不接框：接上框的線看起來像把一個框切成兩個框，而它只是把內容分段。cursor 色塊蓋住留白：同一種 cursor 在每一個清單
-長得一樣（Principle P4），色塊最寬、最好認（Rules L5）。標題是圓角的膠囊、panel 的膠囊是斜角：看兩端就知道是浮在上面的
+長得一樣（Principle P4），色塊最寬、最好認（Rules L5）；右邊的留白跟箭頭一樣寬，每一列一樣寬，箭頭不會蓋到字、也不會
+把框擠出去。標題後面的 tab 隔一段線：跟框上其他的字一樣，看得出標題與 tab 是兩件事，圓角與斜角兩種膠囊也不會黏在一起。標題是圓角的膠囊、panel 的膠囊是斜角：看兩端就知道是浮在上面的
 框，還是畫面上的 panel。
 
 ## 寬度
@@ -60,10 +64,10 @@ Rules F7 的兩種寬度，打開時定好，開著時不變：
 
 | | 寬度 | 例 |
 |---|---|---|
-| **內容的寬度打開時就確定** | 最寬的那一列 + 4（左右各一格框、一格留白），至少放得下標題與 hint，最寬 `min(terminal 寬 − 2, 120)` | 有長度上限的輸入（PIN 最多 12 碼：12 + 11 個空格 + 4 = 27 格）、confirm、menu、key reference、toast、error popup、datetime picker、color picker |
+| **內容的寬度打開時就確定** | 最寬的那一列 + 4（左右各一格框、一格留白；右邊的留白跟箭頭一樣寬時照它的寬），至少放得下標題與 hint（hint 的寬 + 6：`┗━ ` 與 ` ━┛`），最寬 `min(terminal 寬 − 2, 120)` | 有長度上限的輸入（PIN 最多 12 碼：內容 12 + 11 個空格 + 4 = 27 格，hint `Enter:save Backspace:clear Esc:cancel` 37 + 6 = 43 格，框取 43 格）、confirm、menu、key reference、toast、error popup、datetime picker、color picker |
 | **內容的寬度不確定** | `min(terminal 寬 − 2, 120)` | 自由打字的 text、網址、串流內容、搜尋結果、表單 |
 
-「確定」指的是打開那一刻就知道最寬會有多寬，不是看現在打了幾個字：PIN 打第一碼時框就是 27 格，不會跟著長。
+「確定」指的是打開那一刻就知道最寬會有多寬，不是看現在打了幾個字：PIN 打第一碼時框就是 43 格，不會跟著長。
 
 窄的內容靠左，離框一格（例：confirm、datetime picker、color picker）；toast 的文字與 password 的解鎖遮罩置中。
 

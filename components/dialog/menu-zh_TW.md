@@ -28,13 +28,13 @@
 
 （`≡` 代表 `nf-fa-bars`；區塊標題前面的是 `nf-md-hexagon`。）
 
-- **每一列**：label 用 Text，`[x]` 跟 label 同色；熱鍵怎麼標見 Rules M5。說明用 Overlay0，靠右，離右框一格；太長從尾端截，
+- **每一列**：label 用 Text，`[x]` 跟 label 同色；熱鍵怎麼標見 Rules M5。說明用 Overlay0，靠右，貼著右邊的留白（一般是離右框一格）；太長從尾端截，
   加 `…`（M5：單行）。label 與說明之間最少兩格：它決定最寬的那一列，也就決定 popup 的寬度。
 - **區塊標題**：前面一個 `nf-md-hexagon`（U+F02D8），空一格，再寫標題；標題大寫（[components](../README-zh_TW.md) 的「大寫」）。
   Overlay0、縮一格（離框一格，跟各列的字同一欄）、不加粗；cursor 跳過。
 - **分隔線**：區塊之間用兩段虛線 `╌`（U+254C）；其他照 [`layout/popup`](../layout/popup-zh_TW.md) 的分隔線（不接框、Overlay0）；
   cursor 跳過。
-- **cursor**：層色底、Base 粗體，從框貼到框（蓋住左右的留白），字照樣離框一格；整列都是 Base 字。最右邊那一格是箭頭
+- **cursor**：層色底、Base 粗體，從框貼到框（蓋住左右的留白），字照樣離框一格；整列都是 Base 字。右邊的留白是箭頭
   U+E0B0，層色（[`layout/popup`](../layout/popup-zh_TW.md) 的 cursor 色塊）。
 - **停用的列**：整列 Surface2，cursor 跳過，按熱鍵不作用（Rules M6）。
 - **標題**：`nf-fa-bars` 加文字，畫成標題膠囊（[`layout/popup`](../layout/popup-zh_TW.md)）。Space menu 寫 focus panel 的 `[N] label`

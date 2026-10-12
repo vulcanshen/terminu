@@ -40,6 +40,8 @@ panel filter ([`layout/panel`](../layout/panel.md)), whose typing row has the sa
     of 96 or more they sit side by side, half each; otherwise they stack, the preview below.
   - The preview box's title is the chosen entry's name (or where it is); the preview takes no focus. What the preview
     shows is the app's choice (a file's content, a directory tree, a stretch of a page).
+  - The preview box's border and title capsule are in the layer colour (like the list box); its content is not
+    dimmed (the preview is there to be read, and dimmed it is hard to read); its bottom border carries no text (no hint, no scroll position).
 - **Listed while searching**: results are listed as they arrive, with a loading icon after the title; while none has
   arrived it reads `(indexing…)`.
 - **Size**: the height is fixed when it opens (Rules F7); the width is not known, so it takes the maximum of F7.
@@ -61,12 +63,14 @@ Every row of a select and of a checkbox popup starts with a marker:
 
 ## States
 
-Only the area holding the focus is lit (Principle P6, Rules F1):
+Only the area holding the focus is lit (Principle P6, Rules F1). This means the two areas the focus can rest on (the
+typing row and the list); the preview never takes the focus, is not one of them, and is always drawn as "The
+preview" above says:
 
 | Focus on | Typing row | The list's cursor |
 |---|---|---|
 | Typing row | drawn as an input's typing row: the value Lavender, with a cursor | the layer colour cursor, dimmed once more |
-| List | the whole row drawn in grey (Overlay0), no cursor | layer colour background, Base bold, the arrow in its rightmost cell (like a menu's cursor) |
+| List | the whole row drawn in grey (Overlay0), no cursor | layer colour background, Base bold, the arrow in its right padding (like a menu's cursor) |
 
 ## Keys
 

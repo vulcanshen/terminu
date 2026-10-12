@@ -9,7 +9,7 @@ panel 的框、一般清單、一列一個值的 panel、panel filter。整個�
 - **線型與顏色**：有 focus 是 Blue 粗線 `┏━┓`，失焦是 Surface2 細線 `┌─┐`（直角），兩者同寬，切換時不位移（Rules L5、[`color`](../color-zh_TW.md)）。
   失焦時內容淡化，串流內容除外（Rules T2）。
 - **上框左邊：`[N] label` 膠囊**，緊接著框的角。`N` 同時是直接跳到該 panel 的數字鍵（只在目前的畫面裡，Rules K1）。panel 有
-  tab 時，tab 接在膠囊後面（見下面的膠囊串）。panel 在 loading 時，loading icon 放在整串膠囊（含 tab）的後面，前後各空一格
+  tab 時，`[N]` 自己是一段，tab 接在後面，第一個 tab 的名字就是 label（見下面的膠囊串）。panel 在 loading 時，loading icon 放在整串膠囊（含 tab）的後面，前後各空一格
   （例：`┏[2] PODSEVENTSYAML 󰪞 ━━━┓`；[`popup`](popup-zh_TW.md) 的 loading）。
 - **上框右邊：模式名**（Rules K11），夾在兩個框線接頭之間，像框上嵌了一個標籤：`┏[1] KINDS━━━┫Drag┣━┓`、
   `┏━YAML━━━━┫Visual┣━┓`。接頭跟框同色、線型跟著框 —— 粗線框（有 focus 的 panel、popup）用 `┫` `┣`，細線框（失焦的
@@ -47,13 +47,29 @@ panel 標題的膠囊、panel 的 tab、[`screen`](screen-zh_TW.md) 的畫面 ch
   畫面 chip 是 Blue。`[N]` 膠囊與目前的 tab 都算選中的。
 - **沒選中的**：不填底色，字用這串的顏色。
 - **接縫**：顏色換的地方用 U+E0B0（`nf-pl-left_hard_divider`），同色之間用 U+E0B1（`nf-pl-left_soft_divider`）。
+- **斜角與接縫的顏色**（照 Powerline）：前景是左邊那一段的底、背景是右邊那一段的底；沒選中的段的底當作 Base，串外面是終端機的底。
+  - 選中 → 沒選中：U+E0B0，前景這串的顏色、背景 Base；沒選中 → 選中：U+E0B0，前景 Base、背景這串的顏色。
+  - 兩段都沒選中：U+E0B1，這串的顏色；兩段都選中：U+E0B1，前景 Base、背景這串的顏色。
+  - 兩端的斜角畫成旁邊那一段的底：頭或尾是沒選中的段時，那一端是 Base（終端機的底是 Base 時看不見，只留一格空）。
+  - 斜角與接縫一律各佔一格（Rules E5 的 powerline 符號寬度），換選中的段時字不位移。
 - 膠囊裡的字前後不加空白：`[1] TABS`。字一律大寫，熱鍵標記裡的字母照原樣（[components](../README-zh_TW.md) 的「大寫」）。
+- **panel 的 tab**：`[N]` 自己是一段，一直是選中的；後面每個 tab 一段，只有目前的 tab 選中。panel 沒有另外的名字，第一個 tab 的
+  名字就是 label。`[N]` 與第一個 tab 都選中時（在第一個 tab），中間是一個空格、不畫接縫，看起來跟沒有 tab 的 panel 一樣：
+
+  ```
+  ┏[2] PODSEVENTSYAML━━━━━━━━━┓   ← 在 PODS：「[2] PODS」填色
+  ┏[2]PODSEVENTSYAML━━━━━━━━━┓   ← 在 EVENTS：「[2]」與「EVENTS」填色
+  ```
+
+- **popup 標題後的 tab**：跟圓角的標題之間隔一段線（[`popup`](popup-zh_TW.md) 的標題）。
 - **放不下時**：先把沒選中的縮成第一個字或 glyph（`[M] [F] [S]`）；還放不下，就從尾端收掉沒選中的、改畫一個 `…`。
   選中的永遠留著，絕不把框撐寬（Rules L4）。
 
 **為什麼**：膠囊在家族裡的意思是「名稱」—— panel 叫什麼、在哪一頁、在哪個畫面（Principle P4）。這幾種用途共用一套，
 使用者認得一次就認得全部。沒選中的不用 Surface2：Surface2 是停用，沒選中的頁面看起來會像不能切。接縫用原始 Powerline
-的兩個符號，字型支援最普遍。兩端用斜角、popup 的標題用圓角：固定在畫面上的 panel 與浮在上面的 popup，看膠囊的兩端就分得出來。
+的兩個符號，字型支援最普遍；上色也照 Powerline，色塊只出現在選中的段，一眼看得出選了哪一個，沒選中的段旁邊不會冒出色塊的尖角。
+`[N]` 自己一段：除了編號，只有目前的 tab 亮，不會有兩塊看起來都是目前的；在第一個 tab 時用空格接，跟沒有 tab 的 panel 一樣，
+也不用幫有 tab 的 panel 另外取名字。兩端用斜角、popup 的標題用圓角：固定在畫面上的 panel 與浮在上面的 popup，看膠囊的兩端就分得出來。
 
 ## 一般清單
 
@@ -69,8 +85,9 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 ┗━ Enter:logs ━━━━━━━━━━━━━━━━━━━━━━━━━━ 3 of 40 ━┛
 ```
 
-- **cursor**：Subtext1 底、Base 粗體，佔滿整個內寬；cursor 那一列整列都是 Base 字，各欄原本的顏色不保留。最右邊那一格
-  （右邊的留白）畫 U+E0B0（`nf-pl-left_hard_divider`），Subtext1，像一個箭頭指著這一列；字照常離框一格，不位移。panel 失焦時
+- **cursor**：Subtext1 底、Base 粗體，佔滿整個內寬；cursor 那一列整列都是 Base 字，各欄原本的顏色不保留。右邊的留白
+  畫 U+E0B0（`nf-pl-left_hard_divider`），Subtext1，像一個箭頭指著這一列。留白跟箭頭一樣寬（Rules E5 的 powerline 符號寬度：
+  多半是一格；佔兩格的終端機上，每一列右邊都留兩格），箭頭剛好放得進去，字不位移。panel 失焦時
   整塊淡化（Rules T2），cursor 跟著淡化，不另外換顏色。
 - **表頭**：Blue、不加粗、大寫，固定在最上面不捲。每一欄是數字或文字：數字靠右、照數值排（`9` 在 `10` 前面），文字靠左、照文字排。
   欄與欄之間兩格（[components](../README-zh_TW.md) 的「圖與間距」）。排序中的欄位，標題後面加 `nf-fa-sort_amount_asc`（U+F160，
@@ -112,7 +129,7 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
   focus 留在同一列（Rules K3）；值的顯示照 [`input/README`](../input/README-zh_TW.md)。
 - **不一樣的地方：沒有送出。** 每個值在 input popup 確定的那一刻就生效、就存；開關與 radio 在原地選的那一刻也是。
   所以沒有動作列、也沒有「改過了要先問」。
-- **focus 色塊**：Subtext1 底、Base 粗體，跟一般清單的 cursor 同一個畫法（最右邊一格是箭頭）；範圍跟表單一樣，從項目開頭到
+- **focus 色塊**：Subtext1 底、Base 粗體，跟一般清單的 cursor 同一個畫法（右邊的留白是箭頭）；範圍跟表單一樣，從項目開頭到
   panel 內的右緣（欄位從值開始、選項從那個選項開始）。
 - **label**：大寫；一般 Blue，停用 Surface2，它的值出錯時 Red（優先於其他顏色）。panel 失焦時跟著淡化（T2）。label 欄寬取最長的
   label，label 欄與值之間兩格。

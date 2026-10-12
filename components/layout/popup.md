@@ -25,7 +25,7 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
   the layer colour, text Base bold and uppercase ("Uppercase" in the [components](../README.md)). The text says what
   this popup is for (`RENAME`, `NEW HOST`, `ADD BOOKMARK`); names and paths in it are content and keep their case
   (`ALTERM: myhost`, `IDENTITY FILE · ~/.ssh`); when too long it is cut at the end with `…`. Tabs after the title follow
-  the capsule chain of [`panel`](panel.md). Glyphs:
+  the capsule chain of [`panel`](panel.md), one line segment away from the title (e.g. `┏━TITLE━CONSOLENETWORK━┓`). Glyphs:
 
   | popup | glyph |
   |---|---|
@@ -51,22 +51,28 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
 - **Text on the frame always keeps one line segment away from the corner**: the title `┏━TITLE`, the hint
   `┗━ Enter:run`, the scroll position `4 of 12 ━┛` (the same on a panel, where only the capsule sits right after the
   corner, [`panel`](panel.md)).
-- **Padding**: one blank row above and below the content, one cell from the border on the left and right. Every kind of
-  popup has it, viewers too; only the terminal is the exception: no padding on any side
+- **Padding**: one blank row above and below the content, one cell from the border on the left and right (with a cursor
+  across a whole row, the right padding is as wide as the arrow, see the next item). Every kind of popup has it, viewers
+  too; only the terminal is the exception: no padding on any side
   ([`dialog/terminal`](../dialog/terminal.md)).
 - **A cursor block covers the padding**: a list's cursor runs from frame to frame, covering the left and right padding,
   and the text on it stays one cell from the frame ([`dialog/menu`](../dialog/menu.md), [`input/finder`](../input/finder.md));
   a form's focus block runs from the value all the way to the frame, covering the right padding
-  ([`dialog/form`](../dialog/form.md)). Its rightmost cell (the right padding) holds U+E0B0 (`nf-pl-left_hard_divider`)
-  in the block's colour, an arrow pointing at the row (the ordinary list in [`panel`](panel.md)). Only a cursor across a
-  whole row has the arrow; one-cell cursors such as the days, hours and minutes of the datetime picker do not.
+  ([`dialog/form`](../dialog/form.md)). Its right padding holds U+E0B0 (`nf-pl-left_hard_divider`) in the block's
+  colour, an arrow pointing at the row (the ordinary list in [`panel`](panel.md)). In a popup with a cursor across a whole
+  row, the right padding is as wide as the arrow (the powerline symbol width of Rules E5: one cell as a rule; on a
+  terminal where it takes two, every row keeps two on the right), so the arrow fits. Only a cursor across a whole row has
+  the arrow; one-cell cursors such as the days, hours and minutes of the datetime picker do not.
 - **Separators**: a separator inside a popup does not join the frame — a horizontal one leaves one blank cell at each
   end, a vertical one is not drawn into the top and bottom padding. Colour Overlay0.
 
 **Why**: with the title, hint and padding in fixed places, the moment any popup opens the user's eyes know where to find
 "what this is" and "what can be pressed". Separators do not join the frame: a line joined to the frame looks like it cuts
 one frame into two, when it only divides the content into sections. A cursor block covers the padding: the same cursor
-looks the same in every list (Principle P4), and the widest block is the easiest to spot (Rules L5). The title is a
+looks the same in every list (Principle P4), and the widest block is the easiest to spot (Rules L5); with the right
+padding as wide as the arrow, every row is the same width, and the arrow neither covers text nor pushes the frame out.
+Tabs after the title keep a line segment away, like any other text on the frame: the title and the tabs read as two
+things, and the rounded and slanted capsules do not stick together. The title is a
 rounded capsule and a panel's is slanted: the ends tell a frame floating above from a panel on the screen.
 
 ## Width
@@ -75,11 +81,11 @@ The two widths of Rules F7, set when the popup opens and unchanged while it is o
 
 | | Width | Examples |
 |---|---|---|
-| **Content width known when it opens** | the widest row + 4 (one cell of border and one of padding on each side), at least enough for the title and hint, at most `min(terminal width − 2, 120)` | input with a length limit (a PIN of at most 12 digits: 12 + 11 spaces + 4 = 27 cells), confirm, menu, key reference, toast, error popup, datetime picker, color picker |
+| **Content width known when it opens** | the widest row + 4 (one cell of border and one of padding on each side; where the right padding is as wide as the arrow, its real width), at least enough for the title and hint (the hint's width + 6: `┗━ ` and ` ━┛`), at most `min(terminal width − 2, 120)` | input with a length limit (a PIN of at most 12 digits: the content is 12 + 11 spaces + 4 = 27 cells, the hint `Enter:save Backspace:clear Esc:cancel` 37 + 6 = 43 cells, so the frame is 43 cells), confirm, menu, key reference, toast, error popup, datetime picker, color picker |
 | **Content width not known** | `min(terminal width − 2, 120)` | free-typed text, URLs, streaming content, search results, forms |
 
 "Known" means that how wide it can get is known the moment it opens, not how many characters are typed now: at the first
-digit of a PIN the frame is already 27 cells, and it does not grow with the typing.
+digit of a PIN the frame is already 43 cells, and it does not grow with the typing.
 
 Narrow content is aligned left, one cell from the border (e.g. confirm, datetime picker, color picker); a toast's text
 and a password's unlock mask are centred.
