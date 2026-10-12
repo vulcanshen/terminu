@@ -77,7 +77,7 @@ text、password、number 共用。
 
 - **只用在單行的 input**（text、number；password 的舊值是灰點，見 [`password`](password-zh_TW.md)）；textarea 打開時直接帶入舊值（[`textarea`](textarea-zh_TW.md)）。
 - 框打開時是空的，舊值用灰字（Overlay0）顯示在游標後面。
-- `Tab`：把舊值收進框裡，游標在尾端，接著用 `←`/`→` 改（Rules K2）。
+- `Tab`：把舊值收進框裡，游標在尾端，接著用 `←|→` 改（Rules K2）。
 - 直接打字：重打一個新的值，灰字隱藏；把打的字刪光，灰字再出現。
 - 值是空的時候按 `Backspace`：不要這個值，灰字消失；這時按 `Enter` 存成空的（欄位不能空時照錯誤處理）。
 - 什麼都沒碰就按 `Enter`：不改，關掉。
@@ -89,7 +89,8 @@ text、password、number 共用。
 
 ## 不放 placeholder
 
-input popup 裡不放 placeholder：要輸入什麼由說明列講；灰字只留給提議。
+input popup 裡不放 placeholder：要輸入什麼由說明列講；灰字只留給提議。finder 與 panel filter 打字列前面的 `nf-fa-angle_right`
+（[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：它不是字，按 `Tab` 不會收進來，打字時也不會消失。
 
 **為什麼**：兩種灰字長得一樣，一種按 `Tab` 會收進來、一種不會，會分不出來。
 

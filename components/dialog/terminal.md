@@ -29,6 +29,11 @@ not a popup: its frame follows [`layout/panel`](../layout/panel.md), and the PTY
   the frame to the last and from the first column to the last, touching the frame on every side. This is the special
   case of the terminal kind of popup (the padding in [`layout/popup`](../layout/popup.md)).
 - **Title**: `nf-md-console` (U+F018D) plus what is running (`SHELL`, `ALTERM: myhost`, `EDIT: pod/x`; names and paths keep their case).
+- **The subprocess's cursor**: the real cursor is hidden; one cell with a Text background and Base text, a reversed
+  block, is drawn where the subprocess's cursor is; the shape it asks for with DECSCUSR (underline, bar) is ignored.
+  The same for a PTY in a panel. This is a terminal's default cursor; the family's cursor colours each mean something
+  (Lavender a value being edited, the layer colour a cursor moving through text), and a PTY shows the subprocess's own
+  screen, so neither fits; a bar cannot be drawn on a screen drawn cell by cell without covering the character.
 
 **Why**: the statusbar holds what is going on (kbu's context, sshu's transfer progress), worth a glance even while
 working in the shell. The footer is not needed: with the focus in a PTY, the footer's `Space`, `?` and `q` all go to the

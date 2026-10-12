@@ -25,7 +25,7 @@ One question, `Enter` accepting and `Esc` cancelling, saying what follows (Rules
 - **Colours**: the question in Text, not bold; the content in Overlay0; the warning sentence in the content (e.g. "This
   cannot be undone", "2 sessions will be closed") in Peach, which sentence counts as a warning being up to the app.
 - **Too long**: the question and the content both wrap, never cut. When the content is long, only the content scrolls
-  with `j/k`; the question stays fixed at the end.
+  with `j|k`; the question stays fixed at the end.
 - **Width**: the content is known when it opens, so it follows "content width known when it opens" in
   [`layout/popup`](../layout/popup.md); anything longer wraps at the cap.
 

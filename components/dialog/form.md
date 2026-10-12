@@ -61,7 +61,8 @@ Each field takes one of two arrangements.
 
 - Radio and checkbox fields with **five options or fewer** have them drawn in the form; with more than five, use a select
   or a checkbox popup instead (opened with `Enter`).
-- Options run down by default; when they are all short and fit on one row, they may run across (e.g. `󰐾 asc  󰐽 desc`).
+- Options always run down, one a row: the focus block runs from the option to the frame, and across it would cover the
+  options after it and hide whether they are chosen.
 - The glyphs are in [`input/radio`](../input/radio.md) and [`input/checkbox`](../input/checkbox.md).
 
 **Why**: beyond five, the form starts scrolling and the other fields drop out of sight.
@@ -131,6 +132,9 @@ shows which option of a radio field the focus is on.
   to the border, Overlay0), setting the action row apart from the content above.
 - **The error row, the separator and the action row never scroll**: when the fields do not fit, only the field area
   scrolls, and the button is always in sight.
+- **The scroll position**: when the fields do not fit, the right of the bottom border shows the field holding the focus
+  as `N of M`, M counting fields only (not the error row or the button). With the focus on the error row or the button
+  nothing is shown, and it comes back on a field: they are not fields, and no number would mean anything.
 - **The action row has one button (submit)**: a form needing a second button is a gap in tdp, to be reported and added,
   and how to move between buttons is settled then.
 - No cancel button: cancelling is `Esc` (Rules F3), shown in the hint.
@@ -143,22 +147,22 @@ In a form the focus moves by **item**: a field that takes typing or opens a popu
 checkbox field is an item of its own, and the button is one item; the error row, while it holds an error, is an item too
 (just before the button).
 
-- **`j`/`l`/`↓`/`→` to the next item, `h`/`k`/`↑`/`←` to the previous one** (a form is a one-dimensional list, Rules
-  K12). Whether options run across or down does not matter; going on from the last option of a field enters the next
+- **`j|l|↓|→` to the next item, `h|k|↑|←` to the previous one** (a form is a one-dimensional list, Rules
+  K12). Going on from the last option of a field enters the next
   field, and going back from the first option returns to the previous one. `gg` goes to the first item, `G` to the last
-  (the button); `u`/`d` move half a page, counted in items, and stop at the ends.
-- **`Tab`/`Shift-Tab` jump one field at a time** (Rules K2); the error row while it holds an error, and the action row,
+  (the button); `u|d` move half a page, counted in items, and stop at the ends.
+- **`Tab|Shift-Tab` jump one field at a time** (Rules K2); the error row while it holds an error, and the action row,
   are one stop each.
 - **Jumping into a radio or checkbox field**: a radio field lands on its chosen option, or the first one if none is
   chosen; a checkbox group lands on its first option. `Shift-Tab` coming from below lands the same way: `Tab` means "jump
   to that field", and where it lands does not depend on the direction. On a radio field the focus lands on the current
-  value: `j`/`k` to a neighbour to change it, or `Tab` straight on to leave it, with nothing chosen by mistake; in a
+  value: `j|k` to a neighbour to change it, or `Tab` straight on to leave it, with nothing chosen by mistake; in a
   checkbox group each option is ticked or not on its own, with no "current one", so starting from the top is the easiest
   to predict.
-- **Wrapping at both ends** (Rules K12): the same for `Tab` and `j`/`k`. The button is the last item: going on from it returns to the
+- **Wrapping at both ends** (Rules K12): the same for `Tab` and `j|k`. The button is the last item: going on from it returns to the
   first field, and going back one step from the first field reaches the button — making up for the action row sitting
   at the bottom.
-- **Disabled fields and options are skipped**: neither `Tab` nor `j`/`k` stops on them; they are still drawn in place.
+- **Disabled fields and options are skipped**: neither `Tab` nor `j|k` stops on them; they are still drawn in place.
   Disabled means "cannot be changed now", and `Enter` on one would have nothing to do.
 - **On opening**: the focus is on the first item it can stop on (disabled ones skipped), for a new entry and an edit
   alike; when the app opens the form from one field (e.g. editing the Port row in a panel), it is on that field. A new
@@ -215,7 +219,7 @@ not one of the form's keys is pressed (`q` included), a note pops up to explain:
 ┃                                ┃
 ┃ Press [Enter] to edit Name.    ┃
 ┃                                ┃
-┗━ Enter/Esc:close ━━━━━━━━━━━━━━┛
+┗━ Enter|Esc:close ━━━━━━━━━━━━━━┛
 ```
 
 - The title is the field's name; both `Enter` and `Esc` close it, back to the form with the focus unmoved
@@ -224,8 +228,8 @@ not one of the form's keys is pressed (`q` included), a note pops up to explain:
 
   | Key | On a form |
   |---|---|
-  | `j` `k` `h` `l`, the arrow keys, `Tab`/`Shift-Tab` | movement (wrapping at the ends, Rules K12) |
-  | `u`/`d` | half a page, counted in items, stopping at the ends |
+  | `j` `k` `h` `l`, the arrow keys, `Tab\|Shift-Tab` | movement (wrapping at the ends, Rules K12) |
+  | `u\|d` | half a page, counted in items, stopping at the ends |
   | `g` (the start of `gg`), `G` | to the first and the last item; a single `g` does nothing |
   | `e` | on a field with a problem, to the error row; on the error row, back to that field (see "Errors" below); nothing elsewhere |
   | `Enter`, `Esc` | see `Enter` above and "Cancelling" below |
@@ -237,7 +241,7 @@ not one of the form's keys is pressed (`q` included), a note pops up to explain:
 
 **Why**: a note rather than a toast: a note catches every character typed after it and does nothing with them, so the
 form is not disturbed; a toast lets keys pass through, and an `e`, `h` or `l` typed after it would jump around between
-fields. Users press `Enter` out of habit after typing, which just closes the note. `e`, `u`/`d` and `g` count as the
+fields. Users press `Enter` out of habit after typing, which just closes the note. `e`, `u|d` and `g` count as the
 form's keys: K12 keeps these letters for movement wherever nothing is being typed, and a form is such a place; and a key
 does not react by state (`e` does not bring up the note with no error and jump to the error row with one). Someone who
 thinks they can type straight in loses the first character if it happens to be one of these keys, and the next one
@@ -254,7 +258,7 @@ Enter:edit Esc:cancel
   button (in lower case: `Save` → `Enter:save`, `Connect` → `Enter:connect`).
 - With the focus on a field with a problem, `e:error` is added (`Enter:edit e:error Esc:cancel`); on the error row it
   reads `Enter:show e:edit Esc:cancel`.
-- No movement keys (`j/k`, `Tab`): users find them out by using the form.
+- No movement keys (`j|k`, `Tab`): users find them out by using the form.
 - `Esc:cancel`, not `close`: `Esc` on a form throws its content away, the same meaning as a confirm's `Esc:cancel`.
 
 ## States
@@ -294,7 +298,7 @@ intact — the "safe place" Rules K4 asks for.
   error row opens an error popup with the whole message ([`dialog/note`](note.md), its title the field's name, closed
   with `Enter` or `Esc`); `e`
   (edit) on the error row returns the focus to the field the message belongs to, where `Enter` opens its input popup to
-  change it. The error row can still be reached with `j`/`k` and `Tab`; `e` is the shortcut that jumps straight there. A
+  change it. The error row can still be reached with `j|k` and `Tab`; `e` is the shortcut that jumps straight there. A
   stray `e` only moves the focus and changes nothing.
 - **The submit itself fails** (the file changed underneath, a write failing, the remote refusing): nothing is written in
   the error row; an error popup opens straight over the form (see the error row in [`layout/popup`](../layout/popup.md));

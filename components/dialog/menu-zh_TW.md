@@ -48,7 +48,8 @@
 
 ## 按鍵
 
-- `j/k` 移動，到頭尾繞回；`u/d` 半頁（到頭尾停住）、`gg/G` 頭尾（Rules K12）。
+- `j|k` 移動，到頭尾繞回；`u|d` 半頁（到頭尾停住）、`gg|G` 頭尾（Rules K12）。
 - `Enter` 執行 cursor 那一列，熱鍵直接執行那一列。
 - `Esc` 關掉（global operation popup 回到 Space menu，Rules F4）；Space menu 也可以再按 `Space` 關（Rules K5）。
-- **hint**：`Enter:run Esc:close`（不寫移動鍵，見 [`layout/popup`](../layout/popup-zh_TW.md) 的 hint）。
+- **hint**：`Enter:run Esc:close`（不寫移動鍵，見 [`layout/popup`](../layout/popup-zh_TW.md) 的 hint）。`Enter` 打開那一列全文的 menu
+  （Rules F1，例：工作清單）寫 `Enter:detail Esc:close`：hint 寫按下去會發生什麼（Rules M5），那裡的 `Enter` 不執行任何東西。

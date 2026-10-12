@@ -50,7 +50,7 @@ documentation:
 
 | Form | From seeing to running | Disclosure? |
 |---|---|---|
-| Interactive menu (`j/k` to pick, `Enter` to run) | 1 step | ✓ |
+| Interactive menu (`j\|k` to pick, `Enter` to run) | 1 step | ✓ |
 | Permanent hint (see the key on the footer, press it) | 1 step | ✓ |
 | Explanatory text (read → find → remember → type) | several steps, needs memory | ✗ |
 
@@ -126,7 +126,7 @@ All of the components are in the fixed zone ("Departure" at the start of the Rul
   `S` is shell, in filu `S` is sort), and they are not on the no-prior-learning path — everything the user looks for is
   in `Space` and `?`. tdp governs only a few things about hotkeys: they **must appear in a menu, marked with `[]`**, they
   **may not take over a core key**, and they **may not take over the movement letters** (Rules K12). Keys inside a
-  component (e.g. a form's `e`, a datetime picker's `t`, a textarea's `i`/`a`/`o`) are part of the component spec.
+  component (e.g. a form's `e`, a datetime picker's `t`, a textarea's `i|a|o`) are part of the component spec.
 - **Domain symbols and colours.** File-type icons, status glyphs and the colours of the content itself are bound to the
   concrete domain and left to each app. The glyphs of the components (radio, checkbox, the loading icon, borders, the
   titles of each class of popup) and the colour scheme are part of the component spec; the family requires a Nerd Font

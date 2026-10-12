@@ -18,9 +18,10 @@ Auth        󰐾 password
 - Glyphs: chosen `nf-md-radiobox_marked` (U+F043E), not chosen `nf-md-radiobox_blank` (U+F043D). A select uses the same
   pair.
 - The chosen one's text is Green (in effect), the others Text.
-- Down by default; when the options are all short and fit in one row, they may run across (`󰐾 asc  󰐽 desc`).
+- Always down, one option a row: the focus block runs from the option to the frame, and across it would cover the
+  options after it and hide whether they are chosen; nor is "short enough to run across" left to the app.
 
 ## Keys
 
-- Each option is an item; `j`/`k` (or `h`/`l`) move between the options (Rules K12).
+- Each option is an item; `j|k` (or `h|l`) move between the options (Rules K12).
 - `Enter`: chooses it; the focus stays, and it takes effect at once.

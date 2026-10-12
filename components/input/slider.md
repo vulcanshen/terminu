@@ -23,8 +23,8 @@ Red          ━━━━━━●━━━━━ 128
 ## Keys
 
 - `Enter` opens a [`select`](select.md) whose options are the numbers from bottom to top, one per step: the cursor opens
-  on the current value, `j`/`k` move, `Enter` chooses; typing a number filters (typing `20` leaves 20, 120, 200–209…).
-- A slider has no keys of its own; in a one-value-per-row panel `h`/`l` move between items, so they cannot drag it in
+  on the current value, `j|k` move, `Enter` chooses; typing a number filters (typing `20` leaves 20, 120, 200–209…).
+- A slider has no keys of its own; in a one-value-per-row panel `h|l` move between items, so they cannot drag it in
   place.
 
 ## Value

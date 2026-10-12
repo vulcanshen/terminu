@@ -56,7 +56,7 @@
 - **時間分成「時」與「分」兩欄**：時 00–23，分每 5 分鐘一格（00–55）。兩欄都短，不需要搜尋，所以這一塊不是 finder。目前的值是 Green；
   跟日曆一樣高，超出就捲。目前的值不在格子上（10:07）時，打開時 cursor 停在它之前最近的那一格（10:05）。
 - 有 focus 的那一塊 cursor 是層色底；沒有 focus 的那一塊，cursor 是層色 cursor 再淡化一次（Principle P6）。時間塊裡也一樣：
-  focus 在「時」時，「分」那一欄的 cursor 再淡化一次，反過來也是 —— 整個 picker 只有一個亮的 cursor，一眼看得出 `j`/`k` 動哪一欄。
+  focus 在「時」時，「分」那一欄的 cursor 再淡化一次，反過來也是 —— 整個 picker 只有一個亮的 cursor，一眼看得出 `j|k` 動哪一欄。
 - **寬度**：版面固定，照 [`layout/popup`](../layout/popup-zh_TW.md) 的「內容的寬度打開時就確定」。
 
 **為什麼**：選日期時間是「挑」，用移動就夠了；拆成時、分兩欄，一眼就知道是幾點幾分。
@@ -66,10 +66,10 @@
 可以拿 focus 的是：**月、年、日曆、時間**（只選日期的沒有時間）。整個 picker 只用 `Tab`、hjkl、`Enter`、`Esc`，加上 `t`。
 
 - **`Tab`** 照畫面順序換 focus：月 → 年 → 日曆 → 時間 → 回到月。打開時 focus 在日曆。
-- **月、年上**：`h`/`l`（`←`/`→`）換上一個、下一個月或年；日曆跟著翻，cursor 停在同一天（那個月沒有這一天就停在最後一天）。
-- **日曆上**：`h`/`l` 前後一天，`j`/`k` 前後一週，走過月底自然換月（方向鍵在格子裡就是上下左右，Rules K12）。範圍外的日子跳過，
+- **月、年上**：`h|l`（`←|→`）換上一個、下一個月或年；日曆跟著翻，cursor 停在同一天（那個月沒有這一天就停在最後一天）。
+- **日曆上**：`h|l` 前後一天，`j|k` 前後一週，走過月底自然換月（方向鍵在格子裡就是上下左右，Rules K12）。範圍外的日子跳過，
   停在那個方向下一個範圍內的日子；那個方向已經沒有了，就不動。
-- **時間上**：`j`/`k` 在一欄裡移，`h`/`l` 在「時」與「分」兩欄之間換。到頭尾繞回（Rules K12）：23 之後是 00、55 之後是 00；
+- **時間上**：`j|k` 在一欄裡移，`h|l` 在「時」與「分」兩欄之間換。到頭尾繞回（Rules K12）：23 之後是 00、55 之後是 00；
   各欄自己繞，分繞回不帶動時，時繞回不帶動日期。
 - **`Enter`**：
   - 月、年上：focus 移到日曆，不選。
@@ -83,8 +83,8 @@
 |---|---|
 | 日曆（datetime） | `Enter:time t:today Tab:time Esc:cancel` |
 | 日曆（只選日期） | `Enter:choose t:today Tab:month Esc:cancel` |
-| 月 | `Enter:days h/l:month t:today Tab:year Esc:cancel` |
-| 年 | `Enter:days h/l:year t:today Tab:days Esc:cancel` |
+| 月 | `Enter:days h\|l:month t:today Tab:year Esc:cancel` |
+| 年 | `Enter:days h\|l:year t:today Tab:days Esc:cancel` |
 | 時間 | `Enter:choose t:today Tab:month Esc:cancel` |
 
 **為什麼**：換月換年不用 pickdate 的 `p`/`n`/`P`/`N`：那些是移動，hint 上看不到，使用者很難發現；`t` 會被用到，所以寫在 hint 上。
