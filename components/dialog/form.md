@@ -40,17 +40,17 @@ Each field takes one of two arrangements.
   and its value never share a colour (see the label below).
 - Labels, values and errors share the same left edge.
 - The label column of side-by-side fields is as wide as the longest label **among the side-by-side fields** (stacked
-  labels do not count), with space between the label column and the values.
+  labels do not count), with two cells between the label column and the values.
 - How a value is shown: see "How a value shows in a form and a panel" in [`input/README`](../input/README.md).
 
 ```
 ╭─ New profile ──────────────────────────────────╮
 │                                                │
-│ Name        clock3                             │   ← side by side
-│ Timeout     30                                 │   ← side by side
+│ Name     clock3                                │   ← side by side
+│ Timeout  30                                    │   ← side by side
 │ Command                                        │   ← stacked
 │ tmux new-session -A -s main                    │
-│ Layout      row                                │   ← side by side
+│ Layout   row                                   │   ← side by side
 │                                                │
 ╰─ Enter:edit Esc:cancel ────────────────────────╯
 ```
@@ -69,7 +69,7 @@ Each field takes one of two arrangements.
 ### Focus and label
 
 The focused item is drawn like a menu's cursor row — the layer colour as background, bold Base text
-([`dialog/menu`](menu.md)). It runs from the start of the item to the inner right edge: from the value for a field, from
+([`dialog/menu`](menu.md)). It runs from the start of the item all the way to the frame (covering the right padding): from the value for a field, from
 the option for an option, the button itself for a button; an empty value is still a full block of background.
 
 **The colour of the label** does not change with the focus.
@@ -86,10 +86,10 @@ the option for an option, the button itself for a button; an empty value is stil
 ```
 ╭─ New host ─────────────────────────────────────╮
 │                                                │
-│ Name          web-01                           │   label in the layer colour
-│ Host          10.0.0.5                         │   ← focus: from the value to the right edge, layer-colour background, bold Base text
-│ Port          22                               │
-│ Credential    —                                │   ← disabled: label Surface2
+│ Name        web-01                             │   label in the layer colour
+│ Host        10.0.0.5▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│   ← focus: from the value all the way to the frame, layer-colour background, bold Base text
+│ Port        22                                 │
+│ Credential  —                                  │   ← disabled: label Surface2
 │                                                │
 ╰─ Enter:edit Esc:cancel ────────────────────────╯
 ```
@@ -104,9 +104,9 @@ shows which option of a radio field the focus is on.
 ```
 ╭─ New host ─────────────────────────────────────╮
 │                                                │
-│ Name        web-01                             │   ← field area: the only part that scrolls when it does not fit
+│ Name  web-01                                   │   ← field area: the only part that scrolls when it does not fit
 │ Host                                           │
-│ Port        22                                 │
+│ Port  22                                       │
 │                                                │
 │ Host is required                               │   ← error row (blank when there is no error)
 │ ────────────────────────────────────────────── │   ← separator
@@ -144,7 +144,7 @@ checkbox field is an item of its own, and the button is one item; the error row,
 - **`j`/`l`/`↓`/`→` to the next item, `h`/`k`/`↑`/`←` to the previous one** (a form is a one-dimensional list, Rules
   K12). Whether options run across or down does not matter; going on from the last option of a field enters the next
   field, and going back from the first option returns to the previous one. `gg` goes to the first item, `G` to the last
-  (the button).
+  (the button); `u`/`d` move half a page, counted in items, and stop at the ends.
 - **`Tab`/`Shift-Tab` jump one field at a time** (Rules K2); the error row while it holds an error, and the action row,
   are one stop each.
 - **Jumping into a radio or checkbox field**: a radio field lands on its chosen option, or the first one if none is
@@ -153,7 +153,7 @@ checkbox field is an item of its own, and the button is one item; the error row,
   value: `j`/`k` to a neighbour to change it, or `Tab` straight on to leave it, with nothing chosen by mistake; in a
   checkbox group each option is ticked or not on its own, with no "current one", so starting from the top is the easiest
   to predict.
-- **Wrapping at both ends**: the same for `Tab` and `j`/`k`. The button is the last item: going on from it returns to the
+- **Wrapping at both ends** (Rules K12): the same for `Tab` and `j`/`k`. The button is the last item: going on from it returns to the
   first field, and going back one step from the first field reaches the button — making up for the action row sitting
   at the bottom.
 - **Disabled fields and options are skipped**: neither `Tab` nor `j`/`k` stops on them; they are still drawn in place.
@@ -167,11 +167,11 @@ checkbox field is an item of its own, and the button is one item; the error row,
 ```
 ╭─ New host ─────────────────────────────────────╮
 │                                                │
-│ Name        web-01                             │   ← 1 item
-│ Auth        󰐾 password                         │   ← 3 items
-│             󰐽 privatekey                       │
-│             󰐽 credential                       │
-│ Agent       󰄲 forward                          │   ← 1 item
+│ Name   web-01                                  │   ← 1 item
+│ Auth   󰐾 password                              │   ← 3 items
+│        󰐽 privatekey                            │
+│        󰐽 credential                            │
+│ Agent  󰄲 forward                               │   ← 1 item
 │                                                │
 ╰─ Enter:edit Esc:cancel ────────────────────────╯
 ```
@@ -218,14 +218,28 @@ not one of the form's keys is pressed (`q` included), a note pops up to explain:
 
 - The title is the field's name; both `Enter` and `Esc` close it, back to the form with the focus unmoved
   ([`dialog/note`](note.md)).
-- `Space` does nothing, as Rules K5 says, and brings up no note.
-- The other items of a form (options, the button, the error row) bring up no note: a key with no use there simply does
-  nothing.
-- Letters on a form do nothing except movement and `e`; `q` does nothing either, and does not start quitting (Rules K9).
+- **The form's own keys** bring up no note:
+
+  | Key | On a form |
+  |---|---|
+  | `j` `k` `h` `l`, the arrow keys, `Tab`/`Shift-Tab` | movement (wrapping at the ends, Rules K12) |
+  | `u`/`d` | half a page, counted in items, stopping at the ends |
+  | `g` (the start of `gg`), `G` | to the first and the last item; a single `g` does nothing |
+  | `e` | on a field with a problem, to the error row; on the error row, back to that field (see "Errors" below); nothing elsewhere |
+  | `Enter`, `Esc` | see `Enter` above and "Cancelling" below |
+  | `Space`, `?` | core keys: `Space` does nothing (Rules K5), `?` opens the key reference (Rules K6) |
+
+- **Any other printable character** (digits, `q`, other letters): on a field that takes typing it brings up the note;
+  on the form's other items (options, the button, the error row) it brings up no note and simply does nothing. `q` does
+  not start quitting (Rules K9).
 
 **Why**: a note rather than a toast: a note catches every character typed after it and does nothing with them, so the
 form is not disturbed; a toast lets keys pass through, and an `e`, `h` or `l` typed after it would jump around between
-fields. Users press `Enter` out of habit after typing, which just closes the note.
+fields. Users press `Enter` out of habit after typing, which just closes the note. `e`, `u`/`d` and `g` count as the
+form's keys: K12 keeps these letters for movement wherever nothing is being typed, and a form is such a place; and a key
+does not react by state (`e` does not bring up the note with no error and jump to the error row with one). Someone who
+thinks they can type straight in loses the first character if it happens to be one of these keys, and the next one
+brings up the note anyway, so the reminder works just as well.
 
 ### Hint
 
@@ -275,7 +289,8 @@ intact — the "safe place" Rules K4 asks for.
   jumps to that field.
 - **`e`**: `e` (error) on a field with a problem (a Red label) moves the focus to the error row, which switches to **that
   field's** message (the whole form is checked at once, so every field's message is already at hand); `Enter` on the
-  error row opens a note with the whole message (looking the same as an error popup, its title the field's name); `e`
+  error row opens an error popup with the whole message ([`dialog/note`](note.md), its title the field's name, closed
+  with `Enter` or `Esc`); `e`
   (edit) on the error row returns the focus to the field the message belongs to, where `Enter` opens its input popup to
   change it. The error row can still be reached with `j`/`k` and `Tab`; `e` is the shortcut that jumps straight there. A
   stray `e` only moves the focus and changes nothing.

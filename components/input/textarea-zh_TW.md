@@ -12,10 +12,10 @@
 **一行太長時自動折行，左邊有行號**：
 
 ```
-│  1 Thanks for the quick reply. The new   │
-│    build fixes the crash on start.       │   ← 同一行折下來：行號欄空白
-│  2                                       │
-│  3 One more thing: the export button█    │   ← 游標所在的行
+│ 1 Thanks for the quick reply. The new    │
+│   build fixes the crash on start.        │   ← 同一行折下來：行號欄空白
+│ 2                                        │
+│ 3 One more thing: the export button█     │   ← 游標所在的行
 ```
 
 - 超過框寬就接到下一列畫，不左右捲。折行只在畫面上，值裡不多出換行。寬度照顯示寬度算，一個字不折成兩半。
@@ -33,6 +33,7 @@
 | **移** | 在「寫」裡按 `Esc` 進來。移動游標；`i`、`a`、`o` 回到「寫」；**`Enter` 確定** | `Enter:save i:write Esc:cancel` |
 
 - **確定就是「移」裡的 `Enter`**。
+- **打開時**：在「寫」，舊值直接帶進來，游標在最後；沒有灰字提議（[`input/README`](README-zh_TW.md) 的灰字提議只用在單行）。
 - `Esc`：在「寫」裡進到「移」（hint 會換成 `Enter:save`，照著就知道怎麼存）；在「移」裡關掉。內容改過時，先開 confirm 問要不要放棄
   （[`dialog/form`](../dialog/form-zh_TW.md) 的「取消」）。
 - **「寫」的編輯鍵**：[`input/README`](README-zh_TW.md) 的那一組，加上多行才要的 —— `↑`/`↓` 換到上一列、下一列（照畫出來的列，折行也算
@@ -41,7 +42,8 @@
   一行再寫（照 vim）。
 - 「移」不是模式，也不是輸入態：core key 照 Rules K1（`?` 打開 key reference）。
 
-**為什麼**：多行的 `Enter` 要拿來換行，確定只能換一個鍵或換一個狀態；有兩種狀態，「移」裡的 `hjkl` 可以移動、`Enter` 可以確定，
+**為什麼**：打開時帶入舊值：多行文字改的多半是補一句、改幾個字，打開就能改；「寫」裡的 `Tab` 是縮排，收不了提議。整段換掉要
+在「寫」裡自己刪，這種情況少。多行的 `Enter` 要拿來換行，確定只能換一個鍵或換一個狀態；有兩種狀態，「移」裡的 `hjkl` 可以移動、`Enter` 可以確定，
 不用另外的送出鍵。
 
 ## 值

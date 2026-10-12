@@ -17,4 +17,4 @@
 
 ## 值
 
-確定時去掉前後空白；在表單與 panel 上照 README 的「在表單與 panel 上怎麼顯示」。
+確定時去掉前後的空白字元（[`README`](README-zh_TW.md) 的「值」）；在表單與 panel 上照 README 的「在表單與 panel 上怎麼顯示」。

@@ -29,7 +29,7 @@ syntax highlighting) are up to the app; this file governs the interface elements
 
 | Meaning | Used for | Colour |
 |---|---|---|
-| Background | the screen's background; what dimming fades towards | Base `#1e1e2e` |
+| Background | not painted on the screen; used where a background colour has to be written out: text on a block (the cursor, capsules), the unfilled side of a capsule seam, what dimming fades towards | Base `#1e1e2e` |
 | Focus | the focused frame (double line `╔═╗`); keys that can be pressed now in hints, the footer and the key reference; the labels and header row of the focused panel; the screen chip row | Blue `#89b4fa` |
 | Unavailable | an unfocused frame (rounded `╭─╮`, the same width as the double line, so switching shifts nothing); disabled rows, labels and options; days out of range | Surface2 `#585b70` |
 | Layer colour | a popup's frame and title; the cursor block in a popup | see "Popup layer colours" below |
@@ -46,6 +46,12 @@ syntax highlighting) are up to the app; this file governs the interface elements
 - **The cursor block**: the layer colour as its background in a popup, Subtext1 in a panel, the text Base bold in both;
   a cursor on a part without the focus is the focused cursor dimmed once more (P6).
 - Text placed on a cursor block always turns Base; its original colour is not kept.
+- **The screen's background is not painted**: cells with no background of their own are left to the terminal's own
+  background. When the terminal's background is not Base, a small patch of Base shows at a capsule seam and dimming leans
+  towards Base; the family colours are designed for a dark background, so on a dark terminal the difference is small.
+
+**Why**: the user's terminal theme, transparency and background image stay; none of the family apps paints the
+background today, so moving to the shared lib does not change the screen.
 
 ## Popup layer colours
 
@@ -68,7 +74,9 @@ Rewrite every colour code (SGR) in the already-drawn screen, leaving text and la
 dim(c) = c × 0.45 + base × 0.55        base = #1e1e2e
 ```
 
-- Both foreground and background go through it; 16- and 256-colour codes are turned into RGB first.
+- Both foreground and background go through it; 16- and 256-colour codes are turned into RGB first: colours 16–255 of the
+  256 by their standard values; 0–15 (the 16 colours) by the terminal's palette — asked with OSC 4 at startup (at the
+  same time as the icon-width probe of Rules E5), with the xterm defaults when there is no answer.
 - **Dimming never lightens a colour**: each channel takes the smaller of its original and dimmed value — a colour darker
   than base (e.g. `#000000`) would get lighter, so it keeps its original.
 - Output is always 24-bit (`38;2;…` / `48;2;…`): the family requires a truecolor terminal (Rules E4), so dimming need not
@@ -78,4 +86,14 @@ dim(c) = c × 0.45 + base × 0.55        base = #1e1e2e
 - **The drawn screen is dimmed once**: what is already dimmed (an unfocused panel) gets a little darker again under a
   popup, which shows where the focus was before the popup opened (F8).
 
-> **Implementation reference (not a requirement)**: filu's `internal/ui/dim.go`.
+**Why**: what the 16 colours actually look like is set by the user's palette; dimmed by the xterm values, the hue jumps
+when the palette is not xterm's — e.g. with the palette's blue set to `#89b4fa`, dimming the xterm `(0,0,238)` gives a
+saturated dark blue `(17,17,132)`, while the actual colour dims to a greyish blue `(78,97,138)`, breaking "the same
+colour, only fainter". With no answer, the xterm values are what the family apps use today.
+
+> **Implementation reference (not a requirement)**: filu's `internal/ui/dim.go` (the xterm 16 colours are there). Asking
+> for the palette: send the 16 queries `ESC ] 4 ; n ; ? ESC \` (n = 0–15) together, followed by a DA1 (`ESC [ c`); the
+> terminal answers in order with `ESC ] 4 ; n ; rgb:RRRR/GGGG/BBBB` (take the high 8 bits of each channel), and a colour
+> still unanswered when the DA1 reply arrives is not available — a terminal without OSC 4 still answers DA1, so there is
+> no timeout to wait for. If DA1 is not answered either, after an overall timeout (e.g. 200ms) all of them take the xterm
+> values.

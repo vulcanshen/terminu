@@ -14,7 +14,7 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
 │ content                                     │
 │ content                                     │
 │                                             │   ← padding
-╰─ Enter:run Esc:close ────────────── 4 of 12 ╯
+╰─ Enter:run Esc:close ───────────── 4 of 12 ─╯
 ```
 
 - **Line style**: rounded `╭─╮`, in the layer colour ([`color`](../color.md)). Popups are always rounded: the top popup
@@ -38,20 +38,29 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
   - **Keys that move between items are left out** (`j/k`, `↑/↓`, a form's `Tab` between fields); only actions and
     leaving are written: users find movement out by using it. A key that switches parts is not movement and is written
     (e.g. a finder's `Tab:list`).
-  - **When it does not fit, whole items are dropped from the end**, never cut mid-item; the scroll position at the right
+  - **When it does not fit, whole pairs are dropped from the end**, never cut mid-pair; the scroll position at the right
     of the bottom border stays.
   - **A popup with only a typing row** (text, password, number): `?` is a character there, so the hint must list every
     operation, and fit in 80 columns (Rules M3).
 - **Right of the bottom border**: the scroll position when the content does not fit (see "When the content does not fit"
   below).
+- **Text on the frame always keeps one line segment away from the corner**: the title `╭─ Title`, the hint
+  `╰─ Enter:run`, the scroll position `4 of 12 ─╯` (the same on a panel, where only the capsule sits right after the
+  corner, [`panel`](panel.md)).
 - **Padding**: one blank row above and below the content, one cell from the border on the left and right. Every kind of
-  popup has it, viewers too; only the terminal is the exception ([`dialog/terminal`](../dialog/terminal.md)).
+  popup has it, viewers too; only the terminal is the exception: no padding on any side
+  ([`dialog/terminal`](../dialog/terminal.md)).
+- **A cursor block covers the padding**: a list's cursor runs from frame to frame, covering the left and right padding,
+  and the text on it stays one cell from the frame ([`dialog/menu`](../dialog/menu.md), [`input/finder`](../input/finder.md));
+  a form's focus block runs from the value all the way to the frame, covering the right padding
+  ([`dialog/form`](../dialog/form.md)).
 - **Separators**: a separator inside a popup does not join the frame — a horizontal one leaves one blank cell at each
   end, a vertical one is not drawn into the top and bottom padding. Colour Overlay0.
 
 **Why**: with the title, hint and padding in fixed places, the moment any popup opens the user's eyes know where to find
 "what this is" and "what can be pressed". Separators do not join the frame: a line joined to the frame looks like it cuts
-one frame into two, when it only divides the content into sections.
+one frame into two, when it only divides the content into sections. A cursor block covers the padding: the same cursor
+looks the same in every list (Principle P4), and the widest block is the easiest to spot (Rules L5).
 
 ## Width
 
@@ -78,8 +87,9 @@ several layers in a row means no waiting.
 
 ## Loading
 
-Rules F7: while a popup is loading, a spinning loading icon always sits after its title. While a panel is loading, it
-sits after the capsule ([`panel`](panel.md)). The spec:
+Rules F7: while a popup is loading, a spinning loading icon always sits after its title; when tabs follow the title (the
+capsule chain in [`panel`](panel.md)), after the whole row of tabs. While a panel is loading, it sits after the whole
+capsule chain ([`panel`](panel.md)). One space on each side. The spec:
 
 - Glyphs: `nf-md-circle_slice_1` to `nf-md-circle_slice_8` (U+F0A9E–U+F0AA5), eight frames, a circle filling slice by
   slice, then starting over once full.
@@ -117,7 +127,7 @@ frame.
 │                                                │
 │ error                                          │   ← error row: stays put
 │                                                │
-╰─ hint ──────────────────────────────── 4 of 12 ╯
+╰─ hint ─────────────────────────────── 4 of 12 ─╯
 ```
 
 ## Error row

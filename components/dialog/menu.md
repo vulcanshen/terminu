@@ -31,12 +31,14 @@ jobs list (`Enter` opening the row's full text). A list that needs search is a f
 (`≡` stands for `nf-fa-bars`.)
 
 - **Each row**: the label in Text, `[x]` in the label's colour; how hotkeys are marked is in Rules M5. The description in
-  Overlay0, right-aligned, one cell from the right border; when too long it is cut at the end with `…` (M5: one line).
-- **Section titles**: Overlay0, indented one cell, not bold; the cursor skips them.
+  Overlay0, right-aligned, one cell from the right border; when too long it is cut at the end with `…` (M5: one line). At least two cells between the label and the description:
+  this decides the widest row, and so the popup's width.
+- **Section titles**: Overlay0, indented one cell (one cell from the frame, in the same column as the rows' text), not
+  bold; the cursor skips them.
 - **Separators**: drawn like the separator in [`layout/popup`](../layout/popup.md) (not joined to the border, Overlay0);
   the cursor skips them.
-- **The cursor**: the layer colour as background, bold Base text, filling the whole inner width; the whole row is in
-  Base.
+- **The cursor**: the layer colour as background, bold Base text, running from frame to frame (covering the left and
+  right padding) with the text still one cell from the frame; the whole row is in Base.
 - **Disabled rows**: the whole row in Surface2; the cursor skips them, and their hotkeys do nothing (Rules M6).
 - **Title**: `nf-fa-bars` plus text. The Space menu shows the focused panel's `[N] label` (what it lists is what that
   panel can do); any other menu says what it does (`Global operation`, `Sort by`).
@@ -50,7 +52,8 @@ layer colour is where `Enter` acts (in a form too).
 
 ## Keys
 
-- `j/k` move, wrapping at both ends; `u/d` half a page, `gg/G` to the top and the bottom (Rules K12).
+- `j/k` move, wrapping at both ends; `u/d` half a page (stopping at the ends), `gg/G` to the top and the bottom
+  (Rules K12).
 - `Enter` runs the cursor row; a hotkey runs its row directly.
 - `Esc` closes it (the global operation popup returns to the Space menu, Rules F4); the Space menu also closes on another
   `Space` (Rules K5).

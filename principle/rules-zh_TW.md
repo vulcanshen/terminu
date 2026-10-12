@@ -5,7 +5,8 @@
 這裡的每一條都是 **必須遵守**。每條附上「為什麼」，那是它的 origin UX（[Principle P0](README-zh_TW.md#p0-規則服務-ux不是反過來)）。
 
 **什麼是規定**：rules 與 [components](../components/README-zh_TW.md) 裡的敘述都是規定。不是規定的只有四種：寫明「由 app 決定」的部分、
-標成「例」的例子、「為什麼」、標成「實作參考（不是規定）」的段落。
+標成「例」的例子、「為什麼」、標成「實作參考（不是規定）」的段落。圖也是規定：圖的結構（框、glyph 的位置、間距、對齊、旁邊標的
+顏色）照圖，圖裡的名稱、數值、說明文字是例；文字跟圖衝突時以文字為準（components 的「[圖與間距](../components/README-zh_TW.md#圖與間距)」）。
 
 **分區**：每條標題後標 `固定` 或 `概念`（[Principle P5](README-zh_TW.md#p5-固定區與概念區)）。`概念` 條目裡，語意部分仍是固定的，只有實作方式交給 app。
 固定條裡可以用「（概念）」標出交給 app 的部分，概念條裡可以用「（固定）」標出寫死的部分。
@@ -27,7 +28,7 @@
 | [X](#x-mouse) | Mouse |
 | [T](#t-時間軸) | 時間軸 |
 | [S](#s-splash) | Splash（家族彩蛋） |
-| [E](#e-app-與環境) | App 與環境：命令列、環境變數、需求、發布、文件 |
+| [E](#e-app-與環境) | App 與環境：命令列、環境變數、需求、發布、文件、共用 lib |
 
 ---
 
@@ -43,14 +44,22 @@
 | `Space` | 在 panel 上開 / 關 Space menu（這裡能做什麼） | K5、M2 |
 | `?` | 開 / 關 key reference：最前端那個 surface 能按什麼鍵（唯讀） | K6、M4 |
 | `q` | 離開 app | K9 |
+| `1`–`9` | 在 panel 上跳到目前畫面的第 N 個 panel（框上的 `[N]`） | 本條、K11 |
 
 表上的鍵在**每一個 surface** 都是這個意義，例外只有輸入態（K8）、PTY（K10）、模式（K11）與表單上的 `q`（K9）。app 可以
 不用到全部（單一 panel 的 app 不需要 `Tab`），也可以另外指定自己的 core key；自訂的
 core key 一旦指定，同樣在所有 surface 意義不變。**letter hotkey 不能佔用表上的鍵。**
 
+**數字鍵 `1`–`9`**：在 panel 上（沒有 popup 開著時）保留給跳 panel，app 不能在 panel 上把數字登記成熱鍵。**只在目前的畫面裡**：
+每個畫面的 panel 各自從 `[1]` 編號，換了畫面，`1`–`9` 就是那個畫面的 panel；畫面上沒有那個號碼的 panel 時不作用。popup 裡
+數字是自由的（例：menu 的 `[3] Favorites`、select 選項的數字熱鍵）；用數字的 global 熱鍵只能在 global operation popup 裡按（M4）。
+模式裡照 K11；key reference 寫在 core keys 區，寫成 `1–N`（[components/dialog/note](../components/dialog/note-zh_TW.md)）。
+
 **為什麼**：使用者學的單位是**角色**（「取消」「換 focus」「現在能做什麼」），不是
 按鍵。角色固定，學一次就在所有 surface、所有家族 app 有效。只要有一個 surface
-讓 `Space` 做別的事，使用者就得多學一條「哪裡例外」。
+讓 `Space` 做別的事，使用者就得多學一條「哪裡例外」。每個 panel 的框上畫著 `[N]`，等於保證「按這個數字到這裡」；
+讓 app 拿數字去做別的事，框就在騙人。跳 panel 跟 `Tab` 一樣是基本移動，要永遠可靠；app 只在 panel 上少了數字，字母與
+popup 裡的數字都還在。
 
 ### K2 `Tab` 在同層物件之間切換 focus `固定`
 
@@ -59,7 +68,7 @@ core key 一旦指定，同樣在所有 surface 意義不變。**letter hotkey �
 | focus 所在 | `Tab` 在什麼之間切換 |
 |---|---|
 | 畫面 | panel |
-| 表單（[components/dialog/form](../components/dialog/form-zh_TW.md)） | 欄位；錯誤列有錯誤時與動作列也各是一站（欄位裡的選項用 hjkl，K12） |
+| 表單（[components/dialog/form](../components/dialog/form-zh_TW.md)） | 欄位；錯誤列（有錯誤時）與動作列也各是一站（欄位裡的選項用 hjkl，K12） |
 | 有好幾塊的 popup（finder、datetime picker） | 塊 |
 
 - `Tab` 不跨畫面、不離開當前 popup。
@@ -137,8 +146,8 @@ key reference**：唯讀、可以捲動，沒有游標、不能執行（M4；樣
 
 | focus 在 | key reference 列出 |
 |---|---|
-| panel | 這個 panel 能按的鍵，以及 core key 與 global 熱鍵 |
-| popup（包括 Space menu、global operation popup） | **只有這個 popup** 能按的鍵 |
+| panel | 這個 panel 能按的鍵（含移動鍵），以及這裡有作用的 core key 與 global 熱鍵 |
+| popup（包括 Space menu、global operation popup） | **只有這個 popup** 能按的鍵：自己的熱鍵、`Enter`、`Esc`、移動鍵 |
 
 輸入態、PTY、模式依 K8、K10、K11。
 
@@ -227,8 +236,9 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 | `?` | 這個模式的 key reference（唯讀，K6）：模式裡能按什麼鍵、做什麼 |
 | `Esc` | 離開模式（K4），回到進入前的狀態 |
 | `q`、`Ctrl-C` | 照 K9 進入離開流程 |
-| `Tab` | 模式可以暫停 `Tab`，但按了要有回應，說明先 `Esc` 離開模式（例：toast）；toast 還在時，第一個 `Esc` 先收掉它（K4） |
+| `Tab`、`1`–`9` | 模式可以暫停 `Tab` 與數字鍵，但按了要有回應，說明先 `Esc` 離開模式（例：toast）；toast 還在時，第一個 `Esc` 先收掉它（K4） |
 
+- **模式裡只有模式自己的鍵與上表的 core key 作用**：panel 的熱鍵與 global 熱鍵都不作用，按了不出聲。
 - 模式裡沒有 Space menu，也沒有任何可以執行的按鍵清單。模式自己的鍵（移動、選取、拖曳）直接按；它們揭露在
   `?` 的 key reference 與 footer / 下框 hint（footer 在模式裡的樣子見 [components/layout/screen](../components/layout/screen-zh_TW.md)）。
 - **模式要標示自己**：模式名顯示在模式所在的框（panel 或 popup）的上框右側，外框換成模式色；離開模式就恢復。模式名是字，
@@ -236,7 +246,9 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 
 **為什麼**：模式一定是特殊情況，裡面的鍵是移動、選取這類要直接、連續按的鍵，不是對某個 item 的動作，也沒有
 item / panel / global 可分。把它們做成一個能選、能執行的清單（連 `h j k l` 都要從清單執行）只是多繞一層；使用者
-要的只是「這裡能按什麼」，那正是 `?` 的工作。
+要的只是「這裡能按什麼」，那正是 `?` 的工作。熱鍵在模式裡不作用：拖曳、選取做到一半不會被切走（例：拖到一半按了切畫面的
+熱鍵，拖曳的狀態就說不清），模式的 `?` 也只需要列模式的鍵；要做別的事先 `Esc`，跟 PTY 同一個想法。數字鍵跟 `Tab` 一樣是
+換 panel，使用者預期有反應，所以暫停時要回應；其他字母不出聲，免得亂按跳出一堆 toast。
 
 ### K12 導覽字母保留給移動，hjkl 是方向鍵 `固定`
 
@@ -249,13 +261,18 @@ item / panel / global 可分。把它們做成一個能選、能執行的清單�
 - 一維清單放在有 tab 的 panel 裡：`h`/`l` 給 tab，`j`/`k` 照樣在清單裡移。
 - **`u`/`d` 半頁，`gg`/`G` 到頭、到尾**。`g` 只當兩鍵組合的開頭：`gg` 是到頭，其他 `g` 開頭的組合可以當熱鍵（例：filu、
   webu 的 `[go]to`）；單按 `g` 不做任何事。不收 `Ctrl-U`/`Ctrl-D` 當別名。
+- **一步一步的移動到頭尾繞回**：在一串項目上一次走一步（`j`/`k`、`h`/`l`、方向鍵、`Tab`）—— panel 的清單、一列一個值的 panel、
+  menu、表單、finder 與 select、checkbox popup 的清單、panel 的 tab、picker 裡的欄與項目 —— 走到最後一個再往後一步回到第一個，
+  在第一個再往前一步到最後一個。`u`/`d` 到頭尾停在第一個、最後一個，不繞；`gg`/`G` 本來就是到頭、到尾。照空間走、不是一串
+  項目的不繞：日曆的日子、月與年、左右兩側、在一段文字裡移動。
 - **在一段文字裡移動**（note 的選取、textarea 的移動狀態）：再加上 `w`/`b`/`e`（下一個字頭、上一個字頭、字尾）與
   `0`/`$`（行首、行尾），照 vim。
 
 **為什麼**：hjkl 在家族裡是方向鍵，表單、panel、清單都靠它移動；一個 app 把其中一個綁成動作，使用者以為在移動，卻觸發
 了動作。有左右結構時左右就是左右（filu、kbu、webu 的 `h`/`l` 切 tab，sshu 的 `h`/`l` 跨到另一側）；沒有左右結構時左右鍵閒著，
 給它「往前往後」，使用者不用想選項是橫排還是直排。不收 `Ctrl-U`/`Ctrl-D`：一個動作一組鍵，少一組要記；而 `Ctrl-U` 在 shell
-與很多輸入框裡是「清掉這一行」，同一個組合在家族裡一處翻頁、一處刪字，按錯的代價太高。
+與很多輸入框裡是「清掉這一行」，同一個組合在家族裡一處翻頁、一處刪字，按錯的代價太高。到頭尾繞回：同一個鍵在家族裡到頭尾
+只有一種反應，不用記哪裡繞、哪裡停；`u`/`d` 跨過頭尾的半頁落在哪裡猜不到，所以停住。
 
 ---
 
@@ -314,7 +331,8 @@ Space menu 列出**當前 panel 能做的所有事**，依作用對象（Princip
 - `Esc` 回到 Space menu（F4）；執行了會關掉整疊的動作，照 T1。
 - 目前所在畫面的切換列照 M6 停用（例：在 `[M]anage` 上的 `[M]anage`）。
 - **global 熱鍵**：沒有 popup 開著時，global operation popup 裡的熱鍵在 panel 上也能直接按。跟 panel 自己的熱鍵撞鍵時，
-  panel 的優先，那個 panel 的 key reference 不列被蓋掉的 global 鍵。`q` 照 K9。
+  panel 的優先，那個 panel 的 key reference 不列被蓋掉的 global 鍵。`q` 照 K9。用數字的 global 熱鍵只能在 global operation popup
+  裡按（panel 上的數字跳 panel，K1）；模式裡 global 熱鍵不作用（K11）。
 
 **key reference**（能讀）
 
@@ -569,12 +587,13 @@ popup 打開與關閉**都要有動畫**。長度全家族一樣（見 [componen
 - **loading 一定要揭露**：popup 在 loading 時，標題後面**一定**放一個輪轉的 loading icon（規格見 [components/layout/popup](../components/layout/popup-zh_TW.md)），跟高度會不會變無關；
   loading 結束 icon 就消失。這裡的 loading 指的是**整個 popup** 的內容還沒到（例：清單的項目還沒載完）。若只是**某一個
   項目**本身是持續進來的資料流（例：一筆一直有資料的連線），loading 的是那個項目，不是 popup —— 那個項目怎麼揭露由 app 決定。
-- **位置**：垂直置中。toast 例外：在畫面下方置中，下框貼在 panel 下框的上面（[components/dialog/toast](../components/dialog/toast-zh_TW.md)）。
+- **位置**：垂直置中。toast 例外：在畫面下方置中，下框在畫面倒數第三列，最下面兩列一直看得到（[components/dialog/toast](../components/dialog/toast-zh_TW.md)）。
 - **值可能不合格的 popup 預留一列錯誤列**（input popup、表單）：打開時高度就含一列錯誤列，沒有錯誤時空白；值不合格時錯誤
   寫在這一列（K3），框的高度不變。不會不合格的（例：多行編輯器）不必預留。動作本身失敗（寫檔失敗、遠端拒絕）不寫錯誤列，
   開 error popup（[components/layout/popup](../components/layout/popup-zh_TW.md)）。
-- **terminal 類例外**：寬度 `terminal 寬 − 2`，不受 120 欄上限；上面留著 statusbar 或畫面 chip 列，下面一直到畫面最後一列、
-  蓋掉 footer —— 子程序需要空間，而在 PTY 裡不需要外面的 footer（[components/dialog/terminal](../components/dialog/terminal-zh_TW.md)）。
+- **terminal 類例外**：寬度 `terminal 寬 − 2`，不受 120 欄上限；上面留著 statusbar 或畫面 chip 列（含它下面的分隔線），下面一直到
+  畫面最後一列、蓋掉 footer；框裡上下左右都不留白 —— 子程序需要空間，而在 PTY 裡不需要外面的 footer
+  （[components/dialog/terminal](../components/dialog/terminal-zh_TW.md)）。
 
 **為什麼**：每個 popup 依內容隨時伸縮，打開前無法預期它長什麼樣，內容一變框就跳（L2）。寬度只有兩種算法、打開時定好，
 框的樣子永遠可以預期；內容確定的不必撐到全寬，寬螢幕上不空、窄螢幕上不擠；120 欄的上限讓寬螢幕上的 menu 名稱與說明
@@ -699,7 +718,7 @@ splash 畫的是該 app 的 `docs/icon.svg` —— terminu family 的 mark —�
 
 ## E App 與環境
 
-app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度、發布、文件。這一章不是畫面上的 UX；它的理由是家族一致 ——
+app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度、發布、文件，以及共用 lib 與 app 的分工。這一章不是畫面上的 UX；它的理由是家族一致 ——
 五個 app 用同一套做法，使用者裝過一個就會裝其他的，也知道去哪找設定與資料。
 
 ### E1 命令列：`version` 與 `help` `固定`
@@ -834,3 +853,28 @@ tdp 不規定；dev-remarks 的「設計文件導讀」一節負責指路。不�
 —— 符合的不必記，偏離的寫在 dev-remarks，違反的寫在 fix.md。
 
 **為什麼**：README 是工具的介紹，使用者要的是「這是什麼、怎麼裝、怎麼用」；開發者的備忘另外放，兩邊都好找。
+
+### E8 共用 lib 與範例 app `固定`
+
+家族的共用 lib（terminu-go）把畫面的規定做成給 app 呼叫的程式，它的範例 app（展示場）把每一個元件、每一種組合展示出來、
+不發布。lib 不是 app，有些規定套不上；app 用 lib 時，哪些規定由 lib 做到、哪些還是 app 自己的事，照這張表：
+
+| 規定 | lib | 範例 app | 用 lib 的 app |
+|---|---|---|---|
+| 畫面的規定（K、M、L、F、X、T、S1–S4、components） | 做到 | 全部展示出來 | lib 給的，自己不另外做 |
+| E1 `version`、`help` | — | 要 | 自己做 |
+| E2 環境變數的命名 | lib 自己讀的變數掛在 app 的名字底下（例：`<APP>__ICON_WIDTH`） | 照 E2（例：`SHOWCASE__…`） | 自己的變數照 E2 |
+| E3 設定與資料的位置 | — | 不存東西，不適用 | 自己做 |
+| E4 需求 | README 寫明 | — | README 寫明 |
+| E5 icon 的實際寬度 | 做到：探測、顯示寬度函式、替子程序設 `TERMINU__ICON_WIDTH` | — | lib 給的 |
+| E6 發布 | 打 git tag（Go module），沒有 binary；L4 的畫面測試要有 | 不發布；L4 的畫面測試要有 | 照 E6 |
+| S5 splash 畫的 icon | splash 的機制 | 家族 mark | 自己的 `docs/icon.svg` |
+| E7 README | lib 自己的結構：安裝是 `go get`、快速開始是程式碼、寫明範例 app 怎麼跑 | 不另外寫 | 照 E7 |
+| E7 dev-remarks | 要，同一個骨架 | — | 要 |
+| 偏離（Rules 開頭） | **lib 不偏離**：做不到或不好用的，回報成 tdp 的缺漏，規範改了 lib 才跟著改 | — | 自己的偏離寫在自己的 dev-remarks |
+
+- 這裡只寫「用 lib 時」的分工，不規定 app 一定要用 lib。
+
+**為什麼**：app 改用 lib 時要知道哪些可以刪 —— 畫面與 E5 的程式刪掉，E1、E3、E6、E7 與自己的 icon 留著 —— 不用每個 app
+各判斷一次。lib 管的是家族共用的畫面，lib 一偏離，用它的 app 全都跟著偏離；所以 lib 遇到做不到的地方，一律回報成 tdp 的缺漏、
+先改規範。

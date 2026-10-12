@@ -1,5 +1,73 @@
 # Changelog
 
+## v0.4.0 — 2026-10-12
+
+Gaps found while building the shared lib (terminu-go) and its showcase strictly from the spec, settled one by one.
+
+**How the spec reads**
+
+- Diagrams are requirements: their structure (frames, glyph positions, spacing, alignment, the noted colours) is as
+  drawn, the names and values in them are examples; the text wins over a diagram, and two diagrams that disagree are a
+  bug in the spec. Numbers that are hard to count are written in the text; "indented N cells" means N cells from the
+  frame (components README, "Diagrams and spacing")
+- Two general spacing rules: two cells between columns, one cell between a glyph and its text
+- The English "what is a requirement" now covers every form of example ("e.g.", "for example", "Example:", "such as")
+
+**Rules**
+
+- K1: the digits `1`–`9` are a core key on panels — jump to that panel of the current screen; each screen numbers its
+  own panels from `[1]`; an app may not register a digit hotkey on a panel; digits are free inside popups, and a digit
+  global hotkey works only inside the global operation popup (M4)
+- K2: the form row reads "the error row (while it holds an error) and the action row"
+- K6: a panel's key reference lists its movement keys and the core keys that work there; a popup's lists its hotkeys,
+  `Enter`, `Esc` and movement
+- K11: inside a mode only the mode's keys and the listed core keys work — panel and global hotkeys do nothing, silently;
+  the digits may be suspended like `Tab`, and must respond if so. English: `Esc` goes "back to the state before it was
+  entered"
+- K12: stepping (`j`/`k`, `h`/`l`, arrows, `Tab`) wraps at the ends of every run of items — lists, forms, menus, tabs,
+  picker columns; `u`/`d` stop at the ends; the calendar, the month and year, the two sides and text movement do not
+  wrap. English: "Where you are not typing", "`h`/`l` switch tabs"
+- F7: the toast's bottom border is always on the third row from the bottom; a terminal keeps the chip row's divider and
+  has no padding on any side
+- E8 (new): the shared lib and its example app — a table of which rules the lib covers and which stay with an app that
+  uses it; the lib never departs from tdp, it reports a gap instead
+
+**Components**
+
+- color: the screen background is not painted — Base is only written where a background must be (text on blocks,
+  capsule seams, the dimming target); the 16 colours are dimmed by the terminal's own palette, asked with OSC 4 at
+  startup, falling back to xterm's
+- layout/screen: with a popup open the footer stays the screen's own, dimmed with it (a sixth case); panels are
+  numbered per screen; the chip row and its divider stay over a terminal popup
+- layout/panel: text on a frame keeps one line segment from the corner (`3 of 40 ═╝`), only the capsule touches it
+  (`╔([1] Kinds)═══╡Drag╞═╗`); the loading icon follows the whole capsule chain; no hint while typing in a panel filter;
+  columns are numbers or text, which sets alignment and sorting; a one-value panel's label column is as wide as the
+  longest label plus two cells; a panel filter's typing row lines up with the list
+- layout/popup: text on a frame keeps one segment from the corner (`4 of 12 ─╯`); a list cursor runs from frame to frame
+  and a form's focus block runs to the frame; the terminal has no padding on any side; the loading icon follows the
+  whole row of tabs. English: whole *pairs* are dropped from a hint
+- menu: at least two cells between label and description; section titles sit one cell from the frame; wrapping per K12,
+  `u`/`d` stop
+- form: two cells after the label column; the focus block runs to the frame; `u`/`d` move half a page; a table of the
+  form's own keys (`e`, `u`/`d`, `g`, `?` bring up no note); the full error message from the error row is an error popup
+- note: every error popup closes with `Enter` or `Esc`, however it was opened; the key reference has a `move` section
+  (item → panel → move → core keys → app-wide), lists the core keys that really work, and keeps menu labels' case
+- toast: always on the third row from the bottom, so a terminal's prompt row and exit key stay visible. English: "that",
+  not ", which"
+- terminal: the PTY touches the frame on every side; the chip row's divider stays (it is the progress bar)
+- confirm (English): hotkeys of its own "must be listed in `?`"
+- input/README: the grey suggestion is for single-line inputs; leading and trailing *whitespace* (every Unicode
+  whitespace character) is trimmed
+- textarea: opens with the old value, the cursor at its end, in Write
+- finder: typing filters by *contains* — case-insensitive, each space-separated word must appear, the list keeps its
+  order; the cursor runs from frame to frame and the typing row lines up with the list
+- file-picker: matching as the finder; a typed path stays on the typing row, split at its last `/` into directory and
+  filter; `..` is not supported in a path; wildcard results show paths relative to their starting point, without `..`;
+  `/` has no `..`
+- datetime-picker: the calendar is not indented; two cells between month and year and between hours and minutes; the
+  unfocused time column is dimmed; hours and minutes wrap on their own
+- color-picker: blocks 8×2 and 3×1, two cells between the five items; the four items wrap
+
 ## v0.3.0 — 2026-10-08
 
 A from-scratch review of the whole spec, before the apps implement the components.

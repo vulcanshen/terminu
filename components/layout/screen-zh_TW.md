@@ -7,7 +7,7 @@
 ## 由上往下
 
 1. **最上面一列**：多畫面的 app 是畫面 chip 列，下面一條全寬分隔線；單畫面的 app 可以有一列 statusbar（由 app 決定）。
-2. **panel 區**：其餘的高度。
+2. **panel 區**：其餘的高度。每個畫面的 panel 各自從 `[1]` 編號；`1`–`9` 只跳目前畫面裡的 panel（Rules K1）。
 3. **最下面一列**：footer。
 
 ## footer
@@ -22,11 +22,14 @@
 | 在模式裡（Rules K11） | `?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>`。例：`?:help Enter:drop Esc:cancel` |
 | panel filter 打字中（輸入態） | `Enter/Tab:list Esc:clear` |
 | focus 在 panel 裡的 PTY | 出口鍵，再加 app 保留的鍵（Rules K10）。例：`Alt-Esc:leave Alt-z:zoom PgUp:history` |
+| popup 開著時 | 照底下畫面的寫，跟著整個畫面淡化（Rules F8）；popup 自己的鍵在它的下框 hint |
 
 terminal popup 開著時，它蓋掉 footer（[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
 
 **為什麼**：footer 是 Rules M1 的入口，寫的必須是現在按得了的鍵。模式裡 `Space` 不作用、打字時 `Space` `?` `q` 都是字元、
-PTY 裡的鍵都送給子程序 —— 照常寫一般的 footer，反而教使用者按錯。
+PTY 裡的鍵都送給子程序 —— 照常寫一般的 footer，反而教使用者按錯。popup 開著時 footer 不換字、只跟著淡化：淡化就是「現在不在
+這裡」（Principle P6，跟 Rules F8 同一件事）；popup 開開關關，最下面一列只變暗變亮，不會一直換字；`?` 照樣在 footer 上，而
+popup 上按 `?` 打開的本來就是這個 popup 的 key reference（Rules M1）。
 
 ## 畫面 chip 列
 
@@ -34,7 +37,8 @@ PTY 裡的鍵都送給子程序 —— 照常寫一般的 footer，反而教使�
 字 Base 粗體；沒選中的不填底色、字 Blue）。放不下時照膠囊串的規則縮：先縮成 `[M] [F] [S]`，再收掉沒選中的。
 
 右邊放 statusbar 的內容（見下）。chip 列下面一條全寬分隔線，Overlay0；長時間的工作（傳檔、下載）進行時，從左邊填 Green
-當進度條，旁邊的狀態文字也是 Green。
+當進度條，旁邊的狀態文字也是 Green。terminal popup 開著時，chip 列與這條分隔線都留著（[`dialog/terminal`](../dialog/terminal-zh_TW.md)）：
+在 shell 裡照樣看得到進度。
 
 ## statusbar
 

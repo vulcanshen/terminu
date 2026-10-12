@@ -83,6 +83,8 @@ is done with the grey suggestion below (typing a new value needs no deleting fir
 │ report-2025.pdf                      │   ← the box is empty; the old value after the cursor is grey (Overlay0)
 ```
 
+- **Single-line inputs only** (text, number; a password shows grey dots for its old value, see
+  [`password`](password.md)); a textarea opens with the old value already in ([`textarea`](textarea.md)).
 - The box opens empty, the old value shown in grey (Overlay0) after the cursor.
 - `Tab`: takes the old value into the box, the cursor at its end, to be changed with `←`/`→` (Rules K2).
 - Typing straight away: a new value is typed and the grey text hides; deleting all that was typed brings it back.
@@ -93,7 +95,9 @@ is done with the grey suggestion below (typing a new value needs no deleting fir
 - A grey suggestion has only this one source: the old value. With no suggestion, `Tab` does nothing.
 
 **Why**: replacing a long prefilled value whole means holding `Backspace` down to the start; a suggestion makes "type
-anew" need no deleting, "small change" one `Tab` more, and "no change" a plain `Enter`.
+anew" need no deleting, "small change" one `Tab` more, and "no change" a plain `Enter`. That is the case of single-line
+values (file names, host names); a change to several lines of text is mostly a sentence added or a few words changed,
+and in a textarea `Tab` indents, so it could not take a suggestion anyway.
 
 ## No placeholder
 
@@ -114,7 +118,7 @@ An input popup has no placeholder: what to enter is said by the explanation row;
   program, a value filled back from a list, a default from the start directory, a suggestion… not listed one by one.
 - **A value that is used (submitted, saved, run, handed to another program)**: refused on `Enter`, the error row giving
   the reason and naming the field (e.g. `Name can't have line breaks or tabs`). **Check before trimming leading and
-  trailing spaces**: trimmed, `Icon\r` becomes `Icon`, so trimming first leaves nothing to catch.
+  trailing whitespace**: trimmed, `Icon\r` becomes `Icon`, so trimming first leaves nothing to catch.
 - **Search and filter typing rows only draw them, never refuse.**
 
 **Why**: turning them into spaces would quietly change what the user pasted; drawn plainly, they are seen, and the user
@@ -122,8 +126,11 @@ decides whether to delete them.
 
 ## Value
 
-- **A one-line value has leading and trailing spaces trimmed when confirmed**, except a password; the line break and tab
-  check comes before the trim (see above).
+- **A one-line value has leading and trailing whitespace trimmed when confirmed**: every Unicode whitespace character
+  (the ordinary space, the ideographic space U+3000, NBSP…), not just one kind of space; not for a password. The line
+  break and tab check comes before the trim (see above). Invisible whitespace is the hardest to track down: a host name
+  copied from a web page with an NBSP at its end, or an ideographic space typed after a value, looks exactly the same on
+  screen but does not work.
 
 ## How a value shows in a form and a panel
 

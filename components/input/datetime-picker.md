@@ -14,20 +14,23 @@ Choosing a date (date picker), or a date and a time (datetime picker). The calen
 ```
 ╭─ Due date ───────────────────────────────────╮
 │                                              │
-│     October   2026                           │   ← month, year: each an item that can take the focus
-│     Mo  Tu  We  Th  Fr  Sa  Su               │   ← weekdays: Overlay0
-│                  1   2   3   4               │
-│      5   6   7   8   9  10  11               │   ← the 7th is today: underlined
-│     12  13  14  15  16  17  18               │   ← the 15th is the current value: Green; the cursor opens here too
-│     19  20  21  22  23  24  25               │
-│     26  27  28  29  30  31                   │
+│ October  2026                                │   ← month, year: each an item that can take the focus
+│ Mo  Tu  We  Th  Fr  Sa  Su                   │   ← weekdays: Overlay0
+│              1   2   3   4                   │
+│  5   6   7   8   9  10  11                   │   ← the 7th is today: underlined
+│ 12  13  14  15  16  17  18                   │   ← the 15th is the current value: Green; the cursor opens here too
+│ 19  20  21  22  23  24  25                   │
+│ 26  27  28  29  30  31                       │
 │                                              │   ← the 6th row: unused this month, kept all the same
 │                                              │
 ╰─ Enter:choose t:today Tab:month Esc:cancel ──╯
 ```
 
 - The month and the year are each an item that can take the focus; with the focus, that word is drawn as a cursor
-  (layer colour background, Base bold).
+  (layer colour background, Base bold). Two cells between the month and the year.
+- **The calendar is aligned left, one cell from the border**, with no indent of its own ("narrow content is aligned
+  left" in [`layout/popup`](../layout/popup.md)). Each day takes 4 cells: the date in 2 (aligned right) plus a gap of
+  2; the weekdays follow the same grid.
 - The calendar **always draws 6 rows**: a month spans 4 to 6 weeks, and with 6 rows fixed the box's height does not
   change with the month (Rules F7).
 - The calendar day under the cursor is drawn like a menu's cursor. **The day under the cursor is the day to be written
@@ -45,26 +48,28 @@ area.
 ```
 ╭─ Meeting ───────────────────────────────────╮
 │                                             │
-│     October   2026              │  06   50  │
-│     Mo  Tu  We  Th  Fr  Sa  Su  │  07   55  │
-│                  1   2   3   4  │  08   00  │
-│      5   6   7   8   9  10  11  │  09   05  │
-│     12  13  14  15  16  17  18  │  10   10  │   ← hour 10 and minute 05 are the current value: Green
-│     19  20  21  22  23  24  25  │  11   15  │
-│     26  27  28  29  30  31      │  12   20  │
-│                                 │  13   25  │
+│ October  2026               │  06  50       │
+│ Mo  Tu  We  Th  Fr  Sa  Su  │  07  55       │
+│              1   2   3   4  │  08  00       │
+│  5   6   7   8   9  10  11  │  09  05       │
+│ 12  13  14  15  16  17  18  │  10  10       │   ← hour 10 and minute 05 are the current value: Green
+│ 19  20  21  22  23  24  25  │  11  15       │
+│ 26  27  28  29  30  31      │  12  20       │
+│                             │  13  25       │
 │                                             │
 ╰─ Enter:time t:today Tab:time Esc:cancel ────╯
 ```
 
 - The separator follows [`layout/popup`](../layout/popup.md): it does not join the top and bottom borders and is drawn
-  only on the content rows.
+  only on the content rows, with two blank cells on each side. Two cells between the hour and minute columns.
 - **The time is split into two columns, hour and minute**: hours 00–23, minutes one step every 5 minutes (00–55). Both
   columns are short and need no search, so this area is not a finder. The current value is in Green; as tall as the
   calendar, scrolling beyond. When the current value falls between steps (10:07), the cursor opens on the nearest step
   before it (10:05).
 - In the area holding the focus the cursor has the layer colour background; in the area without the focus, the cursor
-  is the layer colour cursor, dimmed once more (Principle P6).
+  is the layer colour cursor, dimmed once more (Principle P6). Within the time area likewise: with the focus on the
+  hours, the minute column's cursor is dimmed once more, and the other way round — the whole picker has one lit cursor,
+  so a glance tells which column `j`/`k` will move.
 - **Width**: the layout is fixed, so it follows "content width known when it opens" in
   [`layout/popup`](../layout/popup.md).
 
@@ -84,7 +89,9 @@ What can take the focus: **month, year, calendar, time** (no time in a date-only
   month naturally (in a grid the arrow keys are up, down, left and right, Rules K12). Days outside the range are
   skipped, stopping on the next day within the range in that direction; when there is none left in that direction, it
   does not move.
-- **On the time**: `j`/`k` move within a column, `h`/`l` switch between the hour and minute columns.
+- **On the time**: `j`/`k` move within a column, `h`/`l` switch between the hour and minute columns. Wrapping at the
+  ends (Rules K12): after 23 comes 00, after 55 comes 00; each column wraps on its own — minutes wrapping do not move
+  the hour, and hours wrapping do not move the date.
 - **`Enter`**:
   - On the month or the year: moves the focus to the calendar, choosing nothing.
   - On the calendar: date only → **confirms** (writes back and closes); datetime → moves the focus to the time.

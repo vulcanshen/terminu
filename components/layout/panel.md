@@ -11,21 +11,25 @@ in [`screen`](screen.md).
   width, so switching shifts nothing (Rules L5, [`color`](../color.md)). Unfocused, the content is dimmed, streaming
   content excepted (Rules T2).
 - **Left of the top border: the `[N] label` capsule**, right after the corner. `N` is also the digit key that jumps
-  straight to that panel. When the panel has tabs, they follow the capsule (see the capsule chain below). While the panel
-  is loading, the loading icon sits after the capsule (the loading in [`popup`](popup.md)).
+  straight to that panel (within the current screen only, Rules K1). When the panel has tabs, they follow the capsule
+  (see the capsule chain below). While the panel is loading, the loading icon sits after the whole capsule chain (tabs
+  included), with one space on each side (e.g. `╔([2] Pods)(Events)(YAML) 󰪞 ═══╗`; the loading in [`popup`](popup.md)).
 - **Right of the top border: the mode name** (Rules K11), set between two border junctions like a tag inlaid in the
-  frame: `╔═[1] Kinds════╡Drag╞═╗`, `╭─ YAML ────┤Visual├─╮`. The junctions take the frame's colour and follow its line
+  frame: `╔([1] Kinds)═══╡Drag╞═╗`, `╭─ YAML ────┤Visual├─╮`. The junctions take the frame's colour and follow its line
   style — `╡` `╞` on a double frame, `┤` `├` on a single one; the mode name is bold in the mode colour. The mode name is
   one word if possible (`Drag`, `Visual`, `Select`: a narrow panel has no room for two, and the whole top-right text
   would be dropped); when space runs out, the title is clipped first and the mode name stays. The capsule turns the mode
   colour along with the frame.
-- **Left of the bottom border: the hint**, which every panel must have; right of the bottom border: the scroll position
+- **Left of the bottom border: the hint**, which every panel must have — the one exception is while the focus is on a
+  panel filter's typing row: no hint then, and it comes back on the list. Right of the bottom border: the scroll position
   (see "Ordinary lists" below).
+- **Text on the frame always keeps one line segment away from the corner**; only the `[N] label` capsule sits right after
+  the top-left corner: the hint is `╚═ Enter:logs`, the scroll position `3 of 40 ═╝`, the mode name `╡Drag╞═╗`.
 
 ```
 ╔([2] Pods)═══════════════════════════════════════╗
-║ ...                                              ║
-╚═ .:helm Enter:logs ════════════════════ 3 of 40 ╝
+║ ...                                             ║
+╚═ .:helm Enter:logs ═══════════════════ 3 of 40 ═╝
 ```
 
 **Hint**: written like the hint in [`popup`](popup.md). It holds this panel's own keys — what `Enter` does here, the
@@ -35,7 +39,12 @@ not fit, whole pairs are dropped from the end, and the scroll position stays.
 
 **Why**: the hint on a panel's bottom border tells the user "what pressing what does on this panel", while the footer
 covers only the keys common to the whole screen; each covers one level, and with every panel having one, the user's eyes
-know where to look when changing panels.
+know where to look when changing panels. No hint while typing in a panel filter: the hint lists the panel's own hotkeys,
+which are all characters while typing (Rules K8), and listing them would teach the wrong keys; the footer already shows
+the keys for typing. Text on the frame keeps away from the corners, the capsule alone excepted — the same rule for all
+four corners, so there is no odd one to remember; the capsule is the panel's name, easiest to find against the corner.
+The loading icon follows the whole capsule chain: the chain is one whole (where this is), loading is a state, and it
+does not split a row of tabs.
 
 ## Capsule chain
 
@@ -65,19 +74,20 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
 
 ```
 ╔([2] Pods)═══════════════════════════════════════╗
-║   Name          Ready  Status    Restarts  Age  ║  ← header: Blue, fixed, never scrolls
-║   nginx-7d4f    1/1    Running          0   3d  ║
-║ 󰄲 web-a8k2      0/1    CrashLoo…       12   2h  ║  ← a marked row: a Green tick
-║▓▓▓coredns-7w9z▓▓1/1▓▓▓▓Running▓▓▓▓▓▓▓▓▓▓0▓▓▓9d▓▓║  ← cursor: Subtext1 background, Base bold
-║   prome-er-0    0/2    Pending          0   5m  ║
-╚═ Enter:logs ═════════════════════════════ 3 of 40 ╝
+║   Name          Ready  Status     Restarts  Age ║  ← header: Blue, fixed, never scrolls
+║   nginx-7d4f    1/1    Running           0   3d ║
+║ 󰄲 web-a8k2      0/1    CrashLoo…        12   2h ║  ← a marked row: a Green tick
+║▓▓▓coredns-7w9z▓▓1/1▓▓▓▓Running▓▓▓▓▓▓▓▓▓▓▓0▓▓▓9d▓║  ← cursor: Subtext1 background, Base bold
+║   prome-er-0    0/2    Pending           0   5m ║
+╚═ Enter:logs ══════════════════════════ 3 of 40 ═╝
 ```
 
 - **Cursor**: Subtext1 background, Base bold, across the whole inner width; the whole cursor row is Base text, and the
   columns' own colours are not kept. When the panel is unfocused it is dimmed as a whole (Rules T2), the cursor with it,
   not given another colour.
-- **Header**: Blue, not bold, fixed at the top and never scrolled. Text aligned left, numbers right. A column being sorted
-  on gets `nf-fa-sort_amount_asc` (U+F160, ascending) or `nf-fa-sort_amount_desc` (U+F161, descending) after its title;
+- **Header**: Blue, not bold, fixed at the top and never scrolled. Each column holds numbers or text: numbers align right
+  and sort by value (`9` before `10`), text aligns left and sorts as text. Two cells between columns
+  ("Diagrams and spacing" in the [components](../README.md)). A column being sorted on gets `nf-fa-sort_amount_asc` (U+F160, ascending) or `nf-fa-sort_amount_desc` (U+F161, descending) after its title;
   when several columns sort together, the rank goes before the arrow, e.g. `Name (2)` followed by the arrow.
 - **Scroll position**: when the content does not fit, the right of the bottom border reads `N of M` (which entry the
   cursor is on, how many in all), in the border colour; nothing when everything fits. A panel without a cursor (a
@@ -92,7 +102,7 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
 
 **Loading and errors**:
 
-- **Loading**: the loading icon sits after the capsule. While the panel has no content yet, one line is written in the
+- **Loading**: the loading icon sits after the whole capsule chain (tabs included), with one space on each side. While the panel has no content yet, one line is written in the
   middle in the empty-state look, e.g. `󰪞 loading pods…`. On reload, the old content stays and is not cleared.
 - **Errors, lost connections, no permission**: two centred lines in the empty-state look: a fact in Red (e.g.
   `Forbidden: pods in kube-system`) and a hint in Overlay0 (e.g. `Press [R] to retry`). If the old content is still there
@@ -108,16 +118,16 @@ A panel with one value per row, like a settings screen (locku's preference, webu
 
 ```
 ╔([2] preference)═══════════════════════════════╗
-║ Property                   Value              ║
-║ PIN                        not set            ║
-║ profile                    clock              ║
-║ show_status                on                 ║
-║ pin_prompt_timeout         30                 ║
+║ Property            Value                     ║
+║ PIN                 not set                   ║
+║ profile             clock                     ║
+║ show_status         on                        ║
+║ pin_prompt_timeout  30                        ║
 ╚═ Enter:edit ══════════════════════════════════╝
 ```
 
 - **The rules of [`dialog/form`](../dialog/form.md) apply**: the focus moves one item at a time (`j`/`l`/`↓`/`→` on,
-  `h`/`k`/`↑`/`←` back; in a panel with tabs, `h`/`l` go to the tabs, Rules K12); `Enter` opens the value's input popup,
+  `h`/`k`/`↑`/`←` back; in a panel with tabs, `h`/`l` switch tabs, Rules K12); `Enter` opens the value's input popup,
   and radio and checkbox options are chosen in place; once confirmed, the focus stays on the same row (Rules K3); values
   are shown as [`input/README`](../input/README.md) says.
 - **What differs: there is no submit.** Each value takes effect and is saved the moment it is confirmed in the input
@@ -127,7 +137,8 @@ A panel with one value per row, like a settings screen (locku's preference, webu
   spans as in a form, from the start of the item to the panel's inner right edge (from the value for a field, from the
   option for an option).
 - **Labels**: Blue normally, Surface2 when disabled, Red when its value has an error (over any other colour). They are
-  dimmed with the panel when it is unfocused (T2).
+  dimmed with the panel when it is unfocused (T2). The label column is as wide as the longest label, with two cells
+  between it and the values.
 
 **Why**: a settings screen and a form are the same thing — one value per row, changed one by one — except that a change
 takes effect at once. With one set of rules, what the user learns in a form works on a settings screen too. Labels are
@@ -141,14 +152,15 @@ search, sshu's Hosts, webu's list filters).
 
 ```
 ╔([2] Hosts)═══════════════════════════════════╗
-║  prod                                    2/5 ║   ← typing row, the filtered count on its right
-║ prod-web-01        deploy   10.0.3.14        ║
-║ prod-db            postgres 10.0.3.20        ║
+║ prod                                     2/5 ║   ← typing row, the filtered count on its right
+║ prod-web-01  deploy    10.0.3.14             ║
+║ prod-db      postgres  10.0.3.20             ║
 ╚══════════════════════════════════════════════╝
 ```
 
-The typing row takes the same keys as a finder's typing row ([`input/finder`](../input/finder.md)); the count on its
-right reads `matches/total` (`2/5`). What differs all comes from the panel being on the screen level:
+The typing row takes the same keys and the same matching as a finder's typing row ([`input/finder`](../input/finder.md)):
+the filtered list keeps the panel's own order. The typing row's text lines up with the list's text (one cell from the
+frame); the count on its right reads `matches/total` (`2/5`). What differs all comes from the panel being on the screen level:
 
 | | panel filter |
 |---|---|
