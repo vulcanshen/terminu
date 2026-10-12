@@ -13,7 +13,7 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
 │ content                                     │
 │ content                                     │
 │                                             │   ← 留白
-╰─ Enter:run Esc:close ────────────── 4 of 12 ╯
+╰─ Enter:run Esc:close ───────────── 4 of 12 ─╯
 ```
 
 - **線型**：圓角 `╭─╮`，層色（[`color`](../color-zh_TW.md)）。popup 一律圓角：最上層的 popup 有 focus，靠亮暗分辨（Rules F8、
@@ -37,12 +37,17 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   - **放不下時從尾端整組捨棄**，不截在項目中間；下框右邊的捲動位置留著。
   - **只有打字列的 popup**（text、password、number）：`?` 在那裡是字元，hint 要列出全部操作，而且 80 欄放得下（Rules M3）。
 - **下框右邊**：內容放不下時的捲動位置（見下面的「內容放不下時」）。
-- **留白**：內容上下各留一列空白，左右離框一格。每一種 popup 都有，viewer 也一樣；只有 terminal 例外
+- **框上的字與角之間一律隔一段線**：標題 `╭─ Title`、hint `╰─ Enter:run`、捲動位置 `4 of 12 ─╯`（panel 也一樣，只有 panel 的
+  膠囊緊接著角，[`panel`](panel-zh_TW.md)）。
+- **留白**：內容上下各留一列空白，左右離框一格。每一種 popup 都有，viewer 也一樣；只有 terminal 例外：上下左右都不留白
   （[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
+- **cursor 色塊蓋住留白**：清單的 cursor 從框貼到框，蓋住左右的留白，色塊上的字照樣離框一格（[`dialog/menu`](../dialog/menu-zh_TW.md)、
+  [`input/finder`](../input/finder-zh_TW.md)）；表單的 focus 色塊從值開始、一直到框，蓋住右邊的留白（[`dialog/form`](../dialog/form-zh_TW.md)）。
 - **分隔線**：popup 裡的分隔線不接框 —— 橫的左右各留一格空白，直的不畫進上下的留白。顏色 Overlay0。
 
 **為什麼**：標題、hint、留白的位置固定，每一個 popup 一打開，使用者的眼睛就知道去哪裡找「這是什麼」「能按什麼」。
-分隔線不接框：接上框的線看起來像把一個框切成兩個框，而它只是把內容分段。
+分隔線不接框：接上框的線看起來像把一個框切成兩個框，而它只是把內容分段。cursor 色塊蓋住留白：同一種 cursor 在每一個清單
+長得一樣（Principle P4），色塊最寬、最好認（Rules L5）。
 
 ## 寬度
 
@@ -65,8 +70,8 @@ Rules F2：打開與關閉都要有動畫。長度全家族一樣：8 格 × 16m
 
 ## loading
 
-Rules F7：popup 在 loading 時，標題後面一定放一個輪轉的 loading icon。panel 在 loading 時放在膠囊後面
-（[`panel`](panel-zh_TW.md)）。規格：
+Rules F7：popup 在 loading 時，標題後面一定放一個輪轉的 loading icon；標題後面接著 tab（[`panel`](panel-zh_TW.md) 的膠囊串）時，
+放在整串 tab 的後面。panel 在 loading 時放在整串膠囊的後面（[`panel`](panel-zh_TW.md)）。前後各空一格。規格：
 
 - 字形：`nf-md-circle_slice_1` 到 `nf-md-circle_slice_8`（U+F0A9E–U+F0AA5）八格，一個圓一片一片填滿，滿了再從頭。
 - 速度：一格 90ms，一圈 720ms。
@@ -97,7 +102,7 @@ Rules F7：打開時定高、最高是畫面高度 − 2，超過就在框裡捲
 │                                                │
 │ error                                          │   ← 錯誤列：固定不動
 │                                                │
-╰─ hint ──────────────────────────────── 4 of 12 ╯
+╰─ hint ─────────────────────────────── 4 of 12 ─╯
 ```
 
 ## 錯誤列

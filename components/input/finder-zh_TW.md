@@ -22,11 +22,11 @@
 ```
 ╭─ Search ────────────────────────────╮ ╭─ README.md ───────────────────────╮
 │                                     │ │                                   │
-│  read                          3/41 │ │ # terminu                         │
+│ read                           3/41 │ │ # terminu                         │
 │ ─────────────────────────────────── │ │                                   │
-│ ▓README.md▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ │ │ The terminal UI you can use…      │
-│  README-zh_TW.md                    │ │                                   │
-│  docs/readme-notes.md               │ │                                   │
+│▓README.md▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│ │ The terminal UI you can use…      │
+│ README-zh_TW.md                     │ │                                   │
+│ docs/readme-notes.md                │ │                                   │
 │                                     │ │                                   │
 ╰─ Enter/Tab:list Esc:cancel ─────────╯ ╰───────────────────────────────────╯
 ```
@@ -69,16 +69,30 @@ panel filter 也用這一張表。
 | 鍵 | 作用 |
 |---|---|
 | 字元 | 打進去，清單即時篩選（輸入態，Rules K8；編輯鍵照 [`input/README`](README-zh_TW.md)） |
-| `↑`/`↓` | 在結果之間移 cursor（方向鍵打不出字，不衝突） |
+| `↑`/`↓` | 在結果之間移 cursor，到頭尾繞回（方向鍵打不出字，不衝突） |
 | `Enter` | focus 移到 cursor 那一項，不執行；沒有結果時不作用 |
 | `Tab` | focus 移到清單 |
 | `Esc` | 關掉整個 finder（Rules F1：階段不是一層）；panel filter 是清掉篩選 |
+
+### 比對
+
+打字列上打的字怎麼篩選。一般的 finder、select、checkbox popup、file-picker 打的一般的字、panel filter 都一樣：
+
+- **包含**：不分大小寫，打的字要連續出現在那一項裡。例：`prod` 符合 `Prod-Web-01`；只是依序含有 p、r、o、d 的
+  `db-replica-tokyo-ap-northeast-1` 不符合。
+- **好幾個詞**：用空白分開的每個詞都要出現，順序不拘。例：`prod 22` 找得到 port 22 的 `prod-web-01`（panel 上可以跨欄）。
+- **順序**：結果保持清單本來的順序，不重排。數字照數值排（`9` 在 `10` 前面），文字照文字排（[`layout/panel`](../layout/panel-zh_TW.md)
+  的表頭）。
+
+**為什麼**：字要連續出現才有過濾的效果；只要依序出現就算的比對，會留下一大堆不相干的項目，只能靠分數重排把要的推到前面。
+保持原本的順序，清單的排序（panel 表頭的排序標示）一直是對的；數字與文字也用同一種比對：打 `20`，剩下 20、120、200–209，
+照大小排（[`slider`](slider-zh_TW.md)）。
 
 ### 清單
 
 | 鍵 | 作用 |
 |---|---|
-| `j`/`k` 等 | 移動（Rules K12） |
+| `j`/`k` 等 | 移動（Rules K12：一步一步的移動到頭尾繞回） |
 | `Enter` | 去那裡（select 選定、checkbox popup 套用、file-picker 選檔或進目錄） |
 | `Tab` | 回打字列 |
 | `/` | 回打字列，接著舊的字打 |

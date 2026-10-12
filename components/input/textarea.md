@@ -12,10 +12,10 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
 **Long lines wrap, with line numbers on the left**:
 
 ```
-│  1 Thanks for the quick reply. The new   │
-│    build fixes the crash on start.       │   ← the same line wrapped: the number column is blank
-│  2                                       │
-│  3 One more thing: the export button█    │   ← the cursor's line
+│ 1 Thanks for the quick reply. The new    │
+│   build fixes the crash on start.        │   ← the same line wrapped: the number column is blank
+│ 2                                        │
+│ 3 One more thing: the export button█     │   ← the cursor's line
 ```
 
 - A line wider than the box continues on the next row, never scrolling sideways. Wrapping is only on screen; no line
@@ -35,6 +35,8 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
 | **Move** | entered with `Esc` from Write. Moves the cursor; `i`, `a`, `o` return to Write; **`Enter` confirms** | `Enter:save i:write Esc:cancel` |
 
 - **Confirming is `Enter` in Move.**
+- **On opening**: in Write, with the old value already in and the cursor at its end; no grey suggestion (the grey
+  suggestion in [`input/README`](README.md) is for single-line inputs only).
 - `Esc`: from Write into Move (the hint turns to `Enter:save`, which tells how to save); from Move it closes. When the
   content has changed, a confirm first asks whether to discard it ("Cancel" in [`dialog/form`](../dialog/form.md)).
 - **Editing keys in Write**: the set in [`input/README`](README.md), plus what several lines need — `↑`/`↓` to the row
@@ -45,7 +47,9 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
   cursor, `a` after the cursor, `o` opens a new line below and writes there (as in vim).
 - Move is not a mode, nor the input state: core keys follow Rules K1 (`?` opens the key reference).
 
-**Why**: with several lines, `Enter` is needed to break lines, so confirming takes either another key or another state;
+**Why**: the old value is in on opening: a change to several lines of text is mostly a sentence added or a few words
+changed, ready to make at once; in Write `Tab` indents and could not take a suggestion. Replacing the whole text means
+deleting it in Write, which is rare. With several lines, `Enter` is needed to break lines, so confirming takes either another key or another state;
 with two states, `hjkl` in Move can move and `Enter` can confirm, with no extra submit key.
 
 ## Value

@@ -8,18 +8,22 @@ panel 的框、一般清單、一列一個值的 panel、panel filter。整個�
 
 - **線型與顏色**：有 focus 是 Blue 雙線 `╔═╗`，失焦是 Surface2 圓角 `╭─╮`，兩者同寬，切換時不位移（Rules L5、[`color`](../color-zh_TW.md)）。
   失焦時內容淡化，串流內容除外（Rules T2）。
-- **上框左邊：`[N] label` 膠囊**，緊接著框的角。`N` 同時是直接跳到該 panel 的數字鍵。panel 有 tab 時，tab 接在膠囊後面
-  （見下面的膠囊串）。panel 在 loading 時，loading icon 放在膠囊後面（[`popup`](popup-zh_TW.md) 的 loading）。
-- **上框右邊：模式名**（Rules K11），夾在兩個框線接頭之間，像框上嵌了一個標籤：`╔═[1] Kinds════╡Drag╞═╗`、
+- **上框左邊：`[N] label` 膠囊**，緊接著框的角。`N` 同時是直接跳到該 panel 的數字鍵（只在目前的畫面裡，Rules K1）。panel 有
+  tab 時，tab 接在膠囊後面（見下面的膠囊串）。panel 在 loading 時，loading icon 放在整串膠囊（含 tab）的後面，前後各空一格
+  （例：`╔([2] Pods)(Events)(YAML) 󰪞 ═══╗`；[`popup`](popup-zh_TW.md) 的 loading）。
+- **上框右邊：模式名**（Rules K11），夾在兩個框線接頭之間，像框上嵌了一個標籤：`╔([1] Kinds)═══╡Drag╞═╗`、
   `╭─ YAML ────┤Visual├─╮`。接頭跟框同色、線型跟著框 —— 雙線框用 `╡` `╞`，單線框用 `┤` `├`；模式名用模式色加粗。
   模式名盡量一個詞（`Drag`、`Visual`、`Select`：窄的 panel 放不下兩個詞，右上角的字會整個被丟掉）；放不下時先截標題，
   模式名留著。膠囊跟著外框換成模式色。
-- **下框左邊：hint**，每個 panel 都要有；下框右邊：捲動位置（見下面的「一般清單」）。
+- **下框左邊：hint**，每個 panel 都要有 —— 例外只有 focus 在 panel filter 的打字列上時：不寫，回到清單時回來。下框右邊：
+  捲動位置（見下面的「一般清單」）。
+- **框上的字與角之間一律隔一段線**，只有 `[N] label` 膠囊緊接著左上角：hint 是 `╚═ Enter:logs`、捲動位置是 `3 of 40 ═╝`、
+  模式名是 `╡Drag╞═╗`。
 
 ```
 ╔([2] Pods)═══════════════════════════════════════╗
-║ ...                                              ║
-╚═ .:helm Enter:logs ════════════════════ 3 of 40 ╝
+║ ...                                             ║
+╚═ .:helm Enter:logs ═══════════════════ 3 of 40 ═╝
 ```
 
 **hint**：寫法同 [`popup`](popup-zh_TW.md) 的 hint。內容是這個 panel 自己的鍵 —— `Enter` 在這裡做什麼、常用的熱鍵；不寫移動鍵，
@@ -27,7 +31,10 @@ panel 的框、一般清單、一列一個值的 panel、panel filter。整個�
 一起淡化。放不下時從尾端整組捨，捲動位置留著。
 
 **為什麼**：panel 下框的 hint 告訴使用者「在這個 panel 上按什麼會怎樣」，footer 只管全畫面通用的鍵；兩者各管一層，
-每個 panel 都有，使用者換 panel 時眼睛知道去哪裡找。
+每個 panel 都有，使用者換 panel 時眼睛知道去哪裡找。panel filter 打字時不寫：hint 列的是 panel 自己的熱鍵，打字時都是字元
+（Rules K8），列出來會教使用者按錯；打字時的鍵 footer 已經寫了。框上的字都跟角隔一段線，只有膠囊例外 —— 四個角的規則一樣，
+不用記哪個角不同；膠囊是這個 panel 的名字，貼著角最好找。loading icon 接在整串膠囊後面：膠囊串是一個整體（這是哪裡），
+loading 是狀態，不切斷一串 tab。
 
 ## 膠囊串
 
@@ -52,17 +59,18 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 
 ```
 ╔([2] Pods)═══════════════════════════════════════╗
-║   Name          Ready  Status    Restarts  Age  ║  ← 表頭：Blue，固定不捲
-║   nginx-7d4f    1/1    Running          0   3d  ║
-║ 󰄲 web-a8k2      0/1    CrashLoo…       12   2h  ║  ← 標記的列：Green 的勾
-║▓▓▓coredns-7w9z▓▓1/1▓▓▓▓Running▓▓▓▓▓▓▓▓▓▓0▓▓▓9d▓▓║  ← cursor：Subtext1 底、Base 粗體
-║   prome-er-0    0/2    Pending          0   5m  ║
-╚═ Enter:logs ═════════════════════════════ 3 of 40 ╝
+║   Name          Ready  Status     Restarts  Age ║  ← 表頭：Blue，固定不捲
+║   nginx-7d4f    1/1    Running           0   3d ║
+║ 󰄲 web-a8k2      0/1    CrashLoo…        12   2h ║  ← 標記的列：Green 的勾
+║▓▓▓coredns-7w9z▓▓1/1▓▓▓▓Running▓▓▓▓▓▓▓▓▓▓▓0▓▓▓9d▓║  ← cursor：Subtext1 底、Base 粗體
+║   prome-er-0    0/2    Pending           0   5m ║
+╚═ Enter:logs ══════════════════════════ 3 of 40 ═╝
 ```
 
 - **cursor**：Subtext1 底、Base 粗體，佔滿整個內寬；cursor 那一列整列都是 Base 字，各欄原本的顏色不保留。panel 失焦時
   整塊淡化（Rules T2），cursor 跟著淡化，不另外換顏色。
-- **表頭**：Blue、不加粗，固定在最上面不捲。文字靠左、數字靠右。排序中的欄位，標題後面加 `nf-fa-sort_amount_asc`（U+F160，
+- **表頭**：Blue、不加粗，固定在最上面不捲。每一欄是數字或文字：數字靠右、照數值排（`9` 在 `10` 前面），文字靠左、照文字排。
+  欄與欄之間兩格（[components](../README-zh_TW.md) 的「圖與間距」）。排序中的欄位，標題後面加 `nf-fa-sort_amount_asc`（U+F160，
   升冪）或 `nf-fa-sort_amount_desc`（U+F161，降冪）；好幾欄一起排序時，在箭頭前加順位，例：`Name (2)` 後面接箭頭。
 - **捲動位置**：放不下時，下框右邊寫 `N of M`（cursor 在第幾筆、總共幾筆），框線的顏色；全放得下就不寫。沒有 cursor 的
   panel（預覽、log）寫看得到的行 `N-M of T`。
@@ -74,7 +82,7 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 
 **loading 與錯誤**：
 
-- **loading**：loading icon 放在膠囊後面。panel 還沒有任何內容時，中間照空狀態的樣子寫一句，例：`󰪞 loading pods…`。
+- **loading**：loading icon 放在整串膠囊（含 tab）的後面，前後各空一格。panel 還沒有任何內容時，中間照空狀態的樣子寫一句，例：`󰪞 loading pods…`。
   重新載入時，舊的內容留著，不清空。
 - **錯誤、斷線、沒有權限**：照空狀態的樣子置中寫兩句：一句事實用 Red（例：`Forbidden: pods in kube-system`），一句提示用
   Overlay0（例：`Press [R] to retry`）。舊的內容還在就留著，錯誤照 Rules F5 用 toast 報。
@@ -88,11 +96,11 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 
 ```
 ╔([2] preference)═══════════════════════════════╗
-║ Property                   Value              ║
-║ PIN                        not set            ║
-║ profile                    clock              ║
-║ show_status                on                 ║
-║ pin_prompt_timeout         30                 ║
+║ Property            Value                     ║
+║ PIN                 not set                   ║
+║ profile             clock                     ║
+║ show_status         on                        ║
+║ pin_prompt_timeout  30                        ║
 ╚═ Enter:edit ══════════════════════════════════╝
 ```
 
@@ -103,7 +111,8 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
   所以沒有動作列、也沒有「改過了要先問」。
 - **focus 色塊**：Subtext1 底、Base 粗體，跟一般清單的 cursor 同一個畫法；範圍跟表單一樣，從項目開頭到 panel 內的右緣
   （欄位從值開始、選項從那個選項開始）。
-- **label**：一般 Blue，停用 Surface2，它的值出錯時 Red（優先於其他顏色）。panel 失焦時跟著淡化（T2）。
+- **label**：一般 Blue，停用 Surface2，它的值出錯時 Red（優先於其他顏色）。panel 失焦時跟著淡化（T2）。label 欄寬取最長的
+  label，label 欄與值之間兩格。
 
 **為什麼**：設定畫面跟表單是同一件事 —— 一列一個值、一個一個改 —— 只差在改了就生效。用同一套規則，使用者在表單學會的
 在設定畫面照樣能用。label 用 Blue，跟有 focus 的框同色：表單的 label 用層色，也就是 popup 框的顏色，同一個道理。
@@ -115,13 +124,14 @@ webu 的清單篩選）。
 
 ```
 ╔([2] Hosts)═══════════════════════════════════╗
-║  prod                                    2/5 ║   ← 打字列，右邊是篩選的筆數
-║ prod-web-01        deploy   10.0.3.14        ║
-║ prod-db            postgres 10.0.3.20        ║
+║ prod                                     2/5 ║   ← 打字列，右邊是篩選的筆數
+║ prod-web-01  deploy    10.0.3.14             ║
+║ prod-db      postgres  10.0.3.20             ║
 ╚══════════════════════════════════════════════╝
 ```
 
-打字列的按鍵跟 finder 的打字列一樣（[`input/finder`](../input/finder-zh_TW.md)）；右邊的筆數寫 `符合/總數`（`2/5`）。
+打字列的按鍵、比對的方式跟 finder 的打字列一樣（[`input/finder`](../input/finder-zh_TW.md)）：篩選後的清單保持 panel 本來的排序。
+打字列的字跟清單的字對齊（離框一格）；右邊的筆數寫 `符合/總數`（`2/5`）。
 不一樣的地方都來自 panel 在畫面那一層：
 
 | | panel filter |

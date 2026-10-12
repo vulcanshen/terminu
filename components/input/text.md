@@ -18,5 +18,5 @@ Editing keys, the grey suggestion, and pasted line breaks and tabs all follow [`
 
 ## Value
 
-Leading and trailing spaces are trimmed when confirmed; in a form or a panel it follows "How a value shows in a form and
+Leading and trailing whitespace is trimmed when confirmed ([`README`](README.md), "Value"); in a form or a panel it follows "How a value shows in a form and
 a panel" in the README.

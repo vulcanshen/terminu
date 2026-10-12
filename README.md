@@ -10,11 +10,12 @@ same thing on every screen of every app, plus two entry points that are always t
 
 ---
 
-## Six keys
+## Seven keys
 
 | Key | Meaning |
 |---|---|
 | `Tab` | Move to the next thing on the same level: between panels, between form fields |
+| `1`–`9` | Jump to panel N on this screen |
 | `Enter` | Do the obvious thing to what is selected; in an input popup, confirm the value |
 | `Esc` | Cancel, close the top layer — one layer at a time, never closes the app |
 | `Space` | What can I do here? |

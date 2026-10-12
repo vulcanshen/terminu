@@ -54,6 +54,6 @@ it all with `Backspace` and typing again is fastest.
 
 ## Value
 
-Leading and trailing spaces are not trimmed (a space may be part of a password). In a form or a panel: a set password is
+Leading and trailing whitespace is not trimmed (whitespace may be part of a password). In a form or a panel: a set password is
 always 8 `•` in Text (the colour of values in a form or a panel), never giving away the length; not set follows the rule for empty values (e.g.
 `not set`).

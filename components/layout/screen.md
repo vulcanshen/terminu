@@ -9,7 +9,8 @@ The skeleton of the whole screen. A panel's frame is in [`panel`](panel.md), the
 
 1. **The top row**: in a multi-screen app, the screen chip row, with a full-width separator below it; a single-screen app
    may have a statusbar row (up to the app).
-2. **The panel area**: the remaining height.
+2. **The panel area**: the remaining height. Each screen numbers its own panels from `[1]`; `1`–`9` jump only to the
+   panels of the current screen (Rules K1).
 3. **The bottom row**: the footer.
 
 ## Footer
@@ -24,12 +25,16 @@ narrow, whole pairs are dropped from the end (the hint in [`popup`](popup.md)). 
 | In a mode (Rules K11) | `?:help`, the mode's own keys, and last `Esc:<verb for leaving>`. E.g. `?:help Enter:drop Esc:cancel` |
 | Typing in a panel filter (input state) | `Enter/Tab:list Esc:clear` |
 | Focus on a PTY in a panel | the exit key, plus the keys the app keeps (Rules K10). E.g. `Alt-Esc:leave Alt-z:zoom PgUp:history` |
+| A popup is open | as for the screen underneath, dimmed with the whole screen (Rules F8); the popup's own keys are in its bottom-border hint |
 
 While a terminal popup is open, it covers the footer ([`dialog/terminal`](../dialog/terminal.md)).
 
 **Why**: the footer is the entry point of Rules M1, so what it shows must be keys that can be pressed now. In a mode
 `Space` does nothing, while typing `Space` `?` `q` are characters, and in a PTY every key goes to the subprocess —
-writing the usual footer there would teach the user to press the wrong keys.
+writing the usual footer there would teach the user to press the wrong keys. With a popup open the footer keeps its
+words and is only dimmed: dimmed means "you are not here now" (Principle P6, the same thing as Rules F8); as popups open
+and close, the bottom row only darkens and brightens instead of changing its words all the time; `?` is still on the
+footer, and `?` on a popup opens that popup's key reference anyway (Rules M1).
 
 ## Screen chip row
 
@@ -40,7 +45,8 @@ ones are folded away.
 
 The statusbar's content goes on its right (see below). Below the chip row runs a full-width separator in Overlay0; during
 long work (a transfer, a download) it fills with Green from the left as a progress bar, and the status text beside it is
-Green too.
+Green too. While a terminal popup is open, the chip row and this separator both stay
+([`dialog/terminal`](../dialog/terminal.md)): the progress stays in sight from inside a shell.
 
 ## Statusbar
 

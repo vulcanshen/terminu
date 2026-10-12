@@ -37,6 +37,6 @@ nothing has gone wrong yet.
 
 ## Keys
 
-- `Enter` accepts, `Esc` cancels (Rules F6). A confirm may have hotkeys of its own (e.g. `y` / `n`), listed in `?`.
+- `Enter` accepts, `Esc` cancels (Rules F6). A confirm may have hotkeys of its own (e.g. `y` / `n`); if it does, they must be listed in `?`.
   `Space` does nothing (Rules K5).
 - **Hint**: `Enter:<verb> Esc:cancel`, the verb saying what accepting does (e.g. `Enter:delete Esc:cancel`).

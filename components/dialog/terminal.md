@@ -13,19 +13,21 @@ not a popup: its frame follows [`layout/panel`](../layout/panel.md), and the PTY
 
 ```
  [M]anage  [F]ile transfer  [S]SH       2 live sessions    ← statusbar / screen chip row: kept
+──────────────────────────────────────────────────────────   ← the divider under the chip row: kept (a progress bar during a transfer)
 ╭─ Alterm: myhost ───────────────────────────────────────╮
-│ $ kubectl get pods                                     │
-│ NAME          READY   STATUS    RESTARTS   AGE         │
-│ nginx-7d4f    1/1     Running   0          3d          │
-│ $ █                                                    │
+│$ kubectl get pods                                      │   ← the PTY touches the frame, no padding on any side
+│NAME          READY   STATUS    RESTARTS   AGE          │
+│nginx-7d4f    1/1     Running   0          3d           │
+│$ █                                                     │
 ╰─ Alt-Esc:exit Alt-t:hide PgUp:history ─────────────────╯   ← down to the screen's last row, covering the footer
 ```
 
 - **Size** (the terminal exception of Rules F7): width `terminal width − 2`, with no 120-column cap. Above, the
-  statusbar or the screen chip row stays; below, it runs down to the screen's last row, covering the footer. In an app
+  statusbar or the screen chip row stays (with the divider under the chip row); below, it runs down to the screen's last row, covering the footer. In an app
   without a statusbar it starts from the first row.
-- **No padding**: the subprocess needs every row, so the content is drawn from the first row inside the frame to the
-  last.
+- **No padding**: the subprocess needs every row and every column, so the content is drawn from the first row inside
+  the frame to the last and from the first column to the last, touching the frame on every side. This is the special
+  case of the terminal kind of popup (the padding in [`layout/popup`](../layout/popup.md)).
 - **Title**: `nf-md-console` (U+F018D) plus what is running (`Shell`, `Alterm: myhost`, `Edit: pod/x`).
 
 **Why**: the statusbar holds what is going on (kbu's context, sshu's transfer progress), worth a glance even while

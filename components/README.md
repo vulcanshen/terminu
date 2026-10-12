@@ -9,12 +9,34 @@ shared with tdp.
 
 ## What is a requirement
 
-Everything written here is a requirement. Only four things are not: the parts stated as "up to the app", examples marked
-"e.g.", the "Why", and paragraphs marked "Implementation reference (not a requirement)".
+Everything written here is a requirement. Only four things are not: the parts stated as "up to the app", examples
+(however they are introduced: "e.g.", "for example", "Example:", "such as", an "Examples" column), the "Why", and
+paragraphs marked "Implementation reference (not a requirement)".
 
 All of the components are in the fixed zone (["Departure" at the start of the Rules](../principle/rules.md)): what an app
 cannot follow goes into the "偏離 tdp" (departures from tdp) section of its dev-remarks with the reason, and is reported
 as a gap in tdp at the same time.
+
+## Diagrams and spacing
+
+- **A diagram's structure is a requirement; the data in it are examples**: frames, where glyphs go, spacing, alignment
+  and the colours noted beside it are as drawn; names, values and descriptions are examples.
+- **Where the text and a diagram disagree, the text wins**; two diagrams that disagree with each other are a bug in the
+  spec, to be reported and fixed when found.
+- **Numbers that cannot be counted, or are hard to count, are written in the text** (e.g. the minimum gap between a menu
+  label and its description, which decides the popup's width).
+- **"Indented N cells" means N cells in from the frame**: counted inward from the frame line, the line itself not
+  counted (e.g. the key reference's "each row is indented two cells": the text starts on the third cell inside the frame
+  line).
+- **Two general rules**, which hold wherever the text says nothing else:
+  - **Two cells between columns**: a label and its value, a label and its description, the columns of a table, items
+    side by side.
+  - **One cell between a glyph and the text after it** (e.g. `󰈔 id_ed25519`, a radio's `󰐾 password`).
+
+**Why**: spacing is something users see; left to the implementation, the same thing ends up a cell or two off across the
+family, and the spec is no longer the one source to go by. Two general rules are easy to remember and carry over to new
+components: two cells keep two columns apart (a label and its value are in different colours anyway); a glyph with only
+one cell after it reads as one unit with its text.
 
 ## Choosing among the options
 

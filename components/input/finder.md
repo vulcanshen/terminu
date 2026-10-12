@@ -23,11 +23,11 @@ panel filter ([`layout/panel`](../layout/panel.md)), whose typing row has the sa
 ```
 ╭─ Search ────────────────────────────╮ ╭─ README.md ───────────────────────╮
 │                                     │ │                                   │
-│  read                          3/41 │ │ # terminu                         │
+│ read                           3/41 │ │ # terminu                         │
 │ ─────────────────────────────────── │ │                                   │
-│ ▓README.md▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ │ │ The terminal UI you can use…      │
-│  README-zh_TW.md                    │ │                                   │
-│  docs/readme-notes.md               │ │                                   │
+│▓README.md▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│ │ The terminal UI you can use…      │
+│ README-zh_TW.md                     │ │                                   │
+│ docs/readme-notes.md                │ │                                   │
 │                                     │ │                                   │
 ╰─ Enter/Tab:list Esc:cancel ─────────╯ ╰───────────────────────────────────╯
 ```
@@ -77,16 +77,33 @@ The panel filter uses this table too.
 | Key | Does |
 |---|---|
 | Characters | typed in, the list filtering at once (the input state, Rules K8; editing keys as in [`input/README`](README.md)) |
-| `↑`/`↓` | move the cursor between results (arrow keys type no characters, so there is no clash) |
+| `↑`/`↓` | move the cursor between results, wrapping at the ends (arrow keys type no characters, so there is no clash) |
 | `Enter` | moves the focus to the item under the cursor without running it; with no results it does nothing |
 | `Tab` | moves the focus to the list |
 | `Esc` | closes the whole finder (Rules F1: a phase is not a layer); in the panel filter it clears the filter |
+
+### Matching
+
+How what is typed on the typing row filters. The same for a plain finder, a select, a checkbox popup, plain text typed in
+a file-picker, and the panel filter:
+
+- **Contains**: case-insensitive, and what is typed must appear unbroken in the item. E.g. `prod` matches `Prod-Web-01`;
+  `db-replica-tokyo-ap-northeast-1`, which only holds p, r, o, d in that order, does not.
+- **Several words**: each word separated by spaces must appear, in any order. E.g. `prod 22` finds `prod-web-01` on
+  port 22 (across columns in a panel).
+- **Order**: the results keep the list's own order and are not reordered. Numbers sort by value (`9` before `10`), text
+  as text (the header in [`layout/panel`](../layout/panel.md)).
+
+**Why**: only an unbroken match filters; a match that counts letters merely appearing in order leaves heaps of unrelated
+items, which then need reordering by score to push the wanted one to the front. Keeping the list's order keeps its
+sorting (a panel header's sort marker) true; numbers and text take the same matching: `20` leaves 20, 120, 200–209,
+in order of size ([`slider`](slider.md)).
 
 ### List
 
 | Key | Does |
 |---|---|
-| `j`/`k` and the like | move (Rules K12) |
+| `j`/`k` and the like | move (Rules K12: stepping wraps at the ends) |
 | `Enter` | goes there (a select chooses, a checkbox popup applies, a file-picker chooses the file or goes into the directory) |
 | `Tab` | back to the typing row |
 | `/` | back to the typing row, typing on after the old text |

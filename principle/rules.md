@@ -6,8 +6,12 @@ Every rule here **must hold**. Each carries a "why", which is its origin UX
 ([Principle P0](README.md#p0-rules-serve-the-ux-not-the-other-way-round)).
 
 **What is a requirement**: everything stated in the rules and in [components](../components/README.md) is a requirement.
-Only four kinds of text are not: parts that say "up to the app", examples marked "e.g.", the "why", and passages marked
-"Implementation reference (not a requirement)".
+Only four kinds of text are not: parts that say "up to the app", examples (however they are introduced: "e.g.", "for
+example", "Example:", "such as", an "Examples" column), the "why", and passages marked "Implementation reference (not a
+requirement)". Diagrams are requirements too: their structure (frames, where glyphs go, spacing, alignment, the colours
+noted beside them) is as drawn, while the names, values and descriptions in them are examples; where the text and a
+diagram disagree, the text wins ("[Diagrams and spacing](../components/README.md#diagrams-and-spacing)" in the
+components).
 
 **Zones**: each rule heading is tagged `fixed` or `concept` ([Principle P5](README.md#p5-fixed-zone-and-concept-zone)).
 In a `concept` rule the semantics are still fixed; only the implementation is left to the app.
@@ -32,7 +36,7 @@ a retired rule keeps its ID and is marked retired.
 | [X](#x-mouse) | Mouse |
 | [T](#t-time-axis) | Time axis |
 | [S](#s-splash) | Splash (the family easter egg) |
-| [E](#e-app-and-environment) | App and environment: command line, environment variables, requirements, releases, documents |
+| [E](#e-app-and-environment) | App and environment: command line, environment variables, requirements, releases, documents, the shared lib |
 
 ---
 
@@ -48,15 +52,25 @@ a retired rule keeps its ID and is marked retired.
 | `Space` | On a panel, open / close the Space menu (what can be done here) | K5, M2 |
 | `?` | Open / close the key reference: what keys work on the frontmost surface (read-only) | K6, M4 |
 | `q` | Quit the app | K9 |
+| `1`–`9` | On a panel, jump to the Nth panel of the current screen (the `[N]` on its frame) | this rule, K11 |
 
 These keys carry this meaning on **every surface**; the only exceptions are input state (K8), PTY (K10), modes (K11) and
 `q` on a form (K9). An app need not use all of them (a single-panel app has no use for `Tab`), and may designate core
 keys of its own; once designated, those also keep their meaning on every surface. **No letter hotkey may take over a key
 in this table.**
 
+**The digit keys `1`–`9`**: on a panel (with no popup open) they are kept for jumping between panels, and an app may not
+register a digit as a hotkey on a panel. **They work within the current screen only**: each screen numbers its own
+panels from `[1]`, so after switching screens `1`–`9` are that screen's panels; a digit with no such panel on the screen
+does nothing. Inside a popup the digits are free (e.g. a menu's `[3] Favorites`, digit hotkeys on a select's options); a
+global hotkey that is a digit can only be pressed inside the global operation popup (M4). Inside a mode, K11 applies; the
+key reference lists them in the core keys section as `1–N` ([components/dialog/note](../components/dialog/note.md)).
+
 **Why**: what users learn is a **role** ("cancel", "move focus", "what can I do now"), not a key. With the roles fixed,
 one lesson holds on every surface of every app in the family. A single surface where `Space` does something else adds a
-rule to learn: "except here".
+rule to learn: "except here". Every panel has `[N]` drawn on its frame, which promises "press this digit to get here";
+an app that takes the digit for something else makes the frame lie. Jumping to a panel is basic movement, like `Tab`, and
+must always be reliable; the app loses only the digits on a panel, keeping the letters and the digits inside popups.
 
 ### K2 `Tab` switches focus between objects on the same level `fixed`
 
@@ -156,8 +170,8 @@ surface**: read-only and scrollable, with no cursor and nothing to run (M4; how 
 
 | Focus is on | The key reference lists |
 |---|---|
-| a panel | the keys that work on this panel, plus the core keys and the global hotkeys |
-| a popup (the Space menu and the global operation popup included) | **only this popup's** keys |
+| a panel | the keys that work on this panel (movement keys included), plus the core keys and global hotkeys that work here |
+| a popup (the Space menu and the global operation popup included) | **only this popup's** keys: its own hotkeys, `Enter`, `Esc`, the movement keys |
 
 Input state, PTY and modes follow K8, K10 and K11.
 
@@ -257,10 +271,12 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 |---|---|
 | `Space` | **opens no menu**; does nothing |
 | `?` | the mode's key reference (read-only, K6): which keys work in the mode and what they do |
-| `Esc` | leaves the mode (K4), back to where it was entered |
+| `Esc` | leaves the mode (K4), back to the state before it was entered |
 | `q`, `Ctrl-C` | run the quit flow, as K9 |
-| `Tab` | a mode may suspend `Tab`, but pressing it must respond, saying to leave the mode with `Esc` first (e.g. a toast); while the toast is up, the first `Esc` closes it (K4) |
+| `Tab`, `1`–`9` | a mode may suspend `Tab` and the digit keys, but pressing them must respond, saying to leave the mode with `Esc` first (e.g. a toast); while the toast is up, the first `Esc` closes it (K4) |
 
+- **Inside a mode only the mode's own keys and the core keys above work**: panel hotkeys and global hotkeys do nothing,
+  silently.
 - A mode has no Space menu, and no list of keys to run either. The mode's own keys (move, select, drag) are pressed
   directly; they are disclosed in the `?` key reference and in the footer / bottom-border hint (how the footer looks
   inside a mode: [components/layout/screen](../components/layout/screen.md)).
@@ -272,10 +288,15 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 **Why**: a mode is always a special case; its keys are movement and selection, pressed directly and in runs, not actions
 on an item, and there is no item / panel / global to split them by. Turning them into a list you pick and run from (even
 `h j k l` run from a list) only adds a detour; all the user needs is "what can I press here", which is exactly `?`'s job.
+Hotkeys do nothing inside a mode: a drag or a selection is never switched away from halfway (pressing the hotkey that
+switches screens in the middle of a drag would leave the drag in a state nobody can describe), and the mode's `?` only
+needs to list the mode's keys; to do something else, `Esc` first — the same idea as a PTY. The digit keys switch panels,
+like `Tab`, so users expect a response and a suspended one must respond; other letters stay silent, so random presses do
+not pop up a string of toasts.
 
 ### K12 Navigation letters are kept for movement; hjkl are the arrow keys `fixed`
 
-Where nothing is typed, `j k u d g G h l` are kept for movement, and no action takes them. `h`/`j`/`k`/`l` are
+Where you are not typing (outside the input state, K8), `j k u d g G h l` are kept for movement, and no action takes them. `h`/`j`/`k`/`l` are
 `←`/`↓`/`↑`/`→`, meaning what the layout makes them mean:
 
 - **With a left-right structure** (tabs within one surface, two sides, a grid): up, down, left and right. `j`/`k` move up
@@ -283,10 +304,16 @@ Where nothing is typed, `j k u d g G h l` are kept for movement, and no action t
   calendar.
 - **In a plain one-dimensional list with no left-right structure** (a form, a one-value-per-row panel without tabs, a
   menu): `h`/`k` (`←`/`↑`) go back, `j`/`l` (`↓`/`→`) go on, whether the options run across or down.
-- A one-dimensional list in a panel with tabs: `h`/`l` go to the tabs, `j`/`k` still move in the list.
+- A one-dimensional list in a panel with tabs: `h`/`l` switch tabs, `j`/`k` still move in the list.
 - **`u`/`d` move half a page, `gg`/`G` to the top and the bottom.** `g` is only the start of a two-key chord: `gg` goes to
   the top, and other chords starting with `g` may be hotkeys (e.g. filu's and webu's `[go]to`); a single `g` does
   nothing. `Ctrl-U`/`Ctrl-D` are not taken as aliases.
+- **Stepping wraps at the ends**: moving one step at a time along a run of items (`j`/`k`, `h`/`l`, the arrow keys, `Tab`)
+  — a panel's list, a one-value-per-row panel, a menu, a form, the list of a finder, a select or a checkbox popup, a
+  panel's tabs, the columns and items inside a picker — one step past the last item goes to the first, and one step back
+  from the first goes to the last. `u`/`d` stop at the first and the last item and do not wrap; `gg`/`G` go to the top
+  and the bottom anyway. What moves through space rather than along a run of items does not wrap: the days of a
+  calendar, the month and the year, the two sides, moving within a piece of text.
 - **Moving within a piece of text** (a note's selection, a textarea's moving state): add `w`/`b`/`e` (next word start,
   previous word start, word end) and `0`/`$` (line start, line end), as in vim.
 
@@ -296,7 +323,9 @@ left and right (filu's, kbu's and webu's `h`/`l` switch tabs, sshu's `h`/`l` cro
 left and right keys are idle and get "back" and "on", so users need not wonder whether options run across or down.
 `Ctrl-U`/`Ctrl-D` are not taken: one set of keys per action is one set fewer to remember; and in shells and many input
 boxes `Ctrl-U` means "clear this line", so the same chord would turn pages in one place in the family and delete text in
-another — too high a price for a slip.
+another — too high a price for a slip. Wrapping at the ends: the same key reacts the same way at the ends everywhere in
+the family, so nobody has to remember where it wraps and where it stops; a half page across the ends would land
+somewhere nobody can guess, so `u`/`d` stop.
 
 ---
 
@@ -359,7 +388,8 @@ Each action that has to be learned in advance is a hole in "usable without the d
 - The row that switches to the current screen is disabled as M6 says (e.g. `[M]anage` while on `[M]anage`).
 - **Global hotkeys**: with no popup open, the hotkeys in the global operation popup can also be pressed directly on a
   panel. When one clashes with a panel's own hotkey, the panel's wins, and that panel's key reference does not list the
-  global key it overrides. `q` follows K9.
+  global key it overrides. `q` follows K9. A global hotkey that is a digit can only be pressed inside the global operation
+  popup (a digit on a panel jumps to a panel, K1); inside a mode, global hotkeys do nothing (K11).
 
 **The key reference** (reading)
 
@@ -655,16 +685,18 @@ best, and no rule such as "reversible means no need to ask" can judge it.
   when loading ends. Loading here means the content of the **whole popup** has not arrived (e.g. the list's items are not
   all loaded). If just **one item** is itself a continuous stream of data (e.g. a connection that keeps sending), it is
   that item that is loading, not the popup — how to disclose it is up to the app.
-- **Position**: centred vertically. The toast is the exception: centred at the bottom of the screen, its bottom border
-  sitting just above the panel's bottom border ([components/dialog/toast](../components/dialog/toast.md)).
+- **Position**: centred vertically. The toast is the exception: centred at the bottom of the screen, its bottom border on
+  the third row from the bottom, so the two bottom rows always stay visible
+  ([components/dialog/toast](../components/dialog/toast.md)).
 - **A popup whose value can be invalid reserves an error row** (an input popup, a form): it opens with one error row in
   its height, blank while there is no error; an invalid value has its error written in this row (K3), and the box keeps
   its height. One whose value cannot be invalid (e.g. a multi-line editor) need not reserve one. When the action itself
   fails (writing a file fails, the remote end refuses), nothing goes in the error row; an error popup opens
   ([components/layout/popup](../components/layout/popup.md)).
 - **The terminal class is the exception**: its width is `terminal width − 2`, with no 120-column cap; above it the
-  statusbar or the screen's chip row stays, and below it runs down to the last row of the screen, covering the footer —
-  the subprocess needs the room, and inside a PTY the outside footer is not needed
+  statusbar or the screen's chip row (with the divider under it) stays, and below it runs down to the last row of the
+  screen, covering the footer; inside the frame there is no padding on any side — the subprocess needs the room, and
+  inside a PTY the outside footer is not needed
   ([components/dialog/terminal](../components/dialog/terminal.md)).
 
 **Why**: when every popup keeps sizing itself by its content, nobody can tell what it will look like before it opens,
@@ -806,7 +838,8 @@ tells you at once that this comes from the same family.
 
 ## E App and environment
 
-What an app does off screen: the command line, environment variables, requirements, icon width, releases, documents.
+What an app does off screen: the command line, environment variables, requirements, icon width, releases, documents,
+and how the shared lib and an app split the work.
 This chapter is not on-screen UX; its reason is family consistency — the five apps do things the same way, so users who
 have installed one can install the others, and know where to find config and data.
 
@@ -968,3 +1001,30 @@ dev-remarks, violations in fix.md.
 
 **Why**: a README introduces the tool, and what users want from it is "what is this, how do I install it, how do I use
 it"; developer notes go elsewhere, so both are easy to find.
+
+### E8 The shared lib and its example app `fixed`
+
+The family's shared lib (terminu-go) turns the on-screen rules into code that apps call; its example app (the showcase)
+shows every component and every combination, and is not released. A lib is not an app, and some rules do not fit it;
+when an app uses the lib, which rules the lib covers and which stay with the app is set by this table:
+
+| Rule | The lib | The example app | An app using the lib |
+|---|---|---|---|
+| The on-screen rules (K, M, L, F, X, T, S1–S4, components) | covers them | shows all of them | from the lib, not done again |
+| E1 `version`, `help` | — | yes | its own |
+| E2 naming environment variables | the variables the lib reads hang under the app's name (e.g. `<APP>__ICON_WIDTH`) | as E2 (e.g. `SHOWCASE__…`) | its own variables follow E2 |
+| E3 where config and data live | — | stores nothing, not applicable | its own |
+| E4 requirements | stated in the README | — | stated in the README |
+| E5 the actual icon width | covers it: the probe, the display-width functions, setting `TERMINU__ICON_WIDTH` for subprocesses | — | from the lib |
+| E6 releases | a git tag (a Go module), no binary; the L4 screen tests are required | not released; the L4 screen tests are required | as E6 |
+| S5 the icon the splash draws | the splash mechanism | the family mark | its own `docs/icon.svg` |
+| E7 README | a structure of its own: installation is `go get`, the quick start is code, and it says how to run the example app | none of its own | as E7 |
+| E7 dev-remarks | yes, the same skeleton | — | yes |
+| Departure (start of the Rules) | **the lib does not depart**: what it cannot do, or what works badly, is reported as a gap in tdp, and the lib changes once the spec does | — | its own departures go in its own dev-remarks |
+
+- This only sets the split when an app uses the lib; it does not require an app to use it.
+
+**Why**: an app moving to the lib needs to know what it can delete — the on-screen code and E5 go, while E1, E3, E6, E7
+and its own icon stay — without every app working that out again. The lib holds the screen the family shares, so if the
+lib departs, every app using it departs with it; when the lib meets something it cannot do, it always reports a gap in tdp
+and the spec changes first.
