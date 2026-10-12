@@ -8,18 +8,20 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
 ## 外框
 
 ```
-╭─ Title ─────────────────────────────────────╮
-│                                             │   ← 留白
-│ content                                     │
-│ content                                     │
-│                                             │   ← 留白
-╰─ Enter:run Esc:close ───────────── 4 of 12 ─╯
+┏━TITLE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                             ┃   ← 留白
+┃ content                                     ┃
+┃ content                                     ┃
+┃                                             ┃   ← 留白
+┗━ Enter:run Esc:close ━━━━━━━━━━━━━ 4 of 12 ━┛
 ```
 
-- **線型**：圓角 `╭─╮`，層色（[`color`](../color-zh_TW.md)）。popup 一律圓角：最上層的 popup 有 focus，靠亮暗分辨（Rules F8、
-  Principle P6），不靠線型 —— 圓角在 popup 上不代表失焦。
-- **標題**：glyph + 文字，放在上框 `╭─ ` 後面，層色、粗體。文字寫這個 popup 是做什麼的（`Rename`、`New host`、
-  `Add bookmark`）；太長從尾端截，加 `…`。glyph：
+- **線型**：粗線 `┏━┓`，層色（[`color`](../color-zh_TW.md)）。popup 一律粗線：最上層的 popup 有 focus，靠亮暗分辨（Rules F8、
+  Principle P6），不靠線型 —— 粗線在 popup 上不代表 focus，被蓋在底下、淡化了的 popup 照樣是粗線。
+- **標題**：glyph + 文字，做成一個膠囊放在上框 `┏━` 後面：兩端是圓角，左 U+E0B6（`nf-ple-left_half_circle_thick`）、右 U+E0B4
+  （`nf-ple-right_half_circle_thick`）；填層色，字 Base 粗體、大寫（[components](../README-zh_TW.md) 的「大寫」）。文字寫這個
+  popup 是做什麼的（`RENAME`、`NEW HOST`、`ADD BOOKMARK`）；裡面的名稱、路徑是內容，大小寫照原樣（`ALTERM: myhost`、
+  `IDENTITY FILE · ~/.ssh`）；太長從尾端截，加 `…`。標題後面接 tab 時，tab 照 [`panel`](panel-zh_TW.md) 的膠囊串畫。glyph：
 
   | popup | glyph |
   |---|---|
@@ -30,24 +32,27 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   | terminal | `nf-md-console`（U+F018D） |
   | input、表單、note | 由 app 選：它編輯或顯示的東西（例：Rename 用一支筆）；避開太細的 outline glyph |
 
-- **hint**：放在下框 `╰─ ` 後面，寫法照 Rules M5。
+- **hint**：放在下框 `┗━ ` 後面，寫法照 Rules M5。
   - **順序**：`Enter` 第一 → 這個 popup 自己的鍵 → 換塊的 `Tab:…` → `Esc` 最後。terminal 例外：出口鍵第一（[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
   - **不寫在項目之間移動的鍵**（`j/k`、`↑/↓`、表單換欄的 `Tab`），只寫動作與離開：使用者操作一下就知道。切換塊的鍵不算移動，
     照寫（例：finder 的 `Tab:list`）。
   - **放不下時從尾端整組捨棄**，不截在項目中間；下框右邊的捲動位置留著。
   - **只有打字列的 popup**（text、password、number）：`?` 在那裡是字元，hint 要列出全部操作，而且 80 欄放得下（Rules M3）。
 - **下框右邊**：內容放不下時的捲動位置（見下面的「內容放不下時」）。
-- **框上的字與角之間一律隔一段線**：標題 `╭─ Title`、hint `╰─ Enter:run`、捲動位置 `4 of 12 ─╯`（panel 也一樣，只有 panel 的
-  膠囊緊接著角，[`panel`](panel-zh_TW.md)）。
+- **框上的字與角之間一律隔一段線**：標題 `┏━TITLE`、hint `┗━ Enter:run`、捲動位置 `4 of 12 ━┛`（panel 也一樣，只有
+  panel 的膠囊緊接著角，[`panel`](panel-zh_TW.md)）。
 - **留白**：內容上下各留一列空白，左右離框一格。每一種 popup 都有，viewer 也一樣；只有 terminal 例外：上下左右都不留白
   （[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
 - **cursor 色塊蓋住留白**：清單的 cursor 從框貼到框，蓋住左右的留白，色塊上的字照樣離框一格（[`dialog/menu`](../dialog/menu-zh_TW.md)、
   [`input/finder`](../input/finder-zh_TW.md)）；表單的 focus 色塊從值開始、一直到框，蓋住右邊的留白（[`dialog/form`](../dialog/form-zh_TW.md)）。
+  最右邊那一格（右邊的留白）畫 U+E0B0（`nf-pl-left_hard_divider`），色塊的顏色，像一個箭頭指著這一列（[`panel`](panel-zh_TW.md)
+  的一般清單）。只有整列的 cursor 有箭頭；datetime picker 的日子、時、分這種一格一格的 cursor 沒有。
 - **分隔線**：popup 裡的分隔線不接框 —— 橫的左右各留一格空白，直的不畫進上下的留白。顏色 Overlay0。
 
 **為什麼**：標題、hint、留白的位置固定，每一個 popup 一打開，使用者的眼睛就知道去哪裡找「這是什麼」「能按什麼」。
 分隔線不接框：接上框的線看起來像把一個框切成兩個框，而它只是把內容分段。cursor 色塊蓋住留白：同一種 cursor 在每一個清單
-長得一樣（Principle P4），色塊最寬、最好認（Rules L5）。
+長得一樣（Principle P4），色塊最寬、最好認（Rules L5）。標題是圓角的膠囊、panel 的膠囊是斜角：看兩端就知道是浮在上面的
+框，還是畫面上的 panel。
 
 ## 寬度
 
@@ -64,9 +69,20 @@ Rules F7 的兩種寬度，打開時定好，開著時不變：
 
 ## 開關動畫
 
-Rules F2：打開與關閉都要有動畫。長度全家族一樣：8 格 × 16ms ≈ 128ms，開啟與關閉對稱。動畫的形式由 app 決定。
+Rules F2：打開與關閉都有動畫，全家族同一種、一樣長。打開分三段：
 
-**為什麼**：128ms 看得出框疊上來、退下去，又短到連續開關幾層也不用等。
+1. **拉線**（4 格）：在 popup 正中間那一列，一條層色的粗線 `━` 從中間往左右延伸，拉到 popup 的寬度。
+2. **停**（1 格）：拉滿的線停一格。
+3. **展開**（4 格）：popup 從中間那一列往上下展開；每一格露出的是 popup 正中間的那幾列，最後一格是整個 popup。
+
+- **收起**：同樣的 9 格倒著播 —— 往中間壓成一條線，線再往中間縮掉。
+- **長度**：每格 32ms；打開、收起各 9 格，約 288ms。
+- **淡化**：打開的第一格起，底下就淡化；開始收起時，底下立刻亮回來（Rules F8：在收的 popup 已經不是最上層）。
+- **按鍵**：打開的動畫播完之前，popup 不收鍵；在收的 popup 也不收鍵（Rules F3）。
+- 每一種 popup 都一樣，包括 toast 與 terminal。
+
+**為什麼**：先拉一條線再展開，看得出框從哪裡疊上來、退回哪裡去；線停一格，「有東西要出現」先被看到。288ms 看得清楚這三段，
+又不會讓人覺得在等。全家族同一種：換 app 時節奏和樣子都不變。播放中不收鍵：框還沒畫完，使用者看不到自己按到的是什麼。
 
 ## loading
 
@@ -94,15 +110,15 @@ Rules F7：打開時定高、最高是畫面高度 − 2，超過就在框裡捲
 - 以什麼為單位由各種類定（例：表單以欄位為單位，上下式的 label 與值兩列、radio 的幾個選項都算同一欄）。
 
 ```
-╭─ Title ────────────────────────────────────────╮
-│                                                │   ← 留白
-│ content                                        │   ← 內容區：只有這一段捲動
-│ content                                        │
-│ content                                        │
-│                                                │
-│ error                                          │   ← 錯誤列：固定不動
-│                                                │
-╰─ hint ─────────────────────────────── 4 of 12 ─╯
+┏━TITLE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                ┃   ← 留白
+┃ content                                        ┃   ← 內容區：只有這一段捲動
+┃ content                                        ┃
+┃ content                                        ┃
+┃                                                ┃
+┃ error                                          ┃   ← 錯誤列：固定不動
+┃                                                ┃
+┗━ hint ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4 of 12 ━┛
 ```
 
 ## 錯誤列

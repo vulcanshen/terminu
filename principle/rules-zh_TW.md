@@ -349,13 +349,13 @@ global operation popup，一步就能執行；`?` 是在旁邊對照的常駐 ch
 menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 
 ```
- item operation
+ 󰋘 ITEM OPERATION
  [o]pen                        open it with the OS default app
  [r]ename                                    this item, in place
-  ───────────────────────────────────────────────────────────
- panel operation
+  ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+ 󰋘 PANEL OPERATION
  [/] Search                                everything under here
-  ───────────────────────────────────────────────────────────
+  ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
  Global operation                      actions for the whole app
 ```
 
@@ -523,11 +523,13 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 
 ### F2 開關都有動畫 `固定`
 
-popup 打開與關閉**都要有動畫**。長度全家族一樣（見 [components/layout/popup](../components/layout/popup-zh_TW.md)）；
-動畫的形式由 app 決定。
+popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中間先拉出一條線，再往上下展開；收起時倒著播。
+每格 32ms，打開、收起各 9 格（約 288ms）；打開的動畫播完之前，popup 不收鍵。格數與畫法見
+[components/layout/popup](../components/layout/popup-zh_TW.md)。
 
 **為什麼**：沒有動畫，popup 是「突然出現、突然消失」，使用者感受不到它疊上來、退下去
-的層次變化。長度一樣：同一個動作在家族每個 app 花一樣久，換 app 時節奏不變。
+的層次變化。同一種、一樣長：同一個動作在家族每個 app 長得一樣、花一樣久，換 app 時節奏不變。播放中不收鍵：框還沒畫完，
+使用者看不到自己按到的是什麼。
 
 ### F3 `Esc` 立刻關閉任何 popup `固定`
 

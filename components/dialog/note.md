@@ -11,7 +11,8 @@ a list of options to run with `Enter`, it is a menu, not a note.
 ## Look
 
 - The frame follows [`layout/popup`](../layout/popup.md): the padding above and below is always there, in a viewer too.
-- **Title**: a glyph plus what is shown (e.g. `YAML — pod/nginx`). The glyph is the app's choice; the glyphs of the key
+- **Title**: a glyph plus what is shown, drawn as the title capsule (e.g. `YAML — pod/nginx`: `YAML` in uppercase,
+  `pod/nginx` is content and stays as it is). The glyph is the app's choice; the glyphs of the key
   reference and the error popup are below.
 - **Scroll position**: when the content does not fit, the right end of the bottom border shows the visible lines,
   `N-M of T`.
@@ -39,38 +40,38 @@ the message, `Enter` back, `e` to the field, `Enter` to change it).
 The "what keys work here" opened with `?` (Rules K6, M4).
 
 ```
-╭─ [2] Hosts keys ──────────────────────────────╮
-│                                               │
-│ item operation                                │  ← section title
-│  Enter     Connect — what it is, then in      │
-│  E         Edit — change this host            │
-│  X         Delete — remove from hosts.yaml    │
-│ panel operation                               │
-│  A         Add — a new host                   │
-│  /         Search — name, user, host, port, … │
-│ move                                          │
-│  j/k       down, up                           │
-│  u/d       half a page up, down               │
-│  gg/G      to the top, the bottom             │
-│ core keys                                     │
-│  Space     what you can do here               │
-│  ?         this list                          │
-│  Tab       next panel                         │
-│  1–N       jump to panel N                    │
-│  q/Ctrl-C  quit                               │
-│ app-wide                                      │
-│  M         Manage — hosts, credentials, …     │
-│                                               │
-╰─ ?/Esc:close ──────────────────── 1-20 of 23 ─╯
+┏━[2] HOSTS KEYS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                               ┃
+┃ 󰋘 ITEM OPERATION                              ┃  ← section title
+┃  Enter     Connect — what it is, then in      ┃
+┃  E         Edit — change this host            ┃
+┃  X         Delete — remove from hosts.yaml    ┃
+┃ 󰋘 PANEL OPERATION                             ┃
+┃  A         Add — a new host                   ┃
+┃  /         Search — name, user, host, port, … ┃
+┃ 󰋘 MOVE                                        ┃
+┃  j/k       down, up                           ┃
+┃  u/d       half a page up, down               ┃
+┃  gg/G      to the top, the bottom             ┃
+┃ 󰋘 CORE KEYS                                   ┃
+┃  Space     what you can do here               ┃
+┃  ?         this list                          ┃
+┃  Tab       next panel                         ┃
+┃  1–N       jump to panel N                    ┃
+┃  q/Ctrl-C  quit                               ┃
+┃ 󰋘 APP-WIDE                                    ┃
+┃  M         Manage — hosts, credentials, …     ┃
+┃                                               ┃
+┗━ ?/Esc:close ━━━━━━━━━━━━━━━━━━━━ 1-20 of 23 ━┛
 ```
 
-- **Title**: `nf-fa-question_circle` (U+F059) plus `<surface> keys`, e.g. `[2] Hosts keys`, `Space menu keys`.
+- **Title**: `nf-fa-question_circle` (U+F059) plus `<surface> keys`, e.g. `[2] HOSTS KEYS`, `SPACE MENU KEYS`.
 - **One key per row**: indented two cells, the key padded to the width of the widest key, two blank cells, then the
   description. A description too long is cut at the end with `…`, never wrapped. Keys are written as in Rules M5 (no
   brackets, no colon).
 - **Rows from a menu**: the description reads `label — description`; the label loses its hotkey marks and keeps its case
   (a menu's `[E]dit` becomes `Edit — change this host`).
-- **Sections**: section titles as in a menu (Overlay0, indented one cell, not bold). On a panel they are, in order:
+- **Sections**: section titles as in a menu (`nf-md-hexagon`, uppercase, Overlay0, indented one cell, not bold). On a panel they are, in order:
   - `item operation`, `panel operation`: as in the Space menu.
   - `move`: the movement keys that work here (Rules K12), only those that really do (e.g. `h/l` only with tabs).
   - `core keys`: the core keys that work on this panel — `Space`, `?`, `Tab`, `1–N` (with several panels, Rules K1),
@@ -93,17 +94,18 @@ The note laid over a popup whose action failed (see the error row in [`layout/po
 message opened with `Enter` on a form's error row is one too.
 
 ```
-╭─ Save failed ───────────────────────────────────╮
-│                                                 │
-│ hosts.yaml changed on disk since it was opened. │
-│                                                 │
-╰─ Enter/Esc:close ───────────────────────────────╯
+┏━SAVE FAILED━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                 ┃
+┃ hosts.yaml changed on disk since it was opened. ┃
+┃                                                 ┃
+┗━ Enter/Esc:close ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-- **Look**: frame, title and text in Red. The title glyph is `nf-md-fire` (U+F0238), the same as the Error toast. The
+- **Look**: frame and text in Red; the title capsule is filled Red with Base bold text (the capsule as in
+  [`layout/popup`](../layout/popup.md)). The title glyph is `nf-md-fire` (U+F0238), the same as the Error toast. The
   message wraps inside the frame; when too long it scrolls with `j`/`k`.
-- **Title**: what failed (`Rename failed`, `Save failed`). Opened from a form's error row, it is the field's name
-  (`Port`).
+- **Title**: what failed (`RENAME FAILED`, `SAVE FAILED`). Opened from a form's error row, it is the field's name
+  (`PORT`).
 - **Closing**: both `Enter` and `Esc` close it, hint `Enter/Esc:close`.
 - **After closing**: back to the popup underneath, the focus where it was, every value still there (Rules F4). Pressing
   `Enter` repeatedly, the first press closes it and the next is one more press where the focus was — on a form's button,

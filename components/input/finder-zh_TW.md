@@ -20,15 +20,15 @@
 ## 長相
 
 ```
-╭─ Search ────────────────────────────╮ ╭─ README.md ───────────────────────╮
-│                                     │ │                                   │
-│ read                           3/41 │ │ # terminu                         │
-│ ─────────────────────────────────── │ │                                   │
-│▓README.md▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│ │ The terminal UI you can use…      │
-│ README-zh_TW.md                     │ │                                   │
-│ docs/readme-notes.md                │ │                                   │
-│                                     │ │                                   │
-╰─ Enter/Tab:list Esc:cancel ─────────╯ ╰───────────────────────────────────╯
+┏━SEARCH━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┏━README.md━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                     ┃ ┃                                   ┃
+┃ read                           3/41 ┃ ┃ # terminu                         ┃
+┃ ─────────────────────────────────── ┃ ┃                                   ┃
+┃▓README.md▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃ ┃ The terminal UI you can use…      ┃
+┃ README-zh_TW.md                     ┃ ┃                                   ┃
+┃ docs/readme-notes.md                ┃ ┃                                   ┃
+┃                                     ┃ ┃                                   ┃
+┗━ Enter/Tab:list Esc:cancel ━━━━━━━━━┛ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 - **兩塊**：上面是打字列，右邊寫篩選的筆數 `符合/總數`（`3/41`）；一條分隔線（不接框，[`layout/popup`](../layout/popup-zh_TW.md)）；下面是清單。
@@ -58,7 +58,7 @@ select 與 checkbox popup 的每一列，最前面放一個標記：
 | focus 在 | 打字列 | 清單的 cursor |
 |---|---|---|
 | 打字列 | 照 input 的打字列畫：值 Lavender、有游標 | 層色 cursor 再淡化一次 |
-| 清單 | 整列用灰色（Overlay0）畫，沒有游標 | 層色底、Base 粗體（跟 menu 的 cursor 一樣） |
+| 清單 | 整列用灰色（Overlay0）畫，沒有游標 | 層色底、Base 粗體，最右邊一格是箭頭（跟 menu 的 cursor 一樣） |
 
 ## 按鍵
 

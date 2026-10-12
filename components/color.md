@@ -30,9 +30,9 @@ syntax highlighting) are up to the app; this file governs the interface elements
 | Meaning | Used for | Colour |
 |---|---|---|
 | Background | not painted on the screen; used where a background colour has to be written out: text on a block (the cursor, capsules), the unfilled side of a capsule seam, what dimming fades towards | Base `#1e1e2e` |
-| Focus | the focused frame (double line `╔═╗`); keys that can be pressed now in hints, the footer and the key reference; the labels and header row of the focused panel; the screen chip row | Blue `#89b4fa` |
-| Unavailable | an unfocused frame (rounded `╭─╮`, the same width as the double line, so switching shifts nothing); disabled rows, labels and options; days out of range | Surface2 `#585b70` |
-| Layer colour | a popup's frame and title; the cursor block in a popup | see "Popup layer colours" below |
+| Focus | the focused frame (heavy line `┏━┓`); keys that can be pressed now in hints, the footer and the key reference; the labels and header row of the focused panel; the screen chip row | Blue `#89b4fa` |
+| Unavailable | an unfocused frame (light line `┌─┐`, the same width as the heavy line, so switching shifts nothing); disabled rows, labels and options; days out of range | Surface2 `#585b70` |
+| Layer colour | a popup's frame (heavy line `┏━┓`) and the fill of its title capsule; the cursor block in a popup | see "Popup layer colours" below |
 | Being edited, user footprint | the value and the text cursor in an input popup; positions the user leaves behind (the "you are here" of breadcrumbs, the "where you are now" values on the statusbar) | Lavender `#b4befe` |
 | In effect | the value now in effect (the one a select chose, the ticked ones, the ones switched on); live sessions; work in progress and progress bars; what completed successfully | Green `#a6e3a1` |
 | Mode | a mode's frame and mode name, the range selected in a mode (Rules K11) | Yellow `#f9e2af` |

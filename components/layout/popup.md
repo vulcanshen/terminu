@@ -9,19 +9,23 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
 ## Frame
 
 ```
-╭─ Title ─────────────────────────────────────╮
-│                                             │   ← padding
-│ content                                     │
-│ content                                     │
-│                                             │   ← padding
-╰─ Enter:run Esc:close ───────────── 4 of 12 ─╯
+┏━TITLE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                             ┃   ← padding
+┃ content                                     ┃
+┃ content                                     ┃
+┃                                             ┃   ← padding
+┗━ Enter:run Esc:close ━━━━━━━━━━━━━ 4 of 12 ━┛
 ```
 
-- **Line style**: rounded `╭─╮`, in the layer colour ([`color`](../color.md)). Popups are always rounded: the top popup
-  has the focus, and that is told by lit and dimmed (Rules F8, Principle P6), not by line style — on a popup, rounded
-  does not mean unfocused.
-- **Title**: glyph + text, after `╭─ ` on the top border, in the layer colour, bold. The text says what this popup is for
-  (`Rename`, `New host`, `Add bookmark`); when too long it is cut at the end with `…`. Glyphs:
+- **Line style**: heavy `┏━┓`, in the layer colour ([`color`](../color.md)). Popups are always heavy: the top popup
+  has the focus, and that is told by lit and dimmed (Rules F8, Principle P6), not by line style — on a popup, heavy
+  does not mean focused; a popup underneath, dimmed, is still heavy.
+- **Title**: glyph + text, made into a capsule after `┏━` on the top border: rounded ends, U+E0B6
+  (`nf-ple-left_half_circle_thick`) on the left and U+E0B4 (`nf-ple-right_half_circle_thick`) on the right; filled with
+  the layer colour, text Base bold and uppercase ("Uppercase" in the [components](../README.md)). The text says what
+  this popup is for (`RENAME`, `NEW HOST`, `ADD BOOKMARK`); names and paths in it are content and keep their case
+  (`ALTERM: myhost`, `IDENTITY FILE · ~/.ssh`); when too long it is cut at the end with `…`. Tabs after the title follow
+  the capsule chain of [`panel`](panel.md). Glyphs:
 
   | popup | glyph |
   |---|---|
@@ -32,7 +36,7 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
   | terminal | `nf-md-console` (U+F018D) |
   | input, form, note | chosen by the app: the thing it edits or shows (e.g. a pen for Rename); avoid outline glyphs that are too thin |
 
-- **Hint**: after `╰─ ` on the bottom border, written as Rules M5 says.
+- **Hint**: after `┗━ ` on the bottom border, written as Rules M5 says.
   - **Order**: `Enter` first → this popup's own keys → the `Tab:…` that switches parts → `Esc` last. The terminal is the
     exception: its exit key comes first ([`dialog/terminal`](../dialog/terminal.md)).
   - **Keys that move between items are left out** (`j/k`, `↑/↓`, a form's `Tab` between fields); only actions and
@@ -44,8 +48,8 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
     operation, and fit in 80 columns (Rules M3).
 - **Right of the bottom border**: the scroll position when the content does not fit (see "When the content does not fit"
   below).
-- **Text on the frame always keeps one line segment away from the corner**: the title `╭─ Title`, the hint
-  `╰─ Enter:run`, the scroll position `4 of 12 ─╯` (the same on a panel, where only the capsule sits right after the
+- **Text on the frame always keeps one line segment away from the corner**: the title `┏━TITLE`, the hint
+  `┗━ Enter:run`, the scroll position `4 of 12 ━┛` (the same on a panel, where only the capsule sits right after the
   corner, [`panel`](panel.md)).
 - **Padding**: one blank row above and below the content, one cell from the border on the left and right. Every kind of
   popup has it, viewers too; only the terminal is the exception: no padding on any side
@@ -53,14 +57,17 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
 - **A cursor block covers the padding**: a list's cursor runs from frame to frame, covering the left and right padding,
   and the text on it stays one cell from the frame ([`dialog/menu`](../dialog/menu.md), [`input/finder`](../input/finder.md));
   a form's focus block runs from the value all the way to the frame, covering the right padding
-  ([`dialog/form`](../dialog/form.md)).
+  ([`dialog/form`](../dialog/form.md)). Its rightmost cell (the right padding) holds U+E0B0 (`nf-pl-left_hard_divider`)
+  in the block's colour, an arrow pointing at the row (the ordinary list in [`panel`](panel.md)). Only a cursor across a
+  whole row has the arrow; one-cell cursors such as the days, hours and minutes of the datetime picker do not.
 - **Separators**: a separator inside a popup does not join the frame — a horizontal one leaves one blank cell at each
   end, a vertical one is not drawn into the top and bottom padding. Colour Overlay0.
 
 **Why**: with the title, hint and padding in fixed places, the moment any popup opens the user's eyes know where to find
 "what this is" and "what can be pressed". Separators do not join the frame: a line joined to the frame looks like it cuts
 one frame into two, when it only divides the content into sections. A cursor block covers the padding: the same cursor
-looks the same in every list (Principle P4), and the widest block is the easiest to spot (Rules L5).
+looks the same in every list (Principle P4), and the widest block is the easiest to spot (Rules L5). The title is a
+rounded capsule and a panel's is slanted: the ends tell a frame floating above from a panel on the screen.
 
 ## Width
 
@@ -79,11 +86,26 @@ and a password's unlock mask are centred.
 
 ## Opening and closing animation
 
-Rules F2: opening and closing are both animated. The length is the same across the family: 8 frames × 16ms ≈ 128ms,
-symmetric for opening and closing. The form of the animation is up to the app.
+Rules F2: opening and closing are both animated, in one form and one length across the family. Opening has three
+parts:
 
-**Why**: at 128ms the frame can be seen stacking on and backing off, yet it is short enough that opening or closing
-several layers in a row means no waiting.
+1. **The line** (4 frames): on the popup's middle row, a heavy `━` line in the layer colour grows from the centre to
+   both sides until it is as wide as the popup.
+2. **The hold** (1 frame): the full line stays for one frame.
+3. **The opening** (4 frames): the popup opens up and down from its middle row; each frame shows the rows at the very
+   middle of the popup, the last frame the whole popup.
+
+- **Closing**: the same 9 frames backwards — pressed into a line at the middle, then the line shrinks to its centre.
+- **Length**: 32ms a frame; 9 frames each way, about 288ms.
+- **Dimming**: from the first opening frame, what lies beneath is dimmed; once closing starts, it lights up again at
+  once (Rules F8: a popup on its way out is no longer the top).
+- **Keys**: a popup takes no keys until its opening animation ends; a closing one takes none either (Rules F3).
+- Every kind of popup animates this way, toasts and terminals included.
+
+**Why**: a line first and then the opening shows where the frame stacks on from and where it backs off to; with the
+line held for a frame, "something is coming" is seen first. 288ms is enough to see the three parts without feeling
+like a wait. One form for the family: the rhythm and the look stay the same from one app to the next. No keys while
+it plays: on a frame not yet drawn, users cannot see what their key landed on.
 
 ## Loading
 
@@ -119,15 +141,15 @@ frame.
   a radio, make one field).
 
 ```
-╭─ Title ────────────────────────────────────────╮
-│                                                │   ← padding
-│ content                                        │   ← content area: the only part that scrolls
-│ content                                        │
-│ content                                        │
-│                                                │
-│ error                                          │   ← error row: stays put
-│                                                │
-╰─ hint ─────────────────────────────── 4 of 12 ─╯
+┏━TITLE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                ┃   ← padding
+┃ content                                        ┃   ← content area: the only part that scrolls
+┃ content                                        ┃
+┃ content                                        ┃
+┃                                                ┃
+┃ error                                          ┃   ← error row: stays put
+┃                                                ┃
+┗━ hint ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4 of 12 ━┛
 ```
 
 ## Error row

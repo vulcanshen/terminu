@@ -23,9 +23,9 @@
 | 意義 | 用在 | 色 |
 |---|---|---|
 | 底色 | 不塗在畫面上；用在要明確寫出底色的地方：色塊上的字（cursor、膠囊）、膠囊接縫沒填色的那一邊、淡化的目標 | Base `#1e1e2e` |
-| focus | focus 的框（雙線 `╔═╗`）；hint、footer、key reference 裡現在按得了的鍵；有 focus 的 panel 的 label 與表頭；畫面 chip 列 | Blue `#89b4fa` |
-| 用不到 | 失焦的框（圓角 `╭─╮`，跟雙線同寬，切換零位移）；停用的列、label、選項；範圍外的日子 | Surface2 `#585b70` |
-| 層色 | popup 的框與標題；popup 裡的 cursor 色塊 | 見下面的「popup 的層色」 |
+| focus | focus 的框（粗線 `┏━┓`）；hint、footer、key reference 裡現在按得了的鍵；有 focus 的 panel 的 label 與表頭；畫面 chip 列 | Blue `#89b4fa` |
+| 用不到 | 失焦的框（細線 `┌─┐`，跟粗線同寬，切換零位移）；停用的列、label、選項；範圍外的日子 | Surface2 `#585b70` |
+| 層色 | popup 的框（粗線 `┏━┓`）與標題膠囊的底；popup 裡的 cursor 色塊 | 見下面的「popup 的層色」 |
 | 正在編輯、使用者足跡 | input popup 裡的值與游標；使用者留下的位置（麵包屑的「你在這裡」、statusbar 上「你現在在哪」的值） | Lavender `#b4befe` |
 | 生效中 | 目前生效的值（select 選的、勾著的、開著的）；活著的 session；進行中的工作與進度條；成功完成的 | Green `#a6e3a1` |
 | 模式 | 模式的外框與模式名、模式裡選起來的範圍（Rules K11） | Yellow `#f9e2af` |

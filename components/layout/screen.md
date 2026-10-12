@@ -43,7 +43,7 @@ colour being Blue (the selected screen filled with Blue, its text Base bold; the
 Blue). When it does not fit, it shrinks by the capsule chain's rules: first down to `[M] [F] [S]`, then the unselected
 ones are folded away.
 
-The statusbar's content goes on its right (see below). Below the chip row runs a full-width separator in Overlay0; during
+The statusbar's content goes on its right (see below). Below the chip row runs a full-width heavy line `━` in Overlay0; during
 long work (a transfer, a download) it fills with Green from the left as a progress bar, and the status text beside it is
 Green too. While a terminal popup is open, the chip row and this separator both stay
 ([`dialog/terminal`](../dialog/terminal.md)): the progress stays in sight from inside a shell.

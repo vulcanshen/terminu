@@ -10,17 +10,17 @@
 ## 長相
 
 ```
-╭─ Identity file · ~/.ssh ─────────────╮ ╭─ id_ed25519 ────────────────────╮
-│                                      │ │                                 │
-│                                  5/5 │ │ -----BEGIN OPENSSH PRIVATE KEY  │   ← 打字列：打開時是空的
-│ ──────────────────────────────────── │ │ (key, 411 B)                    │
-│ 󰉋 ..                                 │ │                                 │
-│ 󰉋 work                               │ │                                 │
-│ 󰈔 config                             │ │                                 │
-│ 󰈔 id_ed25519                         │ │                                 │   ← cursor：原本的值，字 Green
-│ 󰈔 id_ed25519.pub                     │ │                                 │
-│                                      │ │                                 │
-╰─ Enter:choose Tab:filter Esc:cancel ─╯ ╰─────────────────────────────────╯
+┏━IDENTITY FILE · ~/.ssh━━━━━━━━━━━━━┓ ┏━id_ed25519━━━━━━━━━━━━━━━━━━━━┓
+┃                                      ┃ ┃                                 ┃
+┃                                  5/5 ┃ ┃ -----BEGIN OPENSSH PRIVATE KEY  ┃   ← 打字列：打開時是空的
+┃ ──────────────────────────────────── ┃ ┃ (key, 411 B)                    ┃
+┃ 󰉋 ..                                 ┃ ┃                                 ┃
+┃ 󰉋 work                               ┃ ┃                                 ┃
+┃ 󰈔 config                             ┃ ┃                                 ┃
+┃ 󰈔 id_ed25519                         ┃ ┃                                 ┃   ← cursor：原本的值，字 Green
+┃ 󰈔 id_ed25519.pub                     ┃ ┃                                 ┃
+┃                                      ┃ ┃                                 ┃
+┗━ Enter:choose Tab:filter Esc:cancel ━┛ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 - **根目錄**：app 給，就是打開時清單顯示的那個目錄（例：sshu `~/.ssh`、webu `~/Downloads`）。只是起點、不是邊界：清單最上面一列

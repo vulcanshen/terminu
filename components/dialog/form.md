@@ -23,7 +23,7 @@ is one more `Enter` per field (the one that goes in).
 
 ### Title
 
-Says what this form does (`New host`, `Add bookmark`). Not the type (`number`, `path`, `email`): the type belongs to a
+Says what this form does (`NEW HOST`, `ADD BOOKMARK`), drawn as the title capsule ([`layout/popup`](../layout/popup.md)). Not the type (`number`, `path`, `email`): the type belongs to a
 field, and with more than one field it would not fit in one title anyway.
 
 ### How a field is arranged
@@ -44,15 +44,15 @@ Each field takes one of two arrangements.
 - How a value is shown: see "How a value shows in a form and a panel" in [`input/README`](../input/README.md).
 
 ```
-╭─ New profile ──────────────────────────────────╮
-│                                                │
-│ Name     clock3                                │   ← side by side
-│ Timeout  30                                    │   ← side by side
-│ Command                                        │   ← stacked
-│ tmux new-session -A -s main                    │
-│ Layout   row                                   │   ← side by side
-│                                                │
-╰─ Enter:edit Esc:cancel ────────────────────────╯
+┏━NEW PROFILE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                ┃
+┃ Name     clock3                                ┃   ← side by side
+┃ Timeout  30                                    ┃   ← side by side
+┃ Command                                        ┃   ← stacked
+┃ tmux new-session -A -s main                    ┃
+┃ Layout   row                                   ┃   ← side by side
+┃                                                ┃
+┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 (The drawings in this section and the next show the fields only; for the action row see "Action row".)
@@ -70,13 +70,15 @@ Each field takes one of two arrangements.
 
 The focused item is drawn like a menu's cursor row — the layer colour as background, bold Base text
 ([`dialog/menu`](menu.md)). It runs from the start of the item all the way to the frame (covering the right padding): from the value for a field, from
-the option for an option, the button itself for a button; an empty value is still a full block of background.
+the option for an option, the button itself for a button; an empty value is still a full block of background. A block
+that runs to the frame ends in the arrow U+E0B0 in the layer colour (as a menu's cursor does); a button's block is the
+button itself, with no arrow.
 
 **The colour of the label** does not change with the focus.
 
 | Label state | Colour |
 |---|---|
-| Normal | the layer colour (same as the title and the border) |
+| Normal | the layer colour (same as the title capsule and the border) |
 | Disabled | Surface2 |
 | Its value has an error | Red, over any other colour |
 
@@ -84,14 +86,14 @@ the option for an option, the button itself for a button; an empty value is stil
 - A value never shares its label's colour, in any state.
 
 ```
-╭─ New host ─────────────────────────────────────╮
-│                                                │
-│ Name        web-01                             │   label in the layer colour
-│ Host        10.0.0.5▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│   ← focus: from the value all the way to the frame, layer-colour background, bold Base text
-│ Port        22                                 │
-│ Credential  —                                  │   ← disabled: label Surface2
-│                                                │
-╰─ Enter:edit Esc:cancel ────────────────────────╯
+┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                ┃
+┃ Name        web-01                             ┃   label in the layer colour
+┃ Host        10.0.0.5▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃   ← focus: from the value all the way to the frame, layer-colour background, bold Base text
+┃ Port        22                                 ┃
+┃ Credential  —                                  ┃   ← disabled: label Surface2
+┃                                                ┃
+┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 **Why**: a solid block differs in shape as well as colour, so the focus is not told by colour alone (Rules L5); it is the
@@ -102,17 +104,17 @@ shows which option of a radio field the focus is on.
 ### Action row
 
 ```
-╭─ New host ─────────────────────────────────────╮
-│                                                │
-│ Name  web-01                                   │   ← field area: the only part that scrolls when it does not fit
-│ Host                                           │
-│ Port  22                                       │
-│                                                │
-│ Host is required                               │   ← error row (blank when there is no error)
-│ ────────────────────────────────────────────── │   ← separator
-│                                          Save  │   ← action row: the button on the right
-│                                                │
-╰─ Enter:edit Esc:cancel ────────────────────────╯
+┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                ┃
+┃ Name  web-01                                   ┃   ← field area: the only part that scrolls when it does not fit
+┃ Host                                           ┃
+┃ Port  22                                       ┃
+┃                                                ┃
+┃ Host is required                               ┃   ← error row (blank when there is no error)
+┃ ────────────────────────────────────────────── ┃   ← separator
+┃                                          Save  ┃   ← action row: the button on the right
+┃                                                ┃
+┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 - **The button**: its text with one blank cell on each side, on a block of background. It has a background even without
@@ -165,15 +167,15 @@ checkbox field is an item of its own, and the button is one item; the error row,
   What opens is always the form itself, left with one `Esc`.
 
 ```
-╭─ New host ─────────────────────────────────────╮
-│                                                │
-│ Name   web-01                                  │   ← 1 item
-│ Auth   󰐾 password                              │   ← 3 items
-│        󰐽 privatekey                            │
-│        󰐽 credential                            │
-│ Agent  󰄲 forward                               │   ← 1 item
-│                                                │
-╰─ Enter:edit Esc:cancel ────────────────────────╯
+┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                ┃
+┃ Name   web-01                                  ┃   ← 1 item
+┃ Auth   󰐾 password                              ┃   ← 3 items
+┃        󰐽 privatekey                            ┃
+┃        󰐽 credential                            ┃
+┃ Agent  󰄲 forward                               ┃   ← 1 item
+┃                                                ┃
+┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 `j` all the way: Name → password → privatekey → credential → forward. `Tab` all the way: Name → Auth → Agent.
@@ -209,11 +211,11 @@ field whose `Enter` opens an input popup for typing (text, password, number, tex
 not one of the form's keys is pressed (`q` included), a note pops up to explain:
 
 ```
-╭─ Name ─────────────────────────╮
-│                                │
-│ Press [Enter] to edit Name.    │
-│                                │
-╰─ Enter/Esc:close ──────────────╯
+┏━NAME━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                ┃
+┃ Press [Enter] to edit Name.    ┃
+┃                                ┃
+┗━ Enter/Esc:close ━━━━━━━━━━━━━━┛
 ```
 
 - The title is the field's name; both `Enter` and `Esc` close it, back to the form with the focus unmoved

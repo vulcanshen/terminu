@@ -21,15 +21,15 @@ panel filter ([`layout/panel`](../layout/panel.md)), whose typing row has the sa
 ## Look
 
 ```
-╭─ Search ────────────────────────────╮ ╭─ README.md ───────────────────────╮
-│                                     │ │                                   │
-│ read                           3/41 │ │ # terminu                         │
-│ ─────────────────────────────────── │ │                                   │
-│▓README.md▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│ │ The terminal UI you can use…      │
-│ README-zh_TW.md                     │ │                                   │
-│ docs/readme-notes.md                │ │                                   │
-│                                     │ │                                   │
-╰─ Enter/Tab:list Esc:cancel ─────────╯ ╰───────────────────────────────────╯
+┏━SEARCH━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┏━README.md━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                     ┃ ┃                                   ┃
+┃ read                           3/41 ┃ ┃ # terminu                         ┃
+┃ ─────────────────────────────────── ┃ ┃                                   ┃
+┃▓README.md▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃ ┃ The terminal UI you can use…      ┃
+┃ README-zh_TW.md                     ┃ ┃                                   ┃
+┃ docs/readme-notes.md                ┃ ┃                                   ┃
+┃                                     ┃ ┃                                   ┃
+┗━ Enter/Tab:list Esc:cancel ━━━━━━━━━┛ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 - **Two areas**: the typing row on top, with the filtered count `matches/total` on its right (`3/41`); a separator (not
@@ -66,7 +66,7 @@ Only the area holding the focus is lit (Principle P6, Rules F1):
 | Focus on | Typing row | The list's cursor |
 |---|---|---|
 | Typing row | drawn as an input's typing row: the value Lavender, with a cursor | the layer colour cursor, dimmed once more |
-| List | the whole row drawn in grey (Overlay0), no cursor | layer colour background, Base bold (like a menu's cursor) |
+| List | the whole row drawn in grey (Overlay0), no cursor | layer colour background, Base bold, the arrow in its rightmost cell (like a menu's cursor) |
 
 ## Keys
 

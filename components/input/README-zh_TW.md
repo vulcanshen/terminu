@@ -20,15 +20,15 @@
 text、password、number 共用。
 
 ```
-╭─ Rename ─────────────────────────────────╮
-│                                          │
-│ New name for assets                      │   ← 說明列：一句話，Overlay0
-│                                          │
-│ assets█                                  │   ← 值：Lavender；游標 Lavender 底、Base 字
-│                                          │
-│                                          │   ← 錯誤列（layout/popup）
-│                                          │
-╰─ Enter:rename Esc:cancel ────────────────╯
+┏━RENAME━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                          ┃
+┃ New name for assets                      ┃   ← 說明列：一句話，Overlay0
+┃                                          ┃
+┃ assets█                                  ┃   ← 值：Lavender；游標 Lavender 底、Base 字
+┃                                          ┃
+┃                                          ┃   ← 錯誤列（layout/popup）
+┃                                          ┃
+┗━ Enter:rename Esc:cancel ━━━━━━━━━━━━━━━━┛
 ```
 
 - **說明列**：一句話說要輸入什麼（`New name for assets`），Overlay0。跟值之間空一列。要改的對象是誰，寫進這一句。
@@ -45,8 +45,8 @@ text、password、number 共用。
 框裡顯示游標附近的那一段，被截掉的那一邊補 `…`。
 
 ```
-│ …/sideproj/terminu/components/layout█ │   ← 打字中：游標在尾端，前面截掉
-│ █/Users/vulcan/Documents/sideproj/te… │   ← Home 之後：游標在開頭，後面截掉
+┃ …/sideproj/terminu/components/layout█ ┃   ← 打字中：游標在尾端，前面截掉
+┃ █/Users/vulcan/Documents/sideproj/te… ┃   ← Home 之後：游標在開頭，後面截掉
 ```
 
 - 游標一定看得到；移動時只捲剛好夠的量，不把游標固定在中間（跟 popup 內容放不下時同一個捲法）。
@@ -72,7 +72,7 @@ text、password、number 共用。
 ## 改一個已經有的值：舊值是灰字提議
 
 ```
-│ report-2025.pdf                      │   ← 框是空的；游標後面的舊值是灰字（Overlay0）
+┃ report-2025.pdf                      ┃   ← 框是空的；游標後面的舊值是灰字（Overlay0）
 ```
 
 - **只用在單行的 input**（text、number；password 的舊值是灰點，見 [`password`](password-zh_TW.md)）；textarea 打開時直接帶入舊值（[`textarea`](textarea-zh_TW.md)）。

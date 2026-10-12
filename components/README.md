@@ -28,6 +28,10 @@ as a gap in tdp at the same time.
 - **"Indented N cells" means N cells in from the frame**: counted inward from the frame line, the line itself not
   counted (e.g. the key reference's "each row is indented two cells": the text starts on the third cell inside the frame
   line).
+- **Nerd Font glyphs in a diagram are drawn with their real code points** (capsule ends, the arrow at the end of a
+  cursor, the hexagon of a section title, the loading icon and so on), and every one of them is named by its code point
+  in the text; where there is no Nerd Font they show as boxes. Backgrounds cannot be drawn: `▓` stands for a cursor
+  block, and a capsule's fill is in the text.
 - **Two general rules**, which hold wherever the text says nothing else:
   - **Two cells between columns**: a label and its value, a label and its description, the columns of a table, items
     side by side.
@@ -37,6 +41,20 @@ as a gap in tdp at the same time.
 family, and the spec is no longer the one source to go by. Two general rules are easy to remember and carry over to new
 components: two cells keep two columns apart (a label and its value are in different colours anyway); a glyph with only
 one cell after it reads as one unit with its text.
+
+## Uppercase
+
+- **In uppercase**: a panel's capsules (`[N] label` and tabs), screen chips, popup titles, table headers, the labels of
+  a panel with one value per row, and the section titles of menus and the key reference.
+- **Unchanged**: values, menu labels and descriptions, the descriptions in hints and the footer, key names, mode names,
+  and the app's own content (the statusbar, the data in lists).
+- **The letters in a hotkey marker stay as written**: what is printed in the brackets is the key to press, and case
+  counts (Rules M5) — `[M]anage` becomes `[M]ANAGE`, `[m]anage` becomes `[m]ANAGE`.
+- **Names and paths in a title are content and keep their case**: `ALTERM: myhost`, `IDENTITY FILE · ~/.ssh`.
+
+**Why**: what is in uppercase says "what this is" — names, titles, column names — and stands apart at a glance from
+the content there is to read or change. Key names and hotkey markers stay: `q` and `Q` are different keys; content
+stays: users recognise it as it is.
 
 ## Choosing among the options
 

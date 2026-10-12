@@ -407,13 +407,13 @@ time.
 Each menu row has the **action name** on the left and a **one-line description** on the right:
 
 ```
- item operation
+ 󰋘 ITEM OPERATION
  [o]pen                        open it with the OS default app
  [r]ename                                    this item, in place
-  ───────────────────────────────────────────────────────────
- panel operation
+  ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+ 󰋘 PANEL OPERATION
  [/] Search                                everything under here
-  ───────────────────────────────────────────────────────────
+  ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
  Global operation                      actions for the whole app
 ```
 
@@ -607,12 +607,15 @@ keys two possible meanings inside one box.
 
 ### F2 Opening and closing are both animated `fixed`
 
-Popups **must animate** both when opening and when closing. The length is the same across the family (see
-[components/layout/popup](../components/layout/popup.md)); the form of the animation is up to the app.
+Popups **must animate** both when opening and when closing, in one form and one length across the family: a line is
+drawn out from the middle first, then the popup opens up and down; closing plays it backwards. 32ms a frame, 9 frames
+each way (about 288ms); a popup takes no keys until its opening animation ends. The frames and how they are drawn are in
+[components/layout/popup](../components/layout/popup.md).
 
 **Why**: without animation, a popup "suddenly appears, suddenly vanishes", and users don't feel the change of layer as it
-stacks on and steps back. The same length: the same action takes as long in every app of the family, so the rhythm stays
-the same from one app to the next.
+stacks on and steps back. One form and one length: the same action looks the same and takes as long in every app of the
+family, so the rhythm stays the same from one app to the next. No keys while it plays: on a frame not yet drawn, users
+cannot see what their key landed on.
 
 ### F3 `Esc` closes any popup at once `fixed`
 

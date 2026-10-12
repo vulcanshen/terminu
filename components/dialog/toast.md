@@ -11,11 +11,11 @@ deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast.
 ## Look
 
 ```
-╭─ Info ────────────────────────────╮
-│                                   │
-│          Copied 3 paths           │
-│                                   │
-╰─ Esc:close ───────────────────────╯
+┏━INFO━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                   ┃
+┃          Copied 3 paths           ┃
+┃                                   ┃
+┗━ Esc:close ━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 - **Frame**: a popup's frame, always in the layer colour of layer 1. A toast is not a layer (Rules F1): it does not
@@ -32,9 +32,9 @@ deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast.
 
   | Kind | Title | Text |
   |---|---|---|
-  | Info | `nf-fa-flag` (U+F024) `Info` | Text |
-  | Warning | `nf-md-alarm_light` (U+F078F) `Warning` | Peach |
-  | Error | `nf-md-fire` (U+F0238) `Error` | Red |
+  | Info | `nf-fa-flag` (U+F024) `INFO` | Text |
+  | Warning | `nf-md-alarm_light` (U+F078F) `WARNING` | Peach |
+  | Error | `nf-md-fire` (U+F0238) `ERROR` | Red |
 
 - **Time**: Info 2200 ms; Warning and Error 4400 ms.
 - **When a second toast comes**: it replaces the first at once, and the timer starts over.
