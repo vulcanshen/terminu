@@ -11,7 +11,8 @@ kind of finder ([`input/finder`](finder.md)): only what differs is written here.
 ## Look
 
 - Glyphs: ticked `nf-md-checkbox_marked` (U+F0132, a solid tick), not ticked `nf-md-checkbox_blank_outline` (U+F0131).
-  A ticked one's text is Green (in effect).
+  A ticked one's text is Green (in effect); in a popup it follows the tick on screen, Green as soon as `Space` ticks it
+  ("Markers in the list" in [`finder`](finder.md)).
 - **The checkbox popup**: the finder's skeleton without a preview; a checkbox glyph before every row ("Markers in the
   list" in the finder); the width set by the options.
 
@@ -34,8 +35,8 @@ kind of finder ([`input/finder`](finder.md)): only what differs is written here.
 - **`Esc`**: cancels; none of the ticks count, and the value stays as it was when opened. No asking first: a popup has
   only one value.
 - The typing row follows the finder; with many options, typing filters.
-- **Hint**: on the list `Enter:apply Space:toggle Tab:filter Esc:cancel`; on the typing row
-  `Enter/Tab:list Esc:cancel`.
+- **Hint**: on the list `Enter:apply Space:toggle Tab|/:filter Esc:cancel`; on the typing row
+  `Enter|Tab:list Esc:cancel`.
 
 E.g. it opens with `default` ticked. Press `j` `Space` (ticking `kube-system`), then `j` `Space` (ticking
 `monitoring`); panel 2 has not changed yet. On `Enter`, the three take effect together; on `Esc`, it is still only

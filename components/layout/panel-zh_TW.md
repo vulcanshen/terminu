@@ -16,7 +16,8 @@ panel 的框、一般清單、一列一個值的 panel、panel filter。整個�
   panel）用 `┤` `├`；模式名用模式色加粗，大小寫照原樣。
   模式名盡量一個詞（`Drag`、`Visual`、`Select`：窄的 panel 放不下兩個詞，右上角的字會整個被丟掉）；放不下時先截標題，
   模式名留著。膠囊跟著外框換成模式色。
-- **下框左邊：hint**，每個 panel 都要有 —— 例外只有 focus 在 panel filter 的打字列上時：不寫，回到清單時回來。下框右邊：
+- **下框左邊：hint**，每個 panel 都要有 —— 例外是 focus 在 panel filter 的打字列上時、focus 在 panel 裡的 PTY 時：不寫，focus 回到清單、
+  離開 PTY 時回來。下框右邊：
   捲動位置（見下面的「一般清單」）。
 - **框上的字與角之間一律隔一段線**，只有 `[N] label` 膠囊緊接著左上角：hint 是 `┗━ Enter:logs`、捲動位置是 `3 of 40 ━┛`、
   模式名是 `┫Drag┣━┓`。
@@ -33,7 +34,8 @@ panel 的框、一般清單、一列一個值的 panel、panel filter。整個�
 
 **為什麼**：panel 下框的 hint 告訴使用者「在這個 panel 上按什麼會怎樣」，footer 只管全畫面通用的鍵；兩者各管一層，
 每個 panel 都有，使用者換 panel 時眼睛知道去哪裡找。panel filter 打字時不寫：hint 列的是 panel 自己的熱鍵，打字時都是字元
-（Rules K8），列出來會教使用者按錯；打字時的鍵 footer 已經寫了。框上的字都跟角隔一段線，只有膠囊例外 —— 四個角的規則一樣，
+（Rules K8），列出來會教使用者按錯；打字時的鍵 footer 已經寫了。PTY 裡也一樣：panel 的鍵都送給子程序，不會送進去的出口鍵 footer 已經寫了
+（[`screen`](screen-zh_TW.md) 的 footer）。框上的字都跟角隔一段線，只有膠囊例外 —— 四個角的規則一樣，
 不用記哪個角不同；膠囊是這個 panel 的名字，貼著角最好找。loading icon 接在整串膠囊後面：膠囊串是一個整體（這是哪裡），
 loading 是狀態，不切斷一串 tab。
 
@@ -124,8 +126,8 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 ┗━ Enter:edit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-- **照 [`dialog/form`](../dialog/form-zh_TW.md) 的規則**：focus 一個項目一個項目移動（`j`/`l`/`↓`/`→` 往後、`h`/`k`/`↑`/`←` 往前；
-  放在有 tab 的 panel 裡時 `h`/`l` 給 tab，Rules K12）；`Enter` 打開那個值的 input popup，radio、checkbox 在原地選；確定後
+- **照 [`dialog/form`](../dialog/form-zh_TW.md) 的規則**：focus 一個項目一個項目移動（`j|l|↓|→` 往後、`h|k|↑|←` 往前；
+  放在有 tab 的 panel 裡時 `h|l` 給 tab，Rules K12）；`Enter` 打開那個值的 input popup，radio、checkbox 在原地選；確定後
   focus 留在同一列（Rules K3）；值的顯示照 [`input/README`](../input/README-zh_TW.md)。
 - **不一樣的地方：沒有送出。** 每個值在 input popup 確定的那一刻就生效、就存；開關與 radio 在原地選的那一刻也是。
   所以沒有動作列、也沒有「改過了要先問」。
@@ -144,14 +146,15 @@ webu 的清單篩選）。
 
 ```
 ┏[2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃ prod                                     2/5 ┃   ← 打字列，右邊是篩選的筆數
+┃  prod                                   2/5 ┃   ← 打字列：前面是 `nf-fa-angle_right`，右邊是篩選的筆數
 ┃ prod-web-01  deploy    10.0.3.14             ┃
 ┃ prod-db      postgres  10.0.3.20             ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 打字列的按鍵、比對的方式跟 finder 的打字列一樣（[`input/finder`](../input/finder-zh_TW.md)）：篩選後的清單保持 panel 本來的排序。
-打字列的字跟清單的字對齊（離框一格）；右邊的筆數寫 `符合/總數`（`2/5`）。
+打字列最前面是 `nf-fa-angle_right`（U+F105），跟清單的字對齊（離框一格），後面空一格才接打的字；顏色跟著打字列的亮暗：focus 在
+打字列時用 panel 框線的顏色，在清單時 Overlay0。右邊的筆數寫 `符合/總數`（`2/5`），Overlay0。
 不一樣的地方都來自 panel 在畫面那一層：
 
 | | panel filter |

@@ -21,8 +21,9 @@ in [`screen`](screen.md).
   one word if possible (`Drag`, `Visual`, `Select`: a narrow panel has no room for two, and the whole top-right text
   would be dropped); when space runs out, the title is clipped first and the mode name stays. The capsule turns the mode
   colour along with the frame.
-- **Left of the bottom border: the hint**, which every panel must have — the one exception is while the focus is on a
-  panel filter's typing row: no hint then, and it comes back on the list. Right of the bottom border: the scroll position
+- **Left of the bottom border: the hint**, which every panel must have — the exceptions are while the focus is on a
+  panel filter's typing row and while it is in a PTY in the panel: no hint then, and it comes back on the list or on
+  leaving the PTY. Right of the bottom border: the scroll position
   (see "Ordinary lists" below).
 - **Text on the frame always keeps one line segment away from the corner**; only the `[N] label` capsule sits right after
   the top-left corner: the hint is `┗━ Enter:logs`, the scroll position `3 of 40 ━┛`, the mode name `┫Drag┣━┓`.
@@ -42,7 +43,8 @@ not fit, whole pairs are dropped from the end, and the scroll position stays.
 covers only the keys common to the whole screen; each covers one level, and with every panel having one, the user's eyes
 know where to look when changing panels. No hint while typing in a panel filter: the hint lists the panel's own hotkeys,
 which are all characters while typing (Rules K8), and listing them would teach the wrong keys; the footer already shows
-the keys for typing. Text on the frame keeps away from the corners, the capsule alone excepted — the same rule for all
+the keys for typing. The same in a PTY: the panel's keys all go to the subprocess, and the exit keys that do not are
+already in the footer ([`screen`](screen.md)). Text on the frame keeps away from the corners, the capsule alone excepted — the same rule for all
 four corners, so there is no odd one to remember; the capsule is the panel's name, easiest to find against the corner.
 The loading icon follows the whole capsule chain: the chain is one whole (where this is), loading is a state, and it
 does not split a row of tabs.
@@ -158,8 +160,8 @@ A panel with one value per row, like a settings screen (locku's preference, webu
 ┗━ Enter:edit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-- **The rules of [`dialog/form`](../dialog/form.md) apply**: the focus moves one item at a time (`j`/`l`/`↓`/`→` on,
-  `h`/`k`/`↑`/`←` back; in a panel with tabs, `h`/`l` switch tabs, Rules K12); `Enter` opens the value's input popup,
+- **The rules of [`dialog/form`](../dialog/form.md) apply**: the focus moves one item at a time (`j|l|↓|→` on,
+  `h|k|↑|←` back; in a panel with tabs, `h|l` switch tabs, Rules K12); `Enter` opens the value's input popup,
   and radio and checkbox options are chosen in place; once confirmed, the focus stays on the same row (Rules K3); values
   are shown as [`input/README`](../input/README.md) says.
 - **What differs: there is no submit.** Each value takes effect and is saved the moment it is confirmed in the input
@@ -184,15 +186,17 @@ search, sshu's Hosts, webu's list filters).
 
 ```
 ┏[2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃ prod                                     2/5 ┃   ← typing row, the filtered count on its right
+┃  prod                                   2/5 ┃   ← typing row: `nf-fa-angle_right` before it, the filtered count on its right
 ┃ prod-web-01  deploy    10.0.3.14             ┃
 ┃ prod-db      postgres  10.0.3.20             ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 The typing row takes the same keys and the same matching as a finder's typing row ([`input/finder`](../input/finder.md)):
-the filtered list keeps the panel's own order. The typing row's text lines up with the list's text (one cell from the
-frame); the count on its right reads `matches/total` (`2/5`). What differs all comes from the panel being on the screen level:
+the filtered list keeps the panel's own order. The typing row starts with `nf-fa-angle_right` (U+F105), lined up with
+the list's text (one cell from the frame), then one space before the typed text; its colour follows the row: the
+panel's frame colour with the focus on the typing row, Overlay0 on the list. The count on its right reads
+`matches/total` (`2/5`), in Overlay0. What differs all comes from the panel being on the screen level:
 
 | | panel filter |
 |---|---|

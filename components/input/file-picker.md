@@ -11,30 +11,129 @@ list, which side is lit, and the preview all follow the finder; only what differ
 ## Look
 
 ```
-┏━IDENTITY FILE · ~/.ssh━━━━━━━━━━━━━┓ ┏━id_ed25519━━━━━━━━━━━━━━━━━━━━┓
-┃                                      ┃ ┃                                 ┃
-┃                                  5/5 ┃ ┃ -----BEGIN OPENSSH PRIVATE KEY  ┃   ← typing row: empty when it opens
-┃ ──────────────────────────────────── ┃ ┃ (key, 411 B)                    ┃
-┃ 󰉋 ..                                 ┃ ┃                                 ┃
-┃ 󰉋 work                               ┃ ┃                                 ┃
-┃ 󰈔 config                             ┃ ┃                                 ┃
-┃ 󰈔 id_ed25519                         ┃ ┃                                 ┃   ← cursor: the original value, its text Green
-┃ 󰈔 id_ed25519.pub                     ┃ ┃                                 ┃
-┃                                      ┃ ┃                                 ┃
-┗━ Enter:choose Tab:filter Esc:cancel ━┛ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━IDENTITY FILE · ~/.ssh━━━━━━━━━━━━━━━━━━━┓ ┏━id_ed25519━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                            ┃ ┃                                             ┃
+┃                                       6/6 ┃ ┃ -----BEGIN OPENSSH PRIVATE KEY-----         ┃
+┃ ────────────────────────────────────────── ┃ ┃ (sensitive content not shown)               ┃
+┃ 󰉋 ..                                       ┃ ┃                                             ┃
+┃ 󰉋 work                                     ┃ ┃                                             ┃
+┃ 󰈔 config                                   ┃ ┃                                             ┃
+┃▓󰈔▓id_ed25519▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃ ┃                                             ┃
+┃ 󰈔 id_ed25519.pub                           ┃ ┃                                             ┃
+┃ 󰈔 known_hosts                              ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃ ─────────────────────────────────────────── ┃
+┃                                            ┃ ┃ TYPE      private key                       ┃
+┃                                            ┃ ┃ SIZE      411 B                             ┃
+┃                                            ┃ ┃ MODIFIED  2026-09-30 14:02                  ┃
+┃                                            ┃ ┃ MODE      -rw-------                        ┃
+┃                                            ┃ ┃                                             ┃
+┗━ Enter:choose Tab|/:filter Esc:cancel ━━━━━┛ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
+The diagram shows `hide_secrets_in_preview` turned on; it is off by default, and then a private key shows in full like
+any text file (see "Hiding secrets" below).
+
+- **Four parts**: the typing row, the list, the preview and the metadata. The left box is "typing row / separator /
+  list", the right box "preview / separator / metadata"; with a terminal under 96 wide, the metadata moves next to the
+  list in a box of its own and the preview takes the full width below ("Layout" in [`finder`](finder.md)).
 - **The root directory**: given by the app, it is the directory the list shows when it opens (e.g. sshu `~/.ssh`, webu
   `~/Downloads`). It is only a start, not a fence: the top row of the list is `..`, to go up. The root
   directory `/` has no `..`.
 - **The current directory is written in the title**, after the field's name (`Identity file · ~/.ssh`); a path too long
   is cut from the start (`…/sideproj/terminu`).
-- **The typing row is empty when it opens** (the placeholder rule in [`input/README`](README.md)).
+- **The typing row is empty when it opens** (the placeholder rule in [`input/README`](README.md)), with
+  `nf-fa-angle_right` before it as in the finder.
+- **The list's order**: `..` → directories → files, each sorted by name, case-insensitive.
+- **Hidden files** (starting with `.`) are not listed by default; they are listed when the filter on the typing row (the
+  last segment of a path) starts with `.` (`.ss` and `~/.ss` bring up `.ssh`). The same as shell globs: `*` does not
+  match hidden files and `**` does not go into hidden directories, unless the pattern starts with `.`.
 - **An icon before every row**: one for directories, one for files, coloured by file type (content colours, the app's
   choice; e.g. filu uses eza's colours). When the field already has a value, the cursor opens on that file, its text in
   Green (the current value).
-- **What the preview shows**: a directory lists what is inside, a text file shows its content (line numbers in
-  Overlay0), anything else its type and size.
+
+**Why**: a home directory holds dozens of hidden files, and listing them all would fill the top of the list; someone
+looking for a hidden file types `.` anyway — the shell's own rule, with no toggle key to learn.
+
+### The preview
+
+The entry under the cursor, drawn by kind. At most 64 KB is read.
+
+| Kind | Preview |
+|---|---|
+| directory | a tree (below) |
+| archive (zip, tar, tar.gz, tar.bz2) | its contents as a directory tree |
+| text file | the content, with syntax colours (chroma's catppuccin-mocha, foreground only) and line numbers (Overlay0, right-aligned, one space after) |
+| PDF | a grey first row with the page count (`12 pages`), a blank row, then the text of the first 20 pages (at most 128 KB); `(no extractable text)` when there is none |
+| image (png, jpg, gif, bmp, webp, tiff, ico, avif, heic) | a grey first row `data:image/png · 12.4 KB`, a blank row, then the base64 data URI wrapped at the preview's width; over 1 MB only `(1.4 MB — too large to inline as a data URI)` |
+| anything else | hexadecimal, 16 bytes a row, followed by ASCII |
+| unreadable | `(unreadable)` |
+
+**A directory's tree**: at most three levels. The first level has no branches; from the second on, `├─`, `└─` and `│`
+join them, the branches in Overlay0; each entry's icon, colour and order are the same as in the list, and hidden files
+are not listed. The preview takes no focus and cannot scroll: it is drawn until the preview area is full, with `…` on the
+last row. An empty directory reads `(empty)`, an unreadable one `(permission denied)`, both in grey.
+
+```
+󰉋 keys
+  ├─ 󰈔 a.pem
+  └─ 󰉋 old
+     └─ 󰈔 b.pem
+󰈔 config
+󰈔 id_ed25519.pub
+…
+```
+
+A subdirectory is expanded to the bottom before the next one: a large subdirectory can fill the preview area and hide
+the rest of the first level.
+
+### Metadata
+
+Always four rows, for files and directories alike, so the preview area keeps its height from entry to entry. Labels
+in uppercase and the layer colour, values in Text; the label column as wide as the longest label, two cells before the
+value (as in the one-value panel of [`layout/panel`](../layout/panel.md)).
+
+| Label | File | Directory |
+|---|---|---|
+| `TYPE` | the preview's kind: `text`, `private key`, `image`, `PDF`, `archive`, `binary`; a symlink is `link → <target>` | `directory` |
+| `SIZE` | `411 B`, `4.2 KB`, `3.4 MB` (powers of 1024, one decimal) | `12 items` (as in the list, hidden files not counted) |
+| `MODIFIED` | `2026-09-30 14:02` (local time, to the minute) | the same |
+| `MODE` | as `ls -l`: `-rw-------` | `drwx------` |
+
+- `private key`: the first line is a private key's header (below). It does not depend on `hide_secrets_in_preview`;
+  the kind is not a secret.
+- No path (the title and the list already have it), owner, or access and creation times: choosing a file does not need
+  them.
+
+**Why**: choosing a file means checking "is it this one" — kind, size, time modified; the permissions matter for a
+private key (ssh wants `600`). `TYPE` uses the preview's kinds, so it tells what the preview will draw; the values are
+written for people, not as MIME types or octal.
+
+### Hiding secrets
+
+The user's setting **`hide_secrets_in_preview`**, in each app's config file (Rules E3), defaults to `false`: everything
+shows as usual. When it is on (`true`):
+
+| File | Preview |
+|---|---|
+| the first line is a private key's header: it starts with `-----BEGIN` and contains `PRIVATE KEY` (OpenSSH, RSA, EC, PKCS#8, PGP), or starts with `PuTTY-User-Key-File-` | the first line, then the grey line `(sensitive content not shown)` |
+| a file readable by its owner only (no read permission for group or other, e.g. `600`, `400`), of any kind; not a directory (`~/.ssh` itself is `700`) | not a single line, only that grey line |
+| anything else | as usual |
+
+The metadata shows as usual either way. The setting covers the previews in popups: the file-picker, and finders that
+preview files or directories.
+
+**Why**: in a local TUI, whether to hide is the user's call (turned on to share a screen or record a demo), and by
+default it stays out of the way. It does not go by a list of file names (everything off the list slips through) or by
+keywords in the content (`password_min_length` gets blocked, `pw:` slips through): a private key is told by its first
+line, whatever it is named; other secret files by their permissions — readable by the owner only is the owner's or the
+tool's own mark for "not for others" (ssh private keys, `~/.aws/credentials`, `~/.kube/config`, `.netrc` and `.pgpass`
+are all `600`). A wrong guess errs on the safe side: an ordinary file that is held back just has no preview. A private
+key's header is not itself a secret, and it shows which kind of key it is.
 
 ## Keys
 
@@ -63,8 +162,8 @@ list, which side is lit, and the preview all follow the finder; only what differ
     shows the path relative to the starting point (the directory before the first `*` or `?`; e.g. `keys/a.pem`,
     `old/b.pem`), and the title names the starting point; the results are found by a search, not one directory level,
     so there is no `..`.
-- **Hint**: on the list, `Enter:into Tab:filter Esc:cancel` on a directory and `Enter:choose Tab:filter Esc:cancel` on a
-  file; on the typing row `Enter/Tab:list Esc:cancel`.
+- **Hint**: on the list, `Enter:into Tab|/:filter Esc:cancel` on a directory and `Enter:choose Tab|/:filter Esc:cancel` on
+  a file; on the typing row `Enter|Tab:list Esc:cancel`.
 
 **Why**: what this field wants is a file; `Enter` on a directory most obviously means going in to look inside. With the
 directory written in the title, the typing row is left for filtering. With the path kept on the typing row and split at

@@ -75,7 +75,7 @@ popup 裡的數字都還在。
 - focus 在 PTY 裡時，`Tab` 屬於子程序（K10）。
 - **打字列上**（finder 與 select 的打字列、panel filter）：`Tab` 到它的清單（[components/input/finder](../components/input/finder-zh_TW.md)）。
 - **只有一塊的 input popup**：有灰字提議（舊值）時，`Tab` 接受提議；沒有提議時不作用。
-- 多行文字的寫入狀態下，`Tab` 是縮排字元，不是換欄位（K8）。
+- 多行文字的寫入狀態下，`Tab` 插入空白（縮排），不是換欄位（K8）。
 - 反向切換（例如 `Shift-Tab`）是熱鍵，由 app 決定要不要做；表單裡一定有 `Shift-Tab`。
 
 **為什麼**：使用者按 `Tab` 期待的是「換下一塊」—— 在畫面上是下一個 panel，在表單裡是
@@ -173,13 +173,13 @@ select 的打字列、panel filter。select 與 picker 的清單、textarea 的�
 | letter hotkey、`Space`、`?`、`q` | 當成字元輸入 |
 | `Esc` | 取消輸入（K4） |
 | `Enter` | 見 K3 |
-| `Tab` | 接受灰字提議；打字列上到清單（K2）；多行文字的寫入狀態下是字元（縮排） |
+| `Tab` | 接受灰字提議；打字列上到清單（K2）；多行文字的寫入狀態下插入空白（縮排） |
 | `Ctrl-C` | 離開流程（K9） |
 
 離開輸入面立刻恢復。
 
-**多行文字的寫入狀態**：`Tab` 是字元（縮排），就像 `Enter` 是換行（K3）；要確定，先離開寫入狀態（`Esc`），
-再按 `Enter`。縮排插入 `\t` 還是空白，由 app 決定。
+**多行文字的寫入狀態**：`Tab` 插入空白（縮排），就像 `Enter` 是換行（K3）；要確定，先離開寫入狀態（`Esc`），
+再按 `Enter`。插入幾個空白是設定 `input_tab_width`（預設 4，E3）；不插 `\t`：終端機裡沒辦法靠 tab 對齊，按 `Tab` 要的就是空幾格。
 
 **為什麼**：`Space`、`?`、`q` 都是可列印字元。不屏蔽的話，使用者打不出含空白的檔名、
 含問號的密碼。`Esc` 與 `Enter` 保留，因為它們不跟字元競爭，而且少了它們輸入框就是
@@ -252,27 +252,28 @@ item / panel / global 可分。把它們做成一個能選、能執行的清單�
 
 ### K12 導覽字母保留給移動，hjkl 是方向鍵 `固定`
 
-不在打字的地方，`j k u d g G h l` 保留給移動，任何動作都不佔用。`h`/`j`/`k`/`l` 就是 `←`/`↓`/`↑`/`→`，意思看畫面的排法：
+不在打字的地方，`j k u d g G h l` 保留給移動，任何動作都不佔用。`h|j|k|l` 就是 `←|↓|↑|→`，意思看畫面的排法：
 
-- **有左右結構時**（同一個 surface 裡的 tab、左右兩側、格子）：上下左右。`j`/`k` 在清單裡上下，`h`/`l` 往左右 —— 切 tab、
+- **有左右結構時**（同一個 surface 裡的 tab、左右兩側、格子）：上下左右。`j|k` 在清單裡上下，`h|l` 往左右 —— 切 tab、
   跨到另一側、日曆的前後一天。
-- **只有一維清單、沒有左右結構時**（表單、沒有 tab 的「一列一個值」panel、menu）：`h`/`k`（`←`/`↑`）往前，`j`/`l`（`↓`/`→`）
-  往後，不分選項橫排還是直排。
-- 一維清單放在有 tab 的 panel 裡：`h`/`l` 給 tab，`j`/`k` 照樣在清單裡移。
-- **`u`/`d` 半頁，`gg`/`G` 到頭、到尾**。`g` 只當兩鍵組合的開頭：`gg` 是到頭，其他 `g` 開頭的組合可以當熱鍵（例：filu、
-  webu 的 `[go]to`）；單按 `g` 不做任何事。不收 `Ctrl-U`/`Ctrl-D` 當別名。
-- **一步一步的移動到頭尾繞回**：在一串項目上一次走一步（`j`/`k`、`h`/`l`、方向鍵、`Tab`）—— panel 的清單、一列一個值的 panel、
+- **只有一維清單、沒有左右結構時**（表單、沒有 tab 的「一列一個值」panel、menu）：`h|k`（`←|↑`）往前，`j|l`（`↓|→`）
+  往後。
+- 一維清單放在有 tab 的 panel 裡：`h|l` 給 tab，`j|k` 照樣在清單裡移。
+- **`u|d` 半頁，`gg|G` 到頭、到尾**。`g` 只當兩鍵組合的開頭：`gg` 是到頭，其他 `g` 開頭的組合可以當熱鍵（例：filu、
+  webu 的 `[go]to`）；單按 `g` 不做任何事。不收 `Ctrl-U|Ctrl-D` 當別名。
+- **一步一步的移動到頭尾繞回**：在一串項目上一次走一步（`j|k`、`h|l`、方向鍵、`Tab`）—— panel 的清單、一列一個值的 panel、
   menu、表單、finder 與 select、checkbox popup 的清單、panel 的 tab、picker 裡的欄與項目 —— 走到最後一個再往後一步回到第一個，
-  在第一個再往前一步到最後一個。`u`/`d` 到頭尾停在第一個、最後一個，不繞；`gg`/`G` 本來就是到頭、到尾。照空間走、不是一串
+  在第一個再往前一步到最後一個。`u|d` 到頭尾停在第一個、最後一個，不繞；`gg|G` 本來就是到頭、到尾。照空間走、不是一串
   項目的不繞：日曆的日子、月與年、左右兩側、在一段文字裡移動。
-- **在一段文字裡移動**（note 的選取、textarea 的移動狀態）：再加上 `w`/`b`/`e`（下一個字頭、上一個字頭、字尾）與
-  `0`/`$`（行首、行尾），照 vim。
+- **在一段文字裡移動**（viewer 的選取模式、textarea 的移動狀態）：再加上 `w|b|e`（下一個字頭、上一個字頭、字尾）與
+  `0|$`（行首、行尾），照 vim。viewer 平常沒有游標，`h|l` 照上面給 tab；選取模式裡 `h|l` 移動游標，模式裡不切 tab
+  （[components/dialog/note](../components/dialog/note-zh_TW.md) 的選取模式）。
 
 **為什麼**：hjkl 在家族裡是方向鍵，表單、panel、清單都靠它移動；一個 app 把其中一個綁成動作，使用者以為在移動，卻觸發
-了動作。有左右結構時左右就是左右（filu、kbu、webu 的 `h`/`l` 切 tab，sshu 的 `h`/`l` 跨到另一側）；沒有左右結構時左右鍵閒著，
-給它「往前往後」，使用者不用想選項是橫排還是直排。不收 `Ctrl-U`/`Ctrl-D`：一個動作一組鍵，少一組要記；而 `Ctrl-U` 在 shell
+了動作。有左右結構時左右就是左右（filu、kbu、webu 的 `h|l` 切 tab，sshu 的 `h|l` 跨到另一側）；沒有左右結構時左右鍵閒著，
+給它「往前往後」，一維清單上四個方向鍵都用得上。不收 `Ctrl-U|Ctrl-D`：一個動作一組鍵，少一組要記；而 `Ctrl-U` 在 shell
 與很多輸入框裡是「清掉這一行」，同一個組合在家族裡一處翻頁、一處刪字，按錯的代價太高。到頭尾繞回：同一個鍵在家族裡到頭尾
-只有一種反應，不用記哪裡繞、哪裡停；`u`/`d` 跨過頭尾的半頁落在哪裡猜不到，所以停住。
+只有一種反應，不用記哪裡繞、哪裡停；`u|d` 跨過頭尾的半頁落在哪裡猜不到，所以停住。
 
 ---
 
@@ -327,7 +328,7 @@ Space menu 列出**當前 panel 能做的所有事**，依作用對象（Princip
 **global operation popup**（能做）
 
 - 從 Space menu 的 global 列（M2）按 `Enter` 打開，疊在 Space menu 上；是一種 menu（F1），
-  列出 app **全部**全域動作，`j/k` 選、`Enter` 或熱鍵執行。離開 app 必須在這裡（K9）。
+  列出 app **全部**全域動作，`j|k` 選、`Enter` 或熱鍵執行。離開 app 必須在這裡（K9）。
 - `Esc` 回到 Space menu（F4）；執行了會關掉整疊的動作，照 T1。
 - 目前所在畫面的切換列照 M6 停用（例：在 `[M]anage` 上的 `[M]anage`）。
 - **global 熱鍵**：沒有 popup 開著時，global operation popup 裡的熱鍵在 panel 上也能直接按。跟 panel 自己的熱鍵撞鍵時，
@@ -384,14 +385,15 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 - 字母照實際要按的大小寫：`q`、`A`（就是 `Shift-A`）、`Alt-z`。`Ctrl` 後面的字母一律大寫（`Ctrl-C`、`Ctrl-U`）：終端機
   分不出 `Ctrl` 組合的大小寫。
 - modifier 用 `-` 連接：`Alt-t`、`Ctrl-C`、`Shift-Tab`、`Alt-Esc`。
-- 幾個鍵做同一件事用 `/`：`j/k`、`h/l`；範圍用 `–`：`1–9`。
+- 幾個鍵做同一件事用 `|`：`j|k`、`h|l`、`Enter|Tab`；`|` 用說明的顏色（[components/color](../components/color-zh_TW.md) 的暗字），不用鍵的
+  顏色。範圍用 `–`：`1–9`。不用 `/`：`/` 本身是鍵（finder 清單上回打字列、panel filter），`Tab//:filter` 讀不出來。
 
 **依位置的寫法**：
 
 | 位置 | 寫法 | 例子 |
 |---|---|---|
 | label（menu 的列、statusbar chip、panel 標題） | 上表的括號標記 | `[r]ename`、`[Alt-t]erm` |
-| 句子（空狀態、toast、錯誤訊息，以及 menu 與 key reference 說明欄裡提到的鍵） | 鍵一律加方括號 | `Press [A] or [Space]`、`see App Log [!]`、`next tab [h]/[l]` |
+| 句子（空狀態、toast、錯誤訊息，以及 menu 與 key reference 說明欄裡提到的鍵） | 鍵一律加方括號 | `Press [A] or [Space]`、`see App Log [!]`、`next tab [h]\|[l]` |
 | hint、footer | `鍵:說明`，冒號前後不空格，項目之間一個空格 | `Enter:delete Esc:cancel` |
 | key reference | 兩欄：鍵、說明；鍵不加括號、不加冒號 | 鍵欄 `Esc`、說明欄 `close this popup` |
 
@@ -494,7 +496,7 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 
 | 類別 | 使用者能做什麼 | 例 |
 |---|---|---|
-| **menu** | 沒有搜尋的清單：`j/k` 移動 cursor，`Enter` 或熱鍵執行那一列 | Space menu、global operation popup、排序選擇器、工作清單（`Enter` 打開那一列的全文） |
+| **menu** | 沒有搜尋的清單：`j\|k` 移動 cursor，`Enter` 或熱鍵執行那一列 | Space menu、global operation popup、排序選擇器、工作清單（`Enter` 打開那一列的全文） |
 | **confirm** | 讀一段提醒或警告，`Enter` 接受、`Esc` 取消（F6）；要先看的內容在上、問句最後 | 刪除前的確認、離開的確認、帶著明細的「連線到 X？」 |
 | **input** | 輸入或選出一個值，確定後寫回去；一個 popup 一個值。打字列上是輸入態（K8），其他部分照 K1 | 重新命名、網址列、select、datetime picker |
 | **form** | 一列一個值；`Tab` 一次跳一欄、hjkl 一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕送出（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark |
@@ -505,9 +507,9 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 - **note 可以有自己的熱鍵與模式**：例如 YAML 檢視的 `/` 搜尋、`y` 複製、`v` 選取（模式，K11）。熱鍵揭露在下框 hint 與
   `?`；但一旦有可用 `Enter` 執行的選項清單，它就是 menu，不是 note。
 - **menu 的 `Enter` 可以打開那一列的全文**：有 cursor、本身沒有別的動作的清單（例：工作清單），`Enter` 開一個 note 顯示
-  那一列的完整內容，它仍是 menu。
+  那一列的完整內容，它仍是 menu；hint 寫 `Enter:detail`（[components/dialog/menu](../components/dialog/menu-zh_TW.md)）。
 - **confirm 可以帶一段回答前要看的內容**：問句是 confirm 存在的理由，上面可以放回答前要看的資訊（例：「連線到 X？」上面是
-  X 的明細），內容長時用 `j/k` 捲動；它仍然只是 confirm，不是 note 加 confirm，不必拆成兩個 popup。
+  X 的明細），內容長時用 `j|k` 捲動；它仍然只是 confirm，不是 note 加 confirm，不必拆成兩個 popup。
 - **一個 popup 可以依階段換類別，但同一時間只屬於一類**。例：finder 打字時是 input，結果清單取得 focus 時是 menu；
   `Tab` 在打字與清單之間切換 focus，`Esc` 關掉整個 finder（K4：階段不是一層）。旁邊的預覽不取得 focus，不算另一個 surface。
   **focus 在哪一邊要看得出來**：只有有 focus 的那一邊是亮的（Principle P6；樣子見 [components/input/finder](../components/input/finder-zh_TW.md)）。
@@ -582,7 +584,7 @@ popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中�
   - **內容的寬度不確定**（例：自由打字的 text、網址、串流內容、搜尋結果、表單）：`min(terminal 寬 − 2, 120)`。
   - 水平置中。
 - **高度**：依內容，**打開時定好**，之後不跟著內容伸縮；最高是畫面高度 − 2（最上面一列與 footer 永遠看得到），
-  超過就在框裡捲動。只有兩種情況允許開著時改變高度：
+  超過就在框裡捲動。內容打開時不知道會多高的 —— 有預覽的 finder、textarea —— 一律取最高。只有兩種情況允許開著時改變高度：
   - **loading**：打開時內容還不確定（串流、載入中）的 popup，在 loading 期間高度可以變。loading 結束，高度就定下來。
   - **使用者操作造成的改變**：使用者在這個 popup 裡的動作讓列數改變（刪了一列、選了一項後多出一列、打字篩選候選），
     高度**可以**跟著變 —— 這是使用者預期的改變；app 也可以維持原高。原則是揭露的資訊要正確。
@@ -766,8 +768,15 @@ app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度�
 | 資料 | `~/.<app>/` 底下 | `<APP>__DATA` |
 | 快取 | 系統的快取目錄（macOS `~/Library/Caches/<app>`；Linux `$XDG_CACHE_HOME/<app>`，fallback `~/.cache/<app>`） | `<APP>__CACHE` |
 
+**家族共用的設定 key**：同一件事在每個 app 的設定檔裡用同一個名字，有用到的 app 才有。
+
+| key | 意思 | 預設 |
+|---|---|---|
+| `hide_secrets_in_preview` | popup 的預覽裡藏起私鑰與只有擁有者能讀的檔（[components/input/file-picker](../components/input/file-picker-zh_TW.md)） | `false` |
+| `input_tab_width` | 多行文字的寫入狀態下，按一次 `Tab` 插入幾個空白（[components/input/textarea](../components/input/textarea-zh_TW.md)） | `4` |
+
 **為什麼**：五個 app 放在同一套位置，使用者知道去哪裡找、要備份哪些。快取放在系統的快取目錄，清快取的工具才找得到它，
-也不會被當成要備份的資料。
+也不會被當成要備份的資料。共用的設定 key 用同一個名字：使用者在一個 app 設過，就知道在另一個 app 怎麼設。
 
 ### E4 需求：Nerd Font 與 truecolor `固定`
 
@@ -842,6 +851,8 @@ powerline 符號分開量，是因為同一台終端機上兩者可能不同：N
 12. License
 
 不寫死版本號的「現況」段 —— 版本交給 badge 與 CHANGELOG。
+
+README 的設定段寫出這個 app 用到的 E3 共用設定 key（例：`hide_secrets_in_preview`、`input_tab_width`）與預設值。
 
 README 講 icon 寬度的地方（通常在前置需求的 Nerd Font 那一段），寫出 icon 的 `<APP>__ICON_WIDTH`、`TERMINU__ICON_WIDTH` 與
 powerline 符號的 `<APP>__POWERLINE_WIDTH`、`TERMINU__POWERLINE_WIDTH`，並說明 `TERMINU__` 的是全家族共用的：設一次，家族每個

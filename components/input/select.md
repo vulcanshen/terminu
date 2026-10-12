@@ -24,7 +24,7 @@ A select is a kind of finder ([`input/finder`](finder.md)): only what differs fr
 - `Enter` on the list: chooses — the value written back, the popup closed; opened from a form, the focus stays on that
   field.
 - Other keys of the typing row and the list follow the finder.
-- **Hint**: on the list `Enter:choose Tab:filter Esc:cancel`; on the typing row `Enter/Tab:list Esc:cancel`.
+- **Hint**: on the list `Enter:choose Tab|/:filter Esc:cancel`; on the typing row `Enter|Tab:list Esc:cancel`.
 
 **Why**: choosing a value is mostly moving a step or two from the current one: opening on the list, `Enter` (to open)
 `j` `Enter` is all it takes; opening on the typing row would need one more press. With the typing row always shown, the

@@ -86,7 +86,7 @@ is done with the grey suggestion below (typing a new value needs no deleting fir
 - **Single-line inputs only** (text, number; a password shows grey dots for its old value, see
   [`password`](password.md)); a textarea opens with the old value already in ([`textarea`](textarea.md)).
 - The box opens empty, the old value shown in grey (Overlay0) after the cursor.
-- `Tab`: takes the old value into the box, the cursor at its end, to be changed with `←`/`→` (Rules K2).
+- `Tab`: takes the old value into the box, the cursor at its end, to be changed with `←|→` (Rules K2).
 - Typing straight away: a new value is typed and the grey text hides; deleting all that was typed brings it back.
 - `Backspace` on an empty value: not this value; the grey text goes, and `Enter` then saves the value empty (where the
   field cannot be empty, it is handled as an error).
@@ -102,6 +102,8 @@ and in a textarea `Tab` indents, so it could not take a suggestion anyway.
 ## No placeholder
 
 An input popup has no placeholder: what to enter is said by the explanation row; grey text is kept for suggestions only.
+The `nf-fa-angle_right` before the typing row of a finder or a panel filter ([`finder`](finder.md)) is a glyph, not a
+placeholder: it is not text, `Tab` never takes it in, and it stays while typing.
 
 **Why**: two kinds of grey text that look alike, one taken in by `Tab` and one not, could not be told apart.
 

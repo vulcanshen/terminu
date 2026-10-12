@@ -39,7 +39,7 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
 - **Hint**: after `┗━ ` on the bottom border, written as Rules M5 says.
   - **Order**: `Enter` first → this popup's own keys → the `Tab:…` that switches parts → `Esc` last. The terminal is the
     exception: its exit key comes first ([`dialog/terminal`](../dialog/terminal.md)).
-  - **Keys that move between items are left out** (`j/k`, `↑/↓`, a form's `Tab` between fields); only actions and
+  - **Keys that move between items are left out** (`j|k`, `↑|↓`, a form's `Tab` between fields); only actions and
     leaving are written: users find movement out by using it. A key that switches parts is not movement and is written
     (e.g. a finder's `Tab:list`).
   - **When it does not fit, whole pairs are dropped from the end**, never cut mid-pair; the scroll position at the right
@@ -141,10 +141,14 @@ frame.
 - It scrolls with the focus, by as little as needed for the unit holding the focus to be fully visible. The focus is not
   pinned to the middle.
 - While it does not fit, the right of the bottom border shows the scroll position, in the layer colour: with a cursor,
-  `N of M` (the position of the unit holding the focus, and the total); without a cursor (a note), the visible lines,
-  `N-M of T`. Nothing is shown when everything fits.
-- The unit depends on the kind (e.g. a form counts fields: the label and value rows of a stacked field, or the options of
-  a radio, make one field).
+  `N of M` (the position of the unit holding the focus, and the total); without one (a note, a viewer outside the
+  selection mode), the visible lines, `N-M of T`. Nothing is shown when everything fits, nor while the focus is outside
+  the scrolling area (a form's error row or button).
+- The unit:
+  - A form counts fields: the label and value rows of a stacked field, or the options of a radio, make one field; M
+    counts fields only, not the error row or the button.
+  - A cursor in a stretch of text (a textarea, a viewer in the selection mode) counts lines: the cursor's line and the
+    number of lines, the same numbers as the line numbers, not rows as drawn.
 
 ```
 ┏━TITLE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

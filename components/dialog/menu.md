@@ -57,9 +57,11 @@ like another frame.
 
 ## Keys
 
-- `j/k` move, wrapping at both ends; `u/d` half a page (stopping at the ends), `gg/G` to the top and the bottom
+- `j|k` move, wrapping at both ends; `u|d` half a page (stopping at the ends), `gg|G` to the top and the bottom
   (Rules K12).
 - `Enter` runs the cursor row; a hotkey runs its row directly.
 - `Esc` closes it (the global operation popup returns to the Space menu, Rules F4); the Space menu also closes on another
   `Space` (Rules K5).
-- **Hint**: `Enter:run Esc:close` (no movement keys, see the hint in [`layout/popup`](../layout/popup.md)).
+- **Hint**: `Enter:run Esc:close` (no movement keys, see the hint in [`layout/popup`](../layout/popup.md)). A menu whose
+  `Enter` opens the row in full (Rules F1, e.g. a jobs list) shows `Enter:detail Esc:close`: a hint says what pressing
+  does (Rules M5), and that `Enter` runs nothing.

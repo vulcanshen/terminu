@@ -25,6 +25,9 @@ panel 裡時（例：sshu 的格子）不是 popup：框照 [`layout/panel`](../
 - **不留白**：子程序需要每一列、每一欄，內容從框裡第一列畫到最後一列、第一欄畫到最後一欄，上下左右都貼著框。這是 terminal
   這種 popup 的特殊情況（[`layout/popup`](../layout/popup-zh_TW.md) 的留白）。
 - **標題**：`nf-md-console`（U+F018D）加上跑的是什麼（`SHELL`、`ALTERM: myhost`、`EDIT: pod/x`；名稱與路徑照原樣）。
+- **子程序的游標**：真的游標藏起來，在子程序的游標位置畫一格 Text 底、Base 字的反白方塊；子程序用 DECSCUSR 要求的形狀（底線、
+  直線）不理。PTY 放在 panel 裡時也一樣。這是終端機預設的游標；家族的游標顏色各有意思（Lavender 是正在編輯的值、層色是在文字
+  裡移動的游標），PTY 裡是子程序自己的畫面，兩個都不對；直線在一格一格畫的畫面上畫不出來，會蓋掉那個字。
 
 **為什麼**：statusbar 上有正在進行的狀態（kbu 的 context、sshu 的傳檔進度），在 shell 裡工作時照樣會想瞄一眼。footer 不需要：
 focus 在 PTY 裡時，footer 上的 `Space`、`?`、`q` 都送給子程序，照常顯示反而誤導；PTY 的鍵只出現在一個地方，就是這個框的下框，

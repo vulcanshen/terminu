@@ -21,7 +21,7 @@ select 是 finder 的一種（[`input/finder`](finder-zh_TW.md)）：這裡只�
 - **打開時 focus 在清單上，cursor 停在目前的值**。
 - 清單上 `Enter`：選定 —— 值寫回去、popup 關掉；從表單打開的，focus 留在那一欄。
 - 打字列與清單的其他鍵照 finder。
-- **hint**：清單 `Enter:choose Tab:filter Esc:cancel`；打字列 `Enter/Tab:list Esc:cancel`。
+- **hint**：清單 `Enter:choose Tab|/:filter Esc:cancel`；打字列 `Enter|Tab:list Esc:cancel`。
 
 **為什麼**：選值多半是從目前的值移一兩格：開在清單上，`Enter`（打開）`j` `Enter` 就好；開在打字列上要多按一下。打字列一直顯示，
 要篩選時框的高度不用變（Rules F7）。

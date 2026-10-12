@@ -23,7 +23,13 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
 - **Line numbers**: the first row of each line carries its number, right-aligned to the digits of the largest number,
   followed by a space; wrapped rows leave the number column blank — so the rows of one line are seen as one. Numbers in
   Overlay0, the cursor's line number in Text.
-- **Width**: the content is not known, so it takes the maximum of Rules F7.
+- **Size**: the width and the height both take the maximum of Rules F7 (`min(terminal width − 2, 120)`, the screen
+  height − 2): the content grows with typing, so its size cannot be known when it opens. Content taller than the box
+  scrolls inside it, the cursor always in view; when it does not fit, the right of the bottom border shows the cursor's
+  line `N of M` (counted in lines, the same numbers as on the left, not rows as drawn).
+- **The cursor**: in Write one cell of Lavender background with Base text (as [`input/README`](README.md)); in Move one
+  cell of the layer colour background with Base text. The value's text is Lavender in both.
+- **`\t`**: a `\t` in the value is drawn as `input_tab_width` spaces (see `Tab` below), not aligned to any column.
 
 ## Keys
 
@@ -31,7 +37,7 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
 
 | State | What | Hint |
 |---|---|---|
-| **Write** | typing (the input state). `Enter` breaks the line, `Tab` indents (Rules K8). It opens here | `Esc:move` |
+| **Write** | typing (the input state). `Enter` breaks the line, `Tab` inserts spaces (Rules K8). It opens here | `Esc:move` |
 | **Move** | entered with `Esc` from Write. Moves the cursor; `i`, `a`, `o` return to Write; **`Enter` confirms** | `Enter:save i:write Esc:cancel` |
 
 - **Confirming is `Enter` in Move.**
@@ -39,18 +45,26 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
   suggestion in [`input/README`](README.md) is for single-line inputs only).
 - `Esc`: from Write into Move (the hint turns to `Enter:save`, which tells how to save); from Move it closes. When the
   content has changed, a confirm first asks whether to discard it ("Cancel" in [`dialog/form`](../dialog/form.md)).
-- **Editing keys in Write**: the set in [`input/README`](README.md), plus what several lines need — `↑`/`↓` to the row
-  above or below (rows as drawn, a wrapped row counting as one); `←`/`→` at the start or end of a line cross to the
+- **Editing keys in Write**: the set in [`input/README`](README.md), plus what several lines need — `↑|↓` to the row
+  above or below (rows as drawn, a wrapped row counting as one); `←|→` at the start or end of a line cross to the
   previous or next line; `Backspace` at the start of a line joins it to the line above. A pasted line break is a real
   line break.
-- **Keys in Move**: movement follows Rules K12 — `h/j/k/l`, `w/b/e`, `0/$`, `u/d`, `gg/G`. `i` starts writing before the
+- **`Tab`**: inserts spaces, as many as the setting `input_tab_width` (4 by default, in each app's config file, Rules
+  E3). The value holds those spaces; `Backspace` removes one at a time. A pasted `\t` is kept as it is — what the user
+  pasted is not quietly changed — and drawn as `input_tab_width` spaces.
+- **Keys in Move**: movement follows Rules K12 — `h|j|k|l`, `w|b|e`, `0|$`, `u|d`, `gg|G`. `i` starts writing before the
   cursor, `a` after the cursor, `o` opens a new line below and writes there (as in vim).
 - Move is not a mode, nor the input state: core keys follow Rules K1 (`?` opens the key reference).
 
 **Why**: the old value is in on opening: a change to several lines of text is mostly a sentence added or a few words
 changed, ready to make at once; in Write `Tab` indents and could not take a suggestion. Replacing the whole text means
 deleting it in Write, which is rare. With several lines, `Enter` is needed to break lines, so confirming takes either another key or another state;
-with two states, `hjkl` in Move can move and `Enter` can confirm, with no extra submit key.
+with two states, `hjkl` in Move can move and `Enter` can confirm, with no extra submit key. The two states' cursors
+differ in colour: the same letter types in Write and moves in Move, which must be told apart without reading the hint;
+the layer colour already means "the cursor rests here" in the family. `Tab` inserts spaces rather than aligning: a
+terminal cannot line things up with tabs, and pressing `Tab` means "some spaces"; how many is the user's setting. The
+box always opens at the maximum: the same reason as the width ("content not known, take the maximum"), and a short old
+value does not start scrolling after a few lines.
 
 ## Value
 

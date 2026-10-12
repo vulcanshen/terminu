@@ -17,9 +17,9 @@ Auth        󰐾 password
 
 - glyph：選中 `nf-md-radiobox_marked`（U+F043E）、沒選 `nf-md-radiobox_blank`（U+F043D）。select 也用這一組。
 - 選中那一個的字是 Green（生效中），其他是 Text。
-- 預設直排；選項都很短、一列放得下時，可以橫排（`󰐾 asc  󰐽 desc`）。
+- 一律直排，一個選項一列：focus 色塊從選項一直到框，橫排時會蓋住後面的選項、看不出它們選了沒；也不留給 app 判斷「多短算可以橫排」。
 
 ## 按鍵
 
-- 每個選項是一個項目，`j`/`k`（或 `h`/`l`）在選項之間移（Rules K12）。
+- 每個選項是一個項目，`j|k`（或 `h|l`）在選項之間移（Rules K12）。
 - `Enter`：選它，focus 不動，馬上生效。

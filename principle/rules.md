@@ -89,7 +89,7 @@ first:
   ([components/input/finder](../components/input/finder.md)).
 - **An input popup with a single area**: with a greyed-out suggestion (the old value), `Tab` accepts the suggestion; with
   no suggestion it does nothing.
-- In the writing state of multi-line text, `Tab` is an indent character, not a field switch (K8).
+- In the writing state of multi-line text, `Tab` inserts spaces (an indent), not a field switch (K8).
 - Cycling backwards (e.g. `Shift-Tab`) is a hotkey, and whether to offer it is up to the app; a form always has
   `Shift-Tab`.
 
@@ -199,14 +199,15 @@ In the input state, **every key that produces a character is a character** and t
 | letter hotkeys, `Space`, `?`, `q` | typed as characters |
 | `Esc` | cancels the input (K4) |
 | `Enter` | see K3 |
-| `Tab` | accepts a grey suggestion; on a typing row, goes to the list (K2); in the writing state of multi-line text, a character (indent) |
+| `Tab` | accepts a grey suggestion; on a typing row, goes to the list (K2); in the writing state of multi-line text, inserts spaces (an indent) |
 | `Ctrl-C` | starts the quit flow (K9) |
 
 Normal behaviour returns the moment focus leaves the input surface.
 
-**The writing state of multi-line text**: `Tab` is a character (an indent), just as `Enter` is a newline (K3); to
-confirm, leave the writing state first (`Esc`), then press `Enter`. Whether the indent inserts `\t` or spaces is up to
-the app.
+**The writing state of multi-line text**: `Tab` inserts spaces (an indent), just as `Enter` is a newline (K3); to
+confirm, leave the writing state first (`Esc`), then press `Enter`. How many spaces is the setting `input_tab_width`
+(4 by default, E3); no `\t` is inserted: a terminal cannot line things up with tabs, and pressing `Tab` means "some
+spaces".
 
 **Why**: `Space`, `?` and `q` are all printable. Without this, users could never type a file name with a space or a
 password with a question mark. `Esc` and `Enter` stay, because they do not compete with characters, and without them the
@@ -296,36 +297,38 @@ not pop up a string of toasts.
 
 ### K12 Navigation letters are kept for movement; hjkl are the arrow keys `fixed`
 
-Where you are not typing (outside the input state, K8), `j k u d g G h l` are kept for movement, and no action takes them. `h`/`j`/`k`/`l` are
-`←`/`↓`/`↑`/`→`, meaning what the layout makes them mean:
+Where you are not typing (outside the input state, K8), `j k u d g G h l` are kept for movement, and no action takes them. `h|j|k|l` are
+`←|↓|↑|→`, meaning what the layout makes them mean:
 
-- **With a left-right structure** (tabs within one surface, two sides, a grid): up, down, left and right. `j`/`k` move up
-  and down a list, `h`/`l` go left and right — switching tabs, crossing to the other side, the day before or after in a
+- **With a left-right structure** (tabs within one surface, two sides, a grid): up, down, left and right. `j|k` move up
+  and down a list, `h|l` go left and right — switching tabs, crossing to the other side, the day before or after in a
   calendar.
 - **In a plain one-dimensional list with no left-right structure** (a form, a one-value-per-row panel without tabs, a
-  menu): `h`/`k` (`←`/`↑`) go back, `j`/`l` (`↓`/`→`) go on, whether the options run across or down.
-- A one-dimensional list in a panel with tabs: `h`/`l` switch tabs, `j`/`k` still move in the list.
-- **`u`/`d` move half a page, `gg`/`G` to the top and the bottom.** `g` is only the start of a two-key chord: `gg` goes to
+  menu): `h|k` (`←|↑`) go back, `j|l` (`↓|→`) go on.
+- A one-dimensional list in a panel with tabs: `h|l` switch tabs, `j|k` still move in the list.
+- **`u|d` move half a page, `gg|G` to the top and the bottom.** `g` is only the start of a two-key chord: `gg` goes to
   the top, and other chords starting with `g` may be hotkeys (e.g. filu's and webu's `[go]to`); a single `g` does
-  nothing. `Ctrl-U`/`Ctrl-D` are not taken as aliases.
-- **Stepping wraps at the ends**: moving one step at a time along a run of items (`j`/`k`, `h`/`l`, the arrow keys, `Tab`)
+  nothing. `Ctrl-U|Ctrl-D` are not taken as aliases.
+- **Stepping wraps at the ends**: moving one step at a time along a run of items (`j|k`, `h|l`, the arrow keys, `Tab`)
   — a panel's list, a one-value-per-row panel, a menu, a form, the list of a finder, a select or a checkbox popup, a
   panel's tabs, the columns and items inside a picker — one step past the last item goes to the first, and one step back
-  from the first goes to the last. `u`/`d` stop at the first and the last item and do not wrap; `gg`/`G` go to the top
+  from the first goes to the last. `u|d` stop at the first and the last item and do not wrap; `gg|G` go to the top
   and the bottom anyway. What moves through space rather than along a run of items does not wrap: the days of a
   calendar, the month and the year, the two sides, moving within a piece of text.
-- **Moving within a piece of text** (a note's selection, a textarea's moving state): add `w`/`b`/`e` (next word start,
-  previous word start, word end) and `0`/`$` (line start, line end), as in vim.
+- **Moving within a piece of text** (a viewer's selection mode, a textarea's moving state): add `w|b|e` (next word start,
+  previous word start, word end) and `0|$` (line start, line end), as in vim. A viewer has no cursor by default, and
+  `h|l` switch tabs as above; in its selection mode `h|l` move the cursor and tabs do not switch (the selection mode
+  in [components/dialog/note](../components/dialog/note.md)).
 
 **Why**: in the family hjkl are the arrow keys — forms, panels and lists all move with them; an app binding one to an
 action has users trigger an action while they think they are moving. With a left-right structure, left and right are
-left and right (filu's, kbu's and webu's `h`/`l` switch tabs, sshu's `h`/`l` cross to the other side); without one, the
-left and right keys are idle and get "back" and "on", so users need not wonder whether options run across or down.
-`Ctrl-U`/`Ctrl-D` are not taken: one set of keys per action is one set fewer to remember; and in shells and many input
+left and right (filu's, kbu's and webu's `h|l` switch tabs, sshu's `h|l` cross to the other side); without one, the
+left and right keys are idle and get "back" and "on", so all four arrow keys work on a one-dimensional list.
+`Ctrl-U|Ctrl-D` are not taken: one set of keys per action is one set fewer to remember; and in shells and many input
 boxes `Ctrl-U` means "clear this line", so the same chord would turn pages in one place in the family and delete text in
 another — too high a price for a slip. Wrapping at the ends: the same key reacts the same way at the ends everywhere in
 the family, so nobody has to remember where it wraps and where it stops; a half page across the ends would land
-somewhere nobody can guess, so `u`/`d` stop.
+somewhere nobody can guess, so `u|d` stop.
 
 ---
 
@@ -383,7 +386,7 @@ Each action that has to be learned in advance is a hole in "usable without the d
 **The global operation popup** (doing)
 
 - Opened with `Enter` on the Space menu's global row (M2), over the Space menu; it is a menu (F1) listing **all** of the
-  app's global actions — `j/k` to pick, `Enter` or the hotkey to run. Quitting the app must be here (K9).
+  app's global actions — `j|k` to pick, `Enter` or the hotkey to run. Quitting the app must be here (K9).
 - `Esc` goes back to the Space menu (F4); an action that closes the whole stack once run follows T1.
 - The row that switches to the current screen is disabled as M6 says (e.g. `[M]anage` while on `[M]anage`).
 - **Global hotkeys**: with no popup open, the hotkeys in the global operation popup can also be pressed directly on a
@@ -443,14 +446,16 @@ README). Marking inside a label:
 - Letters in the case actually pressed: `q`, `A` (that is `Shift-A`), `Alt-z`. The letter after `Ctrl` is always upper
   case (`Ctrl-C`, `Ctrl-U`): terminals can't tell the case of a `Ctrl` chord.
 - Modifiers are joined with `-`: `Alt-t`, `Ctrl-C`, `Shift-Tab`, `Alt-Esc`.
-- Several keys doing one thing are joined with `/`: `j/k`, `h/l`; a range uses `–`: `1–9`.
+- Several keys doing one thing are joined with `|`: `j|k`, `h|l`, `Enter|Tab`; the `|` takes the description colour
+  (dim text in [components/color](../components/color.md)), not the key colour. A range uses `–`: `1–9`. Not `/`: `/`
+  is itself a key (back to the typing row from a finder's list, the panel filter), and `Tab//:filter` cannot be read.
 
 **By place**:
 
 | Place | Form | Example |
 |---|---|---|
 | Label (menu rows, statusbar chips, panel titles) | the bracket marking above | `[r]ename`, `[Alt-t]erm` |
-| Sentence (empty states, toasts, error messages, and keys mentioned in the description column of a menu or the key reference) | every key in square brackets | `Press [A] or [Space]`, `see App Log [!]`, `next tab [h]/[l]` |
+| Sentence (empty states, toasts, error messages, and keys mentioned in the description column of a menu or the key reference) | every key in square brackets | `Press [A] or [Space]`, `see App Log [!]`, `next tab [h]\|[l]` |
 | Hint, footer | `key:description`, no space around the colon, one space between items | `Enter:delete Esc:cancel` |
 | Key reference | two columns, key and description; no brackets, no colon on the key | key column `Esc`, description column `close this popup` |
 
@@ -568,7 +573,7 @@ The family's popups come in these seven classes only, each with fixed key meanin
 
 | Class | What the user can do | E.g. |
 |---|---|---|
-| **menu** | a list with no search: `j/k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, a sort picker, a jobs list (`Enter` opens the row in full) |
+| **menu** | a list with no search: `j\|k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, a sort picker, a jobs list (`Enter` opens the row in full) |
 | **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6); what to read first sits above, the question last | confirm before delete, the quit confirm, "Connect to X?" carrying the details |
 | **input** | enter or pick one value, written back once confirmed; one value per popup. On the typing row it is the input state (K8); other parts follow K1 | rename, address bar, select, datetime picker |
 | **form** | one value per row; `Tab` jumps a field at a time, hjkl move item by item (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing the button), the button submits ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Sign in and Add bookmark |
@@ -580,9 +585,10 @@ The family's popups come in these seven classes only, each with fixed key meanin
   K11). Its hotkeys are disclosed in the bottom-border hint and in `?`; but once it has a list of options to run with
   `Enter`, it is a menu, not a note.
 - **A menu's `Enter` may open the row in full**: in a list with a cursor and no other action of its own (e.g. a jobs
-  list), `Enter` opens a note showing the row's whole content; it is still a menu.
+  list), `Enter` opens a note showing the row's whole content; it is still a menu; its hint reads `Enter:detail`
+  ([components/dialog/menu](../components/dialog/menu.md)).
 - **A confirm may carry content to read before answering**: the question is why a confirm exists, and above it may sit
-  the information to look at before answering (e.g. the details of X above "Connect to X?"), scrolled with `j/k` when
+  the information to look at before answering (e.g. the details of X above "Connect to X?"), scrolled with `j|k` when
   long; it is still just a confirm, not a note plus a confirm, and need not be split into two popups.
 - **A popup may change class by phase, but belongs to one class at a time.** E.g. a finder is an input while typing and a
   menu while its result list has focus; `Tab` switches focus between typing and the list, and `Esc` closes the whole
@@ -676,8 +682,9 @@ best, and no rule such as "reversible means no need to ask" can judge it.
     `min(terminal width − 2, 120)`.
   - Centred horizontally.
 - **Height**: follows the content, **fixed when the popup opens** and not resized with the content afterwards; at most
-  the screen height − 2 (the top row and the footer always stay in view), scrolling inside the box beyond that. Only two
-  cases may change the height while the popup is open:
+  the screen height − 2 (the top row and the footer always stay in view), scrolling inside the box beyond that. Popups
+  whose height cannot be known when they open — a finder with a preview, a textarea — always take the maximum. Only
+  two cases may change the height while the popup is open:
   - **Loading**: a popup whose content is not known when it opens (streaming, loading) may change height while loading.
     When loading ends, the height is fixed.
   - **A change the user made**: when the user's own action in this popup changes its row count (removing a row, a choice
@@ -893,8 +900,17 @@ underscores separate the app name from the variable name because the variable na
 | Data | under `~/.<app>/` | `<APP>__DATA` |
 | Cache | the system's cache directory (macOS `~/Library/Caches/<app>`; Linux `$XDG_CACHE_HOME/<app>`, falling back to `~/.cache/<app>`) | `<APP>__CACHE` |
 
+**Config keys shared by the family**: the same setting has the same name in every app's config file, in the apps that use
+it.
+
+| Key | Meaning | Default |
+|---|---|---|
+| `hide_secrets_in_preview` | hide private keys and owner-only files in the previews of popups ([components/input/file-picker](../components/input/file-picker.md)) | `false` |
+| `input_tab_width` | how many spaces one `Tab` inserts in the writing state of multi-line text ([components/input/textarea](../components/input/textarea.md)) | `4` |
+
 **Why**: with the five apps in the same places, users know where to look and what to back up. The cache goes in the
-system's cache directory so that cache-cleaning tools can find it, and so it is not taken for data to back up.
+system's cache directory so that cache-cleaning tools can find it, and so it is not taken for data to back up. Shared
+config keys have one name: set once in one app, the user knows how to set it in another.
 
 ### E4 Requirements: a Nerd Font and truecolor `fixed`
 
@@ -984,6 +1000,9 @@ need to know:
 12. License
 
 No "status" section with a hard-coded version number — versions are left to the badge and the CHANGELOG.
+
+The README's settings section names the shared config keys of E3 the app uses (e.g. `hide_secrets_in_preview`,
+`input_tab_width`) and their defaults.
 
 Where the README talks about the icon width (usually the Nerd Font part of the prerequisites), it names the icon's
 `<APP>__ICON_WIDTH` and `TERMINU__ICON_WIDTH` and the powerline symbols' `<APP>__POWERLINE_WIDTH` and

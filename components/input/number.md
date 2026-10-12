@@ -19,7 +19,7 @@ to type, use [`slider`](slider.md).
 - Editing keys, the grey suggestion and pasting follow [`input/README`](README.md).
 - **Only characters the field can use are taken as typed**: digits; `-` only if the field allows negatives, `.` only if
   it allows decimals. Other keys do nothing. Pasting keeps only the characters that are taken.
-- No `↑`/`↓` stepping: a value to be picked uses a slider.
+- No `↑|↓` stepping: a value to be picked uses a slider.
 
 **Why**: a character that can never be right need not get in only to be refused.
 

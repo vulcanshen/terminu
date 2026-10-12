@@ -19,25 +19,79 @@
 
 ## 長相
 
+terminal 寬 ≥ 96（例：96×24）：
+
 ```
-┏━SEARCH━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┏━README.md━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                     ┃ ┃                                   ┃
-┃ read                           3/41 ┃ ┃ # terminu                         ┃
-┃ ─────────────────────────────────── ┃ ┃                                   ┃
-┃▓README.md▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃ ┃ The terminal UI you can use…      ┃
-┃ README-zh_TW.md                     ┃ ┃                                   ┃
-┃ docs/readme-notes.md                ┃ ┃                                   ┃
-┃                                     ┃ ┃                                   ┃
-┗━ Enter/Tab:list Esc:cancel ━━━━━━━━━┛ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━SEARCH━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┏━README.md━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                            ┃ ┃                                             ┃
+┃  read                                3/41 ┃ ┃  1 # terminu                                ┃
+┃ ────────────────────────────────────────── ┃ ┃  2                                          ┃
+┃▓README.md▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃ ┃  3 The terminal UI you can use without      ┃
+┃ README-zh_TW.md                            ┃ ┃  4 reading a manual first.                  ┃
+┃ docs/readme-notes.md                       ┃ ┃  5                                          ┃
+┃                                            ┃ ┃  6 ## Principle                             ┃
+┃                                            ┃ ┃  7                                          ┃
+┃                                            ┃ ┃  8 Every action can be found from the menu. ┃
+┃                                            ┃ ┃  9                                          ┃
+┃                                            ┃ ┃ 10 ## Components                            ┃
+┃                                            ┃ ┃ 11                                          ┃
+┃                                            ┃ ┃ 12 Frames, popups, inputs and dialogs.      ┃
+┃                                            ┃ ┃ 13                                          ┃
+┃                                            ┃ ┃ ─────────────────────────────────────────── ┃
+┃                                            ┃ ┃ TYPE      text                              ┃
+┃                                            ┃ ┃ SIZE      4.2 KB                            ┃
+┃                                            ┃ ┃ MODIFIED  2026-10-10 09:12                  ┃
+┃                                            ┃ ┃ MODE      -rw-r--r--                        ┃
+┃                                            ┃ ┃                                             ┃
+┗━ Enter|Tab:list Esc:cancel ━━━━━━━━━━━━━━━━┛ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-- **兩塊**：上面是打字列，右邊寫篩選的筆數 `符合/總數`（`3/41`）；一條分隔線（不接框，[`layout/popup`](../layout/popup-zh_TW.md)）；下面是清單。
+terminal 寬不到 96（例：80×24）：
+
+```
+┏━SEARCH━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┏━INFO━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                    ┃ ┃                                     ┃
+┃  read                        3/41 ┃ ┃ TYPE      text                      ┃
+┃ ────────────────────────────────── ┃ ┃ SIZE      4.2 KB                    ┃
+┃▓README.md▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃ ┃ MODIFIED  2026-10-10 09:12          ┃
+┃ README-zh_TW.md                    ┃ ┃ MODE      -rw-r--r--                ┃
+┃ docs/readme-notes.md               ┃ ┃                                     ┃
+┃                                    ┃ ┃                                     ┃
+┃                                    ┃ ┃                                     ┃
+┃                                    ┃ ┃                                     ┃
+┗━ Enter|Tab:list Esc:cancel ━━━━━━━━┛ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━README.md━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                                            ┃
+┃  1 # terminu                                                               ┃
+┃  2                                                                         ┃
+┃  3 The terminal UI you can use without                                     ┃
+┃  4 reading a manual first.                                                 ┃
+┃  5                                                                         ┃
+┃  6 ## Principle                                                            ┃
+┃  7                                                                         ┃
+┃                                                                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+- **兩塊**：上面是打字列，下面是清單，中間一條分隔線（不接框，[`layout/popup`](../layout/popup-zh_TW.md)）。
+  - 打字列最前面是 `nf-fa-angle_right`（U+F105），離框一格，後面空一格才接打的字（寬度照 Rules E5 的 icon 寬）：一看就知道這一列是
+    打字篩選的地方，打開時 focus 在清單上、還沒打字也不會是一片空白。它是 glyph，不是 placeholder（[`input/README`](README-zh_TW.md)）。
+    顏色跟著打字列的亮暗：focus 在清單時跟整列一樣是 Overlay0，focus 在打字列時是該層的層色。
+  - 打字列右邊寫篩選的筆數 `符合/總數`（`3/41`），Overlay0：它是輔助資訊，不跟打的字搶；focus 在清單時整列本來就是 Overlay0，
+    數字不用變色。
 - **預覽**：一般的 finder 一定有（select、checkbox popup 沒有：值沒有內容可以預覽）。選中的那一筆在旁邊預覽。
-  - 清單框與預覽框加起來是一個 popup 的寬（Rules F7 的上限）。terminal 寬 ≥ 96 時左右並排、各佔一半；不夠時上下疊，預覽在下面。
-  - 預覽框的標題是選中那一筆的名字（或它在哪裡）；預覽不拿 focus。預覽的內容由 app 決定（檔案內容、目錄樹、網頁的那一段）。
+  - **預覽的是檔案或目錄時**（例：filu 的 Search、Find、Goto），照 [`file-picker`](file-picker-zh_TW.md) 的預覽：內容、metadata 四列、
+    `hide_secrets_in_preview` 都一樣。其他的預覽（例：網頁的那一段）內容由 app 給，沒有 metadata。
+  - **排法**：清單與預覽加起來是一個 popup 的寬（Rules F7 的上限）。
+    - terminal 寬 ≥ 96：左右並排、各佔一半。有 metadata 時，右框是「預覽／分隔線／metadata」。
+    - 不到 96、有 metadata：上面一列是清單框與 metadata 框，左右各一半（跟並排時一樣寬）；下面是整條寬的預覽框；上下各一半高。
+      metadata 自己一個框，標題 `INFO`。80×24 時清單 5 筆、預覽 7 列。
+    - 不到 96、沒有 metadata：上下疊，清單在上、預覽在下，各一半。
+  - 預覽框的標題是選中那一筆的名字（或它在哪裡）；預覽不拿 focus。
   - 預覽框的框線與標題膠囊用該層的層色（跟清單框一樣）；內容不淡化（預覽是拿來看的，暗了難讀）；下框不寫字（沒有 hint，也沒有捲動位置）。
 - **邊找邊列**：結果陸續到時照樣列出，標題後面放 loading icon；一筆都還沒到時寫 `(indexing…)`。
-- **大小**：高度打開時定好（Rules F7）；寬度不確定，用 F7 的上限。
+- **大小**：有預覽的 finder 一律取 Rules F7 的最高（畫面高度 − 2）：預覽每一筆長度不一樣，打開時不知道要多高，取最高換哪一筆框都
+  不跳，預覽的空間也最大；清單短時下面空著。沒有預覽的（select、checkbox popup）高度打開時定好（F7）。寬度不確定，用 F7 的上限。
 
 ### 清單的標記
 
@@ -50,6 +104,8 @@ select 與 checkbox popup 的每一列，最前面放一個標記：
 
 - 標記在左邊，眼睛往下掃就看得到；所有列的字對齊；目前的值有顏色（[`color`](../color-zh_TW.md) 的 Green 是「生效中」）。cursor 停在
   目前的值上時，底色照 cursor、字照 cursor 的 Base。
+- **Green 跟著畫面上的勾與點**：checkbox popup 裡按 `Space` 勾了就是 Green、取消就不是，還沒按 `Enter` 也一樣。popup 裡的 Green
+  讀成「按 `Enter` 就是這個值」：勾與顏色永遠一致，使用者不用讀兩種訊號；要回到原本的值按 `Esc`。
 - 單選用 radio glyph，多選用 checkbox glyph：看 glyph 就知道是單選還是多選，畫在表單上還是 popup 裡都一樣。
 
 ## 狀態
@@ -59,8 +115,8 @@ select 與 checkbox popup 的每一列，最前面放一個標記：
 
 | focus 在 | 打字列 | 清單的 cursor |
 |---|---|---|
-| 打字列 | 照 input 的打字列畫：值 Lavender、有游標 | 層色 cursor 再淡化一次 |
-| 清單 | 整列用灰色（Overlay0）畫，沒有游標 | 層色底、Base 粗體，右邊的留白是箭頭（跟 menu 的 cursor 一樣） |
+| 打字列 | 照 input 的打字列畫：值 Lavender、有游標；前面的 icon 用層色 | 層色 cursor 再淡化一次 |
+| 清單 | 整列用灰色（Overlay0）畫（含前面的 icon 與筆數），沒有游標 | 層色底、Base 粗體，右邊的留白是箭頭（跟 menu 的 cursor 一樣） |
 
 ## 按鍵
 
@@ -71,7 +127,7 @@ panel filter 也用這一張表。
 | 鍵 | 作用 |
 |---|---|
 | 字元 | 打進去，清單即時篩選（輸入態，Rules K8；編輯鍵照 [`input/README`](README-zh_TW.md)） |
-| `↑`/`↓` | 在結果之間移 cursor，到頭尾繞回（方向鍵打不出字，不衝突） |
+| `↑\|↓` | 在結果之間移 cursor，到頭尾繞回（方向鍵打不出字，不衝突） |
 | `Enter` | focus 移到 cursor 那一項，不執行；沒有結果時不作用 |
 | `Tab` | focus 移到清單 |
 | `Esc` | 關掉整個 finder（Rules F1：階段不是一層）；panel filter 是清掉篩選 |
@@ -94,18 +150,17 @@ panel filter 也用這一張表。
 
 | 鍵 | 作用 |
 |---|---|
-| `j`/`k` 等 | 移動（Rules K12：一步一步的移動到頭尾繞回） |
+| `j\|k` 等 | 移動（Rules K12：一步一步的移動到頭尾繞回） |
 | `Enter` | 去那裡（select 選定、checkbox popup 套用、file-picker 選檔或進目錄） |
-| `Tab` | 回打字列 |
-| `/` | 回打字列，接著舊的字打 |
+| `Tab\|/` | 回打字列，接著舊的字打 |
 | `Esc` | 關掉整個 finder |
 
 ### hint
 
 | focus 在 | hint |
 |---|---|
-| 打字列 | `Enter/Tab:list Esc:cancel` |
-| 清單 | `Enter:<去那裡的動詞> Tab:filter Esc:cancel`（例：`Enter:open`） |
+| 打字列 | `Enter\|Tab:list Esc:cancel` |
+| 清單 | `Enter:<去那裡的動詞> Tab\|/:filter Esc:cancel`（例：`Enter:open`） |
 
 **為什麼**：打字列上的 `Enter` 先 focus 到那一項、再按一次才執行：從打字列回到清單時，不會順手打開東西。代價是多按一下
 `Enter`；fzf、VS Code 快速開檔那種「打字時 `Enter` 直接去」不採用 —— finder 的打字列與 panel filter 是同一種打字列，同一個鍵在兩處

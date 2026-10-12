@@ -20,9 +20,9 @@ Red          ━━━━━━●━━━━━ 128
 
 ## 按鍵
 
-- `Enter` 打開一個 [`select`](select-zh_TW.md)，選項是 bottom 到 top、每 step 一個的數字：打開時 cursor 在目前的值、`j`/`k` 移動、
+- `Enter` 打開一個 [`select`](select-zh_TW.md)，選項是 bottom 到 top、每 step 一個的數字：打開時 cursor 在目前的值、`j|k` 移動、
   `Enter` 選定；打數字篩選（打 `20` 只剩 20、120、200–209…）。
-- slider 沒有自己的一套按鍵；在一列一個值的 panel 上，`h`/`l` 是移項目，不能拿來原地拉。
+- slider 沒有自己的一套按鍵；在一列一個值的 panel 上，`h|l` 是移項目，不能拿來原地拉。
 
 ## 值
 

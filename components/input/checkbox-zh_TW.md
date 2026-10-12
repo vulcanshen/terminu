@@ -9,7 +9,7 @@
 
 ## 長相
 
-- glyph：勾了 `nf-md-checkbox_marked`（U+F0132，實心打勾）、沒勾 `nf-md-checkbox_blank_outline`（U+F0131）。勾了的字是 Green（生效中）。
+- glyph：勾了 `nf-md-checkbox_marked`（U+F0132，實心打勾）、沒勾 `nf-md-checkbox_blank_outline`（U+F0131）。勾了的字是 Green（生效中）；popup 裡跟著畫面上的勾，`Space` 勾了就是 Green（[`finder`](finder-zh_TW.md) 的「清單的標記」）。
 - **checkbox popup**：finder 的骨架，沒有預覽；每一列前面放 checkbox glyph（finder 的「清單的標記」）；寬度照選項確定。
 
 **為什麼**：方框打勾、圓框一點（radio），是 GUI 表單的慣例，誰都看得懂（Principle P1）。打勾用實心的那一個：TUI 裡 outline 的
@@ -27,7 +27,7 @@ glyph 線條可能太細，看不清楚。
   單獨打開的，這時才套用（例：kbu 的 panel 2 這時才重抓）。什麼都沒改就按 `Enter`：不改，關掉。
 - **`Esc`**：取消，勾的都不算，值維持打開時的樣子。不先問：一個 popup 只有一個值。
 - 打字列照 finder；選項多時打字篩選。
-- **hint**：清單 `Enter:apply Space:toggle Tab:filter Esc:cancel`；打字列 `Enter/Tab:list Esc:cancel`。
+- **hint**：清單 `Enter:apply Space:toggle Tab|/:filter Esc:cancel`；打字列 `Enter|Tab:list Esc:cancel`。
 
 例：打開時勾的是 `default`。依序按 `j` `Space`（勾 `kube-system`）、`j` `Space`（勾 `monitoring`），這時 panel 2 還沒變。按 `Enter`，
 三個一起生效；按 `Esc`，還是只有 `default`。

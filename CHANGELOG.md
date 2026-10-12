@@ -1,5 +1,53 @@
 # Changelog
 
+## v0.5.2 — 2026-10-12
+
+The third round of gaps found while building the shared lib, from its Inputs, Dialogs and Terminal screens.
+
+**Keys and hints**
+
+- M5: keys that do the same thing are joined with `|`, not `/` (`j|k`, `Enter|Tab:list`, `Tab|1–N:panels`, `[h]|[l]`),
+  and the `|` takes the description colour, not the key colour; `/` is itself a key, so `Tab//:filter` could not be read.
+  Every hint, footer, key reference and sentence in the spec follows
+- A finder's list hint shows both ways back to the typing row: `Tab|/:filter`
+- A menu whose `Enter` opens the row in full (a jobs list) shows `Enter:detail`
+- No panel hint while the focus is in a PTY inside the panel; its exit keys are in the footer
+
+**Finders and the file-picker**
+
+- Every typing row (finder, select, checkbox popup, file-picker, panel filter) starts with `nf-fa-angle_right` (U+F105):
+  Overlay0 with the focus on the list, the layer colour (a panel filter: the frame colour) when typing; the count on its
+  right is Overlay0
+- A finder with a preview always takes the maximum height. 96 columns or more: side by side; under 96 with metadata:
+  the list and an `INFO` box on top, the preview full width below (5 entries and 7 preview rows at 80×24)
+- The file-picker previews in four parts — typing row, list, preview, metadata (`TYPE`, `SIZE`, `MODIFIED`, `MODE`,
+  written for people) — and a finder previewing files does the same. Previews by kind as filu draws them: a three-level
+  tree for directories and archives, syntax colours and line numbers for text, PDF text, image data URIs, hex for the rest
+- `hide_secrets_in_preview` (off by default): when on, a private key shows only its first line and an owner-only file
+  nothing, each with `(sensitive content not shown)`
+- The file-picker lists `..`, directories, then files, by name; hidden files only when the filter starts with `.`
+- In a checkbox popup, Green follows the tick on screen
+
+**Other popups**
+
+- Form options always run down, one a row; the form's scroll position counts fields only and is not shown while the
+  focus is on the error row or the button
+- The colour picker: R, G, B and a `Choose` button take the focus (new no longer does); the focused channel's name and
+  hex are both drawn as the cursor, as wide as the swatch
+- The textarea opens at the maximum size and scrolls; `Tab` inserts `input_tab_width` spaces (default 4) instead of
+  leaving it to the app; the Move cursor is in the layer colour; the scroll position counts lines
+- A viewer's selection mode: no cursor until `v`; the first `v` shows the cursor, the second starts selecting by
+  characters; `y` copies and leaves, `Esc` leaves; the scroll position shows the cursor's line inside the mode. Only
+  viewers have it
+- A PTY draws the subprocess's cursor as a reversed Text block and ignores DECSCUSR
+
+**Rules**
+
+- E3: shared config keys `hide_secrets_in_preview` and `input_tab_width`, named the same in every app; E7: the README's
+  settings section names them
+- F7: popups whose height cannot be known when they open (a finder with a preview, a textarea) take the maximum
+- K8, K12 follow the textarea's `Tab` and the viewer's selection mode
+
 ## v0.5.1 — 2026-10-12
 
 The second round of gaps found while building the shared lib from the spec.

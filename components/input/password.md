@@ -47,7 +47,7 @@ share with a suggestion is "`Enter` with nothing typed keeps the old one".
 - **`Backspace` clears everything at once, not one character at a time**: with something typed it clears all of it,
   back to the dots (the old password kept); on an empty box it clears the old password, the dots go, and `Enter` then
   saves no password. The hint adds `Backspace:clear`.
-- **Characters always go at the end**; `←`/`→`, `Home`/`End` and `Delete` do nothing.
+- **Characters always go at the end**; `←|→`, `Home|End` and `Delete` do nothing.
 
 **Why**: with the characters unseen, moving the cursor means nothing; a mistake cannot be located either, so clearing
 it all with `Backspace` and typing again is fastest.

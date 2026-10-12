@@ -70,7 +70,7 @@ area.
 - In the area holding the focus the cursor has the layer colour background; in the area without the focus, the cursor
   is the layer colour cursor, dimmed once more (Principle P6). Within the time area likewise: with the focus on the
   hours, the minute column's cursor is dimmed once more, and the other way round — the whole picker has one lit cursor,
-  so a glance tells which column `j`/`k` will move.
+  so a glance tells which column `j|k` will move.
 - **Width**: the layout is fixed, so it follows "content width known when it opens" in
   [`layout/popup`](../layout/popup.md).
 
@@ -84,13 +84,13 @@ What can take the focus: **month, year, calendar, time** (no time in a date-only
 
 - **`Tab`** moves the focus in screen order: month → year → calendar → time → back to month. It opens with the focus on
   the calendar.
-- **On the month or the year**: `h`/`l` (`←`/`→`) go to the previous or next month or year; the calendar turns with it,
+- **On the month or the year**: `h|l` (`←|→`) go to the previous or next month or year; the calendar turns with it,
   the cursor on the same day (on the last day when that month has no such day).
-- **On the calendar**: `h`/`l` a day back or on, `j`/`k` a week back or on, crossing the month's end into the next
+- **On the calendar**: `h|l` a day back or on, `j|k` a week back or on, crossing the month's end into the next
   month naturally (in a grid the arrow keys are up, down, left and right, Rules K12). Days outside the range are
   skipped, stopping on the next day within the range in that direction; when there is none left in that direction, it
   does not move.
-- **On the time**: `j`/`k` move within a column, `h`/`l` switch between the hour and minute columns. Wrapping at the
+- **On the time**: `j|k` move within a column, `h|l` switch between the hour and minute columns. Wrapping at the
   ends (Rules K12): after 23 comes 00, after 55 comes 00; each column wraps on its own — minutes wrapping do not move
   the hour, and hours wrapping do not move the date.
 - **`Enter`**:
@@ -107,8 +107,8 @@ What can take the focus: **month, year, calendar, time** (no time in a date-only
 |---|---|
 | Calendar (datetime) | `Enter:time t:today Tab:time Esc:cancel` |
 | Calendar (date only) | `Enter:choose t:today Tab:month Esc:cancel` |
-| Month | `Enter:days h/l:month t:today Tab:year Esc:cancel` |
-| Year | `Enter:days h/l:year t:today Tab:days Esc:cancel` |
+| Month | `Enter:days h\|l:month t:today Tab:year Esc:cancel` |
+| Year | `Enter:days h\|l:year t:today Tab:days Esc:cancel` |
 | Time | `Enter:choose t:today Tab:month Esc:cancel` |
 
 **Why**: months and years are not changed with pickdate's `p`/`n`/`P`/`N`: those are movement, absent from the hint,
