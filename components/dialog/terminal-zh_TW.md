@@ -10,21 +10,21 @@ panel 裡時（例：sshu 的格子）不是 popup：框照 [`layout/panel`](../
 ## 長相
 
 ```
- [M]anage  [F]ile transfer  [S]SH       2 live sessions    ← statusbar／畫面 chip 列：留著
-──────────────────────────────────────────────────────────   ← chip 列下面的分隔線：留著（傳檔時是進度條）
-╭─ Alterm: myhost ───────────────────────────────────────╮
-│$ kubectl get pods                                      │   ← PTY 貼著框，上下左右都不留白
-│NAME          READY   STATUS    RESTARTS   AGE          │
-│nginx-7d4f    1/1     Running   0          3d           │
-│$ █                                                     │
-╰─ Alt-Esc:exit Alt-t:hide PgUp:history ─────────────────╯   ← 一直到畫面最後一列，蓋掉 footer
+ [M]ANAGE  [F]ILE TRANSFER  [S]SH       2 live sessions    ← statusbar／畫面 chip 列：留著
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ← chip 列下面的分隔線：留著（傳檔時是進度條）
+┏━ALTERM: myhost━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃$ kubectl get pods                                      ┃   ← PTY 貼著框，上下左右都不留白
+┃NAME          READY   STATUS    RESTARTS   AGE          ┃
+┃nginx-7d4f    1/1     Running   0          3d           ┃
+┃$ █                                                     ┃
+┗━ Alt-Esc:exit Alt-t:hide PgUp:history ━━━━━━━━━━━━━━━━━┛   ← 一直到畫面最後一列，蓋掉 footer
 ```
 
 - **大小**（Rules F7 的 terminal 例外）：寬度 `terminal 寬 − 2`，不受 120 欄上限。上面留著 statusbar 或畫面 chip 列（含 chip 列下面的
   分隔線）；下面一直到畫面最後一列，蓋掉 footer。沒有 statusbar 的 app，從第一列開始。
 - **不留白**：子程序需要每一列、每一欄，內容從框裡第一列畫到最後一列、第一欄畫到最後一欄，上下左右都貼著框。這是 terminal
   這種 popup 的特殊情況（[`layout/popup`](../layout/popup-zh_TW.md) 的留白）。
-- **標題**：`nf-md-console`（U+F018D）加上跑的是什麼（`Shell`、`Alterm: myhost`、`Edit: pod/x`）。
+- **標題**：`nf-md-console`（U+F018D）加上跑的是什麼（`SHELL`、`ALTERM: myhost`、`EDIT: pod/x`；名稱與路徑照原樣）。
 
 **為什麼**：statusbar 上有正在進行的狀態（kbu 的 context、sshu 的傳檔進度），在 shell 裡工作時照樣會想瞄一眼。footer 不需要：
 focus 在 PTY 裡時，footer 上的 `Space`、`?`、`q` 都送給子程序，照常顯示反而誤導；PTY 的鍵只出現在一個地方，就是這個框的下框，

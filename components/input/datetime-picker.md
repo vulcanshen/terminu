@@ -12,18 +12,18 @@ Choosing a date (date picker), or a date and a time (datetime picker). The calen
 **The date**:
 
 ```
-╭─ Due date ───────────────────────────────────╮
-│                                              │
-│ October  2026                                │   ← month, year: each an item that can take the focus
-│ Mo  Tu  We  Th  Fr  Sa  Su                   │   ← weekdays: Overlay0
-│              1   2   3   4                   │
-│  5   6   7   8   9  10  11                   │   ← the 7th is today: underlined
-│ 12  13  14  15  16  17  18                   │   ← the 15th is the current value: Green; the cursor opens here too
-│ 19  20  21  22  23  24  25                   │
-│ 26  27  28  29  30  31                       │
-│                                              │   ← the 6th row: unused this month, kept all the same
-│                                              │
-╰─ Enter:choose t:today Tab:month Esc:cancel ──╯
+┏━DUE DATE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                              ┃
+┃ October  2026                                ┃   ← month, year: each an item that can take the focus
+┃ Mo  Tu  We  Th  Fr  Sa  Su                   ┃   ← weekdays: Overlay0
+┃              1   2   3   4                   ┃
+┃  5   6   7   8   9  10  11                   ┃   ← the 7th is today: underlined
+┃ 12  13  14  15  16  17  18                   ┃   ← the 15th is the current value: Green; the cursor opens here too
+┃ 19  20  21  22  23  24  25                   ┃
+┃ 26  27  28  29  30  31                       ┃
+┃                                              ┃   ← the 6th row: unused this month, kept all the same
+┃                                              ┃
+┗━ Enter:choose t:today Tab:month Esc:cancel ━━┛
 ```
 
 - The month and the year are each an item that can take the focus; with the focus, that word is drawn as a cursor
@@ -33,7 +33,8 @@ Choosing a date (date picker), or a date and a time (datetime picker). The calen
   2; the weekdays follow the same grid.
 - The calendar **always draws 6 rows**: a month spans 4 to 6 weeks, and with 6 rows fixed the box's height does not
   change with the month (Rules F7).
-- The calendar day under the cursor is drawn like a menu's cursor. **The day under the cursor is the day to be written
+- The calendar day under the cursor is drawn like a menu's cursor (layer colour background, Base bold; one day a cell,
+  no arrow). **The day under the cursor is the day to be written
   back**; there is no separate "chosen but not yet confirmed" state.
 - The field's original value is in Green (as a select's current value); the cursor opens on this day, or on today when
   there is no value.
@@ -46,18 +47,18 @@ Choosing a date (date picker), or a date and a time (datetime picker). The calen
 area.
 
 ```
-╭─ Meeting ───────────────────────────────────╮
-│                                             │
-│ October  2026               │  06  50       │
-│ Mo  Tu  We  Th  Fr  Sa  Su  │  07  55       │
-│              1   2   3   4  │  08  00       │
-│  5   6   7   8   9  10  11  │  09  05       │
-│ 12  13  14  15  16  17  18  │  10  10       │   ← hour 10 and minute 05 are the current value: Green
-│ 19  20  21  22  23  24  25  │  11  15       │
-│ 26  27  28  29  30  31      │  12  20       │
-│                             │  13  25       │
-│                                             │
-╰─ Enter:time t:today Tab:time Esc:cancel ────╯
+┏━MEETING━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                             ┃
+┃ October  2026               │  06  50       ┃
+┃ Mo  Tu  We  Th  Fr  Sa  Su  │  07  55       ┃
+┃              1   2   3   4  │  08  00       ┃
+┃  5   6   7   8   9  10  11  │  09  05       ┃
+┃ 12  13  14  15  16  17  18  │  10  10       ┃   ← hour 10 and minute 05 are the current value: Green
+┃ 19  20  21  22  23  24  25  │  11  15       ┃
+┃ 26  27  28  29  30  31      │  12  20       ┃
+┃                             │  13  25       ┃
+┃                                             ┃
+┗━ Enter:time t:today Tab:time Esc:cancel ━━━━┛
 ```
 
 - The separator follows [`layout/popup`](../layout/popup.md): it does not join the top and bottom borders and is drawn

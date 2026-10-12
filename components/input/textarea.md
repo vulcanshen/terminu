@@ -12,10 +12,10 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
 **Long lines wrap, with line numbers on the left**:
 
 ```
-│ 1 Thanks for the quick reply. The new    │
-│   build fixes the crash on start.        │   ← the same line wrapped: the number column is blank
-│ 2                                        │
-│ 3 One more thing: the export button█     │   ← the cursor's line
+┃ 1 Thanks for the quick reply. The new    ┃
+┃   build fixes the crash on start.        ┃   ← the same line wrapped: the number column is blank
+┃ 2                                        ┃
+┃ 3 One more thing: the export button█     ┃   ← the cursor's line
 ```
 
 - A line wider than the box continues on the next row, never scrolling sideways. Wrapping is only on screen; no line

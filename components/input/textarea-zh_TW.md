@@ -12,10 +12,10 @@
 **一行太長時自動折行，左邊有行號**：
 
 ```
-│ 1 Thanks for the quick reply. The new    │
-│   build fixes the crash on start.        │   ← 同一行折下來：行號欄空白
-│ 2                                        │
-│ 3 One more thing: the export button█     │   ← 游標所在的行
+┃ 1 Thanks for the quick reply. The new    ┃
+┃   build fixes the crash on start.        ┃   ← 同一行折下來：行號欄空白
+┃ 2                                        ┃
+┃ 3 One more thing: the export button█     ┃   ← 游標所在的行
 ```
 
 - 超過框寬就接到下一列畫，不左右捲。折行只在畫面上，值裡不多出換行。寬度照顯示寬度算，一個字不折成兩半。

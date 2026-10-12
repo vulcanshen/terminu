@@ -7,16 +7,17 @@ in [`screen`](screen.md).
 
 ## Frame
 
-- **Line style and colour**: Blue double line `╔═╗` when focused, Surface2 rounded `╭─╮` when not; both are the same
-  width, so switching shifts nothing (Rules L5, [`color`](../color.md)). Unfocused, the content is dimmed, streaming
+- **Line style and colour**: Blue heavy line `┏━┓` when focused, Surface2 light square line `┌─┐` when not; both are
+  the same width, so switching shifts nothing (Rules L5, [`color`](../color.md)). Unfocused, the content is dimmed, streaming
   content excepted (Rules T2).
 - **Left of the top border: the `[N] label` capsule**, right after the corner. `N` is also the digit key that jumps
   straight to that panel (within the current screen only, Rules K1). When the panel has tabs, they follow the capsule
   (see the capsule chain below). While the panel is loading, the loading icon sits after the whole capsule chain (tabs
-  included), with one space on each side (e.g. `╔([2] Pods)(Events)(YAML) 󰪞 ═══╗`; the loading in [`popup`](popup.md)).
+  included), with one space on each side (e.g. `┏[2] PODSEVENTSYAML 󰪞 ━━━┓`; the loading in [`popup`](popup.md)).
 - **Right of the top border: the mode name** (Rules K11), set between two border junctions like a tag inlaid in the
-  frame: `╔([1] Kinds)═══╡Drag╞═╗`, `╭─ YAML ────┤Visual├─╮`. The junctions take the frame's colour and follow its line
-  style — `╡` `╞` on a double frame, `┤` `├` on a single one; the mode name is bold in the mode colour. The mode name is
+  frame: `┏[1] KINDS━━━┫Drag┣━┓`, `┏━YAML━━━━┫Visual┣━┓`. The junctions take the frame's colour and follow its
+  line style — `┫` `┣` on a heavy frame (a focused panel, a popup), `┤` `├` on a light one (an unfocused panel); the mode
+  name is bold in the mode colour, its case as written. The mode name is
   one word if possible (`Drag`, `Visual`, `Select`: a narrow panel has no room for two, and the whole top-right text
   would be dropped); when space runs out, the title is clipped first and the mode name stays. The capsule turns the mode
   colour along with the frame.
@@ -24,12 +25,12 @@ in [`screen`](screen.md).
   panel filter's typing row: no hint then, and it comes back on the list. Right of the bottom border: the scroll position
   (see "Ordinary lists" below).
 - **Text on the frame always keeps one line segment away from the corner**; only the `[N] label` capsule sits right after
-  the top-left corner: the hint is `╚═ Enter:logs`, the scroll position `3 of 40 ═╝`, the mode name `╡Drag╞═╗`.
+  the top-left corner: the hint is `┗━ Enter:logs`, the scroll position `3 of 40 ━┛`, the mode name `┫Drag┣━┓`.
 
 ```
-╔([2] Pods)═══════════════════════════════════════╗
-║ ...                                             ║
-╚═ .:helm Enter:logs ═══════════════════ 3 of 40 ═╝
+┏[2] PODS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ...                                             ┃
+┗━ .:helm Enter:logs ━━━━━━━━━━━━━━━━━━━ 3 of 40 ━┛
 ```
 
 **Hint**: written like the hint in [`popup`](popup.md). It holds this panel's own keys — what `Enter` does here, the
@@ -51,14 +52,17 @@ does not split a row of tabs.
 The capsule of a panel title, a panel's tabs, the screen chips of [`screen`](screen.md), and the tabs after a popup title
 are all drawn the same way:
 
-- **Ends**: the rounded U+E0B6 (`nf-ple-left_half_circle_thick`) and U+E0B4 (`nf-ple-right_half_circle_thick`).
+- **Ends**: slanted, U+E0BA (`nf-ple-lower_right_triangle`) on the left and U+E0B0 (`nf-pl-left_hard_divider`) on the
+  right. A popup's title is not part of the chain: it is a rounded capsule of its own (the title in [`popup`](popup.md));
+  the tabs after a popup title follow the chain.
 - **Selected**: filled with the chain's colour, text Base bold. On a panel the chain's colour is the border colour
   (changing with focus, unfocus and mode); in a popup it is the layer colour; for the screen chips it is Blue. The `[N]`
   capsule and the current tab both count as selected.
 - **Unselected**: no fill, text in the chain's colour.
 - **Joins**: U+E0B0 (`nf-pl-left_hard_divider`) where the colour changes, U+E0B1 (`nf-pl-left_soft_divider`) between
   parts of the same colour.
-- No space before or after the text inside a capsule: `[1] Tabs`.
+- No space before or after the text inside a capsule: `[1] TABS`. The text is uppercase, the letters in a hotkey marker
+  as written ("Uppercase" in the [components](../README.md)).
 - **When it does not fit**: first shrink the unselected ones to their first character or glyph (`[M] [F] [S]`); if it
   still does not fit, fold away unselected ones from the end and draw a `…` instead. The selected one always stays, and
   the frame is never stretched wider (Rules L4).
@@ -66,26 +70,28 @@ are all drawn the same way:
 **Why**: in the family a capsule means "a name" — what the panel is called, which page, which screen (Principle P4).
 With all these uses sharing one look, the user who recognises one recognises them all. Unselected ones do not use
 Surface2: Surface2 means disabled, and unselected pages would look as if they could not be switched to. The joins use the
-two symbols of the original Powerline, the most widely supported by fonts.
+two symbols of the original Powerline, the most widely supported by fonts. Slanted ends here and a rounded popup title:
+a panel fixed on the screen and a popup floating above it can be told apart by the ends of their capsules.
 
 ## Ordinary lists
 
 A panel with one entry per row, like kbu's resource list or filu's file list.
 
 ```
-╔([2] Pods)═══════════════════════════════════════╗
-║   Name          Ready  Status     Restarts  Age ║  ← header: Blue, fixed, never scrolls
-║   nginx-7d4f    1/1    Running           0   3d ║
-║ 󰄲 web-a8k2      0/1    CrashLoo…        12   2h ║  ← a marked row: a Green tick
-║▓▓▓coredns-7w9z▓▓1/1▓▓▓▓Running▓▓▓▓▓▓▓▓▓▓▓0▓▓▓9d▓║  ← cursor: Subtext1 background, Base bold
-║   prome-er-0    0/2    Pending           0   5m ║
-╚═ Enter:logs ══════════════════════════ 3 of 40 ═╝
+┏[2] PODS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃   NAME          READY  STATUS     RESTARTS  AGE ┃  ← header: Blue, fixed, never scrolls
+┃   nginx-7d4f    1/1    Running           0   3d ┃
+┃ 󰄲 web-a8k2      0/1    CrashLoo…        12   2h ┃  ← a marked row: a Green tick
+┃▓▓▓coredns-7w9z▓▓1/1▓▓▓▓Running▓▓▓▓▓▓▓▓▓▓▓0▓▓▓9d┃  ← cursor: Subtext1 background, Base bold
+┃   prome-er-0    0/2    Pending           0   5m ┃
+┗━ Enter:logs ━━━━━━━━━━━━━━━━━━━━━━━━━━ 3 of 40 ━┛
 ```
 
 - **Cursor**: Subtext1 background, Base bold, across the whole inner width; the whole cursor row is Base text, and the
-  columns' own colours are not kept. When the panel is unfocused it is dimmed as a whole (Rules T2), the cursor with it,
+  columns' own colours are not kept. Its rightmost cell (the right padding) holds U+E0B0 (`nf-pl-left_hard_divider`) in
+  Subtext1, an arrow pointing at the row; the text keeps one cell from the frame and does not move. When the panel is unfocused it is dimmed as a whole (Rules T2), the cursor with it,
   not given another colour.
-- **Header**: Blue, not bold, fixed at the top and never scrolled. Each column holds numbers or text: numbers align right
+- **Header**: Blue, not bold, uppercase, fixed at the top and never scrolled. Each column holds numbers or text: numbers align right
   and sort by value (`9` before `10`), text aligns left and sorts as text. Two cells between columns
   ("Diagrams and spacing" in the [components](../README.md)). A column being sorted on gets `nf-fa-sort_amount_asc` (U+F160, ascending) or `nf-fa-sort_amount_desc` (U+F161, descending) after its title;
   when several columns sort together, the rank goes before the arrow, e.g. `Name (2)` followed by the arrow.
@@ -108,8 +114,8 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   `Forbidden: pods in kube-system`) and a hint in Overlay0 (e.g. `Press [R] to retry`). If the old content is still there
   it stays, and the error is reported in a toast as Rules F5 says.
 
-**Why**: the cursor is "the row `Enter` acts on"; a solid background across the whole row says so in both shape and
-colour (L5). Marks use the checkbox tick: marked means "picked", the same thing as a ticked checkbox, in the same colour.
+**Why**: the cursor is "the row `Enter` acts on"; a solid background across the whole row, ending in an arrow, says so
+in both shape and colour (L5). Marks use the checkbox tick: marked means "picked", the same thing as a ticked checkbox, in the same colour.
 With the header fixed, what each column is stays visible however far you scroll.
 
 ## One value per row
@@ -117,13 +123,13 @@ With the header fixed, what each column is stays visible however far you scroll.
 A panel with one value per row, like a settings screen (locku's preference, webu's Settings, the fields on a webu page).
 
 ```
-╔([2] preference)═══════════════════════════════╗
-║ Property            Value                     ║
-║ PIN                 not set                   ║
-║ profile             clock                     ║
-║ show_status         on                        ║
-║ pin_prompt_timeout  30                        ║
-╚═ Enter:edit ══════════════════════════════════╝
+┏[2] PREFERENCE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ PROPERTY            VALUE                     ┃
+┃ PIN                 not set                   ┃
+┃ PROFILE             clock                     ┃
+┃ SHOW_STATUS         on                        ┃
+┃ PIN_PROMPT_TIMEOUT  30                        ┃
+┗━ Enter:edit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 - **The rules of [`dialog/form`](../dialog/form.md) apply**: the focus moves one item at a time (`j`/`l`/`↓`/`→` on,
@@ -133,10 +139,10 @@ A panel with one value per row, like a settings screen (locku's preference, webu
 - **What differs: there is no submit.** Each value takes effect and is saved the moment it is confirmed in the input
   popup, and a switch or radio option the moment it is chosen in place. So there is no action row, and no "ask first when
   changed".
-- **The focus block**: a Subtext1 background with Base bold text, drawn the same way as the cursor of an ordinary list; it
-  spans as in a form, from the start of the item to the panel's inner right edge (from the value for a field, from the
+- **The focus block**: a Subtext1 background with Base bold text, drawn the same way as the cursor of an ordinary list
+  (its rightmost cell is the arrow); it spans as in a form, from the start of the item to the panel's inner right edge (from the value for a field, from the
   option for an option).
-- **Labels**: Blue normally, Surface2 when disabled, Red when its value has an error (over any other colour). They are
+- **Labels**: uppercase; Blue normally, Surface2 when disabled, Red when its value has an error (over any other colour). They are
   dimmed with the panel when it is unfocused (T2). The label column is as wide as the longest label, with two cells
   between it and the values.
 
@@ -151,11 +157,11 @@ the popup frame.
 search, sshu's Hosts, webu's list filters).
 
 ```
-╔([2] Hosts)═══════════════════════════════════╗
-║ prod                                     2/5 ║   ← typing row, the filtered count on its right
-║ prod-web-01  deploy    10.0.3.14             ║
-║ prod-db      postgres  10.0.3.20             ║
-╚══════════════════════════════════════════════╝
+┏[2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ prod                                     2/5 ┃   ← typing row, the filtered count on its right
+┃ prod-web-01  deploy    10.0.3.14             ┃
+┃ prod-db      postgres  10.0.3.20             ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 The typing row takes the same keys and the same matching as a finder's typing row ([`input/finder`](../input/finder.md)):

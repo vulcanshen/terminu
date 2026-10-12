@@ -10,11 +10,11 @@
 ## 長相
 
 ```
-╭─ Info ────────────────────────────╮
-│                                   │
-│          Copied 3 paths           │
-│                                   │
-╰─ Esc:close ───────────────────────╯
+┏━INFO━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                   ┃
+┃          Copied 3 paths           ┃
+┃                                   ┃
+┗━ Esc:close ━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 - **框**：popup 的框，一律用第 1 層的層色。toast 不算一層（Rules F1）：不觸發淡化，也不被淡化。
@@ -27,9 +27,9 @@
 
   | 種類 | 標題 | 文字 |
   |---|---|---|
-  | Info | `nf-fa-flag`（U+F024）`Info` | Text |
-  | Warning | `nf-md-alarm_light`（U+F078F）`Warning` | Peach |
-  | Error | `nf-md-fire`（U+F0238）`Error` | Red |
+  | Info | `nf-fa-flag`（U+F024）`INFO` | Text |
+  | Warning | `nf-md-alarm_light`（U+F078F）`WARNING` | Peach |
+  | Error | `nf-md-fire`（U+F0238）`ERROR` | Red |
 
 - **時間**：Info 2200ms；Warning、Error 4400ms。
 - **第二個 toast 來時**：直接取代第一個，重新計時。

@@ -12,14 +12,14 @@ not a popup: its frame follows [`layout/panel`](../layout/panel.md), and the PTY
 ## Look
 
 ```
- [M]anage  [F]ile transfer  [S]SH       2 live sessions    ← statusbar / screen chip row: kept
-──────────────────────────────────────────────────────────   ← the divider under the chip row: kept (a progress bar during a transfer)
-╭─ Alterm: myhost ───────────────────────────────────────╮
-│$ kubectl get pods                                      │   ← the PTY touches the frame, no padding on any side
-│NAME          READY   STATUS    RESTARTS   AGE          │
-│nginx-7d4f    1/1     Running   0          3d           │
-│$ █                                                     │
-╰─ Alt-Esc:exit Alt-t:hide PgUp:history ─────────────────╯   ← down to the screen's last row, covering the footer
+ [M]ANAGE  [F]ILE TRANSFER  [S]SH       2 live sessions    ← statusbar / screen chip row: kept
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ← the divider under the chip row: kept (a progress bar during a transfer)
+┏━ALTERM: myhost━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃$ kubectl get pods                                      ┃   ← the PTY touches the frame, no padding on any side
+┃NAME          READY   STATUS    RESTARTS   AGE          ┃
+┃nginx-7d4f    1/1     Running   0          3d           ┃
+┃$ █                                                     ┃
+┗━ Alt-Esc:exit Alt-t:hide PgUp:history ━━━━━━━━━━━━━━━━━┛   ← down to the screen's last row, covering the footer
 ```
 
 - **Size** (the terminal exception of Rules F7): width `terminal width − 2`, with no 120-column cap. Above, the
@@ -28,7 +28,7 @@ not a popup: its frame follows [`layout/panel`](../layout/panel.md), and the PTY
 - **No padding**: the subprocess needs every row and every column, so the content is drawn from the first row inside
   the frame to the last and from the first column to the last, touching the frame on every side. This is the special
   case of the terminal kind of popup (the padding in [`layout/popup`](../layout/popup.md)).
-- **Title**: `nf-md-console` (U+F018D) plus what is running (`Shell`, `Alterm: myhost`, `Edit: pod/x`).
+- **Title**: `nf-md-console` (U+F018D) plus what is running (`SHELL`, `ALTERM: myhost`, `EDIT: pod/x`; names and paths keep their case).
 
 **Why**: the statusbar holds what is going on (kbu's context, sshu's transfer progress), worth a glance even while
 working in the shell. The footer is not needed: with the focus in a PTY, the footer's `Space`, `?` and `q` all go to the

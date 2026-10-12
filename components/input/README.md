@@ -22,15 +22,15 @@ A kind of popup: a value is entered or chosen, and written back once confirmed; 
 Shared by text, password and number.
 
 ```
-╭─ Rename ─────────────────────────────────╮
-│                                          │
-│ New name for assets                      │   ← explanation row: one sentence, Overlay0
-│                                          │
-│ assets█                                  │   ← value: Lavender; cursor Lavender background, Base text
-│                                          │
-│                                          │   ← error row (layout/popup)
-│                                          │
-╰─ Enter:rename Esc:cancel ────────────────╯
+┏━RENAME━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                          ┃
+┃ New name for assets                      ┃   ← explanation row: one sentence, Overlay0
+┃                                          ┃
+┃ assets█                                  ┃   ← value: Lavender; cursor Lavender background, Base text
+┃                                          ┃
+┃                                          ┃   ← error row (layout/popup)
+┃                                          ┃
+┗━ Enter:rename Esc:cancel ━━━━━━━━━━━━━━━━┛
 ```
 
 - **The explanation row**: one sentence saying what to enter (`New name for assets`), in Overlay0, with a blank row
@@ -49,8 +49,8 @@ Shared by text, password and number.
 The box shows the stretch around the cursor, with `…` on the side that is cut.
 
 ```
-│ …/sideproj/terminu/components/layout█ │   ← typing: the cursor at the end, the start cut
-│ █/Users/vulcan/Documents/sideproj/te… │   ← after Home: the cursor at the start, the end cut
+┃ …/sideproj/terminu/components/layout█ ┃   ← typing: the cursor at the end, the start cut
+┃ █/Users/vulcan/Documents/sideproj/te… ┃   ← after Home: the cursor at the start, the end cut
 ```
 
 - The cursor is always in sight; moving scrolls by just enough, never pinning the cursor to the middle (the same
@@ -80,7 +80,7 @@ is done with the grey suggestion below (typing a new value needs no deleting fir
 ## Changing an existing value: the old value is a grey suggestion
 
 ```
-│ report-2025.pdf                      │   ← the box is empty; the old value after the cursor is grey (Overlay0)
+┃ report-2025.pdf                      ┃   ← the box is empty; the old value after the cursor is grey (Overlay0)
 ```
 
 - **Single-line inputs only** (text, number; a password shows grey dots for its old value, see

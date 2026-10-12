@@ -10,7 +10,7 @@
 ## 長相
 
 - 框照 [`layout/popup`](../layout/popup-zh_TW.md)：上下留白一律有，viewer 也一樣。
-- **標題**：glyph 加上顯示的東西（例：`YAML — pod/nginx`）。glyph 由 app 選；key reference 與 error popup 的 glyph 見下面。
+- **標題**：glyph 加上顯示的東西，畫成標題膠囊（例：`YAML — pod/nginx`：`YAML` 大寫，`pod/nginx` 是內容，照原樣）。glyph 由 app 選；key reference 與 error popup 的 glyph 見下面。
 - **捲動位置**：放不下時，下框右邊寫看得到的行 `N-M of T`。
 - **寬度**：內容打開時就確定的（key reference、error popup、說明）照內容；viewer 的內容寬度不確定，用 Rules F7 的上限。
 
@@ -32,36 +32,36 @@
 `?` 打開的「這裡能按什麼鍵」（Rules K6、M4）。
 
 ```
-╭─ [2] Hosts keys ──────────────────────────────╮
-│                                               │
-│ item operation                                │  ← 區塊標題
-│  Enter     Connect — what it is, then in      │
-│  E         Edit — change this host            │
-│  X         Delete — remove from hosts.yaml    │
-│ panel operation                               │
-│  A         Add — a new host                   │
-│  /         Search — name, user, host, port, … │
-│ move                                          │
-│  j/k       down, up                           │
-│  u/d       half a page up, down               │
-│  gg/G      to the top, the bottom             │
-│ core keys                                     │
-│  Space     what you can do here               │
-│  ?         this list                          │
-│  Tab       next panel                         │
-│  1–N       jump to panel N                    │
-│  q/Ctrl-C  quit                               │
-│ app-wide                                      │
-│  M         Manage — hosts, credentials, …     │
-│                                               │
-╰─ ?/Esc:close ──────────────────── 1-20 of 23 ─╯
+┏━[2] HOSTS KEYS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                               ┃
+┃ 󰋘 ITEM OPERATION                              ┃  ← 區塊標題
+┃  Enter     Connect — what it is, then in      ┃
+┃  E         Edit — change this host            ┃
+┃  X         Delete — remove from hosts.yaml    ┃
+┃ 󰋘 PANEL OPERATION                             ┃
+┃  A         Add — a new host                   ┃
+┃  /         Search — name, user, host, port, … ┃
+┃ 󰋘 MOVE                                        ┃
+┃  j/k       down, up                           ┃
+┃  u/d       half a page up, down               ┃
+┃  gg/G      to the top, the bottom             ┃
+┃ 󰋘 CORE KEYS                                   ┃
+┃  Space     what you can do here               ┃
+┃  ?         this list                          ┃
+┃  Tab       next panel                         ┃
+┃  1–N       jump to panel N                    ┃
+┃  q/Ctrl-C  quit                               ┃
+┃ 󰋘 APP-WIDE                                    ┃
+┃  M         Manage — hosts, credentials, …     ┃
+┃                                               ┃
+┗━ ?/Esc:close ━━━━━━━━━━━━━━━━━━━━ 1-20 of 23 ━┛
 ```
 
-- **標題**：`nf-fa-question_circle`（U+F059）加 `<surface> keys`，例：`[2] Hosts keys`、`Space menu keys`。
+- **標題**：`nf-fa-question_circle`（U+F059）加 `<surface> keys`，例：`[2] HOSTS KEYS`、`SPACE MENU KEYS`。
 - **每一列一個鍵**：縮兩格，鍵補到跟最寬的鍵一樣寬，空兩格，再接說明。說明太長從尾端截，加 `…`，不折行。鍵的寫法照 Rules M5
   （不加括號、不加冒號）。
 - **從 menu 來的列**：說明寫 `label — 說明`；label 去掉熱鍵標記、大小寫照原樣（menu 上的 `[E]dit` 寫成 `Edit — change this host`）。
-- **區塊**：區塊標題跟 menu 一樣（Overlay0、縮一格、不加粗）。panel 上依序是：
+- **區塊**：區塊標題跟 menu 一樣（`nf-md-hexagon`、大寫、Overlay0、縮一格、不加粗）。panel 上依序是：
   - `item operation`、`panel operation`：跟 Space menu 一樣。
   - `move`：這裡能用的移動鍵（Rules K12），只列真的能用的（例：有 tab 時才列 `h/l`）。
   - `core keys`：這個 panel 上有作用的 core key —— `Space`、`?`、`Tab`、`1–N`（好幾個 panel 時，Rules K1）、`q/Ctrl-C`；`Esc` 只在
@@ -80,15 +80,16 @@ popup 的動作失敗時（[`layout/popup`](../layout/popup-zh_TW.md) 的錯誤�
 也是它。
 
 ```
-╭─ Save failed ───────────────────────────────────╮
-│                                                 │
-│ hosts.yaml changed on disk since it was opened. │
-│                                                 │
-╰─ Enter/Esc:close ───────────────────────────────╯
+┏━SAVE FAILED━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                 ┃
+┃ hosts.yaml changed on disk since it was opened. ┃
+┃                                                 ┃
+┗━ Enter/Esc:close ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-- **樣子**：框、標題、文字都是 Red。標題 glyph 跟 Error toast 一樣是 `nf-md-fire`（U+F0238）。訊息在框裡折行；太長時 `j`/`k` 捲動。
-- **標題**：寫哪件事失敗了（`Rename failed`、`Save failed`）。從表單錯誤列打開的，標題寫那一欄的名字（`Port`）。
+- **樣子**：框、文字都是 Red；標題膠囊填 Red、字 Base 粗體（膠囊照 [`layout/popup`](../layout/popup-zh_TW.md)）。標題 glyph 跟
+  Error toast 一樣是 `nf-md-fire`（U+F0238）。訊息在框裡折行；太長時 `j`/`k` 捲動。
+- **標題**：寫哪件事失敗了（`RENAME FAILED`、`SAVE FAILED`）。從表單錯誤列打開的，標題寫那一欄的名字（`PORT`）。
 - **關掉**：`Enter` 與 `Esc` 都能關，hint `Enter/Esc:close`。
 - **關掉之後**：回到底下的 popup，focus 留在原位，值都還在（Rules F4）。連按 `Enter` 時，第一下關掉它，下一下等於在原來的位置再按
   一次 —— 在表單的按鈕上就是重試。失敗的動作沒有改變任何東西，重試最多再看到一次錯誤。

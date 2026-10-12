@@ -11,17 +11,17 @@ list, which side is lit, and the preview all follow the finder; only what differ
 ## Look
 
 ```
-╭─ Identity file · ~/.ssh ─────────────╮ ╭─ id_ed25519 ────────────────────╮
-│                                      │ │                                 │
-│                                  5/5 │ │ -----BEGIN OPENSSH PRIVATE KEY  │   ← typing row: empty when it opens
-│ ──────────────────────────────────── │ │ (key, 411 B)                    │
-│ 󰉋 ..                                 │ │                                 │
-│ 󰉋 work                               │ │                                 │
-│ 󰈔 config                             │ │                                 │
-│ 󰈔 id_ed25519                         │ │                                 │   ← cursor: the original value, its text Green
-│ 󰈔 id_ed25519.pub                     │ │                                 │
-│                                      │ │                                 │
-╰─ Enter:choose Tab:filter Esc:cancel ─╯ ╰─────────────────────────────────╯
+┏━IDENTITY FILE · ~/.ssh━━━━━━━━━━━━━┓ ┏━id_ed25519━━━━━━━━━━━━━━━━━━━━┓
+┃                                      ┃ ┃                                 ┃
+┃                                  5/5 ┃ ┃ -----BEGIN OPENSSH PRIVATE KEY  ┃   ← typing row: empty when it opens
+┃ ──────────────────────────────────── ┃ ┃ (key, 411 B)                    ┃
+┃ 󰉋 ..                                 ┃ ┃                                 ┃
+┃ 󰉋 work                               ┃ ┃                                 ┃
+┃ 󰈔 config                             ┃ ┃                                 ┃
+┃ 󰈔 id_ed25519                         ┃ ┃                                 ┃   ← cursor: the original value, its text Green
+┃ 󰈔 id_ed25519.pub                     ┃ ┃                                 ┃
+┃                                      ┃ ┃                                 ┃
+┗━ Enter:choose Tab:filter Esc:cancel ━┛ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 - **The root directory**: given by the app, it is the directory the list shows when it opens (e.g. sshu `~/.ssh`, webu

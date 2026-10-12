@@ -9,14 +9,14 @@ Choosing a colour: colour fields on webu pages, locku's colour settings.
 ## Look
 
 ```
-╭─ Background ──────────────────────╮
-│                                   │
-│ ████████  ████████                │
-│ ████████  ████████  ███  ███  ███ │   ← R, G, B: small swatches, each in its channel's own colour
-│ old       new       R    G    B   │   ← the focused item's word below is drawn as a cursor
-│ #1E1E2E   #2A2A3C   2A   2A   3C  │   ← always in hex
-│                                   │
-╰─ Enter:edit Esc:cancel ───────────╯
+┏━BACKGROUND━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                   ┃
+┃ ████████  ████████                ┃
+┃ ████████  ████████  ███  ███  ███ ┃   ← R, G, B: small swatches, each in its channel's own colour
+┃ old       new       R    G    B   ┃   ← the focused item's word below is drawn as a cursor
+┃ #1E1E2E   #2A2A3C   2A   2A   3C  ┃   ← always in hex
+┃                                   ┃
+┗━ Enter:edit Esc:cancel ━━━━━━━━━━━┛
 ```
 
 - **One row, left to right**: old, new, R, G, B, with two cells between the five items. The layout is small and takes no large block.

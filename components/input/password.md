@@ -27,7 +27,7 @@ Entering a value that is not shown: a password, a PIN, a passphrase.
 **When a password is already set**:
 
 ```
-│ ••••••••                             │   ← an old password: always 8 grey dots (Overlay0), not its real length
+┃ ••••••••                             ┃   ← an old password: always 8 grey dots (Overlay0), not its real length
 ```
 
 - The box opens empty; with an old password, 8 grey dots are always drawn after the cursor, saying "there is a password

@@ -18,7 +18,7 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 
 ### 標題
 
-寫這張表單要做什麼（`New host`、`Add bookmark`）。不寫型別（`number`、`path`、`email`）：型別是欄位的性質，欄位多於一個時
+寫這張表單要做什麼（`NEW HOST`、`ADD BOOKMARK`），畫成標題膠囊（[`layout/popup`](../layout/popup-zh_TW.md)）。不寫型別（`number`、`path`、`email`）：型別是欄位的性質，欄位多於一個時
 也放不進一個標題。
 
 ### 欄位的排法
@@ -37,15 +37,15 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 - 值怎麼顯示，見 [`input/README`](../input/README-zh_TW.md) 的「在表單與 panel 上怎麼顯示」。
 
 ```
-╭─ New profile ──────────────────────────────────╮
-│                                                │
-│ Name     clock3                                │   ← 左右式
-│ Timeout  30                                    │   ← 左右式
-│ Command                                        │   ← 上下式
-│ tmux new-session -A -s main                    │
-│ Layout   row                                   │   ← 左右式
-│                                                │
-╰─ Enter:edit Esc:cancel ────────────────────────╯
+┏━NEW PROFILE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                ┃
+┃ Name     clock3                                ┃   ← 左右式
+┃ Timeout  30                                    ┃   ← 左右式
+┃ Command                                        ┃   ← 上下式
+┃ tmux new-session -A -s main                    ┃
+┃ Layout   row                                   ┃   ← 左右式
+┃                                                ┃
+┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 （這一節與下一節的圖只畫欄位；動作列見「動作列」。）
@@ -61,13 +61,14 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 ### focus 與 label
 
 focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dialog/menu`](menu-zh_TW.md)）。範圍從項目的開頭一直到框（蓋住右邊的留白）：
-欄位從值開始、選項從那個選項開始、按鈕就是按鈕本身；值空著也是一整塊底色。
+欄位從值開始、選項從那個選項開始、按鈕就是按鈕本身；值空著也是一整塊底色。一直到框的色塊，最右邊一格是箭頭 U+E0B0（層色，
+跟 menu 的 cursor 一樣）；按鈕的色塊就是按鈕本身，沒有箭頭。
 
 **label 的顏色**：不因 focus 變色。
 
 | label 的狀態 | 顏色 |
 |---|---|
-| 一般 | 層色（跟標題、框線同色） |
+| 一般 | 層色（跟標題膠囊、框線同色） |
 | 停用 | Surface2 |
 | 它的值出錯 | Red，優先於其他顏色 |
 
@@ -75,14 +76,14 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 - 值在每一個狀態都不能跟它的 label 同色。
 
 ```
-╭─ New host ─────────────────────────────────────╮
-│                                                │
-│ Name        web-01                             │   label 層色
-│ Host        10.0.0.5▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│   ← focus：從值開始一直到框是層色底、Base 粗體
-│ Port        22                                 │
-│ Credential  —                                  │   ← 停用：label Surface2
-│                                                │
-╰─ Enter:edit Esc:cancel ────────────────────────╯
+┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                ┃
+┃ Name        web-01                             ┃   label 層色
+┃ Host        10.0.0.5▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃   ← focus：從值開始一直到框是層色底、Base 粗體
+┃ Port        22                                 ┃
+┃ Credential  —                                  ┃   ← 停用：label Surface2
+┃                                                ┃
+┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 **為什麼**：實心色塊不只換顏色、形狀也不同，focus 不只靠顏色（Rules L5）；跟 menu 同一套畫法：在家族的 popup 裡，層色底的那一塊
@@ -92,17 +93,17 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 ### 動作列
 
 ```
-╭─ New host ─────────────────────────────────────╮
-│                                                │
-│ Name  web-01                                   │   ← 欄位區：放不下時只捲這一段
-│ Host                                           │
-│ Port  22                                       │
-│                                                │
-│ Host is required                               │   ← 錯誤列（沒錯時空白）
-│ ────────────────────────────────────────────── │   ← 分隔線
-│                                          Save  │   ← 動作列：按鈕靠右
-│                                                │
-╰─ Enter:edit Esc:cancel ────────────────────────╯
+┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                ┃
+┃ Name  web-01                                   ┃   ← 欄位區：放不下時只捲這一段
+┃ Host                                           ┃
+┃ Port  22                                       ┃
+┃                                                ┃
+┃ Host is required                               ┃   ← 錯誤列（沒錯時空白）
+┃ ────────────────────────────────────────────── ┃   ← 分隔線
+┃                                          Save  ┃   ← 動作列：按鈕靠右
+┃                                                ┃
+┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 - **按鈕**：文字左右各留一格空白，一塊底色。沒有 focus 時也有底色（Surface1 底、Text 字），一看就知道它也是一個可以
@@ -139,15 +140,15 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
   想放棄要按兩次 `Esc`（第一次只關 input popup）。打開的一定是表單本身，一次 `Esc` 就離開。
 
 ```
-╭─ New host ─────────────────────────────────────╮
-│                                                │
-│ Name   web-01                                  │   ← 1 個項目
-│ Auth   󰐾 password                              │   ← 3 個項目
-│        󰐽 privatekey                            │
-│        󰐽 credential                            │
-│ Agent  󰄲 forward                               │   ← 1 個項目
-│                                                │
-╰─ Enter:edit Esc:cancel ────────────────────────╯
+┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                ┃
+┃ Name   web-01                                  ┃   ← 1 個項目
+┃ Auth   󰐾 password                              ┃   ← 3 個項目
+┃        󰐽 privatekey                            ┃
+┃        󰐽 credential                            ┃
+┃ Agent  󰄲 forward                               ┃   ← 1 個項目
+┃                                                ┃
+┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 `j` 一路往後：Name → password → privatekey → credential → forward。`Tab` 一路往後：Name → Auth → Agent。
@@ -177,11 +178,11 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 number、textarea），按到一個不在表單操作鍵裡的可列印字元時（包括 `q`），跳一個說明的 note：
 
 ```
-╭─ Name ─────────────────────────╮
-│                                │
-│ Press [Enter] to edit Name.    │
-│                                │
-╰─ Enter/Esc:close ──────────────╯
+┏━NAME━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                ┃
+┃ Press [Enter] to edit Name.    ┃
+┃                                ┃
+┗━ Enter/Esc:close ━━━━━━━━━━━━━━┛
 ```
 
 - 標題是欄位名稱；`Enter`、`Esc` 都能關，關掉後回到表單，focus 不動（[`dialog/note`](note-zh_TW.md)）。

@@ -10,16 +10,16 @@ One question, `Enter` accepting and `Esc` cancelling, saying what follows (Rules
 ## Look
 
 ```
-╭─ Quit ────────────────────────────────╮
-│                                       │
-│ 2 live sessions will be closed.       │  ← content to read first: Overlay0; the warning sentence in Peach
-│                                       │
-│ Quit sshu?                            │  ← the question: Text, last
-│                                       │
-╰─ Enter:quit Esc:cancel ───────────────╯
+┏━QUIT━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                       ┃
+┃ 2 live sessions will be closed.       ┃  ← content to read first: Overlay0; the warning sentence in Peach
+┃                                       ┃
+┃ Quit sshu?                            ┃  ← the question: Text, last
+┃                                       ┃
+┗━ Enter:quit Esc:cancel ━━━━━━━━━━━━━━━┛
 ```
 
-- **Title**: `nf-md-shield_alert` (U+F0ECC) plus the action's name (`Delete`, `Quit`, `Connect`).
+- **Title**: `nf-md-shield_alert` (U+F0ECC) plus the action's name (`DELETE`, `QUIT`, `CONNECT`).
 - **The question comes last**, with the hint right below it. What to read before answering sits above the question, with
   a blank row between them (Rules F1); with nothing to read, there is only the question.
 - **Colours**: the question in Text, not bold; the content in Overlay0; the warning sentence in the content (e.g. "This

@@ -1,5 +1,49 @@
 # Changelog
 
+## v0.5.0 — 2026-10-12
+
+A new look for the family: sharper frames, slanted capsules and a fixed popup animation. The colours are unchanged
+(catppuccin-mocha); only the shapes and the type change.
+
+**Frames and capsules**
+
+- A focused panel has a heavy frame `┏━┓` (Blue), an unfocused one a light square frame `┌─┐` (Surface2) — the same
+  width, so switching still shifts nothing (L5); the rounded and double frames are gone
+- Popups have heavy frames in the layer colour; mode-name junctions are `┫ ┣` on heavy frames and `┤ ├` on light ones
+- Panel capsules, screen chips and tabs have slanted ends: U+E0BA (`nf-ple-lower_right_triangle`) and U+E0B0
+  (`nf-pl-left_hard_divider`); the joins inside a chain are unchanged
+- A popup's title is a capsule of its own, rounded at both ends (U+E0B6, U+E0B4), filled with the layer colour, Base bold,
+  one line segment from the corner — the ends tell a floating popup from a panel
+- The divider under the screen chip row is a heavy line `━`
+
+**Lists and menus**
+
+- A cursor across a whole row ends in an arrow: its rightmost cell (the right padding) holds U+E0B0 in the cursor's
+  colour; the text does not move. A form's focus block that runs to the frame ends the same way; a button and one-cell
+  cursors (calendar days, hours, minutes) do not
+- Menu and key-reference section titles start with `nf-md-hexagon` (U+F02D8) and are in uppercase; the separator
+  between menu sections is the double dash `╌` (U+254C)
+- Hints and the footer are unchanged (`Enter:connect`)
+
+**Uppercase** (new section in the components README)
+
+- Panel capsules and tabs, screen chips, popup titles, table headers, the labels of a one-value panel and section titles
+  are in uppercase; values, menu labels, hint words, key names, mode names and app content are not
+- The letter in a hotkey marker keeps its case (`[m]ANAGE`), and names and paths in a title keep theirs
+  (`ALTERM: myhost`)
+
+**Animation**
+
+- F2 and layout/popup: one form for the family — a heavy line in the layer colour grows from the popup's centre to its
+  width (4 frames), holds for 1 frame, then the popup opens up and down from its middle (4 frames); closing runs the
+  same frames backwards. 32ms a frame, about 288ms each way (was 8 × 16ms ≈ 128ms with the form left to the app)
+- A popup takes no keys until its opening animation ends; what lies beneath is dimmed from the first frame
+
+**Diagrams**
+
+- Every diagram is redrawn in the new look; Nerd Font glyphs in diagrams are written with their real code points
+  (components README, "Diagrams and spacing")
+
 ## v0.4.0 — 2026-10-12
 
 Gaps found while building the shared lib (terminu-go) and its showcase strictly from the spec, settled one by one.
