@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.5.6 — 2026-10-13
+
+The sixth round of gaps, from following v0.5.5 in the shared lib, and syntax colours in viewers, asked for by the user.
+
+- S5: when only the splash text is drawn and a single word is wider than the terminal, it is cut into pieces by cells,
+  each centred
+- A viewer with tabs sizes its line numbers by the longest page seen so far: they widen on a longer page and never
+  narrow again
+- A viewer whose lines wrap scrolls one screen row at a time, as `less` does; `N-M of T` gives the lines of the top and
+  bottom rows
+- Viewers colour content with a known format (YAML, JSON, TOML, HTML, XML, Markdown…) as the file-picker's preview does —
+  chroma's catppuccin-mocha, foreground only; content with no fixed format, such as an app log, stays plain Text
+- The cursor on a pasted control character turns the whole character Red behind Base text
+
 ## v0.5.5 — 2026-10-13
 
 The fifth round of gaps, from following v0.5.4 in the shared lib and the user's second walk through its showcase.

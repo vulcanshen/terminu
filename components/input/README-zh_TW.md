@@ -35,7 +35,7 @@ text、password、number 共用。
 - **打字列**：最前面是 `nf-fa-angle_right`（U+F105），離框一格，後面空一格才接值，跟 [`finder`](finder-zh_TW.md) 的打字列一樣。
   顏色照 finder：打字時是層色 —— 單行 input popup 一直在打字，所以一直是層色。一看就知道游標停的這一列是要打字的地方。
 - **值**：Lavender —— [`color`](../color-zh_TW.md) 裡 Lavender 是「正在編輯的東西」，input popup 裡正在編輯的就是這個值。游標是一格
-  Lavender 底、Base 字。
+  Lavender 底、Base 字；停在控制字元上時，整個控制字元畫成 Red 底、Base 字（見下面的「貼上的控制字元」）。
 - **錯誤列**：照 [`layout/popup`](../layout/popup-zh_TW.md)。
 - **hint**：`Enter:<動詞> Esc:cancel`，動詞寫按下去做什麼（rename、create、save）。這種 popup 只有打字列，`?` 是字元，所以 hint 要列出
   全部操作（Rules M3）。
@@ -78,8 +78,8 @@ text、password、number 共用。
 ```
 
 - **只用在單行的 input**（text、number；password 的舊值是灰點，見 [`password`](password-zh_TW.md)）；textarea 打開時直接帶入舊值（[`textarea`](textarea-zh_TW.md)）。
-- 框打開時是空的，舊值用灰字（Overlay0）顯示，從游標那一格開始：游標壓在第一個字上（跟一般的游標一樣，Lavender 底、Base 的字），
-  後面接灰字 —— 像 shell 的自動建議。
+- 框打開時是空的，舊值用灰字（Overlay0）顯示，從游標那一格開始：游標壓在第一個字上（跟一般的游標一樣，Lavender 底、Base 的字；
+  第一個字是控制字元時照「貼上的控制字元」，Red 底），後面接灰字 —— 像 shell 的自動建議。
 - `Tab`：把舊值收進框裡，游標在尾端，接著用 `←|→` 改（Rules K2）。
 - 直接打字：重打一個新的值，灰字隱藏；把打的字刪光，灰字再出現。
 - 值是空的時候按 `Backspace`：不要這個值，灰字消失；這時按 `Enter` 存成空的（欄位不能空時照錯誤處理）。
@@ -104,6 +104,8 @@ panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：�
 - **只算貼上的文字**：按下去的 `Tab`、`Enter`、`Ctrl-J` 照它們原本的作用。
 - **控制字元一個都不丟，照實畫成紅字**（Red，不切開）：`\r`、`\n`、`\t` 寫名字（2 格），其他 C0、DEL、C1 寫 `\xNN`（4 格，例：
   `\x1b`、`\x7f`、`\x85`）。`\r\n` 也照實畫成 `\r\n` 兩個。整列畫成灰色的列（沒有 focus 的打字列、提議）裡跟著灰。
+- **游標停在控制字元上**：整個控制字元（`\x1b` 四格、`\r` 兩格）畫成 Red 底、Base 字；一般的字照舊 Lavender 底。看得出游標在
+  這裡，也看得出壓在控制字元上。灰字提議的第一個字是控制字元時一樣。
 - **`Backspace` 一次刪一整個**（`\n`、`\x1b`……）。
 - **遮罩的值照樣遮罩**（password）。
 - **不是使用者打字進來的值走同一個過濾**：原本的名字、檔案或別的程式給的值、清單填回來的值、從啟動目錄來的預設值、提議……
@@ -113,7 +115,8 @@ panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：�
 - **搜尋與篩選的打字列只畫，不擋。**
 
 **為什麼**：換成空白或丟掉，都會悄悄改掉使用者貼進來的東西；照實畫出來，使用者看到的就是真的貼進來的，自己決定要不要刪。
-只丟控制字元也清不乾淨：從終端機複製帶顏色的字，丟掉 `\x1b` 會留下 `[31m`。
+只丟控制字元也清不乾淨：從終端機複製帶顏色的字，丟掉 `\x1b` 會留下 `[31m`。游標停在上面時用紅底：Lavender 底上的紅字對比太弱，
+照一般游標畫又看不出是控制字元。
 
 ## 值
 

@@ -153,6 +153,8 @@ frame.
     counts fields only, not the error row or the button.
   - A cursor in a stretch of text (a textarea, a viewer in the selection mode) counts lines: the cursor's line and the
     number of lines, the same numbers as the line numbers, not rows as drawn.
+  - A wrapping viewer (outside the selection mode) scrolls a row as drawn at a time; in `N-M of T`, N and M are the
+    lines of the top and bottom rows ([`dialog/note`](../dialog/note.md)).
 
 ```
 ┏━TITLE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

@@ -15,7 +15,9 @@ a list of options to run with `Enter`, it is a menu, not a note.
   `pod/nginx` is content and stays as it is). The glyph is the app's choice; the glyphs of the key
   reference and the error popup are below.
 - **Scroll position**: when the content does not fit, the right end of the bottom border shows the visible lines,
-  `N-M of T`; in a viewer's selection mode, the cursor's line `N of M` (see "Selection mode" below).
+  `N-M of T`; in a viewer's selection mode, the cursor's line `N of M` (see "Selection mode" below). When a viewer
+  wraps, N is the line of the top row, M the line of the bottom row and T the number of lines (e.g. the top row is a
+  wrapped row of line 6 and the bottom row is line 10: `6-10 of 42`).
 - **Width**: notes whose content is known when they open (the key reference, the error popup, explanations) follow the
   content; a viewer's content width is not known, so it takes the Rules F7 cap.
 - **A viewer's line numbers**: a viewer (YAML view, App Log, file content) has line numbers on the left, as in
@@ -24,10 +26,19 @@ a list of options to run with `Enter`, it is a menu, not a note.
   number in Text. Copying leaves the numbers out. The gutter is **at least three digits**: where the line count is known
   on opening (YAML view, file content) it is max(3, the digits of the line count) and stays so; a streaming App Log
   starts at three digits and widens only past 999 lines.
+  **A viewer with tabs** (e.g. DevTools' Console and Network): the gutter follows the widest of the pages seen so far,
+  and only ever widens — set by the page it opens on; wider on a page with more lines; kept, not narrowed, on going back
+  to a page with fewer. A streaming page likewise only widens.
+- **A viewer's syntax colours**: content with a fixed format (YAML, JSON, TOML, HTML, XML, Markdown…) is coloured as a
+  text file in [`input/file-picker`](../input/file-picker.md)'s preview table (chroma's catppuccin-mocha, foreground
+  only). The app gives the language (a YAML view is YAML; a DevTools Network response goes by its content type); file
+  content goes by the file name, as in the preview. Content with no fixed format (e.g. App Log), or whose language
+  cannot be told, is plain text in Text, with no special colours. Line numbers stay Overlay0; the selection mode's
+  range stays Yellow with Base text, with no syntax colours inside it.
 
 ```
 ┃   1 apiVersion: v1                            ┃   ← a three-digit gutter (this YAML has 42 lines); numbers in Overlay0
-┃   2 kind: Pod                                 ┃
+┃   2 kind: Pod                                 ┃   ← the content in YAML's syntax colours
 ┃   3 metadata:                                 ┃
 ┃   4   name: nginx                             ┃
 ┃   5   annotations:                            ┃
@@ -41,11 +52,16 @@ a list of options to run with `Enter`, it is a menu, not a note.
 
 **Why**: a viewer knows how many lines it holds when it opens (a streaming one aside), so its gutter is set once and the
 screen does not jump; a textarea's lines are the user's own typing, so a wider gutter has a visible reason, and it
-starts at two digits. Three digits: content within 999 lines never jumps.
+starts at two digits. Three digits: content within 999 lines never jumps. With tabs it does not narrow on going back:
+the width seen is kept, so switching tabs back and forth does not keep jumping. The syntax colours are the preview's, so
+a file looks the same in the preview and in a viewer.
 
 ## Keys
 
 - Scrolling: `j|k`, `u|d`, `gg|G` (Rules K12). A viewer's selection mode is below.
+- **A wrapping viewer scrolls by rows as drawn** (as `less` does): `j|k` one row at a time, `u|d` half a page counted
+  in rows. A line taller than the frame (e.g. minified JSON) can be read to its end; this matches
+  [`input/textarea`](../input/textarea.md)'s `↑|↓`, which follow the rows as drawn.
 - **Closed with `Esc` only**. `Enter` does not close it; nor does `Space` (Rules K5).
 - **The exception**: the error popup (whether it popped up by itself or was opened with `Enter` on a form's error row)
   and the typing explanation on a form close on `Enter` too.
