@@ -13,6 +13,27 @@
 - **標題**：glyph 加上顯示的東西，畫成標題膠囊（例：`YAML — pod/nginx`：`YAML` 大寫，`pod/nginx` 是內容，照原樣）。glyph 由 app 選；key reference 與 error popup 的 glyph 見下面。
 - **捲動位置**：放不下時，下框右邊寫看得到的行 `N-M of T`；viewer 的選取模式裡寫游標所在的行 `N of M`（見下面的「選取模式」）。
 - **寬度**：內容打開時就確定的（key reference、error popup、說明）照內容；viewer 的內容寬度不確定，用 Rules F7 的上限。
+- **viewer 的行號**：viewer（YAML 檢視、App Log、檔案內容）左邊有行號，照 [`input/textarea`](../input/textarea-zh_TW.md) 的行號：每一行的
+  第一列畫行號，靠右對齊、後面空一格；折下來的列行號欄空白。行號 Overlay0，選取模式裡游標所在那一行的行號 Text。複製不含行號。
+  行號欄**至少三位**：打開時就知道行數的（YAML 檢視、檔案內容）取 max(3, 總行數的位數)，打開後不變；串流的 App Log 從三位開始，
+  超過 999 行才跳寬。
+
+```
+┃   1 apiVersion: v1                            ┃   ← 行號欄三位（這份 YAML 有 42 行）；行號 Overlay0
+┃   2 kind: Pod                                 ┃
+┃   3 metadata:                                 ┃
+┃   4   name: nginx                             ┃
+┃   5   annotations:                            ┃
+┃   6     note: restarted by the deploy job     ┃
+┃     after the config change                   ┃   ← 同一行折下來：行號欄空白
+┃   7 spec:                                     ┃
+┃   8   containers:                             ┃
+┃   9   - name: nginx                           ┃
+┃  10     image: nginx:1.27                     ┃
+```
+
+**為什麼**：viewer 打開時就知道有幾行（串流的除外），行號欄的寬度一次定好，畫面不會跳；textarea 的行數是使用者自己打出來的，
+跳寬看得出原因，所以它從兩位起跳。三位：999 行以內的內容不會跳。
 
 ## 按鍵
 
@@ -40,7 +61,7 @@ viewer（YAML 檢視、App Log、檔案內容）可以把一段文字選起來�
 - **`Esc`**：在哪一步都是整個離開，不複製，範圍與游標都消失（K11：回到進入前的狀態）。不收 `v` 當離開的別名（K12）。
 - **顏色**：游標一格層色底、Base 字（跟 [`input/textarea`](../input/textarea-zh_TW.md)「移」的游標一樣）；範圍 Yellow 底、Base 字，
   游標那格維持層色；範圍裡的空行畫一格。
-- **捲動位置**：選取模式裡寫游標所在的行 `N of M`（以行為單位）；離開後回到 `N-M of T`。
+- **捲動位置**：選取模式裡寫游標所在的行 `N of M`（以行為單位，跟左邊的行號同一套數字）；離開後回到 `N-M of T`。
 
 **為什麼**：先移到起點再開始選 —— 游標一出現的地方不一定是要選的地方，按一次 `v` 就開始選的話，起點永遠被固定在畫面第一行。
 平常沒有游標，`j|k` 照樣捲、`h|l` 照樣切 tab，看完就關的 note 不多一個用不到的游標。以字為單位：從 note 裡複製的常常是一個字、

@@ -731,6 +731,7 @@ splash 畫的是該 app 的 `docs/icon.svg` —— terminu family 的 mark —�
   mark 的 25 欄左右已經各有一格底；上下各多畫一列底，共 21 列 —— 四邊一樣寬。
 
 **下面的字**：mark 下面空一列，接著六列，每一列在 mark 的寬度裡置中。名稱、版本、介紹由 app 給，作者兩列全家族一樣。
+**每一列都不超過 mark 的寬（50 欄）**：splash 的字跟 mark 一樣是事先設計好的，不是讓 app 隨意填；lib 建立 splash 時遇到超過的就回錯誤（E8）。
 
 | 列 | 內容 | 顏色 |
 |---|---|---|
@@ -743,16 +744,26 @@ splash 畫的是該 app 的 `docs/icon.svg` —— terminu family 的 mark —�
 | | 空一列 | |
 | 6 | `Press any key to close` | Overlay0 |
 
+**位置**：整塊（mark、空一列、下面的字，共 30 列 × 50 欄）在畫面上上下左右都置中。
+
+**放不下時**：終端機放不下整塊（不到 50 欄或 30 列）時不畫 mark，只畫下面的字，照樣上下左右置中、照樣分兩批出現（打開 400ms 後
+名稱、版本、介紹，再 500ms 後作者與提示）。
+
+- **太窄**：折行，照字詞斷開，折下來的照樣置中。
+- **還是太矮**：從下面往上截，最先不見的是提示，接著作者兩列、介紹；**名稱與版本一定出現**。一組拿掉時，它上面的空白列跟著拿掉，
+  最底下不留空白列。
+
 **揭露動畫**：一個 tick 10ms，分段畫，段與段之間停 250ms。
 
 1. **底**：一個 tick 一整列，由上往下鋪滿。
 2. **金色的字**：照 app 名字的字母順序，一個字一段；一個 tick 出現 2 格，同一個字的格子打散出現。
-3. **U 框**：由下往上長，一個 tick 3 格。
+3. **U 框**：由下往上一列一列長，一個 tick 一對（左右對稱的兩格；中線上的第 13 格自己一個 tick）；同一列裡從中間往兩端，離中線近的先出現 ——
+   底座從中間往兩邊展開，兩側同時往上長。
 4. **下面的字**：mark 畫完 400ms 後，名稱、版本、介紹一起出現；再 500ms 後，`developed by`、信箱、提示一起出現。
 
 **為什麼**：splash 是家族的簽名。每個成員畫的都是自己那一版的家族 mark，動畫、字與顏色全家族一樣，按下 `V` 就認得出
 這是同一家的東西。名稱寫指令名稱，跟使用者在終端機打的一樣；提示寫 `any key`，因為照 S3 任何鍵都會關。作者信箱用 mark 的
-金色，署名跟 mark 連在一起。
+金色，署名跟 mark 連在一起。放不下時留下字、不畫 mark：字可以折行，mark 不能。
 
 ---
 
@@ -933,7 +944,7 @@ tdp 不規定；dev-remarks 的「設計文件導讀」一節負責指路。不�
 | E4 需求 | README 寫明 | — | README 寫明 |
 | E5 icon 的實際寬度 | 做到：探測（icon 與 powerline 符號）、顯示寬度函式、替子程序設 `TERMINU__ICON_WIDTH` 與 `TERMINU__POWERLINE_WIDTH` | — | lib 給的 |
 | E6 發布 | 打 git tag（Go module），沒有 binary；L4 的畫面測試要有 | 不發布；L4 的畫面測試要有 | 照 E6 |
-| S5 splash 畫的 icon | splash 的機制 | tdp 的 `principle/icon.svg`（terminu 的 mark） | 自己的 `docs/icon.svg` |
+| S5 splash 畫的 icon | splash 的機制；建立 splash 時，下面的字有一列超過 50 欄就回錯誤 | tdp 的 `principle/icon.svg`（terminu 的 mark） | 自己的 `docs/icon.svg` |
 | E7 README | lib 自己的結構：安裝是 `go get`、快速開始是程式碼、寫明範例 app 怎麼跑 | 不另外寫 | 照 E7 |
 | E7 dev-remarks | 要，同一個骨架 | — | 要 |
 | 偏離（Rules 開頭） | **lib 不偏離**：做不到或不好用的，回報成 tdp 的缺漏，規範改了 lib 才跟著改 | — | 自己的偏離寫在自己的 dev-remarks |

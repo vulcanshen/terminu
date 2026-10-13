@@ -1,5 +1,34 @@
 # Changelog
 
+## v0.5.5 — 2026-10-13
+
+The fifth round of gaps, from following v0.5.4 in the shared lib and the user's second walk through its showcase.
+
+**Splash**
+
+- The splash is centred on the screen
+- When it does not fit, only the text is drawn, centred and wrapped at words; if it is still too tall, rows go from the
+  bottom up, each group taking the blank row above it, and the name and version always stay
+- The U frame grows from the centre of each row out, one mirrored pair a tick, both sides together
+- No row of the text is wider than the mark (50 columns); the lib refuses a longer one when the splash is built
+
+**Inputs**
+
+- A grey suggestion, and the grey dots of an existing password, start under the cursor: the cursor sits on the first
+  character (in the unlock look, on the first grey dot)
+- In a textarea, `Home` and `End` go to the start and end of the whole text; the line's ends are `0|$` in "move"
+- A textarea keeps pasted control characters in red as a single-line input does, and will not save while it has any; a
+  lone `\r` there is a line break
+- In the directory picker, the `.` row is not there while a filter or a wildcard is typed; wildcard results list only
+  directories
+
+**Forms and viewers**
+
+- When the focus lands on a radio or checkbox field — the form opened at it, a submit held back, `e` from the error row —
+  it stops on the first option with a value: the chosen radio, the first ticked box, else the first option
+- Viewers (YAML, App Log, file contents) have line numbers, at least three digits wide: a viewer whose length is known
+  when it opens never shifts, a streaming one widens only past 999 lines
+
 ## v0.5.4 — 2026-10-13
 
 The fourth round of gaps: what the shared lib met while following v0.5.3, what the user found walking through its showcase,

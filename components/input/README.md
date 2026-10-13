@@ -84,12 +84,14 @@ is done with the grey suggestion below (typing a new value needs no deleting fir
 ## Changing an existing value: the old value is a grey suggestion
 
 ```
-┃  report-2025.pdf                    ┃   ← the box is empty; the old value after the cursor is grey (Overlay0)
+┃  █eport-2025.pdf                    ┃   ← the box is empty; the old value is grey (Overlay0), the cursor on its first character (`r`)
 ```
 
 - **Single-line inputs only** (text, number; a password shows grey dots for its old value, see
   [`password`](password.md)); a textarea opens with the old value already in ([`textarea`](textarea.md)).
-- The box opens empty, the old value shown in grey (Overlay0) after the cursor.
+- The box opens empty, the old value shown in grey (Overlay0) starting at the cursor's cell: the cursor sits on its first
+  character (as any cursor, Lavender background and a Base character), the grey text after it — like a shell's
+  autosuggestion.
 - `Tab`: takes the old value into the box, the cursor at its end, to be changed with `←|→` (Rules K2).
 - Typing straight away: a new value is typed and the grey text hides; deleting all that was typed brings it back.
 - `Backspace` on an empty value: not this value; the grey text goes, and `Enter` then saves the value empty (where the
@@ -113,7 +115,8 @@ glyph, not a placeholder: it is not text, `Tab` never takes it in, and it stays 
 
 ## Pasted control characters
 
-- **Scope**: one-line values (not the textarea). Digits-only fields keep their own filter.
+- **Scope**: one-line values. For the multi-line textarea see [`textarea`](textarea.md): a line break (a lone `\r`
+  too) is a real line break, and other control characters are handled as here. Digits-only fields keep their own filter.
 - **Only pasted text counts**: pressed `Tab`, `Enter` and `Ctrl-J` keep their own roles.
 - **No control character is dropped; each is drawn as it is, in red** (Red, never split): `\r`, `\n` and `\t` by name
   (2 cells), every other C0, DEL and C1 as `\xNN` (4 cells, e.g. `\x1b`, `\x7f`, `\x85`). `\r\n` is drawn as it is

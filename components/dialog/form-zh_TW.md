@@ -138,6 +138,8 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 - **打開時**：focus 在第一個能停的項目（跳過停用的），新增與編輯都一樣；app 從某一欄打開表單時（例：panel 上對 Port 那一列
   按編輯），停在那一欄。新增時也不自動打開第一欄的 input popup：只省一次 `Enter`，卻讓新增與編輯打開的樣子不同，而且
   想放棄要按兩次 `Esc`（第一次只關 input popup）。打開的一定是表單本身，一次 `Esc` 就離開。
+- **跳進 radio、checkbox 那一欄時，停在第一個有值的選項**：radio 停在已選的那一個，checkbox 組停在第一個勾起來的；都沒有值就停
+  第一個。三種情況都一樣：app 從那一欄打開表單、送出被擋跳到那一欄、在錯誤列按 `e` 回到那一欄。一跳進來，focus 就在這一欄現在的值上。
 
 ```
 ┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -242,7 +244,7 @@ Enter:edit Tab:actions Esc:cancel
   input popup 的錯誤列，值不寫回、popup 不關（見各 input 檔）。不合格的值進不了表單。
 - **牽涉整張表單的規則**：按下按鈕送出時才檢查 —— 必填沒填、依另一欄而定的必填（Auth 選 credential 就要選 Credential）、名字重複。
 - **檢查沒過**：不存，表單留著、值都在。每一個有問題的欄位 label 都轉 Red（一眼看到全部要補哪些）；錯誤列寫依欄位順序的
-  第一個問題，focus 跳到那一欄。
+  第一個問題，focus 跳到那一欄（radio、checkbox 停在哪個選項見「移動」）。
 - **`e`**：在有問題的欄位（label Red）上按 `e`（error），focus 跳到錯誤列，錯誤列換成**這一欄**的訊息（一次檢查全部欄位，每一欄的
   訊息本來就都有）；在錯誤列按 `Enter` 打開完整訊息的 error popup（[`dialog/note`](note-zh_TW.md)，標題寫那一欄的名字，`Enter`、`Esc` 都能關）；在錯誤列按 `e`（edit），
   focus 回到這則訊息的那一欄，再按 `Enter` 就開 input popup 改。錯誤列照樣可以用 `j|k` 走到，`e` 是直接跳的捷徑。按錯 `e`
