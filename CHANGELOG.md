@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.5.8 — 2026-10-13
+
+A gap found while planning the tool that draws the family mark.
+
+- S5: a mark's svg splits its letters with XML comments — a comment names a letter and the rects after it belong to it,
+  the first comment is the U frame, and the order of the comments is the order of the reveal. The tool that draws a mark
+  does not split letters; whoever develops the app adds the comments
+
 ## v0.5.7 — 2026-10-13
 
 A gap found while following v0.5.6 in the shared lib.

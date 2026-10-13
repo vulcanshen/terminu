@@ -858,6 +858,10 @@ the mark it writes the app's name and its author.
 - **The U frame**: `#205090`, the same in every family app, never changed.
 - **The letters in the frame**: `#f2b753`, designed by each app, spelling its own name (e.g. kbu's K and B; locku's L, O,
   C and K, each wrapping the next). tdp's own mark is [`icon.svg`](icon.svg): a T in the frame.
+- **Letters**: marked with XML comments. A comment starts a letter and names it (e.g. `<!-- L -->`); the rects after it
+  belong to it until the next comment. The first comment is the U frame (`<!-- U -->`). The order of the comments is the
+  order of the reveal. The tool that draws a mark does not split letters; whoever develops the app adds the comments
+  once it is saved.
 - **Drawing**: each cell is one `nf-fa-square` (U+F0C8), two columns wide (with a space after it where icons take one
   cell, E5); the background cells are squares in Surface0 `#313244`.
   The mark's 25 columns already have a background cell at either side; one more background row is drawn above it and one
@@ -895,7 +899,7 @@ tagline 400ms after opening, the author and the hint 500ms later).
 **The reveal animation**: a tick is 10ms; it is drawn in stages, with a 250ms hold between stages.
 
 1. **The background**: a whole row a tick, top to bottom.
-2. **The gold letters**: in the order of the letters in the app's name, one letter a stage; 2 cells a tick, the cells of
+2. **The gold letters**: in the order of the comments in the svg (the letters of the app's name), one letter a stage; 2 cells a tick, the cells of
    a letter appearing scattered.
 3. **The U frame**: rising from the bottom row by row, one pair a tick (two mirrored cells; the 13th cell, on the centre
    line, takes a tick of its own); within a row from the middle outwards, the cells nearest the centre line first — the base spreads out from the
