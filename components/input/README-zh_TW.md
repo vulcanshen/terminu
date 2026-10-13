@@ -24,7 +24,7 @@ text、password、number 共用。
 ┃                                          ┃
 ┃ New name for assets                      ┃   ← 說明列：一句話，Overlay0
 ┃                                          ┃
-┃ assets█                                  ┃   ← 值：Lavender；游標 Lavender 底、Base 字
+┃  assets█                                ┃   ← 打字列：`nf-fa-angle_right` 層色，空一格接值；值 Lavender；游標 Lavender 底、Base 字
 ┃                                          ┃
 ┃                                          ┃   ← 錯誤列（layout/popup）
 ┃                                          ┃
@@ -32,6 +32,8 @@ text、password、number 共用。
 ```
 
 - **說明列**：一句話說要輸入什麼（`New name for assets`），Overlay0。跟值之間空一列。要改的對象是誰，寫進這一句。
+- **打字列**：最前面是 `nf-fa-angle_right`（U+F105），離框一格，後面空一格才接值，跟 [`finder`](finder-zh_TW.md) 的打字列一樣。
+  顏色照 finder：打字時是層色 —— 單行 input popup 一直在打字，所以一直是層色。一看就知道游標停的這一列是要打字的地方。
 - **值**：Lavender —— [`color`](../color-zh_TW.md) 裡 Lavender 是「正在編輯的東西」，input popup 裡正在編輯的就是這個值。游標是一格
   Lavender 底、Base 字。
 - **錯誤列**：照 [`layout/popup`](../layout/popup-zh_TW.md)。
@@ -45,12 +47,12 @@ text、password、number 共用。
 框裡顯示游標附近的那一段，被截掉的那一邊補 `…`。
 
 ```
-┃ …/sideproj/terminu/components/layout█ ┃   ← 打字中：游標在尾端，前面截掉
-┃ █/Users/vulcan/Documents/sideproj/te… ┃   ← Home 之後：游標在開頭，後面截掉
+┃  …ideproj/terminu/components/layout█ ┃   ← 打字中：游標在尾端，前面截掉
+┃  █/Users/vulcan/Documents/sideproj/… ┃   ← Home 之後：游標在開頭，後面截掉
 ```
 
 - 游標一定看得到；移動時只捲剛好夠的量，不把游標固定在中間（跟 popup 內容放不下時同一個捲法）。
-- 寬度照顯示寬度算（中文一個字 2 格）。一個字不切成兩半，紅色的 `\n` 也一樣。
+- 寬度照顯示寬度算（中文一個字 2 格）。一個字不切成兩半，紅色的 `\n`、`\x1b` 也一樣。
 
 ## 編輯鍵
 
@@ -63,7 +65,7 @@ text、password、number 共用。
 | `Home` / `End` | 游標跳到最前面、最後面 |
 | `Backspace` / `Delete` | 刪游標前面的字 / 游標上的字 |
 
-- **一個字是看起來的一個字**：中文一個字、emoji 一個、組合字元連同前面的字算一個；貼上進來的換行與 Tab 各算一個。
+- **一個字是看起來的一個字**：中文一個字、emoji 一個、組合字元連同前面的字算一個；貼上進來的控制字元各算一個（`\n`、`\x1b`）。
 - **不做 shell 的刪字快捷鍵**：`Ctrl-U`、`Ctrl-W` 不收。其他 `Ctrl-`、`Alt-` 組合在打字列上沒有作用、不打出字。
 
 **為什麼**：編輯鍵只收鍵帽上寫著的那幾個，看得到就知道怎麼用。`Ctrl-U`、`Ctrl-W` 在不同 shell 裡行為不一樣，收進來反而要記
@@ -72,7 +74,7 @@ text、password、number 共用。
 ## 改一個已經有的值：舊值是灰字提議
 
 ```
-┃ report-2025.pdf                      ┃   ← 框是空的；游標後面的舊值是灰字（Overlay0）
+┃  report-2025.pdf                    ┃   ← 框是空的；游標後面的舊值是灰字（Overlay0）
 ```
 
 - **只用在單行的 input**（text、number；password 的舊值是灰點，見 [`password`](password-zh_TW.md)）；textarea 打開時直接帶入舊值（[`textarea`](textarea-zh_TW.md)）。
@@ -89,31 +91,32 @@ text、password、number 共用。
 
 ## 不放 placeholder
 
-input popup 裡不放 placeholder：要輸入什麼由說明列講；灰字只留給提議。finder 與 panel filter 打字列前面的 `nf-fa-angle_right`
-（[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：它不是字，按 `Tab` 不會收進來，打字時也不會消失。
+input popup 裡不放 placeholder：要輸入什麼由說明列講；灰字只留給提議。打字列前面的 `nf-fa-angle_right`（單行 input、finder、
+panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：它不是字，按 `Tab` 不會收進來，打字時也不會消失。
 
 **為什麼**：兩種灰字長得一樣，一種按 `Tab` 會收進來、一種不會，會分不出來。
 
-## 貼上的換行與 Tab
+## 貼上的控制字元
 
 - **範圍**：一行的值（textarea 不算）。只收數字的欄位照它原本的過濾。
 - **只算貼上的文字**：按下去的 `Tab`、`Enter`、`Ctrl-J` 照它們原本的作用。
-- **換行與 Tab 留在值裡**，畫成紅色的 `\n`、`\t`（Red，2 格，不切開）；整列畫成灰色的列（沒有 focus 的打字列、提議）裡跟著灰。
-  `\r\n` 算一個換行，原樣存或存成 `\n` 都可以。其他控制字元（C0、DEL、C1）丟掉。
-- **`Backspace` 一次刪整個 `\n` 或 `\t`。**
+- **控制字元一個都不丟，照實畫成紅字**（Red，不切開）：`\r`、`\n`、`\t` 寫名字（2 格），其他 C0、DEL、C1 寫 `\xNN`（4 格，例：
+  `\x1b`、`\x7f`、`\x85`）。`\r\n` 也照實畫成 `\r\n` 兩個。整列畫成灰色的列（沒有 focus 的打字列、提議）裡跟著灰。
+- **`Backspace` 一次刪一整個**（`\n`、`\x1b`……）。
 - **遮罩的值照樣遮罩**（password）。
 - **不是使用者打字進來的值走同一個過濾**：原本的名字、檔案或別的程式給的值、清單填回來的值、從啟動目錄來的預設值、提議……
   不一一列舉。
-- **值會被拿去用的（送出、存、執行、交給別的程式）**：按 `Enter` 時擋下，錯誤列寫原因並點名欄位（例：`Name can't have line
-  breaks or tabs`）。**在去掉前後的空白字元之前檢查**：`Icon\r` 去掉空白字元會變成 `Icon`，先去空白字元就檢查不到。
+- **值會被拿去用的（送出、存、執行、交給別的程式）**：按 `Enter` 時擋下，錯誤列寫原因並點名欄位（例：`Name can't have control
+  characters`）。**在去掉前後的空白字元之前檢查**：`Icon\r` 去掉空白字元會變成 `Icon`，先去空白字元就檢查不到。
 - **搜尋與篩選的打字列只畫，不擋。**
 
-**為什麼**：換成空白會悄悄改掉使用者貼進來的東西；明確畫出來，使用者看得到、自己決定要不要刪。
+**為什麼**：換成空白或丟掉，都會悄悄改掉使用者貼進來的東西；照實畫出來，使用者看到的就是真的貼進來的，自己決定要不要刪。
+只丟控制字元也清不乾淨：從終端機複製帶顏色的字，丟掉 `\x1b` 會留下 `[31m`。
 
 ## 值
 
 - **一行的值確定時去掉前後的空白字元**：所有 Unicode 的空白字元（一般空格、全形空格 U+3000、NBSP……），不是只有某一種空白；
-  password 不去。換行與 Tab 的檢查在去空白字元之前（見上面）。看不見的空白字元最難查：從網頁複製來的主機名稱尾巴夾著一個 NBSP、
+  password 不去。控制字元的檢查在去空白字元之前（見上面）。看不見的空白字元最難查：從網頁複製來的主機名稱尾巴夾著一個 NBSP、
   值的後面多打了一個全形空格，畫面上一模一樣，用起來卻不對。
 
 ## 在表單與 panel 上怎麼顯示

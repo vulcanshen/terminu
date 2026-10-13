@@ -26,7 +26,7 @@ Shared by text, password and number.
 ┃                                          ┃
 ┃ New name for assets                      ┃   ← explanation row: one sentence, Overlay0
 ┃                                          ┃
-┃ assets█                                  ┃   ← value: Lavender; cursor Lavender background, Base text
+┃  assets█                                ┃   ← typing row: `nf-fa-angle_right` in the layer colour, a space, then the value: Lavender; cursor Lavender background, Base text
 ┃                                          ┃
 ┃                                          ┃   ← error row (layout/popup)
 ┃                                          ┃
@@ -35,6 +35,10 @@ Shared by text, password and number.
 
 - **The explanation row**: one sentence saying what to enter (`New name for assets`), in Overlay0, with a blank row
   between it and the value. What is being changed goes into that sentence.
+- **The typing row**: it starts with `nf-fa-angle_right` (U+F105), one cell from the border, then a space before the
+  value, as on a [`finder`](finder.md)'s typing row. Its colour follows the finder: the layer colour while typing — and a
+  one-line input popup is always typing, so it is always the layer colour. The row the cursor waits on reads at once as
+  the place to type.
 - **The value**: Lavender — in [`color`](../color.md) Lavender is "what is being edited", and in an input popup what is
   being edited is this value. The cursor is one cell, Lavender background with Base text.
 - **The error row**: as in [`layout/popup`](../layout/popup.md).
@@ -49,13 +53,13 @@ Shared by text, password and number.
 The box shows the stretch around the cursor, with `…` on the side that is cut.
 
 ```
-┃ …/sideproj/terminu/components/layout█ ┃   ← typing: the cursor at the end, the start cut
-┃ █/Users/vulcan/Documents/sideproj/te… ┃   ← after Home: the cursor at the start, the end cut
+┃  …ideproj/terminu/components/layout█ ┃   ← typing: the cursor at the end, the start cut
+┃  █/Users/vulcan/Documents/sideproj/… ┃   ← after Home: the cursor at the start, the end cut
 ```
 
 - The cursor is always in sight; moving scrolls by just enough, never pinning the cursor to the middle (the same
   scrolling as a popup whose content does not fit).
-- Width is display width (a CJK character is 2 cells). A character is never split in two, nor is a red `\n`.
+- Width is display width (a CJK character is 2 cells). A character is never split in two, nor is a red `\n` or `\x1b`.
 
 ## Editing keys
 
@@ -69,7 +73,7 @@ On the typing row:
 | `Backspace` / `Delete` | delete the character before / under the cursor |
 
 - **A character is what looks like one**: a CJK character, an emoji, a combining mark together with the character
-  before it each count as one; a pasted line break or tab is one each.
+  before it each count as one; a pasted control character is one each (`\n`, `\x1b`).
 - **No shell deletion shortcuts**: `Ctrl-U` and `Ctrl-W` are not taken. Other `Ctrl-` and `Alt-` combinations do
   nothing on the typing row and type nothing.
 
@@ -80,7 +84,7 @@ is done with the grey suggestion below (typing a new value needs no deleting fir
 ## Changing an existing value: the old value is a grey suggestion
 
 ```
-┃ report-2025.pdf                      ┃   ← the box is empty; the old value after the cursor is grey (Overlay0)
+┃  report-2025.pdf                    ┃   ← the box is empty; the old value after the cursor is grey (Overlay0)
 ```
 
 - **Single-line inputs only** (text, number; a password shows grey dots for its old value, see
@@ -102,35 +106,36 @@ and in a textarea `Tab` indents, so it could not take a suggestion anyway.
 ## No placeholder
 
 An input popup has no placeholder: what to enter is said by the explanation row; grey text is kept for suggestions only.
-The `nf-fa-angle_right` before the typing row of a finder or a panel filter ([`finder`](finder.md)) is a glyph, not a
-placeholder: it is not text, `Tab` never takes it in, and it stays while typing.
+The `nf-fa-angle_right` before a typing row (a one-line input, a finder, a panel filter; [`finder`](finder.md)) is a
+glyph, not a placeholder: it is not text, `Tab` never takes it in, and it stays while typing.
 
 **Why**: two kinds of grey text that look alike, one taken in by `Tab` and one not, could not be told apart.
 
-## Pasted line breaks and tabs
+## Pasted control characters
 
 - **Scope**: one-line values (not the textarea). Digits-only fields keep their own filter.
 - **Only pasted text counts**: pressed `Tab`, `Enter` and `Ctrl-J` keep their own roles.
-- **Line breaks and tabs stay in the value**, drawn as a red `\n` / `\t` (Red, 2 cells, never split); in a row drawn
-  grey as a whole (a typing row without the focus, a suggestion) they are grey too. `\r\n` counts as one line break,
-  stored as is or as `\n`, either way. Other control characters (C0, DEL, C1) are dropped.
-- **`Backspace` deletes a whole `\n` or `\t` at once.**
+- **No control character is dropped; each is drawn as it is, in red** (Red, never split): `\r`, `\n` and `\t` by name
+  (2 cells), every other C0, DEL and C1 as `\xNN` (4 cells, e.g. `\x1b`, `\x7f`, `\x85`). `\r\n` is drawn as it is
+  too, as the two `\r\n`. In a row drawn grey as a whole (a typing row without the focus, a suggestion) they are grey too.
+- **`Backspace` deletes a whole one at once** (`\n`, `\x1b`…).
 - **Masked values stay masked** (password).
 - **Values the user did not type go through the same filter**: the original name, a value from a file or another
   program, a value filled back from a list, a default from the start directory, a suggestion… not listed one by one.
 - **A value that is used (submitted, saved, run, handed to another program)**: refused on `Enter`, the error row giving
-  the reason and naming the field (e.g. `Name can't have line breaks or tabs`). **Check before trimming leading and
+  the reason and naming the field (e.g. `Name can't have control characters`). **Check before trimming leading and
   trailing whitespace**: trimmed, `Icon\r` becomes `Icon`, so trimming first leaves nothing to catch.
 - **Search and filter typing rows only draw them, never refuse.**
 
-**Why**: turning them into spaces would quietly change what the user pasted; drawn plainly, they are seen, and the user
-decides whether to delete them.
+**Why**: turning them into spaces or dropping them would quietly change what the user pasted; drawn as they are, what
+the user sees is what was really pasted, and the user decides whether to delete them. Dropping control characters does
+not even clean up: text copied in colour from a terminal, with `\x1b` dropped, leaves `[31m` behind.
 
 ## Value
 
 - **A one-line value has leading and trailing whitespace trimmed when confirmed**: every Unicode whitespace character
-  (the ordinary space, the ideographic space U+3000, NBSP…), not just one kind of space; not for a password. The line
-  break and tab check comes before the trim (see above). Invisible whitespace is the hardest to track down: a host name
+  (the ordinary space, the ideographic space U+3000, NBSP…), not just one kind of space; not for a password. The control
+  character check comes before the trim (see above). Invisible whitespace is the hardest to track down: a host name
   copied from a web page with an NBSP at its end, or an ideographic space typed after a value, looks exactly the same on
   screen but does not work.
 

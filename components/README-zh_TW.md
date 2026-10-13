@@ -109,4 +109,4 @@ app 依性質自己挑。挑的範圍只限列出的方案：方案都不合用�
 | [`slider`](input/slider-zh_TW.md) | 範圍內的數值 |
 | [`datetime-picker`](input/datetime-picker-zh_TW.md) | 日期與時間 |
 | [`color-picker`](input/color-picker-zh_TW.md) | 顏色 |
-| [`file-picker`](input/file-picker-zh_TW.md) | 選檔 |
+| [`file-picker`](input/file-picker-zh_TW.md) | 選檔；也有選目錄的一種 |

@@ -39,11 +39,12 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
 - **Hint**: after `┗━ ` on the bottom border, written as Rules M5 says.
   - **Order**: `Enter` first → this popup's own keys → the `Tab:…` that switches parts → `Esc` last. The terminal is the
     exception: its exit key comes first ([`dialog/terminal`](../dialog/terminal.md)).
-  - **Keys that move between items are left out** (`j|k`, `↑|↓`, a form's `Tab` between fields); only actions and
-    leaving are written: users find movement out by using it. A key that switches parts is not movement and is written
-    (e.g. a finder's `Tab:list`).
-  - **When it does not fit, whole pairs are dropped from the end**, never cut mid-pair; the scroll position at the right
-    of the bottom border stays.
+  - **Keys that move between items are left out** (`j|k`, `↑|↓`); only actions and leaving are written: users find
+    movement out by using it. A key that switches parts is not movement and is written (e.g. a finder's `Tab:list`, a
+    form's `Tab:actions`).
+  - **When it still does not fit at the widest frame, whole pairs are dropped from the end**, never cut mid-pair; the
+    scroll position at the right of the bottom border stays. The frame's width already counts the hint and the scroll
+    position ("Width" below), so pairs are dropped only on a terminal too narrow.
   - **A popup with only a typing row** (text, password, number): `?` is a character there, so the hint must list every
     operation, and fit in 80 columns (Rules M3).
 - **Right of the bottom border**: the scroll position when the content does not fit (see "When the content does not fit"
@@ -81,11 +82,13 @@ The two widths of Rules F7, set when the popup opens and unchanged while it is o
 
 | | Width | Examples |
 |---|---|---|
-| **Content width known when it opens** | the widest row + 4 (one cell of border and one of padding on each side; where the right padding is as wide as the arrow, its real width), at least enough for the title and hint (the hint's width + 6: `┗━ ` and ` ━┛`), at most `min(terminal width − 2, 120)` | input with a length limit (a PIN of at most 12 digits: the content is 12 + 11 spaces + 4 = 27 cells, the hint `Enter:save Backspace:clear Esc:cancel` 37 + 6 = 43 cells, so the frame is 43 cells), confirm, menu, key reference, toast, error popup, datetime picker, color picker |
+| **Content width known when it opens** | the widest row + 4 (one cell of border and one of padding on each side; where the right padding is as wide as the arrow, its real width), at least enough for the title and hint (the hint's width + 6: `┗━ ` and ` ━┛`), and when it scrolls also for the scroll position (the hint's width + the scroll position's widest width + 9: `┗━ `, at least ` ━ ` between the two, and ` ━┛`), at most `min(terminal width − 2, 120)` | input with a length limit (a PIN of at most 12 digits: the content is 12 + 11 spaces + 4 = 27 cells, the hint `Enter:save Backspace:clear Esc:cancel` 37 + 6 = 43 cells, so the frame is 43 cells), confirm, menu, key reference, toast, error popup, datetime picker, color picker |
 | **Content width not known** | `min(terminal width − 2, 120)` | free-typed text, URLs, streaming content, search results, forms |
 
 "Known" means that how wide it can get is known the moment it opens, not how many characters are typed now: at the first
-digit of a PIN the frame is already 43 cells, and it does not grow with the typing.
+digit of a PIN the frame is already 43 cells, and it does not grow with the typing. The scroll position is counted at
+its widest too (`20 of 20` for a 20-row menu, `T-T of T` for `N-M of T`), so the frame does not change width while it
+scrolls; and the hint is always whole — its last pair is usually `Esc`, and how to close a popup must always be in sight.
 
 Narrow content is aligned left, one cell from the border (e.g. confirm, datetime picker, color picker); a toast's text
 and a password's unlock mask are centred.
@@ -126,7 +129,8 @@ capsule chain ([`panel`](panel.md)). One space on each side. The spec:
   is loading.
 - Width: one cell, the same as the static glyph it replaces, so swapping it in and out shifts nothing. Braille dots do not
   fit in shape or width and are not used.
-- Colour: the same as the text beside it; after a popup title, that layer's layer colour (bold).
+- Colour: the same as the text beside it; after a popup title, that layer's layer colour (bold); on a panel's top border,
+  the border colour (Blue with focus, Surface2 without, dimmed along with the frame) — the frame's colour either way.
 
 ## Cancelling and completing
 

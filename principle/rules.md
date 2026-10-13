@@ -80,7 +80,7 @@ first:
 | Focus is on | `Tab` switches between |
 |---|---|
 | a screen | panels |
-| a form ([components/dialog/form](../components/dialog/form.md)) | fields; the error row (while it holds an error) and the action row are each a stop too (the options inside a field move with hjkl, K12) |
+| a form ([components/dialog/form](../components/dialog/form.md)) | the field area and the action row, coming back to the item it left (the items in the field area move with hjkl, K12) |
 | a popup with several areas (a finder, a datetime picker) | areas |
 
 - `Tab` does not cross screens or leave the current popup.
@@ -93,7 +93,8 @@ first:
 - Cycling backwards (e.g. `Shift-Tab`) is a hotkey, and whether to offer it is up to the app; a form always has
   `Shift-Tab`.
 
-**Why**: users press `Tab` expecting "the next one" — the next panel on a screen, the next field in a form. It is the
+**Why**: users press `Tab` expecting "the next one" — the next panel on a screen, the other of a form's field area and
+action row (as with a finder's typing row and list). It is the
 same role at different levels. Switching screens is a global operation (P3).
 
 ### K3 `Enter` does the most intuitive thing to what has focus `concept`
@@ -151,8 +152,8 @@ its own key (K9).
   `Esc` closes it too.
 - **`Space` closes only the Space menu it opened itself.** On any other popup (a confirm, input,
   note… opened by `Enter` or a hotkey), `Space` **does nothing**; those are closed by `Esc` or by their own flow. The one
-  exception: on a checkbox popup's list, `Space` checks or unchecks
-  ([components/input/checkbox](../components/input/checkbox.md)).
+  exception: on checkbox options (a checkbox popup's list, the checkboxes drawn on a form), `Space` checks or unchecks
+  ([components/input/checkbox](../components/input/checkbox.md), [components/dialog/form](../components/dialog/form.md)).
 - A popup's own operations run by hotkey, disclosed in the hint on the popup's bottom border and in
   that popup's `?` help (K6); no Space menu is stacked on top of a popup.
 
@@ -308,7 +309,11 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
 - A one-dimensional list in a panel with tabs: `h|l` switch tabs, `j|k` still move in the list.
 - **`u|d` move half a page, `gg|G` to the top and the bottom.** `g` is only the start of a two-key chord: `gg` goes to
   the top, and other chords starting with `g` may be hotkeys (e.g. filu's and webu's `[go]to`); a single `g` does
-  nothing. `Ctrl-U|Ctrl-D` are not taken as aliases.
+  nothing. When the key after `g` is not a chord, it is as if `g` had not been pressed and that key works as usual (`g`
+  then `j`: down a row). `Ctrl-U|Ctrl-D` are not taken as aliases.
+- **`Home` and `End` only on a typing row**: the cursor to the start and the end
+  ([components/input/README](../components/input/README.md)). On lists, menus, viewers and a textarea's moving state they
+  do nothing: those have `gg|G` and `0|$`.
 - **Stepping wraps at the ends**: moving one step at a time along a run of items (`j|k`, `h|l`, the arrow keys, `Tab`)
   — a panel's list, a one-value-per-row panel, a menu, a form, the list of a finder, a select or a checkbox popup, a
   panel's tabs, the columns and items inside a picker — one step past the last item goes to the first, and one step back
@@ -328,7 +333,9 @@ left and right keys are idle and get "back" and "on", so all four arrow keys wor
 boxes `Ctrl-U` means "clear this line", so the same chord would turn pages in one place in the family and delete text in
 another — too high a price for a slip. Wrapping at the ends: the same key reacts the same way at the ends everywhere in
 the family, so nobody has to remember where it wraps and where it stops; a half page across the ends would land
-somewhere nobody can guess, so `u|d` stop.
+somewhere nobody can guess, so `u|d` stop. `Home` and `End` only on a typing row: there `g` and `0` are characters, so
+they are needed; elsewhere a key already does the job, and no second key is given. A stray `g` does not make the next
+key fail.
 
 ---
 
@@ -481,7 +488,8 @@ one line usually means the action is badly named. Digits stay out of words becau
   in the disabled colour; with no target it is not listed. The bottom-border hint and the footer, short on room and
   always on screen, may list only the keys that work now; that is up to the app.
 - A section of the key reference with a title of its own describing **another surface** (e.g. `ssh grid` in the `?` of
-  sshu's list, since a cell shows no key reference) is not this surface's keys and is shown as usual.
+  sshu's list, since a cell shows no key reference) is not this surface's keys and is shown as usual, last (after
+  `app-wide`, [components/dialog/note](../components/dialog/note.md)).
 
 **Why**: users take a hidden action to mean the app doesn't support it; disabling tells them "this exists, just not
 now". No reason is added because the reasons vary endlessly, and squeezing them into a one-line description would let
@@ -576,7 +584,7 @@ The family's popups come in these seven classes only, each with fixed key meanin
 | **menu** | a list with no search: `j\|k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, a sort picker, a jobs list (`Enter` opens the row in full) |
 | **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6); what to read first sits above, the question last | confirm before delete, the quit confirm, "Connect to X?" carrying the details |
 | **input** | enter or pick one value, written back once confirmed; one value per popup. On the typing row it is the input state (K8); other parts follow K1 | rename, address bar, select, datetime picker |
-| **form** | one value per row; `Tab` jumps a field at a time, hjkl move item by item (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing the button), the button submits ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Sign in and Add bookmark |
+| **form** | one value per row; `Tab` switches between the field area and the action row, hjkl move item by item (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing the button), the button submits ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Sign in and Add bookmark |
 | **note** | read-only, scrollable (K12); no list of options to run with `Enter` | key reference, YAML viewer, App Log, error popup |
 | **toast** | a short message popping up from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it | "Copied", an operation failed |
 | **terminal** | a subprocess running in the box; every key is its, only the exit key and the chords the app keeps are the app's (K10) | kbu's Alterm, filu's shell |
@@ -662,8 +670,8 @@ itself.
 - **Which actions need a confirm is up to the app**, regardless of whether they are reversible. Once an action is set to
   be confirmed, it is confirmed every time. The exception: a choice made explicitly in a picker may count as the
   confirmation (e.g. picking the default app from an "open with" list), as the app decides.
-- `Enter` accepts, `Esc` cancels (K3, K4). A confirm may have hotkeys of its own (e.g. `y` / `n`), listed in the
-  confirm's `?` help (K6).
+- `Enter` accepts, `Esc` cancels (K3, K4). These are the only two answers, with no other keys such as `y` and `n`:
+  `y` would only be `Enter` and `n` only `Esc`, a second set for the same thing.
 - The prompt says **what accepting will do** (verb and object), not an abstract OK.
 - A confirm cannot be completed by accident (e.g. a mouse click must not accept it).
 - How it looks: [components/dialog/confirm](../components/dialog/confirm.md).
@@ -800,6 +808,9 @@ The splash is the terminu family's shared easter egg, and the **only thing in td
 The disclosure rules (M1, M3, M4) and the core-key rule (K1) do not apply to it; it is not a popup either, so chapter F
 does not apply. The splash is documented only in tdp — never in an app's README, menus or help.
 
+The splash **takes the whole screen**: while it is open nothing of the screen beneath is drawn (the chip row, panels,
+footer), and closing it brings the screen back — like switching to another screen, plainly not a popup.
+
 ### S1 Every app has a splash, opened with `V` `fixed`
 
 Every terminu app has a splash, opened with **`V`** on a panel. `V` is reserved for it:
@@ -838,11 +849,47 @@ up inside a popup, an input box or a PTY interrupts what the user is doing.
 
 ### S5 The content is the family icon `fixed`
 
-The splash draws the app's `docs/icon.svg` — the terminu family mark — cell for cell, with a reveal animation. How the
-animation runs is up to the app.
+The splash draws the app's `docs/icon.svg` — the terminu family mark — cell for cell, with a reveal animation; under
+the mark it writes the app's name and its author.
 
-**Why**: the splash is the family's signature. Each member draws its own version of the family mark, so pressing `V`
-tells you at once that this comes from the same family.
+**The mark**: the svg's viewBox is 250 × 250, a cell is one 10 × 10 rect, and the background is `#000000`. The mark takes
+25 × 19 cells (x 0–240, y 30–210).
+
+- **The U frame**: `#205090`, the same in every family app, never changed.
+- **The letters in the frame**: `#f2b753`, designed by each app, spelling its own name (e.g. kbu's K and B; locku's L, O,
+  C and K, each wrapping the next). tdp's own mark is [`icon.svg`](icon.svg): a T in the frame.
+- **Drawing**: each cell is one `nf-fa-square` (U+F0C8), two columns wide (with a space after it where icons take one
+  cell, E5); the background cells are squares in Surface0 `#313244`.
+  The mark's 25 columns already have a background cell at either side; one more background row is drawn above it and one
+  below, 21 rows in all, so the margin is the same on all four sides.
+
+**The text under it**: a blank row under the mark, then six rows, each centred within the mark's width. The name, version
+and tagline come from the app; the two author rows are the same in every family app.
+
+| Row | Content | Colour |
+|---|---|---|
+| 1 | the name: the app's command name (`locku`) | Blue, bold |
+| 2 | the version, as `<app> version` prints it (`v0.2.0`) | Blue |
+| 3 | a one-line tagline (`A screensaver with a PIN, for the terminal`) | Text |
+| | a blank row | |
+| 4 | `developed by` | Overlay0 |
+| 5 | `vulcan.shen.2304@gmail.com` | the mark's gold `#f2b753` |
+| | a blank row | |
+| 6 | `Press any key to close` | Overlay0 |
+
+**The reveal animation**: a tick is 10ms; it is drawn in stages, with a 250ms hold between stages.
+
+1. **The background**: a whole row a tick, top to bottom.
+2. **The gold letters**: in the order of the letters in the app's name, one letter a stage; 2 cells a tick, the cells of
+   a letter appearing scattered.
+3. **The U frame**: rising from the bottom, 3 cells a tick.
+4. **The text**: 400ms after the mark is complete, the name, version and tagline appear together; 500ms later,
+   `developed by`, the e-mail address and the hint appear together.
+
+**Why**: the splash is the family's signature. Each member draws its own version of the family mark, and the animation,
+text and colours are the same in every app, so pressing `V` tells you at once that this comes from the same family. The
+name is the command name, the one users type in the terminal; the hint says `any key`, since by S3 any key closes it.
+The author's e-mail address is in the mark's gold, tying the signature to the mark.
 
 ---
 
@@ -974,8 +1021,8 @@ cases goes crooked.
 - A single static binary built with goreleaser; `install.sh` / `uninstall.sh` (`curl | sh`, no sudo),
   also published to the Homebrew tap `vulcanshen/homebrew-tap`.
 - Screen tests across sizes: at several terminal sizes, every line is exactly the terminal width (L4).
-- `docs/icon.svg` is the family mark; the splash (chapter S) is drawn from it cell for cell, with a test keeping the two
-  identical.
+- `docs/icon.svg` is the app's version of the family mark (what it looks like: S5; tdp's own is `principle/icon.svg`);
+  the splash (chapter S) is drawn from it cell for cell, with a test keeping the two identical.
 - Demo gifs are recorded with VHS, scripts in `.local/demos/` (how many go in the README: see E7).
 
 **Why**: the five apps install, uninstall and release the same way; having installed one, users can install the others.
@@ -1057,7 +1104,7 @@ when an app uses the lib, which rules the lib covers and which stay with the app
 | E4 requirements | stated in the README | — | stated in the README |
 | E5 the actual icon width | covers it: the probe (icons and powerline symbols), the display-width functions, setting `TERMINU__ICON_WIDTH` and `TERMINU__POWERLINE_WIDTH` for subprocesses | — | from the lib |
 | E6 releases | a git tag (a Go module), no binary; the L4 screen tests are required | not released; the L4 screen tests are required | as E6 |
-| S5 the icon the splash draws | the splash mechanism | the family mark | its own `docs/icon.svg` |
+| S5 the icon the splash draws | the splash mechanism | tdp's `principle/icon.svg` (terminu's mark) | its own `docs/icon.svg` |
 | E7 README | a structure of its own: installation is `go get`, the quick start is code, and it says how to run the example app | none of its own | as E7 |
 | E7 dev-remarks | yes, the same skeleton | — | yes |
 | Departure (start of the Rules) | **the lib does not depart**: what it cannot do, or what works badly, is reported as a gap in tdp, and the lib changes once the spec does | — | its own departures go in its own dev-remarks |

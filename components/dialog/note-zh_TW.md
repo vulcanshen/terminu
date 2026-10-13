@@ -86,6 +86,8 @@ viewer（YAML 檢視、App Log、檔案內容）可以把一段文字選起來�
   - `core keys`：這個 panel 上有作用的 core key —— `Space`、`?`、`Tab`、`1–N`（好幾個 panel 時，Rules K1）、`q|Ctrl-C`；`Esc` 只在
     這裡有作用時才列（例：有篩選可以清）；`Enter` 已經在 `item operation` 寫了它在這裡做什麼，不重複。
   - `app-wide`：global 熱鍵。
+  - 說明**別的 surface** 的段（Rules M6；例：panel 裡的 PTY 進去之後的鍵，標題 `terminal`）：排在最後，`app-wide` 之後。
+    每個 panel 前面幾段的順序都一樣，有沒有這一段，`core keys`、`app-wide` 都在原位；先讀「這裡能按什麼」，再讀「進去之後」。
 - **popup 上**只列這個 popup 自己的鍵（Rules K6）：它的熱鍵、`Enter`、`Esc`、移動鍵。
 - **顏色**：鍵 Blue、不加粗；說明 Text。現在按不了的鍵，鍵與說明都用 Surface2（Rules M6）。
 - **按鍵**：捲動照上面；`?` 或 `Esc` 關，`Enter` 不作用。hint `?|Esc:close`。

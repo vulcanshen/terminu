@@ -12,17 +12,19 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
 **Long lines wrap, with line numbers on the left**:
 
 ```
-┃ 1 Thanks for the quick reply. The new    ┃
-┃   build fixes the crash on start.        ┃   ← the same line wrapped: the number column is blank
-┃ 2                                        ┃
-┃ 3 One more thing: the export button█     ┃   ← the cursor's line
+┃  1 Thanks for the quick reply. The new   ┃
+┃    build fixes the crash on start.       ┃   ← the same line wrapped: the number column is blank
+┃  2                                       ┃
+┃  3 One more thing: the export button█    ┃   ← the cursor's line
 ```
 
 - A line wider than the box continues on the next row, never scrolling sideways. Wrapping is only on screen; no line
   break is added to the value. Width is display width, and a character is never split in two.
-- **Line numbers**: the first row of each line carries its number, right-aligned to the digits of the largest number,
-  followed by a space; wrapped rows leave the number column blank — so the rows of one line are seen as one. Numbers in
-  Overlay0, the cursor's line number in Text.
+- **Line numbers**: the first row of each line carries its number, right-aligned, followed by a space; wrapped rows leave
+  the number column blank — so the rows of one line are seen as one. Numbers in Overlay0, the cursor's line number in
+  Text. The number column is **at least two digits**: max(2, the digits of the largest number). Lines 1–99 never shift;
+  at line 100, line 1000 and so on it widens by one digit each time and the content moves one cell right — the user
+  typed those lines, so the reason is plain. There is no limit on the number of lines.
 - **Size**: the width and the height both take the maximum of Rules F7 (`min(terminal width − 2, 120)`, the screen
   height − 2): the content grows with typing, so its size cannot be known when it opens. Content taller than the box
   scrolls inside it, the cursor always in view; when it does not fit, the right of the bottom border shows the cursor's

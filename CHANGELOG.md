@@ -1,5 +1,51 @@
 # Changelog
 
+## v0.5.4 — 2026-10-13
+
+The fourth round of gaps: what the shared lib met while following v0.5.3, what the user found walking through its showcase,
+and the splash, now specified in full.
+
+**Splash**
+
+- S5: the family mark is specified — a navy U frame (`#205090`), the same in every app, around the app's own letters in gold
+  (`#f2b753`), 25 × 19 pixels, each pixel one `nf-fa-square` two columns wide, on a Surface0 sheet. tdp ships terminu's own
+  mark, a gold T, as `principle/icon.svg`; the showcase draws it
+- The splash takes the whole screen
+- Under the mark: the app's command name (Blue, bold), its version (Blue), its one-line description (Text); `developed by`
+  (Overlay0) and the author's e-mail (the mark's gold); `Press any key to close` (Overlay0)
+- The reveal is specified, no longer up to the app: the sheet row by row from the top, the letters in order with their pixels
+  scattered two a tick, then the U frame rising from the base; a 10 ms tick, 250 ms between stages; the name, version and
+  description 400 ms after the mark, the rest 500 ms later
+
+**Keys**
+
+- confirm answers only with `Enter` and `Esc`; no `y` or `n`
+- `Home` and `End` act only on a typing row
+- After a lone `g`, a key that forms no combination runs as if `g` had not been pressed
+- The form's `Tab|Shift-Tab` moves between the field area and the action row, coming back to the item it left; inside the
+  fields, `j|k` go item by item. The hint reads `Tab:actions` on a field and `Tab:fields` on the button
+- A checkbox option drawn on a form ticks with `Space` too (`Enter|Space:toggle`), as in the checkbox popup
+
+**Inputs**
+
+- Every single-line input popup starts its typing row with `nf-fa-angle_right` and a space, as the filters do; the
+  unlock-style password does not
+- The unlock-style password has a cursor where the next dot will go; on the last digit it sits on that dot
+- Pasted control characters are all kept and drawn in red — `\r`, `\n`, `\t` by name, the rest as `\xNN` — and a value that
+  will be used is held back on `Enter` while it has any
+- A textarea's line numbers are at least two digits wide, so the text no longer jumps at line 10
+- The file-picker can pick a directory: only directories are listed, and a `.` row (`nf-md-folder_move`) at the top chooses
+  the directory you are in
+- The file-picker's metadata for a symlink describes its target; a value that cannot be read is `—`
+
+**Layout and colour**
+
+- A popup that scrolls is wide enough for its whole hint and its scroll position, so `Esc:close` is never dropped
+- A panel's loading icon takes the frame colour
+- A key reference's section about another surface comes last
+- Dimming and the layer colours round each channel half up; the third layer is `#84C5F1`, and the dimming examples are
+  corrected
+
 ## v0.5.3 — 2026-10-13
 
 A gap found while following v0.5.2 in the shared lib.

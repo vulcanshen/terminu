@@ -21,7 +21,8 @@ kind of finder ([`input/finder`](finder.md)): only what differs is written here.
 
 ## Keys
 
-**In a form or a panel**: `Enter` flips it in place; the focus stays, and it takes effect at once.
+**In a form or a panel**: `Enter` flips it in place; the focus stays, and it takes effect at once. In a form `Space`
+flips it too (the exception of Rules K5, as in a checkbox popup); on a panel `Space` still opens the Space menu.
 
 **The checkbox popup**:
 

@@ -45,7 +45,7 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 ┃ tmux new-session -A -s main                    ┃
 ┃ Layout   row                                   ┃   ← 左右式
 ┃                                                ┃
-┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
+┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
 ```
 
 （這一節與下一節的圖只畫欄位；動作列見「動作列」。）
@@ -83,7 +83,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 ┃ Port        22                                 ┃
 ┃ Credential  —                                  ┃   ← 停用：label Surface2
 ┃                                                ┃
-┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
+┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
 ```
 
 **為什麼**：實心色塊不只換顏色、形狀也不同，focus 不只靠顏色（Rules L5）；跟 menu 同一套畫法：在家族的 popup 裡，層色底的那一塊
@@ -103,7 +103,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 ┃ ────────────────────────────────────────────── ┃   ← 分隔線
 ┃                                          Save  ┃   ← 動作列：按鈕靠右
 ┃                                                ┃
-┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
+┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
 ```
 
 - **按鈕**：文字左右各留一格空白，一塊底色。沒有 focus 時也有底色（Surface1 底、Text 字），一看就知道它也是一個可以
@@ -130,13 +130,11 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 - **`j|l|↓|→` 下一個項目，`h|k|↑|←` 上一個項目**（表單是一維清單，Rules K12）。走到一欄的最後一個選項
   再往後，就進到下一欄；在第一個選項再往前，就回到上一欄。`gg` 到第一個項目、`G` 到最後一個（按鈕）；`u|d` 以項目為單位
   半頁，到頭尾停住。
-- **`Tab|Shift-Tab` 一次跳一欄**（Rules K2），有錯誤的錯誤列、動作列也各算一站。
-- **跳進 radio、checkbox 那一欄時**：radio 停在已經選的那個選項，都沒選就停在第一個；checkbox 組停在第一個。`Shift-Tab`
-  從下面進來也一樣：`Tab` 是「跳到那一欄」，落點跟方向無關。radio 停在目前的值上，想換就 `j|k` 移到旁邊，不換就直接
-  `Tab` 離開，不會誤選；checkbox 組每個選項各自勾或不勾，沒有「目前那一個」，從頭開始最好預期。
-- **頭尾繞回**（Rules K12）：`Tab` 與 `j|k` 都一樣。按鈕是最後一個項目，在按鈕上往後回到第一欄；在第一欄往前一步就到按鈕 —— 補上動作列
-  在最底下的距離。
-- **停用的欄位與選項跳過**：`Tab` 與 `j|k` 都不停在上面；照樣畫在原位。停用就是「現在不能改」，停在上面按 `Enter` 也沒事可做。
+- **`Tab|Shift-Tab` 在欄位區與動作列之間來回**（Rules K2）：在欄位區的任何一項按 `Tab` 到按鈕；在按鈕上按 `Tab` 回到離開前的那一個
+  項目 —— 跟 [`input/finder`](../input/finder-zh_TW.md) 的打字列與清單一樣。欄位區裡一項一項走用 `j|k`。錯誤列不是 `Tab` 的一站
+  （`j|k` 與 `e` 到得了）；它跟按鈕一起固定在底部，算同一塊：在錯誤列上按 `Tab` 也回到欄位區離開前的那一個項目。
+- **頭尾繞回**（Rules K12）：按鈕是最後一個項目，`j` 在按鈕上往後回到第一欄；在第一欄往前一步就到按鈕 —— 補上動作列在最底下的距離。
+- **停用的欄位與選項跳過**：`j|k` 不停在上面；照樣畫在原位。停用就是「現在不能改」，停在上面按 `Enter` 也沒事可做。
 - **打開時**：focus 在第一個能停的項目（跳過停用的），新增與編輯都一樣；app 從某一欄打開表單時（例：panel 上對 Port 那一列
   按編輯），停在那一欄。新增時也不自動打開第一欄的 input popup：只省一次 `Enter`，卻讓新增與編輯打開的樣子不同，而且
   想放棄要按兩次 `Esc`（第一次只關 input popup）。打開的一定是表單本身，一次 `Esc` 就離開。
@@ -150,10 +148,10 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 ┃        󰐽 credential                            ┃
 ┃ Agent  󰄲 forward                               ┃   ← 1 個項目
 ┃                                                ┃
-┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
+┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
 ```
 
-`j` 一路往後：Name → password → privatekey → credential → forward。`Tab` 一路往後：Name → Auth → Agent。
+`j` 一路往後：Name → password → privatekey → credential → forward。在 privatekey 上按 `Tab` 到按鈕，在按鈕上再按 `Tab` 回到 privatekey。
 
 ### `Enter`
 
@@ -161,7 +159,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
   - 在 input popup 裡按 `Enter` 確定：值寫回表單那一欄，input popup 關掉，**focus 留在同一欄**（Rules K3）。
   - 在 input popup 裡按 `Esc`：關掉 input popup，這一欄的值不變。
   - 從表單打開的 checkbox popup：`Space` 勾、`Enter` 整組寫回、`Esc` 取消（[`input/checkbox`](../input/checkbox-zh_TW.md)）。
-- **在 radio 的選項上**：選它；**在 checkbox 的選項上**：在原地翻。都不開 popup，focus 留在原位，馬上生效；選錯了在原地再按
+- **在 radio 的選項上**：選它；**在 checkbox 的選項上**：在原地翻（`Space` 也能翻，跟 checkbox popup 一樣，Rules K5）。都不開 popup，focus 留在原位，馬上生效；選錯了在原地再按
   一次就好。
 - **在按鈕上**：送出。
 
@@ -169,8 +167,8 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 
 只有一個方法：focus 移到按鈕上，按 `Enter`。明確按下按鈕，才保證是使用者要送出。
 
-- 快的走法：`G` 直接到按鈕；或在第一欄按 `Shift-Tab`（頭尾繞回）。例：只改 Port 就存 —— 在 Port 上 `Enter`、打 `2222`、
-  `Enter`、`G`、`Enter`。
+- 快的走法：`Tab` 從欄位區到按鈕（在按鈕上再按 `Tab` 回到剛才那一項），或 `G` 直接到按鈕。例：只改 Port 就存 —— 在 Port 上
+  `Enter`、打 `2222`、`Enter`、`Tab`、`Enter`。
 - 不用字母熱鍵（例 `s`）送出：表單看起來是一排欄位，使用者容易直接開始打字，打 `server` 的第一個字就把表單送出了。
 - 不拿 `Esc` 把 focus 移到動作列：Rules F3 規定 `Esc` 立刻關閉 popup，表單若例外，使用者會關不掉。
 
@@ -192,12 +190,13 @@ number、textarea），按到一個不在表單操作鍵裡的可列印字元時
 
   | 鍵 | 在表單上 |
   |---|---|
-  | `j` `k` `h` `l`、方向鍵、`Tab\|Shift-Tab` | 移動（到頭尾繞回，Rules K12） |
+  | `j` `k` `h` `l`、方向鍵 | 移動（到頭尾繞回，Rules K12） |
+  | `Tab\|Shift-Tab` | 在欄位區與動作列之間來回 |
   | `u\|d` | 以項目為單位半頁，到頭尾停住 |
   | `g`（`gg` 的開頭）、`G` | 到第一個、最後一個項目；單按 `g` 不作用 |
   | `e` | 在有問題的欄位上跳到錯誤列、在錯誤列跳回那一欄（見下面的「錯誤」）；其他地方不作用 |
   | `Enter`、`Esc` | 見上面的 `Enter` 與下面的「取消」 |
-  | `Space`、`?` | core key：`Space` 不作用（Rules K5），`?` 打開 key reference（Rules K6） |
+  | `Space`、`?` | core key：`Space` 在 checkbox 的選項上勾或取消勾、其他地方不作用（Rules K5），`?` 打開 key reference（Rules K6） |
 
 - **其他可列印字元**（數字、`q`、其他字母）：在要打字的欄位上跳 note；在表單的其他項目（選項、按鈕、錯誤列）上不跳，按到
   沒用的鍵就是不作用。`q` 不進離開流程（Rules K9）。
@@ -210,13 +209,15 @@ number、textarea），按到一個不在表單操作鍵裡的可列印字元時
 ### hint
 
 ```
-Enter:edit Esc:cancel
+Enter:edit Tab:actions Esc:cancel
 ```
 
 - **`Enter` 後面的字跟著 focus 的項目換**，寫按下去會發生什麼：會開 input popup 的欄位 `Enter:edit`、radio 的選項 `Enter:choose`、
-  checkbox 的選項 `Enter:toggle`、按鈕寫按鈕的字（小寫：`Save` → `Enter:save`、`Connect` → `Enter:connect`）。
-- focus 在有問題的欄位上時加 `e:error`（`Enter:edit e:error Esc:cancel`）；在錯誤列上是 `Enter:show e:edit Esc:cancel`。
-- 不寫移動的鍵（`j|k`、`Tab`）：使用者操作一下就知道。
+  checkbox 的選項 `Enter|Space:toggle`、按鈕寫按鈕的字（小寫：`Save` → `Enter:save`、`Connect` → `Enter:connect`）。
+- focus 在有問題的欄位上時加 `e:error`（`Enter:edit e:error Tab:actions Esc:cancel`）；在錯誤列上是 `Enter:show e:edit Tab:fields Esc:cancel`。
+- **`Tab` 寫要去的那一塊**：在欄位區 `Tab:actions`，在按鈕與錯誤列上 `Tab:fields`（`Enter:save Tab:fields Esc:cancel`）。不寫 `Tab:save`：
+  看起來像按 `Tab` 就存，而送出只有按按鈕一個方法。
+- 不寫移動的鍵（`j|k`）：使用者操作一下就知道。
 - `Esc:cancel` 不寫 `close`：表單上的 `Esc` 會丟掉內容，跟 confirm 的 `Esc:cancel` 同義。
 
 ## 狀態
@@ -244,7 +245,7 @@ Enter:edit Esc:cancel
   第一個問題，focus 跳到那一欄。
 - **`e`**：在有問題的欄位（label Red）上按 `e`（error），focus 跳到錯誤列，錯誤列換成**這一欄**的訊息（一次檢查全部欄位，每一欄的
   訊息本來就都有）；在錯誤列按 `Enter` 打開完整訊息的 error popup（[`dialog/note`](note-zh_TW.md)，標題寫那一欄的名字，`Enter`、`Esc` 都能關）；在錯誤列按 `e`（edit），
-  focus 回到這則訊息的那一欄，再按 `Enter` 就開 input popup 改。錯誤列照樣可以用 `j|k`、`Tab` 走到，`e` 是直接跳的捷徑。按錯 `e`
+  focus 回到這則訊息的那一欄，再按 `Enter` 就開 input popup 改。錯誤列照樣可以用 `j|k` 走到，`e` 是直接跳的捷徑。按錯 `e`
   只是移動 focus，不會改到東西。
 - **送出的動作失敗**（檔案在底下被改了、寫檔失敗、遠端拒絕）：不寫錯誤列，直接開 error popup 蓋在表單上（[`layout/popup`](../layout/popup-zh_TW.md)
   的錯誤列）；關掉後回到表單，值都在、focus 還在按鈕上 —— 再按一次 `Enter` 就是重試。

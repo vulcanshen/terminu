@@ -13,7 +13,7 @@
 
 ## 按鍵
 
-編輯鍵、灰字提議、貼上的換行與 Tab，都照 [`input/README`](README-zh_TW.md)。
+編輯鍵、灰字提議、貼上的控制字元，都照 [`input/README`](README-zh_TW.md)。
 
 ## 值
 

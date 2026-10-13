@@ -136,7 +136,7 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
 
 **Loading and errors**:
 
-- **Loading**: the loading icon sits after the whole capsule chain (tabs included), with one space on each side. While the panel has no content yet, one line is written in the
+- **Loading**: the loading icon sits after the whole capsule chain (tabs included), with one space on each side, in the border colour ([`popup`](popup.md)'s loading). While the panel has no content yet, one line is written in the
   middle in the empty-state look, e.g. `󰪞 loading pods…`. On reload, the old content stays and is not cleared.
 - **Errors, lost connections, no permission**: two centred lines in the empty-state look: a fact in Red (e.g.
   `Forbidden: pods in kube-system`) and a hint in Overlay0 (e.g. `Press [R] to retry`). If the old content is still there

@@ -68,7 +68,7 @@ popup 裡的數字都還在。
 | focus 所在 | `Tab` 在什麼之間切換 |
 |---|---|
 | 畫面 | panel |
-| 表單（[components/dialog/form](../components/dialog/form-zh_TW.md)） | 欄位；錯誤列（有錯誤時）與動作列也各是一站（欄位裡的選項用 hjkl，K12） |
+| 表單（[components/dialog/form](../components/dialog/form-zh_TW.md)） | 欄位區與動作列，回來時停在離開前的那一個項目（欄位區裡的項目用 hjkl，K12） |
 | 有好幾塊的 popup（finder、datetime picker） | 塊 |
 
 - `Tab` 不跨畫面、不離開當前 popup。
@@ -79,7 +79,7 @@ popup 裡的數字都還在。
 - 反向切換（例如 `Shift-Tab`）是熱鍵，由 app 決定要不要做；表單裡一定有 `Shift-Tab`。
 
 **為什麼**：使用者按 `Tab` 期待的是「換下一塊」—— 在畫面上是下一個 panel，在表單裡是
-下一個欄位。這是同一個角色在不同層級的樣子。跨畫面切換屬於 global operation（P3）。
+欄位區與動作列之間（finder 的打字列與清單也一樣）。這是同一個角色在不同層級的樣子。跨畫面切換屬於 global operation（P3）。
 
 ### K3 `Enter` 對 focus 的東西做最直觀的動作 `概念`
 
@@ -128,8 +128,9 @@ popup 開出 popup 時（例：Space menu → global operation popup → confirm
 - focus 在 panel 上時，`Space` 打開 Space menu（M2）；Space menu 開著時，再按 `Space` 關掉它。
   `Esc` 也能關。
 - **`Space` 只關它自己開的 Space menu。** 其他 popup（由 `Enter` 或熱鍵打開的 confirm、input、
-  note……）上按 `Space` **不作用**，它們由 `Esc` 或自己的流程關閉。唯一的例外：checkbox popup 的清單上，`Space` 是勾或取消勾
-  （[components/input/checkbox](../components/input/checkbox-zh_TW.md)）。
+  note……）上按 `Space` **不作用**，它們由 `Esc` 或自己的流程關閉。唯一的例外：checkbox 的選項上（checkbox popup 的清單、
+  表單上直接畫出來的 checkbox），`Space` 是勾或取消勾
+  （[components/input/checkbox](../components/input/checkbox-zh_TW.md)、[components/dialog/form](../components/dialog/form-zh_TW.md)）。
 - popup 自己的操作用熱鍵執行，揭露在 popup 下框的 hint 與
   該 popup 的 `?` help（K6），不在 popup 上再疊一個 Space menu。
 
@@ -260,7 +261,10 @@ item / panel / global 可分。把它們做成一個能選、能執行的清單�
   往後。
 - 一維清單放在有 tab 的 panel 裡：`h|l` 給 tab，`j|k` 照樣在清單裡移。
 - **`u|d` 半頁，`gg|G` 到頭、到尾**。`g` 只當兩鍵組合的開頭：`gg` 是到頭，其他 `g` 開頭的組合可以當熱鍵（例：filu、
-  webu 的 `[go]to`）；單按 `g` 不做任何事。不收 `Ctrl-U|Ctrl-D` 當別名。
+  webu 的 `[go]to`）；單按 `g` 不做任何事。`g` 後面接的鍵沒有登記成組合時，當作 `g` 沒按過，那個鍵照常作用（`g` 然後
+  `j`：往下一列）。不收 `Ctrl-U|Ctrl-D` 當別名。
+- **`Home`、`End` 只在打字列**：游標到最前面、最後面（[components/input/README](../components/input/README-zh_TW.md)）。清單、menu、
+  viewer、textarea 的移動狀態都不作用：那裡有 `gg|G`、`0|$`。
 - **一步一步的移動到頭尾繞回**：在一串項目上一次走一步（`j|k`、`h|l`、方向鍵、`Tab`）—— panel 的清單、一列一個值的 panel、
   menu、表單、finder 與 select、checkbox popup 的清單、panel 的 tab、picker 裡的欄與項目 —— 走到最後一個再往後一步回到第一個，
   在第一個再往前一步到最後一個。`u|d` 到頭尾停在第一個、最後一個，不繞；`gg|G` 本來就是到頭、到尾。照空間走、不是一串
@@ -273,7 +277,8 @@ item / panel / global 可分。把它們做成一個能選、能執行的清單�
 了動作。有左右結構時左右就是左右（filu、kbu、webu 的 `h|l` 切 tab，sshu 的 `h|l` 跨到另一側）；沒有左右結構時左右鍵閒著，
 給它「往前往後」，一維清單上四個方向鍵都用得上。不收 `Ctrl-U|Ctrl-D`：一個動作一組鍵，少一組要記；而 `Ctrl-U` 在 shell
 與很多輸入框裡是「清掉這一行」，同一個組合在家族裡一處翻頁、一處刪字，按錯的代價太高。到頭尾繞回：同一個鍵在家族裡到頭尾
-只有一種反應，不用記哪裡繞、哪裡停；`u|d` 跨過頭尾的半頁落在哪裡猜不到，所以停住。
+只有一種反應，不用記哪裡繞、哪裡停；`u|d` 跨過頭尾的半頁落在哪裡猜不到，所以停住。`Home`、`End` 只在打字列：那裡 `g`、`0`
+是字元才需要它們，其他地方已經有鍵做這件事，不再給第二個鍵。誤按一下 `g` 不讓下一個鍵失靈。
 
 ---
 
@@ -415,7 +420,7 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 - **`?` 的 key reference 照同一套**：對象存在、現在不能按的鍵照樣列出、用停用色；對象不存在就不列。下框 hint 與 footer
   空間有限、常駐畫面，只列現在按得了的鍵也可以，由 app 決定。
 - key reference 裡另外加標題、說明**別的 surface** 的一段（例：sshu 清單上 `?` 裡的 `ssh grid`，格子裡看不到 key
-  reference），不算這個 surface 的鍵，照常顯示。
+  reference），不算這個 surface 的鍵，照常顯示，排在最後（`app-wide` 之後，[components/dialog/note](../components/dialog/note-zh_TW.md)）。
 
 **為什麼**：藏起來的動作，使用者會以為 app 不支援；停用讓使用者知道「有這件事，只是
 現在不行」。不另寫原因，是因為原因千變萬化，塞進單行說明會讓每一列的字數失控（M5）。cursor 跳過它，是因為停上去
@@ -499,7 +504,7 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 | **menu** | 沒有搜尋的清單：`j\|k` 移動 cursor，`Enter` 或熱鍵執行那一列 | Space menu、global operation popup、排序選擇器、工作清單（`Enter` 打開那一列的全文） |
 | **confirm** | 讀一段提醒或警告，`Enter` 接受、`Esc` 取消（F6）；要先看的內容在上、問句最後 | 刪除前的確認、離開的確認、帶著明細的「連線到 X？」 |
 | **input** | 輸入或選出一個值，確定後寫回去；一個 popup 一個值。打字列上是輸入態（K8），其他部分照 K1 | 重新命名、網址列、select、datetime picker |
-| **form** | 一列一個值；`Tab` 一次跳一欄、hjkl 一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕送出（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark |
+| **form** | 一列一個值；`Tab` 在欄位區與動作列之間切換、hjkl 一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕送出（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark |
 | **note** | 唯讀，可以捲動（K12）；沒有可用 `Enter` 執行的選項清單 | key reference、YAML 檢視、App Log、error popup |
 | **toast** | 從下方彈出的短訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它 | 「已複製」、操作失敗 |
 | **terminal** | 跑在框裡的子程序，按鍵都給它，只有出口鍵與 app 保留的組合鍵屬於 app（K10） | kbu 的 Alterm、filu 的 shell |
@@ -566,8 +571,8 @@ popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中�
 
 - **哪些動作要 confirm 由 app 決定**，跟動作可不可逆無關。一個動作一旦決定要 confirm，
   每次都 confirm。例外：經由 picker 明確選定的那一次，可以算已確認（例：從「開啟方式」清單選了預設 app），由 app 決定。
-- `Enter` 接受，`Esc` 取消（K3、K4）。confirm 自己的熱鍵（例：`y` / `n`）可以有，要列在
-  confirm 的 `?` help 裡（K6）。
+- `Enter` 接受，`Esc` 取消（K3、K4）。回答只有這兩個鍵，沒有 `y`、`n`：`y` 就是 `Enter`、`n` 就是 `Esc`，
+  不再多一套。
 - 提示寫出**接受會做的事**（動詞與對象），而不是抽象的 OK。
 - confirm 不能被誤觸完成（例：滑鼠點一下不能等於接受）。
 - 樣子見 [components/dialog/confirm](../components/dialog/confirm-zh_TW.md)。
@@ -675,6 +680,9 @@ splash 是 terminu family 共同的彩蛋，也是 tdp 裡**唯一刻意不揭�
 （M1、M3、M4）與 core key 規則（K1）對它不適用；它也不是 popup，F 章不適用。
 splash 只記載在 tdp，不寫進任何 app 的 README 或 app 內的 menu、help。
 
+splash **佔滿整個畫面**：開著時原本的畫面（chip 列、panel、footer）都不畫，關掉就回到原本的畫面 —— 像換到另一個畫面，
+跟 popup 分得清楚。
+
 ### S1 每個 app 都有 splash，用 `V` 打開 `固定`
 
 每個 terminu app 都有 splash，在 panel 上按 **`V`** 打開。`V` 保留給 splash：
@@ -712,11 +720,39 @@ splash 開著時，**任何鍵都只會關掉它**，包括 `q`、`Ctrl-C`、`Es
 
 ### S5 內容是家族 icon `固定`
 
-splash 畫的是該 app 的 `docs/icon.svg` —— terminu family 的 mark —— 一格對一格，帶揭露
-動畫。動畫怎麼跑由 app 決定。
+splash 畫的是該 app 的 `docs/icon.svg` —— terminu family 的 mark —— 一格對一格，帶揭露動畫；mark 下面寫 app 的名稱與作者。
 
-**為什麼**：splash 是家族的簽名。每個成員畫的都是自己那一版的家族 mark，按下 `V` 就認得出
-這是同一家的東西。
+**mark**：svg 的 viewBox 是 250 × 250，一格是一個 10 × 10 的 rect，底是 `#000000`。mark 佔 25 × 19 格（x 0–240、y 30–210）。
+
+- **U 框**：`#205090`，全家族一樣，不改。
+- **框裡的字**：`#f2b753`，各 app 自己設計，寫自己的名字（例：kbu 的 K、B；locku 的 L、O、C、K 一層包一層）。tdp 自己的
+  mark 是 [`icon.svg`](icon.svg)：框裡一個 T。
+- **畫法**：一格畫一個 `nf-fa-square`（U+F0C8）、佔兩欄（icon 佔一格時後面補一個空白，E5）；底的格子畫成 Surface0 `#313244` 的方塊。
+  mark 的 25 欄左右已經各有一格底；上下各多畫一列底，共 21 列 —— 四邊一樣寬。
+
+**下面的字**：mark 下面空一列，接著六列，每一列在 mark 的寬度裡置中。名稱、版本、介紹由 app 給，作者兩列全家族一樣。
+
+| 列 | 內容 | 顏色 |
+|---|---|---|
+| 1 | 名稱：app 的指令名稱（`locku`） | Blue 粗體 |
+| 2 | 版本：跟 `<app> version` 印的版號一樣（`v0.2.0`） | Blue |
+| 3 | 一句介紹（`A screensaver with a PIN, for the terminal`） | Text |
+| | 空一列 | |
+| 4 | `developed by` | Overlay0 |
+| 5 | `vulcan.shen.2304@gmail.com` | mark 的金色 `#f2b753` |
+| | 空一列 | |
+| 6 | `Press any key to close` | Overlay0 |
+
+**揭露動畫**：一個 tick 10ms，分段畫，段與段之間停 250ms。
+
+1. **底**：一個 tick 一整列，由上往下鋪滿。
+2. **金色的字**：照 app 名字的字母順序，一個字一段；一個 tick 出現 2 格，同一個字的格子打散出現。
+3. **U 框**：由下往上長，一個 tick 3 格。
+4. **下面的字**：mark 畫完 400ms 後，名稱、版本、介紹一起出現；再 500ms 後，`developed by`、信箱、提示一起出現。
+
+**為什麼**：splash 是家族的簽名。每個成員畫的都是自己那一版的家族 mark，動畫、字與顏色全家族一樣，按下 `V` 就認得出
+這是同一家的東西。名稱寫指令名稱，跟使用者在終端機打的一樣；提示寫 `any key`，因為照 S3 任何鍵都會關。作者信箱用 mark 的
+金色，署名跟 mark 連在一起。
 
 ---
 
@@ -827,7 +863,8 @@ powerline 符號分開量，是因為同一台終端機上兩者可能不同：N
 - 單一靜態 binary，goreleaser 建置；`install.sh` / `uninstall.sh`（`curl | sh`、免 sudo），
   另發到 Homebrew tap `vulcanshen/homebrew-tap`。
 - 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（L4）。
-- `docs/icon.svg` 是家族 mark；splash（S 章）由它逐格畫出，用測試守住兩者一致。
+- `docs/icon.svg` 是 app 那一版的家族 mark（長相見 S5；tdp 自己的是 `principle/icon.svg`）；splash（S 章）由它逐格畫出，
+  用測試守住兩者一致。
 - demo gif 用 VHS 錄，腳本放在 `.local/demos/`（README 放幾張見 E7）。
 
 **為什麼**：五個 app 同一種安裝、移除與發布方式，使用者裝過一個就會裝其他的。畫面測試守住 L4；icon 與 splash 的測試
@@ -896,7 +933,7 @@ tdp 不規定；dev-remarks 的「設計文件導讀」一節負責指路。不�
 | E4 需求 | README 寫明 | — | README 寫明 |
 | E5 icon 的實際寬度 | 做到：探測（icon 與 powerline 符號）、顯示寬度函式、替子程序設 `TERMINU__ICON_WIDTH` 與 `TERMINU__POWERLINE_WIDTH` | — | lib 給的 |
 | E6 發布 | 打 git tag（Go module），沒有 binary；L4 的畫面測試要有 | 不發布；L4 的畫面測試要有 | 照 E6 |
-| S5 splash 畫的 icon | splash 的機制 | 家族 mark | 自己的 `docs/icon.svg` |
+| S5 splash 畫的 icon | splash 的機制 | tdp 的 `principle/icon.svg`（terminu 的 mark） | 自己的 `docs/icon.svg` |
 | E7 README | lib 自己的結構：安裝是 `go get`、快速開始是程式碼、寫明範例 app 怎麼跑 | 不另外寫 | 照 E7 |
 | E7 dev-remarks | 要，同一個骨架 | — | 要 |
 | 偏離（Rules 開頭） | **lib 不偏離**：做不到或不好用的，回報成 tdp 的缺漏，規範改了 lib 才跟著改 | — | 自己的偏離寫在自己的 dev-remarks |

@@ -104,6 +104,9 @@ The "what keys work here" opened with `?` (Rules K6, M4).
     `q|Ctrl-C`; `Esc` only where it does something here (e.g. a filter to clear); `Enter` is not repeated, since
     `item operation` already says what it does here.
   - `app-wide`: the global hotkeys.
+  - A section about **another surface** (Rules M6; e.g. the keys inside a PTY in the panel, titled `terminal`): last,
+    after `app-wide`. The sections before it come in the same order on every panel, so `core keys` and `app-wide` stay
+    where they are with or without it; users read "what can be pressed here" first, then "once inside".
 - **On a popup** only that popup's own keys are listed (Rules K6): its hotkeys, `Enter`, `Esc`, the movement keys.
 - **Colours**: keys in Blue, not bold; descriptions in Text. A key that cannot be pressed right now has both key and
   description in Surface2 (Rules M6).

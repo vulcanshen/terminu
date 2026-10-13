@@ -35,9 +35,10 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
 
 - **hint**：放在下框 `┗━ ` 後面，寫法照 Rules M5。
   - **順序**：`Enter` 第一 → 這個 popup 自己的鍵 → 換塊的 `Tab:…` → `Esc` 最後。terminal 例外：出口鍵第一（[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
-  - **不寫在項目之間移動的鍵**（`j|k`、`↑|↓`、表單換欄的 `Tab`），只寫動作與離開：使用者操作一下就知道。切換塊的鍵不算移動，
-    照寫（例：finder 的 `Tab:list`）。
-  - **放不下時從尾端整組捨棄**，不截在項目中間；下框右邊的捲動位置留著。
+  - **不寫在項目之間移動的鍵**（`j|k`、`↑|↓`），只寫動作與離開：使用者操作一下就知道。切換塊的鍵不算移動，
+    照寫（例：finder 的 `Tab:list`、表單的 `Tab:actions`）。
+  - **框到了最寬還放不下時，從尾端整組捨棄**，不截在項目中間；下框右邊的捲動位置留著。框的寬度本來就算進 hint 與捲動位置
+    （見下面的「寬度」），只有 terminal 太窄時才會捨棄。
   - **只有打字列的 popup**（text、password、number）：`?` 在那裡是字元，hint 要列出全部操作，而且 80 欄放得下（Rules M3）。
 - **下框右邊**：內容放不下時的捲動位置（見下面的「內容放不下時」）。
 - **框上的字與角之間一律隔一段線**：標題 `┏━TITLE`、hint `┗━ Enter:run`、捲動位置 `4 of 12 ━┛`（panel 也一樣，只有
@@ -64,10 +65,12 @@ Rules F7 的兩種寬度，打開時定好，開著時不變：
 
 | | 寬度 | 例 |
 |---|---|---|
-| **內容的寬度打開時就確定** | 最寬的那一列 + 4（左右各一格框、一格留白；右邊的留白跟箭頭一樣寬時照它的寬），至少放得下標題與 hint（hint 的寬 + 6：`┗━ ` 與 ` ━┛`），最寬 `min(terminal 寬 − 2, 120)` | 有長度上限的輸入（PIN 最多 12 碼：內容 12 + 11 個空格 + 4 = 27 格，hint `Enter:save Backspace:clear Esc:cancel` 37 + 6 = 43 格，框取 43 格）、confirm、menu、key reference、toast、error popup、datetime picker、color picker |
+| **內容的寬度打開時就確定** | 最寬的那一列 + 4（左右各一格框、一格留白；右邊的留白跟箭頭一樣寬時照它的寬），至少放得下標題與 hint（hint 的寬 + 6：`┗━ ` 與 ` ━┛`）；要捲的時候也放得下捲動位置（hint 的寬 + 捲動位置最寬時的寬 + 9：`┗━ `、兩者之間至少 ` ━ `、` ━┛`），最寬 `min(terminal 寬 − 2, 120)` | 有長度上限的輸入（PIN 最多 12 碼：內容 12 + 11 個空格 + 4 = 27 格，hint `Enter:save Backspace:clear Esc:cancel` 37 + 6 = 43 格，框取 43 格）、confirm、menu、key reference、toast、error popup、datetime picker、color picker |
 | **內容的寬度不確定** | `min(terminal 寬 − 2, 120)` | 自由打字的 text、網址、串流內容、搜尋結果、表單 |
 
-「確定」指的是打開那一刻就知道最寬會有多寬，不是看現在打了幾個字：PIN 打第一碼時框就是 43 格，不會跟著長。
+「確定」指的是打開那一刻就知道最寬會有多寬，不是看現在打了幾個字：PIN 打第一碼時框就是 43 格，不會跟著長。捲動位置也照最寬的時候算
+（20 列的 menu 照 `20 of 20`，`N-M of T` 照 `T-T of T`），往下捲時框不會忽寬忽窄；hint 因此永遠完整 —— 最後一組通常是 `Esc`，怎麼關掉
+popup 一定要看得到。
 
 窄的內容靠左，離框一格（例：confirm、datetime picker、color picker）；toast 的文字與 password 的解鎖遮罩置中。
 
@@ -97,7 +100,8 @@ Rules F7：popup 在 loading 時，標題後面一定放一個輪轉的 loading 
 - 速度：一格 90ms，一圈 720ms。
 - 哪一格由時鐘決定：`frames[(now / 90ms) % 8]`，不是計數；tick 只在有東西 loading 時續排。
 - 寬度：一格；跟它取代的靜止 glyph 同寬，換上換下不位移。braille 點字的形狀與寬度不合，不用。
-- 顏色：跟旁邊的字同色；放在 popup 標題後面時用該層的層色（粗體）。
+- 顏色：跟旁邊的字同色；放在 popup 標題後面時用該層的層色（粗體）；放在 panel 上框時用框線色（focus 時 Blue、失焦時 Surface2，
+  跟著框一起淡化）—— 都是框的顏色。
 
 ## 取消與完成
 
