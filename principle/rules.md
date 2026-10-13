@@ -886,7 +886,8 @@ ways.
 drawn, only the text under it, still centred both ways and still appearing in two batches (the name, version and
 tagline 400ms after opening, the author and the hint 500ms later).
 
-- **Too narrow**: the text wraps, breaking between words, each wrapped row centred.
+- **Too narrow**: the text wraps, breaking between words, each wrapped row centred. A word wider than the terminal on
+  its own (e.g. the 26-column e-mail) is cut by cells into pieces, each centred — nothing is lost.
 - **Still too short**: rows are cut from the bottom up — the hint goes first, then the two author rows, then the
   tagline; **the name and the version always show**. When a group goes, the blank row above it goes with it, so no
   blank row is left at the bottom.

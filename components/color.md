@@ -37,7 +37,7 @@ syntax highlighting) are up to the app; this file governs the interface elements
 | In effect | the value now in effect (the one a select chose, the ticked ones, the ones switched on; in a popup it follows the tick on screen, read as "the value `Enter` gives"); live sessions; work in progress and progress bars; what completed successfully | Green `#a6e3a1` |
 | Mode | a mode's frame and mode name, the range selected in a mode (Rules K11) | Yellow `#f9e2af` |
 | Warning: worth noticing, not broken | the warning sentence in a confirm; the text of a Warning toast | Peach `#fab387` |
-| Error | the error row, a label in error, the error popup, the text of an Error toast, pasted control characters (`\n`, `\x1b`…) | Red `#f38ba8` |
+| Error | the error row, a label in error, the error popup, the text of an Error toast, pasted control characters (`\n`, `\x1b`…; their background, with Base text, while the cursor rests on one) | Red `#f38ba8` |
 | Dim text | descriptions and section titles in a menu; the colon and description in hints and the footer, and the `\|` between keys (`j\|k`); description rows; grey suggestions; the description of an empty value; an unfocused typing row; empty states; separators (inside popups, below the screen chip row) | Overlay0 `#6c7086` |
 | Normal text | values in forms and panels; menu labels; descriptions in the key reference | Text `#cdd6f4` |
 | Panel cursor | the background of the cursor row in a panel, its text Base bold | Subtext1 `#bac2de` |

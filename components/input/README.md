@@ -40,7 +40,9 @@ Shared by text, password and number.
   one-line input popup is always typing, so it is always the layer colour. The row the cursor waits on reads at once as
   the place to type.
 - **The value**: Lavender — in [`color`](../color.md) Lavender is "what is being edited", and in an input popup what is
-  being edited is this value. The cursor is one cell, Lavender background with Base text.
+  being edited is this value. The cursor is one cell, Lavender background with Base text; resting on a control
+  character, the whole control character is drawn with a Red background and Base text (see "Pasted control characters"
+  below).
 - **The error row**: as in [`layout/popup`](../layout/popup.md).
 - **The hint**: `Enter:<verb> Esc:cancel`, the verb saying what pressing it does (rename, create, save). This kind of
   popup has only a typing row, where `?` is a character, so the hint must list every action (Rules M3).
@@ -90,8 +92,8 @@ is done with the grey suggestion below (typing a new value needs no deleting fir
 - **Single-line inputs only** (text, number; a password shows grey dots for its old value, see
   [`password`](password.md)); a textarea opens with the old value already in ([`textarea`](textarea.md)).
 - The box opens empty, the old value shown in grey (Overlay0) starting at the cursor's cell: the cursor sits on its first
-  character (as any cursor, Lavender background and a Base character), the grey text after it — like a shell's
-  autosuggestion.
+  character (as any cursor, Lavender background and a Base character; a Red background when that first character is a
+  control character, as in "Pasted control characters"), the grey text after it — like a shell's autosuggestion.
 - `Tab`: takes the old value into the box, the cursor at its end, to be changed with `←|→` (Rules K2).
 - Typing straight away: a new value is typed and the grey text hides; deleting all that was typed brings it back.
 - `Backspace` on an empty value: not this value; the grey text goes, and `Enter` then saves the value empty (where the
@@ -121,6 +123,10 @@ glyph, not a placeholder: it is not text, `Tab` never takes it in, and it stays 
 - **No control character is dropped; each is drawn as it is, in red** (Red, never split): `\r`, `\n` and `\t` by name
   (2 cells), every other C0, DEL and C1 as `\xNN` (4 cells, e.g. `\x1b`, `\x7f`, `\x85`). `\r\n` is drawn as it is
   too, as the two `\r\n`. In a row drawn grey as a whole (a typing row without the focus, a suggestion) they are grey too.
+- **The cursor resting on a control character**: the whole control character (the four cells of `\x1b`, the two of
+  `\r`) is drawn with a Red background and Base text; other characters keep the Lavender background. It shows both that
+  the cursor is here and that it rests on a control character. The same when the first character of a grey suggestion
+  is a control character.
 - **`Backspace` deletes a whole one at once** (`\n`, `\x1b`…).
 - **Masked values stay masked** (password).
 - **Values the user did not type go through the same filter**: the original name, a value from a file or another
@@ -132,7 +138,9 @@ glyph, not a placeholder: it is not text, `Tab` never takes it in, and it stays 
 
 **Why**: turning them into spaces or dropping them would quietly change what the user pasted; drawn as they are, what
 the user sees is what was really pasted, and the user decides whether to delete them. Dropping control characters does
-not even clean up: text copied in colour from a terminal, with `\x1b` dropped, leaves `[31m` behind.
+not even clean up: text copied in colour from a terminal, with `\x1b` dropped, leaves `[31m` behind. Under the cursor
+they turn to a red background: red text on Lavender is too faint, and a plain cursor would hide that it is a control
+character.
 
 ## Value
 

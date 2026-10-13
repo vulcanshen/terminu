@@ -26,6 +26,7 @@
   內容超過框時在框裡捲，游標一直在看得到的地方；放不下時下框右邊寫游標所在的行 `N of M`（以行為單位，跟左邊的行號同一套數字，
   不是畫出來的列）。
 - **游標**：「寫」是一格 Lavender 底、Base 字（照 [`input/README`](README-zh_TW.md)）；「移」是一格層色底、Base 字。值的字都是 Lavender。
+  兩種狀態的游標停在控制字元上時，整個控制字元畫成 Red 底、Base 字（照 [`input/README`](README-zh_TW.md) 的「貼上的控制字元」）。
 - **`\t`**：值裡的 `\t` 畫成 `input_tab_width` 格空白（見下面的 `Tab`），不對齊到哪一格。
 
 ## 按鍵

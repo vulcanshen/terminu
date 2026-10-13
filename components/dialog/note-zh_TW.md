@@ -12,15 +12,23 @@
 - 框照 [`layout/popup`](../layout/popup-zh_TW.md)：上下留白一律有，viewer 也一樣。
 - **標題**：glyph 加上顯示的東西，畫成標題膠囊（例：`YAML — pod/nginx`：`YAML` 大寫，`pod/nginx` 是內容，照原樣）。glyph 由 app 選；key reference 與 error popup 的 glyph 見下面。
 - **捲動位置**：放不下時，下框右邊寫看得到的行 `N-M of T`；viewer 的選取模式裡寫游標所在的行 `N of M`（見下面的「選取模式」）。
+  viewer 折行時，N 是最上面那一列所屬的行，M 是最下面那一列所屬的行，T 是總行數（例：最上面是第 6 行折下來的那一列、最下面是
+  第 10 行，寫 `6-10 of 42`）。
 - **寬度**：內容打開時就確定的（key reference、error popup、說明）照內容；viewer 的內容寬度不確定，用 Rules F7 的上限。
 - **viewer 的行號**：viewer（YAML 檢視、App Log、檔案內容）左邊有行號，照 [`input/textarea`](../input/textarea-zh_TW.md) 的行號：每一行的
   第一列畫行號，靠右對齊、後面空一格；折下來的列行號欄空白。行號 Overlay0，選取模式裡游標所在那一行的行號 Text。複製不含行號。
   行號欄**至少三位**：打開時就知道行數的（YAML 檢視、檔案內容）取 max(3, 總行數的位數)，打開後不變；串流的 App Log 從三位開始，
   超過 999 行才跳寬。
+  **有 tab 的 viewer**（例：DevTools 的 Console、Network）：行號欄照看過的頁裡最寬的那一頁，只變寬、不變窄 —— 打開時照那一頁；
+  切到行數更多的頁就變寬；切回行數少的頁，寬度留著不縮回。串流的頁一樣只變寬。
+- **viewer 的語法顏色**：內容有固定格式的（YAML、JSON、TOML、HTML、XML、Markdown……）照 [`input/file-picker`](../input/file-picker-zh_TW.md)
+  預覽表的文字檔上色（chroma 的 catppuccin-mocha，只上前景色）。語言由 app 給（YAML 檢視是 YAML；DevTools Network 的回應照
+  content type）；檔案內容照檔名判斷，跟預覽一樣。沒有固定格式的（例：App Log）、判斷不出來的，是純文字，Text，不上特殊顏色。
+  行號照舊 Overlay0；選取模式的範圍照舊 Yellow 底、Base 字，語法顏色在範圍裡不顯示。
 
 ```
 ┃   1 apiVersion: v1                            ┃   ← 行號欄三位（這份 YAML 有 42 行）；行號 Overlay0
-┃   2 kind: Pod                                 ┃
+┃   2 kind: Pod                                 ┃   ← 內容照 YAML 上語法顏色
 ┃   3 metadata:                                 ┃
 ┃   4   name: nginx                             ┃
 ┃   5   annotations:                            ┃
@@ -33,11 +41,14 @@
 ```
 
 **為什麼**：viewer 打開時就知道有幾行（串流的除外），行號欄的寬度一次定好，畫面不會跳；textarea 的行數是使用者自己打出來的，
-跳寬看得出原因，所以它從兩位起跳。三位：999 行以內的內容不會跳。
+跳寬看得出原因，所以它從兩位起跳。三位：999 行以內的內容不會跳。有 tab 時切回去不縮回：看過的寬度留著，來回切 tab 不會一直跳。
+語法顏色跟預覽同一套，同一個檔案在預覽與 viewer 裡長得一樣。
 
 ## 按鍵
 
 - 捲動：`j|k`、`u|d`、`gg|G`（Rules K12）。viewer 的選取模式見下面。
+- **viewer 折行時以畫面上的一列為單位捲**（像 `less`）：`j|k` 一次一列，`u|d` 半頁照列算。比框還高的一行（例：壓縮過的 JSON）
+  也看得完；跟 [`input/textarea`](../input/textarea-zh_TW.md) 的 `↑|↓` 照畫出來的列一致。
 - **只用 `Esc` 關**。`Enter` 不關；`Space` 也不關（Rules K5）。
 - **例外**：error popup（不管是自己跳出來的，還是從表單錯誤列按 `Enter` 打開的）與表單上的打字說明，`Enter` 也能關。
 - **hint**：note 自己的熱鍵寫在前面，`Esc:close` 放最後。例：`y:copy /:search v:visual Esc:close`。

@@ -30,7 +30,9 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
   scrolls inside it, the cursor always in view; when it does not fit, the right of the bottom border shows the cursor's
   line `N of M` (counted in lines, the same numbers as on the left, not rows as drawn).
 - **The cursor**: in Write one cell of Lavender background with Base text (as [`input/README`](README.md)); in Move one
-  cell of the layer colour background with Base text. The value's text is Lavender in both.
+  cell of the layer colour background with Base text. The value's text is Lavender in both. In either state, the cursor
+  resting on a control character draws the whole control character with a Red background and Base text (as "Pasted
+  control characters" in [`input/README`](README.md)).
 - **`\t`**: a `\t` in the value is drawn as `input_tab_width` spaces (see `Tab` below), not aligned to any column.
 
 ## Keys
