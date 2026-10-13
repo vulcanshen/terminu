@@ -14,7 +14,7 @@ is longer than the box" in the README.
 
 ## Keys
 
-Editing keys, the grey suggestion, and pasted line breaks and tabs all follow [`input/README`](README.md).
+Editing keys, the grey suggestion, and pasted control characters all follow [`input/README`](README.md).
 
 ## Value
 

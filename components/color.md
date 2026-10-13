@@ -37,7 +37,7 @@ syntax highlighting) are up to the app; this file governs the interface elements
 | In effect | the value now in effect (the one a select chose, the ticked ones, the ones switched on; in a popup it follows the tick on screen, read as "the value `Enter` gives"); live sessions; work in progress and progress bars; what completed successfully | Green `#a6e3a1` |
 | Mode | a mode's frame and mode name, the range selected in a mode (Rules K11) | Yellow `#f9e2af` |
 | Warning: worth noticing, not broken | the warning sentence in a confirm; the text of a Warning toast | Peach `#fab387` |
-| Error | the error row, a label in error, the error popup, the text of an Error toast, pasted `\n` `\t` | Red `#f38ba8` |
+| Error | the error row, a label in error, the error popup, the text of an Error toast, pasted control characters (`\n`, `\x1b`…) | Red `#f38ba8` |
 | Dim text | descriptions and section titles in a menu; the colon and description in hints and the footer, and the `\|` between keys (`j\|k`); description rows; grey suggestions; the description of an empty value; an unfocused typing row; empty states; separators (inside popups, below the screen chip row) | Overlay0 `#6c7086` |
 | Normal text | values in forms and panels; menu labels; descriptions in the key reference | Text `#cdd6f4` |
 | Panel cursor | the background of the cursor row in a panel, its text Base bold | Subtext1 `#bac2de` |
@@ -60,11 +60,13 @@ layer colour of layer K = lerp(user footprint, end colour, K / N)    N = 4
 for K ≥ N it stays at the end colour
 ```
 
+Each channel is rounded half up (.5 goes up), as in dimming.
+
 With catppuccin-mocha plugged in (Lavender → Sapphire):
 
 | Layer | 1 | 2 | 3 | 4+ |
 |---|---|---|---|---|
-| Layer colour | `#A4C0FA` | `#94C3F5` | `#84C5F0` | `#74c7ec` |
+| Layer colour | `#A4C0FA` | `#94C3F5` | `#84C5F1` | `#74c7ec` |
 
 ## Dimming (Rules F8, T2)
 
@@ -77,6 +79,7 @@ dim(c) = c × 0.45 + base × 0.55        base = #1e1e2e
 - Both foreground and background go through it; 16- and 256-colour codes are turned into RGB first: colours 16–255 of the
   256 by their standard values; 0–15 (the 16 colours) by the terminal's palette — asked with OSC 4 at startup (at the
   same time as the icon-width probe of Rules E5), with the xterm defaults when there is no answer.
+- **Each channel is rounded half up** (.5 goes up) before it is compared with the original.
 - **Dimming never lightens a colour**: each channel takes the smaller of its original and dimmed value — a colour darker
   than base (e.g. `#000000`) would get lighter, so it keeps its original.
 - Output is always 24-bit (`38;2;…` / `48;2;…`): the family requires a truecolor terminal (Rules E4), so dimming need not
@@ -88,7 +91,7 @@ dim(c) = c × 0.45 + base × 0.55        base = #1e1e2e
 
 **Why**: what the 16 colours actually look like is set by the user's palette; dimmed by the xterm values, the hue jumps
 when the palette is not xterm's — e.g. with the palette's blue set to `#89b4fa`, dimming the xterm `(0,0,238)` gives a
-saturated dark blue `(17,17,132)`, while the actual colour dims to a greyish blue `(78,97,138)`, breaking "the same
+saturated dark blue `(0,0,132)`, while the actual colour dims to a greyish blue `(78,98,138)`, breaking "the same
 colour, only fainter". With no answer, the xterm values are what the family apps use today.
 
 > **Implementation reference (not a requirement)**: filu's `internal/ui/dim.go` (the xterm 16 colours are there). Asking

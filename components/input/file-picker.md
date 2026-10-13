@@ -4,9 +4,10 @@
 
 ## Purpose
 
-Choosing one **file**, handed back as a value: sshu's Identity file, webu's Upload and Import. The file-picker is a
-kind of finder ([`input/finder`](finder.md)): the skeleton, the two areas, `Tab`, `Enter` on the typing row entering the
-list, which side is lit, and the preview all follow the finder; only what differs is written here.
+Choosing one **file**, handed back as a value: sshu's Identity file, webu's Upload and Import. When the value is a
+directory, "Choosing a directory" below applies. The file-picker is a kind of finder ([`input/finder`](finder.md)): the
+skeleton, the two areas, `Tab`, `Enter` on the typing row entering the list, which side is lit, and the preview all
+follow the finder; only what differs is written here.
 
 ## Look
 
@@ -102,10 +103,16 @@ value (as in the one-value panel of [`layout/panel`](../layout/panel.md)).
 | `TYPE` | the preview's kind: `text`, `private key`, `image`, `PDF`, `archive`, `binary`; a symlink is `link → <target>` | `directory` |
 | `SIZE` | `411 B`, `4.2 KB`, `3.4 MB` (powers of 1024, one decimal) | `12 items` (as in the list, hidden files not counted) |
 | `MODIFIED` | `2026-09-30 14:02` (local time, to the minute) | the same |
-| `MODE` | as `ls -l`: `-rw-------` | `drwx------` |
+| `MODE` | written as `ls -l` does: `-rw-------` | `drwx------` |
 
 - `private key`: the first line is a private key's header (below). It does not depend on `hide_secrets_in_preview`;
   the kind is not a secret.
+- **A symlink**: `SIZE`, `MODIFIED` and `MODE` are the **target's**, matching the preview — what is chosen is that file,
+  and its `MODE` is the permission that actually applies. E.g. `/etc/localtime` reads `761 B` and `-rw-r--r--`, not the
+  link's own `37 B` and `lrwxr-xr-x` (as `ls -l` writes them). That it is a link, and to where, `TYPE` already says.
+- **A value that cannot be read is `—`**: the `SIZE` of an unreadable directory (its items cannot be counted; the time
+  and permissions are written as usual); the `SIZE`, `MODIFIED` and `MODE` of a broken link. The four rows stay — no
+  row is left out, and no `0 items`, which would read as empty.
 - No path (the title and the list already have it), owner, or access and creation times: choosing a file does not need
   them.
 
@@ -138,8 +145,8 @@ key's header is not itself a secret, and it shows which kind of key it is.
 ## Keys
 
 - **`Enter` in the list**: on a directory it **goes in** — the typed filter is cleared, the focus stays on the list, and
-  the cursor rests on the first item below `..`; only on a file does it **choose**, write back and close. **A directory
-  is never chosen.**
+  the cursor rests on the first item below `..`; only on a file does it **choose**, write back and close. **When choosing a
+  file, a directory is never chosen** (choosing a directory: below).
 - **What is typed in the typing row**:
   - Plain text (`ed25`): filters the current level, as "Matching" in [`finder`](finder.md) says (contains,
     case-insensitive).
@@ -170,3 +177,47 @@ directory written in the title, the typing row is left for filtering. With the p
 its last `/`, the list always shows the directory on the typing row, and there is no "when does it jump" to define:
 typing `~/Documents/sideproj` one character at a time never jumps away and clears at `~/Documents`, only to take the
 `/sideproj` typed next as a path under the root; `Backspace` on the last segment goes back up a level.
+
+## Choosing a directory
+
+A field whose value is a directory (e.g. where to download, a project's path) uses the file-picker's "choosing a
+directory". Everything else is as above: the current directory in the title, paths typed on the typing row, the rule for
+hidden directories, the preview drawing the tree of the directory under the cursor, the four rows of metadata.
+
+```
+┏━DOWNLOAD TO · ~/Downloads━━━━━━━━━━━━━━━━┓ ┏━Downloads━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                            ┃ ┃                                             ┃
+┃                                       4/4 ┃ ┃ 󰉋 music                                     ┃
+┃ ────────────────────────────────────────── ┃ ┃   ├─ 󰈔 a.flac                               ┃
+┃▓󰉒▓. (this directory)▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃ ┃   └─ 󰈔 b.flac                               ┃
+┃ 󰉋 ..                                       ┃ ┃ 󰉋 papers                                    ┃
+┃ 󰉋 music                                    ┃ ┃   └─ 󰈔 tdp.pdf                              ┃
+┃ 󰉋 papers                                   ┃ ┃ 󰈔 invoice.pdf                               ┃
+┃                                            ┃ ┃ 󰈔 photo.jpg                                 ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃                                             ┃
+┃                                            ┃ ┃ ─────────────────────────────────────────── ┃
+┃                                            ┃ ┃ TYPE      directory                         ┃
+┃                                            ┃ ┃ SIZE      4 items                           ┃
+┃                                            ┃ ┃ MODIFIED  2026-10-12 21:40                  ┃
+┃                                            ┃ ┃ MODE      drwxr-xr-x                        ┃
+┃                                            ┃ ┃                                             ┃
+┗━ Enter:choose Tab|/:filter Esc:cancel ━━━━━┛ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+- **The list shows directories only**, no files: what a directory holds is in the preview's tree. The order is `.` →
+  `..` → directories.
+- **The first row is `.`** (`. (this directory)`), its icon `nf-md-folder_move` (U+F0252); the other directories keep
+  their icon. `Enter` on `.` chooses the current directory — writes it back and closes; `Enter` on another directory goes
+  in, as when choosing a file.
+- **Hint**: `Enter:choose Tab|/:filter Esc:cancel` on `.`, `Enter:into Tab|/:filter Esc:cancel` on a directory.
+
+**Why**: `Enter` goes into a directory whether choosing a file or a directory, so there is no "choose this directory"
+key to learn; with `..` (the level above) already at the top of the list, one more row `.` (this level) reads at once.
+No files: the list is kept for what can be chosen, and the preview is where to check the choice.

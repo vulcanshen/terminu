@@ -128,4 +128,4 @@ Each is a popup that enters or chooses that kind of value.
 | [`slider`](input/slider.md) | a value in a range |
 | [`datetime-picker`](input/datetime-picker.md) | date and time |
 | [`color-picker`](input/color-picker.md) | colour |
-| [`file-picker`](input/file-picker.md) | choosing a file |
+| [`file-picker`](input/file-picker.md) | choosing a file; it also comes in a kind for choosing a directory |

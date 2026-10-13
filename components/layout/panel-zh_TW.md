@@ -104,7 +104,7 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 
 **loading 與錯誤**：
 
-- **loading**：loading icon 放在整串膠囊（含 tab）的後面，前後各空一格。panel 還沒有任何內容時，中間照空狀態的樣子寫一句，例：`󰪞 loading pods…`。
+- **loading**：loading icon 放在整串膠囊（含 tab）的後面，前後各空一格，用框線色（[`popup`](popup-zh_TW.md) 的 loading）。panel 還沒有任何內容時，中間照空狀態的樣子寫一句，例：`󰪞 loading pods…`。
   重新載入時，舊的內容留著，不清空。
 - **錯誤、斷線、沒有權限**：照空狀態的樣子置中寫兩句：一句事實用 Red（例：`Forbidden: pods in kube-system`），一句提示用
   Overlay0（例：`Press [R] to retry`）。舊的內容還在就留著，錯誤照 Rules F5 用 toast 報。

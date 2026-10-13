@@ -17,7 +17,8 @@ glyph 線條可能太細，看不清楚。
 
 ## 按鍵
 
-**表單或 panel 上**：`Enter` 在原地翻，focus 不動，馬上生效。
+**表單或 panel 上**：`Enter` 在原地翻，focus 不動，馬上生效。表單上 `Space` 也能翻（Rules K5 的例外，跟 checkbox popup 一樣）；
+panel 上的 `Space` 照樣打開 Space menu。
 
 **checkbox popup**：
 

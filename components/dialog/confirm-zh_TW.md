@@ -31,5 +31,5 @@ Red 是已經發生的錯誤，這時候還沒有出錯。
 
 ## 按鍵
 
-- `Enter` 接受，`Esc` 取消（Rules F6）。confirm 自己的熱鍵（例：`y` / `n`）可以有，要列在 `?` 裡。`Space` 不作用（Rules K5）。
+- `Enter` 接受，`Esc` 取消（Rules F6），回答只有這兩個鍵（沒有 `y`、`n`）。`Space` 不作用（Rules K5）。
 - **hint**：`Enter:<動詞> Esc:cancel`，動詞寫接受會做的事（例：`Enter:delete Esc:cancel`）。

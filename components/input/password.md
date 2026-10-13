@@ -19,6 +19,17 @@ Entering a value that is not shown: a password, a PIN, a passphrase.
   The mask takes the value's colour (Lavender). The 8 grey dots of "a password is already set" use the same option's
   glyph. When it does not fit, "When the value is longer than the box" in the README applies (the cursor's end in
   sight).
+- **The unlock style's cursor**: where the next `●` will appear (a space after the last dot); once the last digit is
+  typed it rests on the last dot, with no extra cell. Centring counts the cursor: n digits typed (not full) take
+  2n + 1 cells, all N digits 2N − 1 cells.
+
+```
+┃                 ● ● ● █                 ┃   ← 3 digits typed: the cursor where the next dot will appear
+┃         ● ● ● ● ● ● ● ● ● ● ● █         ┃   ← all 12 typed: the cursor on the last dot (Lavender background, a Base `●`), no extra cell
+```
+
+- **The unlock style has no `nf-fa-angle_right`**: the whole box exists to enter this one value, and the centred dots
+  say at once where to type; the angle marks the typing row in a box with an explanation.
 - **Width**: with a length limit (e.g. a PIN), the width is set by the content (width in
   [`layout/popup`](../layout/popup.md)).
 
@@ -27,7 +38,7 @@ Entering a value that is not shown: a password, a PIN, a passphrase.
 **When a password is already set**:
 
 ```
-┃ ••••••••                             ┃   ← an old password: always 8 grey dots (Overlay0), not its real length
+┃  ••••••••                           ┃   ← an old password: always 8 grey dots (Overlay0), not its real length
 ```
 
 - The box opens empty; with an old password, 8 grey dots are always drawn after the cursor, saying "there is a password
@@ -43,7 +54,7 @@ share with a suggestion is "`Enter` with nothing typed keeps the old one".
 
 ## Keys
 
-- Pasting follows "Pasted line breaks and tabs" in [`input/README`](README.md) (masked values stay masked).
+- Pasting follows "Pasted control characters" in [`input/README`](README.md) (masked values stay masked).
 - **`Backspace` clears everything at once, not one character at a time**: with something typed it clears all of it,
   back to the dots (the old password kept); on an empty box it clears the old password, the dots go, and `Enter` then
   saves no password. The hint adds `Backspace:clear`.

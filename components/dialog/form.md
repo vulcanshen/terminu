@@ -52,7 +52,7 @@ Each field takes one of two arrangements.
 ┃ tmux new-session -A -s main                    ┃
 ┃ Layout   row                                   ┃   ← side by side
 ┃                                                ┃
-┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
+┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
 ```
 
 (The drawings in this section and the next show the fields only; for the action row see "Action row".)
@@ -94,7 +94,7 @@ button itself, with no arrow.
 ┃ Port        22                                 ┃
 ┃ Credential  —                                  ┃   ← disabled: label Surface2
 ┃                                                ┃
-┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
+┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
 ```
 
 **Why**: a solid block differs in shape as well as colour, so the focus is not told by colour alone (Rules L5); it is the
@@ -115,7 +115,7 @@ shows which option of a radio field the focus is on.
 ┃ ────────────────────────────────────────────── ┃   ← separator
 ┃                                          Save  ┃   ← action row: the button on the right
 ┃                                                ┃
-┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
+┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
 ```
 
 - **The button**: its text with one blank cell on each side, on a block of background. It has a background even without
@@ -151,18 +151,14 @@ checkbox field is an item of its own, and the button is one item; the error row,
   K12). Going on from the last option of a field enters the next
   field, and going back from the first option returns to the previous one. `gg` goes to the first item, `G` to the last
   (the button); `u|d` move half a page, counted in items, and stop at the ends.
-- **`Tab|Shift-Tab` jump one field at a time** (Rules K2); the error row while it holds an error, and the action row,
-  are one stop each.
-- **Jumping into a radio or checkbox field**: a radio field lands on its chosen option, or the first one if none is
-  chosen; a checkbox group lands on its first option. `Shift-Tab` coming from below lands the same way: `Tab` means "jump
-  to that field", and where it lands does not depend on the direction. On a radio field the focus lands on the current
-  value: `j|k` to a neighbour to change it, or `Tab` straight on to leave it, with nothing chosen by mistake; in a
-  checkbox group each option is ticked or not on its own, with no "current one", so starting from the top is the easiest
-  to predict.
-- **Wrapping at both ends** (Rules K12): the same for `Tab` and `j|k`. The button is the last item: going on from it returns to the
-  first field, and going back one step from the first field reaches the button — making up for the action row sitting
-  at the bottom.
-- **Disabled fields and options are skipped**: neither `Tab` nor `j|k` stops on them; they are still drawn in place.
+- **`Tab|Shift-Tab` switch between the field area and the action row** (Rules K2): `Tab` on any item of the field area
+  goes to the button; `Tab` on the button returns to the item it left — as between a [`input/finder`](../input/finder.md)'s
+  typing row and list. Within the field area items are walked one by one with `j|k`. The error row is not a `Tab` stop
+  (`j|k` and `e` reach it); it is fixed at the bottom with the button and counts as the same area: `Tab` on the error row
+  also returns to the item the field area was left on.
+- **Wrapping at both ends** (Rules K12): the button is the last item, so `j` on it returns to the first field, and going
+  back one step from the first field reaches the button — making up for the action row sitting at the bottom.
+- **Disabled fields and options are skipped**: `j|k` do not stop on them; they are still drawn in place.
   Disabled means "cannot be changed now", and `Enter` on one would have nothing to do.
 - **On opening**: the focus is on the first item it can stop on (disabled ones skipped), for a new entry and an edit
   alike; when the app opens the form from one field (e.g. editing the Port row in a panel), it is on that field. A new
@@ -179,10 +175,11 @@ checkbox field is an item of its own, and the button is one item; the error row,
 ┃        󰐽 credential                            ┃
 ┃ Agent  󰄲 forward                               ┃   ← 1 item
 ┃                                                ┃
-┗━ Enter:edit Esc:cancel ━━━━━━━━━━━━━━━━━━━━━━━━┛
+┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
 ```
 
-`j` all the way: Name → password → privatekey → credential → forward. `Tab` all the way: Name → Auth → Agent.
+`j` all the way: Name → password → privatekey → credential → forward. `Tab` on privatekey goes to the button, and `Tab`
+on the button returns to privatekey.
 
 ### `Enter`
 
@@ -192,7 +189,8 @@ checkbox field is an item of its own, and the button is one item; the error row,
   - `Esc` in the input popup closes it, and the field's value is unchanged.
   - A checkbox popup opened from a form: `Space` ticks, `Enter` writes the whole group back, `Esc` cancels
     ([`input/checkbox`](../input/checkbox.md)).
-- **On a radio option**: chooses it; **on a checkbox option**: flips it in place. Neither opens a popup; the focus stays
+- **On a radio option**: chooses it; **on a checkbox option**: flips it in place (`Space` flips it too, as in a checkbox
+  popup, Rules K5). Neither opens a popup; the focus stays
   where it is and the change is immediate; a wrong choice is undone by pressing again right there.
 - **On the button**: submits.
 
@@ -201,8 +199,8 @@ checkbox field is an item of its own, and the button is one item; the error row,
 There is one way only: move the focus to the button and press `Enter`. Only an explicit press of the button makes sure
 the user means to submit.
 
-- The quick way there: `G` goes straight to the button; or `Shift-Tab` on the first field (wrapping at both ends). E.g.
-  changing just the Port and saving — `Enter` on Port, type `2222`, `Enter`, `G`, `Enter`.
+- The quick way there: `Tab` from the field area to the button (`Tab` on the button goes back to that item), or `G`
+  straight to the button. E.g. changing just the Port and saving — `Enter` on Port, type `2222`, `Enter`, `Tab`, `Enter`.
 - No letter hotkey (such as `s`) submits: a form looks like a row of fields, so users easily start typing straight away,
   and the first letter of `server` would submit the form.
 - `Esc` does not move the focus to the action row: Rules F3 has `Esc` close a popup at once, and if forms were an
@@ -228,12 +226,13 @@ not one of the form's keys is pressed (`q` included), a note pops up to explain:
 
   | Key | On a form |
   |---|---|
-  | `j` `k` `h` `l`, the arrow keys, `Tab\|Shift-Tab` | movement (wrapping at the ends, Rules K12) |
+  | `j` `k` `h` `l`, the arrow keys | movement (wrapping at the ends, Rules K12) |
+  | `Tab\|Shift-Tab` | between the field area and the action row |
   | `u\|d` | half a page, counted in items, stopping at the ends |
   | `g` (the start of `gg`), `G` | to the first and the last item; a single `g` does nothing |
   | `e` | on a field with a problem, to the error row; on the error row, back to that field (see "Errors" below); nothing elsewhere |
   | `Enter`, `Esc` | see `Enter` above and "Cancelling" below |
-  | `Space`, `?` | core keys: `Space` does nothing (Rules K5), `?` opens the key reference (Rules K6) |
+  | `Space`, `?` | core keys: `Space` ticks or unticks a checkbox option and does nothing elsewhere (Rules K5), `?` opens the key reference (Rules K6) |
 
 - **Any other printable character** (digits, `q`, other letters): on a field that takes typing it brings up the note;
   on the form's other items (options, the button, the error row) it brings up no note and simply does nothing. `q` does
@@ -250,15 +249,17 @@ brings up the note anyway, so the reminder works just as well.
 ### Hint
 
 ```
-Enter:edit Esc:cancel
+Enter:edit Tab:actions Esc:cancel
 ```
 
 - **The word after `Enter` follows the focused item**, saying what pressing it does: `Enter:edit` on a field that opens
-  an input popup, `Enter:choose` on a radio option, `Enter:toggle` on a checkbox option, and the button's word on the
+  an input popup, `Enter:choose` on a radio option, `Enter|Space:toggle` on a checkbox option, and the button's word on the
   button (in lower case: `Save` → `Enter:save`, `Connect` → `Enter:connect`).
-- With the focus on a field with a problem, `e:error` is added (`Enter:edit e:error Esc:cancel`); on the error row it
-  reads `Enter:show e:edit Esc:cancel`.
-- No movement keys (`j|k`, `Tab`): users find them out by using the form.
+- With the focus on a field with a problem, `e:error` is added (`Enter:edit e:error Tab:actions Esc:cancel`); on the error row it
+  reads `Enter:show e:edit Tab:fields Esc:cancel`.
+- **`Tab` names the area it goes to**: `Tab:actions` in the field area, `Tab:fields` on the button and the error row (`Enter:save
+  Tab:fields Esc:cancel`). Not `Tab:save`: that reads as if `Tab` saved, and pressing the button is the only way to submit.
+- No movement keys (`j|k`): users find them out by using the form.
 - `Esc:cancel`, not `close`: `Esc` on a form throws its content away, the same meaning as a confirm's `Esc:cancel`.
 
 ## States
@@ -298,7 +299,7 @@ intact — the "safe place" Rules K4 asks for.
   error row opens an error popup with the whole message ([`dialog/note`](note.md), its title the field's name, closed
   with `Enter` or `Esc`); `e`
   (edit) on the error row returns the focus to the field the message belongs to, where `Enter` opens its input popup to
-  change it. The error row can still be reached with `j|k` and `Tab`; `e` is the shortcut that jumps straight there. A
+  change it. The error row can still be reached with `j|k`; `e` is the shortcut that jumps straight there. A
   stray `e` only moves the focus and changes nothing.
 - **The submit itself fails** (the file changed underneath, a write failing, the remote refusing): nothing is written in
   the error row; an error popup opens straight over the form (see the error row in [`layout/popup`](../layout/popup.md));
