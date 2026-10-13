@@ -58,7 +58,7 @@ cursor 那一筆的內容，照種類畫。最多讀 64 KB。
 |---|---|
 | 目錄 | 樹（見下面） |
 | 壓縮檔（zip、tar、tar.gz、tar.bz2） | 照目錄的樹列出裡面 |
-| 文字檔 | 內容，加語法顏色（chroma 的 catppuccin-mocha，只上前景色）與行號（Overlay0，靠右對齊、後面空一格） |
+| 文字檔 | 內容，加語法顏色（chroma 的 catppuccin-mocha，只上前景色）與行號（Overlay0，靠右對齊、後面空一格）；Tab 與控制字元照 [`dialog/note`](../dialog/note-zh_TW.md) 的 viewer（Tab 畫成 `input_tab_width` 格空白、CRLF 的 `\r` 不畫、其他控制字元畫成 Red 的名字） |
 | PDF | 第一列灰字寫頁數（`12 pages`），空一列，接前 20 頁的文字（最多 128 KB）；抽不出文字時寫 `(no extractable text)` |
 | 圖片（png、jpg、gif、bmp、webp、tiff、ico、avif、heic） | 第一列灰字 `data:image/png · 12.4 KB`，空一列，接 base64 的 data URI，照預覽寬折行；超過 1 MB 時只寫 `(1.4 MB — too large to inline as a data URI)` |
 | 其他 | 十六進位，一律一列 8 bytes，後面接 ASCII（`89 50 4e 47 0d 0a 1a 0a  .PNG....`，33 格）；並排時預覽最寬只有 56 格，放不下 16 bytes |

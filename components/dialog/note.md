@@ -37,6 +37,12 @@ a list of options to run with `Enter`, it is a menu, not a note.
   may colour it as its situation needs (e.g. the ERROR and WARN lines of a log); the lib adds no syntax colours there but
   keeps the colours the app gives. Line numbers stay Overlay0; the selection mode's
   range stays Yellow with Base text, with no syntax colours inside it.
+- **Tabs and control characters in a viewer** (as in the [`input/file-picker`](../input/file-picker.md) preview): a Tab is
+  drawn as `input_tab_width` spaces (the same setting as [`input/textarea`](../input/textarea.md)), not aligned to tab
+  stops; a `\r` before a line break (CRLF) is not drawn, being part of the line break; any other control character is
+  drawn by name in Red (`\r`, `\x07`, as in "Pasted control characters" in [`input/README`](../input/README.md)). Copying
+  takes the original characters, not the spaces or names drawn. A viewer is for reading: a red `\r` on every line of a
+  CRLF file is only noise, and Red is what tells a control character from the four characters `\x07` written in a file.
 
 ```
 ┃   1 apiVersion: v1                            ┃   ← a three-digit gutter (this YAML has 42 lines); numbers in Overlay0

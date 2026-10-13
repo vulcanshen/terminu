@@ -975,7 +975,7 @@ it.
 | Key | Meaning | Default |
 |---|---|---|
 | `hide_secrets_in_preview` | hide private keys and owner-only files in the previews of popups ([components/input/file-picker](../components/input/file-picker.md)) | `false` |
-| `input_tab_width` | how many spaces one `Tab` inserts in the writing state of multi-line text ([components/input/textarea](../components/input/textarea.md)) | `4` |
+| `input_tab_width` | how many spaces one `Tab` inserts in the writing state of multi-line text ([components/input/textarea](../components/input/textarea.md)); a Tab in a viewer or a file preview is drawn as that many spaces too ([components/dialog/note](../components/dialog/note.md)) | `4` |
 
 **Why**: with the five apps in the same places, users know where to look and what to back up. The cache goes in the
 system's cache directory so that cache-cleaning tools can find it, and so it is not taken for data to back up. Shared
