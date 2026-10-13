@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.5.9 — 2026-10-13
+
+A gap the user found walking through the shared lib's showcase: a file's Tab pushed the rest of the row out of the frame.
+
+- Viewers and the file-picker's preview draw a Tab as `input_tab_width` spaces (the textarea's setting), not aligned to
+  tab stops; the `\r` of a CRLF line break is not drawn; any other control character is drawn by name in Red, as in a
+  typing row. Copying takes the original characters
+
 ## v0.5.8 — 2026-10-13
 
 A gap found while planning the tool that draws the family mark.

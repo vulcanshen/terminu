@@ -68,7 +68,7 @@ The entry under the cursor, drawn by kind. At most 64 KB is read.
 |---|---|
 | directory | a tree (below) |
 | archive (zip, tar, tar.gz, tar.bz2) | its contents as a directory tree |
-| text file | the content, with syntax colours (chroma's catppuccin-mocha, foreground only) and line numbers (Overlay0, right-aligned, one space after) |
+| text file | the content, with syntax colours (chroma's catppuccin-mocha, foreground only) and line numbers (Overlay0, right-aligned, one space after); Tabs and control characters as in a [`dialog/note`](../dialog/note.md) viewer (a Tab as `input_tab_width` spaces, no `\r` of a CRLF, any other control character by name in Red) |
 | PDF | a grey first row with the page count (`12 pages`), a blank row, then the text of the first 20 pages (at most 128 KB); `(no extractable text)` when there is none |
 | image (png, jpg, gif, bmp, webp, tiff, ico, avif, heic) | a grey first row `data:image/png · 12.4 KB`, a blank row, then the base64 data URI wrapped at the preview's width; over 1 MB only `(1.4 MB — too large to inline as a data URI)` |
 | anything else | hexadecimal, always 8 bytes a row, followed by ASCII (`89 50 4e 47 0d 0a 1a 0a  .PNG....`, 33 cells); a side-by-side preview is at most 56 cells wide, too narrow for 16 bytes |

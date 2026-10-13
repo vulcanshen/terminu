@@ -26,6 +26,10 @@
   content type）；檔案內容照檔名判斷，跟預覽一樣。沒有固定格式的（例：App Log）、判斷不出來的，是純文字，Text，不上特殊顏色。
   這是建議：app 知道自己的內容，可以依情境自己上色（例：log 裡 ERROR、WARN 的行）；lib 不上語法顏色，但保留 app 給的顏色。
   行號照舊 Overlay0；選取模式的範圍照舊 Yellow 底、Base 字，語法顏色在範圍裡不顯示。
+- **viewer 裡的 Tab 與控制字元**（跟 [`input/file-picker`](../input/file-picker-zh_TW.md) 的預覽一樣）：Tab 畫成 `input_tab_width` 格空白
+  （跟 [`input/textarea`](../input/textarea-zh_TW.md) 同一個設定），不對齊 tab 停點；換行前面的 `\r`（CRLF）不畫，算換行的一部分；其他控制字元
+  畫成名字，Red（`\r`、`\x07`，跟 [`input/README`](../input/README-zh_TW.md) 的「貼上的控制字元」一樣）。複製照原樣，不是畫出來的空白或名字。
+  viewer 是用來讀的：CRLF 每一行都掛一個紅色的 `\r` 只是雜訊；控制字元用 Red，才分得出檔案裡本來就寫著 `\x07` 這四個字。
 
 ```
 ┃   1 apiVersion: v1                            ┃   ← 行號欄三位（這份 YAML 有 42 行）；行號 Overlay0

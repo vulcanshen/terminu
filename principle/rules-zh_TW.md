@@ -823,7 +823,7 @@ app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度�
 | key | 意思 | 預設 |
 |---|---|---|
 | `hide_secrets_in_preview` | popup 的預覽裡藏起私鑰與只有擁有者能讀的檔（[components/input/file-picker](../components/input/file-picker-zh_TW.md)） | `false` |
-| `input_tab_width` | 多行文字的寫入狀態下，按一次 `Tab` 插入幾個空白（[components/input/textarea](../components/input/textarea-zh_TW.md)） | `4` |
+| `input_tab_width` | 多行文字的寫入狀態下，按一次 `Tab` 插入幾個空白（[components/input/textarea](../components/input/textarea-zh_TW.md)）；viewer 與檔案預覽裡的 Tab 也畫成這麼多格空白（[components/dialog/note](../components/dialog/note-zh_TW.md)） | `4` |
 
 **為什麼**：五個 app 放在同一套位置，使用者知道去哪裡找、要備份哪些。快取放在系統的快取目錄，清快取的工具才找得到它，
 也不會被當成要備份的資料。共用的設定 key 用同一個名字：使用者在一個 app 設過，就知道在另一個 app 怎麼設。
