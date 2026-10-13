@@ -864,7 +864,9 @@ the mark it writes the app's name and its author.
   below, 21 rows in all, so the margin is the same on all four sides.
 
 **The text under it**: a blank row under the mark, then six rows, each centred within the mark's width. The name, version
-and tagline come from the app; the two author rows are the same in every family app.
+and tagline come from the app; the two author rows are the same in every family app. **No row is wider than the mark
+(50 columns)**: the text is designed beforehand, like the mark, not filled in freely by the app; the lib returns an
+error when it builds a splash with a wider row (E8).
 
 | Row | Content | Colour |
 |---|---|---|
@@ -877,19 +879,34 @@ and tagline come from the app; the two author rows are the same in every family 
 | | a blank row | |
 | 6 | `Press any key to close` | Overlay0 |
 
+**Position**: the whole block (the mark, a blank row and the text, 30 rows × 50 columns) is centred on the screen, both
+ways.
+
+**When it does not fit**: when the terminal cannot hold the whole block (under 50 columns or 30 rows), the mark is not
+drawn, only the text under it, still centred both ways and still appearing in two batches (the name, version and
+tagline 400ms after opening, the author and the hint 500ms later).
+
+- **Too narrow**: the text wraps, breaking between words, each wrapped row centred.
+- **Still too short**: rows are cut from the bottom up — the hint goes first, then the two author rows, then the
+  tagline; **the name and the version always show**. When a group goes, the blank row above it goes with it, so no
+  blank row is left at the bottom.
+
 **The reveal animation**: a tick is 10ms; it is drawn in stages, with a 250ms hold between stages.
 
 1. **The background**: a whole row a tick, top to bottom.
 2. **The gold letters**: in the order of the letters in the app's name, one letter a stage; 2 cells a tick, the cells of
    a letter appearing scattered.
-3. **The U frame**: rising from the bottom, 3 cells a tick.
+3. **The U frame**: rising from the bottom row by row, one pair a tick (two mirrored cells; the 13th cell, on the centre
+   line, takes a tick of its own); within a row from the middle outwards, the cells nearest the centre line first — the base spreads out from the
+   middle and both sides rise at once.
 4. **The text**: 400ms after the mark is complete, the name, version and tagline appear together; 500ms later,
    `developed by`, the e-mail address and the hint appear together.
 
 **Why**: the splash is the family's signature. Each member draws its own version of the family mark, and the animation,
 text and colours are the same in every app, so pressing `V` tells you at once that this comes from the same family. The
 name is the command name, the one users type in the terminal; the hint says `any key`, since by S3 any key closes it.
-The author's e-mail address is in the mark's gold, tying the signature to the mark.
+The author's e-mail address is in the mark's gold, tying the signature to the mark. When the block does not fit, the
+text stays and the mark goes: text can wrap, the mark cannot.
 
 ---
 
@@ -1104,7 +1121,7 @@ when an app uses the lib, which rules the lib covers and which stay with the app
 | E4 requirements | stated in the README | — | stated in the README |
 | E5 the actual icon width | covers it: the probe (icons and powerline symbols), the display-width functions, setting `TERMINU__ICON_WIDTH` and `TERMINU__POWERLINE_WIDTH` for subprocesses | — | from the lib |
 | E6 releases | a git tag (a Go module), no binary; the L4 screen tests are required | not released; the L4 screen tests are required | as E6 |
-| S5 the icon the splash draws | the splash mechanism | tdp's `principle/icon.svg` (terminu's mark) | its own `docs/icon.svg` |
+| S5 the icon the splash draws | the splash mechanism; building a splash, it returns an error for a row of text wider than 50 columns | tdp's `principle/icon.svg` (terminu's mark) | its own `docs/icon.svg` |
 | E7 README | a structure of its own: installation is `go get`, the quick start is code, and it says how to run the example app | none of its own | as E7 |
 | E7 dev-remarks | yes, the same skeleton | — | yes |
 | Departure (start of the Rules) | **the lib does not depart**: what it cannot do, or what works badly, is reported as a gap in tdp, and the lib changes once the spec does | — | its own departures go in its own dev-remarks |

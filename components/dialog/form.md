@@ -165,6 +165,10 @@ checkbox field is an item of its own, and the button is one item; the error row,
   entry does not open the first field's input popup by itself either: that would save only one `Enter`, but a new entry
   would open differently from an edit, and giving up would take two `Esc`s (the first closing only the input popup).
   What opens is always the form itself, left with one `Esc`.
+- **Landing on a radio or checkbox field, the focus stops on the first option with a value**: a radio on the chosen
+  option, a checkbox group on the first ticked one; with no value, on the first. The same in all three cases: the app
+  opening the form at that field, a blocked submit jumping to it, and `e` on the error row going back to it. Landing,
+  the focus is on the field's current value.
 
 ```
 ┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -293,7 +297,7 @@ intact — the "safe place" Rules K4 asks for.
   field required because of another (Auth set to credential needs a Credential chosen), a duplicate name.
 - **A failed check**: nothing is saved; the form stays open with every value. The label of every field with a problem
   turns Red (all that needs fixing, at a glance); the error row gives the first problem in field order, and the focus
-  jumps to that field.
+  jumps to that field (for which option of a radio or checkbox, see "Moving").
 - **`e`**: `e` (error) on a field with a problem (a Red label) moves the focus to the error row, which switches to **that
   field's** message (the whole form is checked at once, so every field's message is already at hand); `Enter` on the
   error row opens an error popup with the whole message ([`dialog/note`](note.md), its title the field's name, closed

@@ -74,11 +74,12 @@ text、password、number 共用。
 ## 改一個已經有的值：舊值是灰字提議
 
 ```
-┃  report-2025.pdf                    ┃   ← 框是空的；游標後面的舊值是灰字（Overlay0）
+┃  █eport-2025.pdf                    ┃   ← 框是空的；舊值是灰字（Overlay0），游標壓在第一個字（`r`）上
 ```
 
 - **只用在單行的 input**（text、number；password 的舊值是灰點，見 [`password`](password-zh_TW.md)）；textarea 打開時直接帶入舊值（[`textarea`](textarea-zh_TW.md)）。
-- 框打開時是空的，舊值用灰字（Overlay0）顯示在游標後面。
+- 框打開時是空的，舊值用灰字（Overlay0）顯示，從游標那一格開始：游標壓在第一個字上（跟一般的游標一樣，Lavender 底、Base 的字），
+  後面接灰字 —— 像 shell 的自動建議。
 - `Tab`：把舊值收進框裡，游標在尾端，接著用 `←|→` 改（Rules K2）。
 - 直接打字：重打一個新的值，灰字隱藏；把打的字刪光，灰字再出現。
 - 值是空的時候按 `Backspace`：不要這個值，灰字消失；這時按 `Enter` 存成空的（欄位不能空時照錯誤處理）。
@@ -98,7 +99,8 @@ panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：�
 
 ## 貼上的控制字元
 
-- **範圍**：一行的值（textarea 不算）。只收數字的欄位照它原本的過濾。
+- **範圍**：一行的值。多行的 textarea 見 [`textarea`](textarea-zh_TW.md)：換行（含單獨的 `\r`）是真的換行，其他控制字元跟這裡一樣。
+  只收數字的欄位照它原本的過濾。
 - **只算貼上的文字**：按下去的 `Tab`、`Enter`、`Ctrl-J` 照它們原本的作用。
 - **控制字元一個都不丟，照實畫成紅字**（Red，不切開）：`\r`、`\n`、`\t` 寫名字（2 格），其他 C0、DEL、C1 寫 `\xNN`（4 格，例：
   `\x1b`、`\x7f`、`\x85`）。`\r\n` 也照實畫成 `\r\n` 兩個。整列畫成灰色的列（沒有 focus 的打字列、提議）裡跟著灰。

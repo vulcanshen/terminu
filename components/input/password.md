@@ -38,11 +38,17 @@ Entering a value that is not shown: a password, a PIN, a passphrase.
 **When a password is already set**:
 
 ```
-┃  ••••••••                           ┃   ← an old password: always 8 grey dots (Overlay0), not its real length
+┃  █•••••••                           ┃   ← an old password (plain): always 8 grey dots (Overlay0), the cursor on the first, not its real length
 ```
 
-- The box opens empty; with an old password, 8 grey dots are always drawn after the cursor, saying "there is a password
-  now". They do not follow the real length, so as not to give the length away.
+```
+┃             █ ● ● ● ● ● ● ●             ┃   ← an old password (unlock): 8 grey dots a space apart, centred, the cursor on the first
+```
+
+- The box opens empty; with an old password, 8 grey dots are always drawn, saying "there is a password now". They start
+  at the cursor's cell: the cursor sits on the first (Lavender background, a Base dot), the other 7 in Overlay0 — as the
+  grey suggestion in [`input/README`](README.md). In the unlock look the 8 are a space apart and centred (15 cells).
+  They do not follow the real length, so as not to give the length away.
 - With nothing typed, `Enter` and `Esc` both keep the old password.
 - Typing straight away: it is replaced with a new password, and the dots hide.
 - No `Tab`: an old password that cannot be seen cannot be edited.

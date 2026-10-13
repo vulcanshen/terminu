@@ -216,6 +216,9 @@ hidden directories, the preview drawing the tree of the directory under the curs
 - **The first row is `.`** (`. (this directory)`), its icon `nf-md-folder_move` (U+F0252); the other directories keep
   their icon. `Enter` on `.` chooses the current directory — writes it back and closes; `Enter` on another directory goes
   in, as when choosing a file.
+- **While the typing row holds a filter or a wildcard, there is no `.` row**: wildcard results list directories only,
+  with no `.` (as they have no `..`). `Enter` on a directory in the results goes into it, and that level's `.` is back;
+  to choose the current directory, clear the filter (or type the path up to a trailing `/`).
 - **Hint**: `Enter:choose Tab|/:filter Esc:cancel` on `.`, `Enter:into Tab|/:filter Esc:cancel` on a directory.
 
 **Why**: `Enter` goes into a directory whether choosing a file or a directory, so there is no "choose this directory"

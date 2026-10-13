@@ -18,6 +18,30 @@ a list of options to run with `Enter`, it is a menu, not a note.
   `N-M of T`; in a viewer's selection mode, the cursor's line `N of M` (see "Selection mode" below).
 - **Width**: notes whose content is known when they open (the key reference, the error popup, explanations) follow the
   content; a viewer's content width is not known, so it takes the Rules F7 cap.
+- **A viewer's line numbers**: a viewer (YAML view, App Log, file content) has line numbers on the left, as in
+  [`input/textarea`](../input/textarea.md): the first row of each line carries its number, right-aligned, with a space
+  after it; a wrapped row leaves the gutter blank. Numbers are Overlay0; in the selection mode the cursor's line has its
+  number in Text. Copying leaves the numbers out. The gutter is **at least three digits**: where the line count is known
+  on opening (YAML view, file content) it is max(3, the digits of the line count) and stays so; a streaming App Log
+  starts at three digits and widens only past 999 lines.
+
+```
+┃   1 apiVersion: v1                            ┃   ← a three-digit gutter (this YAML has 42 lines); numbers in Overlay0
+┃   2 kind: Pod                                 ┃
+┃   3 metadata:                                 ┃
+┃   4   name: nginx                             ┃
+┃   5   annotations:                            ┃
+┃   6     note: restarted by the deploy job     ┃
+┃     after the config change                   ┃   ← the same line wrapped: the gutter is blank
+┃   7 spec:                                     ┃
+┃   8   containers:                             ┃
+┃   9   - name: nginx                           ┃
+┃  10     image: nginx:1.27                     ┃
+```
+
+**Why**: a viewer knows how many lines it holds when it opens (a streaming one aside), so its gutter is set once and the
+screen does not jump; a textarea's lines are the user's own typing, so a wider gutter has a visible reason, and it
+starts at two digits. Three digits: content within 999 lines never jumps.
 
 ## Keys
 
@@ -53,7 +77,8 @@ popup and a form's typing explanation have no such mode, and `j|k` only scroll t
 - **Colours**: the cursor is one cell of the layer colour background with Base text (the same as Move in
   [`input/textarea`](../input/textarea.md)); the selection has a Yellow background with Base text, the cursor's cell
   keeping the layer colour; an empty line inside the selection shows one cell.
-- **Scroll position**: in the selection mode, the cursor's line `N of M` (counted in lines); back to `N-M of T` after it.
+- **Scroll position**: in the selection mode, the cursor's line `N of M` (counted in lines, the same numbers as the
+  gutter); back to `N-M of T` after it.
 
 **Why**: move to the start first, then select — where the cursor appears is not always where the selection should
 start, and with selection starting on the first `v`, the start would always be the first visible line. With no cursor

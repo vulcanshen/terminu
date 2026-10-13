@@ -49,8 +49,15 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
   content has changed, a confirm first asks whether to discard it ("Cancel" in [`dialog/form`](../dialog/form.md)).
 - **Editing keys in Write**: the set in [`input/README`](README.md), plus what several lines need — `↑|↓` to the row
   above or below (rows as drawn, a wrapped row counting as one); `←|→` at the start or end of a line cross to the
-  previous or next line; `Backspace` at the start of a line joins it to the line above. A pasted line break is a real
-  line break.
+  previous or next line; `Backspace` at the start of a line joins it to the line above. `Home` and `End` go to the start
+  and the end of the whole text (as on one line: the very start and end of the value); the start and end of a line are
+  `0|$` in Move.
+- **A pasted line break is a real line break**: `\n`, `\r\n`, and a lone `\r` (many terminals send a pasted line break
+  as `\r`).
+- **Other pasted control characters**: as in "Pasted control characters" in [`input/README`](README.md), kept in the
+  value and drawn in red (`\x1b`); `Backspace` deletes one whole. While the value holds one, confirming (`Enter` in Move)
+  is held back — nothing is saved — and the error row names the field as a single-line input's does (e.g. `Notes can't have control characters`); it saves once they are
+  deleted. Line breaks and `\t` do not count.
 - **`Tab`**: inserts spaces, as many as the setting `input_tab_width` (4 by default, in each app's config file, Rules
   E3). The value holds those spaces; `Backspace` removes one at a time. A pasted `\t` is kept as it is — what the user
   pasted is not quietly changed — and drawn as `input_tab_width` spaces.
