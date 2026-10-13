@@ -24,6 +24,7 @@
 - **viewer 的語法顏色**：內容有固定格式的（YAML、JSON、TOML、HTML、XML、Markdown……）照 [`input/file-picker`](../input/file-picker-zh_TW.md)
   預覽表的文字檔上色（chroma 的 catppuccin-mocha，只上前景色）。語言由 app 給（YAML 檢視是 YAML；DevTools Network 的回應照
   content type）；檔案內容照檔名判斷，跟預覽一樣。沒有固定格式的（例：App Log）、判斷不出來的，是純文字，Text，不上特殊顏色。
+  這是建議：app 知道自己的內容，可以依情境自己上色（例：log 裡 ERROR、WARN 的行）；lib 不上語法顏色，但保留 app 給的顏色。
   行號照舊 Overlay0；選取模式的範圍照舊 Yellow 底、Base 字，語法顏色在範圍裡不顯示。
 
 ```
