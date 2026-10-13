@@ -61,7 +61,7 @@ cursor 那一筆的內容，照種類畫。最多讀 64 KB。
 | 文字檔 | 內容，加語法顏色（chroma 的 catppuccin-mocha，只上前景色）與行號（Overlay0，靠右對齊、後面空一格） |
 | PDF | 第一列灰字寫頁數（`12 pages`），空一列，接前 20 頁的文字（最多 128 KB）；抽不出文字時寫 `(no extractable text)` |
 | 圖片（png、jpg、gif、bmp、webp、tiff、ico、avif、heic） | 第一列灰字 `data:image/png · 12.4 KB`，空一列，接 base64 的 data URI，照預覽寬折行；超過 1 MB 時只寫 `(1.4 MB — too large to inline as a data URI)` |
-| 其他 | 十六進位，一列 16 bytes，後面接 ASCII |
+| 其他 | 十六進位，一律一列 8 bytes，後面接 ASCII（`89 50 4e 47 0d 0a 1a 0a  .PNG....`，33 格）；並排時預覽最寬只有 56 格，放不下 16 bytes |
 | 讀不到 | `(unreadable)` |
 
 **目錄的樹**：最多三層。第一層不畫樹枝，第二層起用 `├─`、`└─`、`│` 連起來，樹枝 Overlay0；每一項前面的 icon、顏色、順序跟清單一樣，

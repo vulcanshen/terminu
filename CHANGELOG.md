@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.5.3 — 2026-10-13
+
+A gap found while following v0.5.2 in the shared lib.
+
+- input/file-picker: the hex preview is always 8 bytes a row, followed by ASCII (33 cells), not 16 (65 cells) — a
+  side-by-side preview is at most 56 cells wide, so 16 bytes never fit beside the list
+
 ## v0.5.2 — 2026-10-12
 
 The third round of gaps found while building the shared lib, from its Inputs, Dialogs and Terminal screens.
