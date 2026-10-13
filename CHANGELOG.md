@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.5.7 — 2026-10-13
+
+A gap found while following v0.5.6 in the shared lib.
+
+- dialog/note: plain text in a viewer with no fixed format is a recommendation — an app that knows its content may colour
+  it (the ERROR and WARN lines of a log, say); the lib adds no syntax colours there but keeps the app's
+
 ## v0.5.6 — 2026-10-13
 
 The sixth round of gaps, from following v0.5.5 in the shared lib, and syntax colours in viewers, asked for by the user.

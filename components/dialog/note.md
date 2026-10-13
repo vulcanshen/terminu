@@ -33,7 +33,9 @@ a list of options to run with `Enter`, it is a menu, not a note.
   text file in [`input/file-picker`](../input/file-picker.md)'s preview table (chroma's catppuccin-mocha, foreground
   only). The app gives the language (a YAML view is YAML; a DevTools Network response goes by its content type); file
   content goes by the file name, as in the preview. Content with no fixed format (e.g. App Log), or whose language
-  cannot be told, is plain text in Text, with no special colours. Line numbers stay Overlay0; the selection mode's
+  cannot be told, is plain text in Text, with no special colours. That is a recommendation: an app knows its content and
+  may colour it as its situation needs (e.g. the ERROR and WARN lines of a log); the lib adds no syntax colours there but
+  keeps the colours the app gives. Line numbers stay Overlay0; the selection mode's
   range stays Yellow with Base text, with no syntax colours inside it.
 
 ```
