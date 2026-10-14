@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](panel-zh_TW.md)
 
-A panel's frame, ordinary lists, panels with one value per row, and the panel filter. How the whole screen is laid out is
+A panel's frame, ordinary lists (groups included), panels with one value per row, details, and the panel filter. How the whole screen is laid out is
 in [`screen`](screen.md).
 
 ## Frame
@@ -146,6 +146,37 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
 in both shape and colour (L5). Marks use the checkbox tick: marked means "picked", the same thing as a ticked checkbox, in the same colour.
 With the header fixed, what each column is stays visible however far you scroll.
 
+### Groups
+
+When a list's items fall into groups (kbu's resource kinds, locku's sidebar), each group starts with a group title row.
+
+```
+┏[1] KINDS━━━━━━━━━━━━━━━┓
+┃ WORKLOADS              ┃  ← group title: Blue, uppercase, not bold; the cursor skips it
+┃   pods                 ┃
+┃▓▓▓deployments▓▓▓▓▓▓▓▓▓▓┃  ← cursor
+┃   statefulsets         ┃
+┃ NETWORK                ┃
+┃   services             ┃
+┃   ingresses            ┃
+┗━ Enter:open ━━ 2 of 5 ━┛
+```
+
+- **Group title**: Blue, uppercase ("Uppercase" in the [components](../README.md)), not bold, no glyph; one cell from the
+  frame. It is of a kind with the header: it says "what the rows below are", not a row of data.
+- **Items**: two cells further in than the group title.
+- **The cursor skips group titles** and stops only on items: `j|k` step over them; `gg|G` go to the first and last item;
+  the `N of M` scroll position counts items only. When scrolling puts the cursor on a group's first item, that group's
+  title stays on screen too.
+- **Between groups**: no blank row, no separator.
+- **A group with no items has no title**: when the panel filter leaves none of its items, or the app's group is empty.
+- **Unfocused**: dims with the panel (Rules T2).
+
+**Why**: a group title says "what the rows below are", as the header does, so it is drawn as the header is (Blue,
+uppercase, not bold); with the items two cells further in, which group a row belongs to shows at a glance, with no
+separator to draw. The cursor stops only on rows that do something, as with a menu's section titles. A group title left
+over an empty group looks as if it were still loading.
+
 ## One value per row
 
 A panel with one value per row, like a settings screen (locku's preference, webu's Settings, the fields on a webu page).
@@ -178,6 +209,19 @@ A panel with one value per row, like a settings screen (locku's preference, webu
 takes effect at once. With one set of rules, what the user learns in a form works on a settings screen too. Labels are
 Blue, the colour of the focused frame: the same idea as a form's labels taking the layer colour, which is the colour of
 the popup frame.
+
+## Details
+
+A panel that shows the item under another panel's cursor: locku's `[2]` property sheet, filu's preview, kbu's details.
+
+- **It follows the cursor at once**: when that panel's cursor moves, the details switch to the new item straight away,
+  with no `Enter`; when the label names the item (locku's `[2] clock`), the label switches too.
+- **The focus stays**: it remains on the panel it was on (Rules K3: `Enter` does not move the focus); to work in the
+  details, go there with `Tab` or a number key (Rules K2, K1).
+- The details themselves are drawn as what they are: an ordinary list, one value per row, a preview.
+
+**Why**: the details answer "what does the item under the cursor look like". If they changed only on `Enter`, what you
+saw while moving would always be the previous item; changing at once, you see wherever you are.
 
 ## Panel filter
 

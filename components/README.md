@@ -44,8 +44,8 @@ one cell after it reads as one unit with its text.
 
 ## Uppercase
 
-- **In uppercase**: a panel's capsules (`[N] label` and tabs), screen chips, popup titles, table headers, the labels of
-  a panel with one value per row, and the section titles of menus and the key reference.
+- **In uppercase**: a panel's capsules (`[N] label` and tabs), screen chips, popup titles, table headers, group titles
+  in lists, the labels of a panel with one value per row, and the section titles of menus and the key reference.
 - **Unchanged**: values, menu labels and descriptions, the descriptions in hints and the footer, key names, mode names,
   and the app's own content (the statusbar, the data in lists).
 - **The letters in a hotkey marker stay as written**: what is printed in the brackets is the key to press, and case

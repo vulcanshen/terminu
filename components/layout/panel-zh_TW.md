@@ -2,7 +2,7 @@
 
 **Language**: [English](panel.md) · 繁體中文
 
-panel 的框、一般清單、一列一個值的 panel、panel filter。整個畫面的排法見 [`screen`](screen-zh_TW.md)。
+panel 的框、一般清單（含分組）、一列一個值的 panel、明細、panel filter。整個畫面的排法見 [`screen`](screen-zh_TW.md)。
 
 ## 框
 
@@ -112,6 +112,34 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 **為什麼**：cursor 是「`Enter` 會作用的那一列」，整列一塊實心底、尾端一個箭頭，形狀與顏色都說得出來（L5）。標記用 checkbox 的勾：標記
 就是「選起來的」，跟 checkbox 勾著的是同一件事、同一個顏色。表頭固定，捲到哪裡都看得到每一欄是什麼。
 
+### 分組
+
+清單的項目分成幾組時（kbu 的資源種類、locku 的側欄），每組前面一列分組標題。
+
+```
+┏[1] KINDS━━━━━━━━━━━━━━━┓
+┃ WORKLOADS              ┃  ← 分組標題：Blue、大寫、不加粗，cursor 跳過
+┃   pods                 ┃
+┃▓▓▓deployments▓▓▓▓▓▓▓▓▓▓┃  ← cursor
+┃   statefulsets         ┃
+┃ NETWORK                ┃
+┃   services             ┃
+┃   ingresses            ┃
+┗━ Enter:open ━━ 2 of 5 ━┛
+```
+
+- **分組標題**：Blue、大寫（[components](../README-zh_TW.md) 的「大寫」）、不加粗，沒有 glyph；離框一格。跟表頭同一類：說的是
+  「下面這些是什麼」，不是一筆資料。
+- **項目**：比分組標題多縮兩格。
+- **cursor 跳過分組標題**，只停在項目上：`j|k` 越過它；`gg|G` 到第一個、最後一個項目；捲動位置的 `N of M` 只算項目。捲動時
+  cursor 停在一組的第一個項目，這組的標題也留在畫面裡。
+- **組與組之間**：不空列、不畫分隔線。
+- **沒有項目的組不畫標題**：panel filter 篩選後一項都沒剩，或 app 給的組本來就是空的。
+- **失焦**：跟著 panel 一起淡化（Rules T2）。
+
+**為什麼**：分組標題跟表頭一樣說「下面這些是什麼」，所以用表頭的畫法（Blue、大寫、不加粗）；項目多縮兩格，一眼看得出屬於哪一組，
+不用另外畫分隔。cursor 只停在能做事的列上，跟 menu 的區塊標題一樣。沒有項目的組還留著標題，看起來像還沒載入。
+
 ## 一列一個值
 
 設定畫面這種一列一個值的 panel（locku 的 preference、webu 的 Settings、webu 頁面上的欄位）。
@@ -138,6 +166,17 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 
 **為什麼**：設定畫面跟表單是同一件事 —— 一列一個值、一個一個改 —— 只差在改了就生效。用同一套規則，使用者在表單學會的
 在設定畫面照樣能用。label 用 Blue，跟有 focus 的框同色：表單的 label 用層色，也就是 popup 框的顏色，同一個道理。
+
+## 明細
+
+顯示另一個 panel 裡 cursor 那一筆的 panel：locku 的 `[2]` 屬性表、filu 的預覽、kbu 的詳細資料。
+
+- **跟著 cursor 即時換**：那個 panel 的 cursor 一移動，明細的內容立刻換成新的那一筆，不用按 `Enter`；label 寫那一筆的名字時
+  （locku 的 `[2] clock`），label 一起換。
+- **focus 不動**：focus 留在原本的 panel（Rules K3：`Enter` 不移動 focus）；要操作明細，用 `Tab` 或數字鍵過去（Rules K2、K1）。
+- 明細本身照它的種類畫：一般清單、一列一個值、預覽。
+
+**為什麼**：明細回答的是「cursor 那一筆長什麼樣」。要按 `Enter` 才換，使用者一邊移動、看到的一直是上一筆；即時換，移到哪就看到哪。
 
 ## panel filter
 
