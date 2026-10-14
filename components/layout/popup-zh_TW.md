@@ -20,8 +20,10 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   Principle P6），不靠線型 —— 粗線在 popup 上不代表 focus，被蓋在底下、淡化了的 popup 照樣是粗線。
 - **標題**：glyph + 文字，做成一個膠囊放在上框 `┏━` 後面：兩端是圓角，左 U+E0B6（`nf-ple-left_half_circle_thick`）、右 U+E0B4
   （`nf-ple-right_half_circle_thick`）；填層色，字 Base 粗體、大寫（[components](../README-zh_TW.md) 的「大寫」）。文字寫這個
-  popup 是做什麼的（`RENAME`、`NEW HOST`、`ADD BOOKMARK`）；裡面的名稱、路徑是內容，大小寫照原樣（`ALTERM: myhost`、
-  `IDENTITY FILE · ~/.ssh`）；太長從尾端截，加 `…`。標題後面接 tab 時，tab 照 [`panel`](panel-zh_TW.md) 的膠囊串畫，跟標題之間隔一段線
+  popup 是做什麼的（`RENAME`、`NEW HOST`、`ADD BOOKMARK`）；裡面的名稱、路徑是內容，大小寫照原樣。要寫對哪一個做時，名稱接在
+  後面、用 `: ` 隔開（`EDIT: filu`、`ALTERM: myhost`）；viewer 與 file-picker 照自己的寫法（[`dialog/note`](../dialog/note-zh_TW.md)
+  的 `YAML — pod/nginx`、[`input/file-picker`](../input/file-picker-zh_TW.md) 的 `IDENTITY FILE · ~/.ssh`）。太長從尾端截，加 `…`。
+  標題後面接 tab 時，tab 照 [`panel`](panel-zh_TW.md) 的膠囊串畫，跟標題之間隔一段線
   （例：`┏━TITLE━CONSOLENETWORK━┓`）。glyph：
 
   | popup | glyph |

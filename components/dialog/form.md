@@ -24,7 +24,8 @@ is one more `Enter` per field (the one that goes in).
 ### Title
 
 Says what this form does (`NEW HOST`, `ADD BOOKMARK`), drawn as the title capsule ([`layout/popup`](../layout/popup.md)). Not the type (`number`, `path`, `email`): the type belongs to a
-field, and with more than one field it would not fit in one title anyway.
+field, and with more than one field it would not fit in one title anyway. A form that edits one item may name it, after
+`: `, in its own case (`EDIT: filu`).
 
 ### How a field is arranged
 

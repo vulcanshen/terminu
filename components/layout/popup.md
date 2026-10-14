@@ -23,8 +23,10 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
 - **Title**: glyph + text, made into a capsule after `┏━` on the top border: rounded ends, U+E0B6
   (`nf-ple-left_half_circle_thick`) on the left and U+E0B4 (`nf-ple-right_half_circle_thick`) on the right; filled with
   the layer colour, text Base bold and uppercase ("Uppercase" in the [components](../README.md)). The text says what
-  this popup is for (`RENAME`, `NEW HOST`, `ADD BOOKMARK`); names and paths in it are content and keep their case
-  (`ALTERM: myhost`, `IDENTITY FILE · ~/.ssh`); when too long it is cut at the end with `…`. Tabs after the title follow
+  this popup is for (`RENAME`, `NEW HOST`, `ADD BOOKMARK`); names and paths in it are content and keep their case. When
+  it names what the popup acts on, the name follows after `: ` (`EDIT: filu`, `ALTERM: myhost`); viewers and the
+  file-picker keep their own form (`YAML — pod/nginx` in [`dialog/note`](../dialog/note.md), `IDENTITY FILE · ~/.ssh` in
+  [`input/file-picker`](../input/file-picker.md)). When too long it is cut at the end with `…`. Tabs after the title follow
   the capsule chain of [`panel`](panel.md), one line segment away from the title (e.g. `┏━TITLE━CONSOLENETWORK━┓`). Glyphs:
 
   | popup | glyph |

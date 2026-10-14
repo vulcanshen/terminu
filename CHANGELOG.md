@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.6.1 — 2026-10-14
+
+A gap found while building kamonu on the shared lib: a form's title that names the item it edits.
+
+- layout/popup: when a title names what the popup acts on, the name follows after `: ` and keeps its case (`EDIT: filu`,
+  as in the terminal's `ALTERM: myhost`); viewers and the file-picker keep their own form (`YAML — pod/nginx`,
+  `IDENTITY FILE · ~/.ssh`). components "Uppercase" and dialog/form point to it
+
 ## v0.6.0 — 2026-10-14
 
 Released together with the shared lib, terminu-go. A gap found while building kamonu, the family app that draws marks.
