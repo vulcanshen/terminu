@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.6.3 — 2026-10-14
+
+From ccdrawu's sidebar with details beside it.
+
+- K3: the one place `Enter` may change panels is details — on a panel listing items, `Enter` may move the focus to the
+  panel showing that item's details. Whether to, and on which items, is up to the app; not using it is just as much
+  within the spec. layout/panel "Details" says so too
+
 ## v0.6.2 — 2026-10-14
 
 Gaps found while building ccdrawu's settings on the shared lib, a sidebar with details beside it.

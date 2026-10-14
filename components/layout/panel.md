@@ -216,8 +216,9 @@ A panel that shows the item under another panel's cursor: locku's `[2]` property
 
 - **It follows the cursor at once**: when that panel's cursor moves, the details switch to the new item straight away,
   with no `Enter`; when the label names the item (locku's `[2] clock`), the label switches too.
-- **The focus stays**: it remains on the panel it was on (Rules K3: `Enter` does not move the focus); to work in the
-  details, go there with `Tab` or a number key (Rules K2, K1).
+- **The focus stays**: as the cursor moves, the focus remains on the panel it was on; to work in the details, go there
+  with `Tab` or a number key (Rules K2, K1). The app may also let `Enter` on the list send the focus to the details,
+  whether and on which items being its call (the one place Rules K3 lets `Enter` change panels).
 - The details themselves are drawn as what they are: an ordinary list, one value per row, a preview.
 
 **Why**: the details answer "what does the item under the cursor look like". If they changed only on `Enter`, what you
