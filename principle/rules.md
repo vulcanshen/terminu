@@ -107,6 +107,10 @@ action to the whole panel, as the app decides (e.g. open a scrollable view).
 **`Enter` does not move the focus** (fixed): after `Enter`, the focus stays where it was — once a field's input popup on
 a form is confirmed, the focus is back on the same field; choosing a radio option or flipping a checkbox in place does
 not move it either. Only `Tab` and the movement keys change position (K2, K12).
+The one place `Enter` may change panels is **details** ("Details" in
+[components/layout/panel](../components/layout/panel.md)): on a panel listing items, `Enter` may move the focus to the
+panel showing that item's details. Whether to, and on which items, is up to the app; not using it is just as much
+within the spec — it only gives the app one more way.
 
 **In an input popup** (fixed), `Enter` acts on the area that has focus:
 
@@ -131,7 +135,8 @@ In other popups (menu, confirm), `Enter` runs the row under the cursor / accepts
 "do the natural thing to this". In an input popup, that thing is confirming the value — and confirming an invalid value,
 or failing to confirm without saying why, both leave the user stuck. `Enter` does not move the focus: pressing `Enter`
 again and again only opens and closes things in the same place, and the user need not guess where a press will leave
-them.
+them. Details are the exception: they already follow the cursor, so on the list the natural thing for `Enter` is often
+to go in and change them; the only place it can land is the details, so the user still need not guess.
 
 ### K4 `Esc` closes one layer at a time and never leaves the app `fixed`
 

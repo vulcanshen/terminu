@@ -173,7 +173,8 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 
 - **跟著 cursor 即時換**：那個 panel 的 cursor 一移動，明細的內容立刻換成新的那一筆，不用按 `Enter`；label 寫那一筆的名字時
   （locku 的 `[2] clock`），label 一起換。
-- **focus 不動**：focus 留在原本的 panel（Rules K3：`Enter` 不移動 focus）；要操作明細，用 `Tab` 或數字鍵過去（Rules K2、K1）。
+- **focus 不動**：cursor 移動時 focus 留在原本的 panel；要操作明細，用 `Tab` 或數字鍵過去（Rules K2、K1）。app 也可以讓清單上的
+  `Enter` 把 focus 送到明細，要不要、在哪些項目上由 app 決定（Rules K3 唯一可以用 `Enter` 換 panel 的地方）。
 - 明細本身照它的種類畫：一般清單、一列一個值、預覽。
 
 **為什麼**：明細回答的是「cursor 那一筆長什麼樣」。要按 `Enter` 才換，使用者一邊移動、看到的一直是上一筆；即時換，移到哪就看到哪。

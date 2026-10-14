@@ -90,6 +90,9 @@ panel 本身是一個內容區、沒有「項目」可選時（例：預覽、lo
 
 **`Enter` 不移動 focus**（固定）：按完 `Enter`，focus 留在原處 —— 表單上確定了一欄的 input popup，回到同一欄；原地選 radio、
 翻 checkbox 也不動。換位置只有 `Tab` 與移動鍵（K2、K12）。
+唯一可以用 `Enter` 換 panel 的是**明細**（[components/layout/panel](../components/layout/panel-zh_TW.md) 的「明細」）：在列出項目的
+panel 上，`Enter` 可以把 focus 移到顯示那一項明細的 panel。要不要這樣做、在哪些項目上這樣做，由 app 決定；不用也符合規範，
+這只是多給 app 一條路。
 
 **在 input popup 裡**（固定），`Enter` 對 focus 的那一塊做事：
 
@@ -109,6 +112,7 @@ focus 跳到第一個有問題的欄位。
 **為什麼**：「確認 / 進入」這種字面定義撐不過真實 app，使用者對 `Enter` 的期待是
 「對這個東西做那件理所當然的事」。在 input popup 裡，那件事就是確定這個值 —— 確定一個不合格的值、或確定不了卻不說
 為什麼，都讓使用者卡住。`Enter` 不移動 focus：一直按 `Enter` 只會在同一個地方開開關關，使用者不用猜按完會停在哪。
+明細是例外：明細已經跟著 cursor 換，在清單上按 `Enter`，最直觀的事常常就是進去改它；落點只有明細這一個，使用者照樣不用猜。
 
 ### K4 `Esc` 一次關一層，永不離開 app `固定`
 
