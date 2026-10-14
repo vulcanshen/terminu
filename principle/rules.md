@@ -971,7 +971,10 @@ underscores separate the app name from the variable name because the variable na
 | Config | `$XDG_CONFIG_HOME/<app>` (falling back to `~/.config/<app>`) | `<APP>__CONFIG` |
 | State (when the app keeps it separately) | in the config directory | `<APP>__STATE` |
 | Data | under `~/.<app>/` | `<APP>__DATA` |
-| Cache | the system's cache directory (macOS `~/Library/Caches/<app>`; Linux `$XDG_CACHE_HOME/<app>`, falling back to `~/.cache/<app>`) | `<APP>__CACHE` |
+| Cache | the system's cache directory (macOS `~/Library/Caches/<app>`; Linux `$XDG_CACHE_HOME/<app>`, falling back to `~/.cache/<app>`; Windows `%LOCALAPPDATA%\<app>`) | `<APP>__CACHE` |
+
+**Windows**: `~` is `%USERPROFILE%` — config in `%USERPROFILE%\.config\<app>`, data under `%USERPROFILE%\.<app>\`, worked
+out as on macOS and Linux, not in `%APPDATA%`.
 
 **Config keys shared by the family**: the same setting has the same name in every app's config file, in the apps that use
 it.
@@ -981,7 +984,9 @@ it.
 | `hide_secrets_in_preview` | hide private keys and owner-only files in the previews of popups ([components/input/file-picker](../components/input/file-picker.md)) | `false` |
 | `input_tab_width` | how many spaces one `Tab` inserts in the writing state of multi-line text ([components/input/textarea](../components/input/textarea.md)); a Tab in a viewer or a file preview is drawn as that many spaces too ([components/dialog/note](../components/dialog/note.md)) | `4` |
 
-**Why**: with the five apps in the same places, users know where to look and what to back up. The cache goes in the
+**Why**: with the five apps in the same places, users know where to look and what to back up. macOS does not use the
+system's usual `~/Library/Application Support`, nor Windows `%APPDATA%`: one way of working it out on every platform, the
+same place on whatever machine. The cache goes in the
 system's cache directory so that cache-cleaning tools can find it, and so it is not taken for data to back up. Shared
 config keys have one name: set once in one app, the user knows how to set it in another.
 

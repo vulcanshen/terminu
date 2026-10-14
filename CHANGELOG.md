@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.6.4 — 2026-10-14
+
+A gap found while ccdrawu gets a Windows build.
+
+- E3 on Windows: `~` is `%USERPROFILE%` — config in `%USERPROFILE%\.config\<app>`, data under `%USERPROFILE%\.<app>\`,
+  worked out as on macOS and Linux, not in `%APPDATA%`; the cache in the system's cache directory, `%LOCALAPPDATA%\<app>`
+
 ## v0.6.3 — 2026-10-14
 
 From ccdrawu's sidebar with details beside it.
