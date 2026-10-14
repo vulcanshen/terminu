@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.6.2 — 2026-10-14
+
+Gaps found while building ccdrawu's settings on the shared lib, a sidebar with details beside it.
+
+- layout/panel, groups: a list split into groups starts each group with a title row — Blue, uppercase, not bold, no
+  glyph, one cell from the frame — and its items two cells further in, with no blank row or separator between groups.
+  The cursor skips group titles (`gg|G` go to the first and last item, `N of M` counts items, a group's title stays on
+  screen with its first item), and a group with no items, filtered out or empty, has no title. components "Uppercase"
+  lists group titles
+- layout/panel, details: a panel showing the item under another panel's cursor switches at once as the cursor moves,
+  label included when it names the item, with no `Enter`; the focus stays where it was (Rules K3)
+
 ## v0.6.1 — 2026-10-14
 
 A gap found while building kamonu on the shared lib: a form's title that names the item it edits.
