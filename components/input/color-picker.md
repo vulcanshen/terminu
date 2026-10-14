@@ -9,17 +9,17 @@ Choosing a colour: colour fields on webu pages, locku's colour settings.
 ## Look
 
 ```
-┏━BACKGROUND━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                   ┃
-┃ ████████  ████████                ┃
-┃ ████████  ████████  ███  ███  ███ ┃   ← R, G, B: small swatches, each in its channel's own colour
-┃ old       new       R▓▓  G    B   ┃   ← the focus on R: the name and hex rows below drawn as a cursor, as wide as the swatch
-┃ #1E1E2E   #2A2A3C   2A▓  2A   3C  ┃   ← always in hex
-┃                                   ┃
-┃ ───────────────────────────────── ┃
-┃                           Choose  ┃   ← the action row: the button `Choose`
-┃                                   ┃
-┗━ Enter:edit Esc:cancel ━━━━━━━━━━━┛
+┏━BACKGROUND━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                      ┃
+┃ ████████  ████████                   ┃
+┃ ████████  ████████  ███  ███  ███    ┃   ← R, G, B: small swatches, each in its channel's own colour
+┃ old       new       R▓▓  G    B      ┃   ← the focus on R: the name and hex rows below drawn as a cursor, as wide as the swatch
+┃ #1E1E2E   #2A2A3C   2A▓  2A   3C     ┃   ← always in hex
+┃                                      ┃
+┃ ──────────────────────────────────── ┃
+┃                              Choose  ┃   ← the action row: the button `Choose`; `Tab` goes between the channels and the button
+┃                                      ┃
+┗━ Enter:edit Tab:actions Esc:cancel ━━┛
 ```
 
 - **One row, left to right**: old, new, R, G, B, with two cells between the five items. The layout is small and takes no large block.
@@ -44,18 +44,20 @@ are all written in hex (`#2A2A3C`), and with the channels in hex too, they line 
   to keep old, `Esc`; new is what R, G and B make, with nothing of its own to focus. It opens with the focus on R.
   With the focus on a channel, both rows under it, the name and the hex, are drawn as a cursor (layer colour
   background, Base bold), as wide as the swatch above (3 cells × 2 rows).
+- **`Tab|Shift-Tab` go back and forth between the channels (R, G, B) and `Choose`**, coming back to the channel they
+  left — the field area and the action row of a form (Rules K2, [`input/README`](README.md)).
 - **`Enter`** does the most obvious thing to the focused item (Rules K3):
   - R, G, B: opens a [`select`](select.md) of numbers (00–FF, step 1, the cursor on the current value), every row in hex
     with the decimal in brackets: `2A (42)`; typing filters, by hex or decimal alike. Back from choosing, new changes
     with it and the focus stays on that channel.
   - `Choose`: confirms, writes back and closes.
 - **`Esc`**: closes, changing nothing.
-- **Hint**: on R, G, B `Enter:edit Esc:cancel`; on `Choose` `Enter:choose Esc:cancel`.
+- **Hint**: on R, G, B `Enter:edit Tab:actions Esc:cancel`; on `Choose` `Enter:choose Tab:fields Esc:cancel`.
 
 **Why**: R, G and B change new, so new has nothing of its own to focus; confirming takes a button as in a form, still
-with `Enter`, and the button can be seen — "fields change the value, the button submits", the same as a form. The
-focus block covers both the name and the hex and is as wide as the swatch: a one-cell block is easily missed, and the
-hex being changed lights up with it.
+with `Enter`, and the button can be seen — "fields change the value, the button submits", the same as a form, and
+`Tab` goes between the channels and the button as in a form. The focus block covers both the name and the hex and is
+as wide as the swatch: a one-cell block is easily missed, and the hex being changed lights up with it.
 
 ## Value
 

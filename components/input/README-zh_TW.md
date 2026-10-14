@@ -14,6 +14,8 @@
   一樣，就不寫回、直接關掉。
 - **`Esc`**：關掉，值不變。
 - **從表單打開的**：確定之後 focus 留在表單的同一欄（Rules K3）。
+- **有按鈕的 input popup**（例：color picker 的 `Choose`）：動作列照 [`dialog/form`](../dialog/form-zh_TW.md) —— `Tab|Shift-Tab`
+  在欄位區與動作列之間來回，回來時停在離開前的那一個項目；hint 在欄位上寫 `Tab:actions`、在按鈕上寫 `Tab:fields`（Rules K2）。
 
 ## 單行 input popup 的骨架
 

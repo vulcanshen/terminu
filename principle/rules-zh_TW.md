@@ -68,7 +68,7 @@ popup 裡的數字都還在。
 | focus 所在 | `Tab` 在什麼之間切換 |
 |---|---|
 | 畫面 | panel |
-| 表單（[components/dialog/form](../components/dialog/form-zh_TW.md)） | 欄位區與動作列，回來時停在離開前的那一個項目（欄位區裡的項目用 hjkl，K12） |
+| 有動作列的 popup：表單（[components/dialog/form](../components/dialog/form-zh_TW.md)）、有按鈕的 input popup（[components/input/color-picker](../components/input/color-picker-zh_TW.md)） | 欄位區與動作列，回來時停在離開前的那一個項目（欄位區裡的項目用 hjkl，K12） |
 | 有好幾塊的 popup（finder、datetime picker） | 塊 |
 
 - `Tab` 不跨畫面、不離開當前 popup。
@@ -76,10 +76,10 @@ popup 裡的數字都還在。
 - **打字列上**（finder 與 select 的打字列、panel filter）：`Tab` 到它的清單（[components/input/finder](../components/input/finder-zh_TW.md)）。
 - **只有一塊的 input popup**：有灰字提議（舊值）時，`Tab` 接受提議；沒有提議時不作用。
 - 多行文字的寫入狀態下，`Tab` 插入空白（縮排），不是換欄位（K8）。
-- 反向切換（例如 `Shift-Tab`）是熱鍵，由 app 決定要不要做；表單裡一定有 `Shift-Tab`。
+- 反向切換（例如 `Shift-Tab`）是熱鍵，由 app 決定要不要做；有動作列的 popup 裡一定有 `Shift-Tab`。
 
-**為什麼**：使用者按 `Tab` 期待的是「換下一塊」—— 在畫面上是下一個 panel，在表單裡是
-欄位區與動作列之間（finder 的打字列與清單也一樣）。這是同一個角色在不同層級的樣子。跨畫面切換屬於 global operation（P3）。
+**為什麼**：使用者按 `Tab` 期待的是「換下一塊」—— 在畫面上是下一個 panel，在表單與其他有動作列的
+popup 裡是欄位區與動作列之間（finder 的打字列與清單也一樣）。這是同一個角色在不同層級的樣子。跨畫面切換屬於 global operation（P3）。
 
 ### K3 `Enter` 對 focus 的東西做最直觀的動作 `概念`
 
