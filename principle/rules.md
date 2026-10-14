@@ -80,7 +80,7 @@ first:
 | Focus is on | `Tab` switches between |
 |---|---|
 | a screen | panels |
-| a form ([components/dialog/form](../components/dialog/form.md)) | the field area and the action row, coming back to the item it left (the items in the field area move with hjkl, K12) |
+| a popup with an action row: a form ([components/dialog/form](../components/dialog/form.md)), an input popup with a button ([components/input/color-picker](../components/input/color-picker.md)) | the field area and the action row, coming back to the item it left (the items in the field area move with hjkl, K12) |
 | a popup with several areas (a finder, a datetime picker) | areas |
 
 - `Tab` does not cross screens or leave the current popup.
@@ -90,11 +90,11 @@ first:
 - **An input popup with a single area**: with a greyed-out suggestion (the old value), `Tab` accepts the suggestion; with
   no suggestion it does nothing.
 - In the writing state of multi-line text, `Tab` inserts spaces (an indent), not a field switch (K8).
-- Cycling backwards (e.g. `Shift-Tab`) is a hotkey, and whether to offer it is up to the app; a form always has
-  `Shift-Tab`.
+- Cycling backwards (e.g. `Shift-Tab`) is a hotkey, and whether to offer it is up to the app; a popup with an
+  action row always has `Shift-Tab`.
 
-**Why**: users press `Tab` expecting "the next one" — the next panel on a screen, the other of a form's field area and
-action row (as with a finder's typing row and list). It is the
+**Why**: users press `Tab` expecting "the next one" — the next panel on a screen, the other of the field area and the
+action row in a form or any other popup with an action row (as with a finder's typing row and list). It is the
 same role at different levels. Switching screens is a global operation (P3).
 
 ### K3 `Enter` does the most intuitive thing to what has focus `concept`

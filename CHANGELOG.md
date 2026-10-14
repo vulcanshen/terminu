@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.6.5 — 2026-10-14
+
+From ccdrawu's colour picker: its `Choose` button follows the form, but `Tab` had been left out.
+
+- K2: every popup with an action row — a form, and an input popup with a button such as the colour picker — has
+  `Tab|Shift-Tab` go back and forth between the field area and the action row, coming back to the item it left;
+  input/README says so for every input popup with a button
+- color-picker: `Tab|Shift-Tab` between the channels (R, G, B) and `Choose`; the hint is
+  `Enter:edit Tab:actions Esc:cancel` on a channel and `Enter:choose Tab:fields Esc:cancel` on `Choose`, so the popup
+  is 40 cells wide
+
 ## v0.6.4 — 2026-10-14
 
 A gap found while ccdrawu gets a Windows build.
