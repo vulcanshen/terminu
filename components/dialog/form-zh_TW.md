@@ -19,7 +19,7 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 ### 標題
 
 寫這張表單要做什麼（`NEW HOST`、`ADD BOOKMARK`），畫成標題膠囊（[`layout/popup`](../layout/popup-zh_TW.md)）。不寫型別（`number`、`path`、`email`）：型別是欄位的性質，欄位多於一個時
-也放不進一個標題。
+也放不進一個標題。改的是某一筆時可以帶上它的名稱，接在後面、用 `: ` 隔開、照原樣（`EDIT: filu`）。
 
 ### 欄位的排法
 

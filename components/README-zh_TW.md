@@ -35,7 +35,8 @@ components 全部算固定區（[Rules 開頭的「偏離」](../principle/rules
 - **不改的**：值、menu 的 label 與說明、hint 與 footer 的說明、按鍵名、模式名、app 自己的內容（statusbar、清單裡的資料）。
 - **熱鍵標記裡的字母照原樣**：括號裡印的就是要按的鍵，大小寫算數（Rules M5）—— `[M]anage` 寫成 `[M]ANAGE`，`[m]anage` 寫成
   `[m]ANAGE`。
-- **標題裡的名稱、路徑是內容，照原樣**：`ALTERM: myhost`、`IDENTITY FILE · ~/.ssh`。
+- **標題裡的名稱、路徑是內容，照原樣**：`EDIT: filu`、`ALTERM: myhost`、`IDENTITY FILE · ~/.ssh`（名稱前用什麼隔開見
+  [`layout/popup`](layout/popup-zh_TW.md) 的「標題」）。
 
 **為什麼**：大寫的是「這是什麼」—— 名稱、標題、欄名 —— 一眼就跟要讀、要改的內容分開。按鍵名與熱鍵標記不改：`q` 與 `Q` 是
 不同的鍵；內容不改：使用者要認得的是它本來的樣子。
