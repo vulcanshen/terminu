@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.6.0 — 2026-10-14
+
+Released together with the shared lib, terminu-go. A gap found while building kamonu, the family app that draws marks.
+
+- S5: the spec no longer says how the tool that draws a mark splits its letters; it fixes only the svg — XML comments
+  split the letters, the first is the U frame, and their order is the order of the reveal
+
 ## v0.5.9 — 2026-10-13
 
 A gap the user found walking through the shared lib's showcase: a file's Tab pushed the rest of the row out of the frame.

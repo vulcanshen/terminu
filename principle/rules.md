@@ -860,8 +860,7 @@ the mark it writes the app's name and its author.
   C and K, each wrapping the next). tdp's own mark is [`icon.svg`](icon.svg): a T in the frame.
 - **Letters**: marked with XML comments. A comment starts a letter and names it (e.g. `<!-- L -->`); the rects after it
   belong to it until the next comment. The first comment is the U frame (`<!-- U -->`). The order of the comments is the
-  order of the reveal. The tool that draws a mark does not split letters; whoever develops the app adds the comments
-  once it is saved.
+  order of the reveal.
 - **Drawing**: each cell is one `nf-fa-square` (U+F0C8), two columns wide (with a space after it where icons take one
   cell, E5); the background cells are squares in Surface0 `#313244`.
   The mark's 25 columns already have a background cell at either side; one more background row is drawn above it and one
