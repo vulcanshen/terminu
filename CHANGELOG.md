@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.6.12 — 2026-10-15
+
+From ccdrawu: the header of a one-value-per-row panel.
+
+- layout/panel: a one-value-per-row panel's header (`PROPERTY  VALUE`) is Overlay0, otherwise drawn as an ordinary
+  list's header — the labels under it are Blue, and a Blue header ran into them
+- color: Focus keeps a list's header row; Dim text adds the header row of a one-value-per-row panel
+
 ## v0.6.11 — 2026-10-15
 
 From kamonu: what an input's error names when its title is an action.
