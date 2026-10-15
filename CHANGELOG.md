@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.6.11 — 2026-10-15
+
+From kamonu: what an input's error names when its title is an action.
+
+- input: an error names the value by its name — opened from a form's field, that field's name; an input opened on its
+  own has a title saying what the popup does (`RENAME`, `SAVE AS`), so the app gives the value's name besides
+  (`Name can't have control characters`, not `Save as can't have control characters`)
+- The pasted-control-character error, number's range error and textarea's error follow it
+
 ## v0.6.10 — 2026-10-15
 
 From terminu-go and kamonu: a target opening while its source closes.

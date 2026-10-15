@@ -25,7 +25,8 @@ to type, use [`slider`](slider.md).
 
 ## Value
 
-- **The range is checked on `Enter`**, a mistake written in the error row (`Port must be 1-65535`).
+- **The range is checked on `Enter`**, a mistake written in the error row naming the value (as in "What an input is" in [`README`](README.md):
+  `Port must be 1-65535`).
 
 **Why**: the range can only be judged once the whole number is typed, never halfway — typing `22`, the first `2` is
 still below the minimum.

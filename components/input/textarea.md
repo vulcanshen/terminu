@@ -58,7 +58,7 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
   as `\r`).
 - **Other pasted control characters**: as in "Pasted control characters" in [`input/README`](README.md), kept in the
   value and drawn in red (`\x1b`); `Backspace` deletes one whole. While the value holds one, confirming (`Enter` in Move)
-  is held back — nothing is saved — and the error row names the field as a single-line input's does (e.g. `Notes can't have control characters`); it saves once they are
+  is held back — nothing is saved — and the error row names the value as a single-line input's does (e.g. `Notes can't have control characters`); it saves once they are
   deleted. Line breaks and `\t` do not count.
 - **`Tab`**: inserts spaces, as many as the setting `input_tab_width` (4 by default, in each app's config file, Rules
   E3). The value holds those spaces; `Backspace` removes one at a time. A pasted `\t` is kept as it is — what the user

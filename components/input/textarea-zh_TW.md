@@ -47,7 +47,7 @@
   整個值的最前面、最後面）；行頭、行尾在「移」裡用 `0|$`。
 - **貼上的換行就是真的換行**：`\n`、`\r\n`，以及單獨的 `\r`（很多終端機貼上時把換行送成 `\r`）。
 - **貼上的其他控制字元**：照 [`input/README`](README-zh_TW.md) 的「貼上的控制字元」留在值裡、畫成紅字（`\x1b`），`Backspace` 一次刪
-  一整個。值裡有控制字元時，確定（「移」裡的 `Enter`）擋下，不存，錯誤列照單行點名欄位（例：`Notes can't have control characters`），刪掉才能存。換行與 `\t`
+  一整個。值裡有控制字元時，確定（「移」裡的 `Enter`）擋下，不存，錯誤列照單行點名值（例：`Notes can't have control characters`），刪掉才能存。換行與 `\t`
   不算。
 - **`Tab`**：插入空白，個數是設定 `input_tab_width`（預設 4，放在每個 app 的設定檔，Rules E3）。值裡存的就是空白；`Backspace`
   一次刪一個。貼上的 `\t` 照存，不偷改使用者貼進來的內容，畫面上畫成 `input_tab_width` 格空白。
