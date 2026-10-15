@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.6.8 — 2026-10-15
+
+From terminu-go, building the form's actions: what happens while one is still running.
+
+- dialog/form: while a button's work runs (an action that keeps the form open, or a submit that takes a while),
+  `Enter` on it does nothing and the hint drops its `Enter` until it is done
+- An action still running when the form closes (`Esc`, or another submit) is cancelled — stopped if it can be — and
+  its result is not shown
+
 ## v0.6.7 — 2026-10-15
 
 From kamonu: a form with more than one button, and a cursor over a colour.
