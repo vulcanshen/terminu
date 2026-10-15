@@ -46,7 +46,11 @@ terminu design 是一套 terminal UI 的設計語言：一組跨畫面、跨 app
 
 [terminu-go](https://github.com/vulcanshen/terminu-go) 是寫成 Go 函式庫的 tdp。app 登記 panel 與動作，terminu-go 照這份登記
 畫出畫面、處理 core key —— `Space` menu、`?`、hint、confirm、`Esc` 一次關一層 —— 新的 app 不必自己再實作一次 tdp。它的展示場
-用假資料展示每一個元件。
+用假資料展示每一個元件；想看 tdp 實際用起來的樣子，可以直接跑它（需要 Go）：
+
+```sh
+go run github.com/vulcanshen/terminu-go/examples/showcase@latest
+```
 
 家族的新 app 都用它來做，第一個是 kamonu。做的時候發現 tdp 還沒寫到的，先回到這裡補規範，函式庫再跟上。
 
