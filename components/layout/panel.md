@@ -210,11 +210,15 @@ A panel with one value per row, like a settings screen (locku's preference, webu
 - **Labels**: uppercase; Blue normally, Surface2 when disabled, Red when its value has an error (over any other colour). They are
   dimmed with the panel when it is unfocused (T2). The label column is as wide as the longest label, with two cells
   between it and the values.
+- **Header** (`PROPERTY  VALUE` in the example): Overlay0 (dim text in [`color`](../color.md)); otherwise as an
+  ordinary list's header (uppercase, not bold, fixed at the top and never scrolled).
 
 **Why**: a settings screen and a form are the same thing — one value per row, changed one by one — except that a change
 takes effect at once. With one set of rules, what the user learns in a form works on a settings screen too. Labels are
 Blue, the colour of the focused frame: the same idea as a form's labels taking the layer colour, which is the colour of
-the popup frame.
+the popup frame. The header is not Blue: the labels under it already are, and a Blue header would run into them
+and not read as a header; an ordinary list's header has Text data under it, which is what sets it apart. A header says
+what a column is and cannot be acted on, so it takes dim text, as a menu's section titles do.
 
 ## Details
 
