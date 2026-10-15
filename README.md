@@ -52,7 +52,11 @@ The details are in the **[terminu design principle (tdp)](principle/)**:
 [terminu-go](https://github.com/vulcanshen/terminu-go) is tdp written as a Go library. An app registers its panels and
 actions; terminu-go draws the screen from that and handles the core keys — the `Space` menu, `?`, the hints, confirms,
 `Esc` closing one layer at a time — so a new app follows tdp without implementing it again. Its showcase app shows
-every component on fake data.
+every component on fake data; to see tdp at work, run it (Go required):
+
+```sh
+go run github.com/vulcanshen/terminu-go/examples/showcase@latest
+```
 
 New apps in the family are built on it, kamonu first. What they need that tdp does not say yet comes back here: the
 spec is patched first, then the library follows.
