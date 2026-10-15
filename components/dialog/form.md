@@ -56,7 +56,7 @@ Each field takes one of two arrangements.
 ┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
 ```
 
-(The drawings in this section and the next show the fields only; for the action row see "Action row".)
+(The drawings in this section and the next show the fields only; for the action area see "Action area".)
 
 ### Options drawn in the form
 
@@ -103,7 +103,7 @@ same way of drawing as a menu: in a family popup, the block on the layer colour 
 to the value actually being edited in an input popup; "a glance tells which field" is the block's job, and the block also
 shows which option of a radio field the focus is on.
 
-### Action row
+### Action area
 
 ```
 ┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -114,7 +114,7 @@ shows which option of a radio field the focus is on.
 ┃                                                ┃
 ┃ Host is required                               ┃   ← error row (blank when there is no error)
 ┃ ────────────────────────────────────────────── ┃   ← separator
-┃                                          Save  ┃   ← action row: the button on the right
+┃                                          Save  ┃   ← action area: the button on the right
 ┃                                                ┃
 ┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
 ```
@@ -122,43 +122,74 @@ shows which option of a radio field the focus is on.
 - **The button**: its text with one blank cell on each side, on a block of background. It has a background even without
   the focus (Surface1 background, Text), so it reads at once as an item that can take the focus and be pressed, not as a
   line of explanation; with the focus it is drawn like any other item, the layer colour as background with bold Base
-  text. The button says what the form does (`Save`, `Connect`, `Sign in`).
+  text. A button says what pressing it does (`Save`, `Connect`, `Sign in`, `Test`).
 - No `[ Save ]`: in the family square brackets mean a key (Rules M5's `[A]`, a menu's `[r]ename`), and it would read as
   "press `S` to save". No capsule: in the family a capsule is a name (a panel title, a tab, a screen), and a button drawn
   as a capsule would read as a title (Principle P4).
-- **Where**: the field area → a blank row → the error row → a separator → the action row. The fields and the error row
+- **Where**: the field area → a blank row → the error row → a separator → the action area. The fields and the error row
   share the left edge; the button sits on the right, one cell from the border. The error row sits just above the
   button: when a submit is refused, the eyes are already nearby.
-- **The separator**: above the action row, drawn like the separator in [`layout/popup`](../layout/popup.md) (not joined
-  to the border, Overlay0), setting the action row apart from the content above.
-- **The error row, the separator and the action row never scroll**: when the fields do not fit, only the field area
+- **The separator**: above the action area, drawn like the separator in [`layout/popup`](../layout/popup.md) (not joined
+  to the border, Overlay0), setting the action area apart from the content above.
+- **The error row, the separator and the action area never scroll**: when the fields do not fit, only the field area
   scrolls, and the button is always in sight.
 - **The scroll position**: when the fields do not fit, the right of the bottom border shows the field holding the focus
   as `N of M`, M counting fields only (not the error row or the button). With the focus on the error row or the button
   nothing is shown, and it comes back on a field: they are not fields, and no number would mean anything.
-- **The action row has one button (submit)**: a form needing a second button is a gap in tdp, to be reported and added,
-  and how to move between buttons is settled then.
+- **There may be more than one button**: there is always one main submit, in the bottom-right corner of the action area
+  (with one button, that is it). The other buttons may be another way to submit (e.g. `Save As`) or an action that
+  keeps the form open (e.g. sshu's `Test`, trying the connection). Which buttons go on which row, and how many rows, is
+  up to the app; every row sits on the right, with one cell between the buttons of a row.
+- **An action that keeps the form open**:
+  - Pressed, it first checks **the fields this action needs** (which ones is up to the app, per action: `Test` needs
+    the Host, not the Name). If that fails, it shows as a refused submit does: the labels of the fields with a problem
+    turn Red, the error row gives the first problem, and the focus jumps to that field (see "Errors").
+  - Success: a toast of one sentence (e.g. `Connected to web-01`). Failure: an error popup, as when a submit fails; once
+    it is closed the focus is on the button, and one more `Enter` retries. When the result is content to read (e.g. the
+    whole output of a test), a note opens ([`dialog/note`](note.md)). One that takes a while puts the loading icon after
+    the title (the loading in [`layout/popup`](../layout/popup.md)).
+  - The focus stays on the button (Rules K3). When the action writes a value into a field, that field counts as changed
+    as usual ("The changed flag" under "Cancel").
 - No cancel button: cancelling is `Esc` (Rules F3), shown in the hint.
+
+E.g. three buttons on two rows, as the app lays them out:
+
+```
+┃ ────────────────────────────────────────────── ┃
+┃                                          Test  ┃   ← which buttons go on which row is up to the app
+┃                                Save As   Save  ┃   ← the main submit in the bottom-right corner; one cell between buttons on a row
+┃                                                ┃
+┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
+```
+
+**Why**: the main submit is always where a lone button would be, so every form has it in the same place. An action
+that keeps the form open is a button too: something on the form to see and press, reached with `Tab` and pressed with
+`Enter` like a submit; its result follows the submit's way — an error popup on failure, another press to retry — with
+only a toast added on success: the form is still open, and the user needs to know it is done.
 
 ## Keys
 
 ### Moving
 
 In a form the focus moves by **item**: a field that takes typing or opens a popup is one item, each option of a radio or
-checkbox field is an item of its own, and the button is one item; the error row, while it holds an error, is an item too
-(just before the button).
+checkbox field is an item of its own, and each button is one item; the error row, while it holds an error, is an item too
+(after the last field). The items fall into two areas: the **field area**, the fields and the error row, and the
+**action area**, the buttons.
 
-- **`j|l|↓|→` to the next item, `h|k|↑|←` to the previous one** (a form is a one-dimensional list, Rules
-  K12). Going on from the last option of a field enters the next
-  field, and going back from the first option returns to the previous one. `gg` goes to the first item, `G` to the last
-  (the button); `u|d` move half a page, counted in items, and stop at the ends.
-- **`Tab|Shift-Tab` switch between the field area and the action row** (Rules K2): `Tab` on any item of the field area
-  goes to the button; `Tab` on the button returns to the item it left — as between a [`input/finder`](../input/finder.md)'s
-  typing row and list. Within the field area items are walked one by one with `j|k`. The error row is not a `Tab` stop
-  (`j|k` and `e` reach it); it is fixed at the bottom with the button and counts as the same area: `Tab` on the error row
-  also returns to the item the field area was left on.
-- **Wrapping at both ends** (Rules K12): the button is the last item, so `j` on it returns to the first field, and going
-  back one step from the first field reaches the button — making up for the action row sitting at the bottom.
+- **`j|l|↓|→` to the next item, `h|k|↑|←` to the previous one, only within the area holding the focus** (each area is
+  a one-dimensional list, Rules K12). Going on from the last option of a field enters the next field, and going back
+  from the first option returns to the previous one. The action area runs in reading order: along a row from left to
+  right, then on to the next row. `gg|G` go to the first and the last item of the area; `u|d` move half a page,
+  counted in items, and stop at the ends.
+- **`Tab|Shift-Tab` switch between the field area and the action area** (Rules K2), each time coming back to the item
+  it left — as between a [`input/finder`](../input/finder.md)'s typing row and list. The first time in the action
+  area, the focus lands on the main submit (the bottom-right corner). The error row is the last item of the field area
+  (`j|k` and `e` reach it), and `Tab` on it goes to the action area too; it is fixed at the bottom with the action
+  area and never scrolls, but for moving it belongs to the field area.
+- **Each area wraps at its own ends** (Rules K12): past the last item of the field area (the error row, when it holds
+  an error) comes the first field again; past the last button comes the first button. `j|k` never leave the area, and
+  `Tab` goes to the other one: with more buttons, walking fields and buttons as one run would take many presses to
+  reach the one wanted.
 - **Disabled fields and options are skipped**: `j|k` do not stop on them; they are still drawn in place.
   Disabled means "cannot be changed now", and `Enter` on one would have nothing to do.
 - **On opening**: the focus is on the first item it can stop on (disabled ones skipped), for a new entry and an edit
@@ -183,8 +214,8 @@ checkbox field is an item of its own, and the button is one item; the error row,
 ┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
 ```
 
-`j` all the way: Name → password → privatekey → credential → forward. `Tab` on privatekey goes to the button, and `Tab`
-on the button returns to privatekey.
+`j` all the way: Name → password → privatekey → credential → forward, and on back to Name. `Tab` on privatekey goes
+to `Save` in the action area, and `Tab` on `Save` returns to privatekey.
 
 ### `Enter`
 
@@ -197,18 +228,18 @@ on the button returns to privatekey.
 - **On a radio option**: chooses it; **on a checkbox option**: flips it in place (`Space` flips it too, as in a checkbox
   popup, Rules K5). Neither opens a popup; the focus stays
   where it is and the change is immediate; a wrong choice is undone by pressing again right there.
-- **On the button**: submits.
+- **On a button**: presses it — submitting, or doing that button's action (see "Action area").
 
 ### Submit
 
-There is one way only: move the focus to the button and press `Enter`. Only an explicit press of the button makes sure
+There is one way only: move the focus to a submit button and press `Enter`. Only an explicit press of the button makes sure
 the user means to submit.
 
-- The quick way there: `Tab` from the field area to the button (`Tab` on the button goes back to that item), or `G`
-  straight to the button. E.g. changing just the Port and saving — `Enter` on Port, type `2222`, `Enter`, `Tab`, `Enter`.
+- The quick way there: `Tab` from the field area to the action area, landing on the main submit the first time (`Tab`
+  on the button goes back to that item). E.g. changing just the Port and saving — `Enter` on Port, type `2222`, `Enter`, `Tab`, `Enter`.
 - No letter hotkey (such as `s`) submits: a form looks like a row of fields, so users easily start typing straight away,
   and the first letter of `server` would submit the form.
-- `Esc` does not move the focus to the action row: Rules F3 has `Esc` close a popup at once, and if forms were an
+- `Esc` does not move the focus to the action area: Rules F3 has `Esc` close a popup at once, and if forms were an
   exception, users could not close one.
 
 ### Typing on a field
@@ -231,10 +262,10 @@ not one of the form's keys is pressed (`q` included), a note pops up to explain:
 
   | Key | On a form |
   |---|---|
-  | `j` `k` `h` `l`, the arrow keys | movement (wrapping at the ends, Rules K12) |
-  | `Tab\|Shift-Tab` | between the field area and the action row |
+  | `j` `k` `h` `l`, the arrow keys | movement within the area (wrapping at the ends, Rules K12) |
+  | `Tab\|Shift-Tab` | between the field area and the action area |
   | `u\|d` | half a page, counted in items, stopping at the ends |
-  | `g` (the start of `gg`), `G` | to the first and the last item; a single `g` does nothing |
+  | `g` (the start of `gg`), `G` | to the first and the last item of the area; a single `g` does nothing |
   | `e` | on a field with a problem, to the error row; on the error row, back to that field (see "Errors" below); nothing elsewhere |
   | `Enter`, `Esc` | see `Enter` above and "Cancelling" below |
   | `Space`, `?` | core keys: `Space` ticks or unticks a checkbox option and does nothing elsewhere (Rules K5), `?` opens the key reference (Rules K6) |
@@ -259,10 +290,11 @@ Enter:edit Tab:actions Esc:cancel
 
 - **The word after `Enter` follows the focused item**, saying what pressing it does: `Enter:edit` on a field that opens
   an input popup, `Enter:choose` on a radio option, `Enter|Space:toggle` on a checkbox option, and the button's word on the
-  button (in lower case: `Save` → `Enter:save`, `Connect` → `Enter:connect`).
+  button (in lower case: `Save` → `Enter:save`, `Connect` → `Enter:connect`, `Save As` → `Enter:save as`,
+  `Test` → `Enter:test`).
 - With the focus on a field with a problem, `e:error` is added (`Enter:edit e:error Tab:actions Esc:cancel`); on the error row it
-  reads `Enter:show e:edit Tab:fields Esc:cancel`.
-- **`Tab` names the area it goes to**: `Tab:actions` in the field area, `Tab:fields` on the button and the error row (`Enter:save
+  reads `Enter:show e:edit Tab:actions Esc:cancel`.
+- **`Tab` names the area it goes to**: `Tab:actions` in the field area (the error row too), `Tab:fields` on a button (`Enter:save
   Tab:fields Esc:cancel`). Not `Tab:save`: that reads as if `Tab` saved, and pressing the button is the only way to submit.
 - No movement keys (`j|k`): users find them out by using the form.
 - `Esc:cancel`, not `close`: `Esc` on a form throws its content away, the same meaning as a confirm's `Esc:cancel`.
@@ -296,7 +328,8 @@ intact — the "safe place" Rules K4 asks for.
   refused in the input popup on `Enter`, the error written in the input popup's error row; the value is not written back
   and the popup stays open (see each input file). A value that fails never reaches the form.
 - **Rules involving the whole form**: checked only when the button is pressed to submit — a required field left empty, a
-  field required because of another (Auth set to credential needs a Credential chosen), a duplicate name.
+  field required because of another (Auth set to credential needs a Credential chosen), a duplicate name. An action
+  that keeps the form open checks only the fields it needs (see "Action area").
 - **A failed check**: nothing is saved; the form stays open with every value. The label of every field with a problem
   turns Red (all that needs fixing, at a glance); the error row gives the first problem in field order, and the focus
   jumps to that field (for which option of a radio or checkbox, see "Moving").
@@ -310,7 +343,7 @@ intact — the "safe place" Rules K4 asks for.
 - **The submit itself fails** (the file changed underneath, a write failing, the remote refusing): nothing is written in
   the error row; an error popup opens straight over the form (see the error row in [`layout/popup`](../layout/popup.md));
   once it is closed, the form is back with every value and the focus still on the button — one more `Enter` retries.
-- **Errors follow the check**: the form as a whole is checked only on submit, so the Red labels and the error row stay,
-  even when values change, until the next submit: then they turn into whatever is wrong then, or, with nothing wrong, the
-  form is saved.
+- **Errors follow the check**: checks run only on a submit or an action that keeps the form open, so the Red labels and
+  the error row stay, even when values change, until the next check: then they turn into whatever is wrong then, or,
+  with nothing wrong, the submit saves and the action runs.
 - **Before the first submit** the form as a whole is not checked: a new form does not open full of red "required".

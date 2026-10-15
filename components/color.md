@@ -45,7 +45,10 @@ syntax highlighting) are up to the app; this file governs the interface elements
 
 - **The cursor block**: the layer colour as its background in a popup, Subtext1 in a panel, the text Base bold in both;
   a cursor on a part without the focus is the focused cursor dimmed once more (P6).
-- Text placed on a cursor block always turns Base; its original colour is not kept.
+- Text placed on a cursor block always turns Base; its original colour is not kept. **Swatches are the exception**:
+  cells whose content is a colour (the `███` of a colour value in a form or on a panel, the cells kamonu draws a mark
+  in) keep their own colour, while the other text on the block still turns Base. The colour is that cell's value, and
+  it matters most just when it is about to be changed.
 - **The screen's background is not painted**: cells with no background of their own are left to the terminal's own
   background. When the terminal's background is not Base, a small patch of Base shows at a capsule seam and dimming leans
   towards Base; the family colours are designed for a dark background, so on a dark terminal the difference is small.

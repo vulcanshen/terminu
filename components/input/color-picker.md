@@ -17,7 +17,7 @@ Choosing a colour: colour fields on webu pages, locku's colour settings.
 ┃ #1E1E2E   #2A2A3C   2A▓  2A   3C     ┃   ← always in hex
 ┃                                      ┃
 ┃ ──────────────────────────────────── ┃
-┃                              Choose  ┃   ← the action row: the button `Choose`; `Tab` goes between the channels and the button
+┃                              Choose  ┃   ← the action area: the button `Choose`; `Tab` goes between the channels and the button
 ┃                                      ┃
 ┗━ Enter:edit Tab:actions Esc:cancel ━━┛
 ```
@@ -28,7 +28,7 @@ Choosing a colour: colour fields on webu pages, locku's colour settings.
   side, they show how much has changed.
 - **R, G and B are small swatches** (3 cells wide, 1 row tall), not sliders: each swatch is drawn in its channel's own colour (R is `#RR0000`);
   under it its value, **always in hex**.
-- **The action row**: a separator under the content and one button on the right, `Choose`, drawn as the button of
+- **The action area**: a separator under the content and one button on the right, `Choose`, drawn as the button of
   [`dialog/form`](../dialog/form.md) (Surface1 background and Text unfocused; layer colour background and Base bold
   focused; on the right, one cell from the border). A colour picker cannot be invalid, so it has no error row.
 - **Width**: the layout is fixed, so it follows "content width known when it opens" in
@@ -45,7 +45,7 @@ are all written in hex (`#2A2A3C`), and with the channels in hex too, they line 
   With the focus on a channel, both rows under it, the name and the hex, are drawn as a cursor (layer colour
   background, Base bold), as wide as the swatch above (3 cells × 2 rows).
 - **`Tab|Shift-Tab` go back and forth between the channels (R, G, B) and `Choose`**, coming back to the channel they
-  left — the field area and the action row of a form (Rules K2, [`input/README`](README.md)).
+  left — the field area and the action area of a form (Rules K2, [`input/README`](README.md)).
 - **`Enter`** does the most obvious thing to the focused item (Rules K3):
   - R, G, B: opens a [`select`](select.md) of numbers (00–FF, step 1, the cursor on the current value), every row in hex
     with the decimal in brackets: `2A (42)`; typing filters, by hex or decimal alike. Back from choosing, new changes
@@ -62,4 +62,5 @@ as wide as the swatch: a one-cell block is easily missed, and the hex being chan
 ## Value
 
 In a form or a panel: a small swatch and the hex (`███ #2A2A3C`); empty follows the rule for empty values in
-[`input/README`](README.md).
+[`input/README`](README.md). With the cursor on the field, the swatch keeps its own colour and the hex still turns
+Base (the cursor block in [`color`](../color.md)).

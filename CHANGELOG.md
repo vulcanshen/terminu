@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.6.7 — 2026-10-15
+
+From kamonu: a form with more than one button, and a cursor over a colour.
+
+- dialog/form: the action row becomes the action area, and it may hold more than one button — the main submit always in
+  the bottom-right corner, the others another way to submit (`Save As`) or an action that keeps the form open (`Test`),
+  laid out in rows by the app. `Tab|Shift-Tab` switch between the field area (the fields and the error row) and the
+  action area, landing on the main submit the first time; hjkl move only within the area, each wrapping at its own ends,
+  the action area in reading order; `gg|G` go to the ends of the area
+- An action that keeps the form open checks only the fields it needs, shown as a refused submit is; success is a
+  toast, failure an error popup (`Enter` again retries), a result to read a note; errors stay until the next check
+- The error row's hint is `Enter:show e:edit Tab:actions Esc:cancel`; K2 and F1 say action area, and hjkl within it
+- color: a swatch — a cell whose content is a colour, such as the `███` of a colour value or kamonu's grid — keeps its
+  own colour under a cursor block; the other text on it still turns Base
+
 ## v0.6.6 — 2026-10-15
 
 From ccdrawu, which wants its drawer items put in order inside a popup: the panel's Drag mode, now in a dialog too.

@@ -202,7 +202,7 @@ A panel with one value per row, like a settings screen (locku's preference, webu
   and radio and checkbox options are chosen in place; once confirmed, the focus stays on the same row (Rules K3); values
   are shown as [`input/README`](../input/README.md) says.
 - **What differs: there is no submit.** Each value takes effect and is saved the moment it is confirmed in the input
-  popup, and a switch or radio option the moment it is chosen in place. So there is no action row, and no "ask first when
+  popup, and a switch or radio option the moment it is chosen in place. So there is no action area, and no "ask first when
   changed".
 - **The focus block**: a Subtext1 background with Base bold text, drawn the same way as the cursor of an ordinary list
   (its right padding is the arrow); it spans as in a form, from the start of the item to the panel's inner right edge (from the value for a field, from the

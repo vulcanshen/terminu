@@ -173,7 +173,7 @@ frame.
 ## Error row
 
 - **Where**: a fixed row below the content area that never scrolls, with a blank row between it and the content. A kind
-  may add fixed rows below it (e.g. a form's separator and action row).
+  may add fixed rows below it (e.g. a form's separator and action area).
 - **Reserved only in popups whose values can be invalid** (Rules F7): blank when there is no error, the height unchanged.
 - **Value errors only**: a value breaks a rule — format, range, a required field, a duplicate name; the message is
   written by the app and is short.
