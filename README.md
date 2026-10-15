@@ -58,7 +58,7 @@ every component on fake data; to see tdp at work, run it (Go required):
 go run github.com/vulcanshen/terminu-go/examples/showcase@latest
 ```
 
-New apps in the family are built on it, kamonu first. What they need that tdp does not say yet comes back here: the
+New apps in the family are built on it: kamonu and ccdrawu. What they need that tdp does not say yet comes back here: the
 spec is patched first, then the library follows.
 
 ## The terminu family
@@ -71,6 +71,7 @@ spec is patched first, then the library follows.
 | [webu](https://github.com/vulcanshen/webu) | A terminal browser that reads a web page as a document | — |
 | [locku](https://github.com/vulcanshen/locku) | A screensaver with a PIN lock, for the terminal | — |
 | [kamonu](https://github.com/vulcanshen/kamonu) | A terminal editor for the family's marks (kamon), drawn letter by letter | ✓ |
+| [ccdrawu](https://github.com/vulcanshen/ccdrawu) | A sidebar for Claude Code: usage, context, cost and git beside the transcript | ✓ |
 
 ## History
 
