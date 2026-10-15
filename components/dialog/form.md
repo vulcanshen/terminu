@@ -148,6 +148,11 @@ shows which option of a radio field the focus is on.
     it is closed the focus is on the button, and one more `Enter` retries. When the result is content to read (e.g. the
     whole output of a test), a note opens ([`dialog/note`](note.md)). One that takes a while puts the loading icon after
     the title (the loading in [`layout/popup`](../layout/popup.md)).
+  - **While it runs**: `Enter` on that button does nothing, and the hint drops that button's `Enter` (e.g. `Enter:test`)
+    until it is done — the same thing is never sent twice. A submit that takes a while (e.g. `Connect`) does the same.
+  - **The form closed before it is done** (`Esc`, or another submit): the action is cancelled — stopped if it can be —
+    and no result is shown. The result belongs to this form (written into a field, a retry from the button), so with the
+    form gone there is nowhere to put it, and laid over another screen nobody would know where it came from.
   - The focus stays on the button (Rules K3). When the action writes a value into a field, that field counts as changed
     as usual ("The changed flag" under "Cancel").
 - No cancel button: cancelling is `Esc` (Rules F3), shown in the hint.

@@ -126,6 +126,10 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
   - 成功：toast 一句（例：`Connected to web-01`）。失敗：開 error popup，跟送出失敗一樣；關掉後 focus 在按鈕上，再按 `Enter` 就是
     重試。結果是一段要看的內容（例：測試的完整輸出）時，開 note（[`dialog/note`](note-zh_TW.md)）。跑得久的，標題後面放 loading icon
     （[`layout/popup`](../layout/popup-zh_TW.md) 的 loading）。
+  - **還在跑時**：focus 停在那顆按鈕上按 `Enter` 不作用，hint 拿掉那顆按鈕的 `Enter`（例：`Enter:test`），跑完再放回來 —— 同一件事
+    不會發出兩次。跑得久的送出（例：`Connect`）也一樣。
+  - **還沒跑完表單就關掉**（`Esc`，或按了另一顆送出）：動作就算取消，能停就停，結果不顯示 —— 結果是給這張表單的（寫回欄位、回到
+    按鈕重試），表單不在了就沒有地方放；疊到別的畫面上，使用者也不知道它從哪裡來。
   - focus 留在按鈕上（Rules K3）。動作把值寫進某一欄時，那一欄照樣算改過（「取消」的「改過了」）。
 - 不放取消的按鈕：取消是 `Esc`（Rules F3），寫在 hint。
 
