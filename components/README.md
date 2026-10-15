@@ -50,8 +50,10 @@ one cell after it reads as one unit with its text.
   and the app's own content (the statusbar, the data in lists).
 - **The letters in a hotkey marker stay as written**: what is printed in the brackets is the key to press, and case
   counts (Rules M5) — `[M]anage` becomes `[M]ANAGE`, `[m]anage` becomes `[m]ANAGE`.
-- **Names and paths in a title are content and keep their case**: `EDIT: filu`, `ALTERM: myhost`, `IDENTITY FILE · ~/.ssh`
-  (what goes before the name: "Title" in [`layout/popup`](layout/popup.md)).
+- **Names and paths are content and keep their case, in a title and in a hint**: the titles `EDIT: filu`,
+  `ALTERM: myhost`, `IDENTITY FILE · ~/.ssh` (what goes before the name: "Title" in [`layout/popup`](layout/popup.md));
+  a form button's hint lowers only its verb, `Overwrite KBU.svg` → `Enter:overwrite KBU.svg` (the hint in
+  [`dialog/form`](dialog/form.md)).
 
 **Why**: what is in uppercase says "what this is" — names, titles, column names — and stands apart at a glance from
 the content there is to read or change. Key names and hotkey markers stay: `q` and `Q` are different keys; content

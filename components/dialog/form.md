@@ -295,8 +295,9 @@ Enter:edit Tab:actions Esc:cancel
 
 - **The word after `Enter` follows the focused item**, saying what pressing it does: `Enter:edit` on a field that opens
   an input popup, `Enter:choose` on a radio option, `Enter|Space:toggle` on a checkbox option, and the button's word on the
-  button (in lower case: `Save` → `Enter:save`, `Connect` → `Enter:connect`, `Save As` → `Enter:save as`,
-  `Test` → `Enter:test`).
+  button — its verb in lower case, names and paths as they are (`Save` → `Enter:save`, `Connect` → `Enter:connect`,
+  `Save As` → `Enter:save as`, `Test` → `Enter:test`, `Overwrite KBU.svg` → `Enter:overwrite KBU.svg`; "Uppercase" in
+  [components](../README.md)).
 - With the focus on a field with a problem, `e:error` is added (`Enter:edit e:error Tab:actions Esc:cancel`); on the error row it
   reads `Enter:show e:edit Tab:actions Esc:cancel`.
 - **`Tab` names the area it goes to**: `Tab:actions` in the field area (the error row too), `Tab:fields` on a button (`Enter:save
