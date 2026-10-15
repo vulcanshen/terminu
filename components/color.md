@@ -35,7 +35,7 @@ syntax highlighting) are up to the app; this file governs the interface elements
 | Layer colour | a popup's frame (heavy line `┏━┓`) and the fill of its title capsule; the cursor block in a popup | see "Popup layer colours" below |
 | Being edited, user footprint | the value and the text cursor in an input popup; positions the user leaves behind (the "you are here" of breadcrumbs, the "where you are now" values on the statusbar) | Lavender `#b4befe` |
 | In effect | the value now in effect (the one a select chose, the ticked ones, the ones switched on; in a popup it follows the tick on screen, read as "the value `Enter` gives"); live sessions; work in progress and progress bars; what completed successfully | Green `#a6e3a1` |
-| Mode | a mode's frame and mode name, the range selected in a mode (Rules K11) | Yellow `#f9e2af` |
+| Mode | a mode's frame and mode name, the range selected in a mode, the row held in a Drag (Rules K11) | Yellow `#f9e2af` |
 | Warning: worth noticing, not broken | the warning sentence in a confirm; the text of a Warning toast | Peach `#fab387` |
 | Error | the error row, a label in error, the error popup, the text of an Error toast, pasted control characters (`\n`, `\x1b`…; their background, with Base text, while the cursor rests on one) | Red `#f38ba8` |
 | Dim text | descriptions and section titles in a menu; the colon and description in hints and the footer, and the `\|` between keys (`j\|k`); description rows; grey suggestions; the description of an empty value; an unfocused typing row; empty states; separators (inside popups, below the screen chip row) | Overlay0 `#6c7086` |

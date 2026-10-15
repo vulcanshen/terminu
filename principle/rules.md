@@ -322,7 +322,9 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
 - **Stepping wraps at the ends**: moving one step at a time along a run of items (`j|k`, `h|l`, the arrow keys, `Tab`)
   — a panel's list, a one-value-per-row panel, a menu, a form, the list of a finder, a select or a checkbox popup, a
   panel's tabs, the columns and items inside a picker — one step past the last item goes to the first, and one step back
-  from the first goes to the last. `u|d` stop at the first and the last item and do not wrap; `gg|G` go to the top
+  from the first goes to the last. So does the item held in a Drag mode (a panel's Drag,
+  [components/input/reorder](../components/input/reorder.md)): one step past the last, it goes to the first and every
+  other item moves down one. `u|d` stop at the first and the last item and do not wrap; `gg|G` go to the top
   and the bottom anyway. What moves through space rather than along a run of items does not wrap: the days of a
   calendar, the month and the year, the two sides, moving within a piece of text.
 - **Moving within a piece of text** (a viewer's selection mode, a textarea's moving state): add `w|b|e` (next word start,
@@ -588,7 +590,7 @@ The family's popups come in these seven classes only, each with fixed key meanin
 |---|---|---|
 | **menu** | a list with no search: `j\|k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, a sort picker, a jobs list (`Enter` opens the row in full) |
 | **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6); what to read first sits above, the question last | confirm before delete, the quit confirm, "Connect to X?" carrying the details |
-| **input** | enter or pick one value, written back once confirmed; one value per popup. On the typing row it is the input state (K8); other parts follow K1 | rename, address bar, select, datetime picker |
+| **input** | enter or pick one value, written back once confirmed; one value per popup. On the typing row it is the input state (K8); other parts follow K1 | rename, address bar, select, datetime picker, reorder |
 | **form** | one value per row; `Tab` switches between the field area and the action row, hjkl move item by item (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing the button), the button submits ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Sign in and Add bookmark |
 | **note** | read-only, scrollable (K12); no list of options to run with `Enter` | key reference, YAML viewer, App Log, error popup |
 | **toast** | a short message popping up from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it | "Copied", an operation failed |
@@ -611,7 +613,8 @@ The family's popups come in these seven classes only, each with fixed key meanin
 - **A list plus search is a finder**: the plain finder, select, the checkbox popup and file-picker are all kinds of
   finder — the typing row is the input state, the list is for picking; for the typing row's keys see
   [components/input/finder](../components/input/finder.md). They are still inputs, not two classes at once. A list with
-  no search is a menu.
+  no search is a menu, except reorder: it has no search either, but it moves items and writes the whole order back
+  once confirmed, so it is an input ([components/input/reorder](../components/input/reorder.md)).
 - **A toast is not a layer**: it triggers no dimming (F8) and does not count toward the layer colours' levels; but `Esc`
   closes it first (K4).
 - **Each step of a multi-step flow is its own popup**: e.g. sorting by picking a column, then a direction, is two stacked
@@ -647,7 +650,7 @@ takes no other keys either.
 - With focus in a PTY, `Esc` belongs to the subprocess (K10); a terminal is left with the exit key. A toast can then only
   wait for its timer to go.
 - In a textarea's writing state, `Esc` leaves the writing state for the moving state (K8).
-- In a form or a textarea whose content changed, `Esc` first opens a confirm asking whether to discard it
+- In a form, a textarea or a reorder whose content changed, `Esc` first opens a confirm asking whether to discard it
   ([components/dialog/form](../components/dialog/form.md)).
 
 **Why**: users are not obliged to wait out a countdown. If a popup that is already closing takes another `Esc`, or still

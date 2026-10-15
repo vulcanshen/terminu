@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.6.6 — 2026-10-15
+
+From ccdrawu, which wants its drawer items put in order inside a popup: the panel's Drag mode, now in a dialog too.
+
+- New input component `reorder`: a list without search whose value is the whole order. `D` picks up the cursor's
+  item into the Drag mode, where `j|k` swap it with its neighbour, `Enter` drops it and `Esc` puts it back; holding
+  nothing, `Enter` writes the order back and `Esc` cancels, first asking whether to discard a changed order. The hints
+  are `Enter:apply D:drag Esc:cancel` and `Enter:drop Esc:cancel`; the popup is at least 35 cells wide
+- The held item, on a panel as in the popup: drawn as the cursor in the mode colour (a Yellow background, Base bold)
+  with `nf-md-swap_vertical` (U+F04E2) in the cell kept at the start of every row
+- K12: the held item wraps at the ends too — the last one moved down goes to the top
+- F1: reorder is the one list without search that is an input, not a menu; F3 and form's Cancel: a changed reorder
+  asks before `Esc` discards it, as a form and a textarea do
+
 ## v0.6.5 — 2026-10-14
 
 From ccdrawu's colour picker: its `Choose` button follows the form, but `Tab` had been left out.

@@ -5,7 +5,8 @@
 ## 用途
 
 沒有搜尋的清單，選一列執行（Rules F1）：Space menu、global operation popup、排序選擇器、工作清單（`Enter` 打開那一列的全文）。
-清單需要搜尋時是 finder（[`input/finder`](../input/finder-zh_TW.md)）；選的是一個值、要寫回去時是 select（[`input/select`](../input/select-zh_TW.md)）。
+清單需要搜尋時是 finder（[`input/finder`](../input/finder-zh_TW.md)）；選的是一個值、要寫回去時是 select（[`input/select`](../input/select-zh_TW.md)）；
+自己搬動項目、排出順序的是 reorder（[`input/reorder`](../input/reorder-zh_TW.md)）。
 
 ## 長相
 

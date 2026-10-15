@@ -7,7 +7,8 @@
 A list without search, choosing a row to run it (Rules F1): the Space menu, the global operation popup, a sort picker, a
 jobs list (`Enter` opening the row's full text). A list that needs search is a finder
 ([`input/finder`](../input/finder.md)); choosing a value to be written back is a select
-([`input/select`](../input/select.md)).
+([`input/select`](../input/select.md)); moving items by hand into an order is a reorder
+([`input/reorder`](../input/reorder.md)).
 
 ## Look
 

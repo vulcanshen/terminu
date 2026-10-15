@@ -271,8 +271,9 @@ item / panel / global 可分。把它們做成一個能選、能執行的清單�
   viewer、textarea 的移動狀態都不作用：那裡有 `gg|G`、`0|$`。
 - **一步一步的移動到頭尾繞回**：在一串項目上一次走一步（`j|k`、`h|l`、方向鍵、`Tab`）—— panel 的清單、一列一個值的 panel、
   menu、表單、finder 與 select、checkbox popup 的清單、panel 的 tab、picker 裡的欄與項目 —— 走到最後一個再往後一步回到第一個，
-  在第一個再往前一步到最後一個。`u|d` 到頭尾停在第一個、最後一個，不繞；`gg|G` 本來就是到頭、到尾。照空間走、不是一串
-  項目的不繞：日曆的日子、月與年、左右兩側、在一段文字裡移動。
+  在第一個再往前一步到最後一個。Drag mode 拿著的一項也一樣（panel 的 Drag、[components/input/reorder](../components/input/reorder-zh_TW.md)）：
+  拿著最後一項往後一步，它到第一個、其他各往後一格。`u|d` 到頭尾停在第一個、最後一個，不繞；`gg|G` 本來就是到頭、到尾。
+  照空間走、不是一串項目的不繞：日曆的日子、月與年、左右兩側、在一段文字裡移動。
 - **在一段文字裡移動**（viewer 的選取模式、textarea 的移動狀態）：再加上 `w|b|e`（下一個字頭、上一個字頭、字尾）與
   `0|$`（行首、行尾），照 vim。viewer 平常沒有游標，`h|l` 照上面給 tab；選取模式裡 `h|l` 移動游標，模式裡不切 tab
   （[components/dialog/note](../components/dialog/note-zh_TW.md) 的選取模式）。
@@ -507,7 +508,7 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 |---|---|---|
 | **menu** | 沒有搜尋的清單：`j\|k` 移動 cursor，`Enter` 或熱鍵執行那一列 | Space menu、global operation popup、排序選擇器、工作清單（`Enter` 打開那一列的全文） |
 | **confirm** | 讀一段提醒或警告，`Enter` 接受、`Esc` 取消（F6）；要先看的內容在上、問句最後 | 刪除前的確認、離開的確認、帶著明細的「連線到 X？」 |
-| **input** | 輸入或選出一個值，確定後寫回去；一個 popup 一個值。打字列上是輸入態（K8），其他部分照 K1 | 重新命名、網址列、select、datetime picker |
+| **input** | 輸入或選出一個值，確定後寫回去；一個 popup 一個值。打字列上是輸入態（K8），其他部分照 K1 | 重新命名、網址列、select、datetime picker、reorder |
 | **form** | 一列一個值；`Tab` 在欄位區與動作列之間切換、hjkl 一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕送出（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark |
 | **note** | 唯讀，可以捲動（K12）；沒有可用 `Enter` 執行的選項清單 | key reference、YAML 檢視、App Log、error popup |
 | **toast** | 從下方彈出的短訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它 | 「已複製」、操作失敗 |
@@ -523,7 +524,8 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
   `Tab` 在打字與清單之間切換 focus，`Esc` 關掉整個 finder（K4：階段不是一層）。旁邊的預覽不取得 focus，不算另一個 surface。
   **focus 在哪一邊要看得出來**：只有有 focus 的那一邊是亮的（Principle P6；樣子見 [components/input/finder](../components/input/finder-zh_TW.md)）。
 - **清單加搜尋就是 finder**：一般的 finder、select、checkbox popup、file-picker 都是 finder 的一種 —— 打字列是輸入態，清單是選；
-  打字列的按鍵見 [components/input/finder](../components/input/finder-zh_TW.md)。它們仍是 input，不是同時兩類。沒有搜尋的清單是 menu。
+  打字列的按鍵見 [components/input/finder](../components/input/finder-zh_TW.md)。它們仍是 input，不是同時兩類。沒有搜尋的清單是 menu，
+  只有 reorder 例外：它也沒有搜尋，但做的是搬動項目、確定後把整個順序寫回去，是 input（[components/input/reorder](../components/input/reorder-zh_TW.md)）。
 - **toast 不是一層**：不觸發淡化（F8）、不算層色的層數；但 `Esc` 先收掉它（K4）。
 - **多步驟的流程，每一步是自己的 popup**：例如排序先選欄位、再選方向，是兩個疊起來的 popup（F4 保留 source），不在同一個框裡
   換內容 —— 每一步有自己的 UX，也有自己打開時定好的大小（F7）。
@@ -551,7 +553,7 @@ popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中�
 
 - focus 在 PTY 裡時，`Esc` 屬於子程序（K10）；terminal 用出口鍵離開。這時 toast 只能等時間到收掉。
 - textarea 在寫入狀態時，`Esc` 是離開寫入狀態、進入移動狀態（K8）。
-- 內容改過的表單與 textarea，`Esc` 先開 confirm 問要不要放棄（[components/dialog/form](../components/dialog/form-zh_TW.md)）。
+- 內容改過的表單、textarea 與 reorder，`Esc` 先開 confirm 問要不要放棄（[components/dialog/form](../components/dialog/form-zh_TW.md)）。
 
 **為什麼**：使用者沒有等倒數的義務。已經在關的 popup 再收一次 `Esc`，或還吃其他鍵，使用者的
 下一個按鍵就會送錯地方。PTY 與 textarea 的 `Esc` 本來就是子程序與寫字要用的；改過的內容一次丟掉代價高，所以多問一次。

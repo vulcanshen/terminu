@@ -99,6 +99,10 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 - **標記的列**（Principle P3 的「整批標記」）：每一列最前面保留一格標記欄。被標記的列畫 Green 的 `nf-md-checkbox_marked`
   （U+F0132）；沒標記的留空白，欄寬一直保留，標記、取消時列不會左右位移（Rules L2）。收藏、釘選這類領域的旗標屬於內容，
   由 app 決定。
+- **Drag mode 拿著的那一列**（Rules K11；進入 Drag 的鍵由 app 決定，例：展示場與 kbu 的 `D`）：照 cursor 的畫法，Subtext1 換成模式色 ——
+  Yellow 底、Base 粗體，右邊的箭頭也是 Yellow；標記欄畫 `nf-md-swap_vertical`（U+F04E2），放下後回到那一列原本的標記。有 Drag 的
+  panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reorder-zh_TW.md) 拿著一項時一樣：`j|k` 搬（到頭尾繞回，Rules K12）、
+  `Enter` 放下、`Esc` 放回。
 - **截斷**：從尾端截，加 `…`。路徑、檔名這類尾端比較重要的，可以從前面截（`…/.ssh/id_ed25519`）。
 - **空的**：照 [`screen`](screen-zh_TW.md) 的空狀態。
 

@@ -130,6 +130,12 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   A marked row shows a Green `nf-md-checkbox_marked` (U+F0132); an unmarked one leaves it blank, the column width always
   kept, so rows never shift sideways when marked or unmarked (Rules L2). Domain flags such as favourites and pins belong
   to the content and are up to the app.
+- **The row held in the Drag mode** (Rules K11; the key that enters the Drag is up to the app, e.g. `D` in the
+  showcase and kbu): drawn as the cursor with Subtext1 swapped for the mode colour — a Yellow background, Base bold,
+  the arrow on the right Yellow too; the mark column shows `nf-md-swap_vertical` (U+F04E2), and the row's own mark
+  comes back once it is dropped. A panel with a Drag keeps the mark column on every row too. The keys are those of
+  [`input/reorder`](../input/reorder.md) while holding an item: `j|k` move it (wrapping at the ends, Rules K12),
+  `Enter` drops it, `Esc` puts it back.
 - **Truncation**: cut at the end, with `…`. Where the end matters more, such as paths and file names, it may be cut at
   the front (`…/.ssh/id_ed25519`).
 - **Empty**: as the empty states in [`screen`](screen.md).

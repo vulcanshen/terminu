@@ -231,7 +231,7 @@ Enter:edit Tab:actions Esc:cancel
   回到表單，值都還在（Rules F6、K4）。
 - **「改過了」的旗標**：有值寫回表單就設起來（input popup 確定了一個跟打開時不同的值、選了 radio 的選項、翻了 checkbox），
   之後不清掉。只比這一個 popup 打開與確定時的值，不比對表單最初的值：改了又改回原值，也算改過。
-- **範圍**：一次可能丟掉很多內容的地方才問 —— 表單與 textarea（[`input/textarea`](../input/textarea-zh_TW.md)）。其他 input popup 不問：
+- **範圍**：一次可能丟掉很多內容的地方才問 —— 表單、textarea（[`input/textarea`](../input/textarea-zh_TW.md)）與 reorder（[`input/reorder`](../input/reorder-zh_TW.md)）。其他 input popup 不問：
   裡面最多一個值，丟了重打就好；用 `Esc` 放棄剛打的字是最常見的操作，每次多一個 confirm 很煩。其他 dialog 沒有可以改的內容；
   terminal 離開本來就先問（Rules K10 的 `Alt-Esc`）。
 

@@ -169,6 +169,7 @@ character.
   | textarea | the first line, with `…` when more follows |
   | select | the chosen option's text |
   | checkbox popup (several) | the chosen items joined with `, `, with `…` when too long |
+  | reorder | the items in their current order joined with `, `, with `…` when too long |
   | radio, checkbox (drawn in the form) | the options themselves ([`radio`](radio.md), [`checkbox`](checkbox.md)) |
   | slider | a track and the number ([`slider`](slider.md)) |
   | datetime picker | the formatted date (and time), in the app's format (`2026-10-15`, `2026-10-15 10:05`) |
