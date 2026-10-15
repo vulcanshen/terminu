@@ -47,6 +47,16 @@ The details are in the **[terminu design principle (tdp)](principle/)**:
 | [Rules](principle/rules.md) | What must hold, each with its reason, split into a fixed and a concept zone |
 | [Components](components/README.md) | Component specs: colour, frames, dialogs, and how each kind of input looks and works |
 
+## terminu-go
+
+[terminu-go](https://github.com/vulcanshen/terminu-go) is tdp written as a Go library. An app registers its panels and
+actions; terminu-go draws the screen from that and handles the core keys — the `Space` menu, `?`, the hints, confirms,
+`Esc` closing one layer at a time — so a new app follows tdp without implementing it again. Its showcase app shows
+every component on fake data.
+
+New apps in the family are built on it, kamonu first. What they need that tdp does not say yet comes back here: the
+spec is patched first, then the library follows.
+
 ## The terminu family
 
 | App | What it is |
