@@ -12,6 +12,9 @@
   照 Rules K1：`?` 打開 key reference，`q`／`Ctrl-C` 進離開流程，`Space` 不作用（K5），`hjkl` 移動（K12）。
 - **`Enter`**（Rules K3）：focus 在值上時確定這個值 —— 寫回去、popup 關掉。值不合格就不寫回，錯誤寫在錯誤列，popup 不關。值跟打開時
   一樣，就不寫回、直接關掉。
+- **錯誤點名的是值的名字**：從表單的欄位打開的，就是那一欄的名字；自己打開的 input，標題寫的是這個 popup 在做什麼
+  （[`layout/popup`](../layout/popup-zh_TW.md) 的 `RENAME`、`SAVE AS`），值的名字由 app 另外給（`Name`）。例：`SAVE AS` 上寫
+  `Name can't have control characters`，不寫 `Save as can't have control characters` —— 標題說的是在做什麼，不是值叫什麼。
 - **`Esc`**：關掉，值不變。
 - **從表單打開的**：確定之後 focus 留在表單的同一欄（Rules K3）。
 - **有按鈕的 input popup**（例：color picker 的 `Choose`）：動作區照 [`dialog/form`](../dialog/form-zh_TW.md) —— `Tab|Shift-Tab`
@@ -112,7 +115,7 @@ panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：�
 - **遮罩的值照樣遮罩**（password）。
 - **不是使用者打字進來的值走同一個過濾**：原本的名字、檔案或別的程式給的值、清單填回來的值、從啟動目錄來的預設值、提議……
   不一一列舉。
-- **值會被拿去用的（送出、存、執行、交給別的程式）**：按 `Enter` 時擋下，錯誤列寫原因並點名欄位（例：`Name can't have control
+- **值會被拿去用的（送出、存、執行、交給別的程式）**：按 `Enter` 時擋下，錯誤列寫原因並點名值（照「什麼是 input」，例：`Name can't have control
   characters`）。**在去掉前後的空白字元之前檢查**：`Icon\r` 去掉空白字元會變成 `Icon`，先去空白字元就檢查不到。
 - **搜尋與篩選的打字列只畫，不擋。**
 

@@ -14,6 +14,10 @@ A kind of popup: a value is entered or chosen, and written back once confirmed; 
 - **`Enter`** (Rules K3): with the focus on the value, it confirms the value — written back, the popup closed. An invalid
   value is not written back: the error goes in the error row and the popup stays open. A value the same as when it
   opened is not written back; the popup just closes.
+- **An error names the value by its name**: opened from a form's field, that field's name; an input opened on its own
+  has a title saying what the popup does (`RENAME`, `SAVE AS` in [`layout/popup`](../layout/popup.md)), so the app gives
+  the value's name besides (`Name`). E.g. on `SAVE AS`, `Name can't have control characters`, not `Save as can't have
+  control characters` — the title says what is being done, not what the value is called.
 - **`Esc`**: closes, the value unchanged.
 - **Opened from a form**: after confirming, the focus stays on the same field of the form (Rules K3).
 - **An input popup with a button** (e.g. the colour picker's `Choose`): the action area works as in
@@ -135,7 +139,7 @@ glyph, not a placeholder: it is not text, `Tab` never takes it in, and it stays 
 - **Values the user did not type go through the same filter**: the original name, a value from a file or another
   program, a value filled back from a list, a default from the start directory, a suggestion… not listed one by one.
 - **A value that is used (submitted, saved, run, handed to another program)**: refused on `Enter`, the error row giving
-  the reason and naming the field (e.g. `Name can't have control characters`). **Check before trimming leading and
+  the reason and naming the value (as in "What an input is"; e.g. `Name can't have control characters`). **Check before trimming leading and
   trailing whitespace**: trimmed, `Icon\r` becomes `Icon`, so trimming first leaves nothing to catch.
 - **Search and filter typing rows only draw them, never refuse.**
 
