@@ -279,7 +279,8 @@ Enter:edit Tab:actions Esc:cancel
   the one it opened with, a radio option chosen, a checkbox flipped), and never cleared after that. Only the values when
   that one popup opened and when it was confirmed are compared, not the form's original values: changing a value and
   then changing it back still counts as a change.
-- **Scope**: ask only where a lot can be lost at once — forms and the textarea ([`input/textarea`](../input/textarea.md)).
+- **Scope**: ask only where a lot can be lost at once — forms, the textarea ([`input/textarea`](../input/textarea.md)) and reorder
+  ([`input/reorder`](../input/reorder.md)).
   Other input popups do not ask: they hold one value at most, easily typed again; giving up what was just typed with
   `Esc` is the most common thing done in them, and a confirm each time would wear. The other dialogs have nothing to
   change; leaving a terminal already asks first (`Alt-Esc`, Rules K10).

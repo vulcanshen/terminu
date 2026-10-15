@@ -15,7 +15,8 @@ These are all kinds of finder, each writing only what differs from here:
 | the popup of [`checkbox`](checkbox.md) | choose several values |
 | [`file-picker`](file-picker.md) | choose a file |
 
-A list without search is a menu ([`dialog/menu`](../dialog/menu.md)). Filtering by typing straight into a panel is the
+A list without search is a menu ([`dialog/menu`](../dialog/menu.md)), or a reorder when it puts items in order
+([`reorder`](reorder.md)). Filtering by typing straight into a panel is the
 panel filter ([`layout/panel`](../layout/panel.md)), whose typing row has the same keys as here.
 
 ## Look

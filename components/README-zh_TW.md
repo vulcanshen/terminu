@@ -63,7 +63,7 @@ app 依性質自己挑。挑的範圍只限列出的方案：方案都不合用�
 - 表單（`dialog/form`）上不打字：要打字或選項放不下的欄位，按 `Enter` 打開那個值的 input popup；選項少的 radio、checkbox，
   選項直接畫在表單上、在原地選。
 - 清單加搜尋就是 finder：一般的 finder、select、checkbox popup、file-picker 都是 finder 的一種（`input/finder`）。沒有搜尋的
-  清單是 menu（`dialog/menu`）。
+  清單是 menu（`dialog/menu`），排順序的 reorder 除外（`input/reorder`）。
 - 叫 dialog 不叫 modal：modal 講的是「開著時擋住底下」的行為，除了 toast 每個 popup 都會擋，分不出 input 和 dialog；
   dialog 講的是內容 —— app 在跟你對話。
 
@@ -111,3 +111,4 @@ app 依性質自己挑。挑的範圍只限列出的方案：方案都不合用�
 | [`datetime-picker`](input/datetime-picker-zh_TW.md) | 日期與時間 |
 | [`color-picker`](input/color-picker-zh_TW.md) | 顏色 |
 | [`file-picker`](input/file-picker-zh_TW.md) | 選檔；也有選目錄的一種 |
+| [`reorder`](input/reorder-zh_TW.md) | 自己搬動項目，排出順序 |

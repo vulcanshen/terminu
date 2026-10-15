@@ -67,7 +67,7 @@ Rules F7 的兩種寬度，打開時定好，開著時不變：
 
 | | 寬度 | 例 |
 |---|---|---|
-| **內容的寬度打開時就確定** | 最寬的那一列 + 4（左右各一格框、一格留白；右邊的留白跟箭頭一樣寬時照它的寬），至少放得下標題與 hint（hint 的寬 + 6：`┗━ ` 與 ` ━┛`）；要捲的時候也放得下捲動位置（hint 的寬 + 捲動位置最寬時的寬 + 9：`┗━ `、兩者之間至少 ` ━ `、` ━┛`），最寬 `min(terminal 寬 − 2, 120)` | 有長度上限的輸入（PIN 最多 12 碼：內容 12 + 11 個空格 + 4 = 27 格，hint `Enter:save Backspace:clear Esc:cancel` 37 + 6 = 43 格，框取 43 格）、confirm、menu、key reference、toast、error popup、datetime picker、color picker |
+| **內容的寬度打開時就確定** | 最寬的那一列 + 4（左右各一格框、一格留白；右邊的留白跟箭頭一樣寬時照它的寬），至少放得下標題與 hint（hint 的寬 + 6：`┗━ ` 與 ` ━┛`）；要捲的時候也放得下捲動位置（hint 的寬 + 捲動位置最寬時的寬 + 9：`┗━ `、兩者之間至少 ` ━ `、` ━┛`），最寬 `min(terminal 寬 − 2, 120)` | 有長度上限的輸入（PIN 最多 12 碼：內容 12 + 11 個空格 + 4 = 27 格，hint `Enter:save Backspace:clear Esc:cancel` 37 + 6 = 43 格，框取 43 格）、confirm、menu、key reference、toast、error popup、datetime picker、color picker、reorder |
 | **內容的寬度不確定** | `min(terminal 寬 − 2, 120)` | 自由打字的 text、網址、串流內容、搜尋結果、表單 |
 
 「確定」指的是打開那一刻就知道最寬會有多寬，不是看現在打了幾個字：PIN 打第一碼時框就是 43 格，不會跟著長。捲動位置也照最寬的時候算

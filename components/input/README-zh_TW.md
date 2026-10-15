@@ -141,6 +141,7 @@ panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：�
   | textarea | 第一行；後面還有就加 `…` |
   | select | 選中那一項的文字 |
   | checkbox popup（多選） | 選中的項目用 `, ` 接起來，太長加 `…` |
+  | reorder | 照目前的順序用 `, ` 接起來，太長加 `…` |
   | radio、checkbox（畫在表單上） | 選項本身（[`radio`](radio-zh_TW.md)、[`checkbox`](checkbox-zh_TW.md)） |
   | slider | 軌道加數字（[`slider`](slider-zh_TW.md)） |
   | datetime picker | 格式化的日期（時間），格式由 app 決定（`2026-10-15`、`2026-10-15 10:05`） |

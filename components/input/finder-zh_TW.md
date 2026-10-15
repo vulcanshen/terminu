@@ -14,7 +14,7 @@
 | [`checkbox`](checkbox-zh_TW.md) 的 popup | 選好幾個值 |
 | [`file-picker`](file-picker-zh_TW.md) | 選一個檔 |
 
-沒有搜尋的清單是 menu（[`dialog/menu`](../dialog/menu-zh_TW.md)）。panel 上直接打字的篩選是 panel filter（[`layout/panel`](../layout/panel-zh_TW.md)），
+沒有搜尋的清單是 menu（[`dialog/menu`](../dialog/menu-zh_TW.md)），排順序的是 reorder（[`reorder`](reorder-zh_TW.md)）。panel 上直接打字的篩選是 panel filter（[`layout/panel`](../layout/panel-zh_TW.md)），
 打字列的按鍵跟這裡一樣。
 
 ## 長相

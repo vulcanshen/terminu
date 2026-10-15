@@ -82,7 +82,8 @@ the frame.
 - Nothing is typed into a form (`dialog/form`): a field that takes typing or has more options than fit opens its value's
   input popup on `Enter`; a radio or checkbox with few options has them drawn in the form and is chosen in place.
 - A list with search is a finder: a plain finder, a select, a checkbox popup and a file-picker are all kinds of finder
-  (`input/finder`). A list without search is a menu (`dialog/menu`).
+  (`input/finder`). A list without search is a menu (`dialog/menu`), except the
+  reorder that puts items in order (`input/reorder`).
 - Dialog rather than modal: modal names a behaviour — blocking what is underneath while open — and every popup but the
   toast does that, so it would not tell inputs from dialogs; dialog names the content — the app talking to you.
 
@@ -130,3 +131,4 @@ Each is a popup that enters or chooses that kind of value.
 | [`datetime-picker`](input/datetime-picker.md) | date and time |
 | [`color-picker`](input/color-picker.md) | colour |
 | [`file-picker`](input/file-picker.md) | choosing a file; it also comes in a kind for choosing a directory |
+| [`reorder`](input/reorder.md) | moving items by hand into an order |
