@@ -162,7 +162,7 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
   放在有 tab 的 panel 裡時 `h|l` 給 tab，Rules K12）；`Enter` 打開那個值的 input popup，radio、checkbox 在原地選；確定後
   focus 留在同一列（Rules K3）；值的顯示照 [`input/README`](../input/README-zh_TW.md)。
 - **不一樣的地方：沒有送出。** 每個值在 input popup 確定的那一刻就生效、就存；開關與 radio 在原地選的那一刻也是。
-  所以沒有動作列、也沒有「改過了要先問」。
+  所以沒有動作區、也沒有「改過了要先問」。
 - **focus 色塊**：Subtext1 底、Base 粗體，跟一般清單的 cursor 同一個畫法（右邊的留白是箭頭）；範圍跟表單一樣，從項目開頭到
   panel 內的右緣（欄位從值開始、選項從那個選項開始）。
 - **label**：大寫；一般 Blue，停用 Surface2，它的值出錯時 Red（優先於其他顏色）。panel 失焦時跟著淡化（T2）。label 欄寬取最長的

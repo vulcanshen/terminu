@@ -16,8 +16,8 @@ A kind of popup: a value is entered or chosen, and written back once confirmed; 
   opened is not written back; the popup just closes.
 - **`Esc`**: closes, the value unchanged.
 - **Opened from a form**: after confirming, the focus stays on the same field of the form (Rules K3).
-- **An input popup with a button** (e.g. the colour picker's `Choose`): the action row works as in
-  [`dialog/form`](../dialog/form.md) — `Tab|Shift-Tab` go back and forth between the field area and the action row,
+- **An input popup with a button** (e.g. the colour picker's `Choose`): the action area works as in
+  [`dialog/form`](../dialog/form.md) — `Tab|Shift-Tab` go back and forth between the field area and the action area,
   coming back to the item they left; the hint says `Tab:actions` on a field and `Tab:fields` on a button (Rules K2).
 
 ## The skeleton of a one-line input popup

@@ -68,7 +68,7 @@ popup 裡的數字都還在。
 | focus 所在 | `Tab` 在什麼之間切換 |
 |---|---|
 | 畫面 | panel |
-| 有動作列的 popup：表單（[components/dialog/form](../components/dialog/form-zh_TW.md)）、有按鈕的 input popup（[components/input/color-picker](../components/input/color-picker-zh_TW.md)） | 欄位區與動作列，回來時停在離開前的那一個項目（欄位區裡的項目用 hjkl，K12） |
+| 有動作區的 popup：表單（[components/dialog/form](../components/dialog/form-zh_TW.md)）、有按鈕的 input popup（[components/input/color-picker](../components/input/color-picker-zh_TW.md)） | 欄位區與動作區，回來時停在離開前的那一個項目（各區裡的項目用 hjkl，K12） |
 | 有好幾塊的 popup（finder、datetime picker） | 塊 |
 
 - `Tab` 不跨畫面、不離開當前 popup。
@@ -76,10 +76,10 @@ popup 裡的數字都還在。
 - **打字列上**（finder 與 select 的打字列、panel filter）：`Tab` 到它的清單（[components/input/finder](../components/input/finder-zh_TW.md)）。
 - **只有一塊的 input popup**：有灰字提議（舊值）時，`Tab` 接受提議；沒有提議時不作用。
 - 多行文字的寫入狀態下，`Tab` 插入空白（縮排），不是換欄位（K8）。
-- 反向切換（例如 `Shift-Tab`）是熱鍵，由 app 決定要不要做；有動作列的 popup 裡一定有 `Shift-Tab`。
+- 反向切換（例如 `Shift-Tab`）是熱鍵，由 app 決定要不要做；有動作區的 popup 裡一定有 `Shift-Tab`。
 
-**為什麼**：使用者按 `Tab` 期待的是「換下一塊」—— 在畫面上是下一個 panel，在表單與其他有動作列的
-popup 裡是欄位區與動作列之間（finder 的打字列與清單也一樣）。這是同一個角色在不同層級的樣子。跨畫面切換屬於 global operation（P3）。
+**為什麼**：使用者按 `Tab` 期待的是「換下一塊」—— 在畫面上是下一個 panel，在表單與其他有動作區的
+popup 裡是欄位區與動作區之間（finder 的打字列與清單也一樣）。這是同一個角色在不同層級的樣子。跨畫面切換屬於 global operation（P3）。
 
 ### K3 `Enter` 對 focus 的東西做最直觀的動作 `概念`
 
@@ -509,7 +509,7 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 | **menu** | 沒有搜尋的清單：`j\|k` 移動 cursor，`Enter` 或熱鍵執行那一列 | Space menu、global operation popup、排序選擇器、工作清單（`Enter` 打開那一列的全文） |
 | **confirm** | 讀一段提醒或警告，`Enter` 接受、`Esc` 取消（F6）；要先看的內容在上、問句最後 | 刪除前的確認、離開的確認、帶著明細的「連線到 X？」 |
 | **input** | 輸入或選出一個值，確定後寫回去；一個 popup 一個值。打字列上是輸入態（K8），其他部分照 K1 | 重新命名、網址列、select、datetime picker、reorder |
-| **form** | 一列一個值；`Tab` 在欄位區與動作列之間切換、hjkl 一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕送出（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark |
+| **form** | 一列一個值；`Tab` 在欄位區與動作區之間切換、hjkl 在那一區裡一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕送出或做它的動作（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark |
 | **note** | 唯讀，可以捲動（K12）；沒有可用 `Enter` 執行的選項清單 | key reference、YAML 檢視、App Log、error popup |
 | **toast** | 從下方彈出的短訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它 | 「已複製」、操作失敗 |
 | **terminal** | 跑在框裡的子程序，按鍵都給它，只有出口鍵與 app 保留的組合鍵屬於 app（K10） | kbu 的 Alterm、filu 的 shell |

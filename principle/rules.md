@@ -80,7 +80,7 @@ first:
 | Focus is on | `Tab` switches between |
 |---|---|
 | a screen | panels |
-| a popup with an action row: a form ([components/dialog/form](../components/dialog/form.md)), an input popup with a button ([components/input/color-picker](../components/input/color-picker.md)) | the field area and the action row, coming back to the item it left (the items in the field area move with hjkl, K12) |
+| a popup with an action area: a form ([components/dialog/form](../components/dialog/form.md)), an input popup with a button ([components/input/color-picker](../components/input/color-picker.md)) | the field area and the action area, coming back to the item it left (the items within each area move with hjkl, K12) |
 | a popup with several areas (a finder, a datetime picker) | areas |
 
 - `Tab` does not cross screens or leave the current popup.
@@ -91,10 +91,10 @@ first:
   no suggestion it does nothing.
 - In the writing state of multi-line text, `Tab` inserts spaces (an indent), not a field switch (K8).
 - Cycling backwards (e.g. `Shift-Tab`) is a hotkey, and whether to offer it is up to the app; a popup with an
-  action row always has `Shift-Tab`.
+  action area always has `Shift-Tab`.
 
 **Why**: users press `Tab` expecting "the next one" — the next panel on a screen, the other of the field area and the
-action row in a form or any other popup with an action row (as with a finder's typing row and list). It is the
+action area in a form or any other popup with an action area (as with a finder's typing row and list). It is the
 same role at different levels. Switching screens is a global operation (P3).
 
 ### K3 `Enter` does the most intuitive thing to what has focus `concept`
@@ -591,7 +591,7 @@ The family's popups come in these seven classes only, each with fixed key meanin
 | **menu** | a list with no search: `j\|k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, a sort picker, a jobs list (`Enter` opens the row in full) |
 | **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6); what to read first sits above, the question last | confirm before delete, the quit confirm, "Connect to X?" carrying the details |
 | **input** | enter or pick one value, written back once confirmed; one value per popup. On the typing row it is the input state (K8); other parts follow K1 | rename, address bar, select, datetime picker, reorder |
-| **form** | one value per row; `Tab` switches between the field area and the action row, hjkl move item by item (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing the button), the button submits ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Sign in and Add bookmark |
+| **form** | one value per row; `Tab` switches between the field area and the action area, hjkl move item by item within that area (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing a button), a button submits or does its action ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Sign in and Add bookmark |
 | **note** | read-only, scrollable (K12); no list of options to run with `Enter` | key reference, YAML viewer, App Log, error popup |
 | **toast** | a short message popping up from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it | "Copied", an operation failed |
 | **terminal** | a subprocess running in the box; every key is its, only the exit key and the chords the app keeps are the app's (K10) | kbu's Alterm, filu's shell |
