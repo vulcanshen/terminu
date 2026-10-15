@@ -110,6 +110,10 @@ parts:
 - **Length**: 32ms a frame; 9 frames each way, about 288ms.
 - **Dimming**: from the first opening frame, what lies beneath is dimmed; once closing starts, it lights up again at
   once (Rules F8: a popup on its way out is no longer the top).
+- **Closing one while opening another** (when Rules T1 clears the source): the source closes and the target opens at
+  the same time, without waiting for the source. The closing source is not a layer: the target takes the layer colour
+  of the layer it ends up on from its first frame ([`color`](../color.md), the layer colours), and the half-closed
+  source lies under the target, dimmed as F8 says.
 - **Keys**: a popup takes no keys until its opening animation ends; a closing one takes none either (Rules F3).
 - Every kind of popup animates this way, toasts and terminals included.
 

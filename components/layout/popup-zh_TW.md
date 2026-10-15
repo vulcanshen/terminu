@@ -87,6 +87,8 @@ Rules F2：打開與關閉都有動畫，全家族同一種、一樣長。打開
 - **收起**：同樣的 9 格倒著播 —— 往中間壓成一條線，線再往中間縮掉。
 - **長度**：每格 32ms；打開、收起各 9 格，約 288ms。
 - **淡化**：打開的第一格起，底下就淡化；開始收起時，底下立刻亮回來（Rules F8：在收的 popup 已經不是最上層）。
+- **一邊收、一邊開**（Rules T1 清掉 source 時）：source 收起與 target 打開同時播，不等 source 收完。在收的 source 不算一層：target
+  從第一格就用它最後所在那一層的層色（[`color`](../color-zh_TW.md) 的層色）；收到一半的 source 壓在 target 底下，照 F8 淡化。
 - **按鍵**：打開的動畫播完之前，popup 不收鍵；在收的 popup 也不收鍵（Rules F3）。
 - 每一種 popup 都一樣，包括 toast 與 terminal。
 

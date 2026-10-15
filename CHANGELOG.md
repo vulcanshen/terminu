@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.6.10 — 2026-10-15
+
+From terminu-go and kamonu: a target opening while its source closes.
+
+- T1: when the target clears the source, the source closes while the target opens — both animations at once, not
+  waiting for the source
+- color, layout/popup: a closing popup does not count as a layer, so the target has the layer colour it ends up with
+  from its first frame and does not change colour when the source is gone; the half-closed source lies under it,
+  dimmed as F8 says
+
 ## v0.6.9 — 2026-10-15
 
 From kamonu, whose export form has a button `Overwrite KBU.svg`.
