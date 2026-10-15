@@ -71,6 +71,11 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
 |---|---|---|---|---|
 | Layer colour | `#A4C0FA` | `#94C3F5` | `#84C5F1` | `#74c7ec` |
 
+- **A closing popup does not count toward K**: once it starts closing it is no longer the top (the open and close
+  animation in [`layout/popup`](layout/popup.md)). When a target opens while its source closes (Rules T1), the target
+  takes the layer colour of the layer it ends up on from its first frame, and nothing changes colour when the source
+  is gone.
+
 ## Dimming (Rules F8, T2)
 
 Rewrite every colour code (SGR) in the already-drawn screen, leaving text and layout alone:

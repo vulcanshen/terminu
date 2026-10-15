@@ -656,7 +656,8 @@ popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中�
 ### T1 完成 target 之後，source 還有意義嗎？ `概念`
 
 預設保留 source（F4）。只有在功能上明確判斷「使用者完成 target 之後，source 已經
-失去意義」，target 才在進場前清掉 source：
+失去意義」，target 才清掉 source —— target 打開的同時 source 收起，兩段動畫一起播，不等 source 收完
+（[components/layout/popup](../components/layout/popup-zh_TW.md) 的開關動畫）：
 
 | target | 清掉 source？ | 判斷 |
 |---|---|---|

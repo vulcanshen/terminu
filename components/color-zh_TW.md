@@ -61,6 +61,9 @@ K ≥ N 時固定為終點色
 |---|---|---|---|---|
 | 層色 | `#A4C0FA` | `#94C3F5` | `#84C5F1` | `#74c7ec` |
 
+- **在收的 popup 不算進 K**：開始收起時它已經不是最上層（[`layout/popup`](layout/popup-zh_TW.md) 的開關動畫）。target 打開、source
+  同時收起時（Rules T1），target 從第一格就用它最後所在那一層的層色，source 收完時不跳色。
+
 ## 淡化（Rules F8、T2）
 
 改寫已經畫好的畫面裡每一個顏色碼（SGR），不動文字與版面：

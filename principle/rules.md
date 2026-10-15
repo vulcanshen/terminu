@@ -781,8 +781,10 @@ complete enough, and more will be added as implementation continues.
 
 ### T1 After the target completes, does the source still mean anything? `concept`
 
-The source stays by default (F4). The target clears the source before it enters only when it is clearly judged, by
-function, that "once the user completes the target, the source has lost its meaning":
+The source stays by default (F4). The target clears the source only when it is clearly judged, by function, that "once
+the user completes the target, the source has lost its meaning" — the source closing while the target opens, both
+animations at once, without waiting for the source ([components/layout/popup](../components/layout/popup.md), the
+open and close animation):
 
 | Target | Clear the source? | Reasoning |
 |---|---|---|
