@@ -59,14 +59,14 @@ spec is patched first, then the library follows.
 
 ## The terminu family
 
-| App | What it is |
-|---|---|
-| [kbu](https://github.com/vulcanshen/kbu) | A Kubernetes TUI dashboard |
-| [filu](https://github.com/vulcanshen/filu) | A terminal file manager you don't have to learn |
-| [sshu](https://github.com/vulcanshen/sshu) | A terminal front end for ssh and sftp |
-| [webu](https://github.com/vulcanshen/webu) | A terminal browser that reads a web page as a document |
-| [locku](https://github.com/vulcanshen/locku) | A screensaver with a PIN lock, for the terminal |
-| [kamonu](https://github.com/vulcanshen/kamonu) | A terminal editor for the family's marks (kamon), drawn letter by letter |
+| App | What it is | On terminu-go |
+|---|---|:---:|
+| [kbu](https://github.com/vulcanshen/kbu) | A Kubernetes TUI dashboard | — |
+| [filu](https://github.com/vulcanshen/filu) | A terminal file manager you don't have to learn | — |
+| [sshu](https://github.com/vulcanshen/sshu) | A terminal front end for ssh and sftp | — |
+| [webu](https://github.com/vulcanshen/webu) | A terminal browser that reads a web page as a document | — |
+| [locku](https://github.com/vulcanshen/locku) | A screensaver with a PIN lock, for the terminal | — |
+| [kamonu](https://github.com/vulcanshen/kamonu) | A terminal editor for the family's marks (kamon), drawn letter by letter | ✓ |
 
 ## History
 
