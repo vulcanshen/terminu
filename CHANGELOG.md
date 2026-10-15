@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.6.9 — 2026-10-15
+
+From kamonu, whose export form has a button `Overwrite KBU.svg`.
+
+- dialog/form: a button's hint lowers only its verb, names and paths keep their case — `Overwrite KBU.svg` →
+  `Enter:overwrite KBU.svg`
+- components README, Uppercase: names and paths are content and keep their case in a hint as well as in a title
+
 ## v0.6.8 — 2026-10-15
 
 From terminu-go, building the form's actions: what happens while one is still running.

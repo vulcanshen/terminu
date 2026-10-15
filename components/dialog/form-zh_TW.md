@@ -244,8 +244,8 @@ Enter:edit Tab:actions Esc:cancel
 ```
 
 - **`Enter` 後面的字跟著 focus 的項目換**，寫按下去會發生什麼：會開 input popup 的欄位 `Enter:edit`、radio 的選項 `Enter:choose`、
-  checkbox 的選項 `Enter|Space:toggle`、按鈕寫按鈕的字（小寫：`Save` → `Enter:save`、`Connect` → `Enter:connect`、`Save As` → `Enter:save as`、
-  `Test` → `Enter:test`）。
+  checkbox 的選項 `Enter|Space:toggle`、按鈕寫按鈕的字：動詞小寫，名稱、路徑照原樣（`Save` → `Enter:save`、`Connect` → `Enter:connect`、
+  `Save As` → `Enter:save as`、`Test` → `Enter:test`、`Overwrite KBU.svg` → `Enter:overwrite KBU.svg`；[components](../README-zh_TW.md) 的「大寫」）。
 - focus 在有問題的欄位上時加 `e:error`（`Enter:edit e:error Tab:actions Esc:cancel`）；在錯誤列上是 `Enter:show e:edit Tab:actions Esc:cancel`。
 - **`Tab` 寫要去的那一塊**：在欄位區（含錯誤列）`Tab:actions`，在按鈕上 `Tab:fields`（`Enter:save Tab:fields Esc:cancel`）。不寫 `Tab:save`：
   看起來像按 `Tab` 就存，而送出只有按按鈕一個方法。
