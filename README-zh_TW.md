@@ -52,7 +52,7 @@ terminu design 是一套 terminal UI 的設計語言：一組跨畫面、跨 app
 go run github.com/vulcanshen/terminu-go/examples/showcase@latest
 ```
 
-家族的新 app 都用它來做，第一個是 kamonu。做的時候發現 tdp 還沒寫到的，先回到這裡補規範，函式庫再跟上。
+家族的新 app 都用它來做：kamonu 與 ccdrawu。做的時候發現 tdp 還沒寫到的，先回到這裡補規範，函式庫再跟上。
 
 ## terminu family
 
@@ -64,6 +64,7 @@ go run github.com/vulcanshen/terminu-go/examples/showcase@latest
 | [webu](https://github.com/vulcanshen/webu) | 把網頁當文件讀的 terminal 瀏覽器 | — |
 | [locku](https://github.com/vulcanshen/locku) | 帶 PIN 鎖的 terminal 螢幕保護程式 | — |
 | [kamonu](https://github.com/vulcanshen/kamonu) | 一個字一個字畫家族 mark（家紋）的 terminal 編輯器 | ✓ |
+| [ccdrawu](https://github.com/vulcanshen/ccdrawu) | Claude Code 的側邊欄：用量、context、花費與 git 放在對話旁邊 | ✓ |
 
 ## 歷史
 
