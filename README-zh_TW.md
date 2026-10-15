@@ -51,6 +51,7 @@ terminu design 是一套 terminal UI 的設計語言：一組跨畫面、跨 app
 | [sshu](https://github.com/vulcanshen/sshu) | ssh 與 sftp 的 terminal 前端 |
 | [webu](https://github.com/vulcanshen/webu) | 把網頁當文件讀的 terminal 瀏覽器 |
 | [locku](https://github.com/vulcanshen/locku) | 帶 PIN 鎖的 terminal 螢幕保護程式 |
+| [kamonu](https://github.com/vulcanshen/kamonu) | 一個字一個字畫家族 mark（家紋）的 terminal 編輯器 |
 
 ## 歷史
 

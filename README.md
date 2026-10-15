@@ -56,6 +56,7 @@ The details are in the **[terminu design principle (tdp)](principle/)**:
 | [sshu](https://github.com/vulcanshen/sshu) | A terminal front end for ssh and sftp |
 | [webu](https://github.com/vulcanshen/webu) | A terminal browser that reads a web page as a document |
 | [locku](https://github.com/vulcanshen/locku) | A screensaver with a PIN lock, for the terminal |
+| [kamonu](https://github.com/vulcanshen/kamonu) | A terminal editor for the family's marks (kamon), drawn letter by letter |
 
 ## History
 
