@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.6.14 — 2026-10-16
+
+A correction to v0.6.13, from terminu-go.
+
+- input/checkbox: the popup opens with the cursor on the option the app names, the first when none is named — where it
+  starts stays the app's choice; v0.6.13's "the first option that can be chosen" had taken that away. When the named
+  option is disabled, the cursor goes on to the first one after it that can be chosen, or back when none after can
+
 ## v0.6.13 — 2026-10-16
 
 From ccdrawu: a checkbox option that cannot be chosen.

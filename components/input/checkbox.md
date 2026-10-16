@@ -30,8 +30,10 @@ flips it too (the exception of Rules K5, as in a checkbox popup); on a panel `Sp
 
 **The checkbox popup**:
 
-- It opens with the focus on the list and the cursor on the first option that can be chosen (skipping disabled ones,
-  as a [`dialog/form`](../dialog/form.md) opens).
+- It opens with the focus on the list and the cursor on the option the app names (where it starts is the app's choice;
+  the first option when none is named). When that option is disabled, the cursor goes on to the first one after it that
+  can be chosen, or back to one before it when none after can (skipping disabled ones, as a
+  [`dialog/form`](../dialog/form.md) opens).
 - **`Space`**: ticks or unticks the cursor's row — only the tick on screen changes; nothing is written back and nothing
   takes effect (an exception to Rules K5).
 - **`Enter`**: writes back the whole set currently ticked at once and closes the popup; only then does it take effect.
