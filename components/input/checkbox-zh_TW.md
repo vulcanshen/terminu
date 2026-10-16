@@ -25,7 +25,8 @@ panel 上的 `Space` 照樣打開 Space menu。
 
 **checkbox popup**：
 
-- 打開時 focus 在清單上，cursor 停在第一個能選的選項（跳過停用的，跟 [`dialog/form`](../dialog/form-zh_TW.md) 的「打開時」一樣）。
+- 打開時 focus 在清單上，cursor 停在 app 指定的那一項（從哪一項開始由 app 決定，沒指定就是第一項）。那一項停用時，往後找第一個
+  能選的，後面都沒有就往前找（跳過停用的，跟 [`dialog/form`](../dialog/form-zh_TW.md) 的「打開時」一樣）。
 - **`Space`**：勾或取消勾 cursor 那一列 —— 只改畫面上的勾，不寫回、不生效（Rules K5 的例外）。
 - **`Enter`**：把目前勾的整組一次寫回去、popup 關掉，這時才生效。從表單打開的，寫回那一欄、表單記成改過、focus 留在那一欄；
   單獨打開的，這時才套用（例：kbu 的 panel 2 這時才重抓）。什麼都沒改就按 `Enter`：不改，關掉。
