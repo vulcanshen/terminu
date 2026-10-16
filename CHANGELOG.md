@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.6.13 — 2026-10-16
+
+From ccdrawu: a checkbox option that cannot be chosen.
+
+- input/checkbox: a disabled option is drawn in its place, the whole row Surface2, its tick too (Unavailable wins over
+  In effect); in a checkbox popup the cursor skips it, as in a form and Rules M6, so `Space` never reaches it; a ticked
+  one stays ticked and is part of the set `Enter` writes back
+- The popup opens with the cursor on the first option that can be chosen; filtering still lists disabled options, and
+  when only they are left it is as with no results
+
 ## v0.6.12 — 2026-10-15
 
 From ccdrawu: the header of a one-value-per-row panel.
