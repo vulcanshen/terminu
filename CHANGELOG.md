@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.6.15 — 2026-10-16
+
+From the user, on v0.6.13: a ticked option that cannot be reached cannot be taken off.
+
+- input/checkbox: an option is now marked not available instead of disabled — drawn in its place, the whole row
+  Surface2, the tick too, but it blocks nothing: the cursor stops on it, `Space` ticks or unticks it, and `Enter` writes
+  back the ticks on screen. What not available means and what to do with a ticked one is the app's choice; tdp only
+  draws the state
+- The cursor skipping, "only disabled options left is as no results" and v0.6.14's "a disabled starting option moves
+  the cursor on, then back" are gone; the popup opens on the option the app names, the first when none is named
+- dialog/form: a checkbox option not available is not disabled, so the focus stops on it; color: Unavailable lists it
+
 ## v0.6.14 — 2026-10-16
 
 A correction to v0.6.13, from terminu-go.

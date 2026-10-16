@@ -196,7 +196,8 @@ checkbox field is an item of its own, and each button is one item; the error row
   `Tab` goes to the other one: with more buttons, walking fields and buttons as one run would take many presses to
   reach the one wanted.
 - **Disabled fields and options are skipped**: `j|k` do not stop on them; they are still drawn in place.
-  Disabled means "cannot be changed now", and `Enter` on one would have nothing to do.
+  Disabled means "cannot be changed now", and `Enter` on one would have nothing to do. A checkbox option not available
+  is not disabled: the focus stops on it and it flips as usual ([`input/checkbox`](../input/checkbox.md)).
 - **On opening**: the focus is on the first item it can stop on (disabled ones skipped), for a new entry and an edit
   alike; when the app opens the form from one field (e.g. editing the Port row in a panel), it is on that field. A new
   entry does not open the first field's input popup by itself either: that would save only one `Enter`, but a new entry
