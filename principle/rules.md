@@ -1056,6 +1056,8 @@ cases goes crooked.
 
 - A single static binary built with goreleaser; `install.sh` / `uninstall.sh` (`curl | sh`, no sudo),
   also published to the Homebrew tap `vulcanshen/homebrew-tap`.
+- The repo's directories, Makefile, version, CHANGELOG and release follow [project](../project/README.md); its
+  template files are copied as they are.
 - Screen tests across sizes: at several terminal sizes, every line is exactly the terminal width (L4).
 - `docs/icon.svg` is the app's version of the family mark (what it looks like: S5; tdp's own is `principle/icon.svg`);
   the splash (chapter S) is drawn from it cell for cell, with a test keeping the two identical.

@@ -887,6 +887,7 @@ powerline 符號分開量，是因為同一台終端機上兩者可能不同：N
 
 - 單一靜態 binary，goreleaser 建置；`install.sh` / `uninstall.sh`（`curl | sh`、免 sudo），
   另發到 Homebrew tap `vulcanshen/homebrew-tap`。
+- repo 的目錄、Makefile、版本、CHANGELOG 與發布流程照 [project](../project/README-zh_TW.md)；它的範本檔照原樣複製。
 - 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（L4）。
 - `docs/icon.svg` 是 app 那一版的家族 mark（長相見 S5；tdp 自己的是 `principle/icon.svg`）；splash（S 章）由它逐格畫出，
   用測試守住兩者一致。
