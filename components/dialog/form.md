@@ -109,7 +109,7 @@ shows which option of a radio field the focus is on.
 ┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                                ┃
 ┃ Name  web-01                                   ┃   ← field area: the only part that scrolls when it does not fit
-┃ Host                                           ┃
+┃ Host  not set                                  ┃   ← an empty value: Overlay0 saying what empty means
 ┃ Port  22                                       ┃
 ┃                                                ┃
 ┃ Host is required                               ┃   ← error row (blank when there is no error)
@@ -146,10 +146,11 @@ shows which option of a radio field the focus is on.
     turn Red, the error row gives the first problem, and the focus jumps to that field (see "Errors").
   - Success: a toast of one sentence (e.g. `Connected to web-01`). Failure: an error popup, as when a submit fails; once
     it is closed the focus is on the button, and one more `Enter` retries. When the result is content to read (e.g. the
-    whole output of a test), a note opens ([`dialog/note`](note.md)). One that takes a while puts the loading icon after
-    the title (the loading in [`layout/popup`](../layout/popup.md)).
-  - **While it runs**: `Enter` on that button does nothing, and the hint drops that button's `Enter` (e.g. `Enter:test`)
-    until it is done — the same thing is never sent twice. A submit that takes a while (e.g. `Connect`) does the same.
+    whole output of a test), a note opens ([`dialog/note`](note.md)).
+  - **While it runs**: one that takes a while puts the loading icon after the title (the loading in
+    [`layout/popup`](../layout/popup.md)). `Enter` on that button does nothing, and the hint drops that button's `Enter`
+    (e.g. `Enter:test`) until it is done — the same thing is never sent twice. A submit that takes a while (e.g.
+    `Connect`) does the same.
   - **The form closed before it is done** (`Esc`, or another submit): the action is cancelled — stopped if it can be —
     and no result is shown. The result belongs to this form (written into a field, a retry from the button), so with the
     form gone there is nowhere to put it, and laid over another screen nobody would know where it came from.
@@ -255,11 +256,11 @@ field whose `Enter` opens an input popup for typing (text, password, number, tex
 not one of the form's keys is pressed (`q` included), a note pops up to explain:
 
 ```
-┏━NAME━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                ┃
-┃ Press [Enter] to edit Name.    ┃
-┃                                ┃
-┗━ Enter|Esc:close ━━━━━━━━━━━━━━┛
+┏━NAME━━━━━━━━━━━━━━━━━━━━━━┓
+┃                             ┃
+┃ Press [Enter] to edit Name. ┃
+┃                             ┃
+┗━ Enter|Esc:close ━━━━━━━━━━━┛
 ```
 
 - The title is the field's name; both `Enter` and `Esc` close it, back to the form with the focus unmoved
@@ -277,8 +278,9 @@ not one of the form's keys is pressed (`q` included), a note pops up to explain:
   | `Space`, `?` | core keys: `Space` ticks or unticks a checkbox option and does nothing elsewhere (Rules K5), `?` opens the key reference (Rules K6) |
 
 - **Any other printable character** (digits, `q`, other letters): on a field that takes typing it brings up the note;
-  on the form's other items (options, the button, the error row) it brings up no note and simply does nothing. `q` does
-  not start quitting (Rules K9).
+  on the form's other items it brings up no note and simply does nothing — fields that open another input popup
+  (select, slider, date, colour, file, reorder, checkbox popup), options, the button, the error row. `q` does not start
+  quitting (Rules K9).
 
 **Why**: a note rather than a toast: a note catches every character typed after it and does nothing with them, so the
 form is not disturbed; a toast lets keys pass through, and an `e`, `h` or `l` typed after it would jump around between

@@ -12,18 +12,18 @@ Choosing a date (date picker), or a date and a time (datetime picker). The calen
 **The date**:
 
 ```
-┏━DUE DATE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                              ┃
-┃ October  2026                                ┃   ← month, year: each an item that can take the focus
-┃ Mo  Tu  We  Th  Fr  Sa  Su                   ┃   ← weekdays: Overlay0
-┃              1   2   3   4                   ┃
-┃  5   6   7   8   9  10  11                   ┃   ← the 7th is today: underlined
-┃ 12  13  14  15  16  17  18                   ┃   ← the 15th is the current value: Green; the cursor opens here too
-┃ 19  20  21  22  23  24  25                   ┃
-┃ 26  27  28  29  30  31                       ┃
-┃                                              ┃   ← the 6th row: unused this month, kept all the same
-┃                                              ┃
-┗━ Enter:choose t:today Tab:month Esc:cancel ━━┛
+┏━DUE DATE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                    ┃
+┃ October  2026                                      ┃   ← month, year: each an item that can take the focus
+┃ Mo  Tu  We  Th  Fr  Sa  Su                         ┃   ← weekdays: Overlay0
+┃              1   2   3   4                         ┃
+┃  5   6   7   8   9  10  11                         ┃   ← the 7th is today: underlined
+┃ 12  13  14  15  16  17  18                         ┃   ← the 15th is the current value: Green; the cursor opens here too
+┃ 19  20  21  22  23  24  25                         ┃
+┃ 26  27  28  29  30  31                             ┃
+┃                                                    ┃   ← the 6th row: unused this month, kept all the same
+┃                                                    ┃
+┗━ Enter:choose t:today Tab:month Esc:cancel ━━━━━━━━┛
 ```
 
 - The month and the year are each an item that can take the focus; with the focus, that word is drawn as a cursor
@@ -47,18 +47,18 @@ Choosing a date (date picker), or a date and a time (datetime picker). The calen
 area.
 
 ```
-┏━MEETING━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                             ┃
-┃ October  2026               │  06  50       ┃
-┃ Mo  Tu  We  Th  Fr  Sa  Su  │  07  55       ┃
-┃              1   2   3   4  │  08  00       ┃
-┃  5   6   7   8   9  10  11  │  09  05       ┃
-┃ 12  13  14  15  16  17  18  │  10  10       ┃   ← hour 10 and minute 05 are the current value: Green
-┃ 19  20  21  22  23  24  25  │  11  15       ┃
-┃ 26  27  28  29  30  31      │  12  20       ┃
-┃                             │  13  25       ┃
-┃                                             ┃
-┗━ Enter:time t:today Tab:time Esc:cancel ━━━━┛
+┏━MEETING━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                    ┃
+┃ October  2026               │  03  00              ┃
+┃ Mo  Tu  We  Th  Fr  Sa  Su  │  04  05              ┃   ← minute 05 is the current value: Green
+┃              1   2   3   4  │  05  10              ┃
+┃  5   6   7   8   9  10  11  │  06  15              ┃
+┃ 12  13  14  15  16  17  18  │  07  20              ┃
+┃ 19  20  21  22  23  24  25  │  08  25              ┃
+┃ 26  27  28  29  30  31      │  09  30              ┃
+┃                             │  10  35              ┃   ← hour 10 is the current value: Green (each column scrolls on its own, by as little as needed when it opens)
+┃                                                    ┃
+┗━ Enter:time t:today Tab:time Esc:cancel ━━━━━━━━━━━┛
 ```
 
 - The separator follows [`layout/popup`](../layout/popup.md): it does not join the top and bottom borders and is drawn
@@ -79,8 +79,9 @@ time is read at a glance.
 
 ## Keys
 
-What can take the focus: **month, year, calendar, time** (no time in a date-only picker). The whole picker uses only
-`Tab`, hjkl, `Enter` and `Esc`, plus `t`.
+What can take the focus: **month, year, calendar, time** (no time in a date-only picker). The picker's own operations
+use only `Tab`, hjkl (the arrow keys), `Enter` and `Esc`, plus `t`; core keys follow [`input/README`](README.md) (`?`,
+`q` / `Ctrl-C`), and `Shift-Tab` is the app's choice, as in Rules K2.
 
 - **`Tab`** moves the focus in screen order: month → year → calendar → time → back to month. It opens with the focus on
   the calendar.

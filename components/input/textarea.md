@@ -19,7 +19,11 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
 ```
 
 - A line wider than the box continues on the next row, never scrolling sideways. Wrapping is only on screen; no line
-  break is added to the value. Width is display width, and a character is never split in two.
+  break is added to the value. Width is display width.
+- **Wrapping breaks at spaces**: a word (e.g. an English word) is never split in two but moves whole to the next row;
+  only a word longer than a row on its own (e.g. a long URL) is cut by cells into pieces ([the components'
+  "Wrapping"](../README.md)). A textarea holds prose such as comments and descriptions, and a word cut in half is hard
+  to read.
 - **Line numbers**: the first row of each line carries its number, right-aligned, followed by a space; wrapped rows leave
   the number column blank — so the rows of one line are seen as one. Numbers in Overlay0, the cursor's line number in
   Text. The number column is **at least two digits**: max(2, the digits of the largest number). Lines 1–99 never shift;

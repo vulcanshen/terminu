@@ -10,11 +10,14 @@
 ## 長相
 
 - 框照 [`layout/popup`](../layout/popup-zh_TW.md)：上下留白一律有，viewer 也一樣。
-- **標題**：glyph 加上顯示的東西，畫成標題膠囊（例：`YAML — pod/nginx`：`YAML` 大寫，`pod/nginx` 是內容，照原樣）。glyph 由 app 選；key reference 與 error popup 的 glyph 見下面。
+- **標題**：glyph 加上顯示的東西，畫成標題膠囊：種類大寫；要寫顯示的是哪一個時，接 ` — ` 再接名稱，名稱照原樣（例：
+  `YAML — pod/nginx`）。glyph 由 app 選；key reference 與 error popup 的 glyph 見下面。
 - **捲動位置**：放不下時，下框右邊寫看得到的行 `N-M of T`；viewer 的選取模式裡寫游標所在的行 `N of M`（見下面的「選取模式」）。
   viewer 折行時，N 是最上面那一列所屬的行，M 是最下面那一列所屬的行，T 是總行數（例：最上面是第 6 行折下來的那一列、最下面是
   第 10 行，寫 `6-10 of 42`）。
 - **寬度**：內容打開時就確定的（key reference、error popup、說明）照內容；viewer 的內容寬度不確定，用 Rules F7 的上限。
+- **viewer 的折行**：一行比框寬時接到下一列畫，照 [components 的「折行」](../README-zh_TW.md)：在空白處斷，一個字本身就比一列還長時
+  才照格子切。
 - **viewer 的行號**：viewer（YAML 檢視、App Log、檔案內容）左邊有行號，照 [`input/textarea`](../input/textarea-zh_TW.md) 的行號：每一行的
   第一列畫行號，靠右對齊、後面空一格；折下來的列行號欄空白。行號 Overlay0，選取模式裡游標所在那一行的行號 Text。複製不含行號。
   行號欄**至少三位**：打開時就知道行數的（YAML 檢視、檔案內容）取 max(3, 總行數的位數)，打開後不變；串流的 App Log 從三位開始，
@@ -23,8 +26,8 @@
   切到行數更多的頁就變寬；切回行數少的頁，寬度留著不縮回。串流的頁一樣只變寬。
 - **viewer 的語法顏色**：內容有固定格式的（YAML、JSON、TOML、HTML、XML、Markdown……）照 [`input/file-picker`](../input/file-picker-zh_TW.md)
   預覽表的文字檔上色（chroma 的 catppuccin-mocha，只上前景色）。語言由 app 給（YAML 檢視是 YAML；DevTools Network 的回應照
-  content type）；檔案內容照檔名判斷，跟預覽一樣。沒有固定格式的（例：App Log）、判斷不出來的，是純文字，Text，不上特殊顏色。
-  這是建議：app 知道自己的內容，可以依情境自己上色（例：log 裡 ERROR、WARN 的行）；lib 不上語法顏色，但保留 app 給的顏色。
+  content type）；檔案內容照檔名判斷，跟預覽一樣。沒有固定格式的（例：App Log）、判斷不出來的，上不上色由 app 決定：不上色時是
+  純文字 Text；app 知道自己的內容，可以依情境上色（例：log 裡 ERROR、WARN 的行）。lib 不上語法顏色，但保留 app 給的顏色。
   行號照舊 Overlay0；選取模式的範圍照舊 Yellow 底、Base 字，語法顏色在範圍裡不顯示。
 - **viewer 裡的 Tab 與控制字元**（跟 [`input/file-picker`](../input/file-picker-zh_TW.md) 的預覽一樣）：Tab 畫成 `input_tab_width` 格空白
   （跟 [`input/textarea`](../input/textarea-zh_TW.md) 同一個設定），不對齊 tab 停點；換行前面的 `\r`（CRLF）不畫，算換行的一部分；其他控制字元
@@ -55,7 +58,8 @@
 - **viewer 折行時以畫面上的一列為單位捲**（像 `less`）：`j|k` 一次一列，`u|d` 半頁照列算。比框還高的一行（例：壓縮過的 JSON）
   也看得完；跟 [`input/textarea`](../input/textarea-zh_TW.md) 的 `↑|↓` 照畫出來的列一致。
 - **只用 `Esc` 關**。`Enter` 不關；`Space` 也不關（Rules K5）。
-- **例外**：error popup（不管是自己跳出來的，還是從表單錯誤列按 `Enter` 打開的）與表單上的打字說明，`Enter` 也能關。
+- **例外**：error popup（不管是自己跳出來的，還是從表單錯誤列按 `Enter` 打開的）與表單上的打字說明，`Enter` 也能關；key reference
+  再按一次 `?` 也能關（Rules K6）。
 - **hint**：note 自己的熱鍵寫在前面，`Esc:close` 放最後。例：`y:copy /:search v:visual Esc:close`。
 
 **為什麼**：使用者自己打開的 note，看完按 `Esc` 是最直覺的；`Space` 在 `less`、`man` 這類閱讀器裡是往下翻頁，熟的人在 note 上按
@@ -88,7 +92,7 @@ viewer（YAML 檢視、App Log、檔案內容）可以把一段文字選起來�
 `?` 打開的「這裡能按什麼鍵」（Rules K6、M4）。
 
 ```
-┏━[2] HOSTS KEYS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┏━ [2] HOSTS KEYS━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                               ┃
 ┃ 󰋘 ITEM OPERATION                              ┃  ← 區塊標題
 ┃  Enter     Connect — what it is, then in      ┃
@@ -96,7 +100,7 @@ viewer（YAML 檢視、App Log、檔案內容）可以把一段文字選起來�
 ┃  X         Delete — remove from hosts.yaml    ┃
 ┃ 󰋘 PANEL OPERATION                             ┃
 ┃  A         Add — a new host                   ┃
-┃  /         Search — name, user, host, port, … ┃
+┃  /         Search — name, user, host, port, … ┃  ← 說明太長（框已經到最寬時）
 ┃ 󰋘 MOVE                                        ┃
 ┃  j|k       down, up                           ┃
 ┃  u|d       half a page up, down               ┃
@@ -138,7 +142,7 @@ popup 的動作失敗時（[`layout/popup`](../layout/popup-zh_TW.md) 的錯誤�
 也是它。
 
 ```
-┏━SAVE FAILED━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┏━󰈸 SAVE FAILED━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                                 ┃
 ┃ hosts.yaml changed on disk since it was opened. ┃
 ┃                                                 ┃
@@ -146,7 +150,7 @@ popup 的動作失敗時（[`layout/popup`](../layout/popup-zh_TW.md) 的錯誤�
 ```
 
 - **樣子**：框、文字都是 Red；標題膠囊填 Red、字 Base 粗體（膠囊照 [`layout/popup`](../layout/popup-zh_TW.md)）。標題 glyph 跟
-  Error toast 一樣是 `nf-md-fire`（U+F0238）。訊息在框裡折行；太長時 `j|k` 捲動。
+  Error toast 一樣是 `nf-md-fire`（U+F0238）。訊息在框裡折行（照 [components 的「折行」](../README-zh_TW.md)）；太長時 `j|k` 捲動。
 - **標題**：寫哪件事失敗了（`RENAME FAILED`、`SAVE FAILED`）。從表單錯誤列打開的，標題寫那一欄的名字（`PORT`）。
 - **關掉**：`Enter` 與 `Esc` 都能關，hint `Enter|Esc:close`。
 - **關掉之後**：回到底下的 popup，focus 留在原位，值都還在（Rules F4）。連按 `Enter` 時，第一下關掉它，下一下等於在原來的位置再按

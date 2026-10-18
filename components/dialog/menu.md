@@ -13,7 +13,7 @@ jobs list (`Enter` opening the row's full text). A list that needs search is a f
 ## Look
 
 ```
-┏━≡ [2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┏━ [2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                               ┃
 ┃ 󰋘 ITEM OPERATION                              ┃  ← section title
 ┃▓[Enter] Connect▓▓▓▓▓▓▓▓▓▓▓what it is, then in┃  ← cursor
@@ -22,14 +22,14 @@ jobs list (`Enter` opening the row's full text). A list that needs search is a f
 ┃ ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌ ┃  ← separator
 ┃ 󰋘 PANEL OPERATION                             ┃
 ┃ [A]dd                              a new host ┃
-┃ [/] Search          name, user, host, port, … ┃  ← description too long
+┃ [/] Search          name, user, host, port, … ┃  ← description too long (with the frame already at its widest)
 ┃ ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌ ┃
 ┃ Global operation    actions for the whole app ┃
 ┃                                               ┃
 ┗━ Enter:run Esc:close ━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-(`≡` stands for `nf-fa-bars`; the glyph before a section title is `nf-md-hexagon`.)
+(The glyph before a section title is `nf-md-hexagon`.)
 
 - **Each row**: the label in Text, `[x]` in the label's colour; how hotkeys are marked is in Rules M5. The description in
   Overlay0, right-aligned, against the right padding (normally one cell from the right border); when too long it is cut at the end with `…` (M5: one line). At least two cells between the label and the description:

@@ -11,11 +11,11 @@ deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast.
 ## Look
 
 ```
-┏━INFO━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                   ┃
-┃          Copied 3 paths           ┃
-┃                                   ┃
-┗━ Esc:close ━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━ INFO━━━━━━━┓
+┃                ┃
+┃ Copied 3 paths ┃
+┃                ┃
+┗━ Esc:close ━━━━┛
 ```
 
 - **Frame**: a popup's frame, always in the layer colour of layer 1. A toast is not a layer (Rules F1): it does not
@@ -26,7 +26,7 @@ deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast.
   bottom border (the exit key); on a screen without panels, the same position.
 - **Width**: the message is known when it opens, so it follows "content width known when it opens" in
   [`layout/popup`](../layout/popup.md).
-- **Text**: centred. When too long it wraps, every row centred; three rows at most, and beyond that the third row ends
+- **Text**: centred. When too long it wraps (as in [the components' "Wrapping"](../README.md)), every row centred; three rows at most, and beyond that the third row ends
   with `…`. A full message belongs in an error popup or the app's log.
 - **Three kinds**: the title names the kind.
 

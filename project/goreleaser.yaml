@@ -72,4 +72,5 @@ brews:
 #       name: scoop-bucket
 #       token: "{{ .Env.GITHUB_TOKEN }}"
 #     homepage: "https://github.com/vulcanshen/<app>"
+#     # app: the same line as the brews description above.
 #     description: "<app>: what it is (u-family)"

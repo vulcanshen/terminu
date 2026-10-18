@@ -31,7 +31,9 @@ as a gap in tdp at the same time.
 - **Nerd Font glyphs in a diagram are drawn with their real code points** (capsule ends, the arrow at the end of a
   cursor, the hexagon of a section title, the loading icon and so on), and every one of them is named by its code point
   in the text; where there is no Nerd Font they show as boxes. Backgrounds cannot be drawn: `▓` stands for a cursor
-  block, and a capsule's fill is in the text.
+  block, and a capsule's fill is in the text. In a popup whose title glyph is chosen by the app (the glyph table in
+  [`layout/popup`](layout/popup.md)), the diagram draws no glyph; in fact the glyph goes before the title text, with one
+  space.
 - **Two general rules**, which hold wherever the text says nothing else:
   - **Two cells between columns**: a label and its value, a label and its description, the columns of a table, items
     side by side.
@@ -41,6 +43,22 @@ as a gap in tdp at the same time.
 family, and the spec is no longer the one source to go by. Two general rules are easy to remember and carry over to new
 components: two cells keep two columns apart (a label and its value are in different colours anyway); a glyph with only
 one cell after it reads as one unit with its text.
+
+## Wrapping
+
+Wherever text wraps — a textarea, a viewer, a confirm, a toast, an error popup, the Rules S5 splash when too narrow — it
+wraps the same way:
+
+- **Break between words**: when the next word does not fit on the row, the whole word goes to the next row (e.g. an
+  English word moves whole).
+- **A break may fall between any two wide characters** (two cells, e.g. Chinese, Japanese): the place between a wide
+  character and the character before or after it counts as a break too, so such text fills a row before going on.
+- **Only a word wider than a row on its own** (e.g. a long URL) is cut by cells.
+- **A wide character is never cut in half**: when cutting by cells leaves one cell on a row, that wide character goes
+  whole to the next row.
+
+**Why**: text broken in the middle of a word can't be read; the splash already breaks this way (Rules S5). With one
+rule, text wraps the same wherever it wraps in the family.
 
 ## Uppercase
 

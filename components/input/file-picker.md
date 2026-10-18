@@ -45,17 +45,18 @@ any text file (see "Hiding secrets" below).
 - **The root directory**: given by the app, it is the directory the list shows when it opens (e.g. sshu `~/.ssh`, webu
   `~/Downloads`). It is only a start, not a fence: the top row of the list is `..`, to go up. The root
   directory `/` has no `..`.
-- **The current directory is written in the title**, after the field's name (`Identity file · ~/.ssh`); a path too long
-  is cut from the start (`…/sideproj/terminu`).
+- **The current directory is written in the title**: the field's name (uppercase), then ` · `, then the directory (e.g.
+  `IDENTITY FILE · ~/.ssh`); a path too long is cut from the start (`…/sideproj/terminu`).
+- **It opens with the focus on the list**, like a select and a checkbox popup.
 - **The typing row is empty when it opens** (the placeholder rule in [`input/README`](README.md)), with
   `nf-fa-angle_right` before it as in the finder.
 - **The list's order**: `..` → directories → files, each sorted by name, case-insensitive.
 - **Hidden files** (starting with `.`) are not listed by default; they are listed when the filter on the typing row (the
   last segment of a path) starts with `.` (`.ss` and `~/.ss` bring up `.ssh`). The same as shell globs: `*` does not
   match hidden files and `**` does not go into hidden directories, unless the pattern starts with `.`.
-- **An icon before every row**: one for directories, one for files, coloured by file type (content colours, the app's
-  choice; e.g. filu uses eza's colours). When the field already has a value, the cursor opens on that file, its text in
-  Green (the current value).
+- **An icon before every row**: `nf-md-folder` (U+F024B) for directories, `nf-md-file` (U+F0214) for files, coloured by
+  file type (content colours, the app's choice; e.g. filu uses eza's colours). When the field already has a value, the
+  cursor opens on that file, its text in Green (the current value).
 
 **Why**: a home directory holds dozens of hidden files, and listing them all would fill the top of the list; someone
 looking for a hidden file types `.` anyway — the shell's own rule, with no toggle key to learn.
@@ -156,10 +157,10 @@ key's header is not itself a secret, and it shows which kind of key it is.
 
     | Typed | The list |
     |---|---|
-    | `~/.ss` | shows `~`, filtered by `.ss`: `.ssh` is left, `Enter` goes in |
+    | `~/.ss` | shows `~`, filtered by `.ss`: `.ssh` is left (`Enter` to the list, `Enter` again to go in) |
     | `~/.ssh/` | all of `~/.ssh` |
     | `~/.ssh/id_` | `id_ed25519` and `id_ed25519.pub` in `~/.ssh` |
-    | `~/.ssh/id_ed25519` | that file on the first row, `Enter` chooses it |
+    | `~/.ssh/id_ed25519` | that file on the first row (`Enter` to the list, `Enter` again to choose it) |
     | `~/nope/x` | the directory does not exist: the list is empty, as with no results |
 
     **`..` is not supported in a path**: a `..` segment is not resolved upwards; it counts as a directory that does not

@@ -9,20 +9,20 @@
 ## 長相
 
 ```
-┏━QUIT━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                       ┃
-┃ 2 live sessions will be closed.       ┃  ← 要先看的內容：Overlay0；警告的那一句 Peach
-┃                                       ┃
-┃ Quit sshu?                            ┃  ← 問句：Text，放最後
-┃                                       ┃
-┗━ Enter:quit Esc:cancel ━━━━━━━━━━━━━━━┛
+┏━󰻌 QUIT━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                 ┃
+┃ 2 live sessions will be closed. ┃  ← 要先看的內容：Overlay0；警告的那一句 Peach
+┃                                 ┃
+┃ Quit sshu?                      ┃  ← 問句：Text，放最後
+┃                                 ┃
+┗━ Enter:quit Esc:cancel ━━━━━━━━━┛
 ```
 
 - **標題**：`nf-md-shield_alert`（U+F0ECC）加動作名（`DELETE`、`QUIT`、`CONNECT`）。
 - **問句放最後**，下面接著就是 hint。回答前要看的內容放在問句上面，跟問句之間空一列（Rules F1）；沒有內容時就只有問句。
 - **顏色**：問句用 Text，不加粗；內容用 Overlay0；內容裡警告的那一句（例：「無法復原」「2 個 session 會被關掉」）用 Peach，
   哪一句算警告由 app 決定。
-- **太長**：問句與內容都折行，不截斷。內容長時只有內容那一段用 `j|k` 捲，問句固定在最後。
+- **太長**：問句與內容都折行（照 [components 的「折行」](../README-zh_TW.md)），不截斷。內容長時只有內容那一段用 `j|k` 捲，問句固定在最後。
 - **寬度**：內容打開時就確定，照 [`layout/popup`](../layout/popup-zh_TW.md) 的「內容的寬度打開時就確定」；長的折行到上限為止。
 
 **為什麼**：讀的順序是先看內容、再看問句、最後是按鍵；問句緊貼著 hint，讀到問題時，答案就在下一列。標題用盾牌：confirm 存在

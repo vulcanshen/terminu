@@ -78,10 +78,10 @@ Terminal width under 96 (e.g. 80×24):
 - **Two areas**: the typing row on top, the list below, a separator between them (not joining the border,
   [`layout/popup`](../layout/popup.md)).
   - The typing row starts with `nf-fa-angle_right` (U+F105), one cell from the border, then one space before the typed
-    text (its width as the icon width of Rules E5): it says at a glance that this row is where typing filters, and the
-    row is not a blank strip when the finder opens on the list with nothing typed. It is a glyph, not a placeholder
-    ([`input/README`](README.md)). Its colour follows the row: Overlay0 like the whole row with the focus on the list,
-    the layer colour with the focus on the typing row.
+    text (its width as the icon width of Rules E5): it says at a glance that this row is where typing filters, and in
+    the kinds that open with the focus on the list (a select, a checkbox popup, a file-picker) the row is not a blank
+    strip with nothing typed. It is a glyph, not a placeholder ([`input/README`](README.md)). Its colour follows the
+    row: Overlay0 like the whole row with the focus on the list, the layer colour with the focus on the typing row.
   - The filtered count `matches/total` (`3/41`) sits on the right of the typing row, in Overlay0: it is supporting
     information and does not compete with the typed text; with the focus on the list the whole row is Overlay0
     anyway, so the number never changes colour.
@@ -140,6 +140,9 @@ preview" above says:
 
 ## Keys
 
+A plain finder opens with the focus on the typing row: it is a "go there" search, and opening it means typing (a select,
+a checkbox popup and a file-picker open on the list, see their own files).
+
 ### Typing row
 
 The panel filter uses this table too.
@@ -174,7 +177,7 @@ in order of size ([`slider`](slider.md)).
 | Key | Does |
 |---|---|
 | `j\|k` and the like | move (Rules K12: stepping wraps at the ends) |
-| `Enter` | goes there (a select chooses, a checkbox popup applies, a file-picker chooses the file or goes into the directory) |
+| `Enter` | goes there (a select chooses, a checkbox popup applies, a file-picker chooses the file or goes into the directory); with no results it does nothing (a checkbox popup excepted, see below) |
 | `Tab\|/` | back to the typing row, typing on after the old text |
 | `Esc` | closes the whole finder |
 
@@ -184,6 +187,14 @@ in order of size ([`slider`](slider.md)).
 |---|---|
 | Typing row | `Enter\|Tab:list Esc:cancel` |
 | List | `Enter:<the verb for going there> Tab\|/:filter Esc:cancel` (e.g. `Enter:open`) |
+| Typing row, no results | `Tab:list Esc:cancel` |
+| List, no results | `Tab\|/:filter Esc:cancel` |
+
+With no results (a search still listing as it goes, before the first result arrives, included) `Enter` does nothing
+in either place, so the hint drops `Enter`, and puts it back once there are results
+— as with a button still running in [`dialog/form`](../dialog/form.md), the hint shows only keys that do something. The
+same for a select and a file-picker. On a checkbox popup's list `Enter` writes back the whole set ticked, so it still
+works with no results ([`checkbox`](checkbox.md)).
 
 **Why**: `Enter` on the typing row first focuses the item, and only a second press runs it: going from the typing row
 back to the list never opens anything by the way. The cost is one more `Enter`; the fzf / VS Code quick-open way, "`Enter`

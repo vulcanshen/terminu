@@ -11,7 +11,7 @@
 ## 長相
 
 ```
-┏━≡ [2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┏━ [2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                               ┃
 ┃ 󰋘 ITEM OPERATION                              ┃  ← 區塊標題
 ┃▓[Enter] Connect▓▓▓▓▓▓▓▓▓▓▓what it is, then in┃  ← cursor
@@ -20,14 +20,14 @@
 ┃ ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌ ┃  ← 分隔線
 ┃ 󰋘 PANEL OPERATION                             ┃
 ┃ [A]dd                              a new host ┃
-┃ [/] Search          name, user, host, port, … ┃  ← 說明太長
+┃ [/] Search          name, user, host, port, … ┃  ← 說明太長（框已經到最寬時）
 ┃ ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌ ┃
 ┃ Global operation    actions for the whole app ┃
 ┃                                               ┃
 ┗━ Enter:run Esc:close ━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-（`≡` 代表 `nf-fa-bars`；區塊標題前面的是 `nf-md-hexagon`。）
+（區塊標題前面的是 `nf-md-hexagon`。）
 
 - **每一列**：label 用 Text，`[x]` 跟 label 同色；熱鍵怎麼標見 Rules M5。說明用 Overlay0，靠右，貼著右邊的留白（一般是離右框一格）；太長從尾端截，
   加 `…`（M5：單行）。label 與說明之間最少兩格：它決定最寬的那一列，也就決定 popup 的寬度。

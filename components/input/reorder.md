@@ -23,7 +23,7 @@ Holding nothing:
 ┏━ORDER━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                 ┃
 ┃   Usage                         ┃   ← every row keeps one cell at its start for a glyph
-┃▓▓▓Cost▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃   ← the cursor: a layer-colour background, Base bold
+┃▓▓▓Cost▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃   ← the cursor: a layer-colour background, Base bold
 ┃   Model                         ┃
 ┃   Context                       ┃
 ┃   Git                           ┃
@@ -36,7 +36,7 @@ Holding Cost, after one `k` (Cost swapped with Usage):
 ```
 ┏━ORDER━━━━━━━━━━━━━━━━━━┫Drag┣━┓   ← the Drag mode: the frame and the mode name turn Yellow
 ┃                                 ┃
-┃▓󰓢▓Cost▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃   ← the held item: a Yellow background, Base bold, `nf-md-swap_vertical` at its start
+┃▓󰓢▓Cost▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃   ← the held item: a Yellow background, Base bold, `nf-md-swap_vertical` at its start
 ┃   Usage                         ┃
 ┃   Model                         ┃
 ┃   Context                       ┃

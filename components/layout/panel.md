@@ -31,13 +31,13 @@ in [`screen`](screen.md).
 ```
 ┏[2] PODS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ ...                                             ┃
-┗━ .:helm Enter:logs ━━━━━━━━━━━━━━━━━━━ 3 of 40 ━┛
+┗━ Enter:logs .:helm ━━━━━━━━━━━━━━━━━━━ 3 of 40 ━┛
 ```
 
-**Hint**: written like the hint in [`popup`](popup.md). It holds this panel's own keys — what `Enter` does here, the
-common hotkeys; not the movement keys, nor the core keys the footer already has; all the keys are in the Space menu and
-`?`. When focused, keys Blue and descriptions Overlay0; unfocused, it stays and is dimmed with the panel. When it does
-not fit, whole pairs are dropped from the end, and the scroll position stays.
+**Hint**: written and ordered like the hint in [`popup`](popup.md) (`Enter` first). It holds this panel's own keys —
+what `Enter` does here, the common hotkeys; not the movement keys, nor the core keys the footer already has; all the keys
+are in the Space menu and `?`. When focused, keys Blue and descriptions Overlay0; unfocused, it stays and is dimmed with
+the panel. When it does not fit, whole pairs are dropped from the end, and the scroll position stays.
 
 **Why**: the hint on a panel's bottom border tells the user "what pressing what does on this panel", while the footer
 covers only the keys common to the whole screen; each covers one level, and with every panel having one, the user's eyes
@@ -60,19 +60,22 @@ are all drawn the same way:
 - **Selected**: filled with the chain's colour, text Base bold. On a panel the chain's colour is the border colour
   (changing with focus, unfocus and mode); in a popup it is the layer colour; for the screen chips it is Blue. The `[N]`
   capsule and the current tab both count as selected.
-- **Unselected**: no fill, text in the chain's colour.
+- **Unselected**: no fill, text in the chain's colour, not bold.
 - **Joins**: U+E0B0 (`nf-pl-left_hard_divider`) where the colour changes, U+E0B1 (`nf-pl-left_soft_divider`) between
   parts of the same colour.
 - **Colours of the ends and joins** (as in Powerline): the foreground is the fill of the part on the left, the
-  background the fill of the part on the right; an unselected part's fill counts as Base, and outside the chain is the
-  terminal's own background.
+  background the fill of the part on the right; an unselected part's fill counts as Base (a solid triangle needs
+  it to draw its unfilled side; the thin line between two unselected parts paints no background, see below), and outside
+  the chain is the terminal's own background.
   - Selected → unselected: U+E0B0, foreground the chain's colour, background Base; unselected → selected: U+E0B0,
     foreground Base, background the chain's colour.
-  - Both unselected: U+E0B1 in the chain's colour; both selected: U+E0B1, foreground Base, background the chain's colour.
+  - Both unselected: U+E0B1, foreground the chain's colour, no background painted; both selected: U+E0B1, foreground
+    Base, background the chain's colour (only `[N]` and the first tab are ever both selected, and there it is as in "A
+    panel's tabs" below: a space, no seam).
   - Each end takes the fill of the part beside it: when the first or last part is unselected, that end is Base
-    (invisible on a Base terminal background, leaving one empty cell).
-  - Every end and join takes one cell (the powerline symbol width of Rules E5), so changing the selected part shifts no
-    text.
+    (invisible on a Base terminal background, leaving a gap one powerline symbol wide).
+  - Every end and join takes the width of one powerline symbol (Rules E5: one cell as a rule; two on a terminal where it
+    takes two), and keeps it even where it cannot be seen, so changing the selected part shifts no text.
 - No space before or after the text inside a capsule: `[1] TABS`. The text is uppercase, the letters in a hotkey marker
   as written ("Uppercase" in the [components](../README.md)).
 - **A panel's tabs**: `[N]` is a part of its own and always selected; each tab after it is a part, and only the current
@@ -94,10 +97,12 @@ With all these uses sharing one look, the user who recognises one recognises the
 Surface2: Surface2 means disabled, and unselected pages would look as if they could not be switched to. The joins use the
 two symbols of the original Powerline, the most widely supported by fonts; they are coloured as in Powerline too, so a
 block of colour appears only on the selected part, which shows at a glance which one is selected, and no coloured point
-sticks out beside an unselected one. `[N]` is a part of its own: apart from the number only the current tab is lit, so
-there are never two blocks that both look current; on the first tab a space joins them, the same as a panel without tabs,
-and no panel with tabs needs a name of its own. Slanted ends here and a rounded popup title: a panel fixed on the screen
-and a popup floating above it can be told apart by the ends of their capsules.
+sticks out beside an unselected one. The thin line between two unselected parts paints no background: its shape does
+not depend on one, and only the solid triangles need Base to draw their unfilled side. `[N]` is a part of its own: apart
+from the number only the current tab is lit, so there are never two blocks that both look current; on the first tab a
+space joins them, the same as a panel without tabs, and no panel with tabs needs a name of its own. Slanted ends here and
+a rounded popup title: a panel fixed on the screen and a popup floating above it can be told apart by the ends of their
+capsules.
 
 ## Ordinary lists
 
@@ -119,7 +124,8 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   on a terminal where it takes two, every row keeps two on the right), so the arrow fits and the text does not move.
   When the panel is unfocused it is dimmed as a whole (Rules T2), the cursor with it,
   not given another colour.
-- **Header**: Blue, not bold, uppercase, fixed at the top and never scrolled. Each column holds numbers or text: numbers align right
+- **Header**: a list with several columns always has one; for a single-column list it is up to the app. Blue, not bold,
+  uppercase, fixed at the top and never scrolled. Each column holds numbers or text: numbers align right
   and sort by value (`9` before `10`), text aligns left and sorts as text. Two cells between columns
   ("Diagrams and spacing" in the [components](../README.md)). A column being sorted on gets `nf-fa-sort_amount_asc` (U+F160, ascending) or `nf-fa-sort_amount_desc` (U+F161, descending) after its title;
   when several columns sort together, the rank goes before the arrow, e.g. `Name (2)` followed by the arrow.
@@ -150,17 +156,18 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
 
 **Why**: the cursor is "the row `Enter` acts on"; a solid background across the whole row, ending in an arrow, says so
 in both shape and colour (L5). Marks use the checkbox tick: marked means "picked", the same thing as a ticked checkbox, in the same colour.
-With the header fixed, what each column is stays visible however far you scroll.
+A list with several columns always has a header: what the columns mean and the sort arrows both rest on it. With the
+header fixed, what each column is stays visible however far you scroll.
 
 ### Groups
 
 When a list's items fall into groups (kbu's resource kinds, locku's sidebar), each group starts with a group title row.
 
 ```
-┏[1] KINDS━━━━━━━━━━━━━━━┓
+┏[1] KINDS━━━━━━━━━━━━━┓
 ┃ WORKLOADS              ┃  ← group title: Blue, uppercase, not bold; the cursor skips it
 ┃   pods                 ┃
-┃▓▓▓deployments▓▓▓▓▓▓▓▓▓▓┃  ← cursor
+┃▓▓▓deployments▓▓▓▓▓▓▓▓▓┃  ← cursor
 ┃   statefulsets         ┃
 ┃ NETWORK                ┃
 ┃   services             ┃
@@ -170,7 +177,9 @@ When a list's items fall into groups (kbu's resource kinds, locku's sidebar), ea
 
 - **Group title**: Blue, uppercase ("Uppercase" in the [components](../README.md)), not bold, no glyph; one cell from the
   frame. It is of a kind with the header: it says "what the rows below are", not a row of data.
-- **Items**: two cells further in than the group title.
+- **Items**: two cells further in than the group title. When the list has a mark column ("Marked rows" above), the mark
+  goes in those two extra cells: the mark one cell from the frame, a space, the text three cells from the frame; a group
+  title row keeps no mark column.
 - **The cursor skips group titles** and stops only on items: `j|k` step over them; `gg|G` go to the first and last item;
   the `N of M` scroll position counts items only. When scrolling puts the cursor on a group's first item, that group's
   title stays on screen too.
@@ -180,8 +189,9 @@ When a list's items fall into groups (kbu's resource kinds, locku's sidebar), ea
 
 **Why**: a group title says "what the rows below are", as the header does, so it is drawn as the header is (Blue,
 uppercase, not bold); with the items two cells further in, which group a row belongs to shows at a glance, with no
-separator to draw. The cursor stops only on rows that do something, as with a menu's section titles. A group title left
-over an empty group looks as if it were still loading.
+separator to draw. The mark goes in the two extra cells: the text stays three cells from the frame, as without marks and
+as in an ordinary list with marks, and shifts nothing. The cursor stops only on rows that do something, as with a menu's
+section titles. A group title left over an empty group looks as if it were still loading.
 
 ## One value per row
 
@@ -210,15 +220,17 @@ A panel with one value per row, like a settings screen (locku's preference, webu
 - **Labels**: uppercase; Blue normally, Surface2 when disabled, Red when its value has an error (over any other colour). They are
   dimmed with the panel when it is unfocused (T2). The label column is as wide as the longest label, with two cells
   between it and the values.
-- **Header** (`PROPERTY  VALUE` in the example): Overlay0 (dim text in [`color`](../color.md)); otherwise as an
-  ordinary list's header (uppercase, not bold, fixed at the top and never scrolled).
+- **Header** (`PROPERTY  VALUE` in the example): whether there is one is up to the app. If there is, it takes Overlay0
+  (dim text in [`color`](../color.md)); otherwise as an ordinary list's header (uppercase, not bold, fixed at the top
+  and never scrolled).
 
 **Why**: a settings screen and a form are the same thing — one value per row, changed one by one — except that a change
 takes effect at once. With one set of rules, what the user learns in a form works on a settings screen too. Labels are
 Blue, the colour of the focused frame: the same idea as a form's labels taking the layer colour, which is the colour of
 the popup frame. The header is not Blue: the labels under it already are, and a Blue header would run into them
 and not read as a header; an ordinary list's header has Text data under it, which is what sets it apart. A header says
-what a column is and cannot be acted on, so it takes dim text, as a menu's section titles do.
+what a column is and cannot be acted on, so it takes dim text, as a menu's section titles do. The header is optional:
+each row's label already says what the row is.
 
 ## Details
 
@@ -236,20 +248,21 @@ saw while moving would always be the previous item; changing at once, you see wh
 
 ## Panel filter
 
-`/` brings up a typing row at the top of the panel, and the list is filtered live as you type, with no popup (kbu's panel
-search, sshu's Hosts, webu's list filters).
+`/` brings up a typing row at the top of the panel (above the header, when the list has one), and the list is filtered
+live as you type, with no popup (kbu's panel search, sshu's Hosts, webu's list filters).
 
 ```
 ┏[2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃  prod                                   2/5 ┃   ← typing row: `nf-fa-angle_right` before it, the filtered count on its right
+┃ NAME         USER      HOSTNAME              ┃   ← header: below the typing row
 ┃ prod-web-01  deploy    10.0.3.14             ┃
 ┃ prod-db      postgres  10.0.3.20             ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 The typing row takes the same keys and the same matching as a finder's typing row ([`input/finder`](../input/finder.md)):
-the filtered list keeps the panel's own order. The typing row starts with `nf-fa-angle_right` (U+F105), lined up with
-the list's text (one cell from the frame), then one space before the typed text; its colour follows the row: the
+the filtered list keeps the panel's own order. The typing row starts with `nf-fa-angle_right` (U+F105), one cell
+from the frame (as in a finder's typing row), then one space before the typed text; its colour follows the row: the
 panel's frame colour with the focus on the typing row, Overlay0 on the list. The count on its right reads
 `matches/total` (`2/5`), in Overlay0. What differs all comes from the panel being on the screen level:
 

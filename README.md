@@ -47,6 +47,7 @@ The details are in the **[terminu design principle (tdp)](principle/)**:
 | [Rules](principle/rules.md) | What must hold, each with its reason, split into a fixed and a concept zone |
 | [Components](components/README.md) | Component specs: colour, frames, dialogs, and how each kind of input looks and works |
 | [Project](project/README.md) | The project spec: a family app repo's directories, Makefile, version, CHANGELOG and release |
+| [Checklist](checklist/README.md) | The item list: the requirements broken into items that can be checked, for judging how much of tdp an app meets |
 
 ## terminu-go
 

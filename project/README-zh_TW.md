@@ -38,11 +38,13 @@ CHANGELOG、發布。principle 講使用者看得到的規則，components 講�
 ├── cmd/<app>/main.go               main package
 ├── internal/                       app 自己分的 package
 │   └── version/version.go          版本（見「版本」）
-├── docs/                           dev-remarks.md、icon.svg、README 的 demo gif（Rules E6、E7）
+├── docs/                           dev-remarks.md、icon.svg、README 的 demo gif、有待修時的
+│                                   <app>-terminu-fix.md（Rules E6、E7）
 ├── .local/                         git 不收；demos/ 放 VHS 的 tape
 ├── .github/workflows/release.yml
 ├── .goreleaser.yaml
 ├── .gitignore
+├── go.mod、go.sum
 ├── family.mk
 ├── Makefile
 ├── install.sh、uninstall.sh
@@ -52,7 +54,9 @@ CHANGELOG、發布。principle 講使用者看得到的規則，components 講�
 ```
 
 - Go 程式只在 `cmd/<app>/` 與 `internal/`。`go install` 的路徑是 `github.com/vulcanshen/<app>/cmd/<app>@latest`。
-- 圖上沒有的頂層目錄（例：端到端測試、開發用的小工具）由 app 決定，寫在 dev-remarks 的「建置與開發」。
+- 圖上沒有的頂層目錄與檔案（例：端到端測試、開發用的小工具、`CLAUDE.md`）由 app 決定，寫在 dev-remarks 的「建置與開發」。
+- **`docs/icon.svg` 是家族 mark 的正本**。Go 的 `go:embed` 讀不到 `docs/`，所以 splash 用的那一份放在程式裡（`internal/` 裡的副本檔，
+  或寫死的格子），Rules E6 的測試守住它跟 `docs/icon.svg` 一模一樣。
 - 出 Windows 版的 app 另有 `install.ps1`、`uninstall.ps1`，由 app 自己寫，不在範本裡。
 
 **為什麼**：家族裡大多數 app 本來就是 `cmd/<app>` 加 `internal/`，照它搬的 app 最少。程式只在兩個地方，根目錄只剩 repo 層級的

@@ -11,6 +11,10 @@ tdp is the detailed specification behind [terminu design](../README.md), in four
 | **Components** | [components](../components/README.md) | Component specs: the colour scheme, frames, dialogs, and how each kind of input looks and works; required, choosing only among the listed options |
 | **Project** | [project](../project/README.md) | The project spec: a family app repo's directories, Makefile, version, CHANGELOG and release; the template files are copied as they are |
 
+The [checklist](../checklist/README.md) breaks the requirements of these four layers into items that can each be
+checked, for judging how much of tdp an app meets; it is not a requirement itself, and where it disagrees with the
+spec, the spec wins.
+
 tdp answers one question: **what makes a terminal UI usable without reading the docs?**
 
 ---
@@ -123,11 +127,12 @@ All of the components and the project spec are in the fixed zone ("Departure" at
 **What tdp does not specify:**
 
 - **Domain hotkeys on a panel.** Which letter does what, whether case carries meaning, whether to use chords or `Alt`,
-  whether to cycle backwards with `Shift-Tab` (forms excepted) — all up to each app. Hotkeys depend on the domain (in kbu
-  `S` is shell, in filu `S` is sort), and they are not on the no-prior-learning path — everything the user looks for is
-  in `Space` and `?`. tdp governs only a few things about hotkeys: they **must appear in a menu, marked with `[]`**, they
-  **may not take over a core key**, and they **may not take over the movement letters** (Rules K12). Keys inside a
-  component (e.g. a form's `e`, a datetime picker's `t`, a textarea's `i|a|o`) are part of the component spec.
+  whether to cycle backwards with `Shift-Tab` (popups with an action area excepted, Rules K2) — all up to each app.
+  Hotkeys depend on the domain (in kbu `S` is shell, in filu `S` is sort), and they are not on the no-prior-learning
+  path — everything the user looks for is in `Space` and `?`. tdp governs only a few things about hotkeys: they **must
+  appear in a menu, marked with `[]`**, they **may not take over a core key**, and they **may not take over the movement
+  letters** (Rules K12). Keys inside a component (e.g. a form's `e`, a datetime picker's `t`, a textarea's `i|a|o`) are
+  part of the component spec.
 - **Domain symbols and colours.** File-type icons, status glyphs and the colours of the content itself are bound to the
   concrete domain and left to each app. The glyphs of the components (radio, checkbox, the loading icon, borders, the
   titles of each class of popup) and the colour scheme are part of the component spec; the family requires a Nerd Font
@@ -153,7 +158,7 @@ stays visible; it only says "not here right now".
 ### Surface
 
 A UI container that can take focus and that the user interacts with directly; there are two kinds, **panel** and
-**popup**. Always-on areas (footer, statusbar, tab row) are not surfaces — focus never rests on them.
+**popup**. Always-on areas (footer, statusbar, screen chip row) are not surfaces — focus never rests on them.
 
 ### Screen
 
@@ -218,8 +223,8 @@ key restores it. See Rules K11.
 
 ### Core key
 
-A key whose meaning is specified by tdp and never changes on any surface: `Tab`, `Enter`, `Esc`, `Space`, `?`, `q`
-(Rules, chapter K).
+A key whose meaning is specified by tdp and never changes on any surface: `Tab`, `Enter`, `Esc`, `Space`, `?`, `q`,
+`1`–`9` (Rules, chapter K).
 
 ### Letter hotkey
 
