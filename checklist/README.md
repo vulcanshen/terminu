@@ -92,14 +92,15 @@ Each item is ruled one of:
 | Departs | not done, but the "偏離 tdp" (departures from tdp) section of the dev-remarks names the item and the reason (the rules' opening "Departure") |
 | Violates | not done, and not written as a departure |
 | Not applicable | the app lacks the feature the item applies to, or never has the case the item names |
+| Cannot tell | it could not be checked (e.g. a file to read with no repo at hand, a screen that needs a special environment to open), with the reason |
 
-A judgement names the tdp version it was judged against. Departures, violations and the items not applicable are listed,
-to tell the app what it lacks and why.
+A judgement names the tdp version it was judged against. Departures, violations, the items not applicable and those that
+could not be checked are listed, to tell the app what it lacks and why, and what is still unconfirmed.
 
 ## Genes
 
-- **Each item is one gene**: an item an app meets is one terminu gene the app has. Departures, violations and items not
-  applicable do not count.
+- **Each item is one gene**: an item an app meets is one terminu gene the app has. Departures, violations, items not
+  applicable and items that could not be checked do not count.
 - **A count, not a ratio**: written `tdp-<version> <count> gene` (e.g. `tdp-0.7.2 860 gene`).
 - **Tied to its tdp version**: a tdp version's total of genes is its number of items; when tdp changes, the total
   changes, and a judgement already made keeps the count of the version it was made against. Counts from different
