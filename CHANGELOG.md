@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.7.3 — 2026-10-18
+
+From the user: the checklist counts genes instead of judging a share; and G94 narrowed back to where it was asked.
+
+- checklist: each item is one terminu gene; an app has the genes of the items it meets — departures, violations and
+  items not applicable count for none — written as a count tied to its tdp version (`tdp-0.7.2 860 gene`), not as a
+  ratio. A version's total of genes is its number of items; counts from different versions are not compared directly.
+  What an app does that tdp does not specify is no gene and costs nothing; it is reported as a gap
+- components "Wrapping": the space at a break goes to the next row's first cell only in a textarea and a viewer, where
+  every character is drawn; text that is only shown (a confirm, a toast, an error popup, the splash) does not draw it
+  (G95). checklist: components-24 added (1302 items)
+
 ## v0.7.2 — 2026-10-18
 
 Three gaps left over from v0.7.1: one from terminu-go, two found while building the checklist.

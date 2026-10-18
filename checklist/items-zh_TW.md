@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.7.2 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.7.3 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -430,6 +430,7 @@ tdp v0.7.2 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | components-21 | components §大寫 | 標題裡的名稱、路徑照原樣（`EDIT: filu`、`IDENTITY FILE · ~/.ssh`） | 都要 | 打開對某一個東西做的 popup，看名稱部分沒被轉成大寫 |
 | components-22 | components §在方案裡選 | 元件的樣子只從 components 列出的方案裡挑，不在 app 裡自己發明 | 都要 | 對照各元件列出的方案，看 app 用的都是其中一種 |
 | components-23 | components §折行 | 一個字剛好填滿一列、後面接著空白時，那個空白畫在下一列的第一格 | textarea、viewer | 在 textarea 打字，讓一個字剛好填滿一列再打空白，看空白在下一列開頭、游標停得上去 |
+| components-24 | components §折行 | 只是顯示的文字（confirm、toast、error popup、splash）斷在空白處時，那個空白不畫：下一列開頭不會多一格空白 | 都要 | 讓 toast、confirm 或太窄時的 splash 的文字剛好在一個字後面折行，看下一列開頭沒有空白、置中沒有偏 |
 
 ## color
 

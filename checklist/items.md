@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.7.2. What each column means, what an item applies to and the verdicts: [README.md](README.md).
+The items of tdp v0.7.3. What each column means, what an item applies to and the verdicts: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -430,6 +430,7 @@ The items of tdp v0.7.2. What each column means, what an item applies to and the
 | components-21 | components §Uppercase | Names and paths in a title keep their case (`EDIT: filu`, `IDENTITY FILE · ~/.ssh`) | everyone | Open a popup that acts on one thing; check that the name is not turned uppercase |
 | components-22 | components §Choosing among the options | A component's look is picked only from the options the components list, never invented inside the app | everyone | Compare against the options each component lists; check that the app always uses one of them |
 | components-23 | components §Wrapping | When a word fills a row exactly and a space follows, that space is drawn in the next row's first cell | textarea or viewer | Type in a textarea so that a word fills a row exactly, then a space; check that the space starts the next row and the text cursor can stop on it |
+| components-24 | components §Wrapping | Text that is only shown (a confirm, a toast, an error popup, the splash) does not draw the space it breaks at: the next row does not start with a blank cell | everyone | Make the text of a toast, a confirm or a too-narrow splash wrap right after a word; check that the next row starts with no blank and stays centred |
 
 ## color
 
