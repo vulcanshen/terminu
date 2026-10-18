@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.7.4 — 2026-10-18
+
+From the user, while working out how the harness's judge runs: a judge may not be able to check every item.
+
+- checklist: a fifth verdict, "cannot tell", for an item that could not be checked (e.g. a file to read with no repo at
+  hand, a screen that needs a special environment to open), written with its reason; like departures, violations and
+  items not applicable, it counts for no gene
+
 ## v0.7.3 — 2026-10-18
 
 From the user: the checklist counts genes instead of judging a share; and G94 narrowed back to where it was asked.
