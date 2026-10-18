@@ -3,7 +3,7 @@
 **Language**: [English](README.md) · 繁體中文
 
 terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 principle、components、project 的規定拆成一條一條可以檢查的
-項目，用來判一個家族 app 符合 tdp 多少。版號、CHANGELOG 跟 tdp 一起走，每一版 tdp 有自己那一版的清單。條目在
+項目，用來數一個家族 app 有多少 terminu 的 gene。版號、CHANGELOG 跟 tdp 一起走，每一版 tdp 有自己那一版的清單。條目在
 [`items-zh_TW.md`](items-zh_TW.md)。
 
 ## 規範才是依據
@@ -82,4 +82,12 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 違反 | 沒做到，也沒寫成偏離 |
 | 不適用 | app 沒有這一條的「適用」寫的功能，或沒有條目寫的那種情況 |
 
-判的時候標明照哪一版 tdp 判。
+判的時候標明照哪一版 tdp 判。偏離、違反、不適用列出來，告訴 app 缺了哪些、為什麼缺。
+
+## gene
+
+- **每一條就是一個 gene**：app 判成符合的一條，就是 app 有的一個 terminu gene。偏離、違反、不適用都不算。
+- **只數有幾個，不算比例**：寫成 `tdp-<版本> <數> gene`（例：`tdp-0.7.2 860 gene`）。
+- **跟那一版 tdp 綁在一起**：那一版 tdp 的 gene 總數就是它的條目數；tdp 改版時總數會變，已經判過的結果照舊是當時那一版的數字。
+  不同版本的數字不直接比較。
+- app 做了 tdp 沒規範的東西，不算 gene，也不扣：判的時候另外列出來，回報成 tdp 的缺漏。

@@ -12,7 +12,7 @@ tdp is the detailed specification behind [terminu design](../README.md), in four
 | **Project** | [project](../project/README.md) | The project spec: a family app repo's directories, Makefile, version, CHANGELOG and release; the template files are copied as they are |
 
 The [checklist](../checklist/README.md) breaks the requirements of these four layers into items that can each be
-checked, for judging how much of tdp an app meets; it is not a requirement itself, and where it disagrees with the
+checked, for counting how many terminu genes an app has; it is not a requirement itself, and where it disagrees with the
 spec, the spec wins.
 
 tdp answers one question: **what makes a terminal UI usable without reading the docs?**

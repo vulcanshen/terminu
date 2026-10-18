@@ -11,7 +11,7 @@ tdp 是 [terminu design](../README-zh_TW.md) 的細節規範，分四層：
 | **Components** | [components](../components/README-zh_TW.md) | 元件規格：配色、框、dialog、每一種 input 的樣子與操作；必須照做，只能在列出的方案裡挑 |
 | **Project** | [project](../project/README-zh_TW.md) | 專案規格：家族 app 的 repo 的目錄、Makefile、版本、CHANGELOG、發布；範本檔照原樣複製 |
 
-[checklist](../checklist/README-zh_TW.md) 把這四層的規定拆成一條一條可以檢查的項目，用來判一個 app 符合 tdp 多少；它本身不是規定，
+[checklist](../checklist/README-zh_TW.md) 把這四層的規定拆成一條一條可以檢查的項目，用來數一個 app 有多少 terminu 的 gene；它本身不是規定，
 跟規範對不上時以規範為準。
 
 tdp 回答一個問題：**在 terminal UI 上，什麼樣的設計能讓使用者不看文件就能用？**

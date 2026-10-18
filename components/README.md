@@ -56,8 +56,9 @@ wraps the same way:
 - **Only a word wider than a row on its own** (e.g. a long URL) is cut by cells.
 - **A wide character is never cut in half**: when cutting by cells leaves one cell on a row, that wide character goes
   whole to the next row.
-- **A space that does not fit starts the next row**: when a word fills a row exactly and a space follows, that space is
-  drawn in the next row's first cell — every character can be drawn, and a textarea's text cursor on it has a cell.
+- **The space at a break**: in a textarea and a viewer every character is drawn (the text cursor and the selection
+  mode stop on it), so when a word fills a row exactly and a space follows, that space is drawn in the next row's first
+  cell; text that is only shown (a confirm, a toast, an error popup, the splash) does not draw the space it breaks at.
 
 **Why**: text broken in the middle of a word can't be read; the splash already breaks this way (Rules S5). With one
 rule, text wraps the same wherever it wraps in the family.

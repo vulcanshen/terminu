@@ -3,7 +3,7 @@
 **Language**: English · [繁體中文](README-zh_TW.md)
 
 terminu checklist is the item list of [tdp](../principle/README.md): the requirements of the principle, the components
-and the project spec, broken into items that can each be checked, for judging how much of tdp a family app meets.
+and the project spec, broken into items that can each be checked, for counting how many terminu genes a family app has.
 Versions and the CHANGELOG are shared with tdp; each tdp version has its own list. The items are in
 [`items.md`](items.md).
 
@@ -93,4 +93,16 @@ Each item is ruled one of:
 | Violates | not done, and not written as a departure |
 | Not applicable | the app lacks the feature the item applies to, or never has the case the item names |
 
-A judgement names the tdp version it was judged against.
+A judgement names the tdp version it was judged against. Departures, violations and the items not applicable are listed,
+to tell the app what it lacks and why.
+
+## Genes
+
+- **Each item is one gene**: an item an app meets is one terminu gene the app has. Departures, violations and items not
+  applicable do not count.
+- **A count, not a ratio**: written `tdp-<version> <count> gene` (e.g. `tdp-0.7.2 860 gene`).
+- **Tied to its tdp version**: a tdp version's total of genes is its number of items; when tdp changes, the total
+  changes, and a judgement already made keeps the count of the version it was made against. Counts from different
+  versions are not compared directly.
+- What an app does that tdp does not specify is no gene and costs nothing: a judgement lists it separately, to be
+  reported as a gap in tdp.
