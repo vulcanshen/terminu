@@ -29,7 +29,9 @@ panel 的框、一般清單（含分組）、一列一個值的 panel、明細�
 ```
 
 **hint**：寫法與順序同 [`popup`](popup-zh_TW.md) 的 hint（`Enter` 第一）。內容是這個 panel 自己的鍵 —— `Enter` 在這裡做什麼、
-常用的熱鍵；不寫移動鍵，也不寫 footer 已經有的 core key；全部的鍵在 Space menu 與 `?`。有 focus 時鍵 Blue、說明 Overlay0；
+常用的熱鍵；不寫移動鍵，也不寫 footer 已經有的 core key；全部的鍵在 Space menu 與 `?`。清單一項都沒有時（panel filter
+篩到空，或本來就是空的），拿掉 `Enter` 與對項目的熱鍵，只留對整個 panel 的 —— 跟 finder、表單的按鈕一樣，hint 只寫按得動的鍵
+（[`input/finder`](../input/finder-zh_TW.md)、[`dialog/form`](../dialog/form-zh_TW.md)）。有 focus 時鍵 Blue、說明 Overlay0；
 失焦時照樣留著，跟著 panel 一起淡化。放不下時從尾端整組捨，捲動位置留著。
 
 **為什麼**：panel 下框的 hint 告訴使用者「在這個 panel 上按什麼會怎樣」，footer 只管全畫面通用的鍵；兩者各管一層，

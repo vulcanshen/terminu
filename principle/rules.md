@@ -503,7 +503,9 @@ one line usually means the action is badly named. Digits stay out of words becau
   and its hotkey does nothing.
 - **The `?` key reference follows the same rule**: a key whose target exists but can't be pressed now is still listed,
   in the disabled colour; with no target it is not listed. The bottom-border hint and the footer, short on room and
-  always on screen, may list only the keys that work now; that is up to the app.
+  always on screen, may list only the keys that work now; that is up to the app, except where a component requires the
+  keys to go: while a form's button is running, while a finder has no results, while a panel's list has no items
+  (components/dialog/form, input/finder, layout/panel).
 - A section of the key reference with a title of its own describing **another surface** (e.g. `ssh grid` in the `?` of
   sshu's list, since a cell shows no key reference) is not this surface's keys and is shown as usual, last (after
   `app-wide`, [components/dialog/note](../components/dialog/note.md)).
@@ -715,7 +717,8 @@ best, and no rule such as "reversible means no need to ask" can judge it.
     `min(terminal width − 2, 120)`.
   - Centred horizontally.
 - **Height**: follows the content, **fixed when the popup opens** and not resized with the content afterwards; at most
-  the screen height − 2 (the top row and the footer always stay in view), scrolling inside the box beyond that. Popups
+  the screen height − 2 (the screen chip row or the statusbar and the footer always stay in view; the divider
+  under the chip row may be covered), scrolling inside the box beyond that. Popups
   whose height cannot be known when they open — a finder with a preview, a textarea — always take the maximum. Only
   two cases may change the height while the popup is open:
   - **Loading**: a popup whose content is not known when it opens (streaming, loading) may change height while loading.

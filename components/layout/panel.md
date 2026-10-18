@@ -36,7 +36,10 @@ in [`screen`](screen.md).
 
 **Hint**: written and ordered like the hint in [`popup`](popup.md) (`Enter` first). It holds this panel's own keys —
 what `Enter` does here, the common hotkeys; not the movement keys, nor the core keys the footer already has; all the keys
-are in the Space menu and `?`. When focused, keys Blue and descriptions Overlay0; unfocused, it stays and is dimmed with
+are in the Space menu and `?`. When the list has no items (a panel filter matched nothing, or it was empty to begin
+with), `Enter` and the hotkeys on an item are dropped, and only those on the whole panel stay — as with a finder and a
+form's buttons, the hint shows only keys that do something ([`input/finder`](../input/finder.md),
+[`dialog/form`](../dialog/form.md)). When focused, keys Blue and descriptions Overlay0; unfocused, it stays and is dimmed with
 the panel. When it does not fit, whole pairs are dropped from the end, and the scroll position stays.
 
 **Why**: the hint on a panel's bottom border tells the user "what pressing what does on this panel", while the footer
