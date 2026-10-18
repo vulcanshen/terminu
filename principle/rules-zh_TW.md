@@ -428,7 +428,8 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 - **對象存在、但現在不能執行**：列照樣出現、用停用色（[components/color](../components/color-zh_TW.md)），說明欄維持原本那句，
   不另外寫原因；cursor 跳過它，按熱鍵也不作用。
 - **`?` 的 key reference 照同一套**：對象存在、現在不能按的鍵照樣列出、用停用色；對象不存在就不列。下框 hint 與 footer
-  空間有限、常駐畫面，只列現在按得了的鍵也可以，由 app 決定。
+  空間有限、常駐畫面，只列現在按得了的鍵也可以，由 app 決定；例外是元件規定一定要拿掉的：表單的按鈕還在跑時、finder 沒有結果時、
+  panel 的清單一項都沒有時（components/dialog/form、input/finder、layout/panel）。
 - key reference 裡另外加標題、說明**別的 surface** 的一段（例：sshu 清單上 `?` 裡的 `ssh grid`，格子裡看不到 key
   reference），不算這個 surface 的鍵，照常顯示，排在最後（`app-wide` 之後，[components/dialog/note](../components/dialog/note-zh_TW.md)）。
 
@@ -605,7 +606,8 @@ popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中�
     color picker）：最寬的那一列 + 4（左右各一格框、一格留白），至少放得下標題與 hint，最寬不超過 `min(terminal 寬 − 2, 120)`。
   - **內容的寬度不確定**（例：自由打字的 text、網址、串流內容、搜尋結果、表單）：`min(terminal 寬 − 2, 120)`。
   - 水平置中。
-- **高度**：依內容，**打開時定好**，之後不跟著內容伸縮；最高是畫面高度 − 2（最上面一列與 footer 永遠看得到），
+- **高度**：依內容，**打開時定好**，之後不跟著內容伸縮；最高是畫面高度 − 2（畫面 chip 列或 statusbar 與 footer 永遠看得到；
+  chip 列下面的分隔線可以被蓋住），
   超過就在框裡捲動。內容打開時不知道會多高的 —— 有預覽的 finder、textarea —— 一律取最高。只有兩種情況允許開著時改變高度：
   - **loading**：打開時內容還不確定（串流、載入中）的 popup，在 loading 期間高度可以變。loading 結束，高度就定下來。
   - **使用者操作造成的改變**：使用者在這個 popup 裡的動作讓列數改變（刪了一列、選了一項後多出一列、打字篩選候選），

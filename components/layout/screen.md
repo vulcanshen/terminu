@@ -24,6 +24,7 @@ narrow, whole pairs are dropped from the end (the hint in [`popup`](popup.md)). 
 | A screen with only one panel | `Space:menu ?:help q:quit` |
 | In a mode (Rules K11) | `?:help`, the mode's own keys, and last `Esc:<verb for leaving>`. E.g. `?:help Enter:drop Esc:cancel` |
 | Typing in a panel filter (input state) | `Enter\|Tab:list Esc:clear` |
+| Typing in a panel filter, no results | `Tab:list Esc:clear` (`Enter` does nothing, as in the hint of [`input/finder`](../input/finder.md)) |
 | Focus on a PTY in a panel | the exit key, plus the keys the app keeps (Rules K10). E.g. `Alt-Esc:leave Alt-z:zoom PgUp:history` |
 | A popup is open | as for the screen underneath, dimmed with the whole screen (Rules F8); the popup's own keys are in its bottom-border hint |
 

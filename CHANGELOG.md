@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.7.2 — 2026-10-18
+
+Three gaps left over from v0.7.1: one from terminu-go, two found while building the checklist.
+
+- components "Wrapping": when a word fills a row exactly and a space follows, the space starts the next row, so every
+  character can be drawn and a textarea's text cursor on it has a cell (G94)
+- A panel filter that matches nothing: while typing, the footer is `Tab:list Esc:clear`; when a panel's list has no
+  items, filtered to nothing or empty to begin with, its hint drops `Enter` and the hotkeys on an item, as a finder and
+  a form's buttons already do; M6 names these three places where the keys must go
+- F7: a popup is at most the screen height − 2 — the screen chip row or the statusbar and the footer stay in view, and
+  the divider under the chip row may be covered
+- checklist: F7-6 reworded; components-23, screen-31 and panel-124 added (1301 items)
+
 ## v0.7.1 — 2026-10-18
 
 From the user: the check layer of the terminu harness — tdp gets an item list for judging how much of tdp an app meets.

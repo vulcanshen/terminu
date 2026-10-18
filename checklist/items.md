@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.7.1. What each column means, what an item applies to and the verdicts: [README.md](README.md).
+The items of tdp v0.7.2. What each column means, what an item applies to and the verdicts: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -240,7 +240,7 @@ The items of tdp v0.7.1. What each column means, what an item applies to and the
 | F7-3 | F7 | A popup whose content width is not known is `min(terminal width − 2, 120)` wide | everyone | Open it once at 80 columns and once at 200 (e.g. a URL, search results, a form): the width is 78 and 120 |
 | F7-4 | F7 | Popups are centred horizontally | everyone | Measure each popup's distance from the screen's left and right edges |
 | F7-5 | F7 | A popup's height follows the content and is fixed when it opens, not resized with the content afterwards (changes during loading and changes the user made excepted) | everyone | With a popup open, let the data behind it update: the frame's height does not change |
-| F7-6 | F7 | A popup is at most the screen height − 2, so the top row and the footer always stay in view | everyone | Open a popup with very long content: the screen's top row and footer are not covered |
+| F7-6 | F7 | A popup is at most the screen height − 2: the screen chip row or the statusbar and the footer always stay in view (the divider under the chip row may be covered) | everyone | Open a popup with very long content: the screen chip row (or the statusbar) and the footer are not covered |
 | F7-7 | F7 | Content beyond the maximum scrolls inside the box | everyone | Open a long list in a short terminal: scrolling inside the box shows all of it |
 | F7-8 | F7 | When the user's action changes a popup's row count (removing a row, a row added, filtering as they type), what is disclosed is correct whether or not the height follows | everyone | In a popup remove a row or filter by typing: the box has no leftover, missing or misplaced rows |
 | F7-9 | F7 | While the content of the whole popup is still loading, a spinning loading icon always sits after its title | loading | Open that popup where loading is slow: the icon after the title spins |
@@ -429,6 +429,7 @@ The items of tdp v0.7.1. What each column means, what an item applies to and the
 | components-20 | components §Uppercase | The app's own content (the statusbar, the data in lists) keeps its case | everyone | Check that the statusbar and the data in lists are as they are |
 | components-21 | components §Uppercase | Names and paths in a title keep their case (`EDIT: filu`, `IDENTITY FILE · ~/.ssh`) | everyone | Open a popup that acts on one thing; check that the name is not turned uppercase |
 | components-22 | components §Choosing among the options | A component's look is picked only from the options the components list, never invented inside the app | everyone | Compare against the options each component lists; check that the app always uses one of them |
+| components-23 | components §Wrapping | When a word fills a row exactly and a space follows, that space is drawn in the next row's first cell | textarea or viewer | Type in a textarea so that a word fills a row exactly, then a space; check that the space starts the next row and the text cursor can stop on it |
 
 ## color
 
@@ -495,6 +496,7 @@ The items of tdp v0.7.1. What each column means, what an item applies to and the
 | screen-28 | screen §Empty states | An empty state is centred | everyone | As above, look at where the two lines are |
 | screen-29 | screen §Empty states | Both lines of an empty state are Overlay0 | everyone | As above, look at the colours |
 | screen-30 | screen §Empty states (diagram) | One blank row between the fact and the hint | everyone | Leave a panel with no data and look between the fact and the hint |
+| screen-31 | screen §Footer | While typing in a panel filter with no results, the footer is `Tab:list Esc:clear` (no `Enter`) | panel filter | Press `/` and type something that matches nothing; look at the footer |
 
 ## layout/panel
 
@@ -623,6 +625,7 @@ The items of tdp v0.7.1. What each column means, what an item applies to and the
 | panel-121 | panel §Panel filter | `/` on the list goes back to the typing row, continuing the old text | panel filter | After filtering, press `/` on the list |
 | panel-122 | panel §Panel filter | The filter stays when the focus leaves the panel, whichever way it leaves | panel filter | After filtering, leave with `Tab` and with a digit key, then come back |
 | panel-123 | panel §Panel filter | When the focus returns to a panel with a filter, it lands straight on the typing row | panel filter | After filtering, leave and come back; check that the focus is on the typing row |
+| panel-124 | panel §Frame | When the list has no items (a panel filter matched nothing, or it was empty to begin with), the hint drops `Enter` and the hotkeys on an item, keeping only those on the whole panel | everyone | Filter the list to nothing or empty it; check that the bottom-border hint has no `Enter` and no item hotkeys |
 
 ## layout/popup
 

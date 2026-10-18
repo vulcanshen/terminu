@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.7.1 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.7.2 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -240,7 +240,7 @@ tdp v0.7.1 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | F7-3 | F7 | 內容寬度不確定的 popup，寬度是 `min(terminal 寬 − 2, 120)` | 都要 | 在 80 欄與 200 欄各開一次（例：網址、搜尋結果、表單），寬度是 78 與 120 |
 | F7-4 | F7 | popup 水平置中 | 都要 | 量每個 popup 左右到畫面邊緣的距離 |
 | F7-5 | F7 | popup 的高度依內容、打開時定好，之後不跟著內容伸縮（loading 期間與使用者操作造成的改變除外） | 都要 | popup 開著時讓背景的資料更新，框的高度不變 |
-| F7-6 | F7 | popup 最高是畫面高度 − 2，最上面一列與 footer 永遠看得到 | 都要 | 打開內容很長的 popup，畫面最上面一列與 footer 沒被蓋到 |
+| F7-6 | F7 | popup 最高是畫面高度 − 2：畫面 chip 列或 statusbar 與 footer 永遠看得到（chip 列下面的分隔線可以被蓋住） | 都要 | 打開內容很長的 popup，畫面 chip 列（或 statusbar）與 footer 沒被蓋到 |
 | F7-7 | F7 | 內容超過最高時在框裡捲動 | 都要 | 在矮的終端機打開長清單，在框裡捲動看得到全部 |
 | F7-8 | F7 | 使用者操作讓 popup 的列數改變時（刪一列、多出一列、打字篩選），不論高度跟不跟著變，揭露的資訊都正確 | 都要 | 在 popup 裡刪一列或打字篩選，框裡沒有殘留、缺漏或錯位的列 |
 | F7-9 | F7 | 整個 popup 的內容還在 loading 時，標題後面一定有輪轉的 loading icon | loading | 在載入慢的情況打開那個 popup，標題後面的 icon 在轉 |
@@ -429,6 +429,7 @@ tdp v0.7.1 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | components-20 | components §大寫 | app 自己的內容（statusbar、清單裡的資料）不改大小寫 | 都要 | 看 statusbar 與清單裡的資料照原樣 |
 | components-21 | components §大寫 | 標題裡的名稱、路徑照原樣（`EDIT: filu`、`IDENTITY FILE · ~/.ssh`） | 都要 | 打開對某一個東西做的 popup，看名稱部分沒被轉成大寫 |
 | components-22 | components §在方案裡選 | 元件的樣子只從 components 列出的方案裡挑，不在 app 裡自己發明 | 都要 | 對照各元件列出的方案，看 app 用的都是其中一種 |
+| components-23 | components §折行 | 一個字剛好填滿一列、後面接著空白時，那個空白畫在下一列的第一格 | textarea、viewer | 在 textarea 打字，讓一個字剛好填滿一列再打空白，看空白在下一列開頭、游標停得上去 |
 
 ## color
 
@@ -495,6 +496,7 @@ tdp v0.7.1 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | screen-28 | screen §空狀態 | 空狀態置中 | 都要 | 同上，看兩句的位置 |
 | screen-29 | screen §空狀態 | 空狀態的兩句都用 Overlay0 | 都要 | 同上，看顏色 |
 | screen-30 | screen §空狀態（圖） | 事實與提示之間空一列 | 都要 | 讓一個 panel 沒有資料，看事實與提示兩句之間 |
+| screen-31 | screen §footer | panel filter 打字中、沒有結果時，footer 是 `Tab:list Esc:clear`（沒有 `Enter`） | panel filter | 按 `/` 打一串比對不到的字，看 footer |
 
 ## layout/panel
 
@@ -623,6 +625,7 @@ tdp v0.7.1 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | panel-121 | panel §panel filter | 清單上的 `/` 回到打字列，接著舊的字打 | panel filter | 篩選後在清單按 `/` |
 | panel-122 | panel §panel filter | focus 離開 panel 時篩選留著，往哪個方向離開都一樣 | panel filter | 篩選後用 `Tab` 與數字鍵離開再回來 |
 | panel-123 | panel §panel filter | focus 回到有篩選的 panel 時，直接在打字列上 | panel filter | 篩選後離開再回來，看 focus 在打字列 |
+| panel-124 | panel §框 | 清單一項都沒有時（panel filter 篩到空，或本來就是空的），hint 拿掉 `Enter` 與對項目的熱鍵，只留對整個 panel 的 | 都要 | 讓清單篩到空或清空，看下框 hint 沒有 `Enter` 與項目的熱鍵 |
 
 ## layout/popup
 
