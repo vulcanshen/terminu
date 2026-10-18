@@ -2,13 +2,14 @@
 
 **Language**: English · [繁體中文](README-zh_TW.md)
 
-tdp is the detailed specification behind [terminu design](../README.md), in three layers:
+tdp is the detailed specification behind [terminu design](../README.md), in four layers:
 
 | Layer | Document | Nature |
 |---|---|---|
 | **Principle** | this document | The spirit: what it aims for, and why |
 | **Rules** | [rules.md](rules.md) | Must hold, each with its reason; split into a fixed zone and a concept zone (P5) |
 | **Components** | [components](../components/README.md) | Component specs: the colour scheme, frames, dialogs, and how each kind of input looks and works; required, choosing only among the listed options |
+| **Project** | [project](../project/README.md) | The project spec: a family app repo's directories, Makefile, version, CHANGELOG and release; the template files are copied as they are |
 
 tdp answers one question: **what makes a terminal UI usable without reading the docs?**
 
@@ -117,7 +118,7 @@ Take core keys as an example:
 - `Enter` is in the **concept zone**: tdp specifies that it is "the most obvious action on the focused item", not what
   that action is — in filu it enters a directory, in sshu it connects, in locku it flips a setting.
 
-All of the components are in the fixed zone ("Departure" at the start of the Rules).
+All of the components and the project spec are in the fixed zone ("Departure" at the start of the Rules).
 
 **What tdp does not specify:**
 

@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.7.0 — 2026-10-18
+
+From the user: one shape for every family repo, so the apps are laid out, built and released the same way.
+
+- project (new, a fourth layer beside the principle, the rules and the components): what a family app's repo looks
+  like — Go code only in `cmd/<app>/` and `internal/`; the version in `internal/version` (`Version` without the v,
+  `Display()` with it, `dev` for a local build); each CHANGELOG heading is the tag and the tdp version it follows
+  (`## v0.1.2 — tdp v0.6.11`), with an `## Unreleased` section that a release renames, while releases made before
+  v0.7.0 keep their headings; the release steps and the token
+- Template files, copied as they are and changed only where project says: `family.mk` (the make targets every app
+  shares; an app's Makefile sets `BINARY`, includes it, and puts its own targets in a last section), `release.yml`,
+  `goreleaser.yaml`, `install.sh`, `uninstall.sh`, `version.go`, `gitignore`
+- `check` runs `test-race`, as CI does, and `check-lib` when there is a `go.work`; `release-check` prints goreleaser's
+  deprecation of `brews` but does not fail on it alone; `uninstall.sh` finds the settings, data and cache where Rules E3
+  puts them
+- Rules E6 points to project; the reference implementation is demou, the family's app for learning the operations
+
 ## v0.6.15 — 2026-10-16
 
 From the user, on v0.6.13: a ticked option that cannot be reached cannot be taken off.

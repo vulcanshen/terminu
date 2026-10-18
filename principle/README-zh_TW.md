@@ -2,13 +2,14 @@
 
 **Language**: [English](README.md) · 繁體中文
 
-tdp 是 [terminu design](../README-zh_TW.md) 的細節規範，分三層：
+tdp 是 [terminu design](../README-zh_TW.md) 的細節規範，分四層：
 
 | 層 | 文件 | 性質 |
 |---|---|---|
 | **Principle** | 本文件 | 精神：要達成什麼、為什麼 |
 | **Rules** | [rules-zh_TW.md](rules-zh_TW.md) | 必須遵守，每條附理由；分固定區與概念區（P5） |
 | **Components** | [components](../components/README-zh_TW.md) | 元件規格：配色、框、dialog、每一種 input 的樣子與操作；必須照做，只能在列出的方案裡挑 |
+| **Project** | [project](../project/README-zh_TW.md) | 專案規格：家族 app 的 repo 的目錄、Makefile、版本、CHANGELOG、發布；範本檔照原樣複製 |
 
 tdp 回答一個問題：**在 terminal UI 上，什麼樣的設計能讓使用者不看文件就能用？**
 
@@ -111,7 +112,7 @@ P4 管的是 tdp 定的介面元素（框、cursor、hint、label、膠囊……
 - `Enter` 在**概念區**：tdp 規定它是「對 focus 項目最直觀的那個動作」，不規定那個動作
   是什麼 —— filu 是進目錄，sshu 是連線，locku 是翻轉設定值。
 
-components 全部算固定區（Rules 開頭的「偏離」）。
+components 與 project 全部算固定區（Rules 開頭的「偏離」）。
 
 **tdp 不規定的：**
 
