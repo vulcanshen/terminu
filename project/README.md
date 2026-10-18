@@ -44,11 +44,13 @@ little different from app to app. With one file, a diff shows what differs, and 
 ├── cmd/<app>/main.go               the main package
 ├── internal/                       the app's own packages
 │   └── version/version.go          the version (see "Version")
-├── docs/                           dev-remarks.md, icon.svg, the README's demo gif (Rules E6, E7)
+├── docs/                           dev-remarks.md, icon.svg, the README's demo gif, and
+│                                   <app>-terminu-fix.md while there is something to fix (Rules E6, E7)
 ├── .local/                         not in git; demos/ holds the VHS tapes
 ├── .github/workflows/release.yml
 ├── .goreleaser.yaml
 ├── .gitignore
+├── go.mod, go.sum
 ├── family.mk
 ├── Makefile
 ├── install.sh, uninstall.sh
@@ -59,8 +61,11 @@ little different from app to app. With one file, a diff shows what differs, and 
 
 - Go code lives only in `cmd/<app>/` and `internal/`. The `go install` path is
   `github.com/vulcanshen/<app>/cmd/<app>@latest`.
-- Top-level directories not in the tree (e.g. end-to-end tests, small development tools) are up to the app, and are
-  described in the "建置與開發" (building and development) section of its dev-remarks.
+- Top-level directories and files not in the tree (e.g. end-to-end tests, small development tools, `CLAUDE.md`) are up
+  to the app, and are described in the "建置與開發" (building and development) section of its dev-remarks.
+- **`docs/icon.svg` is the family mark's original.** Go's `go:embed` cannot reach `docs/`, so the copy the splash uses
+  lives in the code (a copy of the file under `internal/`, or the cells written out), and the Rules E6 test keeps it
+  identical to `docs/icon.svg`.
 - An app with a Windows build also has `install.ps1` and `uninstall.ps1`, written by the app; they are not templates.
 
 **Why**: most family apps were already `cmd/<app>` plus `internal/`, so following them moves the fewest apps. With code

@@ -96,7 +96,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 ┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                                ┃
 ┃ Name  web-01                                   ┃   ← 欄位區：放不下時只捲這一段
-┃ Host                                           ┃
+┃ Host  not set                                  ┃   ← 空的值：Overlay0 寫出空著代表什麼
 ┃ Port  22                                       ┃
 ┃                                                ┃
 ┃ Host is required                               ┃   ← 錯誤列（沒錯時空白）
@@ -124,10 +124,10 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
   - 按下時先檢查**這個動作需要的欄位**（哪些由 app 依動作決定：`Test` 要 Host、不要 Name）。沒過時跟送出被擋一樣：有問題的
     欄位 label 轉 Red、錯誤列寫第一個問題、focus 跳到那一欄（見「錯誤」）。
   - 成功：toast 一句（例：`Connected to web-01`）。失敗：開 error popup，跟送出失敗一樣；關掉後 focus 在按鈕上，再按 `Enter` 就是
-    重試。結果是一段要看的內容（例：測試的完整輸出）時，開 note（[`dialog/note`](note-zh_TW.md)）。跑得久的，標題後面放 loading icon
-    （[`layout/popup`](../layout/popup-zh_TW.md) 的 loading）。
-  - **還在跑時**：focus 停在那顆按鈕上按 `Enter` 不作用，hint 拿掉那顆按鈕的 `Enter`（例：`Enter:test`），跑完再放回來 —— 同一件事
-    不會發出兩次。跑得久的送出（例：`Connect`）也一樣。
+    重試。結果是一段要看的內容（例：測試的完整輸出）時，開 note（[`dialog/note`](note-zh_TW.md)）。
+  - **還在跑時**：跑得久的，標題後面放 loading icon（[`layout/popup`](../layout/popup-zh_TW.md) 的 loading）。focus 停在那顆按鈕上按
+    `Enter` 不作用，hint 拿掉那顆按鈕的 `Enter`（例：`Enter:test`），跑完再放回來 —— 同一件事不會發出兩次。跑得久的送出（例：
+    `Connect`）也一樣。
   - **還沒跑完表單就關掉**（`Esc`，或按了另一顆送出）：動作就算取消，能停就停，結果不顯示 —— 結果是給這張表單的（寫回欄位、回到
     按鈕重試），表單不在了就沒有地方放；疊到別的畫面上，使用者也不知道它從哪裡來。
   - focus 留在按鈕上（Rules K3）。動作把值寫進某一欄時，那一欄照樣算改過（「取消」的「改過了」）。
@@ -210,11 +210,11 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 number、textarea），按到一個不在表單操作鍵裡的可列印字元時（包括 `q`），跳一個說明的 note：
 
 ```
-┏━NAME━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                ┃
-┃ Press [Enter] to edit Name.    ┃
-┃                                ┃
-┗━ Enter|Esc:close ━━━━━━━━━━━━━━┛
+┏━NAME━━━━━━━━━━━━━━━━━━━━━━┓
+┃                             ┃
+┃ Press [Enter] to edit Name. ┃
+┃                             ┃
+┗━ Enter|Esc:close ━━━━━━━━━━━┛
 ```
 
 - 標題是欄位名稱；`Enter`、`Esc` 都能關，關掉後回到表單，focus 不動（[`dialog/note`](note-zh_TW.md)）。
@@ -230,8 +230,8 @@ number、textarea），按到一個不在表單操作鍵裡的可列印字元時
   | `Enter`、`Esc` | 見上面的 `Enter` 與下面的「取消」 |
   | `Space`、`?` | core key：`Space` 在 checkbox 的選項上勾或取消勾、其他地方不作用（Rules K5），`?` 打開 key reference（Rules K6） |
 
-- **其他可列印字元**（數字、`q`、其他字母）：在要打字的欄位上跳 note；在表單的其他項目（選項、按鈕、錯誤列）上不跳，按到
-  沒用的鍵就是不作用。`q` 不進離開流程（Rules K9）。
+- **其他可列印字元**（數字、`q`、其他字母）：在要打字的欄位上跳 note；在表單的其他項目上不跳，按到沒用的鍵就是不作用 —— 開其他
+  input popup 的欄位（select、slider、日期、顏色、選檔、reorder、checkbox popup）、選項、按鈕、錯誤列。`q` 不進離開流程（Rules K9）。
 
 **為什麼**：用 note 不用 toast：note 會把後面打的字全部接住、不作用，表單不會被打亂；toast 讓按鍵穿過去，後面打到的 `e`、`h`、`l`
 會在欄位之間亂跳。使用者打完習慣性按 `Enter`，剛好關掉 note。`e`、`u|d`、`g` 都算操作鍵：K12 本來就把這些字母留給不打字

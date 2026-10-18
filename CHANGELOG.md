@@ -1,5 +1,38 @@
 # Changelog
 
+## v0.7.1 — 2026-10-18
+
+From the user: the check layer of the terminu harness — tdp gets an item list for judging how much of tdp an app meets.
+Breaking tdp into items turned up gaps, fixed here; most were places where a rule had not followed an earlier decision.
+
+- checklist (new): the principle, the rules, the components and the project spec broken into 1298 items, each with an
+  ID that never changes, its source, what to check, what it applies to and how to check, in Traditional Chinese and
+  English, lined up by ID. Judged on tdp alone, not on the implementation; the verdicts are meets, departs, violates
+  and not applicable. It is not a requirement itself: where it disagrees with the spec, the spec wins
+- Rules: the Core key term lists `1`–`9` (G11); P5's `Shift-Tab` covers every popup with an action area (CD6); K4, F3:
+  in a popup's mode `Esc` leaves the mode first; M1: in a PTY `?` and `Space` are not shown, the exit keys are; M3, K5,
+  F1: a popup's operations are all in its `?`, the hint as each component says; K3: what moves the focus, and the three
+  places `Enter` does; L3: the always-on rows are fixed; F1: a frame outside the seven kinds is a departure, the splash
+  is not; S5: 250 ms between the first three stages, the text 400 ms after the mark (G66); E5: across ssh, the app's own
+  channel carries both widths to the same app, other family apps take `TERMINU__` set by the user; E6: `docs/icon.svg`
+  is the original, the copy in the code is held to it by the test (demou DM1); E7: a dev-remarks heading has no
+  brackets, a fix file exists only while there is something to fix
+- components: a "Wrapping" rule for all text that wraps — between words and between wide characters, a word longer than
+  a row cut by cells, a wide character never cut in half (demou DM2); the error popup's frame and title are Red; bold
+  only on the selected capsule and the popup title's loading icon; the thin line between two unselected parts paints no
+  background; a multi-column ordinary list always has a header, with the panel filter's typing row above it; the footer
+  is per screen; a grouped list's marks sit in the two indented cells; a panel's hint puts `Enter` first; diagrams
+  fixed: capsule ends, cursor arrows, title glyphs, widths by the formula, the datetime picker's time columns
+- dialog: a long submit shows the loading icon too; typing on a field that opens another input popup does nothing; the
+  key reference also closes with `?`; a viewer's title is `KIND — name`, and its syntax colours, where the content has
+  no fixed format, are up to the app
+- input: a finder opens on its typing row, a file-picker on its list; with no results `Enter` does nothing and the hint
+  drops it, while a checkbox popup's `Enter` still writes back the set (G93); the colour picker's `h|l` stays among R,
+  G and B; the colour swatch is 3 cells; a file-picker's title is `FIELD · directory` and its icons' code points are
+  written out; the datetime picker keeps `?` and `q`
+- project: `go.mod` and `go.sum` are in the tree; top-level files not in the tree are the app's choice, like
+  directories; the goreleaser template's scoop description is marked `app:` (G92)
+
 ## v0.7.0 — 2026-10-18
 
 From the user: one shape for every family repo, so the apps are laid out, built and released the same way.

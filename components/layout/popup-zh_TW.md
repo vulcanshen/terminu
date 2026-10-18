@@ -16,11 +16,12 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
 ┗━ Enter:run Esc:close ━━━━━━━━━━━━━ 4 of 12 ━┛
 ```
 
-- **線型**：粗線 `┏━┓`，層色（[`color`](../color-zh_TW.md)）。popup 一律粗線：最上層的 popup 有 focus，靠亮暗分辨（Rules F8、
-  Principle P6），不靠線型 —— 粗線在 popup 上不代表 focus，被蓋在底下、淡化了的 popup 照樣是粗線。
+- **線型**：粗線 `┏━┓`，層色（[`color`](../color-zh_TW.md)）；error popup 例外，框與標題膠囊都是 Red
+  （[`dialog/note`](../dialog/note-zh_TW.md)）。popup 一律粗線：最上層的 popup 有 focus，靠亮暗分辨（Rules F8、Principle P6），
+  不靠線型 —— 粗線在 popup 上不代表 focus，被蓋在底下、淡化了的 popup 照樣是粗線。
 - **標題**：glyph + 文字，做成一個膠囊放在上框 `┏━` 後面：兩端是圓角，左 U+E0B6（`nf-ple-left_half_circle_thick`）、右 U+E0B4
-  （`nf-ple-right_half_circle_thick`）；填層色，字 Base 粗體、大寫（[components](../README-zh_TW.md) 的「大寫」）。文字寫這個
-  popup 是做什麼的（`RENAME`、`NEW HOST`、`ADD BOOKMARK`）；裡面的名稱、路徑是內容，大小寫照原樣。要寫對哪一個做時，名稱接在
+  （`nf-ple-right_half_circle_thick`）；填層色（error popup 填 Red），字 Base 粗體、大寫（[components](../README-zh_TW.md) 的「大寫」）。
+  文字寫這個 popup 是做什麼的（`RENAME`、`NEW HOST`、`ADD BOOKMARK`）；裡面的名稱、路徑是內容，大小寫照原樣。要寫對哪一個做時，名稱接在
   後面、用 `: ` 隔開（`EDIT: filu`、`ALTERM: myhost`）；viewer 與 file-picker 照自己的寫法（[`dialog/note`](../dialog/note-zh_TW.md)
   的 `YAML — pod/nginx`、[`input/file-picker`](../input/file-picker-zh_TW.md) 的 `IDENTITY FILE · ~/.ssh`）。太長從尾端截，加 `…`。
   標題後面接 tab 時，tab 照 [`panel`](panel-zh_TW.md) 的膠囊串畫，跟標題之間隔一段線
@@ -98,13 +99,14 @@ Rules F2：打開與關閉都有動畫，全家族同一種、一樣長。打開
 ## loading
 
 Rules F7：popup 在 loading 時，標題後面一定放一個輪轉的 loading icon；標題後面接著 tab（[`panel`](panel-zh_TW.md) 的膠囊串）時，
-放在整串 tab 的後面。panel 在 loading 時放在整串膠囊的後面（[`panel`](panel-zh_TW.md)）。前後各空一格。規格：
+放在整串 tab 的後面。表單的按鈕（不關表單的動作與跑得久的送出）在跑時，標題後面也放 loading icon
+（[`dialog/form`](../dialog/form-zh_TW.md)）。panel 在 loading 時放在整串膠囊的後面（[`panel`](panel-zh_TW.md)）。前後各空一格。規格：
 
 - 字形：`nf-md-circle_slice_1` 到 `nf-md-circle_slice_8`（U+F0A9E–U+F0AA5）八格，一個圓一片一片填滿，滿了再從頭。
 - 速度：一格 90ms，一圈 720ms。
 - 哪一格由時鐘決定：`frames[(now / 90ms) % 8]`，不是計數；tick 只在有東西 loading 時續排。
 - 寬度：一格；跟它取代的靜止 glyph 同寬，換上換下不位移。braille 點字的形狀與寬度不合，不用。
-- 顏色：跟旁邊的字同色；放在 popup 標題後面時用該層的層色（粗體）；放在 panel 上框時用框線色（focus 時 Blue、失焦時 Surface2，
+- 顏色：跟旁邊的字同色；放在 popup 標題後面時用該層的層色（粗體）；放在 panel 上框時用框線色、不加粗（focus 時 Blue、失焦時 Surface2，
   跟著框一起淡化）—— 都是框的顏色。
 
 ## 取消與完成

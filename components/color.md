@@ -11,9 +11,10 @@ syntax highlighting) are up to the app; this file governs the interface elements
 
 1. **Few anchors, everything else derived**: pick three anchors first — the background, the user footprint, the popups'
    end colour — and derive every other level from them, instead of picking a colour for each element.
-2. **The layer colour is the z-axis**: a popup's frame and title take the layer colour. It starts at the user footprint
-   (Lavender) and ends at Sapphire, in N = 4 steps; layer K takes step K, and layer N and above stay at the end colour.
-   The bottom popup is layer 1; a toast is not a layer and always takes the colour of layer 1 (Rules F1).
+2. **The layer colour is the z-axis**: a popup's frame and title take the layer colour (Red for the error popup, see
+   [`dialog/note`](dialog/note.md)). It starts at the user footprint (Lavender) and ends at Sapphire, in N = 4 steps;
+   layer K takes step K, and layer N and above stay at the end colour. The bottom popup is layer 1; a toast is not a
+   layer and always takes the colour of layer 1 (Rules F1).
 3. **Colours are dedicated**: each meaning owns one colour, and no other meaning uses the same one (Principle P4). E.g.
    "user footprint" uses Lavender, so popup frames don't use Lavender — the layer colour starts from it, but layer 1 has
    already moved one step towards the end.
@@ -22,8 +23,8 @@ syntax highlighting) are up to the app; this file governs the interface elements
 5. **What is lit is what has the focus** (Principle P6): everything but the top layer is dimmed (F8), an unfocused panel
    is dimmed (T2, streaming content excepted), of one key's two indicators the one that fires is lit (M9), and the cursor
    on a part without the focus is dimmed.
-6. **Bold is used only for**: text on the cursor, popup titles, text in capsules, mode names, and the loading icon after
-   a title.
+6. **Bold is used only for**: text on the cursor, popup titles, text in selected capsules, mode names, and the loading
+   icon after a popup title.
 
 ## Colour codes (catppuccin-mocha)
 

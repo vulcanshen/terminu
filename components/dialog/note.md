@@ -11,15 +11,17 @@ a list of options to run with `Enter`, it is a menu, not a note.
 ## Look
 
 - The frame follows [`layout/popup`](../layout/popup.md): the padding above and below is always there, in a viewer too.
-- **Title**: a glyph plus what is shown, drawn as the title capsule (e.g. `YAML — pod/nginx`: `YAML` in uppercase,
-  `pod/nginx` is content and stays as it is). The glyph is the app's choice; the glyphs of the key
-  reference and the error popup are below.
+- **Title**: a glyph plus what is shown, drawn as the title capsule: the kind in uppercase; to say which one is shown,
+  ` — ` and then the name, the name as it is (e.g. `YAML — pod/nginx`). The glyph is the app's choice; the glyphs of
+  the key reference and the error popup are below.
 - **Scroll position**: when the content does not fit, the right end of the bottom border shows the visible lines,
   `N-M of T`; in a viewer's selection mode, the cursor's line `N of M` (see "Selection mode" below). When a viewer
   wraps, N is the line of the top row, M the line of the bottom row and T the number of lines (e.g. the top row is a
   wrapped row of line 6 and the bottom row is line 10: `6-10 of 42`).
 - **Width**: notes whose content is known when they open (the key reference, the error popup, explanations) follow the
   content; a viewer's content width is not known, so it takes the Rules F7 cap.
+- **A viewer's wrapping**: a line wider than the frame continues on the next row, as in [the components'
+  "Wrapping"](../README.md): breaking between words, and only a word wider than a row on its own is cut by cells.
 - **A viewer's line numbers**: a viewer (YAML view, App Log, file content) has line numbers on the left, as in
   [`input/textarea`](../input/textarea.md): the first row of each line carries its number, right-aligned, with a space
   after it; a wrapped row leaves the gutter blank. Numbers are Overlay0; in the selection mode the cursor's line has its
@@ -32,9 +34,9 @@ a list of options to run with `Enter`, it is a menu, not a note.
 - **A viewer's syntax colours**: content with a fixed format (YAML, JSON, TOML, HTML, XML, Markdown…) is coloured as a
   text file in [`input/file-picker`](../input/file-picker.md)'s preview table (chroma's catppuccin-mocha, foreground
   only). The app gives the language (a YAML view is YAML; a DevTools Network response goes by its content type); file
-  content goes by the file name, as in the preview. Content with no fixed format (e.g. App Log), or whose language
-  cannot be told, is plain text in Text, with no special colours. That is a recommendation: an app knows its content and
-  may colour it as its situation needs (e.g. the ERROR and WARN lines of a log); the lib adds no syntax colours there but
+  content goes by the file name, as in the preview. Whether content with no fixed format (e.g. App Log), or whose
+  language cannot be told, is coloured is up to the app: uncoloured, it is plain text in Text; an app knows its content
+  and may colour it as its situation needs (e.g. the ERROR and WARN lines of a log). The lib adds no syntax colours but
   keeps the colours the app gives. Line numbers stay Overlay0; the selection mode's
   range stays Yellow with Base text, with no syntax colours inside it.
 - **Tabs and control characters in a viewer** (as in the [`input/file-picker`](../input/file-picker.md) preview): a Tab is
@@ -71,8 +73,8 @@ a file looks the same in the preview and in a viewer.
   in rows. A line taller than the frame (e.g. minified JSON) can be read to its end; this matches
   [`input/textarea`](../input/textarea.md)'s `↑|↓`, which follow the rows as drawn.
 - **Closed with `Esc` only**. `Enter` does not close it; nor does `Space` (Rules K5).
-- **The exception**: the error popup (whether it popped up by itself or was opened with `Enter` on a form's error row)
-  and the typing explanation on a form close on `Enter` too.
+- **The exceptions**: the error popup (whether it popped up by itself or was opened with `Enter` on a form's error row)
+  and the typing explanation on a form close on `Enter` too; the key reference also closes on a second `?` (Rules K6).
 - **Hint**: the note's own hotkeys first, `Esc:close` last. E.g. `y:copy /:search v:visual Esc:close`.
 
 **Why**: for a note the user opened, `Esc` after reading is the most natural; `Space` pages down in readers such as
@@ -115,7 +117,7 @@ takes no extra `Esc`.
 The "what keys work here" opened with `?` (Rules K6, M4).
 
 ```
-┏━[2] HOSTS KEYS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┏━ [2] HOSTS KEYS━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                               ┃
 ┃ 󰋘 ITEM OPERATION                              ┃  ← section title
 ┃  Enter     Connect — what it is, then in      ┃
@@ -123,7 +125,7 @@ The "what keys work here" opened with `?` (Rules K6, M4).
 ┃  X         Delete — remove from hosts.yaml    ┃
 ┃ 󰋘 PANEL OPERATION                             ┃
 ┃  A         Add — a new host                   ┃
-┃  /         Search — name, user, host, port, … ┃
+┃  /         Search — name, user, host, port, … ┃  ← description too long (with the frame already at its widest)
 ┃ 󰋘 MOVE                                        ┃
 ┃  j|k       down, up                           ┃
 ┃  u|d       half a page up, down               ┃
@@ -172,7 +174,7 @@ The note laid over a popup whose action failed (see the error row in [`layout/po
 message opened with `Enter` on a form's error row is one too.
 
 ```
-┏━SAVE FAILED━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┏━󰈸 SAVE FAILED━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                                 ┃
 ┃ hosts.yaml changed on disk since it was opened. ┃
 ┃                                                 ┃
@@ -181,7 +183,8 @@ message opened with `Enter` on a form's error row is one too.
 
 - **Look**: frame and text in Red; the title capsule is filled Red with Base bold text (the capsule as in
   [`layout/popup`](../layout/popup.md)). The title glyph is `nf-md-fire` (U+F0238), the same as the Error toast. The
-  message wraps inside the frame; when too long it scrolls with `j|k`.
+  message wraps inside the frame (as in [the components' "Wrapping"](../README.md)); when too long it scrolls with
+  `j|k`.
 - **Title**: what failed (`RENAME FAILED`, `SAVE FAILED`). Opened from a form's error row, it is the field's name
   (`PORT`).
 - **Closing**: both `Enter` and `Esc` close it, hint `Enter|Esc:close`.

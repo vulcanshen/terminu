@@ -9,14 +9,15 @@
 ## 呈現規則
 
 1. **最少錨點，其餘推導**：先選三個錨點 —— 底色、使用者足跡、popup 的終點色 —— 其餘層次從錨點推導，不為每個元素各挑顏色。
-2. **層色是 z 軸**：popup 的框與標題用層色。起點是使用者足跡（Lavender），終點是 Sapphire，中間分 N = 4 段；第 K 層取第 K 段，
-   第 N 層以上固定是終點色。最底下的 popup 是第 1 層；toast 不算一層，一律用第 1 層的顏色（Rules F1）。
+2. **層色是 z 軸**：popup 的框與標題用層色（error popup 用 Red，見 [`dialog/note`](dialog/note-zh_TW.md)）。起點是使用者足跡
+   （Lavender），終點是 Sapphire，中間分 N = 4 段；第 K 層取第 K 段，第 N 層以上固定是終點色。最底下的 popup 是第 1 層；toast 不算
+   一層，一律用第 1 層的顏色（Rules F1）。
 3. **顏色專職**：每個意義佔一個顏色，其他意義不用同一個（Principle P4）。例：「使用者足跡」用了 Lavender，popup 的框就不用
    Lavender —— 層色的起點是它，但第 1 層已經往終點走了一段。
 4. **警示色不跟層數換色**：錯誤、警告在哪一層都是同一個 Red、Peach；被蓋在底下時照 F8 一起淡化。
 5. **亮的就是有 focus 的**（Principle P6）：最上層以外淡化（F8）、失焦的 panel 淡化（T2，串流內容除外）、同鍵兩處指示時
    會觸發的那個亮（M9）、沒有 focus 的那一塊上的 cursor 淡化。
-6. **粗體只用在**：cursor 上的字、popup 的標題、膠囊的字、模式名、標題後面的 loading icon。
+6. **粗體只用在**：cursor 上的字、popup 的標題、選中的膠囊的字、模式名、popup 標題後面的 loading icon。
 
 ## 色碼（catppuccin-mocha）
 

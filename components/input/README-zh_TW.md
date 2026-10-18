@@ -148,5 +148,5 @@ panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：�
   | radio、checkbox（畫在表單上） | 選項本身（[`radio`](radio-zh_TW.md)、[`checkbox`](checkbox-zh_TW.md)） |
   | slider | 軌道加數字（[`slider`](slider-zh_TW.md)） |
   | datetime picker | 格式化的日期（時間），格式由 app 決定（`2026-10-15`、`2026-10-15 10:05`） |
-  | color picker | 一小格色塊加 hex（`███ #2A2A3C`） |
+  | color picker | 3 格的色塊（`███`）、空一格、hex（`███ #2A2A3C`） |
   | file-picker | 路徑，家目錄寫成 `~` |

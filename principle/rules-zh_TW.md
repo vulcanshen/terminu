@@ -89,7 +89,8 @@ panel 本身是一個內容區、沒有「項目」可選時（例：預覽、lo
 （例：開一個可捲動的檢視）。
 
 **`Enter` 不移動 focus**（固定）：按完 `Enter`，focus 留在原處 —— 表單上確定了一欄的 input popup，回到同一欄；原地選 radio、
-翻 checkbox 也不動。換位置只有 `Tab` 與移動鍵（K2、K12）。
+翻 checkbox 也不動。換位置靠的是 `Tab`、數字鍵、移動鍵與元件自己的鍵（例：表單的 `e`；K1、K2、K12），不是 `Enter`。
+`Enter` 會換位置的只有本條寫的三處：明細、打字列上的 `Enter` 到清單、表單送出被擋時跳到第一個有問題的欄位。
 唯一可以用 `Enter` 換 panel 的是**明細**（[components/layout/panel](../components/layout/panel-zh_TW.md) 的「明細」）：在列出項目的
 panel 上，`Enter` 可以把 focus 移到顯示那一項明細的 panel。要不要這樣做、在哪些項目上這樣做，由 app 決定；不用也符合規範，
 這只是多給 app 一條路。
@@ -116,9 +117,9 @@ focus 跳到第一個有問題的欄位。
 
 ### K4 `Esc` 一次關一層，永不離開 app `固定`
 
-`Esc` 取消當前操作或關閉最上層：有 popup 關 popup（包括 toast，F3），沒有 popup 就退出
-當前模式（選取、拖曳）或往上一層（例：清掉 panel filter）—— 「上一層」是什麼由 app 定義。**一次一層**，
-而且 **`Esc` 永遠不會離開 app**，到了最上層就什麼都不做。
+`Esc` 取消當前操作或關閉最上層：有 popup 關 popup（包括 toast，F3）；popup 裡正在模式中時，先離開模式（K11），
+再按一次才關 popup；沒有 popup 就退出當前模式（選取、拖曳）或往上一層（例：清掉 panel filter）——
+「上一層」是什麼由 app 定義。**一次一層**，而且 **`Esc` 永遠不會離開 app**，到了最上層就什麼都不做。
 
 popup 開出 popup 時（例：Space menu → global operation popup → confirm），`Esc` **只關最上層那一個**，
 底下的 popup 階層原樣留著、照原樣呈現；再按一次才關下一層（F4）。
@@ -135,8 +136,8 @@ popup 開出 popup 時（例：Space menu → global operation popup → confirm
   note……）上按 `Space` **不作用**，它們由 `Esc` 或自己的流程關閉。唯一的例外：checkbox 的選項上（checkbox popup 的清單、
   表單上直接畫出來的 checkbox），`Space` 是勾或取消勾
   （[components/input/checkbox](../components/input/checkbox-zh_TW.md)、[components/dialog/form](../components/dialog/form-zh_TW.md)）。
-- popup 自己的操作用熱鍵執行，揭露在 popup 下框的 hint 與
-  該 popup 的 `?` help（K6），不在 popup 上再疊一個 Space menu。
+- popup 自己的操作用熱鍵執行，揭露在該 popup 的 `?` help（K6；下框 hint 寫哪些，照各元件寫的 hint），
+  不在 popup 上再疊一個 Space menu。
 
 **為什麼**：只能開、不能用同一個鍵關的入口是陷阱 —— 使用者伸手按同一個鍵想退出，
 結果沒反應。但 `Space` 若也能關 confirm，它就兼了 `Esc` 的「取消」（P4）；若能在 popup
@@ -294,8 +295,11 @@ item / panel / global 可分。把它們做成一個能選、能執行的清單�
 非輸入態的每一個畫面都必須**常駐顯示** `?`，以及 `Space`（模式裡 `Space` 不作用，不必顯示，K11），讓第一次打開
 app、沒讀過任何文件的使用者看得到。樣子見 [components/layout/screen](../components/layout/screen-zh_TW.md) 的 footer。
 
+focus 在 PTY 裡時，這兩個鍵都屬於子程序（K10），不顯示；常駐揭露的是出口鍵與 app 保留的鍵（K10；樣子見
+[components/layout/screen](../components/layout/screen-zh_TW.md) 的 footer 與 [components/dialog/terminal](../components/dialog/terminal-zh_TW.md)）。
+
 **為什麼**：使用者不可能按一個不知道存在的鍵。入口沒被揭露，後面揭露得再完整也
-等於不存在（Principle P2）。
+等於不存在（Principle P2）。PTY 裡的 `?` 與 `Space` 按了是送給子程序，照樣顯示反而教使用者按錯；那裡要看得到的是出口鍵。
 
 ### M2 Space menu：item → panel → global 三區 `固定`
 
@@ -322,7 +326,8 @@ Space menu 列出**當前 panel 能做的所有事**，依作用對象（Princip
 
 - 每個 panel 的每個 item operation 與 panel operation，都在該 panel 的 Space menu 裡。
 - 每個 global operation 都在 global operation popup 裡（從 Space menu 的 global 列打開）。
-- popup 自己的操作，都在該 popup 的下框 hint 與 `?` key reference 裡（K5、K6）。
+- popup 自己的操作，都在該 popup 的 `?` key reference 裡（K6）；下框 hint 寫哪些，照
+  [components/layout/popup](../components/layout/popup-zh_TW.md) 的 hint 與各元件寫的 hint。
 - **只有打字列的 popup**（text、password、number）：`?` 在那裡是字元（K8），所以它的 hint 要列出全部操作，而且 80 欄放得下
   （[components/layout/popup](../components/layout/popup-zh_TW.md) 的 hint）。
 - **letter hotkey 是某個清單裡某一列的捷徑，不是額外的功能**。只能靠熱鍵觸發、哪裡都
@@ -361,12 +366,12 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 
 ```
  󰋘 ITEM OPERATION
- [o]pen                        open it with the OS default app
+ [o]pen                          open it with the OS default app
  [r]ename                                    this item, in place
-  ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+ ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
  󰋘 PANEL OPERATION
  [/] Search                                everything under here
-  ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+ ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
  Global operation                      actions for the whole app
 ```
 
@@ -441,7 +446,7 @@ M2），`?` 打開 key reference。在 popup 上，永遠有回應的是 `?`（K
 ### M8 其他分組 menu：cursor 相關的放最前 `概念`
 
 Space menu 以外的 menu（例：排序選擇器、open-with 清單）若要分組，第一組是跟當前
-cursor 相關的動作，其後每組加上說明類型的標題。不需要分組時直接列出。
+cursor 相關的動作；每一組都加上說明類型的標題（第一組也是，M2）。不需要分組時直接列出。
 
 **為什麼**：使用者打開 menu 時，最常找的是「對著我選的這個東西」能做什麼 —— 跟 Space menu 把 item 區放最前面是同一個
 理由（M2）。分組的 menu 都照這個順序，使用者不用每個 menu 重新找。
@@ -475,8 +480,10 @@ focus 按下去會觸發哪一個**：會觸發的那個亮、不會的那個暗
 
 ### L3 固定列數的 chrome `固定`
 
-footer、statusbar、tab 列等常駐列的**列數由 app 決定，一旦決定就鎖死**，不能因為
-內容多寡改變。內容放不下就截斷或從尾端捨棄，不折行。
+常駐列的**列數固定**：最上面一列（多畫面的 app 是畫面 chip 列加它下面的分隔線；單畫面的 app 有 statusbar 時是一列
+statusbar）與 footer 一列，見 [components/layout/screen](../components/layout/screen-zh_TW.md)；panel 的 tab 畫在 panel 的上框，
+不另佔一列（[components/layout/panel](../components/layout/panel-zh_TW.md)）。不能因為內容多寡改變；內容放不下就截斷或從尾端捨棄，
+不折行。
 
 **為什麼**：chrome 多一列，主畫面就少一列，整個 layout 連鎖位移。穩定永遠優先於省空間。
 
@@ -514,8 +521,8 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 | **toast** | 從下方彈出的短訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它 | 「已複製」、操作失敗 |
 | **terminal** | 跑在框裡的子程序，按鍵都給它，只有出口鍵與 app 保留的組合鍵屬於 app（K10） | kbu 的 Alterm、filu 的 shell |
 
-- **note 可以有自己的熱鍵與模式**：例如 YAML 檢視的 `/` 搜尋、`y` 複製、`v` 選取（模式，K11）。熱鍵揭露在下框 hint 與
-  `?`；但一旦有可用 `Enter` 執行的選項清單，它就是 menu，不是 note。
+- **note 可以有自己的熱鍵與模式**：例如 YAML 檢視的 `/` 搜尋、`y` 複製、`v` 選取（模式，K11）。熱鍵揭露在
+  `?`（下框 hint 照 dialog/note）；但一旦有可用 `Enter` 執行的選項清單，它就是 menu，不是 note。
 - **menu 的 `Enter` 可以打開那一列的全文**：有 cursor、本身沒有別的動作的清單（例：工作清單），`Enter` 開一個 note 顯示
   那一列的完整內容，它仍是 menu；hint 寫 `Enter:detail`（[components/dialog/menu](../components/dialog/menu-zh_TW.md)）。
 - **confirm 可以帶一段回答前要看的內容**：問句是 confirm 存在的理由，上面可以放回答前要看的資訊（例：「連線到 X？」上面是
@@ -529,7 +536,9 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 - **toast 不是一層**：不觸發淡化（F8）、不算層色的層數；但 `Esc` 先收掉它（K4）。
 - **多步驟的流程，每一步是自己的 popup**：例如排序先選欄位、再選方向，是兩個疊起來的 popup（F4 保留 source），不在同一個框裡
   換內容 —— 每一步有自己的 UX，也有自己打開時定好的大小（F7）。
-- 不屬於這七類的：splash（S 章）、app 自己畫成框的 panel 內容（例：webu 頁面自己的彈窗，webu 的偏離）。
+- splash 不是 popup（S 章），不屬於這七類，也不算偏離。app 自己畫的框 —— panel 裡畫成框的內容（例：webu 頁面自己的彈窗）、
+  七類以外的 popup（例：kamonu 畫格子的 popup）—— 不屬於這七類，是 app 的偏離，寫在 `docs/dev-remarks.md`「偏離 tdp」一節
+  （Rules 開頭的「偏離」）。
 
 **為什麼**：類別就是使用者對「這個框裡按鍵會怎樣」的預期。家族只有七類、每類意義固定，換一個 app
 也不用重學；同一時間混兩類的 popup，會讓同一組鍵在框裡有兩種可能。
@@ -553,10 +562,12 @@ popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中�
 
 - focus 在 PTY 裡時，`Esc` 屬於子程序（K10）；terminal 用出口鍵離開。這時 toast 只能等時間到收掉。
 - textarea 在寫入狀態時，`Esc` 是離開寫入狀態、進入移動狀態（K8）。
+- popup 裡正在模式中時（例：viewer 的選取模式、reorder 的 Drag mode），`Esc` 先離開模式（K11），再按一次才關。
 - 內容改過的表單、textarea 與 reorder，`Esc` 先開 confirm 問要不要放棄（[components/dialog/form](../components/dialog/form-zh_TW.md)）。
 
 **為什麼**：使用者沒有等倒數的義務。已經在關的 popup 再收一次 `Esc`，或還吃其他鍵，使用者的
-下一個按鍵就會送錯地方。PTY 與 textarea 的 `Esc` 本來就是子程序與寫字要用的；改過的內容一次丟掉代價高，所以多問一次。
+下一個按鍵就會送錯地方。PTY 與 textarea 的 `Esc` 本來就是子程序與寫字要用的；模式裡的 `Esc` 是離開模式，照 K4 一次一層；
+改過的內容一次丟掉代價高，所以多問一次。
 
 ### F4 預設保留 source `固定`
 
@@ -600,7 +611,8 @@ popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中�
   - **使用者操作造成的改變**：使用者在這個 popup 裡的動作讓列數改變（刪了一列、選了一項後多出一列、打字篩選候選），
     高度**可以**跟著變 —— 這是使用者預期的改變；app 也可以維持原高。原則是揭露的資訊要正確。
 - **loading 一定要揭露**：popup 在 loading 時，標題後面**一定**放一個輪轉的 loading icon（規格見 [components/layout/popup](../components/layout/popup-zh_TW.md)），跟高度會不會變無關；
-  loading 結束 icon 就消失。這裡的 loading 指的是**整個 popup** 的內容還沒到（例：清單的項目還沒載完）。若只是**某一個
+  loading 結束 icon 就消失。這裡的 loading 指的是**整個 popup** 的內容還沒到（例：清單的項目還沒載完）；表單的按鈕在跑時也放
+  同一個 icon，見 components/layout/popup 的 loading。若只是**某一個
   項目**本身是持續進來的資料流（例：一筆一直有資料的連線），loading 的是那個項目，不是 popup —— 那個項目怎麼揭露由 app 決定。
 - **位置**：垂直置中。toast 例外：在畫面下方置中，下框在畫面倒數第三列，最下面兩列一直看得到（[components/dialog/toast](../components/dialog/toast-zh_TW.md)）。
 - **值可能不合格的 popup 預留一列錯誤列**（input popup、表單）：打開時高度就含一列錯誤列，沒有錯誤時空白；值不合格時錯誤
@@ -758,12 +770,13 @@ splash 畫的是該 app 的 `docs/icon.svg` —— terminu family 的 mark —�
 **放不下時**：終端機放不下整塊（不到 50 欄或 30 列）時不畫 mark，只畫下面的字，照樣上下左右置中、照樣分兩批出現（打開 400ms 後
 名稱、版本、介紹，再 500ms 後作者與提示）。
 
-- **太窄**：折行，照字詞斷開，折下來的照樣置中。一個字本身就比終端機寬時（例：26 欄的信箱），照格子切成好幾段，每段置中 ——
+- **太窄**：折行，照 components 的「折行」斷開，折下來的照樣置中。一個字本身就比終端機寬時（例：26 欄的信箱），照格子切成好幾段，每段置中 ——
   內容不丟。
 - **還是太矮**：從下面往上截，最先不見的是提示，接著作者兩列、介紹；**名稱與版本一定出現**。一組拿掉時，它上面的空白列跟著拿掉，
   最底下不留空白列。
 
-**揭露動畫**：一個 tick 10ms，分段畫，段與段之間停 250ms。
+**揭露動畫**：一個 tick 10ms，分段畫。第 1–3 段（底、每一個金色的字、U 框）段與段之間停 250ms；第 4 段（下面的字）照它自己的
+時間，從 U 框最後一格出現起算 400ms，不再加 250ms。
 
 1. **底**：一個 tick 一整列，由上往下鋪滿。
 2. **金色的字**：照 svg 裡註解的順序（app 名字的字母），一個字一段；一個 tick 出現 2 格，同一個字的格子打散出現。
@@ -861,8 +874,9 @@ icon 看起來比一格寬、但游標只前進一格的字型（glyph 溢出到
   `<APP>__POWERLINE_WIDTH` → `TERMINU__POWERLINE_WIDTH` → 探測。探測只在 unix 做；Windows 預設一格，靠環境變數覆寫。
 - **在別的 app 的 PTY 裡**：探測由外層 app 的終端模擬器回答，它把兩種都當一格，量不到真的寬度。所以有 PTY 的 app 開子程序時，
   在子程序的環境設 `TERMINU__ICON_WIDTH` 與 `TERMINU__POWERLINE_WIDTH`（自己用的格數）。這樣家族裡任何一個 app 跑在另一個的
-  PTY 裡都對（filu 在 kbu 的 Alterm 裡、kbu 在 filu 的 shell 裡）。環境變數過不了 ssh，遠端巢狀要靠 app 自己的通道（sshu 的
-  巢狀指令通道）。
+  PTY 裡都對（filu 在 kbu 的 Alterm 裡、kbu 在 filu 的 shell 裡）。環境變數過不了 ssh：隔著 ssh 的巢狀（遠端那一層是同一個 app）
+  要靠 app 自己的通道，把 icon 與 powerline 符號的格數交給遠端那一層（例：sshu 的巢狀指令通道）；遠端的其他家族 app 由使用者
+  在遠端設 `TERMINU__` 變數（E7）。
 - **疊 popup 不能當掉**：popup 可能比畫面寬或高（調整終端機大小的那一格還是舊尺寸）：起點取 0、超出畫面的部分切掉，
   **不可以 panic**；寬、高兩邊都比畫面大時也一樣切，不可以把整個框原樣交出去。
 - **測試**：L4 的畫面測試另外跑兩次 ——「icon 佔兩格、powerline 符號一格」與「兩種都佔兩格」，每一種 popup 各開一次，量單獨的框
@@ -889,8 +903,8 @@ powerline 符號分開量，是因為同一台終端機上兩者可能不同：N
   另發到 Homebrew tap `vulcanshen/homebrew-tap`。
 - repo 的目錄、Makefile、版本、CHANGELOG 與發布流程照 [project](../project/README-zh_TW.md)；它的範本檔照原樣複製。
 - 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（L4）。
-- `docs/icon.svg` 是 app 那一版的家族 mark（長相見 S5；tdp 自己的是 `principle/icon.svg`）；splash（S 章）由它逐格畫出，
-  用測試守住兩者一致。
+- `docs/icon.svg` 是 app 那一版的家族 mark（長相見 S5；tdp 自己的是 `principle/icon.svg`），是正本；splash（S 章）由它逐格畫出。
+  程式裡另有一份給 splash 用（`internal/` 裡的副本檔，或寫死的格子；Go 的 `go:embed` 讀不到 `docs/`），用測試守住兩份一樣。
 - demo gif 用 VHS 錄，腳本放在 `.local/demos/`（README 放幾張見 E7）。
 
 **為什麼**：五個 app 同一種安裝、移除與發布方式，使用者裝過一個就會裝其他的。畫面測試守住 L4；icon 與 splash 的測試
@@ -937,7 +951,10 @@ app 都讀到；在家族 app 的 PTY 裡跑時，外層 app 會替它設好（E
 ## 發布（含踩過的坑）
 ```
 
-**`docs/<app>-terminu-fix.md`**：尚未符合 tdp 的地方，逐條待修（違反了哪一條、在哪裡、現況、該怎麼改）。
+括號裡是那一節寫什麼，不是標題的一部分（標題寫 `## 設計決定`、`## 偏離 tdp`、`## 發布`）。
+
+**`docs/<app>-terminu-fix.md`**：尚未符合 tdp 的地方，逐條待修（違反了哪一條、在哪裡、現況、該怎麼改）。有尚未符合的地方時才有；
+全部修完就刪掉，不留空檔。
 
 **其他設計文件**（`ui.md`、`ux.md`、`function.md`……）由各 app 自己決定要不要有、怎麼切，
 tdp 不規定；dev-remarks 的「設計文件導讀」一節負責指路。不另外維護「逐條對照 tdp」的文件

@@ -11,6 +11,9 @@ tdp 是 [terminu design](../README-zh_TW.md) 的細節規範，分四層：
 | **Components** | [components](../components/README-zh_TW.md) | 元件規格：配色、框、dialog、每一種 input 的樣子與操作；必須照做，只能在列出的方案裡挑 |
 | **Project** | [project](../project/README-zh_TW.md) | 專案規格：家族 app 的 repo 的目錄、Makefile、版本、CHANGELOG、發布；範本檔照原樣複製 |
 
+[checklist](../checklist/README-zh_TW.md) 把這四層的規定拆成一條一條可以檢查的項目，用來判一個 app 符合 tdp 多少；它本身不是規定，
+跟規範對不上時以規範為準。
+
 tdp 回答一個問題：**在 terminal UI 上，什麼樣的設計能讓使用者不看文件就能用？**
 
 ---
@@ -117,7 +120,7 @@ components 與 project 全部算固定區（Rules 開頭的「偏離」）。
 **tdp 不規定的：**
 
 - **panel 上的領域熱鍵**。哪個字母做哪個動作、大小寫要不要分層、要不要 chord 或 `Alt`、要不要 `Shift-Tab` 反向切換
-  （表單除外），由各 app 決定。熱鍵依賴領域（kbu 的 `S` 是 shell、filu 的 `S` 是排序），
+  （有動作區的 popup 除外，Rules K2），由各 app 決定。熱鍵依賴領域（kbu 的 `S` 是 shell、filu 的 `S` 是排序），
   而且不在「不需事先學習」的路徑上 —— 使用者要找的都在 `Space` 與 `?` 裡。tdp 只管熱鍵的
   幾件事：**必須出現在 menu 裡、用 `[]` 標出**，**不能佔用 core key**，**不能佔用移動的字母**（Rules K12）。
   元件裡的鍵（例：表單的 `e`、datetime picker 的 `t`、textarea 的 `i|a|o`）是元件規格的一部分。
@@ -144,7 +147,7 @@ components 與 project 全部算固定區（Rules 開頭的「偏離」）。
 ### Surface
 
 能取得 focus、跟使用者直接互動的 UI 容器，分成 **panel** 與 **popup** 兩種。常駐顯示區
-（footer、statusbar、tab 列）不是 surface —— focus 不會停在上面。
+（footer、statusbar、畫面 chip 列）不是 surface —— focus 不會停在上面。
 
 ### Screen（畫面）
 
@@ -205,7 +208,7 @@ filu yank viewport 裡的選取。模式不是輸入態 —— 按鍵不會變�
 
 ### Core key
 
-tdp 規定意義、在所有 surface 意義不變的鍵：`Tab`、`Enter`、`Esc`、`Space`、`?`、`q`（Rules K 章）。
+tdp 規定意義、在所有 surface 意義不變的鍵：`Tab`、`Enter`、`Esc`、`Space`、`?`、`q`、`1`–`9`（Rules K 章）。
 
 ### Letter hotkey
 

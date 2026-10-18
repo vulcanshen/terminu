@@ -39,13 +39,15 @@ are all written in hex (`#2A2A3C`), and with the channels in hex too, they line 
 
 ## Keys
 
-- **The four items R, G, B and `Choose` take the focus**, in the order R → G → B → `Choose`, moved with `h|l` left and
-  right (one-dimensional: `j|k` go back and on too; wrapping at the ends, Rules K12). **old and new take no focus**:
+- **The four items R, G, B and `Choose` take the focus**. hjkl move only among R, G and B: `h|l` left and right, `j|k`
+  back and on too (one-dimensional), wrapping at the ends (Rules K12); `Choose` is reached only with `Tab`. **old and new
+  take no focus**:
   to keep old, `Esc`; new is what R, G and B make, with nothing of its own to focus. It opens with the focus on R.
   With the focus on a channel, both rows under it, the name and the hex, are drawn as a cursor (layer colour
   background, Base bold), as wide as the swatch above (3 cells × 2 rows).
 - **`Tab|Shift-Tab` go back and forth between the channels (R, G, B) and `Choose`**, coming back to the channel they
-  left — the field area and the action area of a form (Rules K2, [`input/README`](README.md)).
+  left — the field area and the action area of a form: `Tab` changes the area, hjkl move within it (Rules K2, K12,
+  [`input/README`](README.md)).
 - **`Enter`** does the most obvious thing to the focused item (Rules K3):
   - R, G, B: opens a [`select`](select.md) of numbers (00–FF, step 1, the cursor on the current value), every row in hex
     with the decimal in brackets: `2A (42)`; typing filters, by hex or decimal alike. Back from choosing, new changes
@@ -56,11 +58,12 @@ are all written in hex (`#2A2A3C`), and with the channels in hex too, they line 
 
 **Why**: R, G and B change new, so new has nothing of its own to focus; confirming takes a button as in a form, still
 with `Enter`, and the button can be seen — "fields change the value, the button submits", the same as a form, and
-`Tab` goes between the channels and the button as in a form. The focus block covers both the name and the hex and is
-as wide as the swatch: a one-cell block is easily missed, and the hex being changed lights up with it.
+`Tab` goes between the channels and the button as in a form, while hjkl move only among the channels. The focus block
+covers both the name and the hex and is as wide as the swatch: a one-cell block is easily missed, and the hex being
+changed lights up with it.
 
 ## Value
 
-In a form or a panel: a small swatch and the hex (`███ #2A2A3C`); empty follows the rule for empty values in
-[`input/README`](README.md). With the cursor on the field, the swatch keeps its own colour and the hex still turns
-Base (the cursor block in [`color`](../color.md)).
+In a form or a panel: a swatch 3 cells wide (`███`), a space, and the hex (`███ #2A2A3C`); empty follows the rule for
+empty values in [`input/README`](README.md). With the cursor on the field, the swatch keeps its own colour and the hex
+still turns Base (the cursor block in [`color`](../color.md)).

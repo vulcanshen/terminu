@@ -177,5 +177,5 @@ character.
   | radio, checkbox (drawn in the form) | the options themselves ([`radio`](radio.md), [`checkbox`](checkbox.md)) |
   | slider | a track and the number ([`slider`](slider.md)) |
   | datetime picker | the formatted date (and time), in the app's format (`2026-10-15`, `2026-10-15 10:05`) |
-  | color picker | a small swatch and the hex (`███ #2A2A3C`) |
+  | color picker | a swatch 3 cells wide (`███`), a space, and the hex (`███ #2A2A3C`) |
   | file-picker | the path, the home directory written as `~` |

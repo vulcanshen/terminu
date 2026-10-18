@@ -75,7 +75,8 @@ terminal 寬不到 96（例：80×24）：
 
 - **兩塊**：上面是打字列，下面是清單，中間一條分隔線（不接框，[`layout/popup`](../layout/popup-zh_TW.md)）。
   - 打字列最前面是 `nf-fa-angle_right`（U+F105），離框一格，後面空一格才接打的字（寬度照 Rules E5 的 icon 寬）：一看就知道這一列是
-    打字篩選的地方，打開時 focus 在清單上、還沒打字也不會是一片空白。它是 glyph，不是 placeholder（[`input/README`](README-zh_TW.md)）。
+    打字篩選的地方；打開時 focus 在清單上的（select、checkbox popup、file-picker），還沒打字也不會是一片空白。它是 glyph，
+    不是 placeholder（[`input/README`](README-zh_TW.md)）。
     顏色跟著打字列的亮暗：focus 在清單時跟整列一樣是 Overlay0，focus 在打字列時是該層的層色。
   - 打字列右邊寫篩選的筆數 `符合/總數`（`3/41`），Overlay0：它是輔助資訊，不跟打的字搶；focus 在清單時整列本來就是 Overlay0，
     數字不用變色。
@@ -120,6 +121,9 @@ select 與 checkbox popup 的每一列，最前面放一個標記：
 
 ## 按鍵
 
+一般的 finder 打開時 focus 在打字列：它是「到那裡」的搜尋，打開就是要打字（select、checkbox popup、file-picker 打開時在清單上，
+見各自的檔）。
+
 ### 打字列
 
 panel filter 也用這一張表。
@@ -151,7 +155,7 @@ panel filter 也用這一張表。
 | 鍵 | 作用 |
 |---|---|
 | `j\|k` 等 | 移動（Rules K12：一步一步的移動到頭尾繞回） |
-| `Enter` | 去那裡（select 選定、checkbox popup 套用、file-picker 選檔或進目錄） |
+| `Enter` | 去那裡（select 選定、checkbox popup 套用、file-picker 選檔或進目錄）；沒有結果時不作用（checkbox popup 例外，見下） |
 | `Tab\|/` | 回打字列，接著舊的字打 |
 | `Esc` | 關掉整個 finder |
 
@@ -161,6 +165,12 @@ panel filter 也用這一張表。
 |---|---|
 | 打字列 | `Enter\|Tab:list Esc:cancel` |
 | 清單 | `Enter:<去那裡的動詞> Tab\|/:filter Esc:cancel`（例：`Enter:open`） |
+| 打字列，沒有結果 | `Tab:list Esc:cancel` |
+| 清單，沒有結果 | `Tab\|/:filter Esc:cancel` |
+
+沒有結果時（包括邊找邊列、一筆都還沒到時）兩處的 `Enter` 都不作用，hint 拿掉 `Enter`，有結果時再放回來 —— 跟 [`dialog/form`](../dialog/form-zh_TW.md) 的按鈕還在跑時
+一樣，hint 只寫按得動的鍵。select、file-picker 也一樣。checkbox popup 清單上的 `Enter` 是寫回勾好的整組，沒有結果時照樣作用
+（[`checkbox`](checkbox-zh_TW.md)）。
 
 **為什麼**：打字列上的 `Enter` 先 focus 到那一項、再按一次才執行：從打字列回到清單時，不會順手打開東西。代價是多按一下
 `Enter`；fzf、VS Code 快速開檔那種「打字時 `Enter` 直接去」不採用 —— finder 的打字列與 panel filter 是同一種打字列，同一個鍵在兩處

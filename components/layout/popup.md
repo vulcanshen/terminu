@@ -17,13 +17,15 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
 ┗━ Enter:run Esc:close ━━━━━━━━━━━━━ 4 of 12 ━┛
 ```
 
-- **Line style**: heavy `┏━┓`, in the layer colour ([`color`](../color.md)). Popups are always heavy: the top popup
+- **Line style**: heavy `┏━┓`, in the layer colour ([`color`](../color.md)); the error popup is the exception, its
+  frame and title capsule both Red ([`dialog/note`](../dialog/note.md)). Popups are always heavy: the top popup
   has the focus, and that is told by lit and dimmed (Rules F8, Principle P6), not by line style — on a popup, heavy
   does not mean focused; a popup underneath, dimmed, is still heavy.
 - **Title**: glyph + text, made into a capsule after `┏━` on the top border: rounded ends, U+E0B6
   (`nf-ple-left_half_circle_thick`) on the left and U+E0B4 (`nf-ple-right_half_circle_thick`) on the right; filled with
-  the layer colour, text Base bold and uppercase ("Uppercase" in the [components](../README.md)). The text says what
-  this popup is for (`RENAME`, `NEW HOST`, `ADD BOOKMARK`); names and paths in it are content and keep their case. When
+  the layer colour (Red for the error popup), text Base bold and uppercase ("Uppercase" in the
+  [components](../README.md)). The text says what this popup is for (`RENAME`, `NEW HOST`, `ADD BOOKMARK`); names and
+  paths in it are content and keep their case. When
   it names what the popup acts on, the name follows after `: ` (`EDIT: filu`, `ALTERM: myhost`); viewers and the
   file-picker keep their own form (`YAML — pod/nginx` in [`dialog/note`](../dialog/note.md), `IDENTITY FILE · ~/.ssh` in
   [`input/file-picker`](../input/file-picker.md)). When too long it is cut at the end with `…`. Tabs after the title follow
@@ -125,8 +127,10 @@ it plays: on a frame not yet drawn, users cannot see what their key landed on.
 ## Loading
 
 Rules F7: while a popup is loading, a spinning loading icon always sits after its title; when tabs follow the title (the
-capsule chain in [`panel`](panel.md)), after the whole row of tabs. While a panel is loading, it sits after the whole
-capsule chain ([`panel`](panel.md)). One space on each side. The spec:
+capsule chain in [`panel`](panel.md)), after the whole row of tabs. While a form's button is running (an action that
+keeps the form open, or a submit that takes a while), the loading icon sits after the title too
+([`dialog/form`](../dialog/form.md)). While a panel is loading, it sits after the whole capsule chain
+([`panel`](panel.md)). One space on each side. The spec:
 
 - Glyphs: `nf-md-circle_slice_1` to `nf-md-circle_slice_8` (U+F0A9E–U+F0AA5), eight frames, a circle filling slice by
   slice, then starting over once full.
@@ -136,7 +140,8 @@ capsule chain ([`panel`](panel.md)). One space on each side. The spec:
 - Width: one cell, the same as the static glyph it replaces, so swapping it in and out shifts nothing. Braille dots do not
   fit in shape or width and are not used.
 - Colour: the same as the text beside it; after a popup title, that layer's layer colour (bold); on a panel's top border,
-  the border colour (Blue with focus, Surface2 without, dimmed along with the frame) — the frame's colour either way.
+  the border colour, not bold (Blue with focus, Surface2 without, dimmed along with the frame) — the frame's colour
+  either way.
 
 ## Cancelling and completing
 

@@ -34,7 +34,9 @@ panel 上的 `Space` 照樣打開 Space menu。
 - **不可用的選項跟其他選項一樣操作**：cursor 照樣停，`Space` 照樣勾或取消，`Enter` 照畫面上的勾寫回。不可用代表什麼、勾著的
   要怎麼處理（例：drawer 上寫 `api unavailable`），由 app 決定；tdp 只畫出狀態。
 - 打字列照 finder；選項多時打字篩選，不可用的選項照樣列在結果裡。
-- **hint**：清單 `Enter:apply Space:toggle Tab|/:filter Esc:cancel`；打字列 `Enter|Tab:list Esc:cancel`。
+- **hint**：清單 `Enter:apply Space:toggle Tab|/:filter Esc:cancel`；打字列 `Enter|Tab:list Esc:cancel`。篩到沒有結果時：
+  清單上的 `Enter` 照樣把勾好的整組寫回去（篩選不改勾了哪些，被篩掉的勾也算），`Space` 沒有東西可以勾，hint 拿掉 `Space`：
+  `Enter:apply Tab|/:filter Esc:cancel`；打字列的 `Enter` 照 finder 不作用：`Tab:list Esc:cancel`。
 
 例：打開時勾的是 `default`。依序按 `j` `Space`（勾 `kube-system`）、`j` `Space`（勾 `monitoring`），這時 panel 2 還沒變。按 `Enter`，
 三個一起生效；按 `Esc`，還是只有 `default`。

@@ -21,7 +21,7 @@ narrow, whole pairs are dropped from the end (the hint in [`popup`](popup.md)). 
 | Situation | Footer |
 |---|---|
 | Normal | `Space:menu ?:help Tab\|1–N:panels q:quit` |
-| An app with only one panel | `Space:menu ?:help q:quit` |
+| A screen with only one panel | `Space:menu ?:help q:quit` |
 | In a mode (Rules K11) | `?:help`, the mode's own keys, and last `Esc:<verb for leaving>`. E.g. `?:help Enter:drop Esc:cancel` |
 | Typing in a panel filter (input state) | `Enter\|Tab:list Esc:clear` |
 | Focus on a PTY in a panel | the exit key, plus the keys the app keeps (Rules K10). E.g. `Alt-Esc:leave Alt-z:zoom PgUp:history` |
@@ -40,8 +40,8 @@ footer, and `?` on a popup opens that popup's key reference anyway (Rules M1).
 
 The top row of a multi-screen app: one capsule per screen, drawn as the capsule chain in [`panel`](panel.md), the chain's
 colour being Blue (the selected screen filled with Blue, its text Base bold; the unselected ones unfilled, their text
-Blue). When it does not fit, it shrinks by the capsule chain's rules: first down to `[M] [F] [S]`, then the unselected
-ones are folded away.
+Blue, not bold). When it does not fit, it shrinks by the capsule chain's rules: first down to `[M] [F] [S]`, then the
+unselected ones are folded away.
 
 The statusbar's content goes on its right (see below). Below the chip row runs a full-width heavy line `━` in Overlay0; during
 long work (a transfer, a download) it fills with Green from the left as a progress bar, and the status text beside it is

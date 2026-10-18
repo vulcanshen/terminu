@@ -47,7 +47,10 @@ flips it too (the exception of Rules K5, as in a checkbox popup); on a panel `Sp
   `api unavailable`) is the app's choice; tdp only draws the state.
 - The typing row follows the finder; with many options, typing filters, and options not available are listed too.
 - **Hint**: on the list `Enter:apply Space:toggle Tab|/:filter Esc:cancel`; on the typing row
-  `Enter|Tab:list Esc:cancel`.
+  `Enter|Tab:list Esc:cancel`. Filtered down to no results: on the list `Enter` still writes back the whole set ticked (the
+  filter does not change what is ticked, and ticks filtered out count too), and `Space` has nothing to tick, so the hint
+  drops `Space`: `Enter:apply Tab|/:filter Esc:cancel`; on the typing row `Enter` does nothing as in the finder:
+  `Tab:list Esc:cancel`.
 
 E.g. it opens with `default` ticked. Press `j` `Space` (ticking `kube-system`), then `j` `Space` (ticking
 `monitoring`); panel 2 has not changed yet. On `Enter`, the three take effect together; on `Esc`, it is still only

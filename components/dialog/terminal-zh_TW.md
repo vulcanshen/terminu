@@ -12,7 +12,7 @@ panel 裡時（例：sshu 的格子）不是 popup：框照 [`layout/panel`](../
 ```
 [M]ANAGE[F]ILE TRANSFER[S]SH        2 live sessions    ← statusbar／畫面 chip 列：留著
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ← chip 列下面的分隔線：留著（傳檔時是進度條）
-┏━ALTERM: myhost━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┏━󰆍 ALTERM: myhost━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃$ kubectl get pods                                      ┃   ← PTY 貼著框，上下左右都不留白
 ┃NAME          READY   STATUS    RESTARTS   AGE          ┃
 ┃nginx-7d4f    1/1     Running   0          3d           ┃

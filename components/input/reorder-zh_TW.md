@@ -21,7 +21,7 @@ input）。它就是 panel 的 Drag mode 放進 popup：拿起、搬、放下的
 ┏━ORDER━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃                                 ┃
 ┃   Usage                         ┃   ← 每一列前面留一格給 glyph
-┃▓▓▓Cost▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃   ← cursor：層色底、Base 粗體
+┃▓▓▓Cost▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃   ← cursor：層色底、Base 粗體
 ┃   Model                         ┃
 ┃   Context                       ┃
 ┃   Git                           ┃
@@ -34,7 +34,7 @@ input）。它就是 panel 的 Drag mode 放進 popup：拿起、搬、放下的
 ```
 ┏━ORDER━━━━━━━━━━━━━━━━━━┫Drag┣━┓   ← Drag mode：框與模式名換成 Yellow
 ┃                                 ┃
-┃▓󰓢▓Cost▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃   ← 拿著的一項：Yellow 底、Base 粗體，列首 `nf-md-swap_vertical`
+┃▓󰓢▓Cost▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃   ← 拿著的一項：Yellow 底、Base 粗體，列首 `nf-md-swap_vertical`
 ┃   Usage                         ┃
 ┃   Model                         ┃
 ┃   Context                       ┃
