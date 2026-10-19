@@ -172,7 +172,7 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   part that tells one from another at the end), it is cut in the middle, with the `…` there (`demo-app…66-gm72n`). The
   app sets where each column is cut.
 - **Empty**: as the empty states in [`screen`](screen.md). The empty state takes the whole panel, the header included,
-  its sentence centred in the panel.
+  its sentence centred in the panel; a location row, when there is one, stays (see "Location row").
 
 **Loading and errors**:
 
@@ -210,6 +210,8 @@ path, the level kbu reaches going from a Deployment into its Pods. **Whether the
   unfocused (Rules T2).
 - **Too long**: cut at the front with `…`, keeping the end (the level you are on is the last part).
 - **Shown only**: it cannot be acted on; the cursor never stops on it, and the scroll position does not count it.
+- **Stays when the list is empty**: the empty state replaces the header and the list, not the location row — it says
+  where you are, not what the list holds, and an empty directory needs saying which one it is all the more.
 
 **Why**: "where am I now" written in the label makes the label longer and longer, until the capsule's truncation eats
 it; written in a row of its own inside the panel, the whole path fits, and the label stays the panel's name. Lavender:

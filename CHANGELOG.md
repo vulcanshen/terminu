@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.8.1 — 2026-10-19
+
+What turned up while terminu-go and the apps followed v0.8.0, settled with the user.
+
+- layout/panel: the location row stays when the list is empty; only the header and the list give way to the empty
+  state (G98)
+- dialog/note: in an unwrapped viewer the selection cursor can walk into the cut part — the view scrolls sideways just
+  enough, with `…` where lines are cut on the left, and returns to the left edge on leaving the mode (G99)
+- E3: on Windows the cache is `%LOCALAPPDATA%\<app>\cache`, apart from the executable's folder, so deleting the cache
+  never deletes the program (CD52); a moved location is moved item by item — an item already at the new place keeps the
+  new one when it is a cache, and leaves settings, state and data at the old place with an error popup giving both
+  paths; the emptied old directory is removed (CD54)
+- S2: entries already released and release notes already on GitHub do not mention the splash either; version headings
+  stay
+- checklist: E3-7, E3-14, S2-2 reworded; E3-16, panel-134, note-72 added (1391 items)
+
 ## v0.8.0 — 2026-10-19
 
 From the whole-family refactor to tdp v0.7.4 and terminu-go v0.1.13: eight apps reported what tdp did not say, what it
