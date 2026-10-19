@@ -150,10 +150,14 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   same order. When the data has no order of its own (e.g. kubeconfig's contexts, which may read back in a different
   order each time), the app sorts it before showing it, by name by default, numbers by value; data with an order of its
   own (a history by time, something the user ordered) keeps that order.
-- **When the columns do not fit**: whole columns go first, then the rest shrink. The app gives each column an order in
-  which it goes, and the most important one (the name) never goes; when they do not fit, the least important column is
-  taken away whole (its header with it), until they fit or only the columns that cannot go are left, and only then do
-  the columns shrink in proportion. When the terminal grows, the columns come back in the same order.
+- **Column widths**: the app marks the **columns that may be cut short** (long values such as names, URLs, a line of
+  text); they share the width that is left and are cut their own way when too long (at the end, or in the middle for
+  values that matter at both ends). The other columns (short values such as states, numbers, dates) take their widest
+  value and never shrink.
+- **When the columns do not fit**: first the columns that may be cut short narrow down to their least width (the app's
+  to set, e.g. 12 cells); only then do whole columns go. The app gives each column an order in which it goes, and the
+  most important one (the name) never goes; the least important column is taken away whole (its header with it) until
+  they fit. When the terminal grows, the columns come back in the same order and the columns cut short grow back.
 - **Scroll position**: when the content does not fit, the right of the bottom border reads `N of M` (which entry the
   cursor is on, how many in all), in the border colour; nothing when everything fits. A panel without a cursor (a
   preview, a log) shows the visible lines, `N-M of T`.
@@ -185,9 +189,11 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
 **Why**: the cursor is "the row `Enter` acts on"; a solid background across the whole row, ending in an arrow, says so
 in both shape and colour (L5). Marks use the checkbox tick: marked means "picked", the same thing as a ticked checkbox, in the same colour.
 A list with several columns always has a header: what the columns mean and the sort arrows both rest on it. With the
-header fixed, what each column is stays visible however far you scroll. Columns that do not fit go whole: with every
-column shrunk a little, none can be read in full; with the least important one taken away, the rest still read in
-full, and the name is always there to tell which entry it is. Sort groups keep a fixed order such as "directories
+header fixed, what each column is stays visible however far you scroll. A long value cut short is still recognisable
+(cut in the middle, it keeps both ends), while a short value cut at all can no longer be read, so the long columns
+give way and the short ones keep their width; one very long name no longer pushes every other column out. Only when
+they still do not fit do whole columns go: with every column shrunk a little, none can be read in full; with the least
+important one taken away, the rest still read in full, and the name is always there to tell which entry it is. Sort groups keep a fixed order such as "directories
 first" from being scattered by sorting. An empty list loses its header too: with no data, the column names have nothing
 to label, and one centred sentence says it best.
 

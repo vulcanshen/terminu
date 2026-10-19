@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.8.1. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.8.2. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -669,7 +669,7 @@ The items of tdp v0.8.1. What each column means and what an item applies to: [RE
 | panel-124 | panel §Frame | When the list has no items (a panel filter matched nothing, or it was empty to begin with), the hint drops `Enter` and the hotkeys on an item, keeping only those on the whole panel | everyone | Filter the list to nothing or empty it; check that the bottom-border hint has no `Enter` and no item hotkeys |
 | panel-125 | panel §Capsule chain | When the selected segment is too long on its own, its text is cut at the end with `…`; both slants are still drawn, and a stretch of line stays between it and the corner | everyone | Narrow the terminal a lot and look at the capsule of a panel with a long label |
 | panel-126 | panel §Ordinary lists | Sort groups: the groups the app assigns rows to come in the app's order, sorting happens only within a group, and no title is drawn between groups (e.g. directories always before files) | sorting | Change the sorting of a list with groups: the groups keep their order |
-| panel-127 | panel §Ordinary lists | When the columns do not fit, whole columns go first: the least important one, by the order the app marks, is taken away (its header too), never the name column; only when just the columns that cannot go remain and still do not fit are the widths shrunk in proportion | header | Narrow the terminal: whole columns disappear, the name column always stays |
+| panel-127 | panel §Ordinary lists | When the columns do not fit, the columns that may be cut short narrow to their least width first; only then do whole columns go: the least important one, by the order the app marks, is taken away (its header too), never the name column | header | Narrow the terminal: long columns are cut short first, then whole columns go, and the name column stays |
 | panel-128 | panel §Ordinary lists | When the terminal grows, the columns taken away come back in order | header | Narrow, then widen again: the columns taken away come back |
 | panel-129 | panel §Location row | The location row is the first row inside the panel, one cell from the frame; above the header when there is one, and above the panel filter's typing row when that appears; fixed at the top, never scrolled | location row | Look at where the location row is; scroll down, press `/` |
 | panel-130 | panel §Location row | A location row too long is cut at the front with `…`, keeping the end (where you are now) | location row | Go somewhere deep and look at the start of the location row |
@@ -677,6 +677,7 @@ The items of tdp v0.8.1. What each column means and what an item applies to: [RE
 | panel-132 | panel §Ordinary lists | When the list is empty, the empty state takes the whole panel: the header is not drawn either, and the sentences are centred in the whole panel | everyone | Empty a list with a header: the header goes too, and the sentences sit in the middle of the panel |
 | panel-133 | panel §Ordinary lists | The list's order is fixed: the same data comes out in the same order every time it opens or is fetched again; data with no order of its own is sorted by the app first (by name by default, numbers by value) | everyone | Close and reopen, fetch again a few times: the order holds; read the code: data with no order (e.g. a map) is sorted first |
 | panel-134 | panel §Location row | When the list is empty, the location row stays; only the header and the list give way to the empty state | location row | Empty a list with a location row (e.g. open an empty directory): the location row is still there |
+| panel-135 | panel §Ordinary lists | The columns that may be cut short (names, URLs, a line of text) share the width left and are cut their own way; the other, short columns take their widest value and never shrink | header | Put a very long name in the list: the other columns stay whole and the name is cut short |
 
 ## layout/popup
 
@@ -973,6 +974,7 @@ The items of tdp v0.8.1. What each column means and what an item applies to: [RE
 | note-70 | note §Selection mode | Every viewer has the selection mode (`v` to select, `y` to copy) | viewer | Press `v` on every viewer |
 | note-71 | note §Look | A viewer's search: every match underlined, keeping its colour; the current match drawn as the cursor block; no Yellow | viewer | In a viewer with `/`, search for a word that appears several times; look at the underlines and the current match (a viewer with no search never has this case) |
 | note-72 | note §Look | In an unwrapped viewer, when the selection cursor walks into the cut part, the view scrolls sideways to show it, with `…` at the start of lines cut on the left; the cut text can be selected and copied | viewer | In an unwrapped viewer, enter the selection mode and walk the cursor right into the cut part |
+| note-73 | note §Key reference | A long explanation in the "Each row" section wraps in the right column with the name column kept, instead of being cut; the sections of keys stay one key per row, cut when too long | one value per row | Give a row an explanation wider than the frame and press `?`: it wraps |
 
 ## dialog/terminal
 
@@ -1518,6 +1520,7 @@ The items of tdp v0.8.1. What each column means and what an item applies to: [RE
 | file-picker-89 | file-picker §Choosing a directory | Wildcard results list directories only | file-picker | Type `~/*` |
 | file-picker-90 | file-picker §Choosing a directory | The hint on `.` is `Enter:choose Tab\|/:filter Esc:cancel` | file-picker | With the cursor on `.`, look at the bottom border |
 | file-picker-91 | file-picker §Metadata | A file gone after being listed (deleted, moved), writes `—` in every row it cannot get | file preview | Delete a file elsewhere after it is listed, move the cursor to it and look at the metadata |
+| file-picker-92 | file-picker §The preview | The preview and the metadata are read in the background: typing and moving the cursor never wait; while reading, the preview frame has the loading icon after its title, reads `(loading…)` in grey, and the metadata values stay empty; what has been read is kept by path and not read again | file preview | Move the cursor fast on a slow (e.g. remote) file system: typing never stalls, and the reading state looks as described; read the code: files are not read while drawing |
 
 ## input/reorder
 

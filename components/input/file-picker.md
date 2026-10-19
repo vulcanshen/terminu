@@ -65,6 +65,12 @@ looking for a hidden file types `.` anyway — the shell's own rule, with no tog
 
 The entry under the cursor, drawn by kind. At most 64 KB is read.
 
+**Read in the background**: the preview and the metadata are not read while the screen is drawn, so typing and moving
+the cursor never wait for them (on a remote or slow file system too). While it is being read, the preview frame has the
+loading icon after its title (as when a finder lists while searching), the frame reads `(loading…)` in grey, and the
+metadata values stay empty (not `—`, which means it could not be got); it is drawn once read. What has been read is kept
+by path, so while the popup is open the cursor coming back to an entry does not read it again.
+
 | Kind | Preview |
 |---|---|
 | directory | a tree (below) |
