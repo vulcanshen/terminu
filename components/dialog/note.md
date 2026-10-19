@@ -161,7 +161,8 @@ The "what keys work here" opened with `?` (Rules K6, M4).
 
 - **Title**: `nf-fa-question_circle` (U+F059) plus `<surface> keys`, e.g. `[2] HOSTS KEYS`, `SPACE MENU KEYS`.
 - **One key per row**: indented two cells, the key padded to the width of the widest key, two blank cells, then the
-  description. A description too long is cut at the end with `…`, never wrapped. Keys are written as in Rules M5 (no
+  description. A description too long is cut at the end with `…`, never wrapped (except in the "Each row" section, see below).
+  Keys are written as in Rules M5 (no
   brackets, no colon).
 - **Rows from a menu**: the description reads `label — description`; the label loses its hotkey marks and keeps its case
   (a menu's `[E]dit` becomes `Edit — change this host`).
@@ -183,7 +184,9 @@ The "what keys work here" opened with `?` (Rules K6, M4).
 - **Each row** (a panel of one value per row, optional): the key reference may start with a section saying what each
   row of the panel means. The left column is the setting's name in the plain text colour (Text, not the keys' Blue: it
   is not a key), the right column the explanation; the sections of keys come after it. Whether to have it is up to the
-  app.
+  app. A long explanation wraps in the right column ([the components' "Wrapping"](../README.md); the name column stays,
+  the following rows start where the explanation starts) instead of being cut: the section is sentences to read, not a
+  table to look up, and the key reference scrolls, so a long one can still be read in full.
 - **On a popup** only that popup's own keys are listed (Rules K6): its hotkeys, `Enter`, `Esc`, the movement keys.
 - **Colours**: keys in Blue, not bold; descriptions in Text. A key that cannot be pressed right now has both key and
   description in Surface2 (Rules M6).

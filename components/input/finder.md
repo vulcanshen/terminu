@@ -102,6 +102,7 @@ Terminal width under 96 (e.g. 80×24):
     dimmed (the preview is there to be read, and dimmed it is hard to read); its bottom border carries no text (no hint, no scroll position).
   - **A preview starting at a line** (e.g. a file found by its content, seen from the line that matched): that line is
     the preview's third row, two lines of context above it, with no extra mark; line numbers are the file's real ones.
+    When the whole file fits the preview, it is drawn from line 1, with no scrolling.
 - **Listed while searching**: results are listed as they arrive, with a loading icon after the title; while none has
   arrived it reads `(indexing…)`.
 - **Size**: a finder with a preview always takes the maximum height of Rules F7 (the screen height − 2): each entry's

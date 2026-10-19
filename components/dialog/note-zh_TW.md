@@ -130,7 +130,7 @@
 ```
 
 - **標題**：`nf-fa-question_circle`（U+F059）加 `<surface> keys`，例：`[2] HOSTS KEYS`、`SPACE MENU KEYS`。
-- **每一列一個鍵**：縮兩格，鍵補到跟最寬的鍵一樣寬，空兩格，再接說明。說明太長從尾端截，加 `…`，不折行。鍵的寫法照 Rules M5
+- **每一列一個鍵**：縮兩格，鍵補到跟最寬的鍵一樣寬，空兩格，再接說明。說明太長從尾端截，加 `…`，不折行（「每一列」那一節例外，見下面）。鍵的寫法照 Rules M5
   （不加括號、不加冒號）。
 - **從 menu 來的列**：說明寫 `label — 說明`；label 去掉熱鍵標記、大小寫照原樣（menu 上的 `[E]dit` 寫成 `Edit — change this host`）。
 - **區塊**：區塊標題跟 menu 一樣（`nf-md-hexagon`、大寫、Overlay0、縮一格、不加粗）。panel 上依序是：
@@ -144,7 +144,9 @@
   - 說明**別的 surface** 的段（Rules M6；例：panel 裡的 PTY 進去之後的鍵，標題 `terminal`）：排在最後，`app-wide` 之後。
     每個 panel 前面幾段的順序都一樣，有沒有這一段，`core keys`、`app-wide` 都在原位；先讀「這裡能按什麼」，再讀「進去之後」。
 - **每一列**（一列一個值的 panel，可選）：key reference 最前面可以有一節說明 panel 上每一列是什麼意思。左欄是設定的名稱，用一般的字色
-  （Text，不是鍵的 Blue：它不是鍵），右欄是說明；按鍵的區塊接在後面。要不要有這一節由 app 決定。
+  （Text，不是鍵的 Blue：它不是鍵），右欄是說明；按鍵的區塊接在後面。要不要有這一節由 app 決定。說明太長時在右欄折行（照
+  [components 的「折行」](../README-zh_TW.md)，名稱欄不動、接下來的列從說明的起點開始），不截斷：這一節是要讀的句子，不是對照表；
+  key reference 本來就能捲，長了也看得完。
 - **popup 上**只列這個 popup 自己的鍵（Rules K6）：它的熱鍵、`Enter`、`Esc`、移動鍵。
 - **顏色**：鍵 Blue、不加粗；說明 Text。現在按不了的鍵，鍵與說明都用 Surface2（Rules M6）。
 - **按鍵**：捲動照上面；`?` 或 `Esc` 關，`Enter` 不作用。hint `?|Esc:close`。

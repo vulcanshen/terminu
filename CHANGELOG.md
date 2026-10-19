@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.8.2 — 2026-10-19
+
+What the apps found while moving to terminu-go v0.2.0, settled with the user.
+
+- layout/panel: column widths reworked (S13 again, from kbu, webu and filu) — the app marks the columns that may be cut
+  short (names, URLs, a line of text); they share the width left and are cut their own way, while short columns keep
+  their widest value and never shrink. When they do not fit, the columns that may be cut short narrow to their least
+  width first, and only then do whole columns go, by the app's order, never the name. One long name no longer pushes
+  every other column out, and short columns are no longer squeezed to `…`
+- input/file-picker: the preview and the metadata are read in the background; while reading, the preview frame has the
+  loading icon after its title, reads `(loading…)` in grey, and the metadata values stay empty; what has been read is
+  kept by path (sshu's SS40). input/finder: a preview starting at a line draws a file that fits whole from line 1
+- dialog/note: in the key reference, a long explanation in the "Each row" section wraps in the right column instead of
+  being cut; the sections of keys still cut (locku's LK18)
+- checklist: panel-127 reworded; panel-135, file-picker-92, note-73 added (1394 items)
+
 ## v0.8.1 — 2026-10-19
 
 What turned up while terminu-go and the apps followed v0.8.0, settled with the user.
