@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.8.2. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.8.3. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -1037,6 +1037,7 @@ The items of tdp v0.8.2. What each column means and what an item applies to: [RE
 | input-6 | input §The skeleton of a one-line input popup (diagram) | the explanation row is above the typing row | text or password or number | look at the order of the rows |
 | input-7 | input §The skeleton of a one-line input popup | there is a blank row between the explanation row and the typing row | text or password or number | count the blank rows between the two |
 | input-8 | input §The skeleton of a one-line input popup | what is being changed goes into the explanation row's sentence (e.g. `New name for assets`) | text or password or number | open a popup such as rename; the explanation row names what is being changed |
+| input-78 | input §The single-line input popup | A long explanation wraps and the popup grows; when it still does not fit at the tallest, the last row ends with `…` | text, password, number | Give the explanation more than the frame's width (e.g. a web page's long prompt): it wraps |
 | input-9 | input §The skeleton of a one-line input popup | the typing row starts with `nf-fa-angle_right` (U+F105), one cell from the border (except a password's unlock option) | text or password or number | look at the typing row's first character and its distance from the left border |
 | input-10 | input §The skeleton of a one-line input popup | a one-line input popup's `nf-fa-angle_right` is always the layer colour | text or password or number | look at the glyph's colour once on opening and once while typing |
 | input-11 | input §The skeleton of a one-line input popup | the value is Lavender | text or password or number | type a few characters and look at the colour |

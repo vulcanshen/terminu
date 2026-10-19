@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.8.3 — 2026-10-19
+
+From webu, moving a web page's `prompt()` onto the library's input.
+
+- input: a single-line input popup's explanation row wraps when it is too long (several sentences from a web page's
+  `prompt()`), and the popup grows by F7's height; when it still does not fit at the tallest, the last row ends with `…`
+  (webu's WB20)
+- checklist: input-78 added (1395 items)
+
 ## v0.8.2 — 2026-10-19
 
 What the apps found while moving to terminu-go v0.2.0, settled with the user.

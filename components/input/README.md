@@ -43,7 +43,9 @@ Shared by text, password and number.
 ```
 
 - **The explanation row**: one sentence saying what to enter (`New name for assets`), in Overlay0, with a blank row
-  between it and the value. What is being changed goes into that sentence.
+  between it and the value. What is being changed goes into that sentence. An explanation too long wraps ([the
+  components' "Wrapping"](../README.md); e.g. several sentences from a web page's `prompt()`), and the popup grows by
+  Rules F7's height; when it still does not fit at the tallest, the last row ends with `…`.
 - **The typing row**: it starts with `nf-fa-angle_right` (U+F105), one cell from the border, then a space before the
   value, as on a [`finder`](finder.md)'s typing row. Its colour follows the finder: the layer colour while typing — and a
   one-line input popup is always typing, so it is always the layer colour. The row the cursor waits on reads at once as
