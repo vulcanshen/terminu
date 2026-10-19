@@ -4,7 +4,8 @@
 
 ## 用途
 
-問一句，`Enter` 接受、`Esc` 取消，並說出後果（Rules F6）：刪除前、離開前、「連線到 X？」。哪些動作要問由 app 決定（F6）。
+問一句，`Enter` 接受、`Esc` 取消，並說出後果（Rules F6）：刪除前、離開前、「連線到 X？」、工作清單上對某一列做事前（內容是那一列的
+全文，[`dialog/menu`](menu-zh_TW.md) 的工作清單）。哪些動作要問由 app 決定（F6）。
 
 ## 長相
 
@@ -33,3 +34,5 @@ Red 是已經發生的錯誤，這時候還沒有出錯。
 
 - `Enter` 接受，`Esc` 取消（Rules F6），回答只有這兩個鍵（沒有 `y`、`n`）。`Space` 不作用（Rules K5）。
 - **hint**：`Enter:<動詞> Esc:cancel`，動詞寫接受會做的事（例：`Enter:delete Esc:cancel`）。
+- **從 menu 打開的**：`Esc` 取消，一律回到 menu（Rules F4）；`Enter` 之後 menu 留不留照 Rules T1 的表，看接受之後做的事 ——
+  confirm 只是一道門，不是一種 target。

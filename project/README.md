@@ -5,7 +5,10 @@
 terminu project is the project spec under [tdp](../principle/README.md): what a family app's repo looks like — the
 directories, the Makefile, the version, the CHANGELOG, the release. The principle gives the rules a user can see, the
 components give the parts, this page gives the repo; versions and the CHANGELOG are shared with tdp.
-[Rules E6](../principle/rules.md)'s way of releasing follows this page.
+[tdp E6](../principle/rules.md)'s way of releasing follows this page.
+
+An app's files cite tdp rules as `tdp` plus the ID ("Citing" at the start of the Rules); the parts of this page that get
+copied into an app are written that way too.
 
 ## What is a requirement
 
@@ -28,6 +31,9 @@ The template files are requirements too: they are copied as they are, changed on
 | [`version.go`](version.go) | `internal/version/version.go` | `<app>` |
 | [`gitignore`](gitignore) | `.gitignore` | `<app>`; the app's own lines go after the last one |
 
+- **An app made with tdp** (not a family member; start of chapter E of the Rules): the `vulcanshen` in the templates
+  (the repo path, the tap's owner, the homepage) is replaced with its own account, which also counts as the last column
+  of the table.
 - **Checking for drift**: put `<app>` back in place of the app's name and diff against the templates of the same tdp
   version; only what the last column of the table names should differ.
 - **A template changes here first**: a tdp release, then a copy into each app, never an edit in an app. A problem an
@@ -45,7 +51,7 @@ little different from app to app. With one file, a diff shows what differs, and 
 ├── internal/                       the app's own packages
 │   └── version/version.go          the version (see "Version")
 ├── docs/                           dev-remarks.md, icon.svg, the README's demo gif, and
-│                                   <app>-terminu-fix.md while there is something to fix (Rules E6, E7)
+│                                   <app>-terminu-fix.md while there is something to fix (tdp E6, E7)
 ├── .local/                         not in git; demos/ holds the VHS tapes
 ├── .github/workflows/release.yml
 ├── .goreleaser.yaml
@@ -59,12 +65,15 @@ little different from app to app. With one file, a diff shows what differs, and 
 └── LICENSE
 ```
 
-- Go code lives only in `cmd/<app>/` and `internal/`. The `go install` path is
-  `github.com/vulcanshen/<app>/cmd/<app>@latest`.
-- Top-level directories and files not in the tree (e.g. end-to-end tests, small development tools, `CLAUDE.md`) are up
-  to the app, and are described in the "建置與開發" (building and development) section of its dev-remarks.
+- The app's own Go code lives only in `cmd/<app>/` and `internal/`. The `go install` path is
+  `github.com/vulcanshen/<app>/cmd/<app>@latest` (an app made with tdp uses its own account:
+  `github.com/<account>/<app>`; start of chapter E of the Rules).
+- **Small development tools** (Go ones too) may go in a top-level `tools/`; they are not the app itself. They are
+  described in the "建置與開發" (building and development) section of its dev-remarks.
+- Other top-level directories and files not in the tree (e.g. end-to-end tests, `CLAUDE.md`) are up to the app, and are
+  described in the same section.
 - **`docs/icon.svg` is the family mark's original.** Go's `go:embed` cannot reach `docs/`, so the copy the splash uses
-  lives in the code (a copy of the file under `internal/`, or the cells written out), and the Rules E6 test keeps it
+  lives in the code (a copy of the file under `internal/`, or the cells written out), and the tdp E6 test keeps it
   identical to `docs/icon.svg`.
 - An app with a Windows build also has `install.ps1` and `uninstall.ps1`, written by the app; they are not templates.
 
@@ -76,7 +85,7 @@ in two places and only repo-level files at the root, anyone opening a family rep
 - The version lives in `internal/version` (template [`version.go`](version.go)): `Version` is the version without its v,
   and `Display()` adds the v when it is printed.
 - goreleaser injects the tag without its v when it releases (e.g. tag `v0.2.0` → `0.2.0`). `<app> version` and the
-  splash print `Display()` (e.g. `v0.2.0`; Rules E1, S5).
+  splash print `Display()` (e.g. `v0.2.0`; tdp E1, S5).
 - A local `make build` or `go build` injects nothing; the version is `dev`.
 
 **Why**: `dev` shows at a glance that a build is not a release. Where versions are compared (e.g. ccdrawu's update
@@ -165,8 +174,8 @@ tdp an old release followed often cannot be found; filling it in would get it wr
 3. A commit, and the tag `vX.Y.Z`.
 4. The commit and the tag are pushed. [`release.yml`](release.yml) then:
    - tests: `go test -race` on ubuntu and macOS (an app with a Windows build adds Windows, without `-race`);
-   - runs goreleaser: builds, makes the GitHub release, pushes to the Homebrew tap `vulcanshen/homebrew-tap` (and the
-     scoop bucket, with a Windows build);
+   - runs goreleaser: builds, makes the GitHub release, pushes to the Homebrew tap `vulcanshen/homebrew-tap` (an app
+     made with tdp pushes to its own tap; and the scoop bucket, with a Windows build);
    - sets the release's body to that section of the CHANGELOG. This step runs even when goreleaser's tap push failed,
      and skips when the release has not been made.
 

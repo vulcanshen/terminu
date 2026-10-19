@@ -5,7 +5,8 @@
 ## Purpose
 
 One question, `Enter` accepting and `Esc` cancelling, saying what follows (Rules F6): before deleting, before quitting,
-"Connect to X?". Which actions ask is up to the app (F6).
+"Connect to X?", before doing something to a row of a jobs list (its content is the row's full text; the jobs list in
+[`dialog/menu`](menu.md)). Which actions ask is up to the app (F6).
 
 ## Look
 
@@ -40,3 +41,5 @@ nothing has gone wrong yet.
 - `Enter` accepts, `Esc` cancels (Rules F6); these are the only two answers (no `y` or `n`).
   `Space` does nothing (Rules K5).
 - **Hint**: `Enter:<verb> Esc:cancel`, the verb saying what accepting does (e.g. `Enter:delete Esc:cancel`).
+- **Opened from a menu**: `Esc` cancels and always returns to the menu (Rules F4); after `Enter`, whether the menu
+  stays follows the table in Rules T1, by what accepting does — a confirm is only a gate, not a kind of target.

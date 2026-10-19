@@ -81,7 +81,7 @@ time is read at a glance.
 
 What can take the focus: **month, year, calendar, time** (no time in a date-only picker). The picker's own operations
 use only `Tab`, hjkl (the arrow keys), `Enter` and `Esc`, plus `t`; core keys follow [`input/README`](README.md) (`?`,
-`q` / `Ctrl-C`), and `Shift-Tab` is the app's choice, as in Rules K2.
+`q|Ctrl-C`), and `Shift-Tab` is the app's choice, as in Rules K2.
 
 - **`Tab`** moves the focus in screen order: month → year → calendar → time → back to month. It opens with the focus on
   the calendar.

@@ -5,7 +5,7 @@
 ## Purpose
 
 A list without search, choosing a row to run it (Rules F1): the Space menu, the global operation popup, a sort picker, a
-jobs list (`Enter` opening the row's full text). A list that needs search is a finder
+jobs list (see "Jobs list" below). A list that needs search is a finder
 ([`input/finder`](../input/finder.md)); choosing a value to be written back is a select
 ([`input/select`](../input/select.md)); moving items by hand into an order is a reorder
 ([`input/reorder`](../input/reorder.md)).
@@ -49,6 +49,8 @@ jobs list (`Enter` opening the row's full text). A list that needs search is a f
 - **The `Global operation` row** (Rules M2): no hotkey, and the description is always `actions for the whole app`.
 - **Width**: every row is known when it opens, so it follows "content width known when it opens" in
   [`layout/popup`](../layout/popup.md).
+- **A jobs list's rows follow the jobs**: when a job's progress or state changes, its row changes while the menu is
+  open, with no need to close and reopen it.
 
 **Why**: with descriptions right-aligned, names and descriptions form two columns, and the eye running down the names is
 not interrupted by the descriptions. The cursor takes the layer colour as background: in a family popup, the block on the
@@ -58,11 +60,31 @@ like another frame.
 
 ## Keys
 
-- `j|k` move, wrapping at both ends; `u|d` half a page (stopping at the ends), `gg|G` to the top and the bottom
-  (Rules K12).
+- A menu is a one-dimensional list: `j|l|↓|→` go on, `h|k|↑|←` go back, wrapping at both ends; `u|d` half a page
+  (stopping at the ends), `gg|G` to the top and the bottom (Rules K12).
 - `Enter` runs the cursor row; a hotkey runs its row directly.
+- **After running**: whether the menu stays follows the table in Rules T1, by what happens once it is confirmed (opening
+  something to look at, writing a value back, or editing that item in an editor keeps it; making the item go away,
+  opening a shell, switching screens or drilling down clears it). Cancelling the confirm asked before an action with
+  `Esc` always returns to the menu (Rules F4).
 - `Esc` closes it (the global operation popup returns to the Space menu, Rules F4); the Space menu also closes on another
   `Space` (Rules K5).
-- **Hint**: `Enter:run Esc:close` (no movement keys, see the hint in [`layout/popup`](../layout/popup.md)). A menu whose
-  `Enter` opens the row in full (Rules F1, e.g. a jobs list) shows `Enter:detail Esc:close`: a hint says what pressing
-  does (Rules M5), and that `Enter` runs nothing.
+- **Hint**: `Enter:run Esc:close` (no movement keys, see the hint in [`layout/popup`](../layout/popup.md)). A jobs
+  list's hint is below.
+
+## Jobs list
+
+Lists the jobs the app is running or has run (e.g. sshu's Jobs).
+
+- **Its rows follow the jobs** (see "Look").
+- **`Enter` acts on the cursor row**:
+  - A row something can be done to (e.g. a transfer in progress can be cancelled): `Enter` opens a confirm whose
+    content is the row's full text and whose question asks whether to do it ([`dialog/confirm`](confirm.md)). The hint
+    names the action: `Enter:cancel Esc:close`.
+  - A row with nothing to do: `Enter` opens the row's full text (Rules F1), hint `Enter:detail Esc:close`. That `Enter`
+    runs nothing.
+  - The hint changes with the cursor row and says what pressing does (Rules M5).
+
+**Why**: a jobs list is for watching how far the jobs have got; rows that do not move would mean closing and reopening
+it again and again. `Enter` always means "this row": where something can be done, you read the full text and confirm
+first, so one press never cancels a half-finished transfer.

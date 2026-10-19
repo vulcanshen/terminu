@@ -4,7 +4,9 @@
 
 terminu project 是 [tdp](../principle/README-zh_TW.md) 之下的專案規格：家族 app 的 repo 長什麼樣 —— 目錄、Makefile、版本、
 CHANGELOG、發布。principle 講使用者看得到的規則，components 講元件，這裡講 repo；版號、CHANGELOG 跟 tdp 一起走。
-[Rules E6](../principle/rules-zh_TW.md) 的發布方式照這一頁做。
+[tdp E6](../principle/rules-zh_TW.md) 的發布方式照這一頁做。
+
+app 的檔案引用 tdp 的條目寫 `tdp` 加編號（Rules 開頭的「引用」）；這一頁會被抄進 app 的段落也照這樣寫。
 
 ## 什麼是規定
 
@@ -25,6 +27,8 @@ CHANGELOG、發布。principle 講使用者看得到的規則，components 講�
 | [`version.go`](version.go) | `internal/version/version.go` | `<app>` |
 | [`gitignore`](gitignore) | `.gitignore` | `<app>`；app 自己的行接在最後 |
 
+- **照 tdp 做的 app**（不是家族成員，Rules 的 E 章開頭）：範本裡的 `vulcanshen`（repo 的路徑、tap 的 owner、首頁）換成自己的
+  帳號，也算上表最後一欄的地方。
 - **檢查有沒有走樣**：把 app 的名字換回 `<app>`，跟這裡同一版 tdp 的範本 diff，只該差上表最後一欄的地方。
 - **範本要改，先改這裡**：發一版 tdp，再複製到每個 app，不在 app 裡改。app 用起來發現範本有問題，回報成 tdp 的缺漏。
 
@@ -39,7 +43,7 @@ CHANGELOG、發布。principle 講使用者看得到的規則，components 講�
 ├── internal/                       app 自己分的 package
 │   └── version/version.go          版本（見「版本」）
 ├── docs/                           dev-remarks.md、icon.svg、README 的 demo gif、有待修時的
-│                                   <app>-terminu-fix.md（Rules E6、E7）
+│                                   <app>-terminu-fix.md（tdp E6、E7）
 ├── .local/                         git 不收；demos/ 放 VHS 的 tape
 ├── .github/workflows/release.yml
 ├── .goreleaser.yaml
@@ -53,10 +57,12 @@ CHANGELOG、發布。principle 講使用者看得到的規則，components 講�
 └── LICENSE
 ```
 
-- Go 程式只在 `cmd/<app>/` 與 `internal/`。`go install` 的路徑是 `github.com/vulcanshen/<app>/cmd/<app>@latest`。
-- 圖上沒有的頂層目錄與檔案（例：端到端測試、開發用的小工具、`CLAUDE.md`）由 app 決定，寫在 dev-remarks 的「建置與開發」。
+- app 本身的 Go 程式只在 `cmd/<app>/` 與 `internal/`。`go install` 的路徑是 `github.com/vulcanshen/<app>/cmd/<app>@latest`
+  （照 tdp 做的 app 換成自己的帳號：`github.com/<帳號>/<app>`，Rules 的 E 章開頭）。
+- **開發用的小工具**（Go 寫的也一樣）可以放頂層的 `tools/`，不算 app 本身；寫在 dev-remarks 的「建置與開發」。
+- 圖上沒有的其他頂層目錄與檔案（例：端到端測試、`CLAUDE.md`）由 app 決定，寫在 dev-remarks 的「建置與開發」。
 - **`docs/icon.svg` 是家族 mark 的正本**。Go 的 `go:embed` 讀不到 `docs/`，所以 splash 用的那一份放在程式裡（`internal/` 裡的副本檔，
-  或寫死的格子），Rules E6 的測試守住它跟 `docs/icon.svg` 一模一樣。
+  或寫死的格子），tdp E6 的測試守住它跟 `docs/icon.svg` 一模一樣。
 - 出 Windows 版的 app 另有 `install.ps1`、`uninstall.ps1`，由 app 自己寫，不在範本裡。
 
 **為什麼**：家族裡大多數 app 本來就是 `cmd/<app>` 加 `internal/`，照它搬的 app 最少。程式只在兩個地方，根目錄只剩 repo 層級的
@@ -66,7 +72,7 @@ CHANGELOG、發布。principle 講使用者看得到的規則，components 講�
 
 - 版本放在 `internal/version`（範本 [`version.go`](version.go)）：`Version` 是不帶 v 的版號，`Display()` 印出時補上 v。
 - goreleaser 發版時注入 tag 去掉 v 的版號（例：tag `v0.2.0` → `0.2.0`）。`<app> version` 與 splash 印 `Display()`（例：
-  `v0.2.0`；Rules E1、S5）。
+  `v0.2.0`；tdp E1、S5）。
 - 本機的 `make build`、`go build` 不注入，版本是 `dev`。
 
 **為什麼**：`dev` 一眼看得出不是發布版。要比較版本新舊的地方（例：ccdrawu 的更新檢查）用不帶 v 的 `Version`，遇到 `dev`
@@ -150,7 +156,8 @@ Each release names the version of terminu design (tdp) it follows.
 3. commit，打 tag `vX.Y.Z`。
 4. push commit 與 tag。[`release.yml`](release.yml) 接著做：
    - 測試：ubuntu 與 macOS 跑 `go test -race`（出 Windows 版的 app 加 Windows，不帶 `-race`）；
-   - goreleaser：建置、發 GitHub release、推 Homebrew tap `vulcanshen/homebrew-tap`（出 Windows 版的加 scoop bucket）；
+   - goreleaser：建置、發 GitHub release、推 Homebrew tap `vulcanshen/homebrew-tap`（照 tdp 做的 app 推自己的 tap；出 Windows 版的加
+     scoop bucket）；
    - 用 CHANGELOG 那一段蓋過 release 的內文。goreleaser 推 tap 失敗時這一步照樣做；release 還沒建好就跳過。
 
 - **token**：goreleaser 讀 `GITHUB_TOKEN`，發 release 與推 tap 都用它。workflow 在 repo 的 secret `ACTION_TOKEN`（PAT）有設時

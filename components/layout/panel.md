@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](panel-zh_TW.md)
 
-A panel's frame, ordinary lists (groups included), panels with one value per row, details, and the panel filter. How the whole screen is laid out is
+A panel's frame, ordinary lists (the location row and groups included), panels with one value per row, details, and the panel filter. How the whole screen is laid out is
 in [`screen`](screen.md).
 
 ## Frame
@@ -12,7 +12,9 @@ in [`screen`](screen.md).
   content excepted (Rules T2).
 - **Left of the top border: the `[N] label` capsule**, right after the corner. `N` is also the digit key that jumps
   straight to that panel (within the current screen only, Rules K1). When the panel has tabs, `[N]` is a part of its
-  own, the tabs follow it, and the first tab's name is the label (see the capsule chain below). While the panel is loading, the loading icon sits after the whole capsule chain (tabs
+  own, the tabs follow it, and the first tab's name is the label (see the capsule chain below). A name in the label keeps
+  its case, as in a popup title (`[2] PODS: nginx-7d4f`, `[1] prod-web-01`; "Uppercase" in the
+  [components](../README.md)). While the panel is loading, the loading icon sits after the whole capsule chain (tabs
   included), with one space on each side (e.g. `┏[2] PODSEVENTSYAML 󰪞 ━━━┓`; the loading in [`popup`](popup.md)).
 - **Right of the top border: the mode name** (Rules K11), set between two border junctions like a tag inlaid in the
   frame: `┏[1] KINDS━━━┫Drag┣━┓`, `┏━YAML━━━━┫Visual┣━┓`. The junctions take the frame's colour and follow its
@@ -23,7 +25,8 @@ in [`screen`](screen.md).
   colour along with the frame.
 - **Left of the bottom border: the hint**, which every panel must have — the exceptions are while the focus is on a
   panel filter's typing row and while it is in a PTY in the panel: no hint then, and it comes back on the list or on
-  leaving the PTY. Right of the bottom border: the scroll position
+  leaving the PTY; nor when no key on the panel does anything (see the hint below). Right of the bottom border: the
+  scroll position
   (see "Ordinary lists" below).
 - **Text on the frame always keeps one line segment away from the corner**; only the `[N] label` capsule sits right after
   the top-left corner: the hint is `┗━ Enter:logs`, the scroll position `3 of 40 ━┛`, the mode name `┫Drag┣━┓`.
@@ -39,7 +42,8 @@ what `Enter` does here, the common hotkeys; not the movement keys, nor the core 
 are in the Space menu and `?`. When the list has no items (a panel filter matched nothing, or it was empty to begin
 with), `Enter` and the hotkeys on an item are dropped, and only those on the whole panel stay — as with a finder and a
 form's buttons, the hint shows only keys that do something ([`input/finder`](../input/finder.md),
-[`dialog/form`](../dialog/form.md)). When focused, keys Blue and descriptions Overlay0; unfocused, it stays and is dimmed with
+[`dialog/form`](../dialog/form.md)). When no key is left after that (e.g. a read-only panel, or an empty list with no
+key on the whole panel), the left of the bottom border has no hint, only the line. When focused, keys Blue and descriptions Overlay0; unfocused, it stays and is dimmed with
 the panel. When it does not fit, whole pairs are dropped from the end, and the scroll position stays.
 
 **Why**: the hint on a panel's bottom border tells the user "what pressing what does on this panel", while the footer
@@ -74,16 +78,18 @@ are all drawn the same way:
     foreground Base, background the chain's colour.
   - Both unselected: U+E0B1, foreground the chain's colour, no background painted; both selected: U+E0B1, foreground
     Base, background the chain's colour (only `[N]` and the first tab are ever both selected, and there it is as in "A
-    panel's tabs" below: a space, no seam).
+    panel's tabs" below: a blank one powerline symbol wide, no seam).
   - Each end takes the fill of the part beside it: when the first or last part is unselected, that end is Base
     (invisible on a Base terminal background, leaving a gap one powerline symbol wide).
   - Every end and join takes the width of one powerline symbol (Rules E5: one cell as a rule; two on a terminal where it
     takes two), and keeps it even where it cannot be seen, so changing the selected part shifts no text.
-- No space before or after the text inside a capsule: `[1] TABS`. The text is uppercase, the letters in a hotkey marker
-  as written ("Uppercase" in the [components](../README.md)).
+- No space before or after the text inside a capsule: `[1] TABS`. The text is uppercase, a name as it is
+  (`[2] PODS: nginx-7d4f`), the letters in a hotkey marker as written ("Uppercase" in the [components](../README.md)).
 - **A panel's tabs**: `[N]` is a part of its own and always selected; each tab after it is a part, and only the current
   tab is selected. The panel has no other name: the first tab's name is the label. When `[N]` and the first tab are
-  both selected (on the first tab), a space joins them instead of a seam, so it looks like a panel without tabs:
+  both selected (on the first tab), a blank joins them instead of a seam, so it looks like a panel without tabs; the
+  blank takes the width of one powerline symbol, as a seam does (two blank cells on a terminal where the symbol takes
+  two), so changing tabs shifts no text:
 
   ```
   ┏[2] PODSEVENTSYAML━━━━━━━━━┓   ← on PODS: "[2] PODS" filled
@@ -93,7 +99,9 @@ are all drawn the same way:
 - **Tabs after a popup title**: one line segment away from the rounded title (the title in [`popup`](popup.md)).
 - **When it does not fit**: first shrink the unselected ones to their first character or glyph (`[M] [F] [S]`); if it
   still does not fit, fold away unselected ones from the end and draw a `…` instead. The selected one always stays, and
-  the frame is never stretched wider (Rules L4).
+  the frame is never stretched wider (Rules L4). When the selected part is too long on its own, its text is cut at the
+  end with `…`; the slanted ends are still drawn, and a line segment still stays between it and the frame's corner
+  (e.g. `┏[2] DEPLOYM…━┓`).
 
 **Why**: in the family a capsule means "a name" — what the panel is called, which page, which screen (Principle P4).
 With all these uses sharing one look, the user who recognises one recognises them all. Unselected ones do not use
@@ -103,7 +111,10 @@ block of colour appears only on the selected part, which shows at a glance which
 sticks out beside an unselected one. The thin line between two unselected parts paints no background: its shape does
 not depend on one, and only the solid triangles need Base to draw their unfilled side. `[N]` is a part of its own: apart
 from the number only the current tab is lit, so there are never two blocks that both look current; on the first tab a
-space joins them, the same as a panel without tabs, and no panel with tabs needs a name of its own. Slanted ends here and
+blank joins them, the same as a panel without tabs, and no panel with tabs needs a name of its own; the blank is as wide
+as a seam, so moving between the first tab and the others never jumps the text by a cell. A selected part that is too
+long loses text, not its slants: the slants are the shape that says "a capsule", and without them it no longer reads as
+a name. Slanted ends here and
 a rounded popup title: a panel fixed on the screen and a popup floating above it can be told apart by the ends of their
 capsules.
 
@@ -132,6 +143,17 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   and sort by value (`9` before `10`), text aligns left and sorts as text. Two cells between columns
   ("Diagrams and spacing" in the [components](../README.md)). A column being sorted on gets `nf-fa-sort_amount_asc` (U+F160, ascending) or `nf-fa-sort_amount_desc` (U+F161, descending) after its title;
   when several columns sort together, the rank goes before the arrow, e.g. `Name (2)` followed by the arrow.
+  **Sort groups**: the app may give each row a group, in an order the app sets; sorting works only within a group, and
+  no title is drawn between groups (e.g. filu's directories always come before its files, and sorting by name sorts each
+  on its own).
+- **The list's order is fixed**: every time it opens and every time it is fetched again, the same data comes out in the
+  same order. When the data has no order of its own (e.g. kubeconfig's contexts, which may read back in a different
+  order each time), the app sorts it before showing it, by name by default, numbers by value; data with an order of its
+  own (a history by time, something the user ordered) keeps that order.
+- **When the columns do not fit**: whole columns go first, then the rest shrink. The app gives each column an order in
+  which it goes, and the most important one (the name) never goes; when they do not fit, the least important column is
+  taken away whole (its header with it), until they fit or only the columns that cannot go are left, and only then do
+  the columns shrink in proportion. When the terminal grows, the columns come back in the same order.
 - **Scroll position**: when the content does not fit, the right of the bottom border reads `N of M` (which entry the
   cursor is on, how many in all), in the border colour; nothing when everything fits. A panel without a cursor (a
   preview, a log) shows the visible lines, `N-M of T`.
@@ -146,8 +168,11 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   [`input/reorder`](../input/reorder.md) while holding an item: `j|k` move it (wrapping at the ends, Rules K12),
   `Enter` drops it, `Esc` puts it back.
 - **Truncation**: cut at the end, with `…`. Where the end matters more, such as paths and file names, it may be cut at
-  the front (`…/.ssh/id_ed25519`).
-- **Empty**: as the empty states in [`screen`](screen.md).
+  the front (`…/.ssh/id_ed25519`); where both ends matter (e.g. a pod's name: the deployment at the front, the random
+  part that tells one from another at the end), it is cut in the middle, with the `…` there (`demo-app…66-gm72n`). The
+  app sets where each column is cut.
+- **Empty**: as the empty states in [`screen`](screen.md). The empty state takes the whole panel, the header included,
+  its sentence centred in the panel.
 
 **Loading and errors**:
 
@@ -160,7 +185,36 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
 **Why**: the cursor is "the row `Enter` acts on"; a solid background across the whole row, ending in an arrow, says so
 in both shape and colour (L5). Marks use the checkbox tick: marked means "picked", the same thing as a ticked checkbox, in the same colour.
 A list with several columns always has a header: what the columns mean and the sort arrows both rest on it. With the
-header fixed, what each column is stays visible however far you scroll.
+header fixed, what each column is stays visible however far you scroll. Columns that do not fit go whole: with every
+column shrunk a little, none can be read in full; with the least important one taken away, the rest still read in
+full, and the name is always there to tell which entry it is. Sort groups keep a fixed order such as "directories
+first" from being scattered by sorting. An empty list loses its header too: with no data, the column names have nothing
+to label, and one centred sentence says it best.
+
+### Location row
+
+A row above the list giving where you are now (a path, the level drilled down to), e.g. filu's directory, sshu's remote
+path, the level kbu reaches going from a Deployment into its Pods. **Whether there is one is up to the app**.
+
+```
+┏[2] FILES━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ …/sideproj/terminu/components/layout          ┃  ← location row: Lavender, cut at the front when too long
+┃   NAME              SIZE  MODIFIED            ┃
+┃   panel.md         12 KB  2026-10-19 14:02    ┃
+┗━ Enter:open ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+- **Where**: the first row in the panel, one cell from the frame; above the header when there is one, and above a panel
+  filter's typing row when that shows. Fixed at the top, never scrolled.
+- **Colour**: Lavender (the user footprint and breadcrumb in [`color`](../color.md)); dimmed with the panel when it is
+  unfocused (Rules T2).
+- **Too long**: cut at the front with `…`, keeping the end (the level you are on is the last part).
+- **Shown only**: it cannot be acted on; the cursor never stops on it, and the scroll position does not count it.
+
+**Why**: "where am I now" written in the label makes the label longer and longer, until the capsule's truncation eats
+it; written in a row of its own inside the panel, the whole path fits, and the label stays the panel's name. Lavender:
+it is the footprint the user left on the way here, the same meaning as the "where you are now" values on the statusbar.
+Not every app has a "where" to show, so the row is optional.
 
 ### Groups
 
@@ -221,11 +275,17 @@ A panel with one value per row, like a settings screen (locku's preference, webu
   (its right padding is the arrow); it spans as in a form, from the start of the item to the panel's inner right edge (from the value for a field, from the
   option for an option).
 - **Labels**: uppercase; Blue normally, Surface2 when disabled, Red when its value has an error (over any other colour). They are
-  dimmed with the panel when it is unfocused (T2). The label column is as wide as the longest label, with two cells
-  between it and the values.
+  dimmed with the panel when it is unfocused (T2). The label column is as wide as the longest of the labels and the
+  header's first column name (e.g. a 7-cell `SETTING` header over a longest label `DRAWER` of 6 cells gives 7), with two
+  cells between it and the values; the header's second column name lines up with the values.
 - **Header** (`PROPERTY  VALUE` in the example): whether there is one is up to the app. If there is, it takes Overlay0
   (dim text in [`color`](../color.md)); otherwise as an ordinary list's header (uppercase, not bold, fixed at the top
   and never scrolled).
+- **Scroll position**: as in a form, counted in fields — in `N of M`, N is the field the focus is on and M the number of
+  fields; a radio's options count as one field (["When the content does not fit"](popup.md) in popup).
+- **The "each row" section of `?`** (whether there is one is up to the app): the key reference may open with a section
+  saying what each row is — the setting's name on the left (in normal text), its description on the right; the key
+  sections follow it (the key reference in [`dialog/note`](../dialog/note.md)).
 
 **Why**: a settings screen and a form are the same thing — one value per row, changed one by one — except that a change
 takes effect at once. With one set of rules, what the user learns in a form works on a settings screen too. Labels are
@@ -233,7 +293,10 @@ Blue, the colour of the focused frame: the same idea as a form's labels taking t
 the popup frame. The header is not Blue: the labels under it already are, and a Blue header would run into them
 and not read as a header; an ordinary list's header has Text data under it, which is what sets it apart. A header says
 what a column is and cannot be acted on, so it takes dim text, as a menu's section titles do. The header is optional:
-each row's label already says what the row is.
+each row's label already says what the row is. The label column is measured with the header: measured on the labels
+alone, a wider header would push its second column out of line with the values. The scroll position counts fields, as in
+a form: the user counts settings, not rows of text. When a label of a word or two cannot say what a row governs, the
+"each row" section at the top of `?` fills it in; an app with few settings whose names say enough needs no such section.
 
 ## Details
 
@@ -251,7 +314,8 @@ saw while moving would always be the previous item; changing at once, you see wh
 
 ## Panel filter
 
-`/` brings up a typing row at the top of the panel (above the header, when the list has one), and the list is filtered
+`/` brings up a typing row at the top of the panel (below the location row when there is one; above the header, when the
+list has one), and the list is filtered
 live as you type, with no popup (kbu's panel search, sshu's Hosts, webu's list filters).
 
 ```

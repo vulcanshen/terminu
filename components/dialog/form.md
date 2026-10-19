@@ -62,6 +62,8 @@ Each field takes one of two arrangements.
 
 - Radio and checkbox fields with **five options or fewer** have them drawn in the form; with more than five, use a select
   or a checkbox popup instead (opened with `Enter`).
+- **A switch** (a value that is only on or off) may be drawn as one checkbox or as a radio with the two options off and
+  on, as the app chooses ([`input/checkbox`](../input/checkbox.md), [`input/radio`](../input/radio.md)).
 - Options always run down, one a row: the focus block runs from the option to the frame, and across it would cover the
   options after it and hide whether they are chosen.
 - The glyphs are in [`input/radio`](../input/radio.md) and [`input/checkbox`](../input/checkbox.md).
@@ -74,7 +76,9 @@ The focused item is drawn like a menu's cursor row — the layer colour as backg
 ([`dialog/menu`](menu.md)). It runs from the start of the item all the way to the frame (covering the right padding): from the value for a field, from
 the option for an option, the button itself for a button; an empty value is still a full block of background. A block
 that runs to the frame ends in the arrow U+E0B0 in the layer colour (as a menu's cursor does); a button's block is the
-button itself, with no arrow.
+button itself, with no arrow. A form is a popup with a full-row cursor too: every row's right padding is as wide as the
+arrow (the padding in [`layout/popup`](../layout/popup.md); two cells on every row where a powerline symbol takes two),
+so the arrow fits without covering text.
 
 **The colour of the label** does not change with the focus.
 
@@ -265,6 +269,11 @@ not one of the form's keys is pressed (`q` included), a note pops up to explain:
 
 - The title is the field's name; both `Enter` and `Esc` close it, back to the form with the focus unmoved
   ([`dialog/note`](note.md)).
+- **The note takes only `Enter` and `Esc`**: while it is open, every other typeable character (`q` and `?` included)
+  does nothing and does not pass through — it catches everything typed after it, so `q` does not start quitting
+  (Rules K9) and `?` does not open the key reference.
+- When it is very narrow and the explanation does not fit, it wraps as in [the components' "Wrapping"](../README.md),
+  never cut.
 - **The form's own keys** bring up no note:
 
   | Key | On a form |

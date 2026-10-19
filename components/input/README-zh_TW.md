@@ -9,9 +9,10 @@
 一種 popup：輸入或選出一個值，確定後寫回去；一個 popup 一個值（Rules F1）。
 
 - **打字列上是輸入態**（Rules K8）：字母、`Space`、`?`、`q` 都是字元。不打字的部分（select 的清單、picker）不是輸入態，core key
-  照 Rules K1：`?` 打開 key reference，`q`／`Ctrl-C` 進離開流程，`Space` 不作用（K5），`hjkl` 移動（K12）。
+  照 Rules K1：`?` 打開 key reference，`q|Ctrl-C` 進離開流程，`Space` 不作用（K5），`hjkl` 移動（K12）。
 - **`Enter`**（Rules K3）：focus 在值上時確定這個值 —— 寫回去、popup 關掉。值不合格就不寫回，錯誤寫在錯誤列，popup 不關。值跟打開時
-  一樣，就不寫回、直接關掉。
+  一樣，就不寫回、直接關掉 —— 只限打開時就合格的值：打開時是空的、這一欄又不能空，什麼都沒打就按 `Enter` 照樣擋下來，錯誤寫在
+  錯誤列（有建議值時 `Enter` 用建議值，見下面的「新建一個值：建議值」）。
 - **錯誤點名的是值的名字**：從表單的欄位打開的，就是那一欄的名字；自己打開的 input，標題寫的是這個 popup 在做什麼
   （[`layout/popup`](../layout/popup-zh_TW.md) 的 `RENAME`、`SAVE AS`），值的名字由 app 另外給（`Name`）。例：`SAVE AS` 上寫
   `Name can't have control characters`，不寫 `Save as can't have control characters` —— 標題說的是在做什麼，不是值叫什麼。
@@ -46,6 +47,8 @@ text、password、number 共用。
   全部操作（Rules M3）。
 - **寬度**：自由打字的值，寬度不確定，用 Rules F7 的上限；有長度上限的值（例：PIN、範圍已知的數字），寬度確定，照
   [`layout/popup`](../layout/popup-zh_TW.md) 的「內容的寬度打開時就確定」。
+- **跟骨架不同的兩處**：password 的解鎖樣式沒有說明列，要輸入什麼由標題講（[`password`](password-zh_TW.md)）；number 有單位時，
+  打字列下面多一列單位列（[`number`](number-zh_TW.md)）。
 
 ## 值比框長時
 
@@ -66,9 +69,9 @@ text、password、number 共用。
 | 鍵 | 作用 |
 |---|---|
 | 字元、`Space` | 插在游標處 |
-| `←` / `→` | 游標往左、往右移一個字 |
-| `Home` / `End` | 游標跳到最前面、最後面 |
-| `Backspace` / `Delete` | 刪游標前面的字 / 游標上的字 |
+| `←\|→` | 游標往左、往右移一個字 |
+| `Home\|End` | 游標跳到最前面、最後面 |
+| `Backspace\|Delete` | 刪游標前面的字、游標上的字 |
 
 - **一個字是看起來的一個字**：中文一個字、emoji 一個、組合字元連同前面的字算一個；貼上進來的控制字元各算一個（`\n`、`\x1b`）。
 - **不做 shell 的刪字快捷鍵**：`Ctrl-U`、`Ctrl-W` 不收。其他 `Ctrl-`、`Alt-` 組合在打字列上沒有作用、不打出字。
@@ -90,10 +93,26 @@ text、password、number 共用。
 - 值是空的時候按 `Backspace`：不要這個值，灰字消失；這時按 `Enter` 存成空的（欄位不能空時照錯誤處理）。
 - 什麼都沒碰就按 `Enter`：不改，關掉。
 - 有灰字時 hint 加 `Tab:edit Backspace:clear`（例：`Enter:rename Tab:edit Backspace:clear Esc:cancel`）。
-- 灰字提議只有這一種來源：舊值。沒有提議時 `Tab` 不作用。
+- 灰字提議有兩種來源：舊值，與沒有舊值時 app 給的建議值（下一節）；兩種不會同時出現。沒有提議時 `Tab` 不作用。
 
 **為什麼**：預填的長值要整個換掉時，得按住 `Backspace` 刪到底；提議讓「重打」不用先刪、「小改」多一下 `Tab`、「不改」直接 `Enter`。
 這是單行值（檔名、主機名稱）的情況；多行文字改的多半是補一句、改幾個字，而 textarea 的 `Tab` 是縮排，收不了提議。
+
+## 新建一個值：建議值
+
+```
+┃  █ssets.zip                         ┃   ← 沒有舊值；app 建議的值是灰字（Overlay0），游標壓在第一個字（`a`）上
+```
+
+- **沒有舊值、app 有合理的預設時**（例：打包成的檔名 `assets.zip`、新建的東西的名字），用灰字提議顯示它，叫建議值。只用在單行的
+  input（text、number），跟舊值一樣。
+- 長相、`Tab`、直接打字、`Backspace`、hint 都跟舊值的提議一樣。
+- **差別只在什麼都沒碰就按 `Enter`**：舊值是「不改」，關掉；建議值是「用這個值」，照確定一個值處理 —— 寫回去、照常檢查。
+- 欄位不能空、又有建議值時，什麼都沒打按 `Enter` 就用建議值，不會出現「不能空」的錯誤；按 `Backspace` 讓灰字消失後再按 `Enter`，
+  才照錯誤處理。
+
+**為什麼**：新建東西時，多半有一個合理的名字可以直接用；建議值讓「照建議」直接 `Enter`、「小改」多一下 `Tab`、「自己取」直接打。
+舊值不碰就按 `Enter` 是什麼都不做，建議值不碰就按 `Enter` 是使用者接受了這個值 —— 不寫回的話，`Enter` 等於沒有作用。
 
 ## 不放 placeholder
 
@@ -135,11 +154,13 @@ panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：�
 - **空的值**：用灰字（Overlay0）寫出「空著代表什麼」，由 app 寫（`not set`、`ssh decides`、`none`）。一片空白看不出是沒設、設成空字串、
   還是還沒載入。不寫教人按鍵的字（例：`enter to browse ~/.ssh`）：hint 會寫 `Enter:edit`。
 - **太長**：從尾端截，加 `…`；路徑從前面截（`…/.ssh/id_ed25519`）。
+- **控制字元**：跟打字列一樣，照實寫成紅色的轉義（`\n`、`\x1b`，見上面的「貼上的控制字元」），不丟、不換成空白。
 - **各種 input**：
 
   | input | 顯示 |
   |---|---|
-  | text、number | 值本身 |
+  | text | 值本身 |
+  | number | 值本身；有單位時空一格接單位，寫完整的字（`10 seconds`，[`number`](number-zh_TW.md)） |
   | password | 設了：固定 8 個 `•`；沒設：照空值 |
   | textarea | 第一行；後面還有就加 `…` |
   | select | 選中那一項的文字 |
@@ -148,5 +169,5 @@ panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：�
   | radio、checkbox（畫在表單上） | 選項本身（[`radio`](radio-zh_TW.md)、[`checkbox`](checkbox-zh_TW.md)） |
   | slider | 軌道加數字（[`slider`](slider-zh_TW.md)） |
   | datetime picker | 格式化的日期（時間），格式由 app 決定（`2026-10-15`、`2026-10-15 10:05`） |
-  | color picker | 3 格的色塊（`███`）、空一格、hex（`███ #2A2A3C`） |
+  | color picker | 3 格的色塊（`███`）、空一格、hex（`███ #2A2A3C`，一律大寫，[`color-picker`](color-picker-zh_TW.md)） |
   | file-picker | 路徑，家目錄寫成 `~` |

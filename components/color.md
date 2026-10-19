@@ -23,8 +23,9 @@ syntax highlighting) are up to the app; this file governs the interface elements
 5. **What is lit is what has the focus** (Principle P6): everything but the top layer is dimmed (F8), an unfocused panel
    is dimmed (T2, streaming content excepted), of one key's two indicators the one that fires is lit (M9), and the cursor
    on a part without the focus is dimmed.
-6. **Bold is used only for**: text on the cursor, popup titles, text in selected capsules, mode names, and the loading
-   icon after a popup title.
+6. **Bold is used only for**: text on the cursor, popup titles, text in selected capsules, mode names, the loading icon
+   after a popup title, the splash's name (Rules S5), and the app's name in the middle of a screen smaller than the
+   app's minimum size (Rules L1, [`layout/screen`](layout/screen.md)).
 
 ## Colour codes (catppuccin-mocha)
 
@@ -34,18 +35,21 @@ syntax highlighting) are up to the app; this file governs the interface elements
 | Focus | the focused frame (heavy line `┏━┓`); keys that can be pressed now in hints, the footer and the key reference; the labels and a list's header row in the focused panel; the screen chip row | Blue `#89b4fa` |
 | Unavailable | an unfocused frame (light line `┌─┐`, the same width as the heavy line, so switching shifts nothing); disabled rows, labels and options; a checkbox option not available (a state only, still tickable); days out of range | Surface2 `#585b70` |
 | Layer colour | a popup's frame (heavy line `┏━┓`) and the fill of its title capsule; the cursor block in a popup | see "Popup layer colours" below |
-| Being edited, user footprint | the value and the text cursor in an input popup; positions the user leaves behind (the "you are here" of breadcrumbs, the "where you are now" values on the statusbar) | Lavender `#b4befe` |
-| In effect | the value now in effect (the one a select chose, the ticked ones, the ones switched on; in a popup it follows the tick on screen, read as "the value `Enter` gives"); live sessions; work in progress and progress bars; what completed successfully | Green `#a6e3a1` |
+| Being edited, user footprint | the value and the text cursor in an input popup; positions the user leaves behind (a panel's location row — the breadcrumb, the current path or the level drilled down to, see [`layout/panel`](layout/panel.md); the "where you are now" values on the statusbar) | Lavender `#b4befe` |
+| In effect | the value now in effect (the one a select chose, the ticked ones, the ones switched on; in a popup it follows the tick on screen, read as "the value `Enter` gives"); live sessions; work in progress and progress bars (a single-screen app writes it in the work's own row, see [`layout/screen`](layout/screen.md)); what completed successfully (the text of a Success toast) | Green `#a6e3a1` |
 | Mode | a mode's frame and mode name, the range selected in a mode, the row held in a Drag (Rules K11) | Yellow `#f9e2af` |
 | Warning: worth noticing, not broken | the warning sentence in a confirm; the text of a Warning toast | Peach `#fab387` |
 | Error | the error row, a label in error, the error popup, the text of an Error toast, pasted control characters (`\n`, `\x1b`…; their background, with Base text, while the cursor rests on one) | Red `#f38ba8` |
-| Dim text | descriptions and section titles in a menu; the header row of a one-value-per-row panel; the colon and description in hints and the footer, and the `\|` between keys (`j\|k`); description rows; grey suggestions; the description of an empty value; an unfocused typing row; empty states; separators (inside popups, below the screen chip row) | Overlay0 `#6c7086` |
+| Dim text | descriptions and section titles in a menu; the header row of a one-value-per-row panel; the colon and description in hints and the footer, and the `\|` between keys (`j\|k`); description rows; grey suggestions; the description of an empty value; an unfocused typing row; empty states; the hint under the name on a screen smaller than the minimum size; separators (inside popups, below the screen chip row) | Overlay0 `#6c7086` |
 | Normal text | values in forms and panels; menu labels; descriptions in the key reference | Text `#cdd6f4` |
 | Panel cursor | the background of the cursor row in a panel, its text Base bold | Subtext1 `#bac2de` |
 | Button | the background of an unfocused button, its text in Text | Surface1 `#45475a` |
 
 - **The cursor block**: the layer colour as its background in a popup, Subtext1 in a panel, the text Base bold in both;
   a cursor on a part without the focus is the focused cursor dimmed once more (P6).
+- **Searching in text** (e.g. a viewer's `/`) adds no colour: every match is underlined and keeps its own colour; the
+  current match is drawn as the cursor block, meaning "you are here". The mode's Yellow is kept for a selected range;
+  searching does not use it.
 - Text placed on a cursor block always turns Base; its original colour is not kept. **Swatches are the exception**:
   cells whose content is a colour (the `███` of a colour value in a form or on a panel, the cells kamonu draws a mark
   in) keep their own colour, while the other text on the block still turns Base. The colour is that cell's value, and

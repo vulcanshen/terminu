@@ -3,13 +3,15 @@
 **Language**: [English](README.md) · 繁體中文
 
 terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 principle、components、project 的規定拆成一條一條可以檢查的
-項目，用來數一個家族 app 有多少 terminu 的 gene。版號、CHANGELOG 跟 tdp 一起走，每一版 tdp 有自己那一版的清單。條目在
-[`items-zh_TW.md`](items-zh_TW.md)。
+項目，寫出一個 app 照 tdp 要做到什麼、什麼情況下要做、從哪裡看得到。版號、CHANGELOG 跟 tdp 一起走，每一版 tdp 有自己那一版的
+清單。條目在 [`items-zh_TW.md`](items-zh_TW.md)。
+
+清單只寫要查什麼。怎麼判 —— 判定有哪幾種、怎麼數、怎樣算通過 —— 由 terminu harness 決定，不在 tdp 裡（見下面的「怎麼判」）。
 
 ## 規範才是依據
 
 - 清單從規範拆出來；兩者對不上時，以規範的文字為準，對不上的地方回報成 tdp 的缺漏。
-- **只看 tdp，不看用什麼實作**：用不用 terminu-go、用什麼語言寫，都照同一份清單判。用 terminu-go 的 app 也不會自動全部符合 ——
+- **只看 tdp，不看用什麼實作**：用不用 terminu-go、用什麼語言寫，都照同一份清單查。用 terminu-go 的 app 也不會自動全部符合 ——
   app 自己交的東西（例：`docs/icon.svg`、README、dev-remarks）lib 管不到。
 - 規範裡寫明「由 app 決定」的部分、例子、「為什麼」、「實作參考（不是規定）」不拆成條目。
 
@@ -25,7 +27,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 
 ## 編號
 
-- **固定不變**：規定刪掉時編號作廢、不再用；新的規定接在同一個出處的最後。不同版本的成績單用編號對得起來。
+- **固定不變**：規定刪掉時編號作廢、不再用；新的規定接在同一個出處的最後。不同版本的結果用編號對得起來。
 - **前綴**：rules 用規則編號（`K4-1`）；components 與 project 用檔名（`popup-3`、`checkbox-4`），`components/README` 用 `components-`、
   `input/README` 用 `input-`、`project/README` 用 `project-`。沒有規則編號的段落：rules 開頭的「偏離」「引用」用 `departure-`、
   `references-`，principle 的術語用 `terms-`，S 章開頭（splash 佔滿整個畫面）用 `S0-`。編號只用英文字母、數字與 `-`，中英文兩份一樣，
@@ -33,9 +35,10 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 
 ## 適用
 
-- **`都要`**：每個家族 app 都要符合。
+- **`都要`**：每個 app 都要符合。
 - **功能的名字**：app 有這個功能時，這一條才算數。用「、」隔開的，有其中一個就算；用「＋」連起來的，要同時有。
-- **功能裡的情況**：條目寫的是某種情況（例：「confirm 有警告句時……」），app 有這個功能、卻沒有那種情況時，這一條判不適用。
+- **功能裡的情況**：條目寫的是某種情況（例：「confirm 有警告句時……」），app 有這個功能、卻沒有那種情況時，這一條不適用。
+- **不在 TUI 裡的畫面**（例：locku 鎖定時的螢幕保護與 PIN 框）不是 surface：「每一個 surface」的條目不管它（Rules K1）。
 
 | 功能 | 什麼樣的 app 算有 |
 |---|---|
@@ -46,16 +49,21 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 分組清單 | panel 上有分組的清單 |
 | 明細 panel | 有跟著另一個 panel 的 cursor 換內容的明細 |
 | 表頭 | 有清單有表頭（多欄的一般清單一定有） |
+| 位置列 | 有 panel 的位置列（layout/panel） |
 | 排序 | 有可以排序的清單 |
 | 標記 | 有可以標記、整批操作的清單 |
 | Drag | 有 Drag mode |
 | panel filter | 有 panel filter |
 | statusbar | 有 statusbar |
+| zoom | 有放大 panel 的功能（layout/screen） |
 | 串流內容 | 有一直進來的內容（例：log） |
 | loading | 有 panel 或 popup 要等內容載入 |
 | 模式 | 有模式（Rules K11） |
+| 模式（在 panel 上） | 有開在 panel 上的模式（例：panel 的 Drag） |
+| 模式（在 popup 裡） | 有開在 popup 裡的模式（例：viewer 的選取模式、reorder 的 Drag） |
 | 停用 | 有暫時不能執行的動作、停用的項目或欄位 |
-| 長時間工作 | 有長時間的工作（畫面 chip 列下的進度） |
+| 長時間工作 | 有長時間的工作（畫面 chip 列下的進度，或單畫面 app 工作那一列的進度） |
+| 工作清單 | 有工作清單：列出 app 正在跑或跑過的工作的 menu（例：sshu 的 Jobs） |
 | PTY | 有 PTY（在 panel 裡或 terminal popup） |
 | terminal popup | 有 terminal popup |
 | popup tab | 有帶 tab 的 popup |
@@ -67,28 +75,26 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | input | 有任何一種 input（input popup，或表單、panel 上的欄位） |
 | text、password、number、select、radio、checkbox、slider、textarea、color picker、datetime picker、file-picker、reorder | 有這一種 input |
 | finder | 有 finder，或任何一種 finder（select、checkbox popup、file-picker 都是 finder 的一種，input/finder） |
+| 有預覽的 finder | 有帶預覽的 finder：一般的 finder、file-picker（select、checkbox popup 沒有預覽） |
+| 有檔案預覽 | 有預覽檔案、目錄的 popup：file-picker，或預覽檔案的 finder |
 | 存設定或資料 | 有設定、資料、狀態或快取寫到磁碟 |
 | 出 Windows 版 | 發布 Windows 版 |
+| 發過版 | 發布過（有 tag 與 GitHub release）；還沒發過版的 app，只有發版之後才有的東西（release、tap 上的 formula……）不適用，看得到的照現在的 repo 查 |
 | mouse | 有做 mouse |
 
-## 判法
+有 color picker 就算有 select（R、G、B 按 `Enter` 開 00–FF 的 select），也就算有 finder。
 
-每一條判成下面其中一種：
+### 家族成員與照 tdp 做的 app
 
-| 判定 | 意思 |
-|---|---|
-| 符合 | 做到這一條 |
-| 偏離 | 沒做到，但 dev-remarks 的「偏離 tdp」寫了這一條與原因（Rules 開頭的「偏離」） |
-| 違反 | 沒做到，也沒寫成偏離 |
-| 不適用 | app 沒有這一條的「適用」寫的功能，或沒有條目寫的那種情況 |
-| 判不了 | 沒辦法確認（例：要讀檔案卻拿不到 repo、要特殊環境才打得開的畫面），寫出原因 |
+條目寫了兩種寫法的（repo 的帳號、Homebrew tap、splash 的作者信箱、README 的 terminu family 段；Rules 的 E 章開頭），照 app 是家族成員
+還是照 tdp 做的 app，查那一種。其他條目兩種 app 都一樣。
 
-判的時候標明照哪一版 tdp 判。偏離、違反、不適用、判不了列出來，告訴 app 缺了哪些、為什麼缺，哪些還沒確認。
+### 比最低尺寸小的畫面
 
-## gene
+「怎麼驗」要縮小終端機的（例：窄寬、放不下時），縮到 app 的最低尺寸為止（Rules L1）。比最低尺寸小的畫面只畫名稱與提示：那裡只有
+L1-3～L1-6 與 E5-13 的極小尺寸適用，畫面上的其他條目都不適用。
 
-- **每一條就是一個 gene**：app 判成符合的一條，就是 app 有的一個 terminu gene。偏離、違反、不適用、判不了都不算。
-- **只數有幾個，不算比例**：寫成 `tdp-<版本> <數> gene`（例：`tdp-0.7.2 860 gene`）。
-- **跟那一版 tdp 綁在一起**：那一版 tdp 的 gene 總數就是它的條目數；tdp 改版時總數會變，已經判過的結果照舊是當時那一版的數字。
-  不同版本的數字不直接比較。
-- app 做了 tdp 沒規範的東西，不算 gene，也不扣：判的時候另外列出來，回報成 tdp 的缺漏。
+## 怎麼判
+
+清單只寫查什麼、什麼時候算數、去哪裡看。判定有哪幾種、怎麼數、怎樣算通過、從畫面量時間時容許多少誤差、一個東西整個沒做時它的
+細節條目怎麼判，都由 terminu harness 決定。

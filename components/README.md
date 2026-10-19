@@ -38,30 +38,46 @@ as a gap in tdp at the same time.
   - **Two cells between columns**: a label and its value, a label and its description, the columns of a table, items
     side by side.
   - **One cell between a glyph and the text after it** (e.g. `󰈔 id_ed25519`, a radio's `󰐾 password`).
+- **The statusbar's `label: value` does not follow the two-cell rule**: it is written like a sentence, one space after
+  the colon (`[C]ontext: prod  [N]amespace: default`); two cells between groups, with no separator symbol (the statusbar in
+  [`layout/screen`](layout/screen.md)).
 
 **Why**: spacing is something users see; left to the implementation, the same thing ends up a cell or two off across the
 family, and the spec is no longer the one source to go by. Two general rules are easy to remember and carry over to new
 components: two cells keep two columns apart (a label and its value are in different colours anyway); a glyph with only
-one cell after it reads as one unit with its text.
+one cell after it reads as one unit with its text. The statusbar's `label: value` is a phrase: the colon already parts the
+label from the value, and two cells there would break it in two; two cells between groups are enough to keep them apart
+without drawing a symbol as well.
 
 ## Wrapping
 
-Wherever text wraps — a textarea, a viewer, a confirm, a toast, an error popup, the Rules S5 splash when too narrow — it
-wraps the same way:
+Wherever text wraps — a textarea, a viewer, a confirm, a note (e.g. a form's typing note), a toast, an error popup, an
+empty state's sentence, the Rules S5 splash when too narrow — it wraps the same way, and what does not fit wraps rather
+than being cut:
 
 - **Break between words**: when the next word does not fit on the row, the whole word goes to the next row (e.g. an
   English word moves whole).
 - **A break may fall between any two wide characters** (two cells, e.g. Chinese, Japanese): the place between a wide
   character and the character before or after it counts as a break too, so such text fills a row before going on.
-- **Only a word wider than a row on its own** (e.g. a long URL) is cut by cells.
+- **Only a word wider than a row on its own** (e.g. a long URL) is cut by cells; when the row already has text before
+  it, it starts a new row first and is cut there, not cut on after that text.
 - **A wide character is never cut in half**: when cutting by cells leaves one cell on a row, that wide character goes
   whole to the next row.
 - **The space at a break**: in a textarea and a viewer every character is drawn (the text cursor and the selection
   mode stop on it), so when a word fills a row exactly and a space follows, that space is drawn in the next row's first
-  cell; text that is only shown (a confirm, a toast, an error popup, the splash) does not draw the space it breaks at.
+  cell; text that is only shown (a confirm, a note, a toast, an error popup, an empty state, the splash) does not draw
+  the space it breaks at.
+
+```
+see                     ← a row of 20 cells: the URL does not fit, so it starts a new row
+https://example.com/    ← cut by cells from the start of the new row
+very/long/path/abc
+```
 
 **Why**: text broken in the middle of a word can't be read; the splash already breaks this way (Rules S5). With one
-rule, text wraps the same wherever it wraps in the family.
+rule, text wraps the same wherever it wraps in the family. A long word starting a new row before it is cut is the same
+idea as "a word that does not fit moves whole to the next row": the URL begins a row of its own, easy to recognise and
+to copy, not half of it hanging after the words before it.
 
 ## Uppercase
 
@@ -75,6 +91,9 @@ rule, text wraps the same wherever it wraps in the family.
   `ALTERM: myhost`, `IDENTITY FILE · ~/.ssh` (what goes before the name: "Title" in [`layout/popup`](layout/popup.md));
   a form button's hint lowers only its verb, `Overwrite KBU.svg` → `Enter:overwrite KBU.svg` (the hint in
   [`dialog/form`](dialog/form.md)).
+- **A panel's title too**: the label is split into "what this is" (uppercase) and a name (as it is), joined the way a
+  popup title joins them — `[2] PODS: nginx-7d4f`; a label that is all name stays as it is — `[1] prod-web-01` (the
+  capsule chain in [`layout/panel`](layout/panel.md)).
 
 **Why**: what is in uppercase says "what this is" — names, titles, column names — and stands apart at a glance from
 the content there is to read or change. Key names and hotkey markers stay: `q` and `Q` are different keys; content
@@ -120,8 +139,8 @@ the frame.
 
 | File | What |
 |---|---|
-| [`screen`](layout/screen.md) | The whole screen: footer, screen chip row, statusbar, narrow widths, empty states |
-| [`panel`](layout/panel.md) | Panels: frame, lists, one value per row, panel filter |
+| [`screen`](layout/screen.md) | The whole screen: footer, screen chip row, statusbar, narrow widths, zoom, smaller than the minimum size, empty states |
+| [`panel`](layout/panel.md) | Panels: frame, lists, the location row, one value per row, panel filter |
 | [`popup`](layout/popup.md) | The frame floating over the screen |
 
 ## dialog

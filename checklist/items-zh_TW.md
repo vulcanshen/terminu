@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.8.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -23,19 +23,19 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| departure-1 | 偏離 | 不照固定的部分做的地方，寫在 app 的 `docs/dev-remarks.md`「偏離 tdp」一節 | 都要 | 讀檔案：`docs/dev-remarks.md` 有「偏離 tdp」一節，app 不照做的固定規定都列在裡面 |
+| departure-1 | 偏離 | 不照固定的部分做的地方，寫在 app 的 `docs/dev-remarks.md`「偏離 tdp」一節 | 都要 | 讀檔案：`docs/dev-remarks.md` 有「偏離 tdp」一節，app 有意不照做、寫了原因的固定規定都列在裡面（還沒做到的列在 `docs/<app>-terminu-fix.md`，見 E7-35） |
 
 ## rules — 引用
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| references-1 | 引用 | 引用 tdp 條目時寫成 `tdp` 加編號（例 `tdp K4`） | 都要 | 讀檔案：dev-remarks、README 等提到 tdp 條目的地方 |
+| references-1 | 引用 | app 的檔案（README、dev-remarks、CLAUDE.md、程式註解）引用 tdp 的條目時，一律寫成 `tdp` 加編號（例 `tdp K4`）；`Rules K4` 與沒加前綴的 `K4` 都不算 | 都要 | 讀檔案：README、dev-remarks、CLAUDE.md 與程式註解裡提到 tdp 條目的地方 |
 
 ## rules — K Core key
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| K1-1 | K1 | `Tab` `Enter` `Esc` `Space` `?` `q` `1`–`9` 在每一個 surface 都是 K1 表上的意義，例外只有輸入態、PTY、模式與表單上的 `q` | 都要 | 在每種 panel 與 popup 上按這幾個鍵，沒有哪裡拿去做別的事 |
+| K1-1 | K1 | `Tab` `Enter` `Esc` `Space` `?` `q` `1`–`9` 在每一個 surface 都是 K1 表上的意義，例外只有輸入態、PTY、模式、表單上的 `q` 與表單的打字說明 note | 都要 | 在每種 panel 與 popup 上按這幾個鍵，沒有哪裡拿去做別的事 |
 | K1-2 | K1 | app 自訂的 core key 在所有 surface 意義不變 | 都要 | 在每種 panel 與 popup 上按那個鍵，做的是同一件事 |
 | K1-3 | K1 | letter hotkey 不佔用 K1 表上的鍵 | 都要 | 讀程式或看所有 menu、key reference：沒有熱鍵用 `Tab` `Enter` `Esc` `Space` `?` `q`（`[Enter] Edit` 這種標 core key 本身動作的不算；數字見 K1-7） |
 | K1-4 | K1 | panel 上（沒有 popup 開著時）按 `1`–`9`，focus 跳到目前畫面框上標 `[N]` 的那個 panel | 多 panel | 在 panel 上按 `1`、`2`…；多畫面的換到別的畫面再按，跳的是那個畫面的 panel |
@@ -44,26 +44,28 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | K1-7 | K1 | app 不在 panel 上把數字登記成熱鍵 | 都要 | 讀程式或看 panel 的 Space menu、key reference：沒有數字熱鍵 |
 | K1-8 | K1 | 用數字的 global 熱鍵只能在 global operation popup 裡按；在 panel 上按那個數字是跳 panel | 都要 | 在 panel 上按那個數字只跳 panel；在 global operation popup 裡按才執行 |
 | K2-1 | K2 | 畫面上 `Tab` 把 focus 移到同一個畫面的下一個 panel，最後一個之後回到第一個，不跨畫面 | 多 panel | 在 panel 上連按 `Tab`，走完一輪回到第一個，畫面不換 |
-| K2-2 | K2 | 有動作區的 popup（表單、有按鈕的 input popup）裡，`Tab` 在欄位區與動作區之間切換 | 表單、input | 打開表單按 `Tab`，focus 在欄位區與動作區之間來回 |
-| K2-3 | K2 | `Tab` 回到一區時，停在離開前的那一個項目 | 表單、input | 在欄位區移到第三欄，`Tab` 到動作區再 `Tab` 回來，focus 在第三欄 |
-| K2-4 | K2 | 欄位區、動作區裡的項目之間用 hjkl 移動 | 表單、input | 在兩區裡各按 hjkl，focus 在同一區的項目之間移動 |
+| K2-2 | K2 | 有動作區的 popup（表單、有按鈕的 input popup）裡，`Tab` 在欄位區與動作區之間切換 | 表單、color picker | 打開表單按 `Tab`，focus 在欄位區與動作區之間來回 |
+| K2-3 | K2 | `Tab` 回到一區時，停在離開前的那一個項目 | 表單、color picker | 在欄位區移到第三欄，`Tab` 到動作區再 `Tab` 回來，focus 在第三欄 |
+| K2-4 | K2 | 欄位區、動作區裡的項目之間用 hjkl 移動 | 表單、color picker | 在兩區裡各按 hjkl，focus 在同一區的項目之間移動 |
 | K2-5 | K2 | `Tab` 不離開當前 popup | 都要 | 在每種 popup 上按 `Tab`，focus 不會跑到底下的 panel |
 | K2-6 | K2 | 打字列上（finder 與 select 的打字列、panel filter），`Tab` 到它的清單 | panel filter、select、finder | 在打字列打幾個字後按 `Tab`，focus 到清單 |
 | K2-7 | K2 | 只有一塊的 input popup 沒有灰字提議時（含有舊密碼的 password：灰點不是提議，`Tab` 不收進舊密碼），`Tab` 不作用 | input | 打開空的 input popup 按 `Tab`，什麼都沒變 |
-| K2-8 | K2 | 有動作區的 popup 裡一定有 `Shift-Tab`（反向切換） | 表單、input | 在表單上按 `Shift-Tab`，focus 往反方向切換 |
+| K2-8 | K2 | 有動作區的 popup 裡一定有 `Shift-Tab`（反向切換） | 表單、color picker | 在表單上按 `Shift-Tab`，focus 往反方向切換 |
 | K3-1 | K3 | `Enter` 對 focus 項目做最直觀的那個動作 | 都要 | 在每種 panel 的項目上按 `Enter`，判斷是不是那種項目最直觀的動作 |
 | K3-2 | K3 | 同一種項目在同一個 app 裡，`Enter` 永遠是同一個動作 | 都要 | 在不同 panel、不同畫面的同一種項目上按 `Enter`，做的事一樣 |
 | K3-3 | K3 | panel 本身是內容區、沒有項目可選時（例：預覽、log），`Enter` 對整個 panel 做最直觀的動作 | 都要 | 在這種 panel 上按 `Enter`，判斷是不是最直觀的動作 |
-| K3-4 | K3 | 按完 `Enter`，focus 留在原處（表單上、一列一個值的 panel 上確定了一欄的 input popup，回到同一欄／同一列；選 radio、翻 checkbox 不動）；`Enter` 會換位置的只有三處：進明細、打字列上的 `Enter` 到清單、表單送出被擋時跳到第一個有問題的欄位 | 都要 | 在 panel、表單、radio、checkbox 上按 `Enter`，看 focus 停在哪 |
-| K3-5 | K3 | `Enter` 換 panel 只用在明細：從列出項目的 panel 移到顯示那一項明細的 panel | 都要 | 在清單上按 `Enter` 換了 panel 時，落點是顯示那一項明細的 panel |
+| K3-4 | K3 | 按完 `Enter`，focus 原則上留在原處（表單上、一列一個值的 panel 上確定了一欄的 input popup，回到同一欄／同一列；選 radio、翻 checkbox 不動）；會換位置的，是元件寫死的三處（進明細、打字列上的 `Enter` 到清單、表單送出被擋時跳到第一個有問題的欄位），或使用者按下去時就預期會換的 app 動作 | 都要 | 在 panel、表單、radio、checkbox 上按 `Enter`，看 focus 停在哪；換了位置的，判斷使用者按下去時是不是就預期會換 |
+| K3-5 | K3 | `Enter` 換了 panel 或畫面時，落點是使用者按下去時就預期的（例：明細的 `Enter` 到顯示那一項明細的 panel） | 都要 | 在清單上按 `Enter` 換了 panel 或畫面時，判斷落點是不是使用者按下去時就預期的 |
 | K3-6 | K3 | input popup 裡 focus 在值上時，`Enter` 確定這個值：寫回去、popup 關掉 | input | 改值後按 `Enter`，popup 關掉、值寫回 |
-| K3-7 | K3 | 值不合格（一欄自己的規則：格式、範圍）時 `Enter` 不寫回，錯誤寫在預留的錯誤列，popup 不關；從表單打開的也在 input popup 這一層擋，不等表單送出 | input | 打一個不合格的值按 `Enter` |
-| K3-8 | K3 | 值跟打開時一樣時，`Enter` 不寫回、直接關掉（從表單打開的，表單不記成改過） | input | 不改值按 `Enter`，popup 關掉；讀程式：沒有寫回 |
+| K3-7 | K3 | 值不合格（一欄自己的規則：格式、範圍、不能空）時 `Enter` 不寫回，錯誤寫在預留的錯誤列，popup 不關；從表單打開的也在 input popup 這一層擋，不等表單送出。打開時是空的、又不能空的欄位，什麼都沒打就按 `Enter` 也算不合格（有建議值時用建議值） | input | 打一個不合格的值按 `Enter`；打開一個空的、不能空的欄位，什麼都不打按 `Enter` |
+| K3-8 | K3 | 值跟打開時一樣、而且打開時就合格（例：有舊值、沒改）時，`Enter` 不寫回、直接關掉（從表單打開的，表單不記成改過） | input | 不改值按 `Enter`，popup 關掉；讀程式：沒有寫回 |
 | K3-9 | K3 | 多行文字：寫入狀態下 `Enter` 換行；離開寫入狀態（`Esc`）之後的 `Enter` 才確定 | textarea | 寫入狀態按 `Enter` 換行；按 `Esc` 再按 `Enter`，值確定 |
 | K3-10 | K3 | 打字列（finder 與 select 的打字列、panel filter）上 `Enter` 把 focus 移到清單上 cursor 那一項、不執行；在清單上再按 `Enter` 才執行或選定 | panel filter、select、finder | 在打字列按 `Enter`，focus 到清單、沒有執行；再按一次才執行 |
 | K3-11 | K3 | 打字列沒有結果時（包括邊找邊列、一筆都還沒到時）`Enter` 不作用 | panel filter、select、finder | 打一串沒有結果的字按 `Enter` |
 | K3-12 | K3 | input popup 的其他部分（例：datetime picker 的月份、color picker 的 R），`Enter` 做最直觀的那件事 | input | 在那些部分按 `Enter`，判斷是不是最直觀的事 |
 | K3-13 | K3 | 按送出按鈕時檢查所有欄位；有不合格的就不送出，focus 跳到第一個有問題的欄位 | 表單 | 留兩欄不合格按送出 |
+| K3-14 | K3 | 背景發生的事（載入完成、工作結束、遠端送來的變化）不移動 focus、不換畫面 | 都要 | 讓背景的事發生（重新載入、工作結束、遠端的變化），focus 與畫面都不動 |
+| K3-15 | K3 | 新增一項之後（New、Copy、Import 確定之後），cursor 移到新的那一項，捲到看得到 | 都要 | 新增一項，看 cursor 停在新的那一項上 |
 | K4-1 | K4 | 沒有 popup 時，`Esc` 退出當前模式或往上一層（例：panel filter 不論 focus 在打字列或清單，`Esc` 都清掉篩選） | 都要 | 進模式、或打 panel filter 後按 `Esc` |
 | K4-2 | K4 | `Esc` 一次只退一層：疊了幾層 popup，按一次只關最上面那一個 | 都要 | 疊三層（Space menu → global operation popup → confirm）按一次 `Esc`，只關掉 confirm |
 | K4-3 | K4 | 關掉最上層之後，底下的 popup 階層原樣留著、照原樣呈現 | 都要 | 同上，底下兩層還在，cursor 與內容跟打開 confirm 前一樣 |
@@ -79,6 +81,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | K6-4 | K6 | key reference 唯讀：沒有游標、不能執行 | 都要 | 開 key reference，沒有 cursor 列，按 `Enter` 什麼都不執行 |
 | K6-5 | K6 | panel 的 key reference 列出這個 panel 能按的鍵，含移動鍵 | 都要 | 在 panel 上按 `?` |
 | K6-6 | K6 | popup（含 Space menu、global operation popup）的 key reference 只列這個 popup 能按的鍵：自己的熱鍵、`Enter`、`Esc`、移動鍵 | 都要 | 在 Space menu 上按 `?`，沒有 panel 或 global 的鍵 |
+| K6-7 | K6 | key reference 的移動鍵照 K12 列出按得到的全部：一維清單（表單、沒有 tab 的一列一個值 panel、menu）寫 `h\|k` 往前、`j\|l` 往後 | 都要 | 在表單、menu、沒有 tab 的一列一個值 panel 上按 `?`，看 `move` |
+| K6-8 | K6、M6 | 清單空了（沒有東西可以移）、內容整個放得下（沒有東西可以捲）時，key reference 不列移動鍵、捲動鍵 | 都要 | 讓清單空掉、讓內容放得下，各按 `?` |
+| K6-9 | K6 | 一列一個值的 panel 的 key reference 有「每一列」一節時，放在最前面：每一列的名稱（一般的字色，不是鍵的顏色）與它是什麼意思，按鍵的節排在後面 | 一列一個值的 panel | 在有這一節的 panel 上按 `?`，看節的順序與名稱的顏色 |
 | K7-1 | K7 | 一個角色綁多個鍵時，別名在所有 surface 同樣有效 | 都要 | 在每種 panel 與 popup 上按別名鍵，跟主鍵做一樣的事 |
 | K8-1 | K8 | 輸入態裡所有會產生字元的鍵（含 letter hotkey、splash 的 `V`、`Space`、`?`、`q`）都當成字元輸入，不觸發任何動作 | input、panel filter | 在打字列打 `q`、`?`、空白與熱鍵字母，都變成字 |
 | K8-2 | K8 | 輸入態裡 `Esc` 取消輸入 | input、panel filter | 在打字列按 `Esc` |
@@ -86,9 +91,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | K8-4 | K8 | 離開輸入面，熱鍵立刻恢復作用 | input、panel filter | 離開打字列後馬上按熱鍵 |
 | K8-5 | K8 | 多行文字寫入狀態下 `Tab` 插入 `input_tab_width` 個空白（預設 4），不插 `\t` | textarea | 寫入狀態按 `Tab`，數插入的空白；讀程式：不是 `\t` |
 | K9-1 | K9 | `q` 與 `Ctrl-C` 做同一件事：進入 app 的離開流程 | 都要 | 在 panel 上分別按 `q`、`Ctrl-C`，出現的流程一樣 |
-| K9-2 | K9 | `q` 在表單上不作用 | 表單 | 在表單上（不在打字列）按 `q` |
-| K9-3 | K9 | `Ctrl-C` 在表單上仍然進入離開流程 | 表單 | 在表單上按 `Ctrl-C` |
-| K9-4 | K9 | 離開流程進行中再按一次 `Ctrl-C`，立刻離開、不再詢問 | confirm | 按 `Ctrl-C` 出現確認後再按一次 `Ctrl-C` |
+| K9-2 | K9 | `q` 在表單與表單的打字說明 note 上不進入離開流程（在要打字的欄位上跳說明 note，其他地方不作用） | 表單 | 在表單上（不在打字列）按 `q`；在要打字的欄位上打一個字跳出說明 note 後再按 `q` |
+| K9-3 | K9 | `Ctrl-C` 在表單與表單的打字說明 note 上仍然進入離開流程 | 表單 | 在表單上與打字說明 note 上各按 `Ctrl-C` |
+| K9-4 | K9 | 離開流程進行中（例：離開前的 confirm 開著時）再按一次 `Ctrl-C`，立刻離開、不再詢問（直接離開的 app 沒有這種情況） | 都要 | 按 `Ctrl-C` 出現確認後再按一次 `Ctrl-C` |
 | K9-5 | K9 | 離開列在 global operation popup 裡 | 都要 | `Space` → `Global operation`，裡面有離開 |
 | K10-1 | K10 | focus 在 PTY 時（panel 裡或 terminal popup）按鍵都送給子程序，core key 與 app 的熱鍵（含 splash 的 `V`）都失效，只有出口鍵與 app 保留的組合鍵屬於 app；`Esc` 也給子程序，toast 開著時只能等時間到收掉 | PTY | 在 PTY 裡按 `Space` `?` `q` `Tab` `Esc` `1` 與 app 的熱鍵，都進子程序 |
 | K10-2 | K10 | 至少有一個出口鍵讓 focus 離開 PTY | PTY | 在 PTY 裡按出口鍵能回到 app |
@@ -99,13 +104,15 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | K11-1 | K11 | 模式裡 `Space` 不開任何 menu、不作用 | 模式 | 進模式按 `Space` |
 | K11-2 | K11 | 模式裡 `?` 打開這個模式的 key reference：模式裡能按什麼鍵、做什麼 | 模式 | 進模式按 `?` |
 | K11-3 | K11 | 模式裡 `Esc` 離開模式，回到進入前的狀態 | 模式 | 進模式做點事後按 `Esc`，狀態回到進入前 |
-| K11-4 | K11 | 模式裡 `q`、`Ctrl-C` 照 K9 進入離開流程 | 模式 | 進模式按 `q`、`Ctrl-C` |
-| K11-5 | K11 | 模式暫停 `Tab` 或數字鍵時，按了要有回應，說明先 `Esc` 離開模式 | 模式 | 進模式按 `Tab`、`2`，出現說明（例：toast） |
+| K11-4 | K11 | panel 與 popup 裡的模式，`q`、`Ctrl-C` 照 K9 進入離開流程 | 模式 | 進模式按 `q`、`Ctrl-C` |
+| K11-5 | K11 | 模式在 panel 上暫停 `Tab` 或數字鍵時，按了要有回應，說明先 `Esc` 離開模式 | 模式（在 panel 上） | 進模式按 `Tab`、`2`，出現說明（例：toast） |
 | K11-6 | K11 | 模式裡只有模式自己的鍵與 K11 表上的 core key 作用：panel 的熱鍵與 global 熱鍵都不作用 | 模式 | 進模式按 panel 的熱鍵與 global 熱鍵，都沒作用 |
 | K11-7 | K11 | 模式裡按了不作用的熱鍵不出聲 | 模式 | 同上，沒有 toast 或任何提示 |
 | K11-8 | K11 | 模式裡沒有任何可以執行的按鍵清單 | 模式 | 進模式後找不到能選、能執行的鍵清單 |
 | K11-9 | K11 | 模式自己的鍵揭露在 footer 或下框 hint | 模式 | 進模式看 footer（panel 上的模式）或下框 hint（popup 裡的模式） |
 | K11-10 | K11 | 離開模式，模式名與外框顏色恢復 | 模式 | 按 `Esc` 離開後看那個框 |
+| K11-11 | K11 | 模式在 popup 裡時，`Tab` 與數字鍵照那個 popup 本來的作用（不換 panel），不另外回應；footer 照 popup 開著時的樣子，不換成模式的字 | 模式（在 popup 裡） | 在 popup 裡進模式，按 `Tab`、`2`，看 footer |
+| K11-12 | K11 | 模式在 PTY 上時（terminal 的歷史模式、選取模式），模式自己的鍵、`?`、`Esc` 以外的鍵先離開模式，再送給子程序；`q`、`Ctrl-C` 也一樣，不進離開流程 | PTY | 在 PTY 上進歷史模式，打一個字、按 `q`、`Ctrl-C`，看模式先離開、鍵落在子程序裡 |
 | K12-1 | K12 | 不在打字的地方，`j` `k` `u` `d` `g` `G` `h` `l` 不被任何動作佔用（`g` 開頭的兩鍵組合除外） | 都要 | 讀程式或看所有 menu、key reference：這幾個字母沒有登記成動作 |
 | K12-2 | K12 | `h\|j\|k\|l` 就是 `←\|↓\|↑\|→`：方向鍵做一樣的事 | 都要 | 在清單、menu、表單上分別按 hjkl 與方向鍵，效果一樣 |
 | K12-3 | K12 | 有左右結構時（同一個 surface 裡的 tab、左右兩側、格子），`j\|k` 上下、`h\|l` 左右（切 tab、跨到另一側） | 都要 | 在有 tab 的 panel 按 `h\|l` 切 tab |
@@ -121,12 +128,15 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | K12-13 | K12 | 一步一步的移動（`j\|k`、`h\|l`、方向鍵、`Tab`）在一串項目上到頭尾繞回：最後一個往後一步回到第一個，第一個往前一步到最後一個（panel 清單、menu、表單、panel tab、finder 的清單與打字列上的 `↑\|↓`、reorder、color picker 的 R → G → B、datetime picker 的時欄（23 之後 00）與分欄（55 之後 00）都是） | 都要 | 在 panel 清單、menu、表單、panel tab 等各走到頭尾再多走一步 |
 | K12-14 | K12 | Drag mode 拿著時 `j\|k` 搬動那一項，到頭尾也繞回：拿著最後一項往後一步，它到第一個、其他各往後一格；拿著第一項往前一步，它到最後一個 | Drag | 拿著最後一項按 `j` |
 | K12-15 | K12 | `u\|d` 到頭尾停在第一個、最後一個，不繞 | 都要 | 在倒數幾列按 `d`，停在最後一列 |
-| K12-16 | K12 | 照空間走、不是一串項目的不繞：日曆的日子、月與年、左右兩側、在一段文字裡移動 | 都要 | 在日曆最後一天往後、在右側再往右，不繞回 |
+| K12-16 | K12 | 照空間走、不是一串項目的不繞：日曆的日子、月與年、左右兩側、在一段文字裡移動（含輸入框打字列的游標） | 都要 | 在日曆最後一天往後、在右側再往右、在打字列的最後一個字往右，不繞回 |
+| K12-17 | K12 | 二維內容（一列有好幾個項目，例：網頁同一列的連結、表格的格）放在有 tab 的 panel 裡：`h\|l` 換 tab，`j\|k` 照閱讀順序一個項目一個項目走（同一列從左到右，再到下一列），到頭尾繞回 | panel tab | 在有 tab、內容是二維的 panel 上按 `h\|l`、`j\|k` |
 
 ## rules — M Menu 與揭露
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
+| M1-1 | M1 | 非輸入態的每一個畫面都常駐顯示 `?` 與 `Space`（模式裡 `Space` 不作用，可以不顯示） | 都要 | 在每個畫面、每個模式看 footer |
+| M1-2 | M1 | focus 在 PTY 裡時不顯示 `?` 與 `Space`，常駐顯示的是出口鍵與 app 保留的鍵 | PTY | 進 PTY 看 footer 或 terminal 的下框 |
 | M2-1 | M2 | Space menu 依作用對象分區，順序固定：`item operation` → `panel operation` → global 那一列 | 都要 | 在每個 panel 上按 `Space` |
 | M2-2 | M2 | 動作放對地方：作用在 cursor 那一項的在 item operation，作用在當前 panel（或它的 tab）整體的在 panel operation，不屬於任何 panel 的在 global operation popup | 都要 | 看每個 panel 的 Space menu 與 global operation popup，逐列判斷作用對象 |
 | M2-3 | M2 | 最後固定一列 `Global operation`，沒有熱鍵 | 都要 | 看 Space menu 最後一列 |
@@ -147,22 +157,21 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | M4-2 | M4 | 沒有 popup 開著時，global operation popup 裡的熱鍵在 panel 上也能直接按 | 都要 | 在 panel 上直接按 global 熱鍵 |
 | M4-3 | M4 | global 熱鍵跟 panel 自己的熱鍵撞鍵時，panel 的優先 | 都要 | 在那個 panel 上按撞的鍵，執行的是 panel 的動作 |
 | M4-4 | M4 | 撞鍵的那個 panel 的 key reference 不列被蓋掉的 global 鍵 | 都要 | 在那個 panel 上按 `?` |
-| M5-1 | M5 | 熱鍵是 label 第一個字母時，原地加括號（`[r]ename`、`[D]elete`） | 都要 | 看 menu 的列、statusbar chip、panel 標題 |
-| M5-2 | M5 | 熱鍵字母在 label 中間時，原地包（`UR[L]`） | 都要 | 同上 |
-| M5-3 | M5 | 熱鍵字母不在 label 裡時，放前面（`[n] New`） | 都要 | 同上 |
+| M5-1 | M5 | 熱鍵字母出現在 label 裡（不分大小寫）時，原地包第一次出現的那個字母（`[r]ename`、`[n]ew`、`D[e]lete`、`UR[L]`、`Ex[P]ort`） | 都要 | 看 menu 的列、statusbar chip、panel 標題 |
+| M5-3 | M5 | 熱鍵字母不在 label 裡時，放前面（`[x] Reset`） | 都要 | 同上 |
 | M5-4 | M5 | 含 modifier 的熱鍵整個放進括號（`[Alt-t]erm`） | 都要 | 同上 |
 | M5-5 | M5 | 多字元的熱鍵整個放進括號（`[go]to`） | 都要 | 同上 |
 | M5-6 | M5 | 數字熱鍵一律放前面（`[3] Favorites`），不嵌進字裡 | 都要 | 同上 |
 | M5-7 | M5 | core key 標在 label 上時放前面（`[Enter] Edit`） | 都要 | 同上 |
 | M5-8 | M5 | 沒有熱鍵的 label 不加括號 | 都要 | 看 `Global operation` 那一列與其他沒熱鍵的列 |
-| M5-9 | M5 | 括號裡與鍵名裡的字母照實際要按的大小寫（`[A]dd` 是 `Shift-A`）；轉成大寫的 chip、標題裡也照原樣（`[m]ANAGE`），hint、footer、key reference 的鍵名不轉大寫 | 都要 | 對照讀程式：標 `[A]` 的要按 `Shift-A`，標 `[a]` 的按 `a` |
+| M5-9 | M5 | 括號裡與鍵名裡的字母照實際要按的大小寫（`[A]dd` 是 `Shift-A`；label 裡的字母跟鍵的大小寫不同時，括號裡照鍵寫，例：熱鍵是 `Shift-P` 的 `Export` 寫成 `Ex[P]ort`）；轉成大寫的 chip、標題裡也照原樣（`[m]ANAGE`），hint、footer、key reference 的鍵名不轉大寫 | 都要 | 對照讀程式：標 `[A]` 的要按 `Shift-A`，標 `[a]` 的按 `a` |
 | M5-10 | M5 | label 本身已經寫出鍵的列（`[/] Search`）不再括一次 | 都要 | 看那幾列，鍵只標一次 |
 | M5-11 | M5 | 熱鍵顯式標出來，不只用顏色或 glyph 暗示 | 都要 | 看 menu、statusbar、panel 標題：有熱鍵的地方都有括號標記 |
-| M5-12 | M5 | 鍵名用鍵帽上的名字，大駝峰、不自創縮寫（`Esc` `Tab` `Enter` `Space` `Backspace` `Delete` `Home` `End` `PgUp` `PgDn`） | 都要 | 看 footer、hint、key reference、README |
-| M5-13 | M5 | 方向鍵寫成 `↑` `↓` `←` `→` | 都要 | 看 footer、hint、key reference、README |
-| M5-14 | M5 | `Ctrl` 後面的字母一律大寫（`Ctrl-C`、`Ctrl-U`） | 都要 | 看 footer、hint、key reference、README |
-| M5-15 | M5 | modifier 用 `-` 連接（`Alt-t`、`Shift-Tab`、`Alt-Esc`） | 都要 | 看 footer、hint、key reference、README |
-| M5-16 | M5 | 幾個鍵做同一件事用 `\|` 並列（`j\|k`、`Enter\|Tab`），不用 `/` | 都要 | 看 footer、hint、key reference、README |
+| M5-12 | M5 | 畫面上（footer、hint、key reference）的鍵名用鍵帽上的名字，大駝峰、不自創縮寫（`Esc` `Tab` `Enter` `Space` `Backspace` `Delete` `Home` `End` `PgUp` `PgDn`） | 都要 | 看 footer、hint、key reference |
+| M5-13 | M5 | 畫面上的方向鍵寫成 `↑` `↓` `←` `→` | 都要 | 看 footer、hint、key reference |
+| M5-14 | M5 | 畫面上 `Ctrl` 後面的字母一律大寫（`Ctrl-C`、`Ctrl-U`） | 都要 | 看 footer、hint、key reference |
+| M5-15 | M5 | 畫面上 modifier 用 `-` 連接（`Alt-t`、`Shift-Tab`、`Alt-Esc`） | 都要 | 看 footer、hint、key reference |
+| M5-16 | M5 | 畫面上用 `\|` 接起幾個做同一件事的鍵（`h\|k`、`Enter\|Esc:close`），與一對方向相反、用一個動詞講的鍵（`j\|k:move`、`u\|d`、`gg\|G`），不用 `/` | 都要 | 看 footer、hint、key reference |
 | M5-17 | M5 | 範圍用 `–`（`1–9`） | 都要 | 看 footer、key reference |
 | M5-18 | M5 | statusbar chip、panel 標題上的熱鍵也用 label 的括號標記 | 都要 | 看 statusbar、panel 標題 |
 | M5-19 | M5 | 句子（空狀態、toast、錯誤訊息，以及 menu 與 key reference 說明欄）裡提到的鍵一律加方括號（`Press [A] or [Space]`） | 都要 | 看空狀態、toast、錯誤訊息、說明欄 |
@@ -171,6 +180,12 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | M5-22 | M5 | README 內文提到的鍵用 Markdown 的 code 標，不加方括號 | 都要 | 讀檔案：README |
 | M5-23 | M5 | README 引用畫面上的 label 照畫面寫（`[A]dd`） | 都要 | 讀檔案：README |
 | M5-24 | M5 | 別的工具自己的按鍵照那個工具的寫法（例：tmux 的 `prefix l`） | 都要 | 讀檔案：README 與畫面上提到其他工具按鍵的地方 |
+| M5-25 | M5 | label 照它本來的大小寫寫，不為了熱鍵改字（`Export`，不寫成 `ExPort`） | 都要 | 看 menu 的列、statusbar chip、panel 標題 |
+| M5-26 | M5 | README 的鍵名用鍵帽上的名字，大駝峰、不自創縮寫（`Esc` `Tab` `Enter` `Space` `Backspace` `Delete` `Home` `End` `PgUp` `PgDn`） | 都要 | 讀檔案：README |
+| M5-27 | M5 | README 的方向鍵寫成 `↑` `↓` `←` `→` | 都要 | 讀檔案：README |
+| M5-28 | M5 | README 裡 `Ctrl` 後面的字母一律大寫（`Ctrl-C`、`Ctrl-U`） | 都要 | 讀檔案：README |
+| M5-29 | M5 | README 的 modifier 用 `-` 連接（`Alt-t`、`Shift-Tab`、`Alt-Esc`） | 都要 | 讀檔案：README |
+| M5-30 | M5 | README 裡用 `\|` 接起幾個做同一件事的鍵、一對方向相反的鍵（`gg\|G`），不用 `/` | 都要 | 讀檔案：README |
 | M6-1 | M6 | 對象不存在的動作，那一列不出現 | 都要 | 讓對象消失（例：清空清單）後看 menu |
 | M6-2 | M6 | 對象存在、但現在不能執行的動作：列照樣出現，用停用色 | 停用 | 讓動作暫時不能執行後看 menu |
 | M6-3 | M6 | 停用的列說明欄維持原本那句，不另外寫原因 | 停用 | 同上，比對停用前後的說明 |
@@ -179,6 +194,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | M6-6 | M6 | key reference 裡，對象不存在的鍵不列 | 都要 | 按 `?` |
 | M6-7 | M6 | key reference 裡另外加標題、說明別的 surface 的一段照常顯示，不用停用色 | 都要 | 按 `?` 看那一段的顏色 |
 | M6-8 | M6 | 說明別的 surface 的那一段排在最後，在 `app-wide` 之後 | 都要 | 按 `?` 看段落順序 |
+| M7-1 | M7 | focus 在 panel 上時，`Space` 一定打開 Space menu：global 那一列永遠在，menu 不會是空的 | 都要 | 在每個 panel（含空的、唯讀的）上按 `Space` |
 | M8-1 | M8 | Space menu 以外的 menu 要分組時，第一組是跟當前 cursor 相關的動作 | 都要 | 打開那個 menu 看第一組 |
 | M8-2 | M8、M2 | 分組 menu 的每一組（含第一組）都有說明類型的標題 | 都要 | 打開那個 menu 看每一組，第一組也有標題 |
 | M9-1 | M9 | 同一個熱鍵在不同 panel 做不同事、兩處指示同時看得到時，在當前 focus 按下去會觸發的那個亮、不會的那個暗 | 都要 | 兩個 panel 的下框 hint 都有同一個鍵時看顏色，換 focus 再看 |
@@ -188,10 +204,15 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
 | L1-1 | L1 | 在 80 欄 × 40 列下能完成所有核心任務 | 都要 | 終端機開成 80 × 40，把 app 的每一個核心任務走一遍 |
-| L2-1 | L2 | 標題、statusbar、chip 等動態文字用固定寬度的欄位或 padding，寬度不跟著內容長度變 | 都要 | 讓動態文字變長變短（換 tab、進度、計數），看欄位寬度與旁邊的內容不左右移 |
+| L1-2 | L1 | app 的最低尺寸不高於 80×40（預設 80×40，app 可以調低） | 都要 | 讀程式：最低尺寸的設定；把終端機調到 80×40，看 app 照常畫 |
+| L1-3 | L1 | 比最低尺寸小時（寬或高任一邊不夠），不畫 app 的畫面，只在正中央畫 app 的名稱（Blue 粗體）與下一列的提示 `needs a terminal of at least <W>×<H>`（Overlay0，寫 app 的最低尺寸） | 都要 | 把終端機縮到比最低尺寸小（只縮寬、只縮高各一次） |
+| L1-4 | L1 | 放不下兩列時先拿掉提示，名稱一定留著；一直縮到 1×1 都不當掉 | 都要 | 一直縮到 1×1 |
+| L1-5 | L1 | 比最低尺寸小時按鍵都不作用（不送進 app，也不送進 PTY）；`q` 與單按一次 `Ctrl-C` 不作用，只有連按兩次 `Ctrl-C` 立刻離開 | 都要 | 縮小後按幾個平常會改東西的鍵、`q`、一次 `Ctrl-C`，拉大看什麼都沒變；再縮小連按兩次 `Ctrl-C` |
+| L1-6 | L1 | 視窗拉大到最低尺寸以上，回到原本的畫面，狀態沒變（cursor、開著的 popup 都在） | 都要 | 移動 cursor、打開一個 popup 後縮小，再拉大 |
+| L2-1 | L2 | 標題、statusbar、chip 等動態文字用固定寬度的欄位或 padding，寬度不跟著內容長度變（一列裡最後一個動態欄位可以不補空白） | 都要 | 讓動態文字變長變短（換 tab、進度、計數），看欄位寬度與旁邊的內容不左右移 |
 | L3-1 | L3 | 常駐列的列數固定、不因內容多寡改變：最上面一列（多畫面的 app 是畫面 chip 列加它下面的分隔線；單畫面的 app 有 statusbar 時是一列 statusbar）與 footer 一列 | 都要 | 讓 statusbar、chip 列、footer 的內容變多變少，縮放終端機，最上面一列（含分隔線）與 footer 的列數不變 |
 | L3-2 | L3 | panel 的 tab 畫在 panel 的上框，不另佔一列 | panel tab | 看有 tab 的 panel：tab 在上框的膠囊串裡，框外沒有另一列 tab |
-| L4-1 | L4 | 畫面上的每一列都剛好等於終端機寬度，不多不少 | 都要 | 多種尺寸、icon 一格與兩格下看每一列：右框不折行、不留殘影 |
+| L4-1 | L4 | 畫面上的每一列都剛好等於終端機寬度，不多不少 | 都要 | 多種尺寸、icon 一格與兩格下看每一列：右框不折行、不留殘影；或讀程式：畫面測試在 icon、powerline 符號一格與兩格下跑（E5-11） |
 | L5-1 | L5 | focus 所在的 surface 一眼可辨（進模式時也一樣） | 都要 | 在每個畫面看一眼就說得出 focus 在哪個 panel 或 popup |
 | L5-2 | L5 | 切換 focus 不讓任何內容位移 | 多 panel | 按 `Tab` 換 panel，前後比對畫面，字與框的位置不動 |
 | L5-3 | L5 | focus 不只靠顏色分辨，有顏色以外的差別（例：線型） | 多 panel | 比較 focus 與失焦 panel 的外框，除了顏色還有別的差別；進模式後照樣分得出 focus 在哪 |
@@ -208,7 +229,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | F1-6 | F1 | note 是唯讀的 | 都要 | 打開 `?` 的 key reference 等 note，按鍵改不到內容 |
 | F1-7 | F1 | toast 開著時，除了 `Esc`，按鍵都穿過它 | toast | toast 還在時按 `j`、`Space`，底下照常反應，toast 不吃鍵 |
 | F1-8 | F1 | 有可用 `Enter` 執行的選項清單的 popup 照 menu 做，不是 note | 都要 | 看每個有選項清單的唯讀 popup，都是 menu 的樣子與按鍵 |
-| F1-9 | F1 | menu 的 `Enter` 打開那一列的全文時，開一個 note 顯示那一列的完整內容 | 都要 | 在那種 menu 的一列按 `Enter`，疊出一個 note 寫著完整內容 |
+| F1-9 | F1 | menu 的 `Enter` 打開那一列的全文時（例：工作清單上沒有動作可做的列），開一個 note 顯示那一列的完整內容 | 都要 | 在那種 menu 的一列按 `Enter`，疊出一個 note 寫著完整內容 |
 | F1-10 | F1 | 帶內容的 confirm 是一個 confirm，不拆成 note 加 confirm 兩個 popup | confirm | 觸發帶明細的 confirm，只疊出一層 popup |
 | F1-11 | F1 | 依階段換類別的 popup，同一時間只屬於一類，鍵照當時那一類 | 都要 | 在 finder 的打字列與清單各按 `j`、`Enter`，鍵的意思照當時那一類 |
 | F1-12 | F1 | 依階段換類別的 popup，`Esc` 關掉整個 popup，不是退回上一個階段（focus 在打字列或清單都一樣） | 都要 | focus 在 finder 的清單時按 `Esc`，整個 finder 關掉 |
@@ -219,6 +240,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | F1-17 | F1 | 多步驟的流程每一步是自己的 popup，疊起來，不在同一個框裡換內容 | 都要 | 走一遍多步驟流程（例：先選欄位再選方向），每一步都疊出新的一層 |
 | F2-1 | F2 | 動畫每格 32ms，打開、收起各 9 格（約 288ms） | 都要 | 讀程式或錄影逐格數：每格 32ms、各 9 格 |
 | F2-2 | F2 | 打開的動畫播完之前，popup 不收鍵 | 都要 | 打開 popup 後立刻按 `j`，動畫播完前 cursor 不動 |
+| F2-3 | F2 | 好幾層一起收起時（一個動作關掉整疊、T1 清掉兩層以上的 source），每一層同時收起，各自照自己的大小與層色，總共還是約 288ms；不是只有最上面那一層播 | 都要 | 讀程式；或從兩層的 popup 執行會清掉 source 的動作，逐格看兩層一起收 |
 | F3-1 | F3 | 任何看得到的 popup（含 toast：不等倒數結束）按 `Esc` 都立即開始關閉（例外只有 F3 列的：PTY、textarea 的寫入狀態、popup 裡的模式、改過的表單／textarea／reorder） | 都要 | 在每一類 popup 上按 `Esc`，關閉動畫馬上開始 |
 | F3-2 | F3 | 已經在跑關閉動畫的 popup 不再理會 `Esc`，也不接收其他按鍵 | 都要 | 按 `Esc` 後趁關閉動畫還在播時按 `j`、`Enter`，正在關的那層沒有反應；關閉動畫中再按一次 `Esc`，關的是下一層 |
 | F3-3 | F3 | textarea 在寫入狀態時，`Esc` 是離開寫入狀態、進入移動狀態 | textarea | 在 textarea 寫字時按 `Esc`，回到移動狀態，popup 還在 |
@@ -226,8 +248,8 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | F3-5 | F3 | 內容改過的表單按 `Esc`，先開 confirm 問要不要放棄 | 表單 | 改一欄後按 `Esc`，疊出放棄的 confirm |
 | F3-6 | F3 | 內容改過的 textarea 按 `Esc` 關閉時，先開 confirm 問要不要放棄 | textarea | 改過內容、回到移動狀態後按 `Esc`，疊出放棄的 confirm |
 | F3-7 | F3 | 搬過順序的 reorder 按 `Esc`，先開 confirm 問要不要放棄 | reorder | 搬一個項目後按 `Esc`，疊出放棄的 confirm |
-| F4-1 | F4 | 從 popup A 開出 popup B 時，A 留在底下 | 都要 | 從 Space menu 開 global operation popup，底下照樣看得到（淡化的）Space menu |
-| F4-2 | F4 | 取消 B 回到 A | 都要 | 在 global operation popup 按 `Esc`，回到 Space menu |
+| F4-1 | F4 | 從 popup A 開出 popup B 時，A 留在底下 | 都要 | 從 Space menu 開 global operation popup，再從 Space menu 執行 app 自己會開出另一個 popup 的動作，底下照樣看得到（淡化的）Space menu |
+| F4-2 | F4 | 取消 B 回到 A | 都要 | 在 global operation popup 與 app 自己的動作開出的 popup 上各按 `Esc`，都回到 Space menu |
 | F5-1 | F5 | 錯誤立刻出現（toast 或 popup） | 都要 | 觸發一個錯誤（例：斷網、沒有權限），馬上看到 toast 或 popup |
 | F5-2 | F5 | 錯誤不阻塞 app | 都要 | 錯誤出現後 app 照常運作，使用者能接著處理錯誤本身 |
 | F6-1 | F6 | 決定要 confirm 的動作每次都 confirm（經由 picker 明確選定的那一次可以算已確認） | confirm | 同一個動作做兩三次，每次都出 confirm |
@@ -236,8 +258,8 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | F6-4 | F6 | confirm 的提示寫出接受會做的事（動詞與對象），不是抽象的 OK | confirm | 讀每個 confirm 的問句與 `Enter` 的 hint |
 | F6-5 | F6 | confirm 不能被誤觸完成（例：滑鼠點一下不能等於接受） | confirm | 在 confirm 上點滑鼠、按回答以外的鍵，都不會接受 |
 | F7-1 | F7 | popup 的寬度打開時定好，開著時不變 | 都要 | 在開著的 popup 裡讓內容變長變短（打字、篩選），框的寬度不變 |
-| F7-2 | F7 | 內容寬度確定的 popup，寬度不超過 `min(terminal 寬 − 2, 120)` | 都要 | 在 200 欄與很窄的終端機各開一次，寬度不超過上限 |
-| F7-3 | F7 | 內容寬度不確定的 popup，寬度是 `min(terminal 寬 − 2, 120)` | 都要 | 在 80 欄與 200 欄各開一次（例：網址、搜尋結果、表單），寬度是 78 與 120 |
+| F7-2 | F7 | 內容寬度確定的 popup，寬度不超過 `min(terminal 寬 − 2, 120)` | 都要 | 在 200 欄與很窄的終端機各開一次（例：menu、confirm、select、checkbox popup），寬度不超過上限 |
+| F7-3 | F7 | 內容寬度不確定的 popup，寬度是 `min(terminal 寬 − 2, 120)` | 都要 | 在 80 欄與 200 欄各開一次（例：網址、邊找邊列的搜尋結果、表單），寬度是 78 與 120 |
 | F7-4 | F7 | popup 水平置中 | 都要 | 量每個 popup 左右到畫面邊緣的距離 |
 | F7-5 | F7 | popup 的高度依內容、打開時定好，之後不跟著內容伸縮（loading 期間與使用者操作造成的改變除外） | 都要 | popup 開著時讓背景的資料更新，框的高度不變 |
 | F7-6 | F7 | popup 最高是畫面高度 − 2：畫面 chip 列或 statusbar 與 footer 永遠看得到（chip 列下面的分隔線可以被蓋住） | 都要 | 打開內容很長的 popup，畫面 chip 列（或 statusbar）與 footer 沒被蓋到 |
@@ -269,14 +291,18 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| T1-1 | T1 | 預設保留 source，只在使用者完成 target 後 source 已經失去意義時才清掉 | 都要 | 走過每個從 popup 開出另一個 popup 的流程，被清掉的 source 都是已經沒有意義的 |
-| T1-2 | T1 | target 是短的 confirm 或訊息時，source 保留 | confirm | 從 menu 開 confirm，取消或完成後回到原 menu |
-| T1-3 | T1 | 選一個值（input popup、select）寫回表單或 picker 時，source 保留 | 表單、input | 在表單選完一欄的值，回到表單 |
-| T1-4 | T1 | target 是長時間的 session（shell、編輯器）時，清掉 source | PTY | 從 menu 開 shell 或編輯器，離開後原 menu 不在 |
-| T1-5 | T1 | target 是大幅切換 context（drill-down、換頁）時，清掉 source | 都要 | 從 menu 換頁或 drill-down，原 menu 不在 |
-| T1-6 | T1 | 清掉 source 時，target 打開的同時 source 收起，兩段動畫一起播，不等 source 收完 | 都要 | 錄影看 target 的打開動畫與 source 的收起動畫同時開始 |
+| T1-1 | T1 | 從 popup 開出另一個 popup 的動作，確定之後 source 留不留照 T1 的表（看確定之後的動作）；表上沒有的動作，被清掉的 source 都是使用者用完 target 之後已經不想看的 | 都要 | 走過 app 每個從 menu 執行、會再開 popup 的動作，對照 T1 的表 |
+| T1-2 | T1 | 動作前面的 confirm 只是門：在 confirm 上取消，一律回到 source（menu） | confirm | 從 menu 執行一個要先確認的動作，在 confirm 上按 `Esc`，回到原 menu |
+| T1-3 | T1 | 確定之後是選一個值寫回去（input popup、select 寫回表單或 picker）時，source 保留 | 表單、input | 在表單選完一欄的值，回到表單 |
+| T1-4 | T1 | 確定之後是開 shell 時，清掉 source | PTY | 從 menu 開 shell，離開後原 menu 不在 |
+| T1-5 | T1 | 確定之後是換畫面（切到 chip 列的另一個畫面）或 drill-down（例：進目錄、Deployment → Pods）時，清掉 source | 都要 | 從 menu 換畫面或 drill-down，原 menu 不在 |
+| T1-6 | T1 | 清掉 source 時，target 打開的同時 source 收起，兩段動畫一起播，不等 source 收完；source 有好幾層時每一層一起收（F2） | 都要 | 錄影看 target 的打開動畫與 source 的收起動畫同時開始 |
+| T1-7 | T1 | 確定之後是打開東西來看（YAML 檢視、明細、全文）時，source 保留 | 都要 | 從 menu 打開一個來看的東西，關掉後回到原 menu |
+| T1-8 | T1 | 確定之後是用編輯器改那一項（例：`kubectl edit`、`$EDITOR`）時，source 保留 | 都要 | 從 menu 用編輯器改一項，離開編輯器後回到原 menu 或 viewer |
+| T1-9 | T1 | 確定之後是讓那一項不在了（刪除、搬走）時，清掉 source | 都要 | 從 menu 刪除一項，確定後原 menu 不在 |
 | T2-1 | T2 | 失焦的 panel 用 F8 同一套淡化把內容（含表頭、分組標題、label、cursor）變暗，cursor 不另外換顏色 | 多 panel | `Tab` 換 panel，失焦的 panel 內容變暗、各顏色是自己的淡化版 |
 | T2-2 | T2 | 串流內容（log、即時輸出、遠端 session）失焦時不變暗 | 串流內容 | focus 移到別的 panel，串流內容那個 panel 不變暗 |
+| T2-3 | T2 | 串流 panel 失焦時內容不變暗，但下框的 hint 照樣變暗 | 串流內容 | focus 移到別的 panel，看串流 panel 的 hint 變暗 |
 
 ## rules — S Splash
 
@@ -287,16 +313,16 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | S1-1 | S1 | 在 panel 上按 `V` 打開 splash（把 `V` 給 panel operation 用的 panel 除外） | 都要 | 在每個 panel 上按 `V` |
 | S1-2 | S1 | 有 panel 把 `V` 拿去用時，app 裡至少有一個 panel 的 `V` 仍是 splash | 都要 | 在每個 panel 按 `V`，至少一個打開 splash |
 | S2-1 | S2 | splash 不出現在 Space menu、global operation popup、key reference、footer、panel hint | 都要 | 打開這些地方，找不到 `V` 或 splash |
-| S2-2 | S2 | README 不寫 splash | 都要 | 讀檔案：兩份 README 都沒提到 splash 或 `V` 的彩蛋 |
+| S2-2 | S2 | README、CHANGELOG 與 release notes 不寫 splash | 都要 | 讀檔案：兩份 README、CHANGELOG 都沒提到 splash 或 `V` 的彩蛋；發過版的看 GitHub release 的內文也沒有 |
 | S3-1 | S3 | splash 開著時任何鍵都只關掉它，那個鍵不再做別的事（包括 `q`、`Ctrl-C`、`Esc`、`Space`、`?`） | 都要 | 打開 splash 後分別按這些鍵，每次都只關 splash；按 `Ctrl-C` 不離開 app |
 | S4-1 | S4 | 啟動時不播 splash | 都要 | 啟動 app，直接進主畫面 |
 | S4-2 | S4 | popup 開著時按 `V` 不叫出 splash | 都要 | 開著 Space menu 按 `V` |
 | S5-1 | S5 | splash 畫的是該 app 的 `docs/icon.svg`，一格對一格 | 都要 | 按 `V`，跟 `docs/icon.svg` 逐格比對 |
-| S5-2 | S5 | `docs/icon.svg` 的 viewBox 是 250 × 250，一格是一個 10 × 10 的 rect，底是 `#000000` | 都要 | 讀檔案：`docs/icon.svg` |
+| S5-2 | S5 | `docs/icon.svg` 的 viewBox 是 250 × 250；每一格是一個 10 × 10 的 rect；底色是 `#000000` | 都要 | 讀檔案：`docs/icon.svg` |
 | S5-3 | S5 | mark 佔 25 × 19 格（x 0–240、y 30–210），最左、最右一欄是底 | 都要 | 讀檔案：rect 的座標範圍 |
 | S5-4 | S5 | U 框是 `#205090`，跟全家族一樣、不改 | 都要 | 讀檔案：`<!-- U -->` 底下的 rect 跟 tdp 的 `principle/icon.svg` 的 U 框相同 |
 | S5-5 | S5 | 框裡的字是 `#f2b753`，寫的是 app 自己的名字 | 都要 | 讀檔案並看 splash：金色的字拼出 app 的名字 |
-| S5-6 | S5 | 用 XML 註解分字：一個註解開始一個字、註解寫那個字，後面的 rect 屬於它直到下一個註解；第一個註解是 `<!-- U -->` | 都要 | 讀檔案：註解的位置與內容 |
+| S5-6 | S5 | 用 XML 註解分字：一個註解開始一個字、註解只寫那個字，後面的 rect 屬於它直到下一個註解；第一個註解是 `<!-- U -->` | 都要 | 讀檔案：註解的位置與內容 |
 | S5-7 | S5 | 一格畫一個 `nf-fa-square`（U+F0C8）、佔兩欄；icon 佔一格時後面補一個空白 | 都要 | 在 icon 一格與兩格（`<APP>__ICON_WIDTH`）下各按一次 `V`，每格都是兩欄寬 |
 | S5-8 | S5 | 底的格子畫成 Surface0 `#313244` 的方塊 | 都要 | 看 splash 的底 |
 | S5-9 | S5 | mark 上下各多畫一列底，共 21 列，四邊的底一樣寬 | 都要 | 數 splash 上 mark 的列數與四邊底的寬度 |
@@ -307,21 +333,21 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | S5-14 | S5 | 第二列是版本：跟 `<app> version` 印的版號一樣，Blue | 都要 | 比對 splash 的版本與 `<app> version` |
 | S5-15 | S5 | 第三列是一句介紹，Text | 都要 | 看 splash 的第三列 |
 | S5-16 | S5 | 接著是 `developed by`，Overlay0 | 都要 | 看 splash |
-| S5-17 | S5 | 接著是 `vulcan.shen.2304@gmail.com`，mark 的金色 `#f2b753` | 都要 | 看 splash |
+| S5-17 | S5 | 接著是作者的信箱，mark 的金色 `#f2b753`：家族成員寫 `vulcan.shen.2304@gmail.com`，照 tdp 做的 app 寫自己的（E 章開頭） | 都要 | 看 splash |
 | S5-18 | S5 | 最後一列是 `Press any key to close`，Overlay0 | 都要 | 看 splash |
 | S5-19 | S5 | 整塊（mark、空一列、下面的字，共 30 列 × 50 欄）在畫面上上下左右都置中 | 都要 | 在大的終端機按 `V`，量四邊的空白 |
 | S5-20 | S5 | 終端機不到 50 欄或 30 列時不畫 mark，只畫下面的字，上下左右置中 | 都要 | 縮到 49 欄或 29 列以下按 `V` |
-| S5-21 | S5 | 放不下 mark 時下面的字照樣分兩批出現：打開 400ms 後名稱、版本、介紹，再 500ms 後作者與提示 | 都要 | 縮小後按 `V`，錄影看兩批出現的時間 |
+| S5-21 | S5 | 放不下 mark 時下面的字照樣分兩批出現：打開 400ms 後名稱、版本、介紹，再 500ms 後作者與提示 | 都要 | 讀程式：放不下 mark 時兩批字的時間 |
 | S5-22 | S5 | 太窄時折行，折下來的每一列照樣置中（斷在哪裡照 components 的折行） | 都要 | 縮到比介紹還窄後按 `V` |
 | S5-23 | S5 | 一個字本身比終端機寬、照格子切成好幾段時，每段置中，內容不丟 | 都要 | 縮到比信箱（26 欄）還窄後按 `V` |
 | S5-24 | S5 | 還是太矮時從下面往上截：最先拿掉提示，接著作者兩列、介紹 | 都要 | 一列一列縮矮後按 `V`，看拿掉的順序 |
-| S5-25 | S5 | 名稱與版本一定出現 | 都要 | 縮到最矮按 `V`，名稱與版本還在 |
+| S5-25 | S5 | 名稱與版本一定出現；只有 1 列時只畫名稱 | 都要 | 縮到最矮按 `V`，名稱與版本還在；縮到 1 列，只剩名稱 |
 | S5-26 | S5 | 拿掉一組時它上面的空白列跟著拿掉，最底下不留空白列 | 都要 | 縮矮後按 `V`，最後一列有字 |
-| S5-27 | S5 | 揭露動畫照順序分段畫（底、金色的字、U 框、下面的字），一個 tick 10ms；第 1–3 段（底、金色的字、U 框）段與段之間停 250ms | 都要 | 讀程式或錄影看段的順序與間隔 |
-| S5-28 | S5 | 底：一個 tick 一整列，由上往下鋪滿 | 都要 | 錄影看底的出現方式 |
-| S5-29 | S5 | 金色的字：照 svg 裡註解的順序一個字一段，一個 tick 出現 2 格，同一個字的格子打散出現 | 都要 | 錄影看字的出現順序與方式 |
-| S5-30 | S5 | U 框：由下往上一列一列長；同一列從中間往兩端，一個 tick 一對左右對稱的兩格，中線上的第 13 格自己一個 tick | 都要 | 錄影看 U 框的出現方式 |
-| S5-31 | S5 | 下面的字：從 U 框最後一格出現起算 400ms 後（不再加 250ms）名稱、版本、介紹一起出現，再 500ms 後 `developed by`、信箱、提示一起出現 | 都要 | 錄影看兩批出現的時間 |
+| S5-27 | S5 | 揭露動畫照順序分段畫（底、金色的字、U 框、下面的字），一個 tick 10ms；第 1–3 段（底、金色的字、U 框）段與段之間停 250ms | 都要 | 讀程式：段的順序、一個 tick 10ms、段與段之間的 250ms |
+| S5-28 | S5 | 底：一個 tick 一整列，由上往下鋪滿 | 都要 | 讀程式：底一個 tick 一整列、由上往下 |
+| S5-29 | S5 | 金色的字：照 svg 裡註解的順序一個字一段，一個 tick 出現 2 格，同一個字的格子打散出現 | 都要 | 讀程式：照註解的順序、一個 tick 2 格、同一個字的格子打散 |
+| S5-30 | S5 | U 框：由下往上一列一列長；同一列從中間往兩端，一個 tick 一對左右對稱的兩格，中線上的第 13 格自己一個 tick | 都要 | 讀程式：由下往上、同一列從中間往兩端、一個 tick 一對、中線上的第 13 格自己一個 tick |
+| S5-31 | S5 | 下面的字：從 U 框最後一格出現起算 400ms 後（不再加 250ms）名稱、版本、介紹一起出現，再 500ms 後 `developed by`、信箱、提示一起出現 | 都要 | 讀程式：從 U 框最後一格起算 400ms、再 500ms |
 
 ## rules — E App 與環境
 
@@ -332,6 +358,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | E2-1 | E2 | app 自己讀的環境變數（含測試用、傳給自己子程序的）都叫 `<大寫 app 名>__<變數名>`：兩個底線，變數名全大寫、單字之間一個底線 | 都要 | 讀程式：找出所有讀寫的環境變數名，除了給別的程式讀的都照這個寫 |
 | E2-2 | E2 | `<APP>__CONFIG` 指的是設定目錄（設定檔在裡面），不是設定檔 | 存設定或資料 | 設 `<APP>__CONFIG` 為一個目錄啟動，app 讀那個目錄裡的設定檔 |
 | E2-3 | E2 | 環境變數改名時不留舊名 | 都要 | 讀程式：舊名不再被讀 |
+| E2-4 | E2 | 要經 ssh 帶到遠端的變數用 `LC_` 開頭（OpenSSH 預設只轉送 `LANG` 與 `LC_*`） | 都要 | 讀程式：帶到遠端的環境變數都是 `LC_` 開頭（沒有 ssh 的 app 沒有這種情況） |
 | E3-1 | E3 | 設定預設在 `$XDG_CONFIG_HOME/<app>`（fallback `~/.config/<app>`） | 存設定或資料 | 讀程式或不設環境變數啟動，看設定讀寫的位置 |
 | E3-2 | E3 | 設定的位置可以用 `<APP>__CONFIG` 覆寫 | 存設定或資料 | 設 `<APP>__CONFIG` 啟動，設定改到那裡 |
 | E3-3 | E3 | app 另外存的狀態預設在設定目錄裡 | 存設定或資料 | 讀程式或啟動後看狀態檔的位置 |
@@ -341,8 +368,12 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | E3-7 | E3 | 快取在系統的快取目錄（macOS `~/Library/Caches/<app>`；Linux `$XDG_CACHE_HOME/<app>`，fallback `~/.cache/<app>`；Windows `%LOCALAPPDATA%\<app>`） | 存設定或資料 | 讀程式或啟動後看快取的位置 |
 | E3-8 | E3 | 快取的位置可以用 `<APP>__CACHE` 覆寫 | 存設定或資料 | 設 `<APP>__CACHE` 啟動，快取改存到那裡 |
 | E3-9 | E3 | Windows 上 `~` 是 `%USERPROFILE%`：設定 `%USERPROFILE%\.config\<app>`、資料 `%USERPROFILE%\.<app>\`，不用 `%APPDATA%` | 出 Windows 版 | 讀程式：Windows 的路徑算法 |
-| E3-10 | E3 | popup 預覽裡藏起私鑰與只有擁有者能讀的檔，用設定 key `hide_secrets_in_preview`（放在 app 的設定檔），預設 `false`：全部照常顯示 | finder、file-picker | 讀程式與設定檔：key 的名字與預設值 |
-| E3-11 | E3 | 寫入狀態按 `Tab` 插入幾個空白（以及 viewer、檔案預覽裡 Tab 畫幾格），用設定 key `input_tab_width`，預設 `4` | viewer、textarea | 讀程式與設定檔：key 的名字與預設值 |
+| E3-10 | E3 | popup 預覽裡藏起私鑰與只有擁有者能讀的檔，用設定 key `hide_secrets_in_preview`（放在 app 的設定檔），預設 `false`：全部照常顯示 | 有檔案預覽 | 讀程式與設定檔：key 的名字與預設值 |
+| E3-11 | E3 | 寫入狀態按 `Tab` 插入幾個空白、畫在畫面上的內容（viewer、檔案預覽、清單、menu 的文字）裡的 Tab 畫幾格，用設定 key `input_tab_width`，預設 `4` | 都要 | 讀程式與設定檔：key 的名字與預設值 |
+| E3-12 | E3 | 設定檔是設定目錄裡的 `config.yaml` | 存設定或資料 | 讀程式或啟動後看設定檔的名字與格式 |
+| E3-13 | E3 | 東西照「刪掉會怎樣」放：使用者自己設的選項是設定；刪了只是回到預設的是狀態；刪了找不回來、會想備份的（書籤、紀錄、log）是資料；刪了會自己重建或重抓的是快取；使用者手寫的連線清單算設定 | 存設定或資料 | 讀程式：每一種寫到磁碟的東西，放在哪一類的位置 |
+| E3-14 | E3 | 改版換了位置時，新位置沒有、舊位置有的，第一次啟動把整個目錄搬到新位置，跳一個 Info toast 說從哪裡搬到哪裡 | 存設定或資料 | 讀程式；或在舊位置放東西後啟動新版（app 換過位置時） |
+| E3-15 | E3 | 搬不動時照舊用舊位置，開 error popup 寫出兩個路徑 | 存設定或資料 | 讀程式；或讓新位置寫不進去後啟動 |
 | E4-1 | E4 | 程式碼裡的 PUA glyph 寫成 code point | 都要 | 讀程式：掃原始碼找不到 PUA 字元 |
 | E4-2 | E4 | README 的需求段寫明需要 Nerd Font | 都要 | 讀兩份 README 的前置需求 |
 | E4-3 | E4 | README 的需求段跟 Nerd Font 並列寫明需要 truecolor terminal（24-bit 色） | 都要 | 讀兩份 README 的前置需求 |
@@ -350,19 +381,19 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | E5-2 | E5 | icon（PUA，powerline 符號除外）與 powerline 符號（U+E0A0–U+E0D7）分開量、各自記 | 都要 | 讀程式：兩種各有自己的寬度；在「icon 兩格、powerline 一格」下框線都對齊 |
 | E5-3 | E5 | app 啟動時用 CPR 探測：印一個 icon 問游標位置，再印一個 powerline 符號再問一次 | 都要 | 讀程式：啟動時的探測 |
 | E5-4 | E5 | 所有量寬度的地方（補空白、截斷、置中、並排、框線、疊 popup）都走同一個顯示寬度函式 | 都要 | 讀程式：找不到繞過顯示寬度函式量寬度的呼叫 |
-| E5-5 | E5 | icon 的寬度照 `<APP>__ICON_WIDTH` → `TERMINU__ICON_WIDTH` → 探測的順序取 | 都要 | 兩個變數都設、只設一個、都不設各啟動一次，看用的是哪個值 |
-| E5-6 | E5 | powerline 符號的寬度照 `<APP>__POWERLINE_WIDTH` → `TERMINU__POWERLINE_WIDTH` → 探測的順序取 | 都要 | 兩個變數都設、只設一個、都不設各啟動一次，看用的是哪個值 |
+| E5-5 | E5 | icon 的寬度照 `<APP>__ICON_WIDTH` → `TERMINU__ICON_WIDTH` → `LC_TERMINU_ICON_WIDTH` → 探測的順序取 | 都要 | 幾個變數都設、只設一部分、都不設各啟動一次，看用的是哪個值 |
+| E5-6 | E5 | powerline 符號的寬度照 `<APP>__POWERLINE_WIDTH` → `TERMINU__POWERLINE_WIDTH` → `LC_TERMINU_POWERLINE_WIDTH` → 探測的順序取 | 都要 | 幾個變數都設、只設一部分、都不設各啟動一次，看用的是哪個值 |
 | E5-7 | E5 | 探測只在 unix 做；Windows 預設一格，靠環境變數覆寫 | 出 Windows 版 | 讀程式：Windows 不探測、預設一格 |
 | E5-8 | E5 | 開子程序時在子程序的環境設 `TERMINU__ICON_WIDTH` 與 `TERMINU__POWERLINE_WIDTH`（自己用的格數） | PTY | 在 PTY 裡 `echo $TERMINU__ICON_WIDTH $TERMINU__POWERLINE_WIDTH` |
-| E5-9 | E5 | 隔著 ssh 的巢狀（遠端那一層是同一個 app）靠 app 自己的通道，把 icon 與 powerline 符號的格數交給遠端那一層 | PTY | 在 app 的遠端 session 裡跑同一個 app，框線對齊；讀程式：通道帶了 icon 與 powerline 兩個格數 |
+| E5-9 | E5 | 有 ssh 的 app 連線時，把自己用的格數放進 `LC_TERMINU_ICON_WIDTH` 與 `LC_TERMINU_POWERLINE_WIDTH` 帶到遠端 | PTY | 讀程式：連線時送出這兩個變數；在遠端跑家族 app，框線對齊 |
 | E5-10 | E5 | 疊 popup 時 popup 比畫面寬或高（含兩邊都大），起點取 0、超出畫面的部分切掉，不 panic | 都要 | 把終端機縮得比 popup 小再開 popup、邊開邊調整大小，app 不當掉 |
-| E5-11 | E5 | L4 的畫面測試另外跑兩次：「icon 佔兩格、powerline 符號一格」與「兩種都佔兩格」 | 都要 | 讀程式：測試 |
-| E5-12 | E5 | 上面的測試每一種 popup 各開一次，量單獨的框與疊上去的整個畫面 | 都要 | 讀程式：測試 |
-| E5-13 | E5 | 上面的測試邊界含 popup 比畫面寬、比畫面高、兩邊都大三種情況 | 都要 | 讀程式：測試 |
+| E5-11 | E5 | app 的 L4 畫面測試（自己的版面加上自己會開的 popup）另外跑兩次：「icon 佔兩格、powerline 符號一格」與「兩種都佔兩格」 | 都要 | 讀程式：測試 |
+| E5-12 | E5 | 上面的測試量疊上去的整個畫面；不用 lib 的 app 也單獨量每一種 popup 的框（用 lib 時單獨量框歸 lib，E8） | 都要 | 讀程式：測試 |
+| E5-13 | E5 | 上面的測試邊界含 popup 比畫面寬、比畫面高、兩邊都大三種情況，以及比 L1 的最低尺寸小、一直到 1×1 的尺寸（例：80×5、1×1）：不當掉，畫出名稱與提示 | 都要 | 讀程式：測試 |
 | E6-1 | E6 | 單一靜態 binary，goreleaser 建置 | 都要 | 讀檔案：`.goreleaser.yaml`（`CGO_ENABLED=0`），發布的是單一執行檔 |
 | E6-2 | E6 | 有 `install.sh`、`uninstall.sh`，用 `curl \| sh` 安裝與移除，免 sudo | 都要 | 照 README 的指令安裝再移除，不需要 sudo |
-| E6-3 | E6 | 另發到 Homebrew tap `vulcanshen/homebrew-tap` | 都要 | 看 `vulcanshen/homebrew-tap` 有這個 app 最新版的 formula |
-| E6-4 | E6 | 有跨尺寸的畫面測試：多種終端機尺寸下每一列都剛好等於終端機寬度 | 都要 | 讀程式：測試 |
+| E6-3 | E6 | 另發到 Homebrew tap：家族成員發到 `vulcanshen/homebrew-tap`，照 tdp 做的 app 發到自己的 tap | 發過版 | 看 tap 有這個 app 最新版的 formula |
+| E6-4 | E6 | 有跨尺寸的畫面測試：自己的版面加上自己會開的 popup，多種終端機尺寸下每一列都剛好等於終端機寬度 | 都要 | 讀程式：測試 |
 | E6-5 | E6 | 有測試守住程式裡給 splash 用的那一份（`internal/` 裡的副本檔或寫死的格子）跟 `docs/icon.svg` 一模一樣 | 都要 | 讀程式：測試比對兩份 |
 | E6-6 | E6 | demo gif 用 VHS 錄，腳本放在 `.local/demos/` | 都要 | 讀檔案：`.local/demos/` 有 tape |
 | E7-1 | E7 | 有 `README.md`（英文）與 `README-zh_TW.md`（繁中） | 都要 | 讀檔案 |
@@ -370,7 +401,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | E7-3 | E7 | README 只寫使用者需要知道的 | 都要 | 讀兩份 README：每一段都是使用者用這個工具需要知道的 |
 | E7-4 | E7 | README 第 1 段：標題、badge、語言切換（`English · 繁體中文`） | 都要 | 讀兩份 README 的開頭 |
 | E7-5 | E7 | README 第 2 段：一句話定位 + 一段「它能做什麼」 | 都要 | 讀兩份 README |
-| E7-6 | E7 | README 第 3 段：一張代表性的 demo gif，只有一張 | 都要 | 讀兩份 README，數 gif |
+| E7-6 | E7 | README 第 3 段只有一張代表性的 demo gif | 都要 | 讀兩份 README 的第 3 段，數 gif |
 | E7-7 | E7 | README 第 4 段：特色，寫使用者拿到什麼，不寫怎麼做到的 | 都要 | 讀兩份 README 的特色段 |
 | E7-8 | E7 | README 第 5 段：安裝，寫了前置需求、安裝方式、第一次啟動會發生什麼、移除 | 都要 | 讀兩份 README 的安裝段，四項都在 |
 | E7-9 | E7 | README 第 6 段：快速開始 | 都要 | 讀兩份 README |
@@ -378,9 +409,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | E7-11 | E7 | README 第 8 段：設定與資料存放位置 | 都要 | 讀兩份 README |
 | E7-12 | E7 | README 第 9 段：限制，用使用者的語言寫 | 都要 | 讀兩份 README 的限制段 |
 | E7-13 | E7 | README 第 10 段：相關連結，有 CHANGELOG 與 `docs/dev-remarks.md` | 都要 | 讀兩份 README 的相關連結 |
-| E7-14 | E7 | README 第 11 段：terminu family，寫明遵循 terminu design、列出家族其他成員 | 都要 | 讀兩份 README |
+| E7-14 | E7 | README 第 11 段：terminu family —— 家族成員寫遵循 terminu design、列出家族其他成員；照 tdp 做的 app 寫照 terminu design 做、附上連結，不列家族成員 | 都要 | 讀兩份 README |
 | E7-15 | E7 | README 第 12 段：License | 都要 | 讀兩份 README |
-| E7-16 | E7 | README 的段落照 1–12 的順序 | 都要 | 讀兩份 README 的段落順序 |
+| E7-16 | E7 | README 的 12 段都在，照 1–12 的順序 | 都要 | 讀兩份 README 的段落順序 |
 | E7-17 | E7 | README 沒有寫死版本號的「現況」段 | 都要 | 讀兩份 README |
 | E7-18 | E7 | README 的設定段寫出這個 app 用到的 E3 共用設定 key 與預設值 | 存設定或資料 | 讀兩份 README 的設定段 |
 | E7-19 | E7 | README 講 icon 寬度的地方寫出 `<APP>__ICON_WIDTH`、`TERMINU__ICON_WIDTH`、`<APP>__POWERLINE_WIDTH`、`TERMINU__POWERLINE_WIDTH` | 都要 | 讀兩份 README 講 Nerd Font 或 icon 寬度的地方 |
@@ -399,30 +430,33 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | E7-32 | E7 | dev-remarks 有「## 發布」一節，含踩過的坑 | 都要 | 讀這一節 |
 | E7-33 | E7 | dev-remarks 的八節照骨架的順序 | 都要 | 讀檔案的節標題順序 |
 | E7-34 | E7 | dev-remarks 的節標題不帶骨架裡的括號（寫 `## 設計決定`、`## 偏離 tdp`、`## 發布`） | 都要 | 讀檔案的節標題 |
-| E7-35 | E7 | 尚未符合 tdp 的地方逐條列在 `docs/<app>-terminu-fix.md`：違反了哪一條、在哪裡、現況、該怎麼改 | 都要 | 讀檔案：judge 判成違反的每一條都列在裡面，四樣都寫了 |
-| E7-36 | E7 | 沒有尚未符合 tdp 的地方時，沒有 `docs/<app>-terminu-fix.md`（全部修完就刪掉，不留空檔） | 都要 | 讀檔案：judge 沒判出違反時 `docs/` 裡沒有這個檔；有這個檔時裡面有待修的項目 |
+| E7-35 | E7 | 尚未符合 tdp 的地方逐條列在 `docs/<app>-terminu-fix.md`，每一條寫了違反了哪一條、在哪裡、現況、該怎麼改 | 都要 | 讀檔案：`docs/<app>-terminu-fix.md` 的每一條都寫了這四樣 |
+| E7-36 | E7 | `docs/<app>-terminu-fix.md` 存在時裡面有待修的項目：全部修完就刪掉，不留空檔 | 都要 | 讀檔案：有這個檔時裡面有待修的項目 |
 | E7-37 | E7 | 不另外維護「逐條對照 tdp」的文件 | 都要 | 讀檔案：`docs/` 與 repo 裡沒有逐條對照 tdp 的文件 |
+| E7-38 | E7 | 屬於 12 段裡某一段的內容放進那一段當小節（例：更新放進「安裝」，跟移除放在一起） | 都要 | 讀兩份 README 的段落與小節 |
+| E7-39 | E7 | app 自己加的段只在第 4 段（特色）到第 9 段（限制）之間，接在最有關的那一段後面；第 1–3 段、第 10–12 段之間沒有別的段 | 都要 | 讀兩份 README 的段落順序 |
+| E7-40 | E7 | 有疑難排解的段時，放在「使用方式與按鍵」之後 | 都要 | 讀兩份 README（沒有疑難排解的 app 沒有這種情況） |
 
 ## components（README）
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| components-1 | components §圖與間距 | label 與值之間兩格 | 都要 | 看表單、一列一個值的 panel、statusbar 上 label 與值之間的空格數 |
+| components-1 | components §圖與間距 | label 與值之間兩格（statusbar 的 `label: 值` 例外，見 components-25） | 都要 | 看表單、一列一個值的 panel 上 label 與值之間的空格數 |
 | components-2 | components §圖與間距 | 表格的欄與欄之間兩格 | 表頭 | 看清單的表頭與各列，欄與欄之間的空格數 |
-| components-3 | components §圖與間距 | 並排的項目之間兩格 | 都要 | 看 statusbar 這類並排的項目之間的空格數 |
+| components-3 | components §圖與間距 | 並排的項目之間兩格 | 都要 | 看並排的項目（statusbar 的組、chip、並排的按鈕……）之間的空格數 |
 | components-4 | components §圖與間距 | glyph 與它後面的字之間一格 | 都要 | 看 popup 標題、menu 區塊標題、標記的列這些 glyph 後面的空格數 |
-| components-5 | components §折行 | 要折行的文字（textarea、viewer、confirm、toast、error popup、太窄時的 splash）在空白處斷：一列放不下下一個字時，整個字接到下一列 | 都要 | 在 textarea、viewer、confirm、toast、error popup 裡放一段比框寬的英文，縮窄終端機後按 `V`，看英文單字沒有被切開 |
+| components-5 | components §折行 | 要折行的文字（textarea、viewer、confirm、note、toast、error popup、空狀態的句子、太窄時的 splash）在空白處斷：一列放不下下一個字時，整個字接到下一列；放不下就折行、不截斷 | 都要 | 在 textarea、viewer、confirm、toast、error popup 裡放一段比框寬的英文，縮窄終端機後按 `V`，看英文單字沒有被切開 |
 | components-6 | components §折行 | 寬字（佔兩格的字，例：中文、日文）每個字之間、跟它前後的字之間都可以斷，一列填滿再換列 | 都要 | 放一段比框寬的中文或中英混排，看每一列都填滿才換列 |
-| components-7 | components §折行 | 一個字本身就比一列還長時（例：很長的網址），才照格子切 | 都要 | 放一個比框寬的網址，看它照格子切成好幾段，前面的列都填滿 |
+| components-7 | components §折行 | 一個字本身就比一列還長時（例：很長的網址），才照格子切；這一列前面已經有字時，先換到新的一列再切 | 都要 | 放一個前面有字、比框寬的網址，看它從新的一列開頭照格子切成好幾段 |
 | components-8 | components §折行 | 照格子切時寬字不切成兩半：一列只剩一格時，那個寬字整個接到下一列 | 都要 | 放含中文的長字串，看列尾沒有半個寬字、框線不歪 |
 | components-9 | components §大寫 | panel 的 `[N] label` 膠囊大寫 | 都要 | 看每個 panel 左上角的膠囊 |
 | components-10 | components §大寫 | panel 的 tab 大寫 | panel tab | 看有 tab 的 panel 上框的每一個 tab |
 | components-11 | components §大寫 | 畫面 chip 大寫 | 多畫面 | 看最上面一列的每一個 chip |
 | components-12 | components §大寫 | popup 的標題大寫 | 都要 | 打開幾種 popup，看標題膠囊的字 |
-| components-13 | components §大寫 | 表頭大寫 | 表頭 | 看清單與一列一個值的 panel 的表頭 |
+| components-13 | components §大寫 | 表頭大寫 | 表頭、一列一個值的 panel | 看清單與一列一個值的 panel 的表頭 |
 | components-14 | components §大寫 | 清單的分組標題大寫 | 分組清單 | 看分組清單的每一個分組標題 |
 | components-15 | components §大寫 | 一列一個值的 panel 的 label 大寫 | 一列一個值的 panel | 看設定這類 panel 的 label 欄 |
-| components-16 | components §大寫 | 值不改大小寫 | 都要 | 看表單、一列一個值的 panel 上的值跟原本的大小寫一樣 |
+| components-16 | components §大寫 | 值不改大小寫（color picker 的 hex 一律大寫是顏色的寫法，不算改值） | 都要 | 看表單、一列一個值的 panel 上的值跟原本的大小寫一樣 |
 | components-17 | components §大寫 | menu 的 label 與說明不改大小寫 | 都要 | 按 `Space` 看各列的 label 與說明沒被轉成大寫 |
 | components-18 | components §大寫 | hint 與 footer 的說明不改大小寫 | 都要 | 看 footer 與下框 hint 冒號後面的字 |
 | components-19 | components §大寫 | 模式名不改大小寫 | 模式 | 進入模式，看上框右邊的模式名（`Drag` 不寫成 `DRAG`） |
@@ -430,7 +464,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | components-21 | components §大寫 | 標題裡的名稱、路徑照原樣（`EDIT: filu`、`IDENTITY FILE · ~/.ssh`） | 都要 | 打開對某一個東西做的 popup，看名稱部分沒被轉成大寫 |
 | components-22 | components §在方案裡選 | 元件的樣子只從 components 列出的方案裡挑，不在 app 裡自己發明 | 都要 | 對照各元件列出的方案，看 app 用的都是其中一種 |
 | components-23 | components §折行 | 一個字剛好填滿一列、後面接著空白時，那個空白畫在下一列的第一格 | textarea、viewer | 在 textarea 打字，讓一個字剛好填滿一列再打空白，看空白在下一列開頭、游標停得上去 |
-| components-24 | components §折行 | 只是顯示的文字（confirm、toast、error popup、splash）斷在空白處時，那個空白不畫：下一列開頭不會多一格空白 | 都要 | 讓 toast、confirm 或太窄時的 splash 的文字剛好在一個字後面折行，看下一列開頭沒有空白、置中沒有偏 |
+| components-24 | components §折行 | 只是顯示的文字（confirm、note、toast、error popup、空狀態、splash）斷在空白處時，那個空白不畫：下一列開頭不會多一格空白 | 都要 | 讓 toast、confirm 或太窄時的 splash 的文字剛好在一個字後面折行，看下一列開頭沒有空白、置中沒有偏 |
+| components-25 | components §圖與間距 | statusbar 的一組寫成 `label: 值`，冒號後面空一格；組與組之間兩格，不另外加分隔符號 | statusbar | 看 statusbar 的每一組與組之間 |
+| components-26 | components §大寫 | panel 標題裡的名稱照原樣（`[2] PODS: nginx-7d4f`），整個 label 就是名稱時照原樣（`[1] prod-web-01`） | 都要 | 看 label 裡有名稱的 panel 的膠囊 |
 
 ## color
 
@@ -440,14 +476,14 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | color-2 | color §呈現規則 | 一個顏色只代表一個意義，其他意義不用同一個顏色 | 都要 | 對照色碼表看各介面元素（例：popup 的框不是 Lavender） |
 | color-3 | color §呈現規則、§popup 的層色 | 第 K 層 popup 的框與標題用第 K 層的層色：最底下的 popup 是第 1 層，第 1、2、3 層依序是 `#A4C0FA` `#94C3F5` `#84C5F1`，第 4 層以上固定 `#74c7ec`；error popup 例外，用 Red | 都要 | 一層一層疊開 popup（到第 5 層），量每一層框與標題膠囊的顏色 |
 | color-4 | color §呈現規則 | 錯誤 Red、警告 Peach 在哪一層都是同一個顏色，不跟層數換色 | 都要 | 在第 1 層與第 2 層的 popup 裡各出一次錯誤或警告，比顏色 |
-| color-5 | color §呈現規則 | 粗體只用在 cursor 上的字、popup 的標題、選中的膠囊的字、模式名、popup 標題後面的 loading icon | 都要 | 看各畫面：表頭、分組標題、label、hint、footer、沒選中的膠囊、panel 上框的 loading icon 都不加粗 |
+| color-5 | color §呈現規則 | 粗體只用在 cursor 上的字、popup 的標題、選中的膠囊的字、模式名、popup 標題後面的 loading icon、splash 的名稱、畫面比最低尺寸小時正中央的 app 名稱 | 都要 | 看各畫面：表頭、分組標題、label、hint、footer、沒選中的膠囊、panel 上框的 loading icon 都不加粗 |
 | color-6 | color §色碼 | popup 下框 hint 的鍵 Blue（`#89b4fa`），冒號與說明 Overlay0（`#6c7086`） | 都要 | 打開任何 popup 看下框的 hint |
 | color-7 | color §色碼 | 停用的列、label、選項用 Surface2（`#585b70`） | 停用 | 讓一個動作或選項暫時不能用，看它的顏色 |
 | color-8 | color §色碼 | popup 裡的 cursor 色塊是層色底、字 Base（`#1e1e2e`）粗體，字原本的顏色不保留 | 都要 | 按 `Space` 看 menu 的 cursor 那一列 |
-| color-9 | color §色碼 | 麵包屑的「你在這裡」用 Lavender | 都要 | 看麵包屑上目前所在的那一段 |
+| color-9 | color §色碼 | panel 的位置列（麵包屑）用 Lavender | 位置列 | 看位置列 |
 | color-10 | color §色碼 | 活著的 session 用 Green | PTY | 看活著的 session 的標示 |
-| color-11 | color §色碼 | 進行中的工作與進度條用 Green | 長時間工作 | 開始一個長時間的工作，看進度條與工作的標示 |
-| color-12 | color §色碼 | 成功完成的用 Green | toast | 完成一個動作，看成功的標示 |
+| color-11 | color §色碼 | 進行中的工作與進度條用 Green（單畫面的 app 寫在工作自己的列裡） | 長時間工作 | 開始一個長時間的工作，看進度條與工作的標示 |
+| color-12 | color §色碼 | 成功完成的用 Green：Success toast 的字 | toast | 完成一個動作，看 Success toast 的字 |
 | color-13 | color §色碼 | 模式的外框用 Yellow（`#f9e2af`） | 模式 | 進入模式，看外框的顏色 |
 | color-14 | color §色碼 | 隔開幾個鍵的 `\|`（`j\|k`）用 Overlay0，不用鍵的顏色 | 都要 | 看 footer、hint 裡含 `\|` 的那一組 |
 | color-15 | color §色碼 | 沒有 focus 的按鈕（表單的動作區、color picker 的 `Choose`）也有底色：Surface1 底、字 Text | 表單、color picker | 看表單動作區裡沒有 focus 的按鈕 |
@@ -468,16 +504,16 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
 | screen-1 | screen §由上往下 | 多畫面的 app 最上面一列是畫面 chip 列 | 多畫面 | 看畫面最上面一列 |
-| screen-2 | screen §由上往下 | 最上面一列與 footer 之間其餘的高度都是 panel 區 | 都要 | 看 panel 從最上面一列（沒有最上面一列的單畫面 app 從第一列）下面一直排到 footer 上面 |
+| screen-2 | screen §由上往下 | 最上面一列（多畫面的 app 是 chip 列加它下面的分隔線，共兩列）與 footer 之間其餘的高度都是 panel 區 | 都要 | 看 panel 從最上面一列（多畫面的 app 從 chip 列下的分隔線，沒有最上面一列的單畫面 app 從第一列）下面一直排到 footer 上面 |
 | screen-3 | screen §由上往下 | 最下面一列是 footer，只佔一列 | 都要 | 看畫面最下面一列 |
 | screen-4 | screen §footer | footer 的鍵 Blue、冒號與說明 Overlay0 | 都要 | 看 footer 的顏色 |
 | screen-5 | screen §footer | footer 寬度不夠時從尾端整組捨棄 | 都要 | 把終端機縮窄，看 footer 從尾端少掉整組 `鍵:說明` |
 | screen-6 | screen §footer | 畫面有好幾個 panel 時，footer 是 `Space:menu ?:help Tab\|1–N:panels q:quit` | 多 panel | 在有好幾個 panel 的畫面看 footer |
 | screen-7 | screen §footer | 只有一個 panel 的畫面，footer 是 `Space:menu ?:help q:quit` | 都要 | 在只有一個 panel 的畫面看 footer（多畫面的 app 每個畫面各看一次） |
-| screen-8 | screen §footer | 在模式裡 footer 是 `?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>` | 模式 | 進入模式，看 footer |
+| screen-8 | screen §footer | 模式在 panel 上時，footer 是 `?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>` | 模式（在 panel 上） | 進入模式，看 footer |
 | screen-9 | screen §footer | panel filter 打字中，footer 是 `Enter\|Tab:list Esc:clear` | panel filter | 按 `/` 打字時看 footer |
 | screen-10 | screen §footer | focus 在 panel 裡的 PTY 時，footer 寫出口鍵，再加 app 保留的鍵；不寫 `?` 與 `Space` | PTY | 進 PTY，看 footer 第一組是出口鍵 |
-| screen-11 | screen §footer | popup 開著時 footer 照底下畫面的寫，不換字 | 都要 | 開 popup 前後比對 footer 的字 |
+| screen-11 | screen §footer | popup 開著時 footer 照底下畫面的寫，不換字（terminal popup 例外：footer 不畫，terminal-13） | 都要 | 開 popup 前後比對 footer 的字 |
 | screen-12 | screen §畫面 chip 列 | 每個畫面一個膠囊，照膠囊串畫 | 多畫面 | 看最上面一列 |
 | screen-13 | screen §畫面 chip 列 | 選中的畫面填 Blue、字 Base 粗體 | 多畫面 | 看目前畫面的 chip |
 | screen-14 | screen §畫面 chip 列 | 沒選中的畫面不填底色、字 Blue、不加粗 | 多畫面 | 看其他畫面的 chip |
@@ -490,7 +526,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | screen-21 | screen §statusbar | statusbar 上錯誤的數量 Red | statusbar | 製造錯誤，看 statusbar 的錯誤數 |
 | screen-22 | screen §statusbar | statusbar 上警告的數量 Peach | statusbar | 製造警告，看 statusbar 的警告數 |
 | screen-23 | screen §statusbar | statusbar 放不下時截斷，不折行 | statusbar | 把終端機縮窄，看 statusbar 還是一列 |
-| screen-24 | screen §窄寬 | 所有 panel 放不下時，只畫有 focus 的那一個 panel，佔滿寬度 | 多 panel | 把終端機縮窄到門檻以下 |
+| screen-24 | screen §窄寬 | 所有 panel 放不下時，只畫有 focus 的那一個 panel，佔滿寬度 | 多 panel | 把終端機縮窄到窄寬的門檻以下（最低尺寸以上） |
 | screen-25 | screen §窄寬 | 窄寬時 `Tab` 照樣換 panel，一次看一個 | 多 panel | 窄寬時按 `Tab` |
 | screen-26 | screen §窄寬 | 窄寬的門檻不高於 80 欄 | 多 panel | 把終端機調到 80 欄，看 panel 照常並排 |
 | screen-27 | screen §空狀態 | 空狀態寫一句事實，加上一句點名按鍵的提示 | 都要 | 讓一個 panel 沒有資料，看中間 |
@@ -498,6 +534,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | screen-29 | screen §空狀態 | 空狀態的兩句都用 Overlay0 | 都要 | 同上，看顏色 |
 | screen-30 | screen §空狀態（圖） | 事實與提示之間空一列 | 都要 | 讓一個 panel 沒有資料，看事實與提示兩句之間 |
 | screen-31 | screen §footer | panel filter 打字中、沒有結果時，footer 是 `Tab:list Esc:clear`（沒有 `Enter`） | panel filter | 按 `/` 打一串比對不到的字，看 footer |
+| screen-32 | screen §畫面 chip 列 | 單畫面的 app，長時間工作的進度寫在那個工作自己的列裡 | 長時間工作 | 在單畫面的 app 開始一個長時間的工作，看工作那一列 |
+| screen-33 | screen §zoom | 放大一個 panel 照預設做（只畫有 focus 的那一個 panel、佔滿 panel 區；`Tab`、數字鍵換到的 panel 也放大；再按一次放大的鍵才還原），不照預設的寫在 dev-remarks 的設計決定 | zoom | 放大後按 `Tab`、數字鍵，再按放大的鍵；讀檔案：不照預設時 dev-remarks 的設計決定 |
+| screen-34 | screen §空狀態 | 空狀態的句子太長時在空白處折行，每一列置中，左右照樣離框一格；不截斷 | 都要 | 把一個沒有資料的 panel 縮窄，看兩句 |
 
 ## layout/panel
 
@@ -510,12 +549,12 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | panel-5 | panel §框 | 模式名放在模式所在的框（panel 或 popup）的上框右邊，夾在兩個框線接頭之間 | 模式 | 進入模式，看上框右邊 |
 | panel-6 | panel §框（圖） | 模式名緊貼兩個接頭，中間不加空白（`┫Drag┣`） | 模式 | 進入模式，看接頭與模式名之間 |
 | panel-7 | panel §框 | 模式名的接頭跟框同色 | 模式 | 進入模式，比較接頭與框線的顏色 |
-| panel-8 | panel §框 | 接頭的線型跟著框：粗線框（有 focus 的 panel、popup）用 `┫` `┣`，細線框（失焦的 panel）用 `┤` `├` | 模式＋多 panel | 在模式裡按 `Tab` 換走，看接頭從粗線換成細線 |
+| panel-8 | panel §框 | 接頭的線型跟著框：粗線框（有 focus 的 panel、popup）用 `┫` `┣`，細線框（失焦的 panel）用 `┤` `├` | 模式（在 panel 上）＋多 panel | 在模式裡按 `Tab` 換走，看接頭從粗線換成細線 |
 | panel-9 | panel §框 | 模式名用模式色加粗 | 模式 | 進入模式，看模式名的顏色與粗細 |
 | panel-10 | panel §框 | 模式名盡量一個詞 | 模式 | 看每一個模式名 |
 | panel-11 | panel §框 | 放不下時先截標題，模式名留著 | 模式 | 在模式裡把終端機縮窄，看標題先被截、模式名還在 |
 | panel-12 | panel §框 | 在模式裡，膠囊跟著外框換成模式色 | 模式 | 進入模式，看膠囊的顏色 |
-| panel-13 | panel §框 | 每個 panel 下框左邊都有 hint | 都要 | 看每個 panel 的左下 |
+| panel-13 | panel §框 | 每個 panel 下框左邊都有 hint；panel 上一個按得動的鍵都沒有時（例：唯讀的 panel，或清單空了、又沒有對整個 panel 的鍵）不寫 hint，只剩框線 | 都要 | 看每個 panel 的左下；讓清單空掉看沒有按得動的鍵的 panel |
 | panel-14 | panel §框 | focus 在 panel filter 的打字列上時不寫 hint，focus 回到清單時 hint 回來 | panel filter | 按 `/` 看下框，再按 `Enter` 回清單看下框 |
 | panel-15 | panel §框 | focus 在 panel 裡的 PTY 時不寫 hint，離開 PTY 時回來 | PTY | 進 PTY 看下框，按出口鍵離開再看 |
 | panel-16 | panel §框 | 框上的字與角之間隔一段線：hint 是 `┗━ ` 開頭、捲動位置是 ` ━┛` 結尾、模式名後面是 `┣━┓`；只有 `[N] label` 膠囊緊接左上角 | 都要 | 看 panel 的四個角 |
@@ -526,7 +565,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | panel-21 | panel §框 | 有 focus 時 hint 的鍵 Blue、說明 Overlay0 | 都要 | 看有 focus 的 panel 的 hint |
 | panel-22 | panel §框 | 失焦時 hint 照樣留著，跟著 panel 一起淡化 | 多 panel | 按 `Tab` 換走，看原本 panel 的 hint 還在、變暗 |
 | panel-23 | panel §框 | hint 放不下時從尾端整組捨，捲動位置留著 | 都要 | 把終端機縮窄，看 hint 從尾端少掉整組、`N of M` 還在 |
-| panel-24 | panel §框（圖） | panel 的內容左邊離框一格 | 都要 | 看各 panel 第一個字與左框之間 |
+| panel-24 | panel §框（圖） | panel 的內容左邊離框一格（PTY 例外：貼著框） | 都要 | 看各 panel 第一個字與左框之間 |
 | panel-25 | panel §框（圖） | panel 的內容上下不留空白列，第一列緊接上框 | 都要 | 看各 panel 上框下面那一列就是內容 |
 | panel-26 | panel §膠囊串 | 膠囊串的兩端是斜角：左 U+E0BA、右 U+E0B0 | 都要 | 看 panel 標題膠囊的兩端；讀程式核對 code point |
 | panel-27 | panel §膠囊串 | 選中的段填滿這串的顏色，字 Base 粗體 | 都要 | 看 panel 的 `[N] label` 膠囊與目前的 tab |
@@ -544,7 +583,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | panel-39 | panel §膠囊串 | 有 tab 的 panel，`[N]` 自己是一段，一直是選中的 | panel tab | 換到第二個 tab，看 `[N]` 還是填色 |
 | panel-40 | panel §膠囊串 | `[N]` 後面每個 tab 一段，只有目前的 tab 選中 | panel tab | 換 tab，看只有目前的 tab 填色 |
 | panel-41 | panel §膠囊串 | 有 tab 的 panel 沒有另外的名字，第一個 tab 的名字就是 label | panel tab | 看有 tab 的 panel 上框沒有另外的 label |
-| panel-42 | panel §膠囊串 | 在第一個 tab 時，`[N]` 與第一個 tab 中間是一個空格、不畫接縫 | panel tab | 換回第一個 tab，看 `[N]` 與 tab 名字之間 |
+| panel-42 | panel §膠囊串 | 在第一個 tab 時，`[N]` 與第一個 tab 中間是空白、不畫接縫；那段空白跟接縫一樣佔一個 powerline 符號的寬度（powerline 符號佔兩格時是兩格） | panel tab | 換回第一個 tab，看 `[N]` 與 tab 名字之間；用 `TERMINU__POWERLINE_WIDTH=2` 開，換 tab 時字不位移 |
 | panel-43 | panel §膠囊串 | 放不下時先把沒選中的縮成第一個字或 glyph | 多畫面、panel tab | 把終端機縮窄，看沒選中的段 |
 | panel-44 | panel §膠囊串 | 還放不下就從尾端收掉沒選中的，改畫一個 `…` | 多畫面、panel tab | 再縮窄，看串的尾端 |
 | panel-45 | panel §膠囊串 | 放不下時選中的永遠留著 | 多畫面、panel tab | 縮到最窄，看選中的段還在 |
@@ -554,9 +593,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | panel-49 | panel §一般清單 | cursor 那一列整列都是 Base 字，各欄原本的顏色不保留 | 都要 | 把 cursor 移到有上色欄位的那一列 |
 | panel-50 | panel §一般清單 | cursor 右邊的留白畫 U+E0B0，Subtext1 | 都要 | 看 cursor 那一列最右邊 |
 | panel-51 | panel §一般清單 | 每一列右邊的留白跟箭頭一樣寬（powerline 符號佔兩格時留兩格），箭頭放得進去、字不位移 | 都要 | 用 `TERMINU__POWERLINE_WIDTH=2` 開，看每一列右邊的留白與箭頭 |
-| panel-52 | panel §一般清單 | 多欄的一般清單一定有表頭 | 都要 | 看每一個多欄的清單 panel，最上面有一列表頭 |
+| panel-52 | panel §一般清單 | 多欄的一般清單一定有表頭（清單空了時連表頭一起換成空狀態，panel-132） | 都要 | 看每一個多欄的清單 panel，最上面有一列表頭 |
 | panel-53 | panel §一般清單 | 一般清單的表頭 Blue | 表頭 | 看清單的表頭 |
-| panel-54 | panel §一般清單、§一列一個值 | 表頭固定在最上面不捲 | 表頭 | 往下捲，看表頭留在最上面 |
+| panel-54 | panel §一般清單、§一列一個值 | 表頭固定在最上面不捲 | 表頭、一列一個值的 panel | 往下捲，看表頭留在最上面 |
 | panel-55 | panel §一般清單（圖） | 表頭的字跟項目的字對齊（有標記欄時在標記欄之後） | 表頭 | 看表頭第一欄與各列第一欄的起點 |
 | panel-56 | panel §一般清單（圖） | 表頭下面直接接資料，不空列、不畫分隔線 | 表頭 | 看表頭的下一列 |
 | panel-57 | panel §一般清單 | 數字的欄靠右、文字的欄靠左 | 表頭 | 看數字欄與文字欄的對齊 |
@@ -576,11 +615,11 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | panel-71 | panel §一般清單 | 放下後回到那一列原本的標記 | Drag | 先標記一列再拿起、放下，看標記回來 |
 | panel-72 | panel §一般清單 | 有 Drag 的 panel，每一列都保留標記欄 | Drag | 看有 Drag 的 panel 各列前面空著一格 |
 | panel-73 | panel §一般清單 | 拿著時 `Enter` 放下 | Drag | 拿起、搬動後按 `Enter` |
-| panel-74 | panel §一般清單 | 太長從尾端截、加 `…`（路徑、檔名可以從前面截） | 都要 | 看長名字的欄位 |
+| panel-74 | panel §一般清單 | 太長時截斷、加 `…`：預設從尾端截；路徑、檔名這類尾端比較重要的從前面截；兩端都有意義的（例：pod 的名稱）從中間截（`demo-app…66-gm72n`）；從哪裡截由 app 替每一欄決定 | 都要 | 看長名字的欄位 |
 | panel-75 | panel §一般清單（loading 與錯誤） | panel 還沒有任何內容時，中間照空狀態的樣子寫一句 loading 的話 | loading | 讓 panel 第一次載入，看中間 |
 | panel-76 | panel §一般清單（loading 與錯誤） | 重新載入時舊的內容留著，不清空 | loading | 重新載入，看舊內容還在 |
-| panel-77 | panel §一般清單（loading 與錯誤） | 錯誤、斷線、沒有權限時，照空狀態的樣子置中寫兩句，一句事實用 Red | loading | 讓沒有內容的 panel 載入失敗，看中間的第一句 |
-| panel-78 | panel §一般清單（loading 與錯誤） | 載入失敗的另一句是提示，用 Overlay0 | loading | 同上，看第二句 |
+| panel-77 | panel §一般清單（loading 與錯誤） | panel 讀不到內容時（錯誤、斷線、沒有權限），照空狀態的樣子置中寫兩句，一句事實用 Red | 都要 | 讓沒有內容的 panel 讀取失敗，看中間的第一句 |
+| panel-78 | panel §一般清單（loading 與錯誤） | 讀不到內容的另一句是提示，用 Overlay0 | 都要 | 同上，看第二句 |
 | panel-79 | panel §一般清單（loading 與錯誤） | 載入失敗時舊的內容還在就留著 | loading | 有內容時讓它重新載入失敗，看內容還在 |
 | panel-80 | panel §一般清單（loading 與錯誤） | 舊的內容還在時，錯誤用 toast 報 | loading | 同上，看跳出 toast |
 | panel-81 | panel §分組 | 分組的清單每組前面一列分組標題 | 分組清單 | 看分組清單 |
@@ -606,14 +645,14 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | panel-101 | panel §一列一個值 | focus 色塊從值（選項則從那個選項）開始，到 panel 內的右緣 | 一列一個值的 panel | 看 focus 色塊的左右兩端 |
 | panel-102 | panel §一列一個值 | label 一般 Blue | 一列一個值的 panel | 看 label 欄 |
 | panel-103 | panel §一列一個值 | 值出錯時 label Red，優先於其他顏色 | 一列一個值的 panel | 讓一個值出錯，看它的 label |
-| panel-104 | panel §一列一個值 | label 欄寬取最長的 label | 一列一個值的 panel | 看值欄的起點是最長的 label 加兩格 |
+| panel-104 | panel §一列一個值 | label 欄寬取 label 與表頭第一欄名裡最長的那一個 | 一列一個值的 panel | 看值欄的起點是最長的 label（表頭第一欄名比較長時是它）加兩格 |
 | panel-105 | panel §一列一個值 | 一列一個值的 panel 有表頭時，表頭用 Overlay0 | 一列一個值的 panel | 看表頭的顏色 |
 | panel-106 | panel §一列一個值（圖） | 一列一個值的 panel 有表頭時，表頭的欄名跟下面的 label 欄、值欄對齊 | 一列一個值的 panel | 看表頭兩個欄名的起點 |
 | panel-107 | panel §明細 | 另一個 panel 的 cursor 一移動，明細立刻換成新的那一筆，不用按 `Enter` | 明細 panel | 在清單上按 `j\|k`，看明細 |
 | panel-108 | panel §明細 | 明細的 label 寫那一筆的名字時，label 一起換 | 明細 panel | 同上，看明細的膠囊 |
 | panel-109 | panel §明細 | cursor 移動時 focus 留在原本的 panel | 明細 panel | 同上，看 focus 的框 |
 | panel-110 | panel §panel filter | 按 `/` 在 panel 最上面出現一列打字列 | panel filter | 在清單上按 `/` |
-| panel-111 | panel §panel filter | 清單有表頭時，打字列在表頭上面 | 表頭＋panel filter | 在有表頭的清單按 `/`，打字列出現在表頭上面 |
+| panel-111 | panel §panel filter | 清單有表頭時，打字列在表頭上面；有位置列時在位置列下面 | 表頭＋panel filter | 在有表頭的清單按 `/`，打字列出現在表頭上面 |
 | panel-112 | panel §panel filter | panel filter 不開 popup | panel filter | 按 `/`，看沒有 popup |
 | panel-113 | panel §panel filter | 打字列最前面是 U+F105，離框一格 | panel filter | 按 `/` 看打字列最前面 |
 | panel-114 | panel §panel filter | U+F105 在 focus 在打字列時用 panel 框線的顏色、在清單時 Overlay0 | panel filter | 在打字列與清單之間切換，看 glyph 的顏色 |
@@ -627,6 +666,15 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | panel-122 | panel §panel filter | focus 離開 panel 時篩選留著，往哪個方向離開都一樣 | panel filter | 篩選後用 `Tab` 與數字鍵離開再回來 |
 | panel-123 | panel §panel filter | focus 回到有篩選的 panel 時，直接在打字列上 | panel filter | 篩選後離開再回來，看 focus 在打字列 |
 | panel-124 | panel §框 | 清單一項都沒有時（panel filter 篩到空，或本來就是空的），hint 拿掉 `Enter` 與對項目的熱鍵，只留對整個 panel 的 | 都要 | 讓清單篩到空或清空，看下框 hint 沒有 `Enter` 與項目的熱鍵 |
+| panel-125 | panel §膠囊串 | 選中的那一段自己就太長時，字從尾端截、加 `…`；兩端的斜角照畫，跟框角之間照樣留一段線 | 都要 | 把終端機縮到很窄，看 label 很長的 panel 的膠囊 |
+| panel-126 | panel §一般清單 | 排序的群：app 替列指定的群照 app 定的先後排，排序只在同一群裡排，群和群之間不畫標題（例：目錄一律在檔案前面） | 排序 | 對有群的清單換排序，看群的先後不變 |
+| panel-127 | panel §一般清單 | 欄放不下時先整欄收掉：照 app 標的順序從最不重要的那一欄拿掉（表頭跟著拿掉），名稱欄不收；只剩不能收的欄還放不下，才照比例縮各欄的寬 | 表頭 | 把終端機縮窄，看欄整欄消失、名稱欄一直在 |
+| panel-128 | panel §一般清單 | 終端機變大時，收掉的欄照順序回來 | 表頭 | 縮窄後再拉寬，看收掉的欄回來 |
+| panel-129 | panel §位置列 | 位置列是 panel 內的第一列，離框一格；有表頭時在表頭上面，panel filter 的打字列出現時在打字列上面；固定在最上面不捲 | 位置列 | 看位置列的位置；往下捲、按 `/` |
+| panel-130 | panel §位置列 | 位置列太長時從前面截、加 `…`，留住後面（目前所在的那一層） | 位置列 | 走進很深的位置，看位置列的開頭 |
+| panel-131 | panel §位置列 | 位置列只顯示：不能按，cursor 不會停在上面，捲動位置也不算它；panel 失焦時跟著淡化 | 位置列 | 用 `j\|k` 走到最上面，看 cursor 不停在位置列；看 `N of M`；按 `Tab` 換走 |
+| panel-132 | panel §一般清單 | 清單空了時空狀態取代整塊，表頭一起不畫，句子置中在整個 panel | 都要 | 讓有表頭的清單空掉，看表頭也不見、句子在 panel 正中間 |
+| panel-133 | panel §一般清單 | 清單的順序固定：同一份資料每次打開、重抓都排得一樣；資料本身沒有順序時 app 先排好（預設照名稱、數字照數值） | 都要 | 關掉再打開、重抓幾次，看順序不變；讀程式：沒有順序的資料（例：map）先排序 |
 
 ## layout/popup
 
@@ -643,7 +691,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | popup-9 | popup §外框 | tab 跟圓角的標題之間隔一段線（`┏━TITLE━CONSOLE…`） | popup tab | 看標題膠囊與第一個 tab 之間 |
 | popup-10 | popup §外框 | hint 的順序：`Enter` 第一 → 這個 popup 自己的鍵 → 換塊的 `Tab:…` → `Esc` 最後 | 都要 | 打開各種 popup，看 hint 的順序 |
 | popup-11 | popup §外框 | hint 不寫在項目之間移動的鍵（`j\|k`、`↑\|↓`） | 都要 | 看各種 popup 的 hint |
-| popup-12 | popup §外框 | 框到了最寬還放不下時，hint 從尾端整組捨棄，不截在項目中間 | 都要 | 把終端機縮到很窄，打開寬度到頂的 popup，看下框 |
+| popup-12 | popup §外框 | 框到了最寬還放不下時，hint 從 `Esc` 前面的那一組開始往前整組捨棄，不截在項目中間；最後的 `Esc` 一定留著 | 都要 | 把終端機縮到很窄，打開寬度到頂的 popup，看下框留著 `Esc` |
 | popup-13 | popup §外框 | hint 捨棄時，下框右邊的捲動位置留著 | 都要 | 同上，讓內容也放不下，看右下 |
 | popup-14 | popup §外框 | 框上的字與角之間隔一段線：`┏━TITLE`、`┗━ Enter:run`、`4 of 12 ━┛` | 都要 | 看 popup 的四個角 |
 | popup-15 | popup §外框 | 內容上下各留一列空白（viewer 也一樣） | 都要 | 看各種 popup 上框下面、下框上面那一列 |
@@ -651,8 +699,8 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | popup-17 | popup §外框 | 清單的 cursor 從框貼到框，蓋住左右的留白 | 都要 | 按 `Space` 看 cursor 色塊的兩端 |
 | popup-18 | popup §外框 | cursor 色塊上的字照樣離框一格 | 都要 | 同上，看色塊上的字與左框之間 |
 | popup-19 | popup §外框 | 整列 cursor 右邊的留白畫 U+E0B0，色塊的顏色 | 都要 | 按 `Space` 看 cursor 那一列最右邊 |
-| popup-20 | popup §外框 | 有整列 cursor 的 popup，每一列右邊的留白跟箭頭一樣寬（powerline 符號佔兩格時留兩格） | 都要 | 用 `TERMINU__POWERLINE_WIDTH=2` 開，看 menu 每一列右邊 |
-| popup-21 | popup §外框 | 只有整列的 cursor 有箭頭；一格一格的 cursor（datetime picker 的日子、時、分）沒有 | 都要 | 打開 datetime picker，看 cursor 旁邊沒有箭頭 |
+| popup-20 | popup §外框 | 有整列 cursor 的 popup（含表單的 focus 色塊），每一列右邊的留白跟箭頭一樣寬（powerline 符號佔兩格時留兩格） | 都要 | 用 `TERMINU__POWERLINE_WIDTH=2` 開，看 menu 與表單每一列右邊 |
+| popup-21 | popup §外框 | 只有整列的 cursor 有箭頭；一格一格的 cursor（datetime picker 的日子、時、分）沒有 | 都要 | 看整列的 cursor 有箭頭；有 datetime picker 時，看日子、時、分的 cursor 旁邊沒有箭頭 |
 | popup-22 | popup §外框 | 橫的分隔線不接框，左右各留一格空白 | 都要 | 按 `Space` 看區塊之間的分隔線兩端 |
 | popup-23 | popup §外框 | 直的分隔線不畫進上下的留白 | 都要 | 看直分隔線的上下端 |
 | popup-24 | popup §外框 | popup 裡的分隔線 Overlay0 | 都要 | 看分隔線的顏色 |
@@ -687,13 +735,13 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | popup-53 | popup §內容放不下時 | 有 cursor 或游標的寫 `N of M`（focus 所在的那一個是第幾個、總數） | 都要 | 在放不下的 menu 移動 cursor，看右下 |
 | popup-54 | popup §內容放不下時 | 沒有 cursor 或游標的（note、選取模式外的 viewer）寫看得到的行 `N-M of T` | 都要 | 打開放不下的 key reference，看右下 |
 | popup-55 | popup §內容放不下時 | 全放得下時不寫捲動位置 | 都要 | 打開放得下的 popup，看右下 |
-| popup-56 | popup §內容放不下時 | 表單以欄位為單位：上下式的 label 與值兩列、radio 的幾個選項都算同一欄；M 只算欄位，錯誤列與按鈕不算 | 表單 | 在放不下的表單裡移動，看 `N of M` |
+| popup-56 | popup §內容放不下時 | 表單與一列一個值的 panel 以欄位為單位：上下式的 label 與值兩列、radio 的幾個選項都算同一欄；M 只算欄位，錯誤列與按鈕不算 | 表單、一列一個值的 panel | 在放不下的表單或一列一個值的 panel 裡移動，看 `N of M` |
 | popup-57 | popup §內容放不下時 | 一段文字裡的游標（textarea、選取模式裡的 viewer）以行為單位：游標所在的行、總行數，跟行號同一套數字 | viewer、textarea | 在長的 textarea 裡移動游標，看 `N of M` 跟行號一樣 |
 | popup-58 | popup §內容放不下時（圖） | 錯誤列下面是一列下留白，再接下框 | input | 打開 input popup，看錯誤列與下框之間 |
 | popup-59 | popup §錯誤列 | 錯誤列在內容區下面，固定不捲 | input | 打開 input popup 讓它出錯，看錯誤列的位置 |
 | popup-60 | popup §錯誤列 | 錯誤列跟內容之間空一列 | input | 同上，看錯誤列與內容之間 |
 | popup-61 | popup §錯誤列 | 只有值可能不合格的 popup 才預留錯誤列 | 都要 | 打開 confirm、menu，看沒有預留的空列 |
-| popup-62 | popup §錯誤列 | 錯誤列只放值的錯（格式、範圍、必填、名字重複），訊息很短 | input | 讓值不合格，看錯誤列的訊息 |
+| popup-62 | popup §錯誤列 | 錯誤列只放值的錯（格式、範圍、必填、名字重複），訊息很短；值錯太多次而暫停收值時的倒數也寫在這裡 | input | 讓值不合格，看錯誤列的訊息 |
 | popup-63 | popup §錯誤列 | 錯誤列是 Red 字 | input | 看錯誤列的顏色 |
 | popup-64 | popup §錯誤列 | 錯誤列左緣跟內容對齊；內容置中時錯誤列也置中 | input | 看錯誤列的起點 |
 | popup-65 | popup §錯誤列 | 有錯誤時框與標題不變色，維持層色 | input | 讓值不合格，看框與標題的顏色 |
@@ -701,6 +749,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | popup-67 | popup §錯誤列 | input popup 裡的錯誤列不拿 focus | input | 讓 input popup 出錯，按鍵看 focus 不會到錯誤列 |
 | popup-68 | popup §錯誤列 | input popup 在 `Enter` 時檢查 | input | 打不合格的值，按 `Enter` 時才出現錯誤 |
 | popup-69 | popup §錯誤列 | 動作本身失敗（寫檔失敗、遠端拒絕、檔案在底下被改了）不寫錯誤列，開一個 error popup 蓋在當前的 popup 上 | 都要 | 讓送出的動作失敗，看跳出 error popup |
+| popup-70 | popup §錯誤列 | 值錯太多次而暫停收值時，倒數寫在錯誤列（Red，每秒更新，倒數完清掉）；暫停期間除了 `Esc` 的鍵都吞掉，不進打字列 | input | 連錯到暫停，看錯誤列每秒倒數；暫停時打字，打字列不變；倒數完錯誤列清掉（不會暫停收值的 app 沒有這種情況） |
 
 ## dialog/form
 
@@ -716,19 +765,19 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | form-8 | form §欄位的排法 | 左右式：一列裡 label 在左一欄、值在右 | 表單 | 看左右式欄位 |
 | form-9 | form §欄位的排法 | 欄位之間不空行 | 表單 | 看欄位區相鄰兩欄之間沒有空列 |
 | form-10 | form §欄位的排法 | 上下式的 label 與值之間不空行 | 表單 | 看上下式欄位的 label 與值 |
-| form-11 | form §欄位的排法 | label、值、錯誤的左緣對齊 | 表單 | 送出被擋後，看上下式的值、錯誤列與 label 的左緣在同一欄 |
+| form-11 | form §欄位的排法 | 上下式的欄位：label、值、錯誤的左緣對齊 | 表單 | 送出被擋後，看上下式的值、錯誤列與 label 的左緣在同一欄 |
 | form-12 | form §欄位的排法 | 左右式的 label 欄寬取左右式欄位裡最長的 label，上下式的 label 不算進去 | 表單 | 看左右式的值都從最長的左右式 label 後面同一欄開始 |
-| form-13 | form §選項畫在表單上 | 畫在表單上的選項一律直排，一個選項一列 | radio、checkbox | 看選項沒有橫排 |
-| form-14 | form §移動（圖） | 左右式欄位的選項：第一個選項跟 label 同一列，其餘選項接在下面各一列、左緣對齊值，label 欄空白 | radio、checkbox | 看 radio 欄位第二個以後的選項，左緣對齊第一個選項 |
+| form-13 | form §選項畫在表單上 | 畫在表單或一列一個值的 panel 上的選項一律直排，一個選項一列 | radio、checkbox | 看選項沒有橫排 |
+| form-14 | form §移動（圖） | 表單與一列一個值的 panel 上左右式欄位的選項：第一個選項跟 label 同一列，其餘選項接在下面各一列、左緣對齊值，label 欄空白 | radio、checkbox | 看 radio 欄位第二個以後的選項，左緣對齊第一個選項 |
 | form-15 | form §focus 與 label | 欄位的 focus 色塊從值開始一直到框，蓋住右邊的留白 | 表單 | focus 停在一欄，看色塊從值的左緣到右框 |
-| form-16 | form §focus 與 label | 選項的 focus 色塊從那個選項的 glyph 開始，一直到框 | radio、checkbox | focus 停在一個選項上看色塊 |
+| form-16 | form §focus 與 label | 表單與一列一個值的 panel 上，選項的 focus 色塊從那個選項的 glyph 開始，一直到框 | radio、checkbox | focus 停在一個選項上看色塊 |
 | form-17 | form §focus 與 label | 值空著的欄位 focus 時也是一整塊底色 | 表單 | focus 停在空的欄位上看色塊 |
 | form-18 | form §focus 與 label | 按鈕的 focus 色塊就是按鈕本身，沒有箭頭 | 表單 | `Tab` 到按鈕，看色塊只有按鈕那一塊 |
-| form-19 | form §focus 與 label | label 不因 focus 變色 | 表單 | focus 進出一欄，看 label 顏色不變 |
+| form-19 | form §focus 與 label | 表單與一列一個值的 panel 上，label 不因 focus 變色 | 表單、一列一個值的 panel | focus 進出一欄，看 label 顏色不變 |
 | form-20 | form §focus 與 label | 一般的 label 是層色（跟標題膠囊、框線同色） | 表單 | 比較 label 與框線的顏色 |
 | form-21 | form §focus 與 label | 值出錯的欄位 label 是 Red，優先於其他顏色 | 表單 | 送出被擋後看有問題的 label |
-| form-22 | form §focus 與 label | 停用的欄位留在原位，不拿掉、不改高度 | 表單 | 讓一欄變成停用，看表單版面不變 |
-| form-23 | form §focus 與 label | 值在每一個狀態都不跟它的 label 同色 | 表單 | 看一般、focus、停用、出錯時的 label 與值 |
+| form-22 | form §focus 與 label | 表單與一列一個值的 panel 上，停用的欄位留在原位，不拿掉、不改高度 | 表單、一列一個值的 panel | 讓一欄變成停用，看表單版面不變 |
+| form-23 | form §focus 與 label | 表單與一列一個值的 panel 上，值在每一個狀態都不跟它的 label 同色 | 表單、一列一個值的 panel | 看一般、focus、停用、出錯時的 label 與值 |
 | form-24 | form §動作區 | 按鈕的文字左右各留一格空白，一塊底色 | 表單 | 看動作區的按鈕 |
 | form-25 | form §動作區 | 按鈕上寫按下去要做的事（`Save`、`Connect`） | 表單 | 看按鈕文字 |
 | form-26 | form §動作區 | 按鈕不畫成方括號（`[ Save ]`） | 表單 | 看按鈕 |
@@ -754,20 +803,20 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | form-46 | form §動作區 | 不關表單的動作做完後，focus 留在那顆按鈕上 | 表單 | 動作成功後看 focus |
 | form-47 | form §動作區 | 動作把值寫進某一欄時，那一欄算改過 | 表單 | 讓動作寫回一欄後按 `Esc`，先跳 confirm |
 | form-48 | form §動作區 | 動作區不放取消的按鈕 | 表單 | 看動作區沒有 `Cancel` 之類的按鈕 |
-| form-49 | form §移動 | focus 的單位是項目：要打字或開 popup 的欄位一個、radio／checkbox 每個選項各一個、每個按鈕一個 | 表單 | 用 `j` 走一遍，數停的次數 |
+| form-49 | form §移動 | 表單與一列一個值的 panel 上，focus 的單位是項目：要打字或開 popup 的欄位一個、radio／checkbox 每個選項各一個、每個按鈕一個 | 表單、一列一個值的 panel | 用 `j` 走一遍，數停的次數 |
 | form-50 | form §移動 | 錯誤列有錯誤時也是一個項目，在最後一欄後面；沒錯時不停 | 表單 | 送出被擋前後，各用 `j` 走過最後一欄 |
-| form-51 | form §移動 | 走到一欄的最後一個選項再往後就到下一欄；在第一個選項再往前就回到上一欄 | radio、checkbox | 在 radio 的最後一個選項按 `j`、第一個選項按 `k` |
+| form-51 | form §移動 | 表單與一列一個值的 panel 上，走到一欄的最後一個選項再往後就到下一欄；在第一個選項再往前就回到上一欄 | radio、checkbox | 在 radio 的最後一個選項按 `j`、第一個選項按 `k` |
 | form-52 | form §移動 | 動作區照閱讀順序排成一串：一列裡由左到右，再到下一列 | 表單 | 在動作區按 `j` 走過每一顆按鈕 |
 | form-53 | form §移動 | `gg\|G` 到這一區的第一個、最後一個項目 | 表單 | 在欄位區、動作區各按 `gg`、`G` |
 | form-54 | form §移動 | `u\|d` 以項目為單位半頁，到頭尾停住 | 表單 | 在欄位很多的表單按 `d` 到底再按，不繞回 |
 | form-55 | form §移動 | 第一次到動作區時停在主要的送出（右下角） | 表單 | 打開表單後第一次按 `Tab` |
 | form-56 | form §移動 | 錯誤列屬於欄位區：`j\|k` 與 `e` 到得了，在它上面按 `Tab` 到動作區 | 表單 | 送出被擋後用 `j` 走到錯誤列，再按 `Tab` |
 | form-57 | form §移動 | 每一區各自頭尾繞回：欄位區最後一項（有錯誤時是錯誤列）往後回到第一欄，最後一個按鈕往後回到第一個按鈕 | 表單 | 在欄位區最後一項、最後一顆按鈕上按 `j` |
-| form-58 | form §移動 | 停用的欄位與選項跳過，`j\|k` 不停在上面 | 表單 | 用 `j` 經過停用的欄位 |
+| form-58 | form §移動 | 表單與一列一個值的 panel 上，停用的欄位與選項跳過，`j\|k` 不停在上面 | 表單、一列一個值的 panel | 用 `j` 經過停用的欄位 |
 | form-59 | form §移動 | 打開時 focus 在第一個能停的項目（跳過停用的），新增與編輯都一樣 | 表單 | 分別打開新增、編輯的表單看 focus |
 | form-60 | form §移動 | app 從某一欄打開表單時，focus 停在那一欄 | 表單 | 從 panel 的某一列打開編輯表單，看 focus |
 | form-61 | form §移動 | 打開時不自動打開任何欄位的 input popup：打開的一定是表單本身，一次 `Esc` 就離開 | 表單 | 打開新增表單，按一次 `Esc` 就回到原處 |
-| form-62 | form §移動 | 跳進 radio、checkbox 那一欄時（從那一欄打開、送出被擋、錯誤列按 `e`）停在第一個有值的選項：radio 已選的、checkbox 第一個勾的，都沒有值停第一個 | radio、checkbox | 讓 radio 那一欄出錯後送出，看 focus 停在哪個選項 |
+| form-62 | form §移動 | 跳進 radio、checkbox 那一欄時（從那一欄打開、送出被擋、錯誤列按 `e`）停在第一個有值的選項：radio 已選的、checkbox 第一個勾的，都沒有值停第一個 | 表單 | 讓 radio 那一欄出錯後送出，看 focus 停在哪個選項 |
 | form-63 | form §`Enter` | 在按鈕上按 `Enter` 按下它：送出，或做那個按鈕的動作 | 表單 | `Tab` 到按鈕按 `Enter` |
 | form-64 | form §送出 | 送出只有一個方法：focus 在送出的按鈕上按 `Enter`（沒有字母熱鍵或其他送出方式） | 表單 | 在欄位上按 `s` 等字母，都不會送出 |
 | form-65 | form §在欄位上打字 | focus 在要打字的欄位（text、password、number、textarea）上，按表單操作鍵以外的可列印字元（含數字、`q`）跳說明的 note | 表單 | 在 text 欄位上打 `s`、`1`、`q` |
@@ -780,8 +829,8 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | form-72 | form §在欄位上打字 | 開其他 input popup 的欄位（select、slider、日期、顏色、選檔、reorder、checkbox popup）上按可列印字元，不跳 note、不作用 | 表單 | focus 在 select 之類的欄位上打 `s`、`1`、`q`，沒有 note，什麼都沒變 |
 | form-73 | form §在欄位上打字 | 其他可列印字元在選項、按鈕、錯誤列上不跳 note、不作用 | 表單 | focus 在按鈕上打 `s` |
 | form-74 | form §hint | focus 在會開 input popup 的欄位上，hint 寫 `Enter:edit` | 表單 | 看下框 hint |
-| form-75 | form §hint | focus 在 radio 的選項上，hint 寫 `Enter:choose` | radio | 看下框 hint |
-| form-76 | form §hint | focus 在 checkbox 的選項上，hint 寫 `Enter\|Space:toggle` | checkbox | 看下框 hint |
+| form-75 | form §hint | 表單與一列一個值的 panel 上，focus 在 radio 的選項上，hint 寫 `Enter:choose` | radio | 看下框 hint |
+| form-76 | form §hint | 表單上 focus 在 checkbox 的選項上，hint 寫 `Enter\|Space:toggle` | 表單＋checkbox | 看下框 hint |
 | form-77 | form §hint | focus 在按鈕上，hint 寫按鈕的字：動詞小寫，名稱、路徑照原樣（`Save` → `Enter:save`、`Save As` → `Enter:save as`） | 表單 | `Tab` 到每一顆按鈕看 hint |
 | form-78 | form §hint | focus 在有問題的欄位上時加 `e:error`（`Enter:edit e:error Tab:actions Esc:cancel`） | 表單 | 送出被擋後看 hint |
 | form-79 | form §hint | focus 在錯誤列上，hint 是 `Enter:show e:edit Tab:actions Esc:cancel` | 表單 | 送出被擋後走到錯誤列看 hint |
@@ -799,7 +848,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | form-91 | form §錯誤 | 在有問題的欄位上按 `e`：focus 跳到錯誤列，錯誤列換成這一欄的訊息 | 表單 | 兩欄出錯時，在第二欄按 `e` |
 | form-92 | form §錯誤 | 在錯誤列按 `Enter` 打開完整訊息的 error popup，標題寫那一欄的名字，`Enter`、`Esc` 都能關 | 表單 | 在錯誤列按 `Enter`，看標題，再各按 `Enter`、`Esc` |
 | form-93 | form §錯誤 | 在錯誤列按 `e`：focus 回到這則訊息的那一欄 | 表單 | 在錯誤列按 `e` |
-| form-94 | form §錯誤 | 錯誤跟著檢查走：表單的 Red label 與錯誤列、input popup 的錯誤列一直掛著，值改了也一樣，到下一次檢查（表單：送出、按不關表單的動作；input popup：`Enter`）才換掉或清掉 | input | 送出被擋後改好那一欄，label 仍是 Red，再送出才清掉 |
+| form-94 | form §錯誤 | 錯誤跟著檢查走：表單的 Red label 與錯誤列一直掛著，值改了也一樣，到下一次檢查（送出、按不關表單的動作）才換掉或清掉 | 表單 | 送出被擋後改好那一欄，label 仍是 Red，再送出才清掉 |
+| form-95 | form §在欄位上打字 | 打字說明 note 只收 `Enter`、`Esc`：其他可以打的字（包括 `q`、`?`）都不作用，也不穿過去 | 表單 | 在 text 欄位上打 `a` 跳出 note，再打 `q`、`?`、`j`，note 還在、什麼都沒發生 |
+| form-96 | form §錯誤 | input popup 的錯誤列一直掛著，值改了也一樣，到下一次 `Enter` 才換掉或清掉 | input | 讓 input popup 出錯後改值，錯誤還在；再按 `Enter` 才換掉 |
 
 ## dialog/menu
 
@@ -824,7 +875,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | menu-17 | menu §長相 | Space menu 的標題寫 focus panel 的 `[N] label` | 都要 | 在不同 panel 按 `Space` 看標題 |
 | menu-18 | menu §長相 | `Global operation` 那一列的說明一律是 `actions for the whole app` | 都要 | 看 Space menu 的最後一列 |
 | menu-19 | menu §按鍵 | hint 是 `Enter:run Esc:close`，不寫移動鍵 | 都要 | 看 menu 的下框 |
-| menu-20 | menu §按鍵 | `Enter` 打開那一列全文的 menu（例：工作清單），hint 寫 `Enter:detail Esc:close` | 都要 | 看那個 menu 的下框 |
+| menu-20 | menu §按鍵 | 工作清單上沒有動作可做的列，`Enter` 打開那一列的全文，hint 寫 `Enter:detail Esc:close` | 工作清單 | cursor 移到沒有動作可做的列，看下框 |
+| menu-21 | menu §工作清單 | 工作清單上可以對那一列做事的（例：進行中的傳輸可以取消），`Enter` 打開帶那一列全文的 confirm，hint 寫那個動作（例 `Enter:cancel Esc:close`） | 工作清單 | cursor 移到可以做事的列，看 hint 後按 `Enter` |
+| menu-22 | menu §工作清單 | 工作清單開著時，列跟著工作更新（進度、狀態一變那一列就變），不用關掉重開 | 工作清單 | 工作進行中打開工作清單，看列的進度在變 |
 
 ## dialog/confirm
 
@@ -850,8 +903,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | note-1 | note §長相 | 標題是 glyph 加上顯示的東西，畫成標題膠囊 | 都要 | 看 key reference、viewer 的標題 |
 | note-2 | note §長相 | viewer 的標題：種類大寫；要寫顯示的是哪一個時，接 ` — ` 再接名稱，名稱照原樣（例 `YAML — pod/nginx`） | viewer | 看 viewer 的標題 |
 | note-3 | note §長相 | viewer 折行時，N 是最上面那一列所屬的行，M 是最下面那一列所屬的行，T 是總行數 | viewer | 把視窗縮窄讓內容折行，對照捲動位置與行號 |
-| note-4 | note §長相 | viewer 裡一行比框寬時接到下一列畫（折行） | viewer | 打開有長行的內容，看長行折到下一列、沒有被截掉 |
-| note-5 | note §長相 | viewer（YAML 檢視、App Log、檔案內容）左邊有行號 | viewer | 打開 viewer 看左邊 |
+| note-4 | note §長相 | viewer 預設折行：一行比框寬時接到下一列畫；要對齊的內容 app 讓它不折行時，比框寬的部分截掉、行尾加 `…` | viewer | 打開有長行的內容，看長行折到下一列、或行尾有 `…` |
 | note-6 | note §長相 | 每一行的第一列畫行號，靠右對齊、後面空一格 | viewer | 看行號欄 |
 | note-7 | note §長相 | 折下來的列，行號欄空白 | viewer | 看折行的那幾列 |
 | note-8 | note §長相（圖） | 行號欄緊接在左邊的留白之後（離框一格），行號與內容之間不畫分隔線 | viewer | 看行號欄的位置 |
@@ -882,7 +934,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | note-33 | note §選取模式 | 範圍以字為單位：從起點到游標，含游標那個字 | viewer | 選一段後複製，看頭尾 |
 | note-34 | note §選取模式 | 開始選之後 hint 是 `y:copy Esc:cancel` | viewer | 按第二次 `v` 後看下框 |
 | note-35 | note §選取模式 | 開始選之後再按 `v` 不作用（不當離開的別名） | viewer | 開始選之後按 `v` |
-| note-36 | note §選取模式 | `y` 複製選起來的文字，離開選取模式，範圍與游標都消失 | viewer | 選一段後按 `y` |
+| note-36 | note §選取模式 | `y` 複製選起來的文字，離開選取模式，範圍與游標都消失；跳一個 Success toast 說複製好了 | viewer | 選一段後按 `y` |
 | note-37 | note §選取模式 | `Esc` 在哪一步都整個離開選取模式，不複製，範圍與游標都消失 | viewer | 在還沒選、已經選時各按一次 `Esc` |
 | note-38 | note §選取模式 | 游標是一格層色底、Base 字 | viewer | 按 `v` 後看游標 |
 | note-39 | note §選取模式 | 範圍是 Yellow 底、Base 字，游標那格維持層色 | viewer | 選一段後看範圍與游標 |
@@ -896,14 +948,14 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | note-47 | note §key reference | 從 menu 來的列，label 去掉熱鍵標記、大小寫照原樣（`[E]dit` 寫成 `Edit`） | 都要 | 對照 Space menu 的列 |
 | note-48 | note §key reference | 區塊標題跟 menu 一樣：`nf-md-hexagon`、大寫、Overlay0、縮一格、不加粗 | 都要 | 看區塊標題 |
 | note-49 | note §key reference（圖） | 區塊之間不畫分隔線、不空行：區塊標題直接接在上一區最後一列下面 | 都要 | 看兩個區塊之間 |
-| note-50 | note §key reference | panel 上的區塊依序是 `item operation`、`panel operation`、`move`、`core keys`、`app-wide` | 都要 | 在 panel 上按 `?` 看區塊順序 |
+| note-50 | note §key reference | panel 上的區塊依序是（一列一個值的 panel 有的話）`what each row is`、`item operation`、`panel operation`、`move`、`core keys`、`app-wide` | 都要 | 在 panel 上按 `?` 看區塊順序 |
 | note-51 | note §key reference | `item operation`、`panel operation` 的內容跟 Space menu 一樣 | 都要 | 對照同一個 panel 的 Space menu |
 | note-52 | note §key reference | `move` 只列這裡真的能用的移動鍵 | 都要 | 對照 `move` 的每一個鍵在這個 panel 上按得出效果 |
 | note-53 | note §key reference | `core keys` 列這個 panel 上有作用的 core key：`Space`、`?`、`Tab`、`1–N`、`q\|Ctrl-C` | 都要 | 看 `core keys` 那一段 |
 | note-54 | note §key reference | `1–N` 只在有好幾個 panel 時列進 `core keys` | 都要 | 看只有一個 panel 的畫面沒有 `1–N` |
 | note-55 | note §key reference | `Esc` 只在這裡有作用時才列進 `core keys`（例：有篩選可以清） | 都要 | 有篩選與沒有篩選時各按 `?` |
 | note-56 | note §key reference | `Enter` 不列進 `core keys`（已經在 `item operation` 寫了） | 都要 | 看 `core keys` 沒有 `Enter` |
-| note-57 | note §key reference | panel 的 key reference 在 `app-wide` 區列出 global 熱鍵 | 都要 | 對照 global operation popup 的熱鍵 |
+| note-57 | note §key reference | panel 的 key reference 在 `app-wide` 區列出 global 熱鍵；離開的 `q` 已在 `core keys`，不重複 | 都要 | 對照 global operation popup 的熱鍵 |
 | note-58 | note §key reference | 現在按得了的鍵用 Blue、不加粗（按不了的見 note-60） | 都要 | 看鍵欄的顏色 |
 | note-59 | note §key reference | 說明用 Text | 都要 | 看說明的顏色 |
 | note-60 | note §key reference | 現在按不了（對象存在）的鍵照樣列出，鍵與說明都用 Surface2 | 停用 | 讓某個動作停用後按 `?` |
@@ -912,10 +964,12 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | note-63 | note §error popup | 標題膠囊填 Red、字 Base 粗體 | error popup | 看標題膠囊 |
 | note-64 | note §error popup | 標題 glyph 是 `nf-md-fire`（U+F0238） | error popup | 看標題 |
 | note-65 | note §error popup | 訊息在框裡折行；太長時 `j\|k` 捲動 | error popup | 讓長的訊息跳出來，按 `j\|k` |
-| note-66 | note §error popup | 標題寫哪件事失敗了（`RENAME FAILED`、`SAVE FAILED`） | error popup | 看標題文字 |
+| note-66 | note §error popup | 標題寫哪件事失敗了（`RENAME FAILED`、`SAVE FAILED`）；從表單錯誤列打開的寫那一欄的名字（form-92） | error popup | 看標題文字 |
 | note-67 | note §error popup | `Enter` 與 `Esc` 都能關 | error popup | 各按一次 `Enter`、`Esc` |
 | note-68 | note §error popup | hint 是 `Enter\|Esc:close` | error popup | 看下框 |
 | note-69 | note §error popup | 關掉 error popup 之後回到底下的 popup，focus 留在原位（表單的送出或不關表單的動作失敗時，focus 在那顆按鈕上，再按 `Enter` 就是重試），值都還在 | error popup | 關掉後看底下的 popup |
+| note-70 | note §選取模式 | 每個 viewer 都有選取模式（`v` 選取、`y` 複製） | viewer | 在每個 viewer 上按 `v` |
+| note-71 | note §長相 | viewer 的搜尋：命中的字全部加底線、保留原本的顏色；目前那一筆畫成 cursor 色塊；不用 Yellow | viewer | 在有 `/` 的 viewer 搜一個出現好幾次的字，看底線與目前那一筆（沒有搜尋的 viewer 沒有這種情況） |
 
 ## dialog/terminal
 
@@ -933,6 +987,14 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | terminal-10 | terminal §按鍵 | 出口鍵的動詞寫真正會發生的事：結束子程序寫 `Alt-Esc:exit`，離開但子程序還留著寫 `Alt-Esc:leave` | terminal popup | 看 hint，再按出口鍵對照結果 |
 | terminal-11 | terminal §按鍵 | 出口鍵不寫 `close` | terminal popup | 看 hint |
 | terminal-12 | terminal §按鍵 | 出口鍵後面跟 app 保留的組合鍵（`Alt-t:hide`、`PgUp:history`） | terminal popup | 看 hint 的順序 |
+| terminal-13 | terminal §長相 | terminal popup 開著時 footer 不畫：最後一列的兩端是空白，不露出 footer 的字 | terminal popup | 打開 terminal popup，看最後一列的兩端 |
+| terminal-14 | terminal §長相 | PTY 放在 panel 裡時也不留白：panel 的框照畫，PTY 貼著框 | PTY | 看放 PTY 的 panel 裡第一個字與框之間 |
+| terminal-15 | terminal §歷史模式 | 在 PTY 上按 `PgUp` 捲上去就進入歷史模式：框與模式名換成模式色，模式名是 `History` | PTY | 在 PTY 上按 `PgUp`，看框與上框右邊 |
+| terminal-16 | terminal §歷史模式 | 歷史模式裡 `j\|k`、`u\|d`、`gg\|G`、`PgUp\|PgDn` 都捲歷史，不送給子程序 | PTY | 進歷史模式後按這些鍵，看歷史捲動、shell 沒有收到 |
+| terminal-17 | terminal §歷史模式 | 歷史模式裡 `Esc` 離開模式，回到即時畫面 | PTY | 進歷史模式後按 `Esc` |
+| terminal-18 | terminal §選取模式 | PTY 的選取模式用 app 保留的組合鍵進入，跟其他保留鍵一樣常駐揭露 | PTY | 看 footer 或 terminal 的下框有進入選取模式的鍵，按下去 |
+| terminal-19 | terminal §選取模式 | 進入 PTY 的選取模式時畫面凍住：子程序後來的輸出先不畫上去，游標可以往上走進歷史；離開時回到即時畫面 | PTY | 讓 shell 一直輸出時進選取模式，看畫面不動、游標能往上走 |
+| terminal-20 | terminal §選取模式 | PTY 的選取模式照 note 的選取模式：按鍵、顏色、捲動位置、複製後的 toast 都一樣 | PTY | 在 PTY 的選取模式選一段複製，對照 viewer 的選取模式 |
 
 ## dialog/toast
 
@@ -943,25 +1005,30 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | toast-3 | toast §長相 | 下框一律在畫面倒數第三列，最下面兩列一直看得到（平常是 panel 的下框與 footer；terminal popup 開著時是 PTY 的最後一列與 terminal 的下框；沒有 panel 的畫面也一樣） | toast | 在一般畫面與 terminal popup 裡各跳一次 toast，看下框的列 |
 | toast-4 | toast §長相 | 文字置中 | toast | 看訊息的位置 |
 | toast-5 | toast §長相 | 太長時折行，每一列都置中 | toast | 跳一個長的 toast |
-| toast-6 | toast §長相 | 最多三列，超過的話第三列結尾加 `…` | toast | 跳一個超過三列的 toast |
-| toast-7 | toast §長相 | 會被截掉的訊息，完整內容走 error popup 或 app 的 log | toast | 讀程式：長訊息的完整內容另外寫進 error popup 或 log |
+| toast-6 | toast §長相 | 最多幾列由 app 決定；app 設了上限、訊息超過時，最後一列結尾加 `…` | toast | 跳一個很長的 toast，看列數與結尾 |
+| toast-7 | toast §長相 | app 設了列數上限時，會被截掉的訊息，完整內容走 error popup 或 app 的 log | toast | 讀程式：長訊息的完整內容另外寫進 error popup 或 log |
 | toast-8 | toast §長相 | Info：標題 `nf-fa-flag`（U+F024）`INFO`，文字 Text | toast | 跳一個 Info toast |
 | toast-9 | toast §長相 | Warning：標題 `nf-md-alarm_light`（U+F078F）`WARNING`，文字 Peach | toast | 跳一個 Warning toast |
 | toast-10 | toast §長相 | Error：標題 `nf-md-fire`（U+F0238）`ERROR`，文字 Red | toast | 跳一個 Error toast |
-| toast-11 | toast §長相 | Info 顯示 2200ms | toast | 量 Info toast 停留的時間 |
+| toast-11 | toast §長相 | Success、Info 顯示 2200ms | toast | 量 Success、Info toast 停留的時間 |
 | toast-12 | toast §長相 | Warning、Error 顯示 4400ms | toast | 量 Warning、Error toast 停留的時間 |
 | toast-13 | toast §長相 | 第二個 toast 來時直接取代第一個，重新計時 | toast | 連續跳兩個 toast |
 | toast-14 | toast §按鍵 | hint 是 `Esc:close` | toast | 看 toast 的下框 |
+| toast-15 | toast §長相 | Success：標題 `nf-md-check_circle`（U+F05E0）`SUCCESS`，文字 Green | toast | 跳一個 Success toast |
+| toast-16 | toast §長相 | 成功做完的事用 Success（例：`Copied 3 paths`）；Info 留給不是成功也不是問題的訊息 | toast | 完成一個動作，看跳的是 Success |
+| toast-17 | toast §用途 | 跟某個 popup 的動作有關、需要使用者看完再決定的失敗，用 error popup，不用 toast | toast | 讓 popup 裡的動作失敗，看跳的是 error popup |
+| toast-18 | toast §長相 | 做完了或還能用、但有值得注意的地方用 Warning（例：`3 files skipped`） | toast | 做一個部分略過的動作，看跳的是 Warning |
+| toast-19 | toast §長相 | 動作失敗一律用 Error，不用 Warning | toast | 讓一個動作失敗，看跳的是 Error（或 error popup） |
 
 ## input/README
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| input-1 | input §什麼是 input | 從表單欄位打開的 input，錯誤點名那一欄的名字 | 表單、input | 讓值不合格按 `Enter`，看錯誤列寫的是欄位名 |
+| input-1 | input §什麼是 input | 從表單或一列一個值的 panel 的欄位打開的 input，錯誤點名那一欄的名字 | 表單、一列一個值的 panel | 讓值不合格按 `Enter`，看錯誤列寫的是欄位名 |
 | input-2 | input §什麼是 input | 自己打開的 input（標題寫在做什麼，例 `RENAME`、`SAVE AS`），錯誤點名 app 另外給的值的名字（例 `Name`），不拿標題當名字 | input | 在 `SAVE AS` 之類的 popup 貼上控制字元按 `Enter`，錯誤寫 `Name can't …`，不是 `Save as can't …` |
 | input-3 | input §什麼是 input | `Esc`：關掉，值不變 | input | 改了值按 `Esc`，欄位還是舊值 |
 | input-4 | input §什麼是 input | 有按鈕的 input popup：hint 在欄位上寫 `Tab:actions`、在按鈕上寫 `Tab:fields` | input | 看兩處的下框 hint |
-| input-5 | input §單行 input popup 的骨架 | 有說明列：一句話說要輸入什麼，Overlay0 | text、password、number | 打開 text／number／password popup，看打字列上面那一句 |
+| input-5 | input §單行 input popup 的骨架 | 有說明列：一句話說要輸入什麼，Overlay0（password 的解鎖樣式例外，見 password-24） | text、password、number | 打開 text／number／password popup，看打字列上面那一句 |
 | input-6 | input §單行 input popup 的骨架（圖） | 說明列在打字列上面 | text、password、number | 看內容的列序 |
 | input-7 | input §單行 input popup 的骨架 | 說明列跟打字列之間空一列 | text、password、number | 數兩列之間的空列 |
 | input-8 | input §單行 input popup 的骨架 | 要改的對象是誰，寫進說明列那一句（例 `New name for assets`） | text、password、number | 打開 rename 之類的 popup，看說明列寫出對象 |
@@ -976,15 +1043,15 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | input-17 | input §值比框長時 | 游標移動時只捲剛好夠的量，不把游標固定在中間 | text、password、number | 長值裡從尾端一路按 `←`，看捲動 |
 | input-18 | input §值比框長時 | 截斷照顯示寬度算（中文一個字 2 格） | text、password、number | 打長的中文值，框線不歪 |
 | input-19 | input §值比框長時 | 截斷時一個字不切成兩半，紅色的 `\n`、`\x1b` 也一樣 | text、password、number | 貼上含 `\x1b` 的長值，捲動時看邊緣 |
-| input-20 | input §編輯鍵 | 字元、`Space` 插在游標處 | input、panel filter | 游標移到中間再打字 |
-| input-21 | input §編輯鍵 | `←`／`→` 游標往左、往右移一個字 | input、panel filter | 按 `←`、`→` |
-| input-22 | input §編輯鍵 | `Backspace` 刪游標前面的字 | input、panel filter | 游標在中間按 `Backspace` |
-| input-23 | input §編輯鍵 | `Delete` 刪游標上的字 | input、panel filter | 游標在中間按 `Delete` |
-| input-24 | input §編輯鍵 | 一個字是看起來的一個字：中文、emoji 各一個，組合字元連同前面的字算一個 | input、panel filter | 打中文、emoji、組合字元後按 `←`、`Backspace` |
-| input-25 | input §編輯鍵 | 貼上進來的控制字元各算一個字（`←\|→`、`Delete` 一次跨過或刪掉整個 `\x1b`） | input、panel filter | 貼上含 `\x1b` 的字，按 `←`、`Delete` |
+| input-20 | input §編輯鍵 | 字元、`Space` 插在游標處（password 除外） | input、panel filter | 游標移到中間再打字 |
+| input-21 | input §編輯鍵 | `←\|→` 游標往左、往右移一個字（password 除外） | input、panel filter | 按 `←`、`→` |
+| input-22 | input §編輯鍵 | `Backspace` 刪游標前面的字（password 除外） | input、panel filter | 游標在中間按 `Backspace` |
+| input-23 | input §編輯鍵 | `Delete` 刪游標上的字（password 除外） | input、panel filter | 游標在中間按 `Delete` |
+| input-24 | input §編輯鍵 | 一個字是看起來的一個字：中文、emoji 各一個，組合字元連同前面的字算一個（password 除外） | input、panel filter | 打中文、emoji、組合字元後按 `←`、`Backspace` |
+| input-25 | input §編輯鍵 | 貼上進來的控制字元各算一個字（`←\|→`、`Delete` 一次跨過或刪掉整個 `\x1b`）（password 除外） | input、panel filter | 貼上含 `\x1b` 的字，按 `←`、`Delete` |
 | input-26 | input §編輯鍵 | `Ctrl-U`、`Ctrl-W` 不收 | input、panel filter | 打字後按 `Ctrl-U`、`Ctrl-W`，值不變 |
 | input-27 | input §編輯鍵 | 其他 `Ctrl-`、`Alt-` 組合在打字列上沒有作用、不打出字 | input、panel filter | 按 `Ctrl-A`、`Alt-b`，值不變 |
-| input-28 | input §舊值是灰字提議 | 灰字提議只用在 text、number（password 用灰點、textarea 直接帶入舊值） | input | 打開有舊值的 textarea、password，沒有灰字提議 |
+| input-28 | input §舊值是灰字提議 | 灰字提議只用在 text、number（password 用灰點、textarea 直接帶入舊值） | input | 打開有舊值的 text、number，有灰字提議；打開有舊值的 textarea、password，沒有 |
 | input-29 | input §舊值是灰字提議 | 改已有的值時，框打開是空的，舊值用灰字（Overlay0）顯示 | text、number | 打開一個有舊值的欄位 |
 | input-30 | input §舊值是灰字提議 | 灰字從游標那一格開始：游標壓在第一個字上（Lavender 底、Base 字），後面接灰字 | text、number | 看打開時游標與灰字的位置 |
 | input-31 | input §舊值是灰字提議 | 舊值第一個字是控制字元時，游標那一格照控制字元畫（Red 底、Base 字） | text、number | 打開舊值以 `\x1b` 開頭的欄位 |
@@ -995,18 +1062,18 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | input-36 | input §舊值是灰字提議 | 灰字消失後按 `Enter` 存成空的（欄位不能空時照錯誤處理） | text、number | `Backspace` 後按 `Enter`，看欄位變空或出錯誤 |
 | input-37 | input §舊值是灰字提議 | 有灰字、什麼都沒碰就按 `Enter`：保留舊值、關掉（不是存成空的） | text、number | 打開後直接按 `Enter` |
 | input-38 | input §舊值是灰字提議 | 有灰字時 hint 加 `Tab:edit Backspace:clear`（例 `Enter:rename Tab:edit Backspace:clear Esc:cancel`） | text、number | 看有灰字時的下框 hint |
-| input-39 | input §舊值是灰字提議 | 灰字提議只有舊值這一種來源（沒有歷史、補完之類的提議） | input、panel filter | 打幾個字，看有沒有其他灰字 |
+| input-39 | input §舊值是灰字提議 | 灰字提議只有兩種來源：舊值，與沒有舊值時 app 給的建議值（沒有歷史、補完之類的提議） | input、panel filter | 打幾個字，看有沒有其他灰字 |
 | input-40 | input §不放 placeholder | input popup 裡不放 placeholder（空的打字列不寫灰字說明） | input | 打開沒有舊值的 input，打字列除了 glyph 什麼都沒有 |
 | input-41 | input §不放 placeholder | 打字列前面的 `nf-fa-angle_right` 不是字：不會被收進值，打字時也不會消失 | input、panel filter | 在空的打字列打字，glyph 留著 |
 | input-42 | input §貼上的控制字元 | 只算貼上的文字：按下去的 `Tab`、`Enter`、`Ctrl-J` 照原本的作用，不打成控制字元 | input、panel filter | 在打字列按 `Ctrl-J`，值裡沒有多出 `\n` |
 | input-43 | input §貼上的控制字元 | 貼上的控制字元一個都不丟，也不換成空白，留在值裡 | input、panel filter | 貼上多行文字 |
-| input-44 | input §貼上的控制字元 | 控制字元照實畫成紅字（Red），不切開 | input、panel filter | 貼上多行文字看顏色 |
-| input-45 | input §貼上的控制字元 | `\r`、`\n`、`\t` 寫名字（2 格） | input、panel filter | 貼上含換行與 Tab 的文字 |
-| input-46 | input §貼上的控制字元 | 其他 C0、DEL、C1 寫 `\xNN`（4 格，例 `\x1b`、`\x7f`、`\x85`） | input、panel filter | 貼上從終端機複製、帶顏色的字 |
-| input-47 | input §貼上的控制字元 | `\r\n` 照實畫成 `\r\n` 兩個 | input、panel filter | 貼上 CRLF 換行的文字 |
-| input-48 | input §貼上的控制字元 | 整列畫成灰色的列（沒有 focus 的打字列、提議）裡，控制字元跟著灰 | input、panel filter | 打字列含 `\n` 時把 focus 移到清單；或看舊值含控制字元的灰字 |
-| input-49 | input §貼上的控制字元 | 游標停在控制字元上：整個控制字元畫成 Red 底、Base 字（一般的字照舊 Lavender 底） | input、panel filter | 按 `←` 移到 `\x1b` 上 |
-| input-50 | input §貼上的控制字元 | `Backspace` 一次刪一整個控制字元 | input、panel filter | 游標在 `\x1b` 後面按一次 `Backspace` |
+| input-44 | input §貼上的控制字元 | 控制字元照實畫成紅字（Red），不切開（password 除外） | input、panel filter | 貼上多行文字看顏色 |
+| input-45 | input §貼上的控制字元 | `\r`、`\n`、`\t` 寫名字（2 格）（password 除外） | input、panel filter | 貼上含換行與 Tab 的文字 |
+| input-46 | input §貼上的控制字元 | 其他 C0、DEL、C1 寫 `\xNN`（4 格，例 `\x1b`、`\x7f`、`\x85`）（password 除外） | input、panel filter | 貼上從終端機複製、帶顏色的字 |
+| input-47 | input §貼上的控制字元 | `\r\n` 照實畫成 `\r\n` 兩個（password 除外） | input、panel filter | 貼上 CRLF 換行的文字 |
+| input-48 | input §貼上的控制字元 | 整列畫成灰色的列（沒有 focus 的打字列、提議）裡，控制字元跟著灰（password 除外） | input、panel filter | 打字列含 `\n` 時把 focus 移到清單；或看舊值含控制字元的灰字 |
+| input-49 | input §貼上的控制字元 | 游標停在控制字元上：整個控制字元畫成 Red 底、Base 字（一般的字照舊 Lavender 底）（password 除外） | input、panel filter | 按 `←` 移到 `\x1b` 上 |
+| input-50 | input §貼上的控制字元 | `Backspace` 一次刪一整個控制字元（password 除外） | input、panel filter | 游標在 `\x1b` 後面按一次 `Backspace` |
 | input-51 | input §貼上的控制字元 | 遮罩的值照樣遮罩（password 貼上控制字元也只畫遮罩） | password | 在 password 貼上含 `\n` 的文字 |
 | input-52 | input §貼上的控制字元 | 不是使用者打字進來的值（原本的名字、檔案或別的程式給的、清單填回來的、啟動目錄來的預設值、提議…）走同一個過濾 | input、panel filter | 帶入含 `\x1b` 的舊值，看畫成紅字、確定時擋下；或讀程式 |
 | input-53 | input §貼上的控制字元 | 值會被拿去用的（送出、存、執行、交給別的程式）：有控制字元時按 `Enter` 擋下 | input | 貼上多行後按 `Enter`，popup 不關 |
@@ -1020,7 +1087,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | input-61 | input §在表單與 panel 上怎麼顯示 | 空值的灰字不寫教人按鍵的字（例：不寫 `enter to browse ~/.ssh`） | 表單、input | 看每個空值的字 |
 | input-62 | input §在表單與 panel 上怎麼顯示 | 值太長從尾端截，加 `…` | 表單、input | 填一個很長的值 |
 | input-63 | input §在表單與 panel 上怎麼顯示 | 路徑太長從前面截（`…/.ssh/id_ed25519`） | file-picker | 填一個很長的路徑 |
-| input-64 | input §在表單與 panel 上怎麼顯示 | text、number 顯示值本身 | text、number | 看表單或 panel 上的值 |
+| input-64 | input §在表單與 panel 上怎麼顯示 | text 顯示值本身；number 顯示值本身，有單位時空一格接單位、寫完整的字（`10 seconds`） | text、number | 看表單或 panel 上的值 |
 | input-65 | input §在表單與 panel 上怎麼顯示 | password 設了是固定 8 個 `•`，沒設照空值 | password | 各看一個設了、沒設的密碼欄 |
 | input-66 | input §在表單與 panel 上怎麼顯示 | textarea 顯示第一行，後面還有就加 `…` | textarea | 填多行後看欄位 |
 | input-67 | input §在表單與 panel 上怎麼顯示 | select 顯示選中那一項的文字 | select | 看欄位 |
@@ -1028,16 +1095,20 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | input-69 | input §在表單與 panel 上怎麼顯示 | reorder 的值照目前的順序用 `, ` 接起來，太長加 `…` | reorder | 排過順序後看欄位 |
 | input-70 | input §在表單與 panel 上怎麼顯示 | 畫在表單上的 radio、checkbox 顯示選項本身 | radio、checkbox | 看表單 |
 | input-71 | input §在表單與 panel 上怎麼顯示 | date／datetime picker 顯示格式化的日期（時間） | datetime picker | 看欄位 |
-| input-72 | input §在表單與 panel 上怎麼顯示 | color picker 的值顯示成 3 格的色塊（`███`）、空一格、hex（`███ #2A2A3C`） | color picker | 看欄位 |
+| input-72 | input §在表單與 panel 上怎麼顯示 | color picker 的值顯示成 3 格的色塊（`███`）、空一格、hex（`███ #2A2A3C`，hex 一律大寫） | color picker | 看欄位 |
 | input-73 | input §在表單與 panel 上怎麼顯示 | file-picker 顯示路徑，家目錄寫成 `~` | file-picker | 選一個家目錄下的檔案後看欄位 |
+| input-74 | input §新建一個值：建議值 | 沒有舊值、app 有建議值時，用灰字提議顯示建議值（長相、`Tab`、直接打字、`Backspace`、hint 都跟舊值的提議一樣） | text、number | 打開有建議值的新建欄位（沒有建議值的 app 沒有這種情況） |
+| input-75 | input §新建一個值：建議值 | 有建議值、什麼都沒碰就按 `Enter`：用建議值，寫回去、照常檢查（不能空的欄位也不跳「不能空」） | text、number | 打開有建議值的欄位直接按 `Enter` |
+| input-76 | input §在表單與 panel 上怎麼顯示 | 表單與 panel 上的值有控制字元時，照打字列寫成紅色的轉義（`\n`、`\t`、`\x1b`），不丟、不換成空白 | input | 讓一個欄位的值含 Tab 或 `\x1b`，看表單或 panel 上的值 |
+| input-77 | input §單行 input popup 的骨架 | 打字列的 `nf-fa-angle_right` 後面空一格才接值 | text、password、number | 看打字列 glyph 與值之間 |
 
 ## input/text
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| text-1 | text §用途 | 多行文字用 textarea，不用 text | textarea | 找出要輸入多行的欄位，看打開的是 textarea |
-| text-2 | text §用途 | 只收數字的值用 number，不用 text | number | 找出 port、秒數之類的欄位，看打開的是 number |
-| text-3 | text §用途 | 不顯示出來的值（密碼、PIN、passphrase）用 password | password | 找出密碼類的欄位，看打開的是 password |
+| text-1 | text §用途 | 多行文字用 textarea，不用 text | text、textarea | 找出要輸入多行的欄位，看打開的是 textarea |
+| text-2 | text §用途 | 只收數字的值用 number，不用 text | text、number | 找出 port、秒數之類的欄位，看打開的是 number |
+| text-3 | text §用途 | 不顯示出來的值（密碼、PIN、passphrase）用 password | text、password | 找出密碼類的欄位，看打開的是 password |
 
 ## input/password
 
@@ -1066,12 +1137,14 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | password-21 | password §按鍵 | hint 加 `Backspace:clear` | password | 看下框 hint |
 | password-22 | password §按鍵 | 字元一律接在尾端 | password | 打字時按 `←` 再打，字照樣接在最後 |
 | password-23 | password §按鍵 | `←\|→`、`Home\|End`、`Delete` 沒有作用 | password | 打字後按這幾個鍵 |
+| password-24 | password §長相 | 解鎖方案沒有說明列，要輸入什麼由標題講（例：`UNLOCK`、`CURRENT PIN`、`NEW PIN`、`CONFIRM PIN`） | password | 打開解鎖方案的框，看說明列與標題（沒有解鎖方案的 app 沒有這種情況） |
+| password-25 | password §長相（圖） | 解鎖方案的框裡是兩列空白、打字列、一列空白、錯誤列，連框 7 列 | password | 數解鎖方案的框的列數 |
 
 ## input/number
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| number-1 | number §用途 | 範圍小、用點選比打字快的值用 slider，不用 number | slider | 找出範圍小的數值欄位，看用的是 slider |
+| number-1 | number §用途 | 範圍小、用點選比打字快的值用 slider，不用 number | number、slider | 找出範圍小的數值欄位，看用的是 slider |
 | number-2 | number §長相 | 說明列寫出範圍（例 `Port, 1-65535`） | number | 看說明列 |
 | number-3 | number §按鍵 | 打字只收數字，其他鍵按了沒反應 | number | 打字母、符號 |
 | number-4 | number §按鍵 | 欄位允許負數才收 `-` | number | 在不允許負數的欄位打 `-` |
@@ -1079,6 +1152,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | number-6 | number §按鍵 | 貼上時只留下會收的字 | number | 貼上 `a1b2` |
 | number-7 | number §按鍵 | 不做 `↑\|↓` 加減 | number | 按 `↑`、`↓`，值不變 |
 | number-8 | number §值 | 範圍錯了寫錯誤列，點名值（例 `Port must be 1-65535`） | number | 打範圍外的數按 `Enter` |
+| number-9 | number §值 | 欄位可以空時，空的值不做範圍檢查，存成空的 | number | 清空一個可以空的數字欄位按 `Enter`（沒有可以空的數字欄位的 app 沒有這種情況） |
+| number-10 | number §長相 | 有單位時，打字列下面多一列單位列：寫完整的字（`seconds`，不寫 `s`）、Overlay0、跟值的第一格對齊、不跟著打的字移動 | number | 打開有單位的數字欄位，打幾個字看單位列（沒有單位的 app 沒有這種情況） |
+| number-11 | number §長相 | 有單位列時，寬度把單位列也算進最寬的那一列 | number | 量有單位的數字欄位的框寬 |
 
 ## input/select
 
@@ -1094,8 +1170,8 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| radio-1 | radio §用途 | 選項五個以內的單選，直接畫在表單或 panel 上（radio） | radio | 找出五個以內的單選欄位 |
-| radio-2 | radio §用途 | 選項超過五個的單選用 select | radio | 找出超過五個的單選欄位 |
+| radio-1 | radio §用途 | 選項五個以內的單選，直接畫在表單或 panel 上（radio） | radio、select | 找出五個以內的單選欄位 |
+| radio-2 | radio §用途 | 選項超過五個的單選用 select | radio、select | 找出超過五個的單選欄位 |
 | radio-3 | radio §長相 | 選中 `nf-md-radiobox_marked`（U+F043E）、沒選 `nf-md-radiobox_blank`（U+F043D） | radio | 看選項前面的 glyph |
 | radio-4 | radio §長相 | 選中那一個的字是 Green，其他是 Text | radio | 看選項的顏色 |
 | radio-5 | radio §長相 | 一律直排，一個選項一列 | radio | 看選項排法 |
@@ -1112,9 +1188,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | checkbox-2 | checkbox §用途 | 超過五個的多選開 checkbox popup | checkbox | 找出超過五個的多選欄位 |
 | checkbox-3 | checkbox §長相 | 勾了 `nf-md-checkbox_marked`（U+F0132），沒勾 `nf-md-checkbox_blank_outline`（U+F0131）；表單、panel 上與 checkbox popup 的每一列都是 | checkbox | 看選項前面的 glyph |
 | checkbox-4 | checkbox §長相 | 勾了的字是 Green | checkbox | 看勾了的選項顏色 |
-| checkbox-5 | checkbox §長相 | 不可用的選項照樣畫在原位，不藏起來 | checkbox | 看不可用的選項還在清單裡 |
-| checkbox-6 | checkbox §長相 | 不可用的選項整列 Surface2，勾也是（勾著也不是 Green） | checkbox | 看勾著與沒勾的不可用選項 |
-| checkbox-7 | checkbox §長相 | cursor 停在不可用的選項上時照 cursor 色塊畫，跟其他列一樣 | checkbox | 移到不可用的選項上 |
+| checkbox-5 | checkbox §長相 | 不可用的選項照樣畫在原位，不藏起來（不可用的選項不是停用） | checkbox | 看不可用的選項還在清單裡 |
+| checkbox-6 | checkbox §長相 | 不可用的選項整列 Surface2，勾也是（勾著也不是 Green）（不可用的選項不是停用） | checkbox | 看勾著與沒勾的不可用選項 |
+| checkbox-7 | checkbox §長相 | cursor 停在不可用的選項上時照 cursor 色塊畫，跟其他列一樣（不可用的選項不是停用） | checkbox | 移到不可用的選項上 |
 | checkbox-8 | checkbox §長相 | checkbox popup 是 finder 的骨架，沒有預覽 | checkbox | 打開 checkbox popup |
 | checkbox-9 | checkbox §按鍵 | 表單或 panel 上 `Enter` 在原地翻，focus 不動 | checkbox | 在 checkbox 上按 `Enter` |
 | checkbox-10 | checkbox §按鍵 | 表單或 panel 上翻了馬上生效 | checkbox | 翻了之後看效果 |
@@ -1124,19 +1200,21 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | checkbox-14 | checkbox §按鍵 | `Enter` 把目前勾的整組一次寫回、popup 關掉，這時才生效 | checkbox | 勾兩項後按 `Enter` |
 | checkbox-15 | checkbox §按鍵 | 單獨打開的，`Enter` 時才套用 | checkbox | 按 `Enter` 前後看套用的對象 |
 | checkbox-16 | checkbox §按鍵 | `Esc` 取消：勾的都不算，值維持打開時的樣子 | checkbox | 改勾後按 `Esc`，再打開看 |
-| checkbox-17 | checkbox §按鍵 | 不可用的選項 cursor 照樣停 | checkbox | 用 `j\|k` 走過不可用的選項 |
-| checkbox-18 | checkbox §按鍵 | 不可用的選項照樣能勾或取消（popup 的 `Space`、表單或 panel 上的 `Enter`） | checkbox | 在不可用的選項上翻 |
-| checkbox-19 | checkbox §按鍵 | popup 的 `Enter` 照畫面上的勾寫回，不可用的選項也一樣 | checkbox | 勾不可用的選項後按 `Enter`，看值 |
-| checkbox-20 | checkbox §按鍵 | 篩選時不可用的選項照樣列在結果裡 | checkbox | 打字篩選出不可用的選項 |
+| checkbox-17 | checkbox §按鍵 | 不可用的選項 cursor 照樣停（不可用的選項不是停用） | checkbox | 用 `j\|k` 走過不可用的選項 |
+| checkbox-18 | checkbox §按鍵 | 不可用的選項照樣能勾或取消（popup 的 `Space`、表單或 panel 上的 `Enter`）（不可用的選項不是停用） | checkbox | 在不可用的選項上翻 |
+| checkbox-19 | checkbox §按鍵 | popup 的 `Enter` 照畫面上的勾寫回，不可用的選項也一樣（不可用的選項不是停用） | checkbox | 勾不可用的選項後按 `Enter`，看值 |
+| checkbox-20 | checkbox §按鍵 | 篩選時不可用的選項照樣列在結果裡（不可用的選項不是停用） | checkbox | 打字篩選出不可用的選項 |
 | checkbox-21 | checkbox §按鍵 | 清單的 hint 是 `Enter:apply Space:toggle Tab\|/:filter Esc:cancel` | checkbox | 看下框 hint |
 | checkbox-22 | checkbox §按鍵 | 篩到沒有結果時，清單上的 `Enter` 照樣把勾好的整組寫回（被篩掉的勾也算） | checkbox | 勾兩項後打到沒有結果，到清單按 `Enter`，兩項都寫回 |
 | checkbox-23 | checkbox §按鍵 | 篩到沒有結果時，清單的 hint 拿掉 `Space`：`Enter:apply Tab\|/:filter Esc:cancel` | checkbox | 打到沒有結果後到清單看下框 |
+| checkbox-24 | checkbox §按鍵 | checkbox popup 什麼都沒改就按 `Enter`：不改，關掉 | checkbox | 打開 checkbox popup 不動就按 `Enter` |
+| checkbox-25 | checkbox §按鍵 | 一列一個值的 panel 上 focus 在 checkbox 時，hint 寫 `Enter:toggle`（panel 上的 `Space` 開 Space menu，不翻） | 一列一個值的 panel＋checkbox | 看 panel 的下框 hint |
 
 ## input/slider
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| slider-1 | slider §用途 | 要打精確數字的值用 number，不用 slider | slider | 找出要精確數字的欄位，看用的是 number |
+| slider-1 | slider §用途 | 要打精確數字的值用 number，不用 slider | number、slider | 找出要精確數字的欄位，看用的是 number |
 | slider-2 | slider §長相 | 表單與 panel 上畫一條軌道加數字 | slider | 看欄位 |
 | slider-3 | slider §長相 | 軌道用粗線 `━` | slider | 看軌道的字元 |
 | slider-4 | slider §長相 | 值的位置畫 `●`（在軌道上，值越大越右） | slider | 改值看 `●` 移動 |
@@ -1218,6 +1296,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | color-picker-25 | color-picker §按鍵 | `Choose` 上 `Enter`：確定，寫回去，關掉 | color picker | 在 `Choose` 上按 `Enter` |
 | color-picker-26 | color-picker §按鍵 | R、G、B 上的 hint 是 `Enter:edit Tab:actions Esc:cancel` | color picker | 看下框 hint |
 | color-picker-27 | color-picker §按鍵 | `Choose` 上的 hint 是 `Enter:choose Tab:fields Esc:cancel` | color picker | 看下框 hint |
+| color-picker-28 | color-picker §長相 | 原本沒有值時，old 不畫色塊，文字寫 `none`（Overlay0）；new 從 `#000000` 起 | color picker | 打開一個沒有設的顏色欄位（沒有可以不設的顏色的 app 沒有這種情況） |
+| color-picker-29 | color-picker §按鍵 | 原本沒有值時，`Choose` 一律算改了：new 是 `#000000` 也照樣寫回去 | color picker | 打開沒有設的顏色欄位，不動就按 `Choose`，看值變成 `#000000` |
+| color-picker-30 | color-picker §值 | hex 一律寫大寫，不管檔案裡怎麼存：color picker 裡、表單與 panel 上都是 | color picker | 讓設定檔存小寫的 hex，看 color picker 與 panel 上的 hex |
 
 ## input/datetime-picker
 
@@ -1284,32 +1365,32 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | finder-6 | finder §長相 | 打字列右邊寫篩選的筆數 `符合/總數`（`3/41`） | finder | 打字篩選後看 |
 | finder-7 | finder §長相 | 筆數是 Overlay0 | finder | focus 在打字列時看筆數顏色 |
 | finder-8 | finder §長相（圖） | 筆數靠右，離框一格 | finder | 看筆數與右框的距離 |
-| finder-9 | finder §長相 | 一般的 finder 一定有預覽 | finder | 打開一般的 finder |
-| finder-10 | finder §長相 | 預覽跟著 cursor 那一筆 | finder | 移動 cursor，看預覽換 |
-| finder-11 | finder §長相 | 預覽的不是檔案或目錄時，沒有 metadata | finder | 看預覽框 |
-| finder-12 | finder §長相 | 清單與預覽加起來是一個 popup 的寬（Rules F7 的上限） | finder | 量兩框加起來的寬 |
-| finder-13 | finder §長相 | terminal 寬 ≥ 96：清單與預覽左右並排、各佔一半 | finder | 在 96 欄以上打開 |
-| finder-14 | finder §長相 | terminal 寬 ≥ 96、有 metadata：右框是「預覽／分隔線／metadata」 | finder | 在 96 欄以上打開 |
-| finder-15 | finder §長相（圖） | 右框裡預覽佔上面剩下的高度，分隔線與 metadata 四列在最下面 | finder | 看右框的列序 |
-| finder-16 | finder §長相 | 不到 96、有 metadata：上面一列是清單框與 metadata 框，左右各一半 | finder | 在 80 欄打開 |
-| finder-17 | finder §長相 | 不到 96、有 metadata：下面是整條寬的預覽框 | finder | 在 80 欄打開 |
-| finder-18 | finder §長相 | 不到 96、有 metadata：上下各一半高 | finder | 量上下兩排的高 |
-| finder-19 | finder §長相 | metadata 自己一個框時，標題是 `INFO` | finder | 在 80 欄打開看標題 |
-| finder-20 | finder §長相（圖） | `INFO` 框的下框不寫字 | finder | 在 80 欄打開看 `INFO` 的下框 |
-| finder-21 | finder §長相 | 80×24 時清單 5 筆、預覽 7 列 | finder | 在 80×24 打開數列數 |
-| finder-22 | finder §長相 | 不到 96、沒有 metadata：上下疊，清單在上、預覽在下，各一半 | finder | 在 80 欄打開 |
-| finder-23 | finder §長相（圖） | 並排的兩個框中間隔一格空白 | finder | 看兩框之間 |
-| finder-24 | finder §長相（圖） | 並排時寬度分不平，右框多一格（96 寬：46 + 1 + 47；80 寬：38 + 1 + 39） | finder | 量兩框的寬 |
-| finder-25 | finder §長相（圖） | 上下疊的兩排框中間不空列 | finder | 在 80 欄打開看上下之間 |
-| finder-26 | finder §長相 | 預覽框的標題是選中那一筆的名字（或它在哪裡） | finder | 看預覽框的標題 |
-| finder-27 | finder §長相 | 預覽不拿 focus | finder | 按 `Tab` 來回，focus 不到預覽 |
-| finder-28 | finder §長相 | 預覽框的框線與標題膠囊用該層的層色 | finder | 看預覽框的顏色 |
-| finder-29 | finder §長相 | 預覽內容不淡化 | finder | focus 在打字列與清單時各看預覽內容 |
-| finder-30 | finder §長相 | 預覽框的下框不寫字（沒有 hint、沒有捲動位置） | finder | 看預覽框的下框 |
+| finder-9 | finder §長相 | 一般的 finder 一定有預覽 | 有預覽的 finder | 打開一般的 finder |
+| finder-10 | finder §長相 | 預覽跟著 cursor 那一筆 | 有預覽的 finder | 移動 cursor，看預覽換 |
+| finder-11 | finder §長相 | 預覽的不是檔案或目錄時，沒有 metadata | 有預覽的 finder | 看預覽框 |
+| finder-12 | finder §長相 | 清單與預覽加起來是一個 popup 的寬（Rules F7 的上限） | 有預覽的 finder | 量兩框加起來的寬 |
+| finder-13 | finder §長相 | terminal 寬 ≥ 96：清單與預覽左右並排、各佔一半 | 有預覽的 finder | 在 96 欄以上打開 |
+| finder-14 | finder §長相 | terminal 寬 ≥ 96、有 metadata：右框是「預覽／分隔線／metadata」 | 有預覽的 finder | 在 96 欄以上打開 |
+| finder-15 | finder §長相（圖） | 右框裡預覽佔上面剩下的高度，分隔線與 metadata 四列在最下面 | 有預覽的 finder | 看右框的列序 |
+| finder-16 | finder §長相 | 不到 96、有 metadata：上面一列是清單框與 metadata 框，左右各一半 | 有預覽的 finder | 在 80 欄打開 |
+| finder-17 | finder §長相 | 不到 96、有 metadata：下面是整條寬的預覽框 | 有預覽的 finder | 在 80 欄打開 |
+| finder-18 | finder §長相 | 不到 96、有 metadata：上下各一半高 | 有預覽的 finder | 量上下兩排的高 |
+| finder-19 | finder §長相 | metadata 自己一個框時，標題是 `INFO` | 有預覽的 finder | 在 80 欄打開看標題 |
+| finder-20 | finder §長相（圖） | `INFO` 框的下框不寫字 | 有預覽的 finder | 在 80 欄打開看 `INFO` 的下框 |
+| finder-21 | finder §長相 | 80×24 時清單 5 筆、預覽 7 列 | 有預覽的 finder | 在 80×24 打開數列數 |
+| finder-22 | finder §長相 | 不到 96、沒有 metadata：上下疊，清單在上、預覽在下，各一半 | 有預覽的 finder | 在 80 欄打開 |
+| finder-23 | finder §長相（圖） | 並排的兩個框中間隔一格空白 | 有預覽的 finder | 看兩框之間 |
+| finder-24 | finder §長相（圖） | 並排時寬度分不平，右框多一格（96 寬：46 + 1 + 47；80 寬：38 + 1 + 39） | 有預覽的 finder | 量兩框的寬 |
+| finder-25 | finder §長相（圖） | 上下疊的兩排框中間不空列 | 有預覽的 finder | 在 80 欄打開看上下之間 |
+| finder-26 | finder §長相 | 預覽框的標題是選中那一筆的名字（或它在哪裡） | 有預覽的 finder | 看預覽框的標題 |
+| finder-27 | finder §長相 | 預覽不拿 focus | 有預覽的 finder | 按 `Tab` 來回，focus 不到預覽 |
+| finder-28 | finder §長相 | 預覽框的框線與標題膠囊用該層的層色 | 有預覽的 finder | 看預覽框的顏色 |
+| finder-29 | finder §長相 | 預覽內容不淡化 | 有預覽的 finder | focus 在打字列與清單時各看預覽內容 |
+| finder-30 | finder §長相 | 預覽框的下框不寫字（沒有 hint、沒有捲動位置） | 有預覽的 finder | 看預覽框的下框 |
 | finder-31 | finder §長相 | 邊找邊列：結果陸續到時照樣列出 | finder | 打開大的搜尋範圍 |
 | finder-32 | finder §長相 | 還在找時標題後面放 loading icon | finder | 搜尋中看標題 |
 | finder-33 | finder §長相 | 一筆都還沒到時寫 `(indexing…)` | finder | 剛打開時看清單 |
-| finder-34 | finder §長相 | 有預覽的 finder 高度一律取 Rules F7 的最高（畫面高度 − 2），清單短時下面空著 | finder | 結果很少時量框高 |
+| finder-34 | finder §長相 | 有預覽的 finder 高度一律取 Rules F7 的最高（畫面高度 − 2），清單短時下面空著 | 有預覽的 finder | 結果很少時量框高 |
 | finder-35 | finder §清單的標記 | select 每一列前面放 radio glyph：選中 U+F043E、沒選 U+F043D | select | 看清單每一列前面 |
 | finder-36 | finder §清單的標記 | 目前的值字是 Green | select、checkbox | 看目前的值那一列 |
 | finder-37 | finder §清單的標記 | 所有列的字對齊 | select、checkbox | 看各列文字的左緣 |
@@ -1318,14 +1399,14 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | finder-40 | finder §狀態 | focus 在打字列時，打字列照 input 的打字列畫：值 Lavender、有游標 | finder | focus 在打字列時看 |
 | finder-41 | finder §狀態 | focus 在打字列時，清單的 cursor 是層色 cursor 再淡化一次 | finder | focus 在打字列時看清單 |
 | finder-42 | finder §狀態 | focus 在清單時，打字列整列 Overlay0（含筆數），沒有游標 | finder | focus 在清單時看打字列 |
-| finder-43 | finder §按鍵 | 一般的 finder 打開時 focus 在打字列 | finder | 打開一般的 finder 直接打字，字進到打字列 |
+| finder-43 | finder §按鍵 | 一般的 finder 打開時 focus 在打字列 | 有預覽的 finder | 打開一般的 finder 直接打字，字進到打字列 |
 | finder-44 | finder §打字列 | 打字時清單即時篩選 | panel filter、finder | 打字看清單 |
 | finder-45 | finder §打字列 | 打字列上 `↑\|↓` 在結果之間移 cursor | panel filter、finder | 在打字列按 `↓` |
 | finder-46 | finder §比對 | 比對不分大小寫 | panel filter、finder | 打 `READ` 找得到 `README` |
 | finder-47 | finder §比對 | 打的字要連續出現在那一項裡（只是依序含有那幾個字母不算） | panel filter、finder | 打 `prod`，`db-replica-tokyo-ap-northeast-1` 不在結果裡 |
 | finder-48 | finder §比對 | 用空白分開的每個詞都要出現，順序不拘 | panel filter、finder | 打 `me read` |
 | finder-49 | finder §比對 | 結果保持清單本來的順序，不重排 | panel filter、finder | 打字後看結果的順序跟清單一樣 |
-| finder-50 | finder §比對 | 清單的順序裡數字照數值排（`9` 在 `10` 前面），文字照文字排 | panel filter、finder | 看含數字的清單順序 |
+| finder-50 | finder §比對 | 清單的順序裡數字照數值排（`9` 在 `10` 前面），文字照文字排 | panel filter、finder | 看含數字的清單的順序（清單裡沒有數字時，這一條沒有可以判的情況） |
 | finder-51 | finder §清單 | 清單上 `Enter`：去那裡（select 選定、checkbox popup 套用、file-picker 選檔或進目錄） | finder | 在清單按 `Enter` |
 | finder-52 | finder §清單 | 沒有結果時（包括邊找邊列、一筆都還沒到時），清單上的 `Enter` 不作用（checkbox popup 例外） | select、finder、file-picker | 打到沒有結果，`Tab` 到清單按 `Enter`，什麼都沒發生 |
 | finder-53 | finder §清單 | 清單上 `Tab\|/`：回打字列 | finder | 在清單按 `Tab`、`/` |
@@ -1334,6 +1415,10 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | finder-56 | finder §hint | 清單的 hint 是 `Enter:<去那裡的動詞> Tab\|/:filter Esc:cancel` | finder | focus 在清單時看下框 |
 | finder-57 | finder §hint | 沒有結果時（包括邊找邊列、一筆都還沒到時），打字列的 hint 拿掉 `Enter`：`Tab:list Esc:cancel`，有結果時再放回來 | select、checkbox、finder、file-picker | 打到沒有結果看下框，再刪字回到有結果看一次 |
 | finder-58 | finder §hint | 沒有結果時，清單的 hint 拿掉 `Enter`：`Tab\|/:filter Esc:cancel` | select、finder、file-picker | 打到沒有結果後 `Tab` 到清單看下框 |
+| finder-59 | finder §長相 | 打字列的 `nf-fa-angle_right` 後面空一格才接打的字 | finder | 打幾個字，看 glyph 與字之間 |
+| finder-60 | finder §長相 | select、checkbox popup 的寬度照選項確定（打開時就知道）；邊找邊列、結果要等搜尋的才用 F7 的上限 | select、checkbox | 在很寬的終端機打開 select、checkbox popup，量框寬 |
+| finder-61 | finder §比對 | 搜尋要花時間時（讀每個檔、交給搜尋工具或遠端），照邊找邊列：標題後面放 loading icon、結果陸續列出、打字列照常能打 | finder | 在要花時間的搜尋裡連續打字，看打字不卡、結果陸續出來（搜尋都很快的 app 沒有這種情況） |
+| finder-62 | finder §長相 | 從某一行開始的預覽（例：用內容找到的檔，從找到的那一行看起）：那一行放在預覽的第三列、上面兩行前文、不另外標；行號照檔案 | 有預覽的 finder | 用內容找到一個檔，看預覽（沒有這種預覽的 app 沒有這種情況） |
 
 ## input/file-picker
 
@@ -1356,53 +1441,53 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | file-picker-15 | file-picker §長相 | 每一列前面放 icon：目錄 `nf-md-folder`（U+F024B）、檔案 `nf-md-file`（U+F0214） | file-picker | 看清單每一列前面；讀程式核對 code point |
 | file-picker-16 | file-picker §長相 | 欄位原本有值時，打開時 cursor 停在那個檔案上 | file-picker | 打開有值的欄位 |
 | file-picker-17 | file-picker §長相 | 欄位原本的值字用 Green | file-picker | 打開有值的欄位，移開 cursor 看 |
-| file-picker-18 | file-picker §預覽 | 預覽最多讀 64 KB | finder、file-picker | 讀程式；或預覽大檔看尾端 |
-| file-picker-19 | file-picker §預覽 | 目錄預覽成樹 | finder、file-picker | cursor 移到目錄上 |
-| file-picker-20 | file-picker §預覽 | 壓縮檔（zip、tar、tar.gz、tar.bz2）照目錄的樹列出裡面 | finder、file-picker | cursor 移到壓縮檔上 |
-| file-picker-21 | file-picker §預覽 | 文字檔畫內容，加語法顏色（chroma 的 catppuccin-mocha，只上前景色） | finder、file-picker | cursor 移到原始碼檔上 |
-| file-picker-22 | file-picker §預覽 | 文字檔有行號：Overlay0，靠右對齊、後面空一格 | finder、file-picker | 看文字檔預覽的左邊 |
-| file-picker-23 | file-picker §預覽 | 文字檔的 Tab 畫成 `input_tab_width` 格空白 | finder、file-picker | 預覽含 Tab 的檔 |
-| file-picker-24 | file-picker §預覽 | 文字檔裡 CRLF 的 `\r` 不畫 | finder、file-picker | 預覽 CRLF 換行的檔 |
-| file-picker-25 | file-picker §預覽 | 文字檔裡其他控制字元畫成 Red 的名字 | finder、file-picker | 預覽含 `\x1b` 的檔 |
-| file-picker-26 | file-picker §預覽 | PDF：第一列灰字寫頁數（`12 pages`），空一列，接前 20 頁的文字（最多 128 KB） | finder、file-picker | 預覽 PDF |
-| file-picker-27 | file-picker §預覽 | PDF 抽不出文字時寫 `(no extractable text)` | finder、file-picker | 預覽掃描的 PDF |
-| file-picker-28 | file-picker §預覽 | 圖片（png、jpg、gif、bmp、webp、tiff、ico、avif、heic）：第一列灰字 `data:image/png · 12.4 KB`，空一列，接 base64 的 data URI，照預覽寬折行 | finder、file-picker | 預覽小圖片 |
-| file-picker-29 | file-picker §預覽 | 圖片超過 1 MB 時只寫 `(1.4 MB — too large to inline as a data URI)` | finder、file-picker | 預覽超過 1 MB 的圖片 |
-| file-picker-30 | file-picker §預覽 | 其他檔案畫十六進位：一律一列 8 bytes，後面接 ASCII（`89 50 4e 47 0d 0a 1a 0a  .PNG....`，33 格） | finder、file-picker | 預覽二進位檔，並排與上下疊各看一次 |
-| file-picker-31 | file-picker §預覽 | 讀不到寫 `(unreadable)` | finder、file-picker | 預覽沒有讀權限的檔 |
-| file-picker-32 | file-picker §預覽 | 目錄的樹最多三層 | finder、file-picker | 預覽很深的目錄 |
-| file-picker-33 | file-picker §預覽 | 樹的第一層不畫樹枝，第二層起用 `├─`、`└─`、`│` 連起來 | finder、file-picker | 看樹 |
-| file-picker-34 | file-picker §預覽 | 樹枝 Overlay0 | finder、file-picker | 看樹枝的顏色 |
-| file-picker-35 | file-picker §預覽（圖） | 第二層的樹枝從第一層名字那一欄開始（縮 2 格），每深一層再縮 3 格（`│  ` 或 3 格空白） | finder、file-picker | 看三層的樹 |
-| file-picker-36 | file-picker §預覽（圖） | 樹枝後面空一格接 icon | finder、file-picker | 看樹枝與 icon 之間 |
-| file-picker-37 | file-picker §預覽 | 樹的每一項 icon、顏色、順序跟清單一樣 | finder、file-picker | 對照樹與走進去後的清單 |
-| file-picker-38 | file-picker §預覽 | 樹不列隱藏檔 | finder、file-picker | 預覽含隱藏檔的目錄 |
-| file-picker-39 | file-picker §預覽 | 樹不能捲，畫到預覽區滿為止，最後一列寫 `…` | finder、file-picker | 預覽很大的目錄 |
-| file-picker-40 | file-picker §預覽 | 空的目錄寫 `(empty)`，灰字 | finder、file-picker | 預覽空目錄 |
-| file-picker-41 | file-picker §預覽 | 讀不到的目錄寫 `(permission denied)`，灰字 | finder、file-picker | 預覽沒有讀權限的目錄 |
-| file-picker-42 | file-picker §預覽 | 一個子目錄展開到底才輪到下一個 | finder、file-picker | 預覽有好幾個子目錄的目錄 |
-| file-picker-43 | file-picker §metadata | 固定四列（`TYPE`、`SIZE`、`MODIFIED`、`MODE`），檔案與目錄都一樣 | finder、file-picker | 在檔案與目錄之間移動，預覽區高度不跳 |
-| file-picker-44 | file-picker §metadata | label 大寫、層色 | finder、file-picker | 看 label |
-| file-picker-45 | file-picker §metadata | 值是 Text | finder、file-picker | 看值的顏色 |
-| file-picker-46 | file-picker §metadata | label 欄寬取最長的 label，跟值隔兩格 | finder、file-picker | 看值的左緣 |
-| file-picker-47 | file-picker §metadata | 檔案的 `TYPE` 寫預覽的種類：`text`、`private key`、`image`、`PDF`、`archive`、`binary` | finder、file-picker | 各種檔各看一次 |
-| file-picker-48 | file-picker §metadata | symlink 的 `TYPE` 寫 `link → <目標>` | finder、file-picker | cursor 移到 symlink 上 |
-| file-picker-49 | file-picker §metadata | 目錄的 `TYPE` 寫 `directory` | finder、file-picker | cursor 移到目錄上 |
-| file-picker-50 | file-picker §metadata | 檔案的 `SIZE` 寫 `411 B`、`4.2 KB`、`3.4 MB`（1024 進位，一位小數） | finder、file-picker | 看幾個大小不同的檔 |
-| file-picker-51 | file-picker §metadata | 目錄的 `SIZE` 寫 `12 items`（不算隱藏檔） | finder、file-picker | 看含隱藏檔的目錄 |
-| file-picker-52 | file-picker §metadata | `MODIFIED` 寫 `2026-09-30 14:02`（本地時間，到分） | finder、file-picker | 對照 `ls -l` |
-| file-picker-53 | file-picker §metadata | `MODE` 照 `ls -l` 的寫法（`-rw-------`、`drwx------`） | finder、file-picker | 對照 `ls -l` |
-| file-picker-54 | file-picker §metadata | 第一行是私鑰標頭的檔案 `TYPE` 是 `private key`，跟 `hide_secrets_in_preview` 開不開無關 | finder、file-picker | 開關設定各看一次私鑰 |
-| file-picker-55 | file-picker §metadata | symlink 的 `SIZE`、`MODIFIED`、`MODE` 寫目標的 | finder、file-picker | 看 `/etc/localtime` 之類的 link |
-| file-picker-56 | file-picker §metadata | 讀不到的目錄 `SIZE` 寫 `—`，修改時間、權限照樣寫 | finder、file-picker | 看沒有讀權限的目錄 |
-| file-picker-57 | file-picker §metadata | 斷掉的 link 的 `SIZE`、`MODIFIED`、`MODE` 寫 `—` | finder、file-picker | 看斷掉的 link |
-| file-picker-58 | file-picker §metadata | 拿不到值時四列照樣固定，不少畫一列，也不寫成 `0 items` | finder、file-picker | 看斷掉的 link 與讀不到的目錄 |
-| file-picker-59 | file-picker §metadata | 不寫路徑、擁有者、存取與建立時間 | finder、file-picker | 看 metadata 只有四列 |
-| file-picker-60 | file-picker §藏起秘密 | 打開時，第一行是私鑰標頭（開頭 `-----BEGIN` 且含 `PRIVATE KEY`，或開頭 `PuTTY-User-Key-File-`）的檔只露第一行，下面灰字 `(sensitive content not shown)` | finder、file-picker | 打開設定，預覽改過檔名的私鑰 |
-| file-picker-61 | file-picker §藏起秘密 | 打開時，只有擁有者能讀的檔案（group、other 都沒有讀權限）一行都不露，只有那句灰字，什麼種類都一樣 | finder、file-picker | 打開設定，預覽 `600` 的文字檔 |
-| file-picker-62 | file-picker §藏起秘密 | 目錄不算（`700` 的目錄照常預覽） | finder、file-picker | 打開設定，預覽 `~/.ssh` |
-| file-picker-63 | file-picker §藏起秘密 | 其他檔案照常預覽 | finder、file-picker | 打開設定，預覽 `644` 的文字檔 |
-| file-picker-64 | file-picker §藏起秘密 | metadata 不管開關都照常顯示 | finder、file-picker | 打開設定，看私鑰的 metadata |
+| file-picker-18 | file-picker §預覽 | 預覽最多讀 64 KB | 有檔案預覽 | 讀程式；或預覽大檔看尾端 |
+| file-picker-19 | file-picker §預覽 | 目錄預覽成樹 | 有檔案預覽 | cursor 移到目錄上 |
+| file-picker-20 | file-picker §預覽 | 壓縮檔（zip、tar、tar.gz、tar.bz2）照目錄的樹列出裡面 | 有檔案預覽 | cursor 移到壓縮檔上 |
+| file-picker-21 | file-picker §預覽 | 文字檔畫內容，加語法顏色（chroma 的 catppuccin-mocha，只上前景色） | 有檔案預覽 | cursor 移到原始碼檔上 |
+| file-picker-22 | file-picker §預覽 | 文字檔有行號：Overlay0，靠右對齊、後面空一格 | 有檔案預覽 | 看文字檔預覽的左邊 |
+| file-picker-23 | file-picker §預覽 | 文字檔的 Tab 畫成 `input_tab_width` 格空白 | 有檔案預覽 | 預覽含 Tab 的檔 |
+| file-picker-24 | file-picker §預覽 | 文字檔裡 CRLF 的 `\r` 不畫 | 有檔案預覽 | 預覽 CRLF 換行的檔 |
+| file-picker-25 | file-picker §預覽 | 文字檔裡其他控制字元畫成 Red 的名字 | 有檔案預覽 | 預覽含 `\x1b` 的檔 |
+| file-picker-26 | file-picker §預覽 | PDF：第一列灰字寫頁數（`12 pages`），空一列，接前 20 頁的文字（最多 128 KB） | 有檔案預覽 | 預覽 PDF |
+| file-picker-27 | file-picker §預覽 | PDF 抽不出文字時寫 `(no extractable text)` | 有檔案預覽 | 預覽掃描的 PDF |
+| file-picker-28 | file-picker §預覽 | 圖片（png、jpg、gif、bmp、webp、tiff、ico、avif、heic）：第一列灰字 `data:image/png · 12.4 KB`，空一列，接 base64 的 data URI，照預覽寬折行 | 有檔案預覽 | 預覽小圖片 |
+| file-picker-29 | file-picker §預覽 | 圖片超過 1 MB 時只寫 `(1.4 MB — too large to inline as a data URI)` | 有檔案預覽 | 預覽超過 1 MB 的圖片 |
+| file-picker-30 | file-picker §預覽 | 其他檔案畫十六進位：一律一列 8 bytes，後面接 ASCII（`89 50 4e 47 0d 0a 1a 0a  .PNG....`，33 格） | 有檔案預覽 | 預覽二進位檔，並排與上下疊各看一次 |
+| file-picker-31 | file-picker §預覽 | 讀不到寫 `(unreadable)` | 有檔案預覽 | 預覽沒有讀權限的檔 |
+| file-picker-32 | file-picker §預覽 | 目錄的樹最多三層 | 有檔案預覽 | 預覽很深的目錄 |
+| file-picker-33 | file-picker §預覽 | 樹的第一層不畫樹枝，第二層起用 `├─`、`└─`、`│` 連起來 | 有檔案預覽 | 看樹 |
+| file-picker-34 | file-picker §預覽 | 樹枝 Overlay0 | 有檔案預覽 | 看樹枝的顏色 |
+| file-picker-35 | file-picker §預覽（圖） | 第二層的樹枝從第一層名字那一欄開始（縮 2 格），每深一層再縮 3 格（`│  ` 或 3 格空白） | 有檔案預覽 | 看三層的樹 |
+| file-picker-36 | file-picker §預覽（圖） | 樹枝後面空一格接 icon | 有檔案預覽 | 看樹枝與 icon 之間 |
+| file-picker-37 | file-picker §預覽 | 樹的每一項 icon、顏色、順序跟清單一樣 | 有檔案預覽 | 對照樹與走進去後的清單 |
+| file-picker-38 | file-picker §預覽 | 樹不列隱藏檔 | 有檔案預覽 | 預覽含隱藏檔的目錄 |
+| file-picker-39 | file-picker §預覽 | 樹不能捲，畫到預覽區滿為止，最後一列寫 `…` | 有檔案預覽 | 預覽很大的目錄 |
+| file-picker-40 | file-picker §預覽 | 空的目錄寫 `(empty)`，灰字 | 有檔案預覽 | 預覽空目錄 |
+| file-picker-41 | file-picker §預覽 | 讀不到的目錄寫 `(permission denied)`，灰字 | 有檔案預覽 | 預覽沒有讀權限的目錄 |
+| file-picker-42 | file-picker §預覽 | 一個子目錄展開到底才輪到下一個 | 有檔案預覽 | 預覽有好幾個子目錄的目錄 |
+| file-picker-43 | file-picker §metadata | 固定四列（`TYPE`、`SIZE`、`MODIFIED`、`MODE`），檔案與目錄都一樣 | 有檔案預覽 | 在檔案與目錄之間移動，預覽區高度不跳 |
+| file-picker-44 | file-picker §metadata | label 大寫、層色 | 有檔案預覽 | 看 label |
+| file-picker-45 | file-picker §metadata | 值是 Text | 有檔案預覽 | 看值的顏色 |
+| file-picker-46 | file-picker §metadata | label 欄寬取最長的 label，跟值隔兩格 | 有檔案預覽 | 看值的左緣 |
+| file-picker-47 | file-picker §metadata | 檔案的 `TYPE` 寫預覽的種類：`text`、`private key`、`image`、`PDF`、`archive`、`binary` | 有檔案預覽 | 各種檔各看一次 |
+| file-picker-48 | file-picker §metadata | symlink 的 `TYPE` 寫 `link → <目標>` | 有檔案預覽 | cursor 移到 symlink 上 |
+| file-picker-49 | file-picker §metadata | 目錄的 `TYPE` 寫 `directory` | 有檔案預覽 | cursor 移到目錄上 |
+| file-picker-50 | file-picker §metadata | 檔案的 `SIZE` 寫 `411 B`、`4.2 KB`、`3.4 MB`（1024 進位，一位小數） | 有檔案預覽 | 看幾個大小不同的檔 |
+| file-picker-51 | file-picker §metadata | 目錄的 `SIZE` 寫 `12 items`，一項時 `1 item`（不算隱藏檔） | 有檔案預覽 | 看含隱藏檔的目錄與只有一項的目錄 |
+| file-picker-52 | file-picker §metadata | `MODIFIED` 寫 `2026-09-30 14:02`（本地時間，到分） | 有檔案預覽 | 對照 `ls -l` |
+| file-picker-53 | file-picker §metadata | `MODE` 照 `ls -l` 的寫法（`-rw-------`、`drwx------`） | 有檔案預覽 | 對照 `ls -l` |
+| file-picker-54 | file-picker §metadata | 第一行是私鑰標頭的檔案 `TYPE` 是 `private key`，跟 `hide_secrets_in_preview` 開不開無關 | 有檔案預覽 | 開關設定各看一次私鑰 |
+| file-picker-55 | file-picker §metadata | symlink 的 `SIZE`、`MODIFIED`、`MODE` 寫目標的 | 有檔案預覽 | 看 `/etc/localtime` 之類的 link |
+| file-picker-56 | file-picker §metadata | 讀不到的目錄 `SIZE` 寫 `—`，修改時間、權限照樣寫 | 有檔案預覽 | 看沒有讀權限的目錄 |
+| file-picker-57 | file-picker §metadata | 斷掉的 link 的 `SIZE`、`MODIFIED`、`MODE` 寫 `—` | 有檔案預覽 | 看斷掉的 link |
+| file-picker-58 | file-picker §metadata | 拿不到值時四列照樣固定，不少畫一列，也不寫成 `0 items` | 有檔案預覽 | 看斷掉的 link 與讀不到的目錄 |
+| file-picker-59 | file-picker §metadata | 不寫路徑、擁有者、存取與建立時間 | 有檔案預覽 | 看 metadata 只有四列 |
+| file-picker-60 | file-picker §藏起秘密 | 打開時，第一行是私鑰標頭（開頭 `-----BEGIN` 且含 `PRIVATE KEY`，或開頭 `PuTTY-User-Key-File-`）的檔只露第一行，下面灰字 `(sensitive content not shown)` | 有檔案預覽 | 打開設定，預覽改過檔名的私鑰 |
+| file-picker-61 | file-picker §藏起秘密 | 打開時，只有擁有者能讀的檔案（group、other 都沒有讀權限）一行都不露，只有那句灰字，什麼種類都一樣 | 有檔案預覽 | 打開設定，預覽 `600` 的文字檔 |
+| file-picker-62 | file-picker §藏起秘密 | 目錄不算（`700` 的目錄照常預覽） | 有檔案預覽 | 打開設定，預覽 `~/.ssh` |
+| file-picker-63 | file-picker §藏起秘密 | 其他檔案照常預覽 | 有檔案預覽 | 打開設定，預覽 `644` 的文字檔 |
+| file-picker-64 | file-picker §藏起秘密 | metadata 不管開關都照常顯示 | 有檔案預覽 | 打開設定，看私鑰的 metadata |
 | file-picker-65 | file-picker §按鍵 | 清單上在目錄按 `Enter`：進去 | file-picker | 在目錄上按 `Enter` |
 | file-picker-66 | file-picker §按鍵 | 進目錄時打的篩選字清掉 | file-picker | 篩選後在目錄上按 `Enter` |
 | file-picker-67 | file-picker §按鍵 | 進目錄後 focus 留在清單，cursor 停在 `..` 下面的第一項 | file-picker | 進目錄後看 cursor |
@@ -1429,6 +1514,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | file-picker-88 | file-picker §選目錄 | 打字列上有篩選字或 wildcard 時，`.` 那一列不出現 | file-picker | 打篩選字後看清單 |
 | file-picker-89 | file-picker §選目錄 | wildcard 的結果只列目錄 | file-picker | 打 `~/*` |
 | file-picker-90 | file-picker §選目錄 | 在 `.` 上的 hint 是 `Enter:choose Tab\|/:filter Esc:cancel` | file-picker | cursor 在 `.` 上看下框 |
+| file-picker-91 | file-picker §metadata | 列出之後才不見的檔（被刪掉、搬走），拿不到的每一列寫 `—` | 有檔案預覽 | 列出後在別的地方刪掉一個檔，cursor 移過去看 metadata |
 
 ## input/reorder
 
@@ -1449,7 +1535,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | reorder-13 | reorder §按鍵 | 放棄的 confirm 上 `Esc`：關掉 confirm、回到清單，順序還在 | reorder | 在 confirm 上按 `Esc` |
 | reorder-14 | reorder §按鍵 | 「改過了」：放下的位置跟拿起前不同就算，之後不清掉（搬走又搬回原位也算） | reorder | 搬走再搬回原位後按 `Esc`，照樣先問 |
 | reorder-15 | reorder §按鍵 | 沒拿東西時 hint 是 `Enter:apply D:drag Esc:cancel` | reorder | 看下框 hint |
-| reorder-16 | reorder §按鍵 | 拿著時 `j\|k` 把它跟下一項、上一項交換，cursor 跟著它 | reorder | 拿著按 `k` |
+| reorder-16 | reorder §按鍵 | 拿著時 `j\|l` 把它跟下一項交換、`h\|k` 跟上一項交換，cursor 跟著它 | reorder | 拿著按 `k`、`l` |
 | reorder-17 | reorder §按鍵 | 拿著時 `Enter`：放下，離開 Drag mode，cursor 留在那一項 | reorder | 拿著按 `Enter` |
 | reorder-18 | reorder §按鍵 | 拿著時 `Esc`：放回拿起前的位置，離開 Drag mode（不關 popup） | reorder | 拿著搬兩格後按 `Esc` |
 | reorder-19 | reorder §按鍵 | 拿著時其他鍵不作用：`Space` 不開任何 menu，`D` 不是放下的別名 | reorder | 拿著按 `Space`、`D` |
@@ -1469,9 +1555,9 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | project-8 | project §範本檔 | 出 Windows 版時，`release.yml` 測試的 matrix 加了 `windows-latest` | 出 Windows 版 | 讀檔案：`.github/workflows/release.yml` 的 matrix |
 | project-9 | project §範本檔 | 出 Windows 版時，`.goreleaser.yaml` 標著 `Windows` 的註解都打開 | 出 Windows 版 | 讀檔案：`.goreleaser.yaml` |
 | project-10 | project §範本檔 | 出 Windows 版時，`install.sh` 的 `WINDOWS` 設成 `yes`（範本註解） | 出 Windows 版 | 讀檔案：`install.sh` 的 `WINDOWS` |
-| project-11 | project §目錄 | Go 程式只在 `cmd/<app>/` 與 `internal/` | 都要 | 讀檔案：所有 `.go` 檔都在這兩個目錄底下 |
+| project-11 | project §目錄 | app 本身的 Go 程式只在 `cmd/<app>/` 與 `internal/`；開發用的小工具可以放頂層的 `tools/` | 都要 | 讀檔案：`tools/` 以外的 `.go` 檔都在這兩個目錄底下 |
 | project-12 | project §目錄（圖） | main package 在 `cmd/<app>/main.go` | 都要 | 讀檔案 |
-| project-13 | project §目錄 | `go install github.com/vulcanshen/<app>/cmd/<app>@latest` 裝得起來 | 都要 | 讀檔案：`go.mod` 的 module 是 `github.com/vulcanshen/<app>`，`cmd/<app>` 是 main package |
+| project-13 | project §目錄 | `go install github.com/<帳號>/<app>/cmd/<app>@latest` 裝得起來（家族成員的帳號是 `vulcanshen`，照 tdp 做的 app 是自己的帳號） | 都要 | 讀檔案：`go.mod` 的 module 是 `github.com/<帳號>/<app>`，`cmd/<app>` 是 main package |
 | project-14 | project §目錄（圖） | README 的 demo gif 放在 `docs/` | 都要 | 讀檔案：README 引用的 gif 在 `docs/` 底下 |
 | project-15 | project §目錄（圖） | 根目錄有 `go.mod`、`go.sum` | 都要 | 讀檔案 |
 | project-16 | project §目錄（圖） | 根目錄有 `LICENSE` | 都要 | 讀檔案 |
@@ -1479,7 +1565,7 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | project-18 | project §目錄 | 家族 mark 的正本是 `docs/icon.svg`；splash 用的那一份在程式裡（`internal/` 裡的副本檔，或寫死的格子） | 都要 | 讀檔案：有 `docs/icon.svg`；讀程式：splash 畫的是 `internal/` 裡的副本檔或寫死的格子 |
 | project-19 | project §目錄 | 出 Windows 版的 app 另有 `install.ps1`、`uninstall.ps1` | 出 Windows 版 | 讀檔案 |
 | project-20 | project §版本 | `<app> version` 與 splash 的版本印的是 `internal/version` 的 `Display()` | 都要 | 讀程式：兩處都呼叫 `Display()` |
-| project-21 | project §版本 | 發布版的版本是 tag 去掉 v 注入的，印出來帶 v（例：tag `v0.2.0` 印 `v0.2.0`） | 都要 | 裝發布版跑 `<app> version`，印的跟 tag 一樣 |
+| project-21 | project §版本 | 發布版的版本是 tag 去掉 v 注入的，印出來帶 v（例：tag `v0.2.0` 印 `v0.2.0`） | 都要 | 讀檔案：`.goreleaser.yaml` 把 tag 去掉 v 注入、`internal/version` 印出時帶 v；發過版的，裝發布版跑 `<app> version`，印的跟 tag 一樣 |
 | project-22 | project §版本 | 本機 `make build`、`go build` 不注入版本，版本是 `dev` | 都要 | 本機 `make build` 後跑 `./<app> version`，印 `dev` |
 | project-23 | project §Makefile | `Makefile` 只設變數、`include family.mk`，app 自己的 target 全寫在最後一段 `##@ <app> 自己的` | 都要 | 讀檔案；跑 `make help`，家族共用的段照 family.mk 的順序、app 自己的段在最後 |
 | project-24 | project §Makefile | 變數在 `include family.mk` 之前設 | 都要 | 讀檔案 |
@@ -1487,11 +1573,11 @@ tdp v0.7.4 的條目。每一欄的意思、適用、判法見 [README-zh_TW.md]
 | project-26 | project §Makefile | Makefile 開頭的兩行註解照範本（`<app> — build / run / test / package（家族共用的 target 在 family.mk）`、「跑 make（或 make help）列出所有指令。」） | 都要 | 讀檔案的開頭 |
 | project-27 | project §Makefile | app 自己的 target 名字不跟 family.mk 的重複 | 都要 | 讀檔案：比對兩邊的 target 名 |
 | project-28 | project §CHANGELOG | `CHANGELOG.md` 開頭照範本：`# Changelog`，接著 `Each release names the version of terminu design (tdp) it follows.` | 都要 | 讀檔案的開頭 |
-| project-29 | project §CHANGELOG | 每一版的標題是 push 的 tag（帶 v）接 ` — tdp <版本>` | 都要 | 讀檔案：tdp v0.7.0 之後發的每一版標題 |
+| project-29 | project §CHANGELOG | 每一版的標題是 push 的 tag（帶 v）接 ` — tdp <版本>` | 發過版 | 讀檔案：tdp v0.7.0 之後發的每一版標題 |
 | project-30 | project §CHANGELOG | 還沒發版的改動寫在最上面的 `## Unreleased` | 都要 | 讀檔案與最新 tag 之後的 commit：改動都記在最上面的 `## Unreleased` |
-| project-31 | project §CHANGELOG | tdp v0.7.0 以前發的版本，標題照當時的寫法、不改 | 都要 | 讀檔案：`git log -p CHANGELOG.md`，舊版的標題沒被改寫 |
+| project-31 | project §CHANGELOG | tdp v0.7.0 以前發的版本，標題照當時的寫法、不改 | 發過版 | 讀檔案：`git log -p CHANGELOG.md`，舊版的標題沒被改寫 |
 | project-32 | project §CHANGELOG | CHANGELOG 用英文寫 | 都要 | 讀檔案 |
-| project-33 | project §CHANGELOG | GitHub release 的內文就是 CHANGELOG 裡這一版的那一段 | 都要 | `gh release view <tag>` 對照 CHANGELOG 那一段 |
-| project-34 | project §發布 | 發版的 tag 是 `vX.Y.Z` | 都要 | `git tag` |
-| project-35 | project §發布 | 發版的那個 commit 上 `make check` 通過 | 都要 | checkout 最新的 tag 跑 `make check` |
+| project-33 | project §CHANGELOG | GitHub release 的內文就是 CHANGELOG 裡這一版的那一段 | 發過版 | `gh release view <tag>` 對照 CHANGELOG 那一段 |
+| project-34 | project §發布 | 發版的 tag 是 `vX.Y.Z` | 發過版 | `git tag` |
+| project-35 | project §發布 | 現在的 repo 上 `make check` 通過 | 都要 | 在現在的 repo 跑 `make check` |
 | project-36 | project §發布 | 出 Windows 版的發布時另推 scoop bucket | 出 Windows 版 | 看 scoop bucket 有這一版 |

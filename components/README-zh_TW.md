@@ -26,22 +26,34 @@ components 全部算固定區（[Rules 開頭的「偏離」](../principle/rules
 - **兩條通則**，文字沒另外寫時照這兩條：
   - **欄與欄之間兩格**：label 與值、label 與說明、表格的欄、並排的項目。
   - **glyph 與它後面的字之間一格**（例：`󰈔 id_ed25519`、radio 的 `󰐾 password`）。
+- **statusbar 的 `label: 值` 不套用兩格通則**：它是句子式的寫法，冒號後面空一格（`[C]ontext: prod  [N]amespace: default`）；組與組之間兩格，不另外加分隔符號
+  （[`layout/screen`](layout/screen-zh_TW.md) 的 statusbar）。
 
 **為什麼**：間距是使用者看得到的；交給實作，同一種東西在家族裡就會差一兩格，規範也不再是唯一的依據。兩條通則記得住，
-新元件照用：兩格就分得開兩欄（label 與值本來就不同色）；glyph 只空一格，看起來跟它後面的字是一組。
+新元件照用：兩格就分得開兩欄（label 與值本來就不同色）；glyph 只空一格，看起來跟它後面的字是一組。statusbar 的 `label: 值`
+是一句話，冒號已經把 label 和值分開，再空兩格反而讀起來斷成兩截；組與組之間的兩格就夠分開，不用再畫一個符號。
 
 ## 折行
 
-文字要折行的地方 —— textarea、viewer、confirm、toast、error popup、Rules S5 的 splash 太窄時 —— 都照同一套：
+文字要折行的地方 —— textarea、viewer、confirm、note（例：表單的打字說明）、toast、error popup、空狀態的句子、Rules S5 的 splash
+太窄時 —— 都照同一套，放不下就折行、不截斷：
 
 - **在空白處斷**：一列放不下下一個字時，整個字接到下一列（例：英文的一個單字整個走）。
 - **寬字（佔兩格的字，例：中文、日文）每個字之間都可以斷**：寬字跟它前後的字之間也算可以斷的地方，一列填滿再換列。
-- **一個字本身就比一列還長**（例：很長的網址），才照格子切。
+- **一個字本身就比一列還長**（例：很長的網址），才照格子切；這一列前面已經有字時，先換到新的一列再切，不接在後面切。
 - **寬字不切成兩半**：照格子切到一列只剩一格時，那個寬字整個接到下一列。
 - **斷在空白處時，那個空白**：textarea 與 viewer 的每個字元都要畫出來（游標、選取模式會停在上面），一個字剛好填滿一列、後面接著
-  空白時，那個空白畫在下一列的第一格；其他只是顯示的文字（confirm、toast、error popup、splash），斷在空白處的那個空白不畫。
+  空白時，那個空白畫在下一列的第一格；其他只是顯示的文字（confirm、note、toast、error popup、空狀態、splash），斷在空白處的那個
+  空白不畫。
 
-**為什麼**：在字的中間斷開，一段文字就讀不下去；splash 本來就這樣斷（Rules S5）。同一套規則，在家族哪裡折行都一樣。
+```
+see                     ← 一列 20 格：網址放不下，先換列
+https://example.com/    ← 從新的一列開頭照格子切
+very/long/path/abc
+```
+
+**為什麼**：在字的中間斷開，一段文字就讀不下去；splash 本來就這樣斷（Rules S5）。同一套規則，在家族哪裡折行都一樣。長的字先換列
+再切，跟「放不下就整個字移到下一列」是同一件事：網址從新的一列開頭，認得出、也好複製，不會一半接在前面的字後面。
 
 ## 大寫
 
@@ -53,6 +65,8 @@ components 全部算固定區（[Rules 開頭的「偏離」](../principle/rules
 - **名稱、路徑是內容，標題與 hint 裡都照原樣**：標題 `EDIT: filu`、`ALTERM: myhost`、`IDENTITY FILE · ~/.ssh`（名稱前用什麼隔開見
   [`layout/popup`](layout/popup-zh_TW.md) 的「標題」）；表單按鈕的 hint 只有動詞小寫，`Overwrite KBU.svg` → `Enter:overwrite KBU.svg`
   （[`dialog/form`](dialog/form-zh_TW.md) 的 hint）。
+- **panel 的標題也一樣**：label 分成「這是什麼」（大寫）與名稱（照原樣），中間的寫法跟 popup 的標題一樣 —— `[2] PODS: nginx-7d4f`；
+  整個 label 就是名稱時照原樣 —— `[1] prod-web-01`（[`layout/panel`](layout/panel-zh_TW.md) 的膠囊串）。
 
 **為什麼**：大寫的是「這是什麼」—— 名稱、標題、欄名 —— 一眼就跟要讀、要改的內容分開。按鍵名與熱鍵標記不改：`q` 與 `Q` 是
 不同的鍵；內容不改：使用者要認得的是它本來的樣子。
@@ -93,8 +107,8 @@ app 依性質自己挑。挑的範圍只限列出的方案：方案都不合用�
 
 | 檔 | 是什麼 |
 |---|---|
-| [`screen`](layout/screen-zh_TW.md) | 整個畫面：footer、畫面 chip 列、statusbar、窄寬、空狀態 |
-| [`panel`](layout/panel-zh_TW.md) | panel：框、清單、一列一個值、panel filter |
+| [`screen`](layout/screen-zh_TW.md) | 整個畫面：footer、畫面 chip 列、statusbar、窄寬、zoom、比最低尺寸小時、空狀態 |
+| [`panel`](layout/panel-zh_TW.md) | panel：框、清單、位置列、一列一個值、panel filter |
 | [`popup`](layout/popup-zh_TW.md) | 浮在畫面上的框 |
 
 ## dialog

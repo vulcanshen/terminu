@@ -67,7 +67,8 @@ row's colour and adds one glyph, and nothing else moves by a cell.
 
 - It opens with the focus on the list.
 - **Holding nothing**:
-  - `j|k` move the cursor, wrapping at the ends; `u|d` half a page, `gg|G` the top and the bottom (Rules K12).
+  - `j|l` move the cursor on, `h|k` back (a one-dimensional list, Rules K12), wrapping at the ends; `u|d` half a page,
+    `gg|G` the top and the bottom.
   - **`D`**: picks up the cursor's item and enters the Drag mode. `D` is this popup's own hotkey; `Space` does nothing,
     as Rules K5 says.
   - **`Enter`**: writes the whole order back and closes the popup; only then does it take effect (opened from a form,
@@ -79,7 +80,7 @@ row's colour and adds one glyph, and nothing else moves by a cell.
     counts.
   - **Hint**: `Enter:apply D:drag Esc:cancel`.
 - **Holding an item** (the Drag mode, Rules K11):
-  - `j|k`: swap it with the next or the previous item, the cursor going with it. It wraps at the ends: the last item
+  - `j|l`, `h|k`: swap it with the next or the previous item, the cursor going with it. It wraps at the ends: the last item
     moved down goes to the top and every other item moves down one; the first moved up goes to the bottom (Rules K12).
   - **`Enter`**: drops it and leaves the Drag mode; the cursor stays on it.
   - **`Esc`**: puts it back where it was picked up and leaves the Drag mode (K11: back to the state before it; Rules K4,

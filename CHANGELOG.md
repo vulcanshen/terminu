@@ -1,5 +1,82 @@
 # Changelog
 
+## v0.8.0 — 2026-10-19
+
+From the whole-family refactor to tdp v0.7.4 and terminu-go v0.1.13: eight apps reported what tdp did not say, what it
+said twice, and what they had lost; each was settled with the user one at a time. Behaviour changes, so a minor.
+
+Screen and size
+- L1: every app has a minimum size, 80×40 by default; it may be lowered, never raised. Smaller than that, only the app's
+  name (Blue bold) and `needs a terminal of at least W×H` (Overlay0) are drawn in the centre; no key does anything and
+  nothing goes into a PTY, except `Ctrl-C` twice, which quits; the state is kept. Narrow widths apply only above it.
+  E5's tests go down to 1×1
+- S5: with a single row the splash draws only the name; CHANGELOG and release notes do not mention the splash either
+- A single-screen app shows long work's progress in the work's own row; zoom has a default (only the focused panel,
+  filling the panel area, and the panel switched to stays zoomed) and the app decides how it zooms
+- The empty state replaces the whole list, header included, and wraps when too long; a list's order is fixed (data
+  with no order of its own is sorted first)
+- K1: a screen that is not part of the TUI (locku's screensaver while locked) is not a surface
+
+Keys and focus
+- K3: the focus moves only when the user expects it (the details panel's `Enter` is one); nothing in the background
+  takes it; after adding an item the cursor moves to the new item. K3-8 covers only a value that was valid when the popup opened: an empty required field blocks `Enter`
+- K6, M6: a one-dimensional list lists `h|k`, `j|l`; no movement or scroll keys when the list is empty or the content
+  fits. K12: two-dimensional content in a panel with tabs walks `j|k` in reading order, `h|l` switches tabs
+- K11: a mode in a popup keeps the popup's `Tab` and digits and the footer; a mode on a PTY sends any other key, `q` and
+  `Ctrl-C` too, to the child after leaving the mode
+- M5: a hotkey letter found in the label is bracketed in place, case-insensitive, the first one (`[n]ew`, `Ex[P]ort`),
+  otherwise apart (`[x] Reset`); `|` also joins a pair of opposite keys under one verb (`j|k:move`, `gg|G`)
+- dialog/form: the typing note takes `Enter` and `Esc` only; every other printable key, `q` and `?` included, is eaten
+
+Popups and components
+- T1: the table goes by what happens after confirming (view, write back, editor: keep; item gone, shell, screen
+  switch, drill-down: clear); a confirm is only a gate, and cancelling always returns to the menu. F2: several layers
+  closing together all collapse at once, about 288ms
+- dialog/toast: a fourth kind, Success (`nf-md-check_circle` `SUCCESS`, Green, 2200ms); the kind follows what the colours
+  mean (Success done, Info neutral, Warning done but worth noticing, Error failed — a failure is never a Warning); a long
+  message wraps, how many rows is the app's
+- dialog/note: every viewer has a selection mode; it wraps by default and the app may keep aligned content unwrapped;
+  line numbers are the app's choice; search hits are underlined, the current one is the cursor block; a key reference
+  may start with "what each row is" on a one-value-per-row panel
+- dialog/terminal: a selection mode like a viewer's; a history mode (`History`): `PgUp` enters, `j|k`, `u|d`, `gg|G`,
+  `PgUp|PgDn` scroll, `Esc` returns to live; a PTY in a panel has no padding; the footer is not drawn under a terminal
+  popup
+- dialog/menu: a jobs list's rows follow the job; a row that can be acted on opens a confirm with the full text
+- layout/panel: an optional location row; columns drop whole by the app's order before shrinking; sort groups; names in
+  a panel title keep their case; middle truncation for values that matter at both ends; the label column fits the
+  header too; the space after `[N]` takes a powerline width; no hint when no key works
+- layout/popup: a hint that does not fit keeps the last `Esc`; the error row may count down a pause after too many wrong
+  values; a form's focus block keeps the right padding
+- input: a suggested value for a new item; number may be empty when optional and may carry a unit row (`10 seconds`
+  on forms and panels); password's unlock style has no prompt row, the title says what to type; color picker hex is
+  always uppercase and an empty old value reads `none`; a switch may be an off/on radio; finder's match subject is the
+  app's (shown text by default), select and checkbox popup widths follow their options; reorder takes `h|l`
+- Values on forms and panels draw control characters, Tab included, as red escapes; content draws a Tab as
+  `input_tab_width` spaces. Wrapping: a word longer than a row starts a new row before it is cut; notes wrap
+
+Environment and documents
+- E3: settings, state, data and cache are told apart by what deleting them costs (a hand-written connection list is
+  settings); the settings file is `config.yaml`; a moved location is migrated on first start
+- E5: widths cross ssh as `LC_TERMINU_ICON_WIDTH` and `LC_TERMINU_POWERLINE_WIDTH`, sent by the app with ssh, read by
+  the library; order `<APP>__` → `TERMINU__` → `LC_TERMINU_` → probe. E8: an app on the library tests its whole
+  screen, the library tests each popup's own frame
+- E7: the twelve README sections are required; other content goes in as a subsection or as an own section between
+  sections 4 and 9; troubleshooting follows usage; other sections may carry a gif or screenshot, but few
+- Family members and apps built with tdp: the latter use their own account, tap and e-mail, and their README says
+  "built with terminu design"
+- Citations: an app's files cite `tdp X`; tdp itself keeps `Rules X`
+- project: goreleaser `app:` ignore, uninstall asks about `<APP>__STATE`, truecolor in caveats and NOTE, `tools/` for
+  developer tools, `(terminu family)`
+
+Checklist
+- The verdicts, gene counting and the pass line move to the terminu harness; tdp keeps the items and the "applies to"
+  table. New "applies to" entries: location row, zoom, mode (on a panel), mode (in a popup), jobs list, finder with a
+  preview, file preview, has released
+- Release items judge what the repo shows now, not the latest tag; what exists only after a release applies to an app
+  that has released. The splash animation is checked by reading the code, not by recording
+- Every rule above gets its items; the items the apps found wrong (scope, missing splits, how to check) are fixed.
+  M5-2 (merged into M5-1) and note-5 (a viewer always has line numbers) are retired (1388 items)
+
 ## v0.7.4 — 2026-10-18
 
 From the user, while working out how the harness's judge runs: a judge may not be able to check every item.

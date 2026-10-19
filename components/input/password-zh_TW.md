@@ -26,6 +26,19 @@
 ```
 
 - **解鎖沒有 `nf-fa-angle_right`**：整個框只為輸入這一個值，置中的點一看就知道在這裡打；箭頭是在有說明的框裡指出打字列。
+- **解鎖也沒有說明列**，理由同上。要輸入什麼由標題講：鎖定畫面 `UNLOCK`；改 PIN 的三步 `CURRENT PIN`、`NEW PIN`、`CONFIRM PIN`。
+  框裡是兩列空白、打字列、一列空白、錯誤列，連框 7 列，打字列在正中間：
+
+```
+┏━UNLOCK━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                           ┃
+┃                                           ┃
+┃                  ● ● ● █                  ┃
+┃                                           ┃
+┃                                           ┃   ← 錯誤列
+┗━ Enter:unlock Backspace:clear Esc:cancel ━┛
+```
+
 - **寬度**：有長度上限時（例：PIN），寬度照內容確定（[`layout/popup`](../layout/popup-zh_TW.md) 的寬度）。
 
 ## 狀態
@@ -46,7 +59,9 @@
 - 什麼都沒打，`Enter` 或 `Esc` 都保留舊密碼。
 - 直接打字：換成新密碼，灰點隱藏。
 - 沒有 `Tab`：看不到的舊密碼沒辦法在上面改。
-- 新密碼要不要打兩次確認（例：locku 設 PIN 的 `new PIN` → `confirm PIN`）是 app 的流程。
+- 新密碼要不要打兩次確認（例：locku 設 PIN 的 `NEW PIN` → `CONFIRM PIN`）是 app 的流程。
+- **錯太多次而暫停收值時**（例：locku 連錯 PIN 之後的冷卻）：倒數寫在錯誤列，暫停期間除了 `Esc` 都吞掉（[`layout/popup`](../layout/popup-zh_TW.md)
+  的錯誤列）。
 
 灰點不是灰字提議：它背後沒有文字可以收，hint 也不寫 `Tab`；跟提議一樣的地方只有「什麼都沒打就 `Enter`，保留舊的」。
 
