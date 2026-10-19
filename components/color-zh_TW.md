@@ -17,7 +17,8 @@
 4. **警示色不跟層數換色**：錯誤、警告在哪一層都是同一個 Red、Peach；被蓋在底下時照 F8 一起淡化。
 5. **亮的就是有 focus 的**（Principle P6）：最上層以外淡化（F8）、失焦的 panel 淡化（T2，串流內容除外）、同鍵兩處指示時
    會觸發的那個亮（M9）、沒有 focus 的那一塊上的 cursor 淡化。
-6. **粗體只用在**：cursor 上的字、popup 的標題、選中的膠囊的字、模式名、popup 標題後面的 loading icon。
+6. **粗體只用在**：cursor 上的字、popup 的標題、選中的膠囊的字、模式名、popup 標題後面的 loading icon、splash 的名稱（Rules S5）、
+   畫面比 app 的最低尺寸小時正中央的 app 名稱（Rules L1，[`layout/screen`](layout/screen-zh_TW.md)）。
 
 ## 色碼（catppuccin-mocha）
 
@@ -27,18 +28,20 @@
 | focus | focus 的框（粗線 `┏━┓`）；hint、footer、key reference 裡現在按得了的鍵；有 focus 的 panel 的 label 與清單的表頭；畫面 chip 列 | Blue `#89b4fa` |
 | 用不到 | 失焦的框（細線 `┌─┐`，跟粗線同寬，切換零位移）；停用的列、label、選項；checkbox 不可用的選項（只畫狀態，照樣能勾）；範圍外的日子 | Surface2 `#585b70` |
 | 層色 | popup 的框（粗線 `┏━┓`）與標題膠囊的底；popup 裡的 cursor 色塊 | 見下面的「popup 的層色」 |
-| 正在編輯、使用者足跡 | input popup 裡的值與游標；使用者留下的位置（麵包屑的「你在這裡」、statusbar 上「你現在在哪」的值） | Lavender `#b4befe` |
-| 生效中 | 目前生效的值（select 選的、勾著的、開著的；popup 裡跟著畫面上的勾，讀成「按 `Enter` 就是這個值」）；活著的 session；進行中的工作與進度條；成功完成的 | Green `#a6e3a1` |
+| 正在編輯、使用者足跡 | input popup 裡的值與游標；使用者留下的位置（panel 的位置列 —— 麵包屑，目前的路徑或 drill 到的層，見 [`layout/panel`](layout/panel-zh_TW.md)；statusbar 上「你現在在哪」的值） | Lavender `#b4befe` |
+| 生效中 | 目前生效的值（select 選的、勾著的、開著的；popup 裡跟著畫面上的勾，讀成「按 `Enter` 就是這個值」）；活著的 session；進行中的工作與進度條（單畫面的 app 寫在工作的列裡，見 [`layout/screen`](layout/screen-zh_TW.md)）；成功完成的（Success toast 的字） | Green `#a6e3a1` |
 | 模式 | 模式的外框與模式名、模式裡選起來的範圍、Drag 拿著的那一列（Rules K11） | Yellow `#f9e2af` |
 | 警告：值得注意、但沒壞 | confirm 裡警告的那一句；Warning toast 的字 | Peach `#fab387` |
 | 錯誤 | 錯誤列、出錯的 label、error popup、Error toast 的字、貼上的控制字元（`\n`、`\x1b`……；游標停在上面時是它的底，字 Base） | Red `#f38ba8` |
-| 暗字 | menu 的說明與區塊標題；一列一個值的 panel 的表頭；hint、footer 的冒號與說明，以及隔開幾個鍵的 `\|`（`j\|k`）；說明列；灰字提議；空值的說明；沒有 focus 的打字列；空狀態；分隔線（popup 裡的、畫面 chip 列下面的） | Overlay0 `#6c7086` |
+| 暗字 | menu 的說明與區塊標題；一列一個值的 panel 的表頭；hint、footer 的冒號與說明，以及隔開幾個鍵的 `\|`（`j\|k`）；說明列；灰字提議；空值的說明；沒有 focus 的打字列；空狀態；畫面比最低尺寸小時名稱下面的提示；分隔線（popup 裡的、畫面 chip 列下面的） | Overlay0 `#6c7086` |
 | 一般文字 | 表單與 panel 上的值；menu 的 label；key reference 的說明 | Text `#cdd6f4` |
 | panel 的 cursor | panel 上 cursor 所在那一列的底，字是 Base 粗體 | Subtext1 `#bac2de` |
 | 按鈕 | 沒有 focus 的按鈕的底，字是 Text | Surface1 `#45475a` |
 
 - **cursor 色塊**：popup 裡是層色底、panel 上是 Subtext1 底，字都是 Base 粗體；沒有 focus 的那一塊上的 cursor，是有 focus 時的
   cursor 再淡化一次（P6）。
+- **文字裡的搜尋**（例：viewer 的 `/`）不加新顏色：每一個命中的字加底線、保留原本的顏色；目前那一筆畫成 cursor 色塊，意思是
+  「你在這裡」。模式的 Yellow 只留給選取的範圍，搜尋不用它。
 - 字要放在 cursor 色塊上時，一律換成 Base；原本的顏色不保留。**例外是色塊**：內容本身就是顏色的格子（表單、panel 上顏色值的
   `███`，kamonu 畫 mark 的格子）保留自己的顏色，同一塊上的其他字照樣換成 Base。顏色就是那一格的值，正要改它的時候最需要
   看到它。

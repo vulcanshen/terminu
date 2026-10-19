@@ -8,6 +8,8 @@ A switch, or ticking several from a group. A switch and a group of five or fewer
 panel and flip in place; more than five open a checkbox popup (e.g. kbu's namespace picker). The checkbox popup is a
 kind of finder ([`input/finder`](finder.md)): only what differs is written here.
 
+A switch may instead be drawn as a [`radio`](radio.md) with two options, `off` and `on`, the app's choice.
+
 ## Look
 
 - Glyphs: ticked `nf-md-checkbox_marked` (U+F0132, a solid tick), not ticked `nf-md-checkbox_blank_outline` (U+F0131).
@@ -28,7 +30,9 @@ it is ticked.
 ## Keys
 
 **In a form or a panel**: `Enter` flips it in place; the focus stays, and it takes effect at once. In a form `Space`
-flips it too (the exception of Rules K5, as in a checkbox popup); on a panel `Space` still opens the Space menu.
+flips it too (the exception of Rules K5, as in a checkbox popup); on a panel `Space` still opens the Space menu. The
+hint: `Enter|Space:toggle` in a form ([`dialog/form`](../dialog/form.md)); on a panel only `Enter` flips it, so
+`Enter:toggle`.
 
 **The checkbox popup**:
 

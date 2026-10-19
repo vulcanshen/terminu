@@ -10,10 +10,12 @@ A kind of popup: a value is entered or chosen, and written back once confirmed; 
 
 - **The typing row is in the input state** (Rules K8): letters, `Space`, `?` and `q` are all characters. The parts
   where nothing is typed (a select's list, a picker) are not in the input state, and core keys follow Rules K1: `?`
-  opens the key reference, `q` / `Ctrl-C` start the quit flow, `Space` does nothing (K5), `hjkl` move (K12).
+  opens the key reference, `q|Ctrl-C` start the quit flow, `Space` does nothing (K5), `hjkl` move (K12).
 - **`Enter`** (Rules K3): with the focus on the value, it confirms the value — written back, the popup closed. An invalid
   value is not written back: the error goes in the error row and the popup stays open. A value the same as when it
-  opened is not written back; the popup just closes.
+  opened is not written back; the popup just closes — but only a value that was valid when it opened: a field that
+  opened empty and cannot be empty is still refused when `Enter` is pressed with nothing typed, the error going in the
+  error row (with a suggested value, `Enter` takes it; see "A new value: the suggested value" below).
 - **An error names the value by its name**: opened from a form's field, that field's name; an input opened on its own
   has a title saying what the popup does (`RENAME`, `SAVE AS` in [`layout/popup`](../layout/popup.md)), so the app gives
   the value's name besides (`Name`). E.g. on `SAVE AS`, `Name can't have control characters`, not `Save as can't have
@@ -56,6 +58,9 @@ Shared by text, password and number.
 - **Width**: a freely typed value has no known width and takes the maximum of Rules F7; a value with a length limit
   (e.g. a PIN, a number with a known range) has a known width and follows "content width known when it opens" in
   [`layout/popup`](../layout/popup.md).
+- **Two places that differ from the skeleton**: a password's unlock style has no explanation row, its title saying what
+  to enter ([`password`](password.md)); a number with a unit has a unit row below the typing row
+  ([`number`](number.md)).
 
 ## When the value is longer than the box
 
@@ -77,9 +82,9 @@ On the typing row:
 | Key | Does |
 |---|---|
 | Characters, `Space` | insert at the cursor |
-| `←` / `→` | move the cursor one character left / right |
-| `Home` / `End` | move the cursor to the start / the end |
-| `Backspace` / `Delete` | delete the character before / under the cursor |
+| `←\|→` | move the cursor one character left, right |
+| `Home\|End` | move the cursor to the start, the end |
+| `Backspace\|Delete` | delete the character before, under the cursor |
 
 - **A character is what looks like one**: a CJK character, an emoji, a combining mark together with the character
   before it each count as one; a pasted control character is one each (`\n`, `\x1b`).
@@ -107,12 +112,33 @@ is done with the grey suggestion below (typing a new value needs no deleting fir
   field cannot be empty, it is handled as an error).
 - `Enter` with nothing touched: no change; it closes.
 - With grey text the hint adds `Tab:edit Backspace:clear` (e.g. `Enter:rename Tab:edit Backspace:clear Esc:cancel`).
-- A grey suggestion has only this one source: the old value. With no suggestion, `Tab` does nothing.
+- A grey suggestion has two sources: the old value, and, with no old value, the app's suggested value (next section);
+  the two never show together. With no suggestion, `Tab` does nothing.
 
 **Why**: replacing a long prefilled value whole means holding `Backspace` down to the start; a suggestion makes "type
 anew" need no deleting, "small change" one `Tab` more, and "no change" a plain `Enter`. That is the case of single-line
 values (file names, host names); a change to several lines of text is mostly a sentence added or a few words changed,
 and in a textarea `Tab` indents, so it could not take a suggestion anyway.
+
+## A new value: the suggested value
+
+```
+┃  █ssets.zip                         ┃   ← no old value; the value the app suggests is grey (Overlay0), the cursor on its first character (`a`)
+```
+
+- **With no old value and a sensible default from the app** (e.g. the file name `assets.zip` to pack into, the name of
+  something new), it is shown as a grey suggestion, called the suggested value. Single-line inputs only (text, number),
+  as with the old value.
+- Its look, `Tab`, typing straight away, `Backspace` and the hint are all as for the old value's suggestion.
+- **The only difference is `Enter` with nothing touched**: for the old value it means "no change" and closes; for the
+  suggested value it means "use this value", handled as confirming a value — written back and checked as usual.
+- A field that cannot be empty but has a suggested value takes the suggestion on `Enter` with nothing typed, so no
+  "can't be empty" error shows; only after `Backspace` clears the grey text does `Enter` go to the error.
+
+**Why**: creating something new, there is mostly a sensible name to use as it is; the suggested value makes "as
+suggested" a plain `Enter`, "small change" one `Tab` more, and "my own" just typing. `Enter` with the old value untouched
+does nothing; `Enter` with the suggested value untouched is the user accepting that value — not writing it back would
+leave `Enter` doing nothing at all.
 
 ## No placeholder
 
@@ -164,11 +190,14 @@ character.
   `none`). A blank does not tell unset from an empty string from not loaded yet. No text teaching keys (e.g. `enter to
   browse ~/.ssh`): the hint says `Enter:edit`.
 - **Too long**: cut from the end, with `…`; a path is cut from the start (`…/.ssh/id_ed25519`).
+- **Control characters**: as on the typing row, drawn as they are as red escapes (`\n`, `\x1b`; see "Pasted control
+  characters" above), never dropped or turned into spaces.
 - **Each kind of input**:
 
   | Input | Shown as |
   |---|---|
-  | text, number | the value itself |
+  | text | the value itself |
+  | number | the value itself; with a unit, a space and the unit as a whole word (`10 seconds`, [`number`](number.md)) |
   | password | set: always 8 `•`; not set: as an empty value |
   | textarea | the first line, with `…` when more follows |
   | select | the chosen option's text |
@@ -177,5 +206,5 @@ character.
   | radio, checkbox (drawn in the form) | the options themselves ([`radio`](radio.md), [`checkbox`](checkbox.md)) |
   | slider | a track and the number ([`slider`](slider.md)) |
   | datetime picker | the formatted date (and time), in the app's format (`2026-10-15`, `2026-10-15 10:05`) |
-  | color picker | a swatch 3 cells wide (`███`), a space, and the hex (`███ #2A2A3C`) |
+  | color picker | a swatch 3 cells wide (`███`), a space, and the hex (`███ #2A2A3C`, always upper case, [`color-picker`](color-picker.md)) |
   | file-picker | the path, the home directory written as `~` |

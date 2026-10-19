@@ -7,6 +7,11 @@
 幾個選一個，選項五個以內：直接畫在表單或 panel 上（[`dialog/form`](../dialog/form-zh_TW.md) 的「選項畫在表單上」）。超過五個用
 [`select`](select-zh_TW.md)。
 
+**一個開關也可以畫成 radio**：`off`、`on` 兩個選項，跟 [`checkbox`](checkbox-zh_TW.md) 二選一，由 app 選（例：ccdrawu 的 Drawer，
+跟同一頁 `off`、`on`、`on when narrow` 的設定排法一樣）。
+
+**為什麼**：`off`、`on` 兩個狀態都寫出來，比一個勾直觀；同一頁有多個選項的同類設定時，開關跟著畫成 radio，排法也一致。
+
 ## 長相
 
 ```

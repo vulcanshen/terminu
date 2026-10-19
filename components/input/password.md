@@ -30,6 +30,21 @@ Entering a value that is not shown: a password, a PIN, a passphrase.
 
 - **The unlock style has no `nf-fa-angle_right`**: the whole box exists to enter this one value, and the centred dots
   say at once where to type; the angle marks the typing row in a box with an explanation.
+- **The unlock style has no explanation row either**, for the same reason. What to enter is said by the title: `UNLOCK`
+  on a lock screen; `CURRENT PIN`, `NEW PIN`, `CONFIRM PIN` for the three steps of changing a PIN. Inside the border
+  come two blank rows, the typing row, one blank row and the error row — 7 rows with the border, the typing row in the
+  middle:
+
+```
+┏━UNLOCK━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                           ┃
+┃                                           ┃
+┃                  ● ● ● █                  ┃
+┃                                           ┃
+┃                                           ┃   ← error row
+┗━ Enter:unlock Backspace:clear Esc:cancel ━┛
+```
+
 - **Width**: with a length limit (e.g. a PIN), the width is set by the content (width in
   [`layout/popup`](../layout/popup.md)).
 
@@ -52,8 +67,10 @@ Entering a value that is not shown: a password, a PIN, a passphrase.
 - With nothing typed, `Enter` and `Esc` both keep the old password.
 - Typing straight away: it is replaced with a new password, and the dots hide.
 - No `Tab`: an old password that cannot be seen cannot be edited.
-- Whether a new password is typed twice to confirm (e.g. locku's PIN setting, `new PIN` → `confirm PIN`) is the app's
+- Whether a new password is typed twice to confirm (e.g. locku's PIN setting, `NEW PIN` → `CONFIRM PIN`) is the app's
   flow.
+- **Taking no value for a while after too many wrong ones** (e.g. locku's cooldown after wrong PINs): the countdown goes
+  in the error row, and every key but `Esc` is swallowed meanwhile (the error row in [`layout/popup`](../layout/popup.md)).
 
 The grey dots are not a grey suggestion: there is no text behind them to take in, and the hint has no `Tab`; all they
 share with a suggestion is "`Enter` with nothing typed keeps the old one".

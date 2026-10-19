@@ -59,7 +59,7 @@ glyph 那一格每一列都留：拿起時只有那一列換色、多一個 glyp
 
 - 打開時 focus 在清單上。
 - **沒拿東西時**：
-  - `j|k` 移動 cursor，到頭尾繞回；`u|d` 半頁、`gg|G` 頭尾（Rules K12）。
+  - `j|l` 往後、`h|k` 往前移動 cursor（一維清單，Rules K12），到頭尾繞回；`u|d` 半頁、`gg|G` 頭尾。
   - **`D`**：拿起 cursor 那一項，進入 Drag mode。`D` 是這個 popup 自己的熱鍵；`Space` 照 Rules K5 不作用。
   - **`Enter`**：把整個順序寫回去、popup 關掉，這時才生效（從表單打開的，照 [`input/README`](README-zh_TW.md)）。順序跟打開時一樣：
     不改，關掉。
@@ -68,7 +68,7 @@ glyph 那一格每一列都留：拿起時只有那一列換色、多一個 glyp
     「改過了」：放下的位置跟拿起前不同就算，之後不清掉 —— 搬走又搬回原位也算改過。
   - **hint**：`Enter:apply D:drag Esc:cancel`。
 - **拿著一項時**（Drag mode，Rules K11）：
-  - `j|k`：把它跟下一項、上一項交換，cursor 跟著它。到頭尾繞回：拿著最後一項往下，它到第一項、其他各往下一格；拿著第一項往上，
+  - `j|l`、`h|k`：把它跟下一項、上一項交換，cursor 跟著它。到頭尾繞回：拿著最後一項往下，它到第一項、其他各往下一格；拿著第一項往上，
     它到最後一項（Rules K12）。
   - **`Enter`**：放下，離開 Drag mode，cursor 留在那一項。
   - **`Esc`**：放回拿起前的位置，離開 Drag mode（K11：回到進入前的狀態；Rules K4 一次一層）。再按一次 `Esc` 才是上面的取消。

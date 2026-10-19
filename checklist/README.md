@@ -3,17 +3,20 @@
 **Language**: English · [繁體中文](README-zh_TW.md)
 
 terminu checklist is the item list of [tdp](../principle/README.md): the requirements of the principle, the components
-and the project spec, broken into items that can each be checked, for counting how many terminu genes a family app has.
-Versions and the CHANGELOG are shared with tdp; each tdp version has its own list. The items are in
-[`items.md`](items.md).
+and the project spec, broken into items that can each be checked, saying what an app made by tdp must do, when, and
+where it can be seen. Versions and the CHANGELOG are shared with tdp; each tdp version has its own list. The items are
+in [`items.md`](items.md).
+
+The list only says what to check. How to judge — which verdicts there are, how they are counted, what passes — is
+decided by the terminu harness, not in tdp (see "How to judge" below).
 
 ## The spec is what counts
 
 - The list is broken out of the spec; where the two disagree, the spec's text wins, and the disagreement is reported as
   a gap in tdp.
-- **Judged on tdp alone, never on the implementation**: whether an app uses terminu-go, and whatever language it is
-  written in, it is judged by the same list. An app on terminu-go does not meet everything by default either — what
-  the app supplies itself (e.g. `docs/icon.svg`, the README, the dev-remarks) is beyond the library.
+- **Checked on tdp alone, never on the implementation**: whether an app uses terminu-go, and whatever language it is
+  written in, it is checked against the same list. An app on terminu-go does not meet everything by default either —
+  what the app supplies itself (e.g. `docs/icon.svg`, the README, the dev-remarks) is beyond the library.
 - The parts the spec leaves up to the app, examples, the "Why" and "Implementation reference (not a requirement)" are
   not broken into items.
 
@@ -30,7 +33,7 @@ Versions and the CHANGELOG are shared with tdp; each tdp version has its own lis
 ## IDs
 
 - **Fixed**: when a requirement is removed its ID is retired and never reused; a new requirement goes at the end of the
-  same source. Reports from different versions line up by ID.
+  same source. Results from different versions line up by ID.
 - **Prefixes**: the rules use the rule (`K4-1`); the components and the project spec use the file name (`popup-3`,
   `checkbox-4`), with `components-` for `components/README`, `input-` for `input/README` and `project-` for
   `project/README`. Passages with no rule number: the rules' opening "Departure" and "Citing" use `departure-` and
@@ -39,11 +42,13 @@ Versions and the CHANGELOG are shared with tdp; each tdp version has its own lis
 
 ## Applies to
 
-- **`everyone`**: every family app must meet it.
+- **`everyone`**: every app must meet it.
 - **A feature's name**: the item counts only when the app has that feature. Names joined by "or" mean any one of them;
   names joined by "+" mean all of them.
 - **A case within a feature**: when an item names a case (e.g. "when a confirm has a warning…"), an app that has the
-  feature but never that case has the item ruled not applicable.
+  feature but never that case has the item not applying.
+- **A screen that is not part of the TUI** (e.g. locku's screensaver and PIN box while locked) is not a surface: the
+  items about "every surface" do not cover it (Rules K1).
 
 | Feature | An app has it when it has |
 |---|---|
@@ -54,16 +59,21 @@ Versions and the CHANGELOG are shared with tdp; each tdp version has its own lis
 | grouped list | a grouped list on a panel |
 | detail panel | a detail that follows another panel's cursor |
 | header | a list with a header (a multi-column ordinary list always has one) |
+| location row | a panel's location row (layout/panel) |
 | sorting | a list that can be sorted |
 | marks | a list that can be marked for batch operations |
 | Drag | a Drag mode |
 | panel filter | a panel filter |
 | statusbar | a statusbar |
+| zoom | zooming a panel (layout/screen) |
 | streaming content | content that keeps coming in (e.g. a log) |
 | loading | a panel or popup that waits for its content |
 | mode | a mode (Rules K11) |
+| mode (on a panel) | a mode opened on a panel (e.g. a panel's Drag) |
+| mode (in a popup) | a mode opened in a popup (e.g. a viewer's selection mode, a reorder's Drag) |
 | disabled | actions that cannot run for now, or disabled items or fields |
-| long task | a long task (the progress under the screen chip row) |
+| long task | a long task (the progress under the screen chip row, or in the task's row in a single-screen app) |
+| jobs list | a jobs list: a menu listing the work the app is running or has run (e.g. sshu's Jobs) |
 | PTY | a PTY (in a panel or a terminal popup) |
 | terminal popup | a terminal popup |
 | popup tab | a popup with tabs |
@@ -75,35 +85,32 @@ Versions and the CHANGELOG are shared with tdp; each tdp version has its own lis
 | input | any kind of input (an input popup, or a field on a form or a panel) |
 | text, password, number, select, radio, checkbox, slider, textarea, color picker, datetime picker, file-picker, reorder | that kind of input |
 | finder | a finder, or any kind of finder (a select, a checkbox popup and a file-picker are each a kind of finder, input/finder) |
+| finder with a preview | a finder with a preview: an ordinary finder, a file-picker (a select and a checkbox popup have none) |
+| file preview | a popup previewing files and directories: a file-picker, or a finder previewing files |
 | stores settings or data | settings, data, state or a cache written to disk |
 | Windows build | a Windows release |
+| has released | a release made (a tag and a GitHub release); for an app not yet released, what only exists after a release (the release, the formula on the tap…) does not apply, and what can be seen is checked on the repo as it is now |
 | mouse | mouse support |
+
+A color picker counts as having a select (R, G and B open a 00–FF select on `Enter`), and so a finder.
 
 The two languages' lists line up by ID; the Traditional Chinese list names the same features in Chinese
 ([README-zh_TW.md](README-zh_TW.md)).
 
-## Verdicts
+### Family members and apps made by tdp
 
-Each item is ruled one of:
+Where an item gives two ways (the repo's account, the Homebrew tap, the splash's e-mail address, the README's terminu
+family section; the opening of chapter E in the rules), check the one for what the app is: a family member, or an app
+made by tdp. Every other item is the same for both.
 
-| Verdict | Meaning |
-|---|---|
-| Meets | the item is done |
-| Departs | not done, but the "偏離 tdp" (departures from tdp) section of the dev-remarks names the item and the reason (the rules' opening "Departure") |
-| Violates | not done, and not written as a departure |
-| Not applicable | the app lacks the feature the item applies to, or never has the case the item names |
-| Cannot tell | it could not be checked (e.g. a file to read with no repo at hand, a screen that needs a special environment to open), with the reason |
+### Screens below the minimum size
 
-A judgement names the tdp version it was judged against. Departures, violations, the items not applicable and those that
-could not be checked are listed, to tell the app what it lacks and why, and what is still unconfirmed.
+Where "How to check" says to shrink the terminal (e.g. narrow widths, when things do not fit), shrink it only as far as
+the app's minimum size (Rules L1). Below the minimum size only the name and the hint are drawn: there only L1-3 to L1-6
+and the tiny sizes of E5-13 apply, and no other item about the screen does.
 
-## Genes
+## How to judge
 
-- **Each item is one gene**: an item an app meets is one terminu gene the app has. Departures, violations, items not
-  applicable and items that could not be checked do not count.
-- **A count, not a ratio**: written `tdp-<version> <count> gene` (e.g. `tdp-0.7.2 860 gene`).
-- **Tied to its tdp version**: a tdp version's total of genes is its number of items; when tdp changes, the total
-  changes, and a judgement already made keeps the count of the version it was made against. Counts from different
-  versions are not compared directly.
-- What an app does that tdp does not specify is no gene and costs nothing: a judgement lists it separately, to be
-  reported as a gap in tdp.
+The list only says what to check, when an item counts, and where to look. Which verdicts there are, how they are
+counted, what passes, how much error to allow when timing from the screen, and how to judge the details of something
+an app has not done at all are all decided by the terminu harness.

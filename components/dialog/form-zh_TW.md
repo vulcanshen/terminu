@@ -53,6 +53,8 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 ### 選項畫在表單上
 
 - 選項**五個以內**的 radio、checkbox 畫在表單上；超過五個，改用 select 或 checkbox popup（按 `Enter` 打開）。
+- **開關**（只有開、關兩種的值）可以畫成一個 checkbox，也可以畫成 off／on 兩個選項的 radio，由 app 選
+  （[`input/checkbox`](../input/checkbox-zh_TW.md)、[`input/radio`](../input/radio-zh_TW.md)）。
 - 一律直排，一個選項一列：focus 色塊從那個選項一直到框，橫排時會蓋住後面的選項，看不出它們選了沒。
 - glyph 見 [`input/radio`](../input/radio-zh_TW.md) 與 [`input/checkbox`](../input/checkbox-zh_TW.md)。
 
@@ -62,7 +64,8 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 
 focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dialog/menu`](menu-zh_TW.md)）。範圍從項目的開頭一直到框（蓋住右邊的留白）：
 欄位從值開始、選項從那個選項開始、按鈕就是按鈕本身；值空著也是一整塊底色。一直到框的色塊，右邊的留白是箭頭 U+E0B0（層色，
-跟 menu 的 cursor 一樣）；按鈕的色塊就是按鈕本身，沒有箭頭。
+跟 menu 的 cursor 一樣）；按鈕的色塊就是按鈕本身，沒有箭頭。表單也是有整列 cursor 的 popup：每一列右邊的留白跟箭頭一樣寬
+（[`layout/popup`](../layout/popup-zh_TW.md) 的留白；powerline 符號佔兩格時每一列右邊留兩格），箭頭放得進去、不蓋到字。
 
 **label 的顏色**：不因 focus 變色。
 
@@ -218,6 +221,9 @@ number、textarea），按到一個不在表單操作鍵裡的可列印字元時
 ```
 
 - 標題是欄位名稱；`Enter`、`Esc` 都能關，關掉後回到表單，focus 不動（[`dialog/note`](note-zh_TW.md)）。
+- **note 只收 `Enter`、`Esc`**：開著的時候，其他可以打的字（包括 `q`、`?`）都不作用、也不穿過去 —— 後面打的字全被它接住，
+  `q` 不進離開流程（Rules K9），`?` 不開 key reference。
+- 很窄、說明放不下時照 [components 的「折行」](../README-zh_TW.md) 折行，不截斷。
 - **表單的操作鍵**不跳 note：
 
   | 鍵 | 在表單上 |

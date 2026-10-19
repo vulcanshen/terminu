@@ -46,9 +46,11 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
   - **Keys that move between items are left out** (`j|k`, `↑|↓`); only actions and leaving are written: users find
     movement out by using it. A key that switches parts is not movement and is written (e.g. a finder's `Tab:list`, a
     form's `Tab:actions`).
-  - **When it still does not fit at the widest frame, whole pairs are dropped from the end**, never cut mid-pair; the
+  - **When it still does not fit at the widest frame, whole pairs are dropped from the end, but the last `Esc` always
+    stays**: starting from the pair before `Esc`, pairs are dropped one by one towards the front, never cut mid-pair; the
     scroll position at the right of the bottom border stays. The frame's width already counts the hint and the scroll
-    position ("Width" below), so pairs are dropped only on a terminal too narrow.
+    position ("Width" below), so pairs are dropped only on a terminal too narrow. E.g.
+    `Enter:install Tab:actions Esc:cancel` that does not fit becomes `Enter:install Esc:cancel`, and then `Esc:cancel`.
   - **A popup with only a typing row** (text, password, number): `?` is a character there, so the hint must list every
     operation, and fit in 80 columns (Rules M3).
 - **Right of the bottom border**: the scroll position when the content does not fit (see "When the content does not fit"
@@ -66,8 +68,9 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
   ([`dialog/form`](../dialog/form.md)). Its right padding holds U+E0B0 (`nf-pl-left_hard_divider`) in the block's
   colour, an arrow pointing at the row (the ordinary list in [`panel`](panel.md)). In a popup with a cursor across a whole
   row, the right padding is as wide as the arrow (the powerline symbol width of Rules E5: one cell as a rule; on a
-  terminal where it takes two, every row keeps two on the right), so the arrow fits. Only a cursor across a whole row has
-  the arrow; one-cell cursors such as the days, hours and minutes of the datetime picker do not.
+  terminal where it takes two, every row keeps two on the right), so the arrow fits. A form counts too: its focus block
+  runs to the frame and ends in the arrow, so its right padding is as wide as the arrow as well. Only a block across a
+  whole row has the arrow; one-cell cursors such as the days, hours and minutes of the datetime picker do not.
 - **Separators**: a separator inside a popup does not join the frame — a horizontal one leaves one blank cell at each
   end, a vertical one is not drawn into the top and bottom padding. Colour Overlay0.
 
@@ -93,6 +96,11 @@ The two widths of Rules F7, set when the popup opens and unchanged while it is o
 digit of a PIN the frame is already 43 cells, and it does not grow with the typing. The scroll position is counted at
 its widest too (`20 of 20` for a 20-row menu, `T-T of T` for `N-M of T`), so the frame does not change width while it
 scrolls; and the hint is always whole — its last pair is usually `Esc`, and how to close a popup must always be in sight.
+Pairs are dropped only when the frame is at `terminal width − 2` and still too narrow, and even then `Esc` stays (the
+hint above).
+
+When a number has a unit ([`input/number`](../input/number.md)), the unit row under the typing row counts as a row of
+content: the widest row is the wider of the most digits and the unit.
 
 Narrow content is aligned left, one cell from the border (e.g. confirm, datetime picker, color picker); a toast's text
 and a password's unlock mask are centred.
@@ -116,13 +124,19 @@ parts:
   the same time, without waiting for the source. The closing source is not a layer: the target takes the layer colour
   of the layer it ends up on from its first frame ([`color`](../color.md), the layer colours), and the half-closed
   source lies under the target, dimmed as F8 says.
+- **Several layers closing together** (e.g. one action closing the whole stack, Rules T1 clearing a source of two or
+  more layers): every layer closes at the same time, each at its own size and in its own layer colour, all pressed into a
+  line at the middle and shrinking away together, still 9 frames, about 288ms in all; not only the top one playing while
+  the ones beneath simply vanish, nor one layer after another.
 - **Keys**: a popup takes no keys until its opening animation ends; a closing one takes none either (Rules F3).
 - Every kind of popup animates this way, toasts and terminals included.
 
 **Why**: a line first and then the opening shows where the frame stacks on from and where it backs off to; with the
 line held for a frame, "something is coming" is seen first. 288ms is enough to see the three parts without feeling
 like a wait. One form for the family: the rhythm and the look stay the same from one app to the next. No keys while
-it plays: on a frame not yet drawn, users cannot see what their key landed on.
+it plays: on a frame not yet drawn, users cannot see what their key landed on. Several layers closing together play
+together, the same idea as T1's "play together, don't wait": each layer is seen backing away, and three layers do not
+make the user wait three times as long.
 
 ## Loading
 
@@ -161,7 +175,8 @@ frame.
   the scrolling area (a form's error row or button).
 - The unit:
   - A form counts fields: the label and value rows of a stacked field, or the options of a radio, make one field; M
-    counts fields only, not the error row or the button.
+    counts fields only, not the error row or the button. A panel with one value per row counts the same way
+    ([`panel`](panel.md)).
   - A cursor in a stretch of text (a textarea, a viewer in the selection mode) counts lines: the cursor's line and the
     number of lines, the same numbers as the line numbers, not rows as drawn.
   - A wrapping viewer (outside the selection mode) scrolls a row as drawn at a time; in `N-M of T`, N and M are the
@@ -186,6 +201,9 @@ frame.
 - **Reserved only in popups whose values can be invalid** (Rules F7): blank when there is no error, the height unchanged.
 - **Value errors only**: a value breaks a rule — format, range, a required field, a duplicate name; the message is
   written by the app and is short.
+- **When too many wrong values pause the input** (e.g. locku's cooldown after several wrong PINs), the countdown goes in
+  the error row too: Red, updated every second (`try again in 27 s`), cleared when it ends. While paused, every key but
+  `Esc` is swallowed and never reaches the typing row.
 - **Look**: Red text, sharing the content's left edge (centred when the content is centred). The frame and title do not
   change colour and keep the layer colour: the layer colour says "which layer", and turning it Red would lose that;
   besides, the popup itself is not an error, only one value in it is invalid (and a form also has Red labels).
@@ -194,7 +212,7 @@ frame.
   the error row never takes the focus: that is where typing happens (Rules K8).
 - **When it changes**: it follows the check — it changes only when a check runs: an error found writes this error, none
   found clears it; between two checks it stays, even when the value changes. A form checks on submit, an input popup on
-  `Enter`.
+  `Enter`. A pause's countdown is the exception: it updates every second.
 
 **When the action itself fails** (a write failing, the remote refusing, the file changed underneath), it is not written
 in the error row: an error popup opens straight over the current popup ([`dialog/note`](../dialog/note.md)); closing it
@@ -202,7 +220,9 @@ returns to the original popup with every value still there (Rules F4, F5).
 
 **Why**: a value error belongs to one field, so it is written in the frame, where the user keeps seeing it while fixing
 it. An action failure belongs to no field; its message must be shown whole, since only after reading it can the user
-decide what to do next — retry, change a value, or give up.
+decide what to do next — retry, change a value, or give up. A pause's countdown comes from too many wrong values, so the
+error row is where it reads right; a toast leaves after a few seconds, but the countdown has to stay in sight until
+typing is possible again.
 
 > **Implementation reference (not a requirement)**: pitfalls met while getting Rules F3 and F8 right, for apps written in
 > Go with Bubble Tea.

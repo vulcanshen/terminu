@@ -5,7 +5,8 @@
 ## 用途
 
 唯讀的內容，可以捲動，可以有自己的熱鍵與模式（Rules F1）：key reference、viewer（YAML 檢視、App Log、檔案內容）、error popup、
-表單上的打字說明（[`dialog/form`](form-zh_TW.md)）。有可以用 `Enter` 執行的選項清單時，它是 menu，不是 note。
+表單上的打字說明（[`dialog/form`](form-zh_TW.md)）。viewer 一定有選取模式（見下面的「選取模式」）。有可以用 `Enter` 執行的選項清單時，
+它是 menu，不是 note。
 
 ## 長相
 
@@ -16,9 +17,12 @@
   viewer 折行時，N 是最上面那一列所屬的行，M 是最下面那一列所屬的行，T 是總行數（例：最上面是第 6 行折下來的那一列、最下面是
   第 10 行，寫 `6-10 of 42`）。
 - **寬度**：內容打開時就確定的（key reference、error popup、說明）照內容；viewer 的內容寬度不確定，用 Rules F7 的上限。
-- **viewer 的折行**：一行比框寬時接到下一列畫，照 [components 的「折行」](../README-zh_TW.md)：在空白處斷，一個字本身就比一列還長時
-  才照格子切。
-- **viewer 的行號**：viewer（YAML 檢視、App Log、檔案內容）左邊有行號，照 [`input/textarea`](../input/textarea-zh_TW.md) 的行號：每一行的
+- **太長時折行**：error popup、表單的打字說明這種一段話的 note，放不下時照 [components 的「折行」](../README-zh_TW.md) 折行，不截斷。
+  key reference 的說明例外，見下面。
+- **viewer 的折行**：預設折行 —— 一行比框寬時接到下一列畫，照 [components 的「折行」](../README-zh_TW.md)：在空白處斷，一個字本身就比
+  一列還長時才照格子切。要對齊的內容（左右並排、表格），app 可以讓它不折行：比框寬的部分截掉，行尾加 `…`。
+- **viewer 的行號**：viewer 左邊畫不畫行號由 app 決定：檔案內容、YAML 檢視、App Log 這種一行就是一行的內容通常要畫；app 自己排出來的
+  表（例：filu 的檔案資訊）行號沒有意義，可以不畫。畫的時候照 [`input/textarea`](../input/textarea-zh_TW.md) 的行號：每一行的
   第一列畫行號，靠右對齊、後面空一格；折下來的列行號欄空白。行號 Overlay0，選取模式裡游標所在那一行的行號 Text。複製不含行號。
   行號欄**至少三位**：打開時就知道行數的（YAML 檢視、檔案內容）取 max(3, 總行數的位數)，打開後不變；串流的 App Log 從三位開始，
   超過 999 行才跳寬。
@@ -33,6 +37,8 @@
   （跟 [`input/textarea`](../input/textarea-zh_TW.md) 同一個設定），不對齊 tab 停點；換行前面的 `\r`（CRLF）不畫，算換行的一部分；其他控制字元
   畫成名字，Red（`\r`、`\x07`，跟 [`input/README`](../input/README-zh_TW.md) 的「貼上的控制字元」一樣）。複製照原樣，不是畫出來的空白或名字。
   viewer 是用來讀的：CRLF 每一行都掛一個紅色的 `\r` 只是雜訊；控制字元用 Red，才分得出檔案裡本來就寫著 `\x07` 這四個字。
+- **viewer 的搜尋**（有 `/` 時）：命中的字全部加底線，保留原本的顏色；目前那一筆畫成 cursor 色塊（層色底、Base 粗體，
+  [`color`](../color-zh_TW.md) 的 cursor），意思是「你在這裡」。不另外加顏色：模式的 Yellow 只留給選取模式的範圍。
 
 ```
 ┃   1 apiVersion: v1                            ┃   ← 行號欄三位（這份 YAML 有 42 行）；行號 Overlay0
@@ -60,6 +66,8 @@
 - **只用 `Esc` 關**。`Enter` 不關；`Space` 也不關（Rules K5）。
 - **例外**：error popup（不管是自己跳出來的，還是從表單錯誤列按 `Enter` 打開的）與表單上的打字說明，`Enter` 也能關；key reference
   再按一次 `?` 也能關（Rules K6）。
+- **表單上的打字說明只收 `Enter`、`Esc`**：其他可以打的字（包括 `q`、`?`）都不作用 —— 不進離開流程、不開 key reference
+  （[`dialog/form`](form-zh_TW.md) 的「在欄位上打字」）。
 - **hint**：note 自己的熱鍵寫在前面，`Esc:close` 放最後。例：`y:copy /:search v:visual Esc:close`。
 
 **為什麼**：使用者自己打開的 note，看完按 `Esc` 是最直覺的；`Space` 在 `less`、`man` 這類閱讀器裡是往下翻頁，熟的人在 note 上按
@@ -70,14 +78,15 @@
 
 ## 選取模式（只有 viewer）
 
-viewer（YAML 檢視、App Log、檔案內容）可以把一段文字選起來複製；key reference、error popup、表單的打字說明沒有這個模式，`j|k` 只捲動。
+每個 viewer（YAML 檢視、App Log、檔案內容……）都有選取模式，可以把一段文字選起來複製；key reference、error popup、表單的打字說明沒有
+這個模式，`j|k` 只捲動。
 
 - **平常沒有游標**：`j|k`、`u|d`、`gg|G` 捲動畫面；有 tab 時 `h|l` 切 tab（Rules K12）。
 - **第一次 `v`**：進入選取模式（模式，Rules K11：框與模式名換成模式色 Yellow）。游標出現在畫面第一行的行首，還沒開始選。
   `h|j|k|l`、`w|b|e`、`0|$`、`u|d`、`gg|G` 移動游標，走到畫面邊緣時畫面跟著捲。hint `v:select Esc:cancel`。
 - **第二次 `v`**：從游標所在開始選，接著移動游標把範圍拉開。範圍以字為單位（vim 的 `v`）：從起點到游標，含游標那個字；要整行，
   就先把游標移到行首。hint `y:copy Esc:cancel`。開始選之後再按 `v` 不作用。
-- **`y`**：複製選起來的文字，離開選取模式，範圍與游標都消失。
+- **`y`**：複製選起來的文字，離開選取模式，範圍與游標都消失；跳一個 Success toast 說複製好了（[`dialog/toast`](toast-zh_TW.md)）。
 - **`Esc`**：在哪一步都是整個離開，不複製，範圍與游標都消失（K11：回到進入前的狀態）。不收 `v` 當離開的別名（K12）。
 - **顏色**：游標一格層色底、Base 字（跟 [`input/textarea`](../input/textarea-zh_TW.md)「移」的游標一樣）；範圍 Yellow 底、Base 字，
   游標那格維持層色；範圍裡的空行畫一格。
@@ -85,7 +94,8 @@ viewer（YAML 檢視、App Log、檔案內容）可以把一段文字選起來�
 
 **為什麼**：先移到起點再開始選 —— 游標一出現的地方不一定是要選的地方，按一次 `v` 就開始選的話，起點永遠被固定在畫面第一行。
 平常沒有游標，`j|k` 照樣捲、`h|l` 照樣切 tab，看完就關的 note 不多一個用不到的游標。以字為單位：從 note 裡複製的常常是一個字、
-一段指令或一個網址。複製完通常就做完了，不用再多按一次 `Esc`。
+一段指令或一個網址。複製完通常就做完了，不用再多按一次 `Esc`。每個 viewer 都有：使用者不用記哪個 viewer 能選、哪個不能，
+家族裡看得到一段文字的地方就複製得到。
 
 ## key reference
 
@@ -122,13 +132,17 @@ viewer（YAML 檢視、App Log、檔案內容）可以把一段文字選起來�
   （不加括號、不加冒號）。
 - **從 menu 來的列**：說明寫 `label — 說明`；label 去掉熱鍵標記、大小寫照原樣（menu 上的 `[E]dit` 寫成 `Edit — change this host`）。
 - **區塊**：區塊標題跟 menu 一樣（`nf-md-hexagon`、大寫、Overlay0、縮一格、不加粗）。panel 上依序是：
+  - `what each row is`（可選，只有一列一個值的 panel）：見下面的「每一列」。
   - `item operation`、`panel operation`：跟 Space menu 一樣。
-  - `move`：這裡能用的移動鍵（Rules K12），只列真的能用的（例：有 tab 時才列 `h|l`）。
+  - `move`：這裡能用的移動鍵（Rules K12），只列真的能用的（例：有 tab 時才列 `h|l` 切 tab）。一維清單（表單、沒有 tab 的一列一個值
+    panel、menu）寫 `h|k` 往前、`j|l` 往後。對象不存在時不列（Rules M6）：清單空了不列移動鍵，內容放得下不列捲動鍵。
   - `core keys`：這個 panel 上有作用的 core key —— `Space`、`?`、`Tab`、`1–N`（好幾個 panel 時，Rules K1）、`q|Ctrl-C`；`Esc` 只在
     這裡有作用時才列（例：有篩選可以清）；`Enter` 已經在 `item operation` 寫了它在這裡做什麼，不重複。
-  - `app-wide`：global 熱鍵。
+  - `app-wide`：global 熱鍵。離開的 `q` 已經在 `core keys` 列了，這裡不重複（跟 `Enter` 一樣）。
   - 說明**別的 surface** 的段（Rules M6；例：panel 裡的 PTY 進去之後的鍵，標題 `terminal`）：排在最後，`app-wide` 之後。
     每個 panel 前面幾段的順序都一樣，有沒有這一段，`core keys`、`app-wide` 都在原位；先讀「這裡能按什麼」，再讀「進去之後」。
+- **每一列**（一列一個值的 panel，可選）：key reference 最前面可以有一節說明 panel 上每一列是什麼意思。左欄是設定的名稱，用一般的字色
+  （Text，不是鍵的 Blue：它不是鍵），右欄是說明；按鍵的區塊接在後面。要不要有這一節由 app 決定。
 - **popup 上**只列這個 popup 自己的鍵（Rules K6）：它的熱鍵、`Enter`、`Esc`、移動鍵。
 - **顏色**：鍵 Blue、不加粗；說明 Text。現在按不了的鍵，鍵與說明都用 Surface2（Rules M6）。
 - **按鍵**：捲動照上面；`?` 或 `Esc` 關，`Enter` 不作用。hint `?|Esc:close`。

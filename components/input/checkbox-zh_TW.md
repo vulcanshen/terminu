@@ -7,6 +7,8 @@
 一個開關，或從一組裡勾好幾個。開關與五個以內的一組，直接畫在表單或 panel 上、在原地翻；超過五個，開 checkbox popup
 （例：kbu 的 namespace picker）。checkbox popup 是 finder 的一種（[`input/finder`](finder-zh_TW.md)）：這裡只寫不同的地方。
 
+一個開關也可以畫成 `off`、`on` 兩個選項的 [`radio`](radio-zh_TW.md)，由 app 選。
+
 ## 長相
 
 - glyph：勾了 `nf-md-checkbox_marked`（U+F0132，實心打勾）、沒勾 `nf-md-checkbox_blank_outline`（U+F0131）。勾了的字是 Green（生效中）；popup 裡跟著畫面上的勾，`Space` 勾了就是 Green（[`finder`](finder-zh_TW.md) 的「清單的標記」）。
@@ -22,7 +24,8 @@ glyph 線條可能太細，看不清楚。不可用的選項整列用 Surface2�
 ## 按鍵
 
 **表單或 panel 上**：`Enter` 在原地翻，focus 不動，馬上生效。表單上 `Space` 也能翻（Rules K5 的例外，跟 checkbox popup 一樣）；
-panel 上的 `Space` 照樣打開 Space menu。
+panel 上的 `Space` 照樣打開 Space menu。hint：表單上 `Enter|Space:toggle`（[`dialog/form`](../dialog/form-zh_TW.md)）；panel 上只有 `Enter` 翻，
+寫 `Enter:toggle`。
 
 **checkbox popup**：
 

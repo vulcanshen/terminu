@@ -64,7 +64,7 @@
 ## 按鍵
 
 可以拿 focus 的是：**月、年、日曆、時間**（只選日期的沒有時間）。picker 自己的操作只用 `Tab`、hjkl（方向鍵）、`Enter`、`Esc`，
-加上 `t`；core key 照 [`input/README`](README-zh_TW.md)（`?`、`q`／`Ctrl-C`），`Shift-Tab` 照 Rules K2 由 app 決定。
+加上 `t`；core key 照 [`input/README`](README-zh_TW.md)（`?`、`q|Ctrl-C`），`Shift-Tab` 照 Rules K2 由 app 決定。
 
 - **`Tab`** 照畫面順序換 focus：月 → 年 → 日曆 → 時間 → 回到月。打開時 focus 在日曆。
 - **月、年上**：`h|l`（`←|→`）換上一個、下一個月或年；日曆跟著翻，cursor 停在同一天（那個月沒有這一天就停在最後一天）。

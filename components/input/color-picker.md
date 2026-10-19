@@ -14,7 +14,7 @@ Choosing a colour: colour fields on webu pages, locku's colour settings.
 ┃ ████████  ████████                   ┃
 ┃ ████████  ████████  ███  ███  ███    ┃   ← R, G, B: small swatches, each in its channel's own colour
 ┃ old       new       R▓▓  G    B      ┃   ← the focus on R: the name and hex rows below drawn as a cursor, as wide as the swatch
-┃ #1E1E2E   #2A2A3C   2A▓  2A   3C     ┃   ← always in hex
+┃ #1E1E2E   #2A2A3C   2A▓  2A   3C     ┃   ← always in hex, upper case
 ┃                                      ┃
 ┃ ──────────────────────────────────── ┃
 ┃                              Choose  ┃   ← the action area: the button `Choose`; `Tab` goes between the channels and the button
@@ -28,6 +28,17 @@ Choosing a colour: colour fields on webu pages, locku's colour settings.
   side, they show how much has changed.
 - **R, G and B are small swatches** (3 cells wide, 1 row tall), not sliders: each swatch is drawn in its channel's own colour (R is `#RR0000`);
   under it its value, **always in hex**.
+- **When there was no value** (e.g. ccdrawu's Drawer background left unset, using the theme's own): old has no swatch
+  and always reads `none` (Overlay0) — the column is only 8 cells, too narrow for the app's text for an empty value; new
+  starts from `#000000`.
+
+  ```
+  ┃           ████████                   ┃
+  ┃           ████████  ███  ███  ███    ┃
+  ┃ old       new       R▓▓  G    B      ┃
+  ┃ none      #000000   00▓  00   00     ┃   ← old empty, reading none; new starting from black
+  ```
+
 - **The action area**: a separator under the content and one button on the right, `Choose`, drawn as the button of
   [`dialog/form`](../dialog/form.md) (Surface1 background and Text unfocused; layer colour background and Base bold
   focused; on the right, one cell from the border). A colour picker cannot be invalid, so it has no error row.
@@ -52,7 +63,8 @@ are all written in hex (`#2A2A3C`), and with the channels in hex too, they line 
   - R, G, B: opens a [`select`](select.md) of numbers (00–FF, step 1, the cursor on the current value), every row in hex
     with the decimal in brackets: `2A (42)`; typing filters, by hex or decimal alike. Back from choosing, new changes
     with it and the focus stays on that channel.
-  - `Choose`: confirms, writes back and closes.
+  - `Choose`: confirms, writes back and closes. When there was no value it always counts as a change (from unset to a
+    colour), and is written back even when new is `#000000`.
 - **`Esc`**: closes, changing nothing.
 - **Hint**: on R, G, B `Enter:edit Tab:actions Esc:cancel`; on `Choose` `Enter:choose Tab:fields Esc:cancel`.
 
@@ -67,3 +79,10 @@ changed lights up with it.
 In a form or a panel: a swatch 3 cells wide (`███`), a space, and the hex (`███ #2A2A3C`); empty follows the rule for
 empty values in [`input/README`](README.md). With the cursor on the field, the swatch keeps its own colour and the hex
 still turns Base (the cursor block in [`color`](../color.md)).
+
+**Hex is always written in upper case** (`#F2B753`), however the file stores it (`#f2b753` in a config file too): in the
+colour picker, on a form and on a panel alike.
+
+**Why**: hex is how a colour is written, like the format of a number; its case does not change the colour, so this is not
+changing the value (values unchanged, "Uppercase" in [components](../README.md)); written one way, the same colour looks
+the same in the colour picker and on a panel.

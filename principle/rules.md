@@ -24,8 +24,9 @@ written reason it is a **departure**; without one it is a **violation**, listed 
 components all count as the fixed zone: a departure from the components, besides its written reason, is also reported as
 a gap in tdp — when a component's solution doesn't fit, tdp is missing a solution.
 
-**Citing**: `tdp` plus the ID, e.g. `tdp K4`, `tdp M2`. Once published, IDs are never renumbered;
-a retired rule keeps its ID and is marked retired.
+**Citing**: an app's files (README, dev-remarks, CLAUDE.md, code comments…) cite a tdp rule as `tdp` plus the ID, e.g.
+`tdp K4`, `tdp M2`; `Rules K4` and a bare `K4` do not count. tdp's own documents write `Rules K4`, meaning this document in
+the same set. Once published, IDs are never renumbered; a retired rule keeps its ID and is marked retired.
 
 | Chapter | Scope |
 |---|---|
@@ -54,8 +55,9 @@ a retired rule keeps its ID and is marked retired.
 | `q` | Quit the app | K9 |
 | `1`–`9` | On a panel, jump to the Nth panel of the current screen (the `[N]` on its frame) | this rule, K11 |
 
-These keys carry this meaning on **every surface**; the only exceptions are input state (K8), PTY (K10), modes (K11) and
-`q` on a form (K9). An app need not use all of them (a single-panel app has no use for `Tab`), and may designate core
+These keys carry this meaning on **every surface**; the only exceptions are input state (K8), PTY (K10), modes (K11),
+`q` on a form and a form's typing note (K9). A screen that is not part of the TUI is not a surface and does not follow
+this table (e.g. locku's screensaver and PIN box while locked). An app need not use all of them (a single-panel app has no use for `Tab`), and may designate core
 keys of its own; once designated, those also keep their meaning on every surface. **No letter hotkey may take over a key
 in this table.**
 
@@ -104,21 +106,29 @@ What exactly is up to the app, but the same kind of item always gets the same ac
 When the panel itself is a content area with no "item" to pick (e.g. a preview, a log), `Enter` does the most intuitive
 action to the whole panel, as the app decides (e.g. open a scrollable view).
 
-**`Enter` does not move the focus** (fixed): after `Enter`, the focus stays where it was — once a field's input popup on
-a form is confirmed, the focus is back on the same field; choosing a radio option or flipping a checkbox in place does
-not move it either. Position changes with `Tab`, the digit keys, the movement keys and a component's own keys (e.g. a
-form's `e`; K1, K2, K12), not with `Enter`. `Enter` changes position only in the three places this rule names: details,
-`Enter` on a typing row going to the list, and a blocked submit on a form jumping to the first field with a problem.
-The one place `Enter` may change panels is **details** ("Details" in
-[components/layout/panel](../components/layout/panel.md)): on a panel listing items, `Enter` may move the focus to the
-panel showing that item's details. Whether to, and on which items, is up to the app; not using it is just as much
-within the spec — it only gives the app one more way.
+**The focus moves only when the user expects it to** (fixed): after `Enter`, the focus normally stays where it was —
+once a field's input popup on a form is confirmed, the focus is back on the same field; choosing a radio option or
+flipping a checkbox in place does not move it either. Position normally changes with `Tab`, the digit keys, the movement
+keys and a component's own keys (e.g. a form's `e`; K1, K2, K12). An app's action (`Enter` included) may move the focus
+or switch screens, as long as the user expects the move when pressing it; which actions meet that expectation is
+decided by the app's own experience. Three are fixed by the components: `Enter` on a typing row going to the list, a
+blocked submit on a form jumping to the first field with a problem, and **details** ("Details" in
+[components/layout/panel](../components/layout/panel.md)) — on a panel listing items, `Enter` may move the focus to the
+panel showing that item's details (whether to, and on which items, is up to the app).
+**Something happening in the background never moves the focus or switches screens** (e.g. a load finishing, a job
+ending, a change arriving from a remote): the user pressed nothing and could not expect it.
+**After adding an item, the cursor moves to the new item**, scrolled into view (e.g. once New, Copy or Import is
+confirmed): right after adding it, the user usually wants to see it or act on it; in a sorted list the new item may land
+far away, and leaving the cursor where it was means hunting for it.
 
 **In an input popup** (fixed), `Enter` acts on the area that has focus:
 
 - **Focus on the value**: confirm the value — it is written back and the popup closes. If the value is invalid, it is
   **not written back**: the error goes in the reserved error row (F7) and the popup stays open.
-  If the value is the same as when the popup opened, nothing is written back and the popup just closes.
+  If the value is the same as when the popup opened and was already valid then (e.g. an old value left unchanged),
+  nothing is written back and the popup just closes. A field that opens empty and may not be empty, with `Enter`
+  pressed before typing anything, counts as invalid: the error shows and the popup stays open; when the app gives a
+  suggested value, `Enter` takes the suggestion ([components/input/README](../components/input/README.md)).
 - **Multi-line text**: in the writing state `Enter` is a newline; only `Enter` after leaving the writing state confirms.
 - **A typing row** (the typing row of a finder or a select, a panel filter): `Enter` moves the focus to the item under
   the cursor in the list, without running it; a second `Enter` on the list runs or picks it. With no results it does
@@ -135,10 +145,13 @@ In other popups (menu, confirm), `Enter` runs the row under the cursor / accepts
 
 **Why**: a literal definition such as "confirm / enter" does not survive real apps; what users expect from `Enter` is
 "do the natural thing to this". In an input popup, that thing is confirming the value — and confirming an invalid value,
-or failing to confirm without saying why, both leave the user stuck. `Enter` does not move the focus: pressing `Enter`
-again and again only opens and closes things in the same place, and the user need not guess where a press will leave
-them. Details are the exception: they already follow the cursor, so on the list the natural thing for `Enter` is often
-to go in and change them; the only place it can land is the details, so the user still need not guess.
+or failing to confirm without saying why, both leave the user stuck; an empty required field that silently closes on
+`Enter` leaves the user thinking the thing was created. The focus normally stays: pressing `Enter` again and again only
+opens and closes things in the same place, and the user need not guess where a press will leave them. When it does
+move, the test is whether the user expected it, not a fixed list of actions: details already follow the cursor, so on
+the list the natural thing for `Enter` is often to go in and change them; the only place it can land is the details, so
+the user still need not guess. When something in the background takes the focus, the next key the user is pressing
+lands somewhere else.
 
 ### K4 `Esc` closes one layer at a time and never leaves the app `fixed`
 
@@ -181,6 +194,13 @@ surface**: read-only and scrollable, with no cursor and nothing to run (M4; how 
 |---|---|
 | a panel | the keys that work on this panel (movement keys included), plus the core keys and global hotkeys that work here |
 | a popup (the Space menu and the global operation popup included) | **only this popup's** keys: its own hotkeys, `Enter`, `Esc`, the movement keys |
+
+- **The movement keys list everything K12 makes reachable**: a one-dimensional list (a form, a one-value-per-row panel
+  with no tabs, a menu) lists `h|k` to go back and `j|l` to go on. An empty list has nothing to move through and content that
+  fits has nothing to scroll; both count as the target not existing, so the movement and scroll keys are not listed (M6).
+- **A one-value-per-row panel may add a "rows" section**, first: each row's name and what it means (the names are not
+  keys and use the plain text colour), with the keys after it. Whether to have it is up to the app (how it looks:
+  [components/dialog/note](../components/dialog/note.md)).
 
 Input state, PTY and modes follow K8, K10 and K11.
 
@@ -225,8 +245,10 @@ input box is a trap with no exit.
 ### K9 `q` and `Ctrl-C` quit the app `fixed`
 
 - `q` and `Ctrl-C` do **the same thing**: start the app's quit flow. `q` is a character in the input state (K8) and does
-  nothing on a form ([components/dialog/form](../components/dialog/form.md)); `Ctrl-C` still works in the input state and
-  on a form. With focus in a PTY both belong to the subprocess (K10).
+  nothing on a form ([components/dialog/form](../components/dialog/form.md)); nor on the typing note a form pops up: that
+  note takes only `Enter` and `Esc`, and every other key that types something (`q` and `?` included) is caught and does
+  nothing. `Ctrl-C` still works in the input state, on a form and on the typing note. With focus in a PTY both belong to
+  the subprocess (K10).
 - **The quit flow is up to the app** (concept): quit at once, confirm first, or let the user choose how to quit.
   E.g. sshu asks whether to close open sessions first; filu lets the user choose whether to switch the shell to the last
   directory.
@@ -236,7 +258,9 @@ input box is a trap with no exit.
 **Why**: `Ctrl-C` is in every terminal user's muscle memory, and `q` is the TUI convention; if the two behaved
 differently, users would have to remember which one asks and which one doesn't. Pressing `Ctrl-C` twice to force quit
 means users can never be trapped by their own confirm box. `q` on a form is the exception: a form looks like a place to
-type, and a user who thinks they are typing, hits `q` and leaves the app pays too high a price.
+type, and a user who thinks they are typing, hits `q` and leaves the app pays too high a price. The typing note is the
+next step of the same case: it pops up while the user is still typing, and the next characters keep coming; a `q` there
+would open the quit confirm, and a habitual `Enter` would quit.
 
 ### K10 PTY: keys belong to the subprocess, with at least one exit key `fixed`
 
@@ -283,7 +307,7 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 | `?` | the mode's key reference (read-only, K6): which keys work in the mode and what they do |
 | `Esc` | leaves the mode (K4), back to the state before it was entered |
 | `q`, `Ctrl-C` | run the quit flow, as K9 |
-| `Tab`, `1`–`9` | a mode may suspend `Tab` and the digit keys, but pressing them must respond, saying to leave the mode with `Esc` first (e.g. a toast); while the toast is up, the first `Esc` closes it (K4) |
+| `Tab`, `1`–`9` | with the mode on a panel: a mode may suspend `Tab` and the digit keys, but pressing them must respond, saying to leave the mode with `Esc` first (e.g. a toast); while the toast is up, the first `Esc` closes it (K4). With the mode in a popup, see below |
 
 - **Inside a mode only the mode's own keys and the core keys above work**: panel hotkeys and global hotkeys do nothing,
   silently.
@@ -294,6 +318,13 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   popup), and the frame turns the mode colour; leaving the mode restores both. The mode name is a word, not colour
   alone: a focused panel in a mode still shows that it has focus (L5). How it looks:
   [components/layout/panel](../components/layout/panel.md).
+- **A mode inside a popup** (e.g. a viewer's selection mode, a reorder's Drag mode): the frame and mode name, `Space`,
+  `?`, `Esc`, `q` and `Ctrl-C` work as above; `Tab` and the digit keys keep whatever they do in that popup (in a popup
+  they never switch panels) and need no extra response; the footer stays as it is while a popup is open and does not
+  change to the mode's words ([components/layout/screen](../components/layout/screen.md), the footer).
+- **A mode on a PTY** (e.g. a terminal's history mode or selection mode): the focus is still in the PTY, so any key other
+  than the mode's own keys, `?` and `Esc` first leaves the mode, then goes to the child process by K10 — `q` and `Ctrl-C`
+  too; they do not start the quit flow ([components/dialog/terminal](../components/dialog/terminal.md)).
 
 **Why**: a mode is always a special case; its keys are movement and selection, pressed directly and in runs, not actions
 on an item, and there is no item / panel / global to split them by. Turning them into a list you pick and run from (even
@@ -302,7 +333,8 @@ Hotkeys do nothing inside a mode: a drag or a selection is never switched away f
 switches screens in the middle of a drag would leave the drag in a state nobody can describe), and the mode's `?` only
 needs to list the mode's keys; to do something else, `Esc` first — the same idea as a PTY. The digit keys switch panels,
 like `Tab`, so users expect a response and a suspended one must respond; other letters stay silent, so random presses do
-not pop up a string of toasts.
+not pop up a string of toasts. In a popup, `Tab` and the digits never switch panels anyway, so users expect no response,
+and one would only be noise.
 
 ### K12 Navigation letters are kept for movement; hjkl are the arrow keys `fixed`
 
@@ -315,6 +347,9 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
 - **In a plain one-dimensional list with no left-right structure** (a form, a one-value-per-row panel without tabs, a
   menu): `h|k` (`←|↑`) go back, `j|l` (`↓|→`) go on.
 - A one-dimensional list in a panel with tabs: `h|l` switch tabs, `j|k` still move in the list.
+- Two-dimensional content (several items to a row, e.g. the links on one line of a web page, the cells of a table) in a
+  panel with tabs: `h|l` switch tabs, `j|k` step item by item in reading order (left to right along a row, then the next
+  row), wrapping at the ends; `u|d` and `gg|G` as usual.
 - **`u|d` move half a page, `gg|G` to the top and the bottom.** `g` is only the start of a two-key chord: `gg` goes to
   the top, and other chords starting with `g` may be hotkeys (e.g. filu's and webu's `[go]to`); a single `g` does
   nothing. When the key after `g` is not a chord, it is as if `g` had not been pressed and that key works as usual (`g`
@@ -329,7 +364,7 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
   [components/input/reorder](../components/input/reorder.md)): one step past the last, it goes to the first and every
   other item moves down one. `u|d` stop at the first and the last item and do not wrap; `gg|G` go to the top
   and the bottom anyway. What moves through space rather than along a run of items does not wrap: the days of a
-  calendar, the month and the year, the two sides, moving within a piece of text.
+  calendar, the month and the year, the two sides, moving within a piece of text (an input's typing-row cursor included).
 - **Moving within a piece of text** (a viewer's selection mode, a textarea's moving state): add `w|b|e` (next word start,
   previous word start, word end) and `0|$` (line start, line end), as in vim. A viewer has no cursor by default, and
   `h|l` switch tabs as above; in its selection mode `h|l` move the cursor and tabs do not switch (the selection mode
@@ -449,16 +484,19 @@ README). Marking inside a label:
 
 | Case | Form |
 |---|---|
-| A single letter, the first letter of the label | brackets in place: `[r]ename`, `[D]elete` |
-| A single letter, inside the label | wrapped in place: `UR[L]` |
-| A letter not in the label | in front: `[n] New` |
+| A single letter that appears in the label (either case) | wrapped in place, at its first appearance: `[r]ename`, `[n]ew`, `[D]elete`, `D[e]lete`, `UR[L]`, `Ex[P]ort` |
+| A single letter not in the label | in front: `[x] Reset`, `[x] Delete` |
 | With a modifier | `[Alt-t]erm` |
 | Several characters | `[go]to` |
 | Digits | always in front: `[3] Favorites`, never inside the word |
 | A core key | in front: `[Enter] Edit` — it marks that pressing this key on the panel is this action; in a menu `Enter` still runs the row under the cursor |
 | No hotkey | no brackets |
 
-- **What is in the brackets is exactly the key to press, case included**: `[A]dd` is `Shift-A`.
+- **The hotkey and the label are two things**: when they happen to meet (the letter appears in the label) they are
+  written together, and when they don't they are listed apart; the label keeps its own case and is never re-cased for
+  the hotkey (`Export`, not `ExPort`).
+- **What is in the brackets is exactly the key to press, case included**: `[A]dd` is `Shift-A`; when the letter in the
+  label and the key differ in case, the brackets follow the key (`Export` with the hotkey `Shift-P` is `Ex[P]ort`).
 - A row whose label already spells out the key (`[/] Search`) is not bracketed again.
 - Colour or a glyph alone must not be the hint that "this is a hotkey"; mark it explicitly.
 - What the description says is up to the app, but it must fit on one line.
@@ -470,9 +508,11 @@ README). Marking inside a label:
 - Letters in the case actually pressed: `q`, `A` (that is `Shift-A`), `Alt-z`. The letter after `Ctrl` is always upper
   case (`Ctrl-C`, `Ctrl-U`): terminals can't tell the case of a `Ctrl` chord.
 - Modifiers are joined with `-`: `Alt-t`, `Ctrl-C`, `Shift-Tab`, `Alt-Esc`.
-- Several keys doing one thing are joined with `|`: `j|k`, `h|l`, `Enter|Tab`; the `|` takes the description colour
-  (dim text in [components/color](../components/color.md)), not the key colour. A range uses `–`: `1–9`. Not `/`: `/`
-  is itself a key (back to the typing row from a finder's list, the panel filter), and `Tab//:filter` cannot be read.
+- `|` joins two kinds of keys: **several keys doing one thing** (`h|k`, both going back on a one-dimensional list;
+  `Enter|Esc:close`; `Enter|Tab`), and **a pair of keys in opposite directions told with one verb** (`j|k:move`, `u|d`,
+  `gg|G`, `Tab|Shift-Tab`). The `|` takes the description colour (dim text in [components/color](../components/color.md)),
+  not the key colour. A range uses `–`: `1–9`. Not `/`: `/` is itself a key (back to the typing row from a finder's
+  list, the panel filter), and `Tab//:filter` cannot be read.
 
 **By place**:
 
@@ -502,7 +542,9 @@ one line usually means the action is badly named. Digits stay out of words becau
   ([components/color](../components/color.md)), keeping its usual description with no reason added; the cursor skips it,
   and its hotkey does nothing.
 - **The `?` key reference follows the same rule**: a key whose target exists but can't be pressed now is still listed,
-  in the disabled colour; with no target it is not listed. The bottom-border hint and the footer, short on room and
+  in the disabled colour; with no target it is not listed — an empty list with nothing to move through and content that
+  fits with nothing to scroll also count as no target, so the movement and scroll keys are not listed. The
+  bottom-border hint and the footer, short on room and
   always on screen, may list only the keys that work now; that is up to the app, except where a component requires the
   keys to go: while a form's button is running, while a finder has no results, while a panel's list has no items
   (components/dialog/form, input/finder, layout/panel).
@@ -552,13 +594,34 @@ At **80 columns × 40 rows**, the app must be able to complete all its core task
 half of a 16:9 screen (8:9). How the panels split is up to the app; how to draw when not every panel fits: narrow widths
 in [components/layout/screen](../components/layout/screen.md).
 
+**The minimum size**: every app has a minimum size, 80×40 by default; the app may lower it but never raise it above
+80×40. Between the minimum size and 80×40, the app shrinks by the narrow-width rules of components/layout/screen.
+
+**Smaller than the minimum size** (too narrow or too short), the app's screen is not drawn; only two rows, in the centre:
+
+| Row | Content | Colour |
+|---|---|---|
+| 1 | the app's name (the same name as the splash, S5) | Blue bold |
+| 2 | `needs a terminal of at least <W>×<H>`, giving the app's minimum size (e.g. `needs a terminal of at least 80×40`) | Overlay0 |
+
+- When the two rows don't fit, the hint goes first; the name always stays. Shrinking all the way to 1×1 must never crash.
+- **No key does anything**: nothing goes to the app or into a PTY. Only pressing `Ctrl-C` twice quits at once (K9's
+  forced quit); `q` and a single `Ctrl-C` do nothing.
+- The app keeps its state: once the window is made larger, the screen is back as it was, with nothing changed.
+
 **Why**: a terminal often takes only half the screen — the other half is an editor, a browser or another terminal. A TUI
-that only works full screen is unusable in the everyday split window.
+that only works full screen is unusable in the everyday split window. 80×40 is the standard: above it, everything works
+in full. Forcing a draw below the minimum size scrambles the borders and the truncation, and the user sees a broken screen;
+saying how much room is needed lets them simply make the window larger. The minimum size is the app's to set because an app
+with a simple layout fits in a smaller window, and stays usable in an 80×24 terminal and inside another app's PTY. Keys
+pressed while the screen can't be seen act blindfolded, so none of them does anything; the quit flow may need to open a
+confirm, which can't be drawn then, so only the forced quit, which asks nothing, is left.
 
 ### L2 Width does not follow content `fixed`
 
 Dynamic text in titles, statusbars, chips and the like uses fixed-width slots or padding; its width never changes with
-the length of the content.
+the length of the content. The **last** dynamic slot in a row may go unpadded: nothing after it can be pushed; the slots
+before it keep their fixed width.
 
 **Why**: once widths float, the main view shifts sideways with them, and the whole screen shakes as popups open and
 close.
@@ -602,7 +665,7 @@ The family's popups come in these seven classes only, each with fixed key meanin
 
 | Class | What the user can do | E.g. |
 |---|---|---|
-| **menu** | a list with no search: `j\|k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, a sort picker, a jobs list (`Enter` opens the row in full) |
+| **menu** | a list with no search: `j\|k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, a sort picker, a jobs list (`Enter` acts on the row: opens it in full, or opens a confirm carrying it in full) |
 | **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6); what to read first sits above, the question last | confirm before delete, the quit confirm, "Connect to X?" carrying the details |
 | **input** | enter or pick one value, written back once confirmed; one value per popup. On the typing row it is the input state (K8); other parts follow K1 | rename, address bar, select, datetime picker, reorder |
 | **form** | one value per row; `Tab` switches between the field area and the action area, hjkl move item by item within that area (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing a button), a button submits or does its action ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Sign in and Add bookmark |
@@ -610,12 +673,15 @@ The family's popups come in these seven classes only, each with fixed key meanin
 | **toast** | a short message popping up from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it | "Copied", an operation failed |
 | **terminal** | a subprocess running in the box; every key is its, only the exit key and the chords the app keeps are the app's (K10) | kbu's Alterm, filu's shell |
 
-- **A note may have hotkeys and modes of its own**: e.g. the YAML viewer's `/` search, `y` copy, `v` select (a mode,
-  K11). Its hotkeys are disclosed in `?` (the bottom-border hint as dialog/note says); but once it has a list of options to run with
-  `Enter`, it is a menu, not a note.
+- **A note may have hotkeys and modes of its own**: e.g. the YAML viewer's `/` search. **Every viewer has a selection
+  mode** (`v` select, `y` copy; a mode, K11; [components/dialog/note](../components/dialog/note.md)): any viewer in the
+  family can select text and copy it. Its hotkeys are disclosed in `?` (the bottom-border hint as dialog/note says); but
+  once it has a list of options to run with `Enter`, it is a menu, not a note.
 - **A menu's `Enter` may open the row in full**: in a list with a cursor and no other action of its own (e.g. a jobs
   list), `Enter` opens a note showing the row's whole content; it is still a menu; its hint reads `Enter:detail`
-  ([components/dialog/menu](../components/dialog/menu.md)).
+  ([components/dialog/menu](../components/dialog/menu.md)). A row of a jobs list that can be acted on (e.g. a transfer
+  in progress can be cancelled) keeps `Enter` as "act on this row": it opens a confirm carrying the row in full, and the
+  hint names the action (e.g. `Enter:cancel`).
 - **A confirm may carry content to read before answering**: the question is why a confirm exists, and above it may sit
   the information to look at before answering (e.g. the details of X above "Connect to X?"), scrolled with `j|k` when
   long; it is still just a confirm, not a note plus a confirm, and need not be split into two popups.
@@ -650,10 +716,15 @@ drawn out from the middle first, then the popup opens up and down; closing plays
 each way (about 288ms); a popup takes no keys until its opening animation ends. The frames and how they are drawn are in
 [components/layout/popup](../components/layout/popup.md).
 
+**Several layers closing together** (e.g. T1 clearing a two-layer source, one action closing the whole stack): every
+layer closes at the same time, each at its own size and in its own layer colour, still about 288ms in all — no layer
+waits for another.
+
 **Why**: without animation, a popup "suddenly appears, suddenly vanishes", and users don't feel the change of layer as it
 stacks on and steps back. One form and one length: the same action looks the same and takes as long in every app of the
 family, so the rhythm stays the same from one app to the next. No keys while it plays: on a frame not yet drawn, users
-cannot see what their key landed on.
+cannot see what their key landed on. Layers closing together: if the lower ones just vanish, that is "suddenly gone"
+again; closing them one by one makes two layers take twice as long, three layers three times.
 
 ### F3 `Esc` closes any popup at once `fixed`
 
@@ -711,8 +782,9 @@ best, and no rule such as "reversible means no need to ask" can judge it.
 
 - **Width**, fixed when the popup opens and unchanged while it is open:
   - **The content's width is known at opening** (e.g. an input with a length limit, a confirm, a menu, the key reference,
-    a toast, an error popup, a datetime picker, a color picker): the widest row + 4 (one cell of border and one blank
-    cell on each side), at least wide enough for the title and the hint, and at most `min(terminal width − 2, 120)`.
+    a toast, an error popup, a datetime picker, a color picker, a select, a checkbox popup): the widest row + 4 (one
+    cell of border and one blank cell on each side), at least wide enough for the title and the hint, and at most
+    `min(terminal width − 2, 120)`.
   - **The content's width is not known** (e.g. free-typed text, a URL, streamed content, search results, a form):
     `min(terminal width − 2, 120)`.
   - Centred horizontally.
@@ -804,28 +876,42 @@ complete enough, and more will be added as implementation continues.
 The source stays by default (F4). The target clears the source only when it is clearly judged, by function, that "once
 the user completes the target, the source has lost its meaning" — the source closing while the target opens, both
 animations at once, without waiting for the source ([components/layout/popup](../components/layout/popup.md), the
-open and close animation):
+open and close animation); a source of several layers closes all of them together (F2).
 
-| Target | Clear the source? | Reasoning |
+**Judged by what is done once confirmed** (fixed): the same kind of action is the same across the family.
+
+| What is done once confirmed | Clear the source? | Reasoning |
 |---|---|---|
-| A short confirm / message | keep | the user may want to go back to the menu and continue or cancel |
-| Picking a value (an input popup, a select) written back to a form or a picker | keep | once the value is written back, the user carries on in the source |
-| A long session (shell, editor) | clear | coming out of the session their attention has moved on; an old menu floating there is disorienting |
-| A big context switch (drill-down, page change) | clear | the view underneath has changed; the old menu's target is gone |
+| Opening something to look at (a YAML viewer, details, the full text) | keep | after looking, the user carries on in the source |
+| Picking a value written back (an input popup, a select written back to a form or a picker) | keep | once the value is written back, the user carries on in the source |
+| Editing that item in an editor (e.g. `kubectl edit`, `$EDITOR`) | keep | after editing, the user is back on the same item |
+| An action after which the item is gone (delete, move away) | clear | the source's target is gone |
+| Opening a shell | clear | coming out of the session their attention has moved on; an old menu floating there is disorienting |
+| Switching screens (to another screen on the chip row) | clear | the whole screen has changed |
+| Drill-down (e.g. into a directory, Deployment → Pods) | clear | the view underneath has changed; the old menu's target is gone |
+
+- **A confirm is only a gate, not a kind of target**: when a confirm comes before the action (e.g. asking once before a
+  delete), judge by the action done once confirmed; cancelling the confirm always goes back to the source (F4).
+- An action not in the table is judged by the app, by reasoning about "once done with the target, does the user still
+  want to see the source?" (concept).
 
 **Why**: keeping is the safe default, and clearing needs a reason — otherwise users who finish something can't find their
-way back. And "whether to clear" can't be written as a general rule: in code both cases look the same, and a screenshot
-can't show it either; only reasoning about "once done with the target, does the user still want to see the source?"
-answers it.
+way back. "Whether to clear" can't be settled across the board: in code both cases look the same, and a screenshot can't
+show it either; it depends on the action actually taken. But if the same kind of action kept the source in one app and
+cleared it in another, users would have to remember which app does what, so the actions in the table follow the table
+across the family. A confirm only makes the user think once more; whether the source stays depends on what is really done
+after it.
 
 ### T2 Unfocused panels are dimmed, streaming content excepted `fixed`
 
 An unfocused panel **has its content dimmed with the same fade as F8** (its border being components/color's unfocused
-border); **streaming content (logs, live output, remote sessions) is not dimmed on blur**. The exception is a popup on
-top: attention is on the popup then, and everything below is dimmed as F8 says.
+border); **streaming content (logs, live output, remote sessions) is not dimmed on blur**; the hint on a streaming
+panel's bottom border is still dimmed — the hint is not streaming content. The exception is a popup on top: attention is
+on the popup then, and everything below is dimmed as F8 says.
 
 **Why**: dimming says "focus is elsewhere, look later" — what is bright is what has focus (Principle P6). Streaming
-content has no later — information is passing by, and dimming it cuts off the glance from the corner of the eye. This is
+content has no later — information is passing by, and dimming it cuts off the glance from the corner of the eye; the hint
+says "what can be pressed with focus here", and dims like any other unfocused panel's. This is
 also the textbook case of "rules serve the UX" (Principle P0): the origin UX of "dim on blur" is "don't compete for
 focus", while streaming's UX is "catch updates from the corner of the eye" — two goals that happen to land on the same
 panel, so the rule is extended rather than streaming sacrificed.
@@ -836,7 +922,8 @@ panel, so the rule is extended rather than streaming sacrificed.
 
 The splash is the terminu family's shared easter egg, and the **only thing in tdp that is deliberately not disclosed**.
 The disclosure rules (M1, M3, M4) and the core-key rule (K1) do not apply to it; it is not a popup either, so chapter F
-does not apply. The splash is documented only in tdp — never in an app's README, menus or help.
+does not apply. The splash is documented only in tdp — never in an app's README, CHANGELOG, release notes, menus or
+help.
 
 The splash **takes the whole screen**: while it is open nothing of the screen beneath is drawn (the chip row, panels,
 footer), and closing it brings the screen back — like switching to another screen, plainly not a popup.
@@ -855,9 +942,10 @@ Every terminu app has a splash, opened with **`V`** on a panel. `V` is reserved 
 ### S2 Not disclosed `fixed`
 
 The splash does not appear in the Space menu, the global operation popup, the key reference, the footer or panel hints,
-and is not written in the README.
+and is not written in the README, the CHANGELOG or the release notes.
 
-**Why**: a listed easter egg is no longer an easter egg. It is the one and only exception to "disclosure is the only
+**Why**: a listed easter egg is no longer an easter egg. The release notes, published on GitHub from the CHANGELOG, are
+read by users just the same. It is the one and only exception to "disclosure is the only
 mechanism" (Principle P2) — which is why it is written here and in no app.
 
 ### S3 Any key only closes the splash `fixed`
@@ -882,7 +970,7 @@ up inside a popup, an input box or a PTY interrupts what the user is doing.
 The splash draws the app's `docs/icon.svg` — the terminu family mark — cell for cell, with a reveal animation; under
 the mark it writes the app's name and its author.
 
-**The mark**: the svg's viewBox is 250 × 250, a cell is one 10 × 10 rect, and the background is `#000000`. The mark takes
+**The mark**: the svg's viewBox is 250 × 250, the background is one 250 × 250 `#000000` rect, and a cell is one 10 × 10 rect. The mark takes
 25 × 19 cells (x 0–240, y 30–210).
 
 - **The U frame**: `#205090`, the same in every family app, never changed.
@@ -897,7 +985,7 @@ the mark it writes the app's name and its author.
   below, 21 rows in all, so the margin is the same on all four sides.
 
 **The text under it**: a blank row under the mark, then six rows, each centred within the mark's width. The name, version
-and tagline come from the app; the two author rows are the same in every family app. **No row is wider than the mark
+and tagline come from the app; the two author rows are the same in every family member. **No row is wider than the mark
 (50 columns)**: the text is designed beforehand, like the mark, not filled in freely by the app; the lib returns an
 error when it builds a splash with a wider row (E8).
 
@@ -908,7 +996,7 @@ error when it builds a splash with a wider row (E8).
 | 3 | a one-line tagline (`A screensaver with a PIN, for the terminal`) | Text |
 | | a blank row | |
 | 4 | `developed by` | Overlay0 |
-| 5 | `vulcan.shen.2304@gmail.com` | the mark's gold `#f2b753` |
+| 5 | the author's e-mail address: `vulcan.shen.2304@gmail.com` in a family member; its own in an app made with tdp (start of chapter E) | the mark's gold `#f2b753` |
 | | a blank row | |
 | 6 | `Press any key to close` | Overlay0 |
 
@@ -922,8 +1010,8 @@ tagline 400ms after opening, the author and the hint 500ms later).
 - **Too narrow**: the text wraps as in the components' "Wrapping", each wrapped row centred. A word wider than the terminal on
   its own (e.g. the 26-column e-mail) is cut by cells into pieces, each centred — nothing is lost.
 - **Still too short**: rows are cut from the bottom up — the hint goes first, then the two author rows, then the
-  tagline; **the name and the version always show**. When a group goes, the blank row above it goes with it, so no
-  blank row is left at the bottom.
+  tagline; **the name and the version always show**, and with a single row only the name is drawn. When a group goes,
+  the blank row above it goes with it, so no blank row is left at the bottom.
 
 **The reveal animation**: a tick is 10ms; it is drawn in stages. Stages 1–3 (the background, each gold letter, the U
 frame) have a 250ms hold between one stage and the next; stage 4 (the text) keeps its own timing, 400ms counted from the
@@ -952,6 +1040,15 @@ What an app does off screen: the command line, environment variables, requiremen
 and how the shared lib and an app split the work.
 This chapter is not on-screen UX; its reason is family consistency — the five apps do things the same way, so users who
 have installed one can install the others, and know where to find config and data.
+
+**Family members and apps made with tdp**: the family members are vulcanshen's apps. An app someone else makes with tdp
+replaces the few places tied to vulcanshen with its own: the repo path ([project](../project/README.md)), the Homebrew
+tap (E6), the author's e-mail address on the splash (S5); the README's terminu family section says instead that the app
+is "built with terminu design", with a link, and does not list the family members (E7). Every other rule is the same for
+both.
+
+**Why**: an app made with tdp is not under vulcanshen's account and does not go into the same tap; copied word for word,
+it would carry the wrong path and someone else's e-mail address.
 
 ### E1 Command line: `version` and `help` `fixed`
 
@@ -982,10 +1079,12 @@ for tests and ones passed to its own subprocesses) is named this way. Shared nam
 | `<APP>__POWERLINE_WIDTH` | manual override of how many cells a powerline symbol takes (E5) |
 | `TERMINU__ICON_WIDTH` | shared by the family: an app with a PTY sets it for its subprocess, telling it how many cells an icon takes (E5) |
 | `TERMINU__POWERLINE_WIDTH` | shared by the family: an app with a PTY sets it for its subprocess, telling it how many cells a powerline symbol takes (E5) |
+| `LC_TERMINU_ICON_WIDTH` | shared by the family: an app with ssh carries it to the remote end when connecting, telling the family apps there how many cells an icon takes (E5) |
+| `LC_TERMINU_POWERLINE_WIDTH` | shared by the family: an app with ssh carries it to the remote end when connecting, telling the family apps there how many cells a powerline symbol takes (E5) |
 
-The exception: variables meant for another program follow that program's needs (e.g. the `LC_SSHU_COLORTERM` sshu
-carries over ssh to the remote end — OpenSSH forwards only `LANG` and `LC_*` by default). Renamed variables do not keep
-their old names.
+The exception: a variable carried over ssh to the remote end starts with `LC_` (OpenSSH forwards only `LANG` and `LC_*`
+by default; e.g. the `LC_TERMINU_*` above, sshu's `LC_SSHU_COLORTERM`); other variables meant for another program follow
+that program's needs. Renamed variables do not keep their old names.
 
 **Why**: a variable shows at a glance which app it belongs to, and `TERMINU__` at once means the whole family. Two
 underscores separate the app name from the variable name because the variable name itself has single underscores
@@ -1003,19 +1102,40 @@ underscores separate the app name from the variable name because the variable na
 **Windows**: `~` is `%USERPROFILE%` — config in `%USERPROFILE%\.config\<app>`, data under `%USERPROFILE%\.<app>\`, worked
 out as on macOS and Linux, not in `%APPDATA%`.
 
+**The config file**: `config.yaml` in the config directory.
+
+**Which kind a thing is: ask what deleting it would do**:
+
+- **Config**: the options the user sets.
+- **State**: deleting it only goes back to defaults (e.g. the tabs open last time, where the cursor was).
+- **Data**: deleting it loses it for good, and the user would want a backup (e.g. bookmarks, records, logs).
+- **Cache**: deleting it makes the app rebuild or fetch it again (e.g. a downloaded browser, an index).
+- The exception: a connection list the user writes by hand (like `~/.ssh/config`; e.g. sshu's hosts and credentials)
+  is config.
+
+**When a location changes**: when a new version of the app moves something to a new location, and the new location is
+empty while the old one holds it, the first start moves the whole directory to the new location and shows an Info toast
+saying from where to where; if it can't be moved, the app keeps using the old location and opens an error popup giving
+both paths, for the user to move it themselves.
+
 **Config keys shared by the family**: the same setting has the same name in every app's config file, in the apps that use
 it.
 
 | Key | Meaning | Default |
 |---|---|---|
 | `hide_secrets_in_preview` | hide private keys and owner-only files in the previews of popups ([components/input/file-picker](../components/input/file-picker.md)) | `false` |
-| `input_tab_width` | how many spaces one `Tab` inserts in the writing state of multi-line text ([components/input/textarea](../components/input/textarea.md)); a Tab in a viewer or a file preview is drawn as that many spaces too ([components/dialog/note](../components/dialog/note.md)) | `4` |
+| `input_tab_width` | how many spaces one `Tab` inserts in the writing state of multi-line text ([components/input/textarea](../components/input/textarea.md)); a Tab in content drawn on screen (viewers, file previews, lists, menu text…) is drawn as that many spaces too; values on forms and panels and an input's typing row are the exception, where a Tab is drawn as a red `\t` by [components/input/README](../components/input/README.md) | `4` |
 
 **Why**: with the five apps in the same places, users know where to look and what to back up. macOS does not use the
 system's usual `~/Library/Application Support`, nor Windows `%APPDATA%`: one way of working it out on every platform, the
 same place on whatever machine. The cache goes in the
-system's cache directory so that cache-cleaning tools can find it, and so it is not taken for data to back up. Shared
-config keys have one name: set once in one app, the user knows how to set it in another.
+system's cache directory so that cache-cleaning tools can find it, and so it is not taken for data to back up. Sorting
+by what deleting would do: from the location alone the user knows what to back up and what can go without harm; a
+connection list typed by hand took the user's effort, and is treated as config, like `~/.ssh/config`. One name and format
+for the config file: whichever app's config directory the user opens, they know which file to edit. Moving things over
+when a location changes: users never upgrade once and find their bookmarks and records gone; when the move fails, the
+app names both paths instead of quietly starting a new copy. Shared config keys have one name: set once in one app, the
+user knows how to set it in another.
 
 ### E4 Requirements: a Nerd Font and truecolor `fixed`
 
@@ -1040,21 +1160,27 @@ but moves the cursor one (the glyph spills into the next cell) counts as one.
   symbol, ask again). Every width measurement (padding, clipping, centring, joining side by side, borders, overlaying
   popups) goes through one display-width function.
 - **Overrides and order**: each is taken in this order — icons from `<APP>__ICON_WIDTH`, then `TERMINU__ICON_WIDTH`, then
-  the probe; powerline symbols from `<APP>__POWERLINE_WIDTH`, then `TERMINU__POWERLINE_WIDTH`, then the probe. The probe
+  `LC_TERMINU_ICON_WIDTH`, then the probe; powerline symbols from `<APP>__POWERLINE_WIDTH`, then `TERMINU__POWERLINE_WIDTH`,
+  then `LC_TERMINU_POWERLINE_WIDTH`, then the probe. What the user set, and what an outer app set inside its PTY, is
+  closest to the moment, so it comes first; what came over ssh (below) beats the remote side's own probe, so it comes
+  before the probe. The probe
   runs on unix only; Windows defaults to one cell, overridden by the environment variables.
 - **Inside another app's PTY**: the probe is answered by the outer app's terminal emulator, which counts both as one
   cell, so the real width can't be measured. An app with a PTY therefore sets `TERMINU__ICON_WIDTH` and
   `TERMINU__POWERLINE_WIDTH` (the cells it uses) in its subprocess's environment when it starts one. Any family app
-  running inside another's PTY then gets it right (filu in kbu's Alterm, kbu in filu's shell). Environment variables
-  don't cross ssh: nesting across ssh (where the remote layer is the same app) relies on the app's own channel to hand
-  the icon and powerline symbol widths to the remote layer (e.g. sshu's nested command channel); other family apps on
-  the remote end rely on the user setting the `TERMINU__` variables there (E7).
+  running inside another's PTY then gets it right (filu in kbu's Alterm, kbu in filu's shell).
+- **Across ssh**: ordinary environment variables don't cross ssh (OpenSSH forwards only `LANG` and `LC_*` by default). An
+  app with ssh puts the cells it uses into `LC_TERMINU_ICON_WIDTH` and `LC_TERMINU_POWERLINE_WIDTH` and carries them
+  over when it connects (sending is that app's own business, e.g. sshu); a family app on the remote end reads the two
+  variables at startup (receiving is done by the lib, E8), so whichever family app runs there gets them.
 - **Overlaying a popup must not crash**: a popup may be wider or taller than the screen (the frame drawn during a resize
   still has the old size): start at 0 and clip what falls off the screen, and **never panic**; when it is larger in both
   directions it is clipped too, never handed back whole.
 - **Tests**: the L4 screen tests run twice more — "icons take two cells, powerline symbols one" and "both take two
-  cells" — opening each kind of popup once and measuring both the bare box and the whole screen with it overlaid; the
-  edge cases include all three: the popup wider than the screen, taller than it, and larger both ways.
+  cells" — opening each kind of popup once and measuring both the bare box and the whole screen with it overlaid (with
+  the lib, who tests which part: E8); the edge cases include the popup wider than the screen, taller than it, and larger
+  both ways, and sizes below L1's minimum size all the way down to 1×1 (e.g. 80×5, 1×1): no crash, and the name and the hint
+  drawn.
 
 > **Implementation reference (not a requirement)**: filu `internal/ui/width.go` — `isWideIcon()`, `dispWidth()`,
 > `dispClip()`, `padDisp()`, `dispCutLeft()`, `compositeDisp()` (replaces overlay's `Composite`, same interface),
@@ -1074,12 +1200,16 @@ but moves the cursor one (the glyph spills into the next cell) counts as one.
 terminals, so it can only be measured at run time. Icons and powerline symbols are measured separately because the two
 can differ on the same terminal: Nerd Fonts make the powerline symbols one cell so they join the borders, so where icons
 take two cells they often still take one; and some setups make both take two. With a single width, one of the two
-cases goes crooked.
+cases goes crooked. One set of `LC_TERMINU_` variables across ssh: only the apps with ssh send, but every family app
+receives, so receiving is done once in the lib and is right whichever app runs on the remote end. The tiny sizes are
+tested because a crash that only happens on a very small screen (e.g. opening a menu with only a few rows left) is never
+caught when the edge cases don't ask for it.
 
 ### E6 Releases, tests and family assets `fixed`
 
 - A single static binary built with goreleaser; `install.sh` / `uninstall.sh` (`curl | sh`, no sudo),
-  also published to the Homebrew tap `vulcanshen/homebrew-tap`.
+  also published to the Homebrew tap `vulcanshen/homebrew-tap` (an app made with tdp publishes to its own tap; start of
+  chapter E).
 - The repo's directories, Makefile, version, CHANGELOG and release follow [project](../project/README.md); its
   template files are copied as they are.
 - Screen tests across sizes: at several terminal sizes, every line is exactly the terminal width (L4).
@@ -1107,8 +1237,17 @@ need to know:
 8. Configuration and where data is stored
 9. Limitations (written in the user's language)
 10. Related links: CHANGELOG, `docs/dev-remarks.md`
-11. terminu family: follows terminu design, lists the other family members
+11. terminu family: follows terminu design, lists the other family members (an app made with tdp: says it is "built with
+    terminu design", with a link, and lists no family members; start of chapter E)
 12. License
+
+- **All 12 sections are required, in this order.** Content that belongs to one of them goes into it as a subsection
+  (e.g. updating goes under "Installation", next to removal).
+- **Content that belongs to none of them may get a section of the app's own**, right after the section it relates to
+  most, but only between section 4 (Features) and section 9 (Limitations): the start (1–3) and the end (10–12) are fixed.
+  Common sections get their place here: **Troubleshooting** goes after "Usage and keys".
+- **Section 3 holds just one** representative gif. Whether other sections carry a gif or a screenshot explaining that
+  section is up to the app — the fewer the better.
 
 No "status" section with a hard-coded version number — versions are left to the badge and the CHANGELOG.
 
@@ -1154,7 +1293,10 @@ the way. There is no separate document mapping tdp clause by clause — what com
 dev-remarks, violations in fix.md.
 
 **Why**: a README introduces the tool, and what users want from it is "what is this, how do I install it, how do I use
-it"; developer notes go elsewhere, so both are easy to find.
+it"; developer notes go elsewhere, so both are easy to find. With the 12 sections fixed, users know where to find the
+installation, the keys and the configuration in any family app's README; with the start and the end fixed, the middle
+can grow sections of the app's own. Too many gifs scatter the reader's attention: one representative gif at the start,
+and others only where a section truly needs one.
 
 ### E8 The shared lib and its example app `fixed`
 
@@ -1169,8 +1311,8 @@ when an app uses the lib, which rules the lib covers and which stay with the app
 | E2 naming environment variables | the variables the lib reads hang under the app's name (e.g. `<APP>__ICON_WIDTH`) | as E2 (e.g. `SHOWCASE__…`) | its own variables follow E2 |
 | E3 where config and data live | — | stores nothing, not applicable | its own |
 | E4 requirements | stated in the README | — | stated in the README |
-| E5 the actual icon width | covers it: the probe (icons and powerline symbols), the display-width functions, setting `TERMINU__ICON_WIDTH` and `TERMINU__POWERLINE_WIDTH` for subprocesses | — | from the lib |
-| E6 releases | a git tag (a Go module), no binary; the L4 screen tests are required | not released; the L4 screen tests are required | as E6 |
+| E5 the actual icon width | covers it: the probe (icons and powerline symbols), the display-width functions, setting `TERMINU__ICON_WIDTH` and `TERMINU__POWERLINE_WIDTH` for subprocesses, reading `LC_TERMINU_ICON_WIDTH` and `LC_TERMINU_POWERLINE_WIDTH` at startup; in E5's tests, measuring the bare box of each kind of popup (the lib draws the popups) | — | from the lib; an app with ssh sends `LC_TERMINU_*` itself when connecting. E5's tests cover its own whole screen only: its own layout plus the popups it opens, at E5's widths and sizes, every line full width |
+| E6 releases | a git tag (a Go module), no binary; the L4 screen tests are required | not released; the L4 screen tests are required | as E6 (the screen tests split as in the row above) |
 | S5 the icon the splash draws | the splash mechanism; building a splash, it returns an error for a row of text wider than 50 columns | tdp's `principle/icon.svg` (terminu's mark) | its own `docs/icon.svg` |
 | E7 README | a structure of its own: installation is `go get`, the quick start is code, and it says how to run the example app | none of its own | as E7 |
 | E7 dev-remarks | yes, the same skeleton | — | yes |
@@ -1181,4 +1323,5 @@ when an app uses the lib, which rules the lib covers and which stay with the app
 **Why**: an app moving to the lib needs to know what it can delete — the on-screen code and E5 go, while E1, E3, E6, E7
 and its own icon stay — without every app working that out again. The lib holds the screen the family shares, so if the
 lib departs, every app using it departs with it; when the lib meets something it cannot do, it always reports a gap in tdp
-and the spec changes first.
+and the spec changes first. The screen tests split by who draws what: the popup boxes are the lib's, tested once there;
+the app's layout and the popups it opens over it exist only in the app, which tests them itself.

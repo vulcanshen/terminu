@@ -100,13 +100,18 @@ Terminal width under 96 (e.g. 80×24):
   - The preview box's title is the chosen entry's name (or where it is); the preview takes no focus.
   - The preview box's border and title capsule are in the layer colour (like the list box); its content is not
     dimmed (the preview is there to be read, and dimmed it is hard to read); its bottom border carries no text (no hint, no scroll position).
+  - **A preview starting at a line** (e.g. a file found by its content, seen from the line that matched): that line is
+    the preview's third row, two lines of context above it, with no extra mark; line numbers are the file's real ones.
 - **Listed while searching**: results are listed as they arrive, with a loading icon after the title; while none has
   arrived it reads `(indexing…)`.
 - **Size**: a finder with a preview always takes the maximum height of Rules F7 (the screen height − 2): each entry's
   preview has a different length, so the height cannot be known when it opens; at the maximum the frame never jumps
   from entry to entry and the preview gets the most room; a short list leaves space below. A finder without a preview
-  (a select, a checkbox popup) has its height fixed when it opens (F7). The width is not known, so it takes the
-  maximum of F7.
+  (a select, a checkbox popup) has its height fixed when it opens (F7).
+- **Width**: one with a preview follows "Layout" above, the maximum of F7. One whose options are known when it opens (a
+  select, a checkbox popup) has its width set by the options ("content width known when it opens" in
+  [`layout/popup`](../layout/popup.md)); only one listed while searching, its results waiting on the search, has no
+  known width and takes the maximum of F7.
 
 ### Markers in the list
 
@@ -164,8 +169,14 @@ a file-picker, and the panel filter:
   `db-replica-tokyo-ap-northeast-1`, which only holds p, r, o, d in that order, does not.
 - **Several words**: each word separated by spaces must appear, in any order. E.g. `prod 22` finds `prod-web-01` on
   port 22 (across columns in a panel).
-- **Order**: the results keep the list's own order and are not reordered. Numbers sort by value (`9` before `10`), text
+- **Order**: the results keep the list's own order and are not reordered; that order is fixed (data with no order of its
+  own is sorted by the app first, [`layout/panel`](../layout/panel.md)). Numbers sort by value (`9` before `10`), text
   as text (the header in [`layout/panel`](../layout/panel.md)).
+- **What is matched is the app's choice**: by default each item's shown text; it may also be other content of the item
+  (e.g. filu finding files by their content, what is typed matched against the text inside the file).
+- **When searching takes time** (e.g. reading every file's content, or handing the search to a search tool or a remote
+  end that answers a batch at once): as in "Listed while searching" above, a loading icon after the title and results
+  listed as they arrive; the typing row keeps taking keys, never waiting for the search to finish.
 
 **Why**: only an unbroken match filters; a match that counts letters merely appearing in order leaves heaps of unrelated
 items, which then need reordering by score to push the wanted one to the front. Keeping the list's order keeps its

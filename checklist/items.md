@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.7.4. What each column means, what an item applies to and the verdicts: [README.md](README.md).
+The items of tdp v0.8.0. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -23,19 +23,19 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| departure-1 | Departure | Where the app does not follow the fixed parts is written in the "偏離 tdp" (departures from tdp) section of the app's `docs/dev-remarks.md` | everyone | Read the file: `docs/dev-remarks.md` has a "偏離 tdp" section, and every fixed rule the app does not follow is listed in it |
+| departure-1 | Departure | Where the app does not follow the fixed parts is written in the "偏離 tdp" (departures from tdp) section of the app's `docs/dev-remarks.md` | everyone | Read the file: `docs/dev-remarks.md` has a "偏離 tdp" section, and every fixed rule the app means not to follow, with its reason, is listed in it (what is not done yet goes in `docs/<app>-terminu-fix.md`, see E7-35) |
 
 ## rules — Citing
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| references-1 | Citing | A tdp rule is cited as `tdp` plus the ID (e.g. `tdp K4`) | everyone | Read the files: wherever the dev-remarks, the README and the like mention a tdp rule |
+| references-1 | Citing | The app's files (the README, the dev-remarks, `CLAUDE.md`, code comments) cite a tdp rule as `tdp` plus the ID (e.g. `tdp K4`); `Rules K4` and a bare `K4` do not count | everyone | Read the files: wherever the README, the dev-remarks, `CLAUDE.md` and code comments mention a tdp rule |
 
 ## rules — K Core keys
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| K1-1 | K1 | `Tab` `Enter` `Esc` `Space` `?` `q` `1`–`9` carry the meaning in the K1 table on every surface; the only exceptions are input state, PTY, modes and `q` on a form | everyone | Press these keys on every kind of panel and popup: nowhere uses them for something else |
+| K1-1 | K1 | `Tab` `Enter` `Esc` `Space` `?` `q` `1`–`9` carry the meaning in the K1 table on every surface; the only exceptions are input state, PTY, modes, `q` on a form, and a form's typing note | everyone | Press these keys on every kind of panel and popup: nowhere uses them for something else |
 | K1-2 | K1 | A core key the app designates keeps its meaning on every surface | everyone | Press that key on every kind of panel and popup: it does the same thing |
 | K1-3 | K1 | No letter hotkey takes over a key in the K1 table | everyone | Read the code, or look at every menu and key reference: no hotkey uses `Tab` `Enter` `Esc` `Space` `?` `q` (a label marking the core key's own action, like `[Enter] Edit`, does not count; for digits see K1-7) |
 | K1-4 | K1 | On a panel (with no popup open), `1`–`9` move focus to the panel marked `[N]` on its frame in the current screen | several panels | On a panel press `1`, `2`…; in an app with several screens, switch to another screen and press again: the jump goes to that screen's panels |
@@ -44,26 +44,28 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | K1-7 | K1 | The app registers no digit as a hotkey on a panel | everyone | Read the code, or look at the panels' Space menus and key references: no digit hotkeys |
 | K1-8 | K1 | A global hotkey that is a digit can only be pressed inside the global operation popup; that digit on a panel jumps to a panel | everyone | On a panel that digit only jumps to a panel; only inside the global operation popup does it run |
 | K2-1 | K2 | On a screen, `Tab` moves focus to the next panel of the same screen, wrapping from the last to the first, without crossing screens | several panels | Press `Tab` again and again on a panel: after a full round it is back at the first, and the screen does not change |
-| K2-2 | K2 | In a popup with an action area (a form, an input popup with a button), `Tab` switches between the field area and the action area | form or input | Open a form and press `Tab`: focus goes back and forth between the field area and the action area |
-| K2-3 | K2 | When `Tab` comes back to an area, it lands on the item it left | form or input | Move to the third field in the field area, `Tab` to the action area and `Tab` back: focus is on the third field |
-| K2-4 | K2 | The items within the field area and within the action area move with hjkl | form or input | Press hjkl in each area: focus moves between the items of the same area |
+| K2-2 | K2 | In a popup with an action area (a form, an input popup with a button), `Tab` switches between the field area and the action area | form or color picker | Open a form and press `Tab`: focus goes back and forth between the field area and the action area |
+| K2-3 | K2 | When `Tab` comes back to an area, it lands on the item it left | form or color picker | Move to the third field in the field area, `Tab` to the action area and `Tab` back: focus is on the third field |
+| K2-4 | K2 | The items within the field area and within the action area move with hjkl | form or color picker | Press hjkl in each area: focus moves between the items of the same area |
 | K2-5 | K2 | `Tab` does not leave the current popup | everyone | Press `Tab` on every kind of popup: focus never goes to the panel underneath |
 | K2-6 | K2 | On a typing row (the typing row of a finder or a select, a panel filter), `Tab` goes to its list | panel filter or select or finder | Type a few characters on the typing row and press `Tab`: focus goes to the list |
 | K2-7 | K2 | In an input popup with a single area and no grey suggestion (a password with an old password included: the grey dots are not a suggestion, and `Tab` does not take in the old password), `Tab` does nothing | input | Open an empty input popup and press `Tab`: nothing changes |
-| K2-8 | K2 | A popup with an action area always has `Shift-Tab` (cycling backwards) | form or input | Press `Shift-Tab` on a form: focus switches the other way |
+| K2-8 | K2 | A popup with an action area always has `Shift-Tab` (cycling backwards) | form or color picker | Press `Shift-Tab` on a form: focus switches the other way |
 | K3-1 | K3 | `Enter` does the most intuitive action to the focused item | everyone | Press `Enter` on the items of every kind of panel; judge whether it is the most intuitive action for that kind of item |
 | K3-2 | K3 | The same kind of item always gets the same `Enter` action within an app | everyone | Press `Enter` on the same kind of item in different panels and screens: it does the same thing |
 | K3-3 | K3 | When the panel itself is a content area with no item to pick (e.g. a preview, a log), `Enter` does the most intuitive action to the whole panel | everyone | Press `Enter` on such a panel; judge whether it is the most intuitive action |
-| K3-4 | K3 | After `Enter`, focus stays where it was (once a field's input popup is confirmed on a form or a one-value-per-row panel, focus is back on the same field / row; choosing a radio option or flipping a checkbox does not move it); `Enter` changes position in only three places: going into details, `Enter` on a typing row going to the list, and a blocked submit on a form jumping to the first field with a problem | everyone | Press `Enter` on a panel, a form, a radio and a checkbox; see where focus rests |
-| K3-5 | K3 | `Enter` changes panels only for details: from the panel listing items to the panel showing that item's details | everyone | When `Enter` on a list changes panels, it lands on the panel showing that item's details |
+| K3-4 | K3 | After `Enter`, focus stays where it was as a rule (once a field's input popup is confirmed on a form or a one-value-per-row panel, focus is back on the same field / row; choosing a radio option or flipping a checkbox does not move it); position changes only in the three places built into the components (going into details, `Enter` on a typing row going to the list, a blocked submit on a form jumping to the first field with a problem), or on an app action the user expects to change it when pressing it | everyone | Press `Enter` on a panel, a form, a radio and a checkbox; see where focus rests; where it moved, judge whether the user expected the move when pressing the key |
+| K3-5 | K3 | When `Enter` changes the panel or the screen, it lands where the user expected when pressing it (e.g. a detail's `Enter` going to the panel showing that item's details) | everyone | When `Enter` on a list changes the panel or the screen, judge whether the landing place is the one the user expected |
 | K3-6 | K3 | In an input popup with focus on the value, `Enter` confirms the value: it is written back and the popup closes | input | Change the value and press `Enter`: the popup closes and the value is written back |
-| K3-7 | K3 | With an invalid value (by the field's own rules: format, range), `Enter` does not write it back; the error goes in the reserved error row and the popup stays open; one opened from a form is also stopped at the input popup, not left to the form's submit | input | Type an invalid value and press `Enter` |
-| K3-8 | K3 | With the value the same as when the popup opened, `Enter` writes nothing back and just closes (one opened from a form does not mark the form as changed) | input | Press `Enter` without changing the value: the popup closes; read the code: nothing is written back |
+| K3-7 | K3 | With an invalid value (by the field's own rules: format, range, not empty), `Enter` does not write it back; the error goes in the reserved error row and the popup stays open; one opened from a form is also stopped at the input popup, not left to the form's submit. A field that opens empty and may not be empty is invalid too when `Enter` is pressed with nothing typed (with a suggested value, the suggested value is used) | input | Type an invalid value and press `Enter`; open an empty field that may not be empty and press `Enter` without typing |
+| K3-8 | K3 | With the value the same as when the popup opened, and valid when it opened (e.g. an old value left unchanged), `Enter` writes nothing back and just closes (one opened from a form does not mark the form as changed) | input | Press `Enter` without changing the value: the popup closes; read the code: nothing is written back |
 | K3-9 | K3 | Multi-line text: in the writing state `Enter` is a newline; only `Enter` after leaving the writing state (`Esc`) confirms | textarea | In the writing state press `Enter`: a newline; press `Esc` then `Enter`: the value is confirmed |
 | K3-10 | K3 | On a typing row (the typing row of a finder or a select, a panel filter), `Enter` moves focus to the item under the cursor in the list, without running it; a second `Enter` on the list runs or picks it | panel filter or select or finder | Press `Enter` on the typing row: focus goes to the list and nothing runs; press it again to run |
 | K3-11 | K3 | With no results on the typing row (including while results are listed as they are found and none has arrived yet), `Enter` does nothing | panel filter or select or finder | Type a string with no results and press `Enter` |
 | K3-12 | K3 | On other parts of an input popup (e.g. a datetime picker's month, a color picker's R), `Enter` does the most intuitive thing | input | Press `Enter` on those parts; judge whether it is the most intuitive thing |
 | K3-13 | K3 | Pressing the submit button checks every field; if any is invalid, nothing is submitted and focus moves to the first field with a problem | form | Leave two fields invalid and press the submit button |
+| K3-14 | K3 | Things happening in the background (a load finishing, a task ending, a change from the remote side) never move the focus or change the screen | everyone | Let something happen in the background (a reload, a task ending, a remote change): the focus and the screen stay put |
+| K3-15 | K3 | After adding an item (once New, Copy or Import is confirmed), the cursor moves to the new item, scrolled into view | everyone | Add an item: the cursor is on the new item |
 | K4-1 | K4 | With no popup, `Esc` leaves the current mode or goes up one level (e.g. on a panel filter, `Esc` clears the filter whether focus is on the typing row or the list) | everyone | Enter a mode, or type a panel filter, and press `Esc` |
 | K4-2 | K4 | `Esc` goes back one layer per press: with several popups stacked, one press closes only the topmost | everyone | Stack three layers (Space menu → global operation popup → confirm) and press `Esc` once: only the confirm closes |
 | K4-3 | K4 | Once the top layer is closed, the popups underneath stay and are shown exactly as they were | everyone | As above: the two layers underneath are still there, with the cursor and content as before the confirm opened |
@@ -79,6 +81,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | K6-4 | K6 | The key reference is read-only: no cursor, nothing to run | everyone | Open the key reference: there is no cursor row, and `Enter` runs nothing |
 | K6-5 | K6 | A panel's key reference lists the keys that work on this panel, movement keys included | everyone | Press `?` on a panel |
 | K6-6 | K6 | The key reference of a popup (the Space menu and the global operation popup included) lists only this popup's keys: its own hotkeys, `Enter`, `Esc`, the movement keys | everyone | Press `?` on the Space menu: no panel or global keys |
+| K6-7 | K6 | The key reference lists every movement key that works, by K12: a one-dimensional list (a form, a one-value-per-row panel without tabs, a menu) gives `h\|k` back and `j\|l` forward | everyone | Press `?` on a form, a menu and a one-value-per-row panel without tabs, and look at `move` |
+| K6-8 | K6, M6 | With the list empty (nothing to move over) or the content fitting whole (nothing to scroll), the key reference lists no movement or scrolling keys | everyone | Empty a list, and make some content fit, then press `?` on each |
+| K6-9 | K6 | When a one-value-per-row panel's key reference has a "what each row is" section, it comes first: each row's name (in the ordinary text colour, not the key colour) and what it means, with the key sections after it | one value per row | Press `?` on a panel with this section; look at the order of the sections and the colour of the names |
 | K7-1 | K7 | When a role is bound to several keys, every alias works the same on every surface | everyone | Press the alias on every kind of panel and popup: it does the same as the main key |
 | K8-1 | K8 | In input state, every key that produces a character (letter hotkeys, the splash's `V`, `Space`, `?`, `q` included) is typed as a character and triggers no action | input or panel filter | On a typing row type `q`, `?`, a space and hotkey letters: they all become characters |
 | K8-2 | K8 | In input state, `Esc` cancels the input | input or panel filter | Press `Esc` on a typing row |
@@ -86,9 +91,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | K8-4 | K8 | The moment focus leaves the input surface, hotkeys work again | input or panel filter | Leave the typing row and press a hotkey at once |
 | K8-5 | K8 | In the writing state of multi-line text, `Tab` inserts `input_tab_width` spaces (4 by default), not `\t` | textarea | In the writing state press `Tab` and count the spaces inserted; read the code: not `\t` |
 | K9-1 | K9 | `q` and `Ctrl-C` do the same thing: start the app's quit flow | everyone | On a panel press `q`, then `Ctrl-C`: the same flow appears |
-| K9-2 | K9 | `q` does nothing on a form | form | On a form (not on a typing row) press `q` |
-| K9-3 | K9 | `Ctrl-C` still starts the quit flow on a form | form | On a form press `Ctrl-C` |
-| K9-4 | K9 | Pressing `Ctrl-C` again during the quit flow quits at once, with no further questions | confirm | Press `Ctrl-C`, and once the confirm appears press `Ctrl-C` again |
+| K9-2 | K9 | `q` does not start the quit flow on a form or on a form's typing note (on a field that takes typing it brings up the typing note; elsewhere it does nothing) | form | On a form (not on a typing row) press `q`; on a field that takes typing, type a character to bring up the typing note, then press `q` |
+| K9-3 | K9 | `Ctrl-C` still starts the quit flow on a form and on a form's typing note | form | Press `Ctrl-C` on a form and on its typing note |
+| K9-4 | K9 | Pressing `Ctrl-C` again during the quit flow (e.g. while the confirm before quitting is open) quits at once, with no further questions (an app that quits straight away never has this case) | everyone | Press `Ctrl-C`, and once the confirm appears press `Ctrl-C` again |
 | K9-5 | K9 | Quitting is listed in the global operation popup | everyone | `Space` → `Global operation`: quitting is there |
 | K10-1 | K10 | With focus in a PTY (in a panel or a terminal popup), keys go to the subprocess: core keys and the app's hotkeys (the splash's `V` included) stop working, and only the exit key and the chords the app keeps belong to the app; `Esc` goes to the subprocess too, so an open toast can only wait for its timer to go | PTY | In the PTY press `Space` `?` `q` `Tab` `Esc` `1` and the app's hotkeys: all go to the subprocess |
 | K10-2 | K10 | At least one exit key moves focus out of the PTY | PTY | In the PTY, the exit key gets back to the app |
@@ -99,13 +104,15 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | K11-1 | K11 | Inside a mode, `Space` opens no menu and does nothing | mode | Enter a mode and press `Space` |
 | K11-2 | K11 | Inside a mode, `?` opens the mode's key reference: which keys work in the mode and what they do | mode | Enter a mode and press `?` |
 | K11-3 | K11 | Inside a mode, `Esc` leaves the mode, back to the state before it was entered | mode | Enter a mode, do something and press `Esc`: the state is back to what it was before the mode |
-| K11-4 | K11 | Inside a mode, `q` and `Ctrl-C` run the quit flow, as K9 | mode | Enter a mode and press `q`, `Ctrl-C` |
-| K11-5 | K11 | When a mode suspends `Tab` or the digit keys, pressing them must respond, saying to leave the mode with `Esc` first | mode | Enter a mode and press `Tab`, `2`: an explanation appears (e.g. a toast) |
+| K11-4 | K11 | Inside a mode on a panel or in a popup, `q` and `Ctrl-C` run the quit flow, as K9 | mode | Enter a mode and press `q`, `Ctrl-C` |
+| K11-5 | K11 | When a mode on a panel suspends `Tab` or the digit keys, pressing them must respond, saying to leave the mode with `Esc` first | mode (on a panel) | Enter a mode and press `Tab`, `2`: an explanation appears (e.g. a toast) |
 | K11-6 | K11 | Inside a mode only the mode's own keys and the core keys in the K11 table work: panel hotkeys and global hotkeys do nothing | mode | Enter a mode and press panel hotkeys and global hotkeys: none does anything |
 | K11-7 | K11 | Inside a mode, a hotkey that does nothing does so silently | mode | As above: no toast or any other notice |
 | K11-8 | K11 | Inside a mode there is no list of keys to run | mode | Enter a mode: there is no list of keys to pick from and run |
 | K11-9 | K11 | The mode's own keys are disclosed in the footer or the bottom-border hint | mode | Enter a mode and look at the footer (a mode on a panel) or the bottom-border hint (a mode in a popup) |
 | K11-10 | K11 | Leaving the mode restores the mode name and the frame colour | mode | Press `Esc` to leave and look at that frame |
+| K11-11 | K11 | With the mode in a popup, `Tab` and the digit keys do whatever they do in that popup (never switching panels), with no extra response; the footer stays as it is while a popup is open, not changing to the mode's words | mode (in a popup) | Enter a mode in a popup, press `Tab`, `2`, and look at the footer |
+| K11-12 | K11 | With the mode on a PTY (a terminal's history or selection mode), any key other than the mode's own keys, `?` and `Esc` first leaves the mode, then goes to the subprocess; `q` and `Ctrl-C` too, never starting the quit flow | PTY | Enter the history mode on a PTY, type a character, press `q` and `Ctrl-C`: the mode is left first and the key lands in the subprocess |
 | K12-1 | K12 | Where you are not typing, no action takes `j` `k` `u` `d` `g` `G` `h` `l` (two-key chords starting with `g` excepted) | everyone | Read the code, or look at every menu and key reference: none of these letters is registered to an action |
 | K12-2 | K12 | `h\|j\|k\|l` are `←\|↓\|↑\|→`: the arrow keys do the same | everyone | On a list, a menu and a form press hjkl and the arrow keys in turn: the same effect |
 | K12-3 | K12 | With a left-right structure (tabs within one surface, two sides, a grid), `j\|k` go up and down and `h\|l` left and right (switching tabs, crossing to the other side) | everyone | On a panel with tabs press `h\|l` to switch tabs |
@@ -121,12 +128,15 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | K12-13 | K12 | Moving one step at a time (`j\|k`, `h\|l`, the arrow keys, `Tab`) along a run of items wraps at the ends: one step past the last goes to the first, and one step back from the first goes to the last (so do a panel's list, a menu, a form, a panel's tabs, `↑\|↓` on a finder's list and typing row, a reorder, a color picker's R → G → B, and a datetime picker's hour column (after 23 comes 00) and minute column (after 55 comes 00)) | everyone | On a panel's list, a menu, a form, a panel's tabs and the like, walk to each end and take one more step |
 | K12-14 | K12 | While a Drag mode holds an item, `j\|k` move it, wrapping at the ends too: holding the last item, one step on takes it to the first and every other item moves down one; holding the first, one step back takes it to the last | Drag | Hold the last item and press `j` |
 | K12-15 | K12 | `u\|d` stop at the first and the last item and do not wrap | everyone | Press `d` on one of the last few rows: it stops on the last row |
-| K12-16 | K12 | What moves through space rather than along a run of items does not wrap: the days of a calendar, the month and the year, the two sides, moving within a piece of text | everyone | Go on past the last day of a calendar, or further right on the right side: it does not wrap |
+| K12-16 | K12 | What moves through space rather than along a run of items does not wrap: the days of a calendar, the month and the year, the two sides, moving within a piece of text (an input's typing-row cursor included) | everyone | Go on past the last day of a calendar, further right on the right side, or right from the last character of a typing row: it does not wrap |
+| K12-17 | K12 | Two-dimensional content (several items on a row, e.g. the links on one line of a web page, the cells of a table) in a panel with tabs: `h\|l` switch tabs, `j\|k` walk item by item in reading order (left to right along a row, then the next row), wrapping at the ends | panel tab | On a panel with tabs and two-dimensional content, press `h\|l` and `j\|k` |
 
 ## rules — M Menus and disclosure
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
+| M1-1 | M1 | Every screen outside input state always shows `?` and `Space` (inside a mode `Space` does nothing and may go unshown) | everyone | Look at the footer on every screen and in every mode |
+| M1-2 | M1 | With the focus in a PTY, `?` and `Space` are not shown; what is always shown is the exit key and the keys the app keeps | PTY | Go into a PTY and look at the footer or the terminal's bottom border |
 | M2-1 | M2 | The Space menu is split into regions by what each acts on, in a fixed order: `item operation` → `panel operation` → the global row | everyone | Press `Space` on every panel |
 | M2-2 | M2 | Each action is in the right place: one acting on the item under the cursor is in item operation, one acting on the current panel (or its tab) as a whole is in panel operation, and one belonging to no panel is in the global operation popup | everyone | Look at each panel's Space menu and the global operation popup, judging what each row acts on |
 | M2-3 | M2 | The last row is always `Global operation`, with no hotkey | everyone | Look at the last row of the Space menu |
@@ -147,22 +157,21 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | M4-2 | M4 | With no popup open, the hotkeys in the global operation popup can also be pressed directly on a panel | everyone | Press a global hotkey directly on a panel |
 | M4-3 | M4 | When a global hotkey clashes with a panel's own hotkey, the panel's wins | everyone | On that panel press the clashing key: the panel's action runs |
 | M4-4 | M4 | The key reference of the panel with the clash does not list the global key it overrides | everyone | Press `?` on that panel |
-| M5-1 | M5 | A hotkey that is the first letter of the label is bracketed in place (`[r]ename`, `[D]elete`) | everyone | Look at menu rows, statusbar chips and panel titles |
-| M5-2 | M5 | A hotkey letter inside the label is wrapped in place (`UR[L]`) | everyone | As above |
-| M5-3 | M5 | A hotkey letter not in the label goes in front (`[n] New`) | everyone | As above |
+| M5-1 | M5 | A hotkey letter that appears in the label (in either case) is bracketed in place, at its first occurrence (`[r]ename`, `[n]ew`, `D[e]lete`, `UR[L]`, `Ex[P]ort`) | everyone | Look at menu rows, statusbar chips and panel titles |
+| M5-3 | M5 | A hotkey letter not in the label goes in front (`[x] Reset`) | everyone | As above |
 | M5-4 | M5 | A hotkey with a modifier goes whole into the brackets (`[Alt-t]erm`) | everyone | As above |
 | M5-5 | M5 | A hotkey of several characters goes whole into the brackets (`[go]to`) | everyone | As above |
 | M5-6 | M5 | A digit hotkey always goes in front (`[3] Favorites`), never inside the word | everyone | As above |
 | M5-7 | M5 | A core key marked on a label goes in front (`[Enter] Edit`) | everyone | As above |
 | M5-8 | M5 | A label with no hotkey has no brackets | everyone | Look at the `Global operation` row and the other rows with no hotkey |
-| M5-9 | M5 | The letters in brackets and in key names are in the case actually pressed (`[A]dd` is `Shift-A`); in chips and titles turned uppercase they stay as they are (`[m]ANAGE`), and key names in hints, the footer and the key reference are not turned uppercase | everyone | Compare with the code: a row marked `[A]` is pressed with `Shift-A`, one marked `[a]` with `a` |
+| M5-9 | M5 | The letters in brackets and in key names are in the case actually pressed (`[A]dd` is `Shift-A`; when the label's letter differs in case from the key, the brackets follow the key, e.g. `Export` with the hotkey `Shift-P` is written `Ex[P]ort`); in chips and titles turned uppercase they stay as they are (`[m]ANAGE`), and key names in hints, the footer and the key reference are not turned uppercase | everyone | Compare with the code: a row marked `[A]` is pressed with `Shift-A`, one marked `[a]` with `a` |
 | M5-10 | M5 | A row whose label already spells out the key (`[/] Search`) is not bracketed again | everyone | Look at those rows: the key is marked only once |
 | M5-11 | M5 | Hotkeys are marked explicitly, not hinted by colour or a glyph alone | everyone | Look at menus, the statusbar and panel titles: wherever there is a hotkey there is a bracket marking |
-| M5-12 | M5 | Key names are the names printed on the key cap, UpperCamelCase, no abbreviations of our own (`Esc` `Tab` `Enter` `Space` `Backspace` `Delete` `Home` `End` `PgUp` `PgDn`) | everyone | Look at the footer, hints, the key reference and the README |
-| M5-13 | M5 | Arrow keys are written `↑` `↓` `←` `→` | everyone | Look at the footer, hints, the key reference and the README |
-| M5-14 | M5 | The letter after `Ctrl` is always upper case (`Ctrl-C`, `Ctrl-U`) | everyone | Look at the footer, hints, the key reference and the README |
-| M5-15 | M5 | Modifiers are joined with `-` (`Alt-t`, `Shift-Tab`, `Alt-Esc`) | everyone | Look at the footer, hints, the key reference and the README |
-| M5-16 | M5 | Several keys doing one thing are joined with `\|` (`j\|k`, `Enter\|Tab`), not `/` | everyone | Look at the footer, hints, the key reference and the README |
+| M5-12 | M5 | On screen (the footer, hints, the key reference), key names are the names printed on the key cap, UpperCamelCase, no abbreviations of our own (`Esc` `Tab` `Enter` `Space` `Backspace` `Delete` `Home` `End` `PgUp` `PgDn`) | everyone | Look at the footer, hints and the key reference |
+| M5-13 | M5 | On screen, arrow keys are written `↑` `↓` `←` `→` | everyone | Look at the footer, hints and the key reference |
+| M5-14 | M5 | On screen, the letter after `Ctrl` is always upper case (`Ctrl-C`, `Ctrl-U`) | everyone | Look at the footer, hints and the key reference |
+| M5-15 | M5 | On screen, modifiers are joined with `-` (`Alt-t`, `Shift-Tab`, `Alt-Esc`) | everyone | Look at the footer, hints and the key reference |
+| M5-16 | M5 | On screen, `\|` joins several keys doing one thing (`h\|k`, `Enter\|Esc:close`) and a pair of opposite keys told with one verb (`j\|k:move`, `u\|d`, `gg\|G`), never `/` | everyone | Look at the footer, hints and the key reference |
 | M5-17 | M5 | A range uses `–` (`1–9`) | everyone | Look at the footer and the key reference |
 | M5-18 | M5 | Hotkeys on statusbar chips and panel titles also use the label's bracket marking | everyone | Look at the statusbar and panel titles |
 | M5-19 | M5 | Every key mentioned in a sentence (empty states, toasts, error messages, and the description column of a menu or the key reference) is in square brackets (`Press [A] or [Space]`) | everyone | Look at empty states, toasts, error messages and description columns |
@@ -171,6 +180,12 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | M5-22 | M5 | Keys in the README's prose are Markdown code, not square brackets | everyone | Read the file: the README |
 | M5-23 | M5 | A label the README quotes from the screen is written as on screen (`[A]dd`) | everyone | Read the file: the README |
 | M5-24 | M5 | Another tool's own keys are written the way that tool writes them (e.g. tmux's `prefix l`) | everyone | Read the files: the README, and the places on screen that mention another tool's keys |
+| M5-25 | M5 | A label keeps its own case and is not rewritten for the hotkey (`Export`, never `ExPort`) | everyone | Look at menu rows, statusbar chips and panel titles |
+| M5-26 | M5 | In the README, key names are the names printed on the key cap, UpperCamelCase, no abbreviations of our own (`Esc` `Tab` `Enter` `Space` `Backspace` `Delete` `Home` `End` `PgUp` `PgDn`) | everyone | Read the files: the README |
+| M5-27 | M5 | In the README, arrow keys are written `↑` `↓` `←` `→` | everyone | Read the files: the README |
+| M5-28 | M5 | In the README, the letter after `Ctrl` is always upper case (`Ctrl-C`, `Ctrl-U`) | everyone | Read the files: the README |
+| M5-29 | M5 | In the README, modifiers are joined with `-` (`Alt-t`, `Shift-Tab`, `Alt-Esc`) | everyone | Read the files: the README |
+| M5-30 | M5 | In the README, `\|` joins several keys doing one thing and a pair of opposite keys (`gg\|G`), never `/` | everyone | Read the files: the README |
 | M6-1 | M6 | An action with no target: its row is not shown | everyone | Make the target go away (e.g. empty the list) and look at the menu |
 | M6-2 | M6 | An action with a target that can't run right now: its row is still shown, in the disabled colour | disabled | Make an action unable to run for now and look at the menu |
 | M6-3 | M6 | A disabled row keeps its usual description, with no reason added | disabled | As above, comparing the description before and after it is disabled |
@@ -179,6 +194,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | M6-6 | M6 | The key reference does not list a key whose target does not exist | everyone | Press `?` |
 | M6-7 | M6 | A section of the key reference with a title of its own describing another surface is shown as usual, not in the disabled colour | everyone | Press `?` and look at that section's colour |
 | M6-8 | M6 | The section describing another surface comes last, after `app-wide` | everyone | Press `?` and look at the order of the sections |
+| M7-1 | M7 | With the focus on a panel, `Space` always opens the Space menu: the global row is always there, so the menu is never empty | everyone | Press `Space` on every panel, empty and read-only ones included |
 | M8-1 | M8 | When a menu other than the Space menu is grouped, the first group is the actions related to the current cursor | everyone | Open that menu and look at the first group |
 | M8-2 | M8, M2 | Every group of a grouped menu (the first included) has a header naming its kind | everyone | Open that menu and look at each group: the first has a header too |
 | M9-1 | M9 | When a hotkey does different things on different panels and both indicators are on screen at the same time, the one that fires when pressed on the current focus is bright, and the one that doesn't is dim | everyone | When the bottom-border hints of two panels both have the same key, look at the colours; switch focus and look again |
@@ -188,10 +204,15 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
 | L1-1 | L1 | At 80 columns × 40 rows, every core task can be completed | everyone | Open the terminal at 80 × 40 and go through every core task of the app |
-| L2-1 | L2 | Dynamic text in titles, the statusbar, chips and the like uses fixed-width slots or padding; its width does not change with the length of the content | everyone | Make the dynamic text longer and shorter (switching tabs, progress, counts): the slot widths and the content beside them do not shift sideways |
+| L1-2 | L1 | The app's minimum size is no larger than 80×40 (80×40 by default; the app may lower it) | everyone | Read the code: the minimum size set; set the terminal to 80×40 and check that the app draws as usual |
+| L1-3 | L1 | Below the minimum size (too narrow or too short), the app's screen is not drawn; only the app's name (Blue bold) in the centre, with the hint `needs a terminal of at least <W>×<H>` (Overlay0, giving the app's minimum size) on the row below | everyone | Shrink the terminal below the minimum size (once only narrower, once only shorter) |
+| L1-4 | L1 | When the two rows do not fit, the hint goes first and the name stays; shrinking all the way to 1×1 never crashes | everyone | Shrink all the way to 1×1 |
+| L1-5 | L1 | Below the minimum size no key does anything (nothing goes to the app or into a PTY); `q` and a single `Ctrl-C` do nothing, and only `Ctrl-C` pressed twice quits at once | everyone | Once shrunk, press a few keys that would change something, `q` and one `Ctrl-C`; enlarge and see nothing changed; shrink again and press `Ctrl-C` twice |
+| L1-6 | L1 | Once the window is back above the minimum size, the screen is as it was (the cursor, any open popup) | everyone | Move the cursor and open a popup, shrink, then enlarge again |
+| L2-1 | L2 | Dynamic text in titles, the statusbar, chips and the like uses fixed-width slots or padding; its width does not change with the length of the content (the last dynamic slot in a row may go unpadded) | everyone | Make the dynamic text longer and shorter (switching tabs, progress, counts): the slot widths and the content beside them do not shift sideways |
 | L3-1 | L3 | Permanent chrome has a fixed number of rows that does not change with the amount of content: the top row (in an app with several screens, the screen chip row plus the divider below it; in a single-screen app with a statusbar, one statusbar row) and one footer row | everyone | Make the content of the statusbar, chip row and footer grow and shrink, and resize the terminal: the top row (divider included) and the footer keep their number of rows |
 | L3-2 | L3 | A panel's tabs are drawn on the panel's top border and take no row of their own | panel tab | Look at a panel with tabs: the tabs are in the string of capsules on the top border, with no other row of tabs outside the frame |
-| L4-1 | L4 | Every line on screen is exactly the terminal width, no more, no less | everyone | Look at every line at several sizes, with icons taking one cell and two: the right border never wraps and no stale cells linger |
+| L4-1 | L4 | Every line on screen is exactly the terminal width, no more, no less | everyone | Look at every line at several sizes, with icons taking one cell and two: the right border never wraps and no stale cells linger; or read the code: the screen tests run with icons and powerline symbols taking one cell and two (E5-11) |
 | L5-1 | L5 | The focused surface is recognisable at a glance (in a mode too) | everyone | On every screen, one glance tells which panel or popup has focus |
 | L5-2 | L5 | Moving focus shifts no content | several panels | Press `Tab` to switch panels and compare the screen before and after: text and frames stay in place |
 | L5-3 | L5 | Focus is not told by colour alone: something besides colour differs (e.g. the line style) | several panels | Compare the frames of the focused and unfocused panels: something besides colour differs; in a mode it still shows which panel has focus |
@@ -208,7 +229,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | F1-6 | F1 | A note is read-only | everyone | Open a note such as the `?` key reference: no key changes its content |
 | F1-7 | F1 | While a toast is open, every key but `Esc` passes through it | toast | While a toast is up press `j`, `Space`: what is underneath reacts as usual, and the toast takes no key |
 | F1-8 | F1 | A popup with a list of options to run with `Enter` is a menu, not a note | everyone | Look at every read-only popup with a list of options: each looks and works like a menu |
-| F1-9 | F1 | When a menu's `Enter` opens the row in full, it opens a note showing the row's whole content | everyone | In such a menu press `Enter` on a row: a note stacks up showing the whole content |
+| F1-9 | F1 | When a menu's `Enter` opens the row in full (e.g. a jobs-list row with nothing to do on it), it opens a note showing the row's whole content | everyone | In such a menu press `Enter` on a row: a note stacks up showing the whole content |
 | F1-10 | F1 | A confirm carrying content is one confirm, not split into two popups, a note plus a confirm | confirm | Trigger a confirm carrying details: only one layer of popup stacks up |
 | F1-11 | F1 | A popup that changes class by phase belongs to one class at a time, and its keys follow that class | everyone | Press `j` and `Enter` on a finder's typing row and on its list: the keys mean what the class at that moment says |
 | F1-12 | F1 | In a popup that changes class by phase, `Esc` closes the whole popup rather than going back a phase (whether focus is on the typing row or the list) | everyone | With focus on a finder's list press `Esc`: the whole finder closes |
@@ -219,6 +240,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | F1-17 | F1 | Each step of a multi-step flow is its own popup, stacked, not one box changing its content | everyone | Go through a multi-step flow (e.g. picking a column, then a direction): each step stacks a new layer |
 | F2-1 | F2 | The animation is 32ms a frame, 9 frames each way for opening and closing (about 288ms) | everyone | Read the code, or count the frames in a recording: 32ms a frame, 9 frames each way |
 | F2-2 | F2 | A popup takes no keys until its opening animation ends | everyone | Open a popup and press `j` at once: the cursor does not move before the animation ends |
+| F2-3 | F2 | When several layers close together (an action closing the whole stack, T1 clearing two or more layers of source), every layer closes at once, each at its own size and layer colour, still about 288ms in all; not just the top layer animating | everyone | Read the code; or from two stacked popups run an action that clears the source, and step through the frames: both layers close together |
 | F3-1 | F3 | Any visible popup (toasts included, without waiting for the countdown) starts closing at once on `Esc` (the only exceptions are those F3 lists: PTY, a textarea's writing state, a mode inside a popup, a form / textarea / reorder whose content changed) | everyone | Press `Esc` on every class of popup: the closing animation starts at once |
 | F3-2 | F3 | A popup already running its closing animation ignores `Esc` and takes no other keys either | everyone | Press `Esc`, and while the closing animation is still playing press `j`, `Enter`: the closing layer does not react; press `Esc` again during the closing animation: it is the next layer that closes |
 | F3-3 | F3 | In a textarea's writing state, `Esc` leaves the writing state for the moving state | textarea | While writing in a textarea press `Esc`: back in the moving state, with the popup still open |
@@ -226,8 +248,8 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | F3-5 | F3 | In a form whose content changed, `Esc` first opens a confirm asking whether to discard it | form | Change a field and press `Esc`: a discard confirm stacks up |
 | F3-6 | F3 | In a textarea whose content changed, `Esc` to close first opens a confirm asking whether to discard it | textarea | Change the content, go back to the moving state and press `Esc`: a discard confirm stacks up |
 | F3-7 | F3 | In a reorder whose order changed, `Esc` first opens a confirm asking whether to discard it | reorder | Move an item and press `Esc`: a discard confirm stacks up |
-| F4-1 | F4 | When popup A opens popup B, A stays underneath | everyone | Open the global operation popup from the Space menu: the (dimmed) Space menu is still visible underneath |
-| F4-2 | F4 | Cancelling B returns to A | everyone | Press `Esc` on the global operation popup: back to the Space menu |
+| F4-1 | F4 | When popup A opens popup B, A stays underneath | everyone | Open the global operation popup from the Space menu, then run one of the app's own actions from the Space menu that opens another popup: the (dimmed) Space menu is still visible underneath |
+| F4-2 | F4 | Cancelling B returns to A | everyone | Press `Esc` on the global operation popup and on a popup opened by one of the app's own actions: back to the Space menu each time |
 | F5-1 | F5 | Errors appear immediately (a toast or a popup) | everyone | Trigger an error (e.g. no network, no permission): a toast or a popup shows at once |
 | F5-2 | F5 | Errors do not block the app | everyone | After an error appears, the app works as usual, and the user can go on to deal with the error itself |
 | F6-1 | F6 | An action set to be confirmed is confirmed every time (a choice made explicitly in a picker may count as the confirmation) | confirm | Do the same action two or three times: a confirm every time |
@@ -236,8 +258,8 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | F6-4 | F6 | A confirm's prompt says what accepting will do (verb and object), not an abstract OK | confirm | Read every confirm's question and its `Enter` hint |
 | F6-5 | F6 | A confirm cannot be completed by accident (e.g. a mouse click must not accept it) | confirm | Click on a confirm and press keys other than the answers: none accepts it |
 | F7-1 | F7 | A popup's width is fixed when it opens and does not change while it is open | everyone | In an open popup make the content longer and shorter (typing, filtering): the frame's width does not change |
-| F7-2 | F7 | A popup whose content width is known is at most `min(terminal width − 2, 120)` wide | everyone | Open it once in a 200-column terminal and once in a very narrow one: the width never exceeds the cap |
-| F7-3 | F7 | A popup whose content width is not known is `min(terminal width − 2, 120)` wide | everyone | Open it once at 80 columns and once at 200 (e.g. a URL, search results, a form): the width is 78 and 120 |
+| F7-2 | F7 | A popup whose content width is known is at most `min(terminal width − 2, 120)` wide | everyone | Open it once in a 200-column terminal and once in a very narrow one (e.g. a menu, a confirm, a select, a checkbox popup): the width never exceeds the cap |
+| F7-3 | F7 | A popup whose content width is not known is `min(terminal width − 2, 120)` wide | everyone | Open it once at 80 columns and once at 200 (e.g. a URL, search results listed as they come, a form): the width is 78 and 120 |
 | F7-4 | F7 | Popups are centred horizontally | everyone | Measure each popup's distance from the screen's left and right edges |
 | F7-5 | F7 | A popup's height follows the content and is fixed when it opens, not resized with the content afterwards (changes during loading and changes the user made excepted) | everyone | With a popup open, let the data behind it update: the frame's height does not change |
 | F7-6 | F7 | A popup is at most the screen height − 2: the screen chip row or the statusbar and the footer always stay in view (the divider under the chip row may be covered) | everyone | Open a popup with very long content: the screen chip row (or the statusbar) and the footer are not covered |
@@ -269,14 +291,18 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| T1-1 | T1 | The source stays by default, and is cleared only when, once the user completes the target, the source has lost its meaning | everyone | Go through every flow where a popup opens another popup: every source cleared is one that no longer means anything |
-| T1-2 | T1 | When the target is a short confirm or message, the source stays | confirm | Open a confirm from a menu; after cancelling or completing it, you are back on the menu |
-| T1-3 | T1 | When a value is picked (an input popup, a select) and written back to a form or a picker, the source stays | form or input | Pick a field's value on a form: back on the form |
-| T1-4 | T1 | When the target is a long session (shell, editor), the source is cleared | PTY | Open a shell or an editor from a menu; after leaving it, the menu is gone |
-| T1-5 | T1 | When the target is a big context switch (drill-down, page change), the source is cleared | everyone | Change page or drill down from a menu: the menu is gone |
-| T1-6 | T1 | When the source is cleared, it closes while the target opens, both animations at once, without waiting for the source to finish closing | everyone | In a recording, the target's opening animation and the source's closing animation start together |
+| T1-1 | T1 | For an action that opens one popup from another, whether the source stays after confirming follows the T1 table (by what happens once confirmed); for an action not in the table, a cleared source is one the user no longer wants once done with the target | everyone | Go through each of the app's actions run from a menu that opens another popup, and compare with the T1 table |
+| T1-2 | T1 | A confirm before an action is only a gate: cancelling on the confirm always returns to the source (the menu) | confirm | Run an action that asks first from a menu, press `Esc` on the confirm: back on the menu |
+| T1-3 | T1 | When what happens once confirmed is a value picked and written back (an input popup, a select writing back to a form or a picker), the source stays | form or input | Pick a field's value on a form: back on the form |
+| T1-4 | T1 | When what happens once confirmed is opening a shell, the source is cleared | PTY | Open a shell from a menu; after leaving it, the menu is gone |
+| T1-5 | T1 | When what happens once confirmed is a screen change (to another screen of the chip row) or a drill-down (e.g. into a directory, Deployment → Pods), the source is cleared | everyone | Change screen or drill down from a menu: the menu is gone |
+| T1-6 | T1 | When the source is cleared, it closes while the target opens, both animations at once, without waiting for the source to finish closing; a source of several layers closes all its layers together (F2) | everyone | In a recording, the target's opening animation and the source's closing animation start together |
+| T1-7 | T1 | When what happens once confirmed is opening something to look at (a YAML view, details, the full text), the source stays | everyone | Open something to look at from a menu; after closing it, you are back on the menu |
+| T1-8 | T1 | When what happens once confirmed is editing the item in an editor (e.g. `kubectl edit`, `$EDITOR`), the source stays | everyone | Edit an item in an editor from a menu; after leaving the editor, you are back on the menu or the viewer |
+| T1-9 | T1 | When what happens once confirmed makes the item go away (deleting, moving it elsewhere), the source is cleared | everyone | Delete an item from a menu: once confirmed, the menu is gone |
 | T2-1 | T2 | An unfocused panel has its content (header, group titles, labels, cursor included) dimmed with the same fade as F8, and the cursor does not change to another colour | several panels | Press `Tab` to switch panels: the unfocused panel's content is dimmed, each colour a dimmed version of itself |
 | T2-2 | T2 | Streaming content (logs, live output, remote sessions) is not dimmed on blur | streaming content | Move focus to another panel: the panel with streaming content does not dim |
+| T2-3 | T2 | A streaming panel's content is not dimmed on blur, but the hint on its bottom border still is | streaming content | Move focus to another panel; the streaming panel's hint dims |
 
 ## rules — S Splash
 
@@ -287,16 +313,16 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | S1-1 | S1 | `V` on a panel opens the splash (a panel giving `V` to a panel operation excepted) | everyone | Press `V` on every panel |
 | S1-2 | S1 | When some panel takes `V`, at least one panel in the app keeps `V` for the splash | everyone | Press `V` on every panel: at least one opens the splash |
 | S2-1 | S2 | The splash does not appear in the Space menu, the global operation popup, the key reference, the footer or panel hints | everyone | Open these places: no `V` or splash to be found |
-| S2-2 | S2 | The README does not mention the splash | everyone | Read the files: neither README mentions the splash or the `V` easter egg |
+| S2-2 | S2 | The README, the CHANGELOG and the release notes do not mention the splash | everyone | Read the files: neither README nor the CHANGELOG mentions the splash or the `V` easter egg; for an app that has released, the GitHub release notes do not either |
 | S3-1 | S3 | While the splash is open, any key only closes it, and the key does nothing else (`q`, `Ctrl-C`, `Esc`, `Space` and `?` included) | everyone | Open the splash and press each of these keys: each time it only closes the splash; `Ctrl-C` does not quit the app |
 | S4-1 | S4 | The splash is not played at start-up | everyone | Start the app: it goes straight to the main screen |
 | S4-2 | S4 | With a popup open, `V` does not summon the splash | everyone | Press `V` with the Space menu open |
 | S5-1 | S5 | The splash draws the app's `docs/icon.svg`, cell for cell | everyone | Press `V` and compare it cell by cell with `docs/icon.svg` |
-| S5-2 | S5 | The viewBox of `docs/icon.svg` is 250 × 250, a cell is one 10 × 10 rect, and the background is `#000000` | everyone | Read the file: `docs/icon.svg` |
+| S5-2 | S5 | The viewBox of `docs/icon.svg` is 250 × 250; each cell is one 10 × 10 rect; the background colour is `#000000` | everyone | Read the file: `docs/icon.svg` |
 | S5-3 | S5 | The mark takes 25 × 19 cells (x 0–240, y 30–210), its leftmost and rightmost columns being background | everyone | Read the file: the range of the rects' coordinates |
 | S5-4 | S5 | The U frame is `#205090`, the same in every family app, never changed | everyone | Read the file: the rects under `<!-- U -->` are the same as the U frame in tdp's `principle/icon.svg` |
 | S5-5 | S5 | The letters in the frame are `#f2b753`, spelling the app's own name | everyone | Read the file and look at the splash: the gold letters spell the app's name |
-| S5-6 | S5 | Letters are marked with XML comments: a comment starts a letter and names it, and the rects after it belong to it until the next comment; the first comment is `<!-- U -->` | everyone | Read the file: where the comments are and what they say |
+| S5-6 | S5 | Letters are marked with XML comments: a comment starts a letter and holds only that letter, and the rects after it belong to it until the next comment; the first comment is `<!-- U -->` | everyone | Read the file: where the comments are and what they say |
 | S5-7 | S5 | Each cell is one `nf-fa-square` (U+F0C8), two columns wide; where icons take one cell, a space follows it | everyone | Press `V` once with icons at one cell and once at two (`<APP>__ICON_WIDTH`): every cell is two columns wide |
 | S5-8 | S5 | The background cells are squares in Surface0 `#313244` | everyone | Look at the splash's background |
 | S5-9 | S5 | One more background row is drawn above the mark and one below, 21 rows in all, so the margin is the same on all four sides | everyone | Count the rows of the mark on the splash and the width of the background on all four sides |
@@ -307,21 +333,21 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | S5-14 | S5 | Row 2 is the version, the same as `<app> version` prints, Blue | everyone | Compare the splash's version with `<app> version` |
 | S5-15 | S5 | Row 3 is a one-line tagline, Text | everyone | Look at the splash's third row |
 | S5-16 | S5 | Then `developed by`, Overlay0 | everyone | Look at the splash |
-| S5-17 | S5 | Then `vulcan.shen.2304@gmail.com`, in the mark's gold `#f2b753` | everyone | Look at the splash |
+| S5-17 | S5 | Then the author's e-mail address, in the mark's gold `#f2b753`: a family member writes `vulcan.shen.2304@gmail.com`, an app made by tdp writes its own (the opening of chapter E) | everyone | Look at the splash |
 | S5-18 | S5 | The last row is `Press any key to close`, Overlay0 | everyone | Look at the splash |
 | S5-19 | S5 | The whole block (the mark, a blank row and the text, 30 rows × 50 columns) is centred on the screen, both ways | everyone | Press `V` in a large terminal and measure the blank space on all four sides |
 | S5-20 | S5 | When the terminal is under 50 columns or 30 rows, the mark is not drawn, only the text under it, centred both ways | everyone | Shrink to 49 columns or fewer, or 29 rows or fewer, and press `V` |
-| S5-21 | S5 | When the mark does not fit, the text still appears in two batches: the name, version and tagline 400ms after opening, the author and the hint 500ms later | everyone | Shrink the terminal and press `V`; in a recording, look at when the two batches appear |
+| S5-21 | S5 | When the mark does not fit, the text still appears in two batches: the name, version and tagline 400ms after opening, the author and the hint 500ms later | everyone | Read the code: the timing of the two batches when the mark does not fit |
 | S5-22 | S5 | When too narrow the text wraps, each wrapped row still centred (where it breaks follows the components' "Wrapping") | everyone | Shrink to narrower than the tagline and press `V` |
 | S5-23 | S5 | A word wider than the terminal on its own is cut by cells into pieces, each centred, and nothing is lost | everyone | Shrink to narrower than the e-mail address (26 columns) and press `V` |
 | S5-24 | S5 | Still too short: rows are cut from the bottom up — the hint goes first, then the two author rows, then the tagline | everyone | Shrink row by row and press `V`; look at the order in which rows go |
-| S5-25 | S5 | The name and the version always show | everyone | Shrink to the shortest and press `V`: the name and the version are still there |
+| S5-25 | S5 | The name and the version always show; with a single row, only the name | everyone | Shrink to the shortest and press `V`: the name and the version are still there; at one row, only the name is |
 | S5-26 | S5 | When a group goes, the blank row above it goes with it, so no blank row is left at the bottom | everyone | Shrink and press `V`: the last row has text |
-| S5-27 | S5 | The reveal animation is drawn in stages, in order (the background, the gold letters, the U frame, the text), a tick being 10ms; stages 1–3 (the background, the gold letters, the U frame) have a 250ms hold between one stage and the next | everyone | Read the code, or in a recording look at the order of the stages and the gaps between them |
-| S5-28 | S5 | The background: a whole row a tick, filled top to bottom | everyone | In a recording, look at how the background appears |
-| S5-29 | S5 | The gold letters: one letter a stage, in the order of the comments in the svg; 2 cells a tick, the cells of a letter appearing scattered | everyone | In a recording, look at the order and the way the letters appear |
-| S5-30 | S5 | The U frame: rising from the bottom row by row; within a row from the middle outwards, one pair of mirrored cells a tick, the 13th cell on the centre line taking a tick of its own | everyone | In a recording, look at how the U frame appears |
-| S5-31 | S5 | The text: 400ms after the last cell of the U frame appears (with no 250ms added), the name, version and tagline appear together; 500ms later, `developed by`, the e-mail address and the hint appear together | everyone | In a recording, look at when the two batches appear |
+| S5-27 | S5 | The reveal animation is drawn in stages, in order (the background, the gold letters, the U frame, the text), a tick being 10ms; stages 1–3 (the background, the gold letters, the U frame) have a 250ms hold between one stage and the next | everyone | Read the code: the order of the stages, the 10ms tick, the 250ms between stages |
+| S5-28 | S5 | The background: a whole row a tick, filled top to bottom | everyone | Read the code: the background a whole row a tick, top to bottom |
+| S5-29 | S5 | The gold letters: one letter a stage, in the order of the comments in the svg; 2 cells a tick, the cells of a letter appearing scattered | everyone | Read the code: in the comments' order, 2 cells a tick, a letter's cells scattered |
+| S5-30 | S5 | The U frame: rising from the bottom row by row; within a row from the middle outwards, one pair of mirrored cells a tick, the 13th cell on the centre line taking a tick of its own | everyone | Read the code: bottom to top, from the middle outwards within a row, a pair a tick, the 13th cell on the centre line a tick of its own |
+| S5-31 | S5 | The text: 400ms after the last cell of the U frame appears (with no 250ms added), the name, version and tagline appear together; 500ms later, `developed by`, the e-mail address and the hint appear together | everyone | Read the code: 400ms from the last cell of the U frame, then 500ms |
 
 ## rules — E App and environment
 
@@ -332,6 +358,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | E2-1 | E2 | Every environment variable the app itself reads (including ones for tests and ones passed to its own subprocesses) is named `<APP IN CAPITALS>__<NAME>`: two underscores, the variable name in capitals with single underscores between words | everyone | Read the code: find every environment variable name read or written; all but those meant for another program follow this form |
 | E2-2 | E2 | `<APP>__CONFIG` names the config directory (the config file lives in it), not the config file | stores settings or data | Start with `<APP>__CONFIG` set to a directory: the app reads the config file in that directory |
 | E2-3 | E2 | Renamed environment variables do not keep their old names | everyone | Read the code: the old name is no longer read |
+| E2-4 | E2 | Variables to be carried across ssh start with `LC_` (OpenSSH only forwards `LANG` and `LC_*` by default) | everyone | Read the code: every environment variable carried to the remote side starts with `LC_` (an app without ssh never has this case) |
 | E3-1 | E3 | Config is in `$XDG_CONFIG_HOME/<app>` by default (falling back to `~/.config/<app>`) | stores settings or data | Read the code, or start with no environment variables set, and see where config is read and written |
 | E3-2 | E3 | The config location can be overridden with `<APP>__CONFIG` | stores settings or data | Start with `<APP>__CONFIG` set: config moves there |
 | E3-3 | E3 | State the app keeps separately is in the config directory by default | stores settings or data | Read the code, or start the app and see where the state file is |
@@ -341,8 +368,12 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | E3-7 | E3 | The cache is in the system's cache directory (macOS `~/Library/Caches/<app>`; Linux `$XDG_CACHE_HOME/<app>`, falling back to `~/.cache/<app>`; Windows `%LOCALAPPDATA%\<app>`) | stores settings or data | Read the code, or start the app and see where the cache is |
 | E3-8 | E3 | The cache location can be overridden with `<APP>__CACHE` | stores settings or data | Start with `<APP>__CACHE` set: the cache is stored there instead |
 | E3-9 | E3 | On Windows `~` is `%USERPROFILE%`: config in `%USERPROFILE%\.config\<app>`, data under `%USERPROFILE%\.<app>\`, not in `%APPDATA%` | Windows build | Read the code: how the paths are worked out on Windows |
-| E3-10 | E3 | Hiding private keys and owner-only files in the previews of popups uses the config key `hide_secrets_in_preview` (in the app's config file), `false` by default: everything shown as usual | finder or file-picker | Read the code and the config file: the key's name and its default |
-| E3-11 | E3 | How many spaces `Tab` inserts in the writing state (and how many cells a Tab is drawn as in a viewer or a file preview) uses the config key `input_tab_width`, `4` by default | viewer or textarea | Read the code and the config file: the key's name and its default |
+| E3-10 | E3 | Hiding private keys and owner-only files in the previews of popups uses the config key `hide_secrets_in_preview` (in the app's config file), `false` by default: everything shown as usual | file preview | Read the code and the config file: the key's name and its default |
+| E3-11 | E3 | How many spaces `Tab` inserts in the writing state, and how many cells a Tab is drawn as in content on screen (viewers, file previews, lists, menu text), uses the config key `input_tab_width`, `4` by default | everyone | Read the code and the config file: the key's name and its default |
+| E3-12 | E3 | The config file is `config.yaml` in the config directory | stores settings or data | Read the code, or start the app and look at the config file's name and format |
+| E3-13 | E3 | Things go where "what happens if it is deleted" puts them: options the user set are settings; what only falls back to defaults is state; what cannot be got back and would be backed up (bookmarks, records, logs) is data; what the app rebuilds or fetches again is cache; a connection list the user writes by hand counts as settings | stores settings or data | Read the code: where each kind of thing written to disk goes |
+| E3-14 | E3 | After a release moves a location, what is missing at the new place but present at the old is moved over, whole directory, on first start, with an Info toast saying from where to where | stores settings or data | Read the code; or put things at the old place and start the new release (for an app that moved a location) |
+| E3-15 | E3 | When the move fails, the old place is used as before, and an error popup gives both paths | stores settings or data | Read the code; or make the new place unwritable and start the app |
 | E4-1 | E4 | PUA glyphs are written as code points in the source | everyone | Read the code: a scan of the source finds no PUA characters |
 | E4-2 | E4 | The README's requirements say a Nerd Font is required | everyone | Read the prerequisites in both READMEs |
 | E4-3 | E4 | The README's requirements say, next to the Nerd Font, that a truecolor terminal (24-bit colour) is required | everyone | Read the prerequisites in both READMEs |
@@ -350,19 +381,19 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | E5-2 | E5 | Icons (PUA, the powerline symbols excepted) and powerline symbols (U+E0A0–U+E0D7) are measured each on its own and kept separately | everyone | Read the code: each kind has its own width; with "icons two cells, powerline symbols one" the borders line up |
 | E5-3 | E5 | The app probes with CPR at startup: it prints an icon and asks for the cursor position, then prints a powerline symbol and asks again | everyone | Read the code: the probe at startup |
 | E5-4 | E5 | Every width measurement (padding, clipping, centring, joining side by side, borders, overlaying popups) goes through one display-width function | everyone | Read the code: no call measures width bypassing the display-width function |
-| E5-5 | E5 | The icon width is taken in the order `<APP>__ICON_WIDTH` → `TERMINU__ICON_WIDTH` → the probe | everyone | Start once with both variables set, once with only one, and once with neither: see which value is used |
-| E5-6 | E5 | The powerline symbol width is taken in the order `<APP>__POWERLINE_WIDTH` → `TERMINU__POWERLINE_WIDTH` → the probe | everyone | Start once with both variables set, once with only one, and once with neither: see which value is used |
+| E5-5 | E5 | The icon width is taken in the order `<APP>__ICON_WIDTH` → `TERMINU__ICON_WIDTH` → `LC_TERMINU_ICON_WIDTH` → the probe | everyone | Start once with all the variables set, once with only some, and once with none: see which value is used |
+| E5-6 | E5 | The powerline symbol width is taken in the order `<APP>__POWERLINE_WIDTH` → `TERMINU__POWERLINE_WIDTH` → `LC_TERMINU_POWERLINE_WIDTH` → the probe | everyone | Start once with all the variables set, once with only some, and once with none: see which value is used |
 | E5-7 | E5 | The probe runs on unix only; Windows defaults to one cell, overridden by the environment variables | Windows build | Read the code: no probe on Windows, one cell by default |
 | E5-8 | E5 | When it starts a subprocess, the app sets `TERMINU__ICON_WIDTH` and `TERMINU__POWERLINE_WIDTH` (the cells it uses) in the subprocess's environment | PTY | In the PTY run `echo $TERMINU__ICON_WIDTH $TERMINU__POWERLINE_WIDTH` |
-| E5-9 | E5 | Nesting across ssh (where the remote layer is the same app) relies on the app's own channel to hand the icon and powerline symbol widths to the remote layer | PTY | Run the same app inside the app's remote session: the borders line up; read the code: the channel carries both the icon and the powerline widths |
+| E5-9 | E5 | An app with ssh puts the widths it uses in `LC_TERMINU_ICON_WIDTH` and `LC_TERMINU_POWERLINE_WIDTH` when it connects, carrying them to the remote side | PTY | Read the code: the two variables are sent when connecting; run a family app on the remote side: the borders line up |
 | E5-10 | E5 | When an overlaid popup is wider or taller than the screen (or larger both ways), it starts at 0 and what falls off the screen is clipped, with no panic | everyone | Shrink the terminal below a popup's size and open the popup, and resize while it is open: the app does not crash |
-| E5-11 | E5 | The L4 screen tests run twice more: "icons take two cells, powerline symbols one" and "both take two cells" | everyone | Read the code: the tests |
-| E5-12 | E5 | The tests above open each kind of popup once, measuring both the bare box and the whole screen with it overlaid | everyone | Read the code: the tests |
-| E5-13 | E5 | The edge cases of the tests above include all three: the popup wider than the screen, taller than it, and larger both ways | everyone | Read the code: the tests |
+| E5-11 | E5 | The app's L4 screen tests (its own layout with the popups it opens) run twice more: "icons take two cells, powerline symbols one" and "both take two cells" | everyone | Read the code: the tests |
+| E5-12 | E5 | The tests above measure the whole screen with each popup overlaid; an app not on the library also measures each kind of popup's bare box (with the library, the bare boxes are the library's to test, E8) | everyone | Read the code: the tests |
+| E5-13 | E5 | The edge cases of the tests above include the popup wider than the screen, taller than it and larger both ways, and sizes below L1's minimum size all the way down to 1×1 (e.g. 80×5, 1×1): no crash, and the name and the hint drawn | everyone | Read the code: the tests |
 | E6-1 | E6 | A single static binary built with goreleaser | everyone | Read the file: `.goreleaser.yaml` (`CGO_ENABLED=0`); what is released is a single executable |
 | E6-2 | E6 | There are `install.sh` and `uninstall.sh`, installing and removing with `curl \| sh`, with no sudo | everyone | Install and then remove with the README's commands: no sudo needed |
-| E6-3 | E6 | Also published to the Homebrew tap `vulcanshen/homebrew-tap` | everyone | `vulcanshen/homebrew-tap` has a formula for this app's latest version |
-| E6-4 | E6 | There are screen tests across sizes: at several terminal sizes, every line is exactly the terminal width | everyone | Read the code: the tests |
+| E6-3 | E6 | Also published to a Homebrew tap: a family member to `vulcanshen/homebrew-tap`, an app made by tdp to its own tap | has released | The tap has a formula for this app's latest version |
+| E6-4 | E6 | There are screen tests across sizes: with its own layout and the popups it opens, at several terminal sizes, every line is exactly the terminal width | everyone | Read the code: the tests |
 | E6-5 | E6 | A test keeps the program's copy for the splash (a copy of the file under `internal/`, or the cells written into the code) identical to `docs/icon.svg` | everyone | Read the code: a test compares the two |
 | E6-6 | E6 | Demo gifs are recorded with VHS, the scripts in `.local/demos/` | everyone | Read the files: `.local/demos/` has the tapes |
 | E7-1 | E7 | There are a `README.md` (English) and a `README-zh_TW.md` (Traditional Chinese) | everyone | Read the files |
@@ -370,7 +401,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | E7-3 | E7 | The README covers only what users need to know | everyone | Read both READMEs: every section is something users need to know to use the tool |
 | E7-4 | E7 | README section 1: title, badges, language switch (`English · 繁體中文`) | everyone | Read the opening of both READMEs |
 | E7-5 | E7 | README section 2: a one-line positioning plus a paragraph on what it can do | everyone | Read both READMEs |
-| E7-6 | E7 | README section 3: one representative demo gif, and only one | everyone | Read both READMEs and count the gifs |
+| E7-6 | E7 | README section 3 holds one representative demo gif, and only one | everyone | Read section 3 of both READMEs and count the gifs |
 | E7-7 | E7 | README section 4: features, saying what users get, not how it is done | everyone | Read the features section of both READMEs |
 | E7-8 | E7 | README section 5: installation, giving the prerequisites, how to install, what happens on first launch, and removal | everyone | Read the installation section of both READMEs: all four are there |
 | E7-9 | E7 | README section 6: quick start | everyone | Read both READMEs |
@@ -378,9 +409,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | E7-11 | E7 | README section 8: configuration and where data is stored | everyone | Read both READMEs |
 | E7-12 | E7 | README section 9: limitations, written in the user's language | everyone | Read the limitations section of both READMEs |
 | E7-13 | E7 | README section 10: related links, with the CHANGELOG and `docs/dev-remarks.md` | everyone | Read the related links of both READMEs |
-| E7-14 | E7 | README section 11: terminu family, saying it follows terminu design and listing the other family members | everyone | Read both READMEs |
+| E7-14 | E7 | README section 11: terminu family — a family member says it follows terminu design and lists the other family members; an app made by tdp says it is made by terminu design, with a link, and lists no family members | everyone | Read both READMEs |
 | E7-15 | E7 | README section 12: License | everyone | Read both READMEs |
-| E7-16 | E7 | The README's sections are in the order 1–12 | everyone | Read the order of the sections in both READMEs |
+| E7-16 | E7 | The README has all 12 sections, in the order 1–12 | everyone | Read the order of the sections in both READMEs |
 | E7-17 | E7 | The README has no "status" section with a hard-coded version number | everyone | Read both READMEs |
 | E7-18 | E7 | The README's settings section names the shared config keys of E3 the app uses, and their defaults | stores settings or data | Read the settings section of both READMEs |
 | E7-19 | E7 | Where the README talks about the icon width, it names `<APP>__ICON_WIDTH`, `TERMINU__ICON_WIDTH`, `<APP>__POWERLINE_WIDTH` and `TERMINU__POWERLINE_WIDTH` | everyone | Read where both READMEs talk about the Nerd Font or the icon width |
@@ -399,30 +430,33 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | E7-32 | E7 | The dev-remarks has a `## 發布` (releasing) section, including pitfalls hit | everyone | Read this section |
 | E7-33 | E7 | The eight sections of the dev-remarks are in the skeleton's order | everyone | Read the order of the file's section headings |
 | E7-34 | E7 | The dev-remarks section headings leave out the skeleton's parentheses (they read `## 設計決定`, `## 偏離 tdp`, `## 發布`) | everyone | Read the file's section headings |
-| E7-35 | E7 | Where the app does not yet follow tdp is listed item by item in `docs/<app>-terminu-fix.md`: which rule is violated, where, the current state, and how to fix it | everyone | Read the file: every item the judge rules a violation is listed in it, with all four written |
-| E7-36 | E7 | With nothing that does not yet follow tdp, there is no `docs/<app>-terminu-fix.md` (once everything is fixed it is deleted, not left empty) | everyone | Read the files: when the judge finds no violation, `docs/` has no such file; when the file exists, it has items still to fix |
+| E7-35 | E7 | Where the app does not yet follow tdp is listed item by item in `docs/<app>-terminu-fix.md`, each item giving which rule is violated, where, the current state, and how to fix it | everyone | Read the file: every item in `docs/<app>-terminu-fix.md` has all four |
+| E7-36 | E7 | When `docs/<app>-terminu-fix.md` exists it has items still to fix: once everything is fixed it is deleted, not left empty | everyone | Read the files: when the file exists, it has items still to fix |
 | E7-37 | E7 | No separate document mapping tdp clause by clause is kept | everyone | Read the files: neither `docs/` nor the repo has a document mapping tdp clause by clause |
+| E7-38 | E7 | What belongs to one of the 12 sections goes in that section as a subsection (e.g. updating goes under installation, beside removing) | everyone | Read the sections and subsections of both READMEs |
+| E7-39 | E7 | Sections the app adds come only between section 4 (features) and section 9 (limits), after the section they relate to most; nothing comes between sections 1–3 or 10–12 | everyone | Read the order of the sections in both READMEs |
+| E7-40 | E7 | A troubleshooting section, if any, comes right after "usage and keys" | everyone | Read both READMEs (an app with no troubleshooting section never has this case) |
 
 ## components (README)
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| components-1 | components §Diagrams and spacing | Two cells between a label and its value | everyone | Count the spaces between label and value in forms, one-value-per-row panels and the statusbar |
+| components-1 | components §Diagrams and spacing | Two cells between a label and its value (the statusbar's `label: value` is the exception, see components-25) | everyone | Count the spaces between label and value in forms and one-value-per-row panels |
 | components-2 | components §Diagrams and spacing | Two cells between the columns of a table | header | Count the spaces between columns in a list's header and rows |
-| components-3 | components §Diagrams and spacing | Two cells between items side by side | everyone | Count the spaces between items side by side, such as on the statusbar |
+| components-3 | components §Diagrams and spacing | Two cells between items side by side | everyone | Count the spaces between items side by side (the statusbar's groups, chips, buttons side by side…) |
 | components-4 | components §Diagrams and spacing | One cell between a glyph and the text after it | everyone | Count the spaces after glyphs such as those of popup titles, menu section titles and marked rows |
-| components-5 | components §Wrapping | Text that wraps (a textarea, a viewer, a confirm, a toast, an error popup, the splash when too narrow) breaks between words: when the next word does not fit on the row, the whole word goes to the next row | everyone | Put English text wider than the frame in a textarea, a viewer, a confirm, a toast and an error popup, narrow the terminal and press `V`; check that no English word is cut |
+| components-5 | components §Wrapping | Text that wraps (a textarea, a viewer, a confirm, a note, a toast, an error popup, an empty-state sentence, the splash when too narrow) breaks between words: when the next word does not fit on the row, the whole word goes to the next row; what does not fit wraps, it is not cut | everyone | Put English text wider than the frame in a textarea, a viewer, a confirm, a toast and an error popup, narrow the terminal and press `V`; check that no English word is cut |
 | components-6 | components §Wrapping | A break may fall between any two wide characters (two cells, e.g. Chinese, Japanese) and between a wide character and the character before or after it, so a row is filled before going on | everyone | Put Chinese text, or Chinese mixed with English, wider than the frame; check that every row is filled before the next begins |
-| components-7 | components §Wrapping | Only a word wider than a row on its own (e.g. a long URL) is cut by cells | everyone | Put a URL wider than the frame; check that it is cut by cells into several pieces, the rows before the last all filled |
+| components-7 | components §Wrapping | Only a word wider than a row on its own (e.g. a long URL) is cut by cells; when the row already has text before it, it starts a new row first and is cut there | everyone | Put a URL wider than the frame after some text; check that it starts on a new row and is cut by cells into several pieces |
 | components-8 | components §Wrapping | When cutting by cells, a wide character is never cut in half: when a row has one cell left, that wide character goes whole to the next row | everyone | Put a long string containing Chinese; check that no row ends in half a wide character and the frame line is not skewed |
 | components-9 | components §Uppercase | A panel's `[N] label` capsule is uppercase | everyone | Look at the capsule at the top left of each panel |
 | components-10 | components §Uppercase | A panel's tabs are uppercase | panel tab | Look at each tab on the top border of a panel with tabs |
 | components-11 | components §Uppercase | Screen chips are uppercase | several screens | Look at each chip on the top row |
 | components-12 | components §Uppercase | Popup titles are uppercase | everyone | Open several kinds of popup and look at the text of the title capsule |
-| components-13 | components §Uppercase | Table headers are uppercase | header | Look at the headers of lists and one-value-per-row panels |
+| components-13 | components §Uppercase | Table headers are uppercase | header or one value per row | Look at the headers of lists and one-value-per-row panels |
 | components-14 | components §Uppercase | Group titles in lists are uppercase | grouped list | Look at each group title of a grouped list |
 | components-15 | components §Uppercase | The labels of a panel with one value per row are uppercase | one value per row | Look at the label column of a panel such as settings |
-| components-16 | components §Uppercase | Values keep their case | everyone | Check that values in forms and one-value-per-row panels keep their original case |
+| components-16 | components §Uppercase | Values keep their case (a color picker's hex always in upper case is how colours are written, not a change of value) | everyone | Check that values in forms and one-value-per-row panels keep their original case |
 | components-17 | components §Uppercase | Menu labels and descriptions keep their case | everyone | Press `Space`; check that no row's label or description is turned uppercase |
 | components-18 | components §Uppercase | The descriptions in hints and the footer keep their case | everyone | Look at the text after the colons in the footer and bottom-border hints |
 | components-19 | components §Uppercase | Mode names keep their case | mode | Enter a mode and look at the mode name at the right of the top border (`Drag`, not `DRAG`) |
@@ -430,7 +464,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | components-21 | components §Uppercase | Names and paths in a title keep their case (`EDIT: filu`, `IDENTITY FILE · ~/.ssh`) | everyone | Open a popup that acts on one thing; check that the name is not turned uppercase |
 | components-22 | components §Choosing among the options | A component's look is picked only from the options the components list, never invented inside the app | everyone | Compare against the options each component lists; check that the app always uses one of them |
 | components-23 | components §Wrapping | When a word fills a row exactly and a space follows, that space is drawn in the next row's first cell | textarea or viewer | Type in a textarea so that a word fills a row exactly, then a space; check that the space starts the next row and the text cursor can stop on it |
-| components-24 | components §Wrapping | Text that is only shown (a confirm, a toast, an error popup, the splash) does not draw the space it breaks at: the next row does not start with a blank cell | everyone | Make the text of a toast, a confirm or a too-narrow splash wrap right after a word; check that the next row starts with no blank and stays centred |
+| components-24 | components §Wrapping | Text that is only shown (a confirm, a note, a toast, an error popup, an empty state, the splash) does not draw the space it breaks at: the next row does not start with a blank cell | everyone | Make the text of a toast, a confirm or a too-narrow splash wrap right after a word; check that the next row starts with no blank and stays centred |
+| components-25 | components §Diagrams and spacing | A statusbar group is written `label: value`, one space after the colon; two cells between groups, with no separator symbol | statusbar | Look at each statusbar group and between groups |
+| components-26 | components §Uppercase | A name in a panel title keeps its case (`[2] PODS: nginx-7d4f`), and a label that is all name keeps it too (`[1] prod-web-01`) | everyone | Look at the capsules of panels whose label holds a name |
 
 ## color
 
@@ -440,14 +476,14 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | color-2 | color §Presentation rules | Each colour stands for one meaning; no other meaning uses the same colour | everyone | Compare each interface element with the colour code table (e.g. popup frames are not Lavender) |
 | color-3 | color §Presentation rules, §Popup layer colours | A layer-K popup's frame and title take the layer colour of layer K: the bottom popup is layer 1, layers 1, 2 and 3 are `#A4C0FA` `#94C3F5` `#84C5F1`, layer 4 and above stay at `#74c7ec`; the error popup is the exception, in Red | everyone | Open popups one on top of another (up to layer 5) and measure the colour of each layer's frame and title capsule |
 | color-4 | color §Presentation rules | Errors in Red and warnings in Peach are the same colour on every layer, not changing with the layer | everyone | Bring up an error or a warning once in a layer-1 popup and once in a layer-2 popup, and compare the colours |
-| color-5 | color §Presentation rules | Bold is used only for text on the cursor, popup titles, text in selected capsules, mode names, and the loading icon after a popup title | everyone | Look across the screens: headers, group titles, labels, hints, the footer, unselected capsules and the loading icon on a panel's top border are not bold |
+| color-5 | color §Presentation rules | Bold is used only for text on the cursor, popup titles, text in selected capsules, mode names, the loading icon after a popup title, the splash's name, and the app's name in the centre when the screen is below the minimum size | everyone | Look across the screens: headers, group titles, labels, hints, the footer, unselected capsules and the loading icon on a panel's top border are not bold |
 | color-6 | color §Colour codes | Keys in a popup's bottom-border hint are Blue (`#89b4fa`), the colon and description Overlay0 (`#6c7086`) | everyone | Open any popup and look at the hint on its bottom border |
 | color-7 | color §Colour codes | Disabled rows, labels and options are Surface2 (`#585b70`) | disabled | Make an action or option unavailable for now and look at its colour |
 | color-8 | color §Colour codes | The cursor block in a popup has the layer colour as its background, text Base (`#1e1e2e`) bold; the text's original colour is not kept | everyone | Press `Space` and look at the menu's cursor row |
-| color-9 | color §Colour codes | The "you are here" of breadcrumbs is Lavender | everyone | Look at the current segment of the breadcrumbs |
+| color-9 | color §Colour codes | A panel's location row (the breadcrumbs) is Lavender | location row | Look at the location row |
 | color-10 | color §Colour codes | Live sessions are Green | PTY | Look at how a live session is shown |
-| color-11 | color §Colour codes | Work in progress and progress bars are Green | long task | Start a long task and look at the progress bar and how the task is shown |
-| color-12 | color §Colour codes | What completed successfully is Green | toast | Complete an action and look at how the success is shown |
+| color-11 | color §Colour codes | Work in progress and progress bars are Green (a single-screen app writes it in the work's own row) | long task | Start a long task and look at the progress bar and how the task is shown |
+| color-12 | color §Colour codes | What completed successfully is Green: a Success toast's text | toast | Complete an action and look at the Success toast's text |
 | color-13 | color §Colour codes | A mode's frame is Yellow (`#f9e2af`) | mode | Enter a mode and look at the frame's colour |
 | color-14 | color §Colour codes | The `\|` between keys (`j\|k`) is Overlay0, not the key colour | everyone | Look at a pair containing `\|` in the footer or a hint |
 | color-15 | color §Colour codes | An unfocused button (in a form's action area, a color picker's `Choose`) has a background too: Surface1, its text in Text | form or color picker | Look at an unfocused button in a form's action area |
@@ -468,16 +504,16 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
 | screen-1 | screen §From top to bottom | The top row of a multi-screen app is the screen chip row | several screens | Look at the top row of the screen |
-| screen-2 | screen §From top to bottom | All the remaining height between the top row and the footer is the panel area | everyone | Check that the panels run from below the top row (from the first row, in a single-screen app with no top row) all the way to above the footer |
+| screen-2 | screen §From top to bottom | All the remaining height between the top row (in an app with several screens, the chip row and the divider under it, two rows) and the footer is the panel area | everyone | Check that the panels run from below the top row (below the divider under the chip row in an app with several screens; from the first row in a single-screen app with no top row) all the way to above the footer |
 | screen-3 | screen §From top to bottom | The bottom row is the footer, one row only | everyone | Look at the bottom row of the screen |
 | screen-4 | screen §Footer | Keys in the footer are Blue, the colon and description Overlay0 | everyone | Look at the footer's colours |
 | screen-5 | screen §Footer | When the footer is too narrow, whole pairs are dropped from the end | everyone | Narrow the terminal; check that the footer loses whole `key:description` pairs from the end |
 | screen-6 | screen §Footer | On a screen with several panels, the footer is `Space:menu ?:help Tab\|1–N:panels q:quit` | several panels | Look at the footer on a screen with several panels |
 | screen-7 | screen §Footer | On a screen with only one panel, the footer is `Space:menu ?:help q:quit` | everyone | Look at the footer on a screen with only one panel (in a multi-screen app, on each screen) |
-| screen-8 | screen §Footer | In a mode the footer is `?:help`, the mode's own keys, and last `Esc:<verb for leaving>` | mode | Enter a mode and look at the footer |
+| screen-8 | screen §Footer | With a mode on a panel, the footer is `?:help`, the mode's own keys, and last `Esc:<verb for leaving>` | mode (on a panel) | Enter a mode and look at the footer |
 | screen-9 | screen §Footer | While typing in a panel filter, the footer is `Enter\|Tab:list Esc:clear` | panel filter | Press `/` and look at the footer while typing |
 | screen-10 | screen §Footer | With the focus on a PTY in a panel, the footer has the exit key plus the keys the app keeps; no `?` or `Space` | PTY | Enter the PTY; check that the footer's first pair is the exit key |
-| screen-11 | screen §Footer | While a popup is open, the footer is as for the screen underneath, its words unchanged | everyone | Compare the footer's words before and after opening a popup |
+| screen-11 | screen §Footer | While a popup is open, the footer is as for the screen underneath, its words unchanged (a terminal popup is the exception: the footer is not drawn, terminal-13) | everyone | Compare the footer's words before and after opening a popup |
 | screen-12 | screen §Screen chip row | One capsule per screen, drawn as the capsule chain | several screens | Look at the top row |
 | screen-13 | screen §Screen chip row | The selected screen is filled with Blue, its text Base bold | several screens | Look at the current screen's chip |
 | screen-14 | screen §Screen chip row | The unselected screens are unfilled, their text Blue, not bold | several screens | Look at the other screens' chips |
@@ -490,7 +526,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | screen-21 | screen §Statusbar | The count of errors on the statusbar is Red | statusbar | Cause an error and look at the error count on the statusbar |
 | screen-22 | screen §Statusbar | The count of warnings on the statusbar is Peach | statusbar | Cause a warning and look at the warning count on the statusbar |
 | screen-23 | screen §Statusbar | When the statusbar does not fit it is truncated, never wrapped | statusbar | Narrow the terminal; check that the statusbar stays one row |
-| screen-24 | screen §Narrow widths | When not all panels fit, only the focused panel is drawn, at full width | several panels | Narrow the terminal below the threshold |
+| screen-24 | screen §Narrow widths | When not all panels fit, only the focused panel is drawn, at full width | several panels | Narrow the terminal below the narrow-width threshold (but above the minimum size) |
 | screen-25 | screen §Narrow widths | At narrow widths `Tab` changes panels as usual, showing one at a time | several panels | Press `Tab` at a narrow width |
 | screen-26 | screen §Narrow widths | The narrow-width threshold is not above 80 columns | several panels | Set the terminal to 80 columns; check that the panels are side by side as usual |
 | screen-27 | screen §Empty states | An empty state is one fact plus a hint naming the key | everyone | Leave a panel with no data and look at its middle |
@@ -498,6 +534,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | screen-29 | screen §Empty states | Both lines of an empty state are Overlay0 | everyone | As above, look at the colours |
 | screen-30 | screen §Empty states (diagram) | One blank row between the fact and the hint | everyone | Leave a panel with no data and look between the fact and the hint |
 | screen-31 | screen §Footer | While typing in a panel filter with no results, the footer is `Tab:list Esc:clear` (no `Enter`) | panel filter | Press `/` and type something that matches nothing; look at the footer |
+| screen-32 | screen §Screen chip row | In a single-screen app, a long task's progress is written in that task's own row | long task | Start a long task in a single-screen app and look at the task's row |
+| screen-33 | screen §Zoom | Zooming a panel follows the default (only the focused panel drawn, filling the panel area; the panel reached with `Tab` or a digit is zoomed too; pressing the zoom key again restores), and what departs from it is written in the dev-remarks' design decisions | zoom | Zoom, press `Tab` and a digit, then press the zoom key; read the files: the dev-remarks' design decisions when not following the default |
+| screen-34 | screen §Empty states | An empty-state sentence too long for the panel wraps between words, each row centred, still one cell from the frame on each side; never cut | everyone | Narrow a panel with no data and look at the two sentences |
 
 ## layout/panel
 
@@ -510,12 +549,12 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | panel-5 | panel §Frame | The mode name sits at the right of the top border of the frame the mode lives in (panel or popup), set between two border junctions | mode | Enter a mode and look at the right of the top border |
 | panel-6 | panel §Frame (diagram) | The mode name sits right against the two junctions, with no space between (`┫Drag┣`) | mode | Enter a mode and look between the junctions and the mode name |
 | panel-7 | panel §Frame | The mode name's junctions take the frame's colour | mode | Enter a mode and compare the colours of the junctions and the frame line |
-| panel-8 | panel §Frame | The junctions follow the frame's line style: `┫` `┣` on a heavy frame (a focused panel, a popup), `┤` `├` on a light one (an unfocused panel) | mode + several panels | In a mode, press `Tab` to move away; check that the junctions change from heavy to light |
+| panel-8 | panel §Frame | The junctions follow the frame's line style: `┫` `┣` on a heavy frame (a focused panel, a popup), `┤` `├` on a light one (an unfocused panel) | mode (on a panel) + several panels | In a mode, press `Tab` to move away; check that the junctions change from heavy to light |
 | panel-9 | panel §Frame | The mode name is bold in the mode colour | mode | Enter a mode and look at the mode name's colour and weight |
 | panel-10 | panel §Frame | The mode name is one word if possible | mode | Look at every mode name |
 | panel-11 | panel §Frame | When space runs out, the title is clipped first and the mode name stays | mode | In a mode, narrow the terminal; check that the title is clipped first and the mode name is still there |
 | panel-12 | panel §Frame | In a mode, the capsule turns the mode colour along with the frame | mode | Enter a mode and look at the capsule's colour |
-| panel-13 | panel §Frame | Every panel has a hint at the left of its bottom border | everyone | Look at the bottom left of each panel |
+| panel-13 | panel §Frame | Every panel has a hint at the left of its bottom border; a panel with no key that does anything (e.g. a read-only panel, or an emptied list with no key for the whole panel) writes no hint, leaving only the border | everyone | Look at the bottom left of each panel; empty a list and look at a panel with no key that does anything |
 | panel-14 | panel §Frame | No hint while the focus is on a panel filter's typing row; it comes back when the focus returns to the list | panel filter | Press `/` and look at the bottom border, then press `Enter` to go back to the list and look again |
 | panel-15 | panel §Frame | No hint while the focus is in a PTY in the panel; it comes back on leaving the PTY | PTY | Enter the PTY and look at the bottom border, then press the exit key to leave and look again |
 | panel-16 | panel §Frame | Text on the frame keeps one line segment away from the corner: the hint starts with `┗━ `, the scroll position ends with ` ━┛`, the mode name is followed by `┣━┓`; only the `[N] label` capsule sits right after the top-left corner | everyone | Look at a panel's four corners |
@@ -526,7 +565,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | panel-21 | panel §Frame | When focused, the hint's keys are Blue and its descriptions Overlay0 | everyone | Look at the focused panel's hint |
 | panel-22 | panel §Frame | Unfocused, the hint stays and is dimmed with the panel | several panels | Press `Tab` to move away; check that the panel's hint is still there, dimmed |
 | panel-23 | panel §Frame | When the hint does not fit, whole pairs are dropped from the end, and the scroll position stays | everyone | Narrow the terminal; check that the hint loses whole pairs from the end and `N of M` is still there |
-| panel-24 | panel §Frame (diagram) | A panel's content is one cell from the left frame | everyone | Look between each panel's first character and its left frame |
+| panel-24 | panel §Frame (diagram) | A panel's content is one cell from the left frame (a PTY is the exception: it sits against the frame) | everyone | Look between each panel's first character and its left frame |
 | panel-25 | panel §Frame (diagram) | A panel's content has no blank row above or below; the first row is right below the top border | everyone | Check that the row right below each panel's top border is content |
 | panel-26 | panel §Capsule chain | The capsule chain's ends are slanted: U+E0BA on the left, U+E0B0 on the right | everyone | Look at the ends of a panel's title capsule; read the code to check the code points |
 | panel-27 | panel §Capsule chain | A selected part is filled with the chain's colour, text Base bold | everyone | Look at a panel's `[N] label` capsule and the current tab |
@@ -544,7 +583,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | panel-39 | panel §Capsule chain | On a panel with tabs, `[N]` is a part of its own and always selected | panel tab | Change to the second tab; check that `[N]` is still filled |
 | panel-40 | panel §Capsule chain | Each tab after `[N]` is a part, and only the current tab is selected | panel tab | Change tabs; check that only the current tab is filled |
 | panel-41 | panel §Capsule chain | A panel with tabs has no other name: the first tab's name is the label | panel tab | Check that the top border of a panel with tabs has no separate label |
-| panel-42 | panel §Capsule chain | On the first tab, a space joins `[N]` and the first tab, with no seam drawn | panel tab | Change back to the first tab and look between `[N]` and the tab name |
+| panel-42 | panel §Capsule chain | On the first tab, blank space joins `[N]` and the first tab, with no seam drawn; that space takes the width of a powerline symbol, as a seam does (two cells when a powerline symbol takes two) | panel tab | Change back to the first tab and look between `[N]` and the tab name; start with `TERMINU__POWERLINE_WIDTH=2` and check that the text does not shift when changing tabs |
 | panel-43 | panel §Capsule chain | When it does not fit, the unselected ones first shrink to their first character or glyph | several screens or panel tab | Narrow the terminal and look at the unselected parts |
 | panel-44 | panel §Capsule chain | If it still does not fit, unselected ones are folded away from the end and a `…` is drawn instead | several screens or panel tab | Narrow it further and look at the end of the chain |
 | panel-45 | panel §Capsule chain | When it does not fit, the selected one always stays | several screens or panel tab | Narrow it as far as it goes; check that the selected part is still there |
@@ -554,9 +593,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | panel-49 | panel §Ordinary lists | The whole cursor row is Base text; the columns' own colours are not kept | everyone | Move the cursor to a row with coloured columns |
 | panel-50 | panel §Ordinary lists | The cursor's right padding holds U+E0B0 in Subtext1 | everyone | Look at the far right of the cursor row |
 | panel-51 | panel §Ordinary lists | Every row's right padding is as wide as the arrow (two cells when a powerline symbol takes two), so the arrow fits and the text does not move | everyone | Start the app with `TERMINU__POWERLINE_WIDTH=2` and look at the right padding and the arrow on every row |
-| panel-52 | panel §Ordinary lists | An ordinary list with several columns always has a header | everyone | Check that every list panel with several columns has a header row at the top |
+| panel-52 | panel §Ordinary lists | An ordinary list with several columns always has a header (when the list is empty the header goes with it into the empty state, panel-132) | everyone | Check that every list panel with several columns has a header row at the top |
 | panel-53 | panel §Ordinary lists | An ordinary list's header is Blue | header | Look at the list's header |
-| panel-54 | panel §Ordinary lists, §One value per row | The header is fixed at the top and never scrolled | header | Scroll down; check that the header stays at the top |
+| panel-54 | panel §Ordinary lists, §One value per row | The header is fixed at the top and never scrolled | header or one value per row | Scroll down; check that the header stays at the top |
 | panel-55 | panel §Ordinary lists (diagram) | The header's text lines up with the items' text (after the mark column, when there is one) | header | Look at where the header's first column and each row's first column start |
 | panel-56 | panel §Ordinary lists (diagram) | The data follow right below the header, with no blank row and no separator | header | Look at the row below the header |
 | panel-57 | panel §Ordinary lists | Number columns align right, text columns align left | header | Look at how number columns and text columns are aligned |
@@ -576,11 +615,11 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | panel-71 | panel §Ordinary lists | Once dropped, the row's own mark comes back | Drag | Mark a row, pick it up and drop it; check that the mark comes back |
 | panel-72 | panel §Ordinary lists | A panel with a Drag keeps the mark column on every row | Drag | Check that every row of a panel with a Drag keeps one blank cell at its start |
 | panel-73 | panel §Ordinary lists | While a row is held, `Enter` drops it | Drag | Pick up a row, move it and press `Enter` |
-| panel-74 | panel §Ordinary lists | Text too long is cut at the end with `…` (paths and file names may be cut at the front) | everyone | Look at columns with long names |
+| panel-74 | panel §Ordinary lists | Text too long is cut with `…`: at the end by default; at the front for paths, file names and the like whose end matters more; in the middle for values meaningful at both ends (e.g. a pod's name: `demo-app…66-gm72n`); where to cut is the app's choice per column | everyone | Look at columns with long names |
 | panel-75 | panel §Ordinary lists (Loading and errors) | While the panel has no content yet, one loading line is written in the middle in the empty-state look | loading | Load a panel for the first time and look at its middle |
 | panel-76 | panel §Ordinary lists (Loading and errors) | On reload, the old content stays and is not cleared | loading | Reload; check that the old content is still there |
-| panel-77 | panel §Ordinary lists (Loading and errors) | On errors, lost connections and no permission, two centred lines in the empty-state look, the fact in Red | loading | Make a panel with no content fail to load and look at the first line in the middle |
-| panel-78 | panel §Ordinary lists (Loading and errors) | The other line on a failed load is a hint, in Overlay0 | loading | As above, look at the second line |
+| panel-77 | panel §Ordinary lists (Loading and errors) | When a panel cannot read its content (errors, a lost connection, no permission), two centred lines in the empty-state look, the fact in Red | everyone | Make a panel with no content fail to read and look at the first line in the middle |
+| panel-78 | panel §Ordinary lists (Loading and errors) | The other line when the content cannot be read is a hint, in Overlay0 | everyone | As above, look at the second line |
 | panel-79 | panel §Ordinary lists (Loading and errors) | When a load fails and the old content is still there, it stays | loading | With content in place, make a reload fail; check that the content is still there |
 | panel-80 | panel §Ordinary lists (Loading and errors) | With the old content still there, the error is reported in a toast | loading | As above, check that a toast pops up |
 | panel-81 | panel §Groups | Each group in a grouped list starts with a group title row | grouped list | Look at a grouped list |
@@ -606,14 +645,14 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | panel-101 | panel §One value per row | The focus block runs from the value (from the option, for an option) to the panel's inner right edge | one value per row | Look at the left and right ends of the focus block |
 | panel-102 | panel §One value per row | Labels are Blue normally | one value per row | Look at the label column |
 | panel-103 | panel §One value per row | A label is Red when its value has an error, over any other colour | one value per row | Give a value an error and look at its label |
-| panel-104 | panel §One value per row | The label column is as wide as the longest label | one value per row | Check that the value column starts two cells after the longest label |
+| panel-104 | panel §One value per row | The label column is as wide as the longest of the labels and the header's first column name | one value per row | Check that the value column starts two cells after the longest label (or the header's first column name, when that is longer) |
 | panel-105 | panel §One value per row | When a one-value-per-row panel has a header, it takes Overlay0 | one value per row | Look at the header's colour |
 | panel-106 | panel §One value per row (diagram) | When a one-value-per-row panel has a header, its column names line up with the label and value columns below | one value per row | Look at where the header's two column names start |
 | panel-107 | panel §Details | When the other panel's cursor moves, the details switch to the new item straight away, with no `Enter` | detail panel | Press `j\|k` on the list and look at the details |
 | panel-108 | panel §Details | When the details' label names the item, the label switches too | detail panel | As above, look at the details' capsule |
 | panel-109 | panel §Details | As the cursor moves, the focus remains on the panel it was on | detail panel | As above, look at which frame has the focus |
 | panel-110 | panel §Panel filter | `/` brings up a typing row at the top of the panel | panel filter | Press `/` on a list |
-| panel-111 | panel §Panel filter | When the list has a header, the typing row is above it | header + panel filter | Press `/` on a list with a header; check that the typing row appears above the header |
+| panel-111 | panel §Panel filter | When the list has a header, the typing row is above it; with a location row, below that | header + panel filter | Press `/` on a list with a header; check that the typing row appears above the header |
 | panel-112 | panel §Panel filter | The panel filter opens no popup | panel filter | Press `/`; check that no popup opens |
 | panel-113 | panel §Panel filter | The typing row starts with U+F105, one cell from the frame | panel filter | Press `/` and look at the start of the typing row |
 | panel-114 | panel §Panel filter | U+F105 takes the panel's frame colour with the focus on the typing row, Overlay0 on the list | panel filter | Switch between the typing row and the list, and look at the glyph's colour |
@@ -627,6 +666,15 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | panel-122 | panel §Panel filter | The filter stays when the focus leaves the panel, whichever way it leaves | panel filter | After filtering, leave with `Tab` and with a digit key, then come back |
 | panel-123 | panel §Panel filter | When the focus returns to a panel with a filter, it lands straight on the typing row | panel filter | After filtering, leave and come back; check that the focus is on the typing row |
 | panel-124 | panel §Frame | When the list has no items (a panel filter matched nothing, or it was empty to begin with), the hint drops `Enter` and the hotkeys on an item, keeping only those on the whole panel | everyone | Filter the list to nothing or empty it; check that the bottom-border hint has no `Enter` and no item hotkeys |
+| panel-125 | panel §Capsule chain | When the selected segment is too long on its own, its text is cut at the end with `…`; both slants are still drawn, and a stretch of line stays between it and the corner | everyone | Narrow the terminal a lot and look at the capsule of a panel with a long label |
+| panel-126 | panel §Ordinary lists | Sort groups: the groups the app assigns rows to come in the app's order, sorting happens only within a group, and no title is drawn between groups (e.g. directories always before files) | sorting | Change the sorting of a list with groups: the groups keep their order |
+| panel-127 | panel §Ordinary lists | When the columns do not fit, whole columns go first: the least important one, by the order the app marks, is taken away (its header too), never the name column; only when just the columns that cannot go remain and still do not fit are the widths shrunk in proportion | header | Narrow the terminal: whole columns disappear, the name column always stays |
+| panel-128 | panel §Ordinary lists | When the terminal grows, the columns taken away come back in order | header | Narrow, then widen again: the columns taken away come back |
+| panel-129 | panel §Location row | The location row is the first row inside the panel, one cell from the frame; above the header when there is one, and above the panel filter's typing row when that appears; fixed at the top, never scrolled | location row | Look at where the location row is; scroll down, press `/` |
+| panel-130 | panel §Location row | A location row too long is cut at the front with `…`, keeping the end (where you are now) | location row | Go somewhere deep and look at the start of the location row |
+| panel-131 | panel §Location row | The location row is display only: it cannot be pressed, the cursor never rests on it, and the scroll position does not count it; it dims with the panel on blur | location row | Walk to the top with `j\|k`: the cursor does not rest on the location row; look at `N of M`; press `Tab` to move away |
+| panel-132 | panel §Ordinary lists | When the list is empty, the empty state takes the whole panel: the header is not drawn either, and the sentences are centred in the whole panel | everyone | Empty a list with a header: the header goes too, and the sentences sit in the middle of the panel |
+| panel-133 | panel §Ordinary lists | The list's order is fixed: the same data comes out in the same order every time it opens or is fetched again; data with no order of its own is sorted by the app first (by name by default, numbers by value) | everyone | Close and reopen, fetch again a few times: the order holds; read the code: data with no order (e.g. a map) is sorted first |
 
 ## layout/popup
 
@@ -643,7 +691,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | popup-9 | popup §Frame | The tabs keep one line segment away from the rounded title (`┏━TITLE━CONSOLE…`) | popup tab | Look between the title capsule and the first tab |
 | popup-10 | popup §Frame | Hint order: `Enter` first → this popup's own keys → the `Tab:…` that switches parts → `Esc` last | everyone | Open various popups and look at the order of their hints |
 | popup-11 | popup §Frame | The hint leaves out keys that move between items (`j\|k`, `↑\|↓`) | everyone | Look at the hints of various popups |
-| popup-12 | popup §Frame | When the hint still does not fit at the widest frame, whole pairs are dropped from the end, never cut mid-pair | everyone | Narrow the terminal a lot, open a popup at its full width and look at the bottom border |
+| popup-12 | popup §Frame | When the hint still does not fit at the widest frame, whole pairs are dropped working back from the one before `Esc`, never cut mid-pair; the final `Esc` always stays | everyone | Narrow the terminal a lot, open a popup at its full width and check that the bottom border keeps `Esc` |
 | popup-13 | popup §Frame | When pairs are dropped, the scroll position at the right of the bottom border stays | everyone | As above, with content that does not fit either, look at the bottom right |
 | popup-14 | popup §Frame | Text on the frame keeps one line segment away from the corner: `┏━TITLE`, `┗━ Enter:run`, `4 of 12 ━┛` | everyone | Look at a popup's four corners |
 | popup-15 | popup §Frame | One blank row above and below the content (viewers too) | everyone | Look at the row below the top border and the row above the bottom border of various popups |
@@ -651,8 +699,8 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | popup-17 | popup §Frame | A list's cursor runs from frame to frame, covering the left and right padding | everyone | Press `Space` and look at the ends of the cursor block |
 | popup-18 | popup §Frame | The text on a cursor block still stays one cell from the frame | everyone | As above, look between the text on the block and the left frame |
 | popup-19 | popup §Frame | The right padding of a cursor across a whole row holds U+E0B0, in the block's colour | everyone | Press `Space` and look at the far right of the cursor row |
-| popup-20 | popup §Frame | In a popup with a cursor across a whole row, every row's right padding is as wide as the arrow (two cells when a powerline symbol takes two) | everyone | Start the app with `TERMINU__POWERLINE_WIDTH=2` and look at the right of every menu row |
-| popup-21 | popup §Frame | Only a cursor across a whole row has the arrow; one-cell cursors (the days, hours and minutes of the datetime picker) do not | everyone | Open a datetime picker; check that there is no arrow beside the cursor |
+| popup-20 | popup §Frame | In a popup with a cursor across a whole row (a form's focus block included), every row's right padding is as wide as the arrow (two cells when a powerline symbol takes two) | everyone | Start the app with `TERMINU__POWERLINE_WIDTH=2` and look at the right of every row of a menu and a form |
+| popup-21 | popup §Frame | Only a cursor across a whole row has the arrow; one-cell cursors (the days, hours and minutes of the datetime picker) do not | everyone | Check that a whole-row cursor has the arrow; with a datetime picker, check that there is no arrow beside the day, hour and minute cursor |
 | popup-22 | popup §Frame | A horizontal separator does not join the frame, leaving one blank cell at each end | everyone | Press `Space` and look at the ends of the separators between sections |
 | popup-23 | popup §Frame | A vertical separator is not drawn into the top and bottom padding | everyone | Look at the top and bottom ends of a vertical separator |
 | popup-24 | popup §Frame | Separators in a popup are Overlay0 | everyone | Look at the separators' colour |
@@ -687,13 +735,13 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | popup-53 | popup §When the content does not fit | With a cursor or a text cursor it reads `N of M` (the position of the unit holding the focus, and the total) | everyone | Move the cursor in a menu that does not fit and look at the bottom right |
 | popup-54 | popup §When the content does not fit | Without a cursor or a text cursor (a note, a viewer outside the selection mode) it reads the visible lines, `N-M of T` | everyone | Open a key reference that does not fit and look at the bottom right |
 | popup-55 | popup §When the content does not fit | Nothing is shown when everything fits | everyone | Open a popup whose content fits and look at the bottom right |
-| popup-56 | popup §When the content does not fit | A form counts fields: the label and value rows of a stacked field, or the options of a radio, make one field; M counts fields only, not the error row or the button | form | Move around a form that does not fit and look at `N of M` |
+| popup-56 | popup §When the content does not fit | A form and a one-value-per-row panel count fields: the label and value rows of a stacked field, or the options of a radio, make one field; M counts fields only, not the error row or the button | form or one value per row | Move around a form or a one-value-per-row panel that does not fit and look at `N of M` |
 | popup-57 | popup §When the content does not fit | A text cursor in a stretch of text (a textarea, a viewer in the selection mode) counts lines: the cursor's line and the number of lines, the same numbers as the line numbers | viewer or textarea | Move the text cursor in a long textarea; check that `N of M` matches the line numbers |
 | popup-58 | popup §When the content does not fit (diagram) | Below the error row comes one row of bottom padding, then the bottom border | input | Open an input popup and look between the error row and the bottom border |
 | popup-59 | popup §Error row | The error row sits below the content area, fixed, never scrolling | input | Open an input popup, make it show an error, and look at where the error row is |
 | popup-60 | popup §Error row | One blank row between the error row and the content | input | As above, look between the error row and the content |
 | popup-61 | popup §Error row | Only popups whose values can be invalid reserve an error row | everyone | Open a confirm and a menu; check that there is no reserved blank row |
-| popup-62 | popup §Error row | The error row holds value errors only (format, range, a required field, a duplicate name), with a short message | input | Give an invalid value and look at the message in the error row |
+| popup-62 | popup §Error row | The error row holds value errors only (format, range, a required field, a duplicate name), with a short message, and the countdown while taking values is paused after too many wrong ones | input | Give an invalid value and look at the message in the error row |
 | popup-63 | popup §Error row | The error row is Red text | input | Look at the error row's colour |
 | popup-64 | popup §Error row | The error row shares the content's left edge; when the content is centred, it is centred too | input | Look at where the error row starts |
 | popup-65 | popup §Error row | With an error, the frame and title do not change colour and keep the layer colour | input | Give an invalid value and look at the colours of the frame and title |
@@ -701,6 +749,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | popup-67 | popup §Error row | In an input popup the error row never takes the focus | input | Make an input popup show an error and press keys; check that the focus never goes to the error row |
 | popup-68 | popup §Error row | An input popup checks on `Enter` | input | Type an invalid value; check that the error appears only on `Enter` |
 | popup-69 | popup §Error row | When the action itself fails (a write failing, the remote refusing, the file changed underneath), it is not written in the error row: an error popup opens over the current popup | everyone | Make a submitted action fail; check that an error popup pops up |
+| popup-70 | popup §Error row | While taking values is paused after too many wrong ones, the countdown goes in the error row (Red, updated every second, cleared when done); during the pause every key but `Esc` is swallowed, none reaching the typing row | input | Get it wrong until it pauses: the error row counts down every second; typing during the pause leaves the typing row unchanged; when done the error row clears (an app that never pauses has no such case) |
 
 ## dialog/form
 
@@ -716,19 +765,19 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | form-8 | form §How a field is arranged | Side by side: one row, the label in a left column, the value to its right | form | Look at a side-by-side field |
 | form-9 | form §How a field is arranged | No blank row between fields | form | Look between two adjacent fields in the field area: no blank row |
 | form-10 | form §How a field is arranged | No blank row between a stacked label and its value | form | Look at the label and the value of a stacked field |
-| form-11 | form §How a field is arranged | Labels, values and errors share the same left edge | form | After a refused submit, look at a stacked field: the value, the error row and the label start in the same column |
+| form-11 | form §How a field is arranged | In a stacked field, the label, the value and the error share the same left edge | form | After a refused submit, look at a stacked field: the value, the error row and the label start in the same column |
 | form-12 | form §How a field is arranged | The label column of side-by-side fields is as wide as the longest label among the side-by-side fields; stacked labels do not count | form | Look at the side-by-side values: all start in the same column, after the longest side-by-side label |
-| form-13 | form §Options drawn in the form | Options drawn in the form always run down, one a row | radio or checkbox | Look at the options: none run across |
-| form-14 | form §Moving (diagram) | Options of a side-by-side field: the first option on the label's row, each of the rest on a row of its own below, its left edge at the value's, the label column blank | radio or checkbox | Look at the second and later options of a radio field: their left edge lines up with the first option's |
+| form-13 | form §Options drawn in the form | Options drawn in a form or on a one-value-per-row panel always run down, one a row | radio or checkbox | Look at the options: none run across |
+| form-14 | form §Moving (diagram) | Options of a side-by-side field in a form or on a one-value-per-row panel: the first option on the label's row, each of the rest on a row of its own below, its left edge at the value's, the label column blank | radio or checkbox | Look at the second and later options of a radio field: their left edge lines up with the first option's |
 | form-15 | form §Focus and label | A field's focus block runs from the value all the way to the frame, covering the right padding | form | With the focus on a field, look at the block: from the value's left edge to the right border |
-| form-16 | form §Focus and label | An option's focus block runs from that option's glyph all the way to the frame | radio or checkbox | With the focus on an option, look at the block |
+| form-16 | form §Focus and label | In a form and on a one-value-per-row panel, an option's focus block runs from that option's glyph all the way to the frame | radio or checkbox | With the focus on an option, look at the block |
 | form-17 | form §Focus and label | A field with an empty value is still a full block of background when it has the focus | form | With the focus on an empty field, look at the block |
 | form-18 | form §Focus and label | A button's focus block is the button itself, with no arrow | form | `Tab` to a button: the block is the button only |
-| form-19 | form §Focus and label | The label does not change colour with the focus | form | Move the focus into and out of a field: the label's colour stays the same |
+| form-19 | form §Focus and label | In a form and on a one-value-per-row panel, the label does not change colour with the focus | form or one value per row | Move the focus into and out of a field: the label's colour stays the same |
 | form-20 | form §Focus and label | A normal label is in the layer colour (the same as the title capsule and the border) | form | Compare the label's colour with the border's |
 | form-21 | form §Focus and label | The label of a field whose value has an error is Red, over any other colour | form | After a refused submit, look at the label with a problem |
-| form-22 | form §Focus and label | A disabled field stays in place, neither removed nor changing the height | form | Make a field disabled: the form's layout does not change |
-| form-23 | form §Focus and label | A value never shares its label's colour, in any state | form | Look at the label and the value when normal, focused, disabled and in error |
+| form-22 | form §Focus and label | In a form and on a one-value-per-row panel, a disabled field stays in place, neither removed nor changing the height | form or one value per row | Make a field disabled: the form's layout does not change |
+| form-23 | form §Focus and label | In a form and on a one-value-per-row panel, a value never shares its label's colour, in any state | form or one value per row | Look at the label and the value when normal, focused, disabled and in error |
 | form-24 | form §Action area | A button is its text with one blank cell on each side, on a block of background | form | Look at the buttons in the action area |
 | form-25 | form §Action area | A button says what pressing it does (`Save`, `Connect`) | form | Read the button text |
 | form-26 | form §Action area | A button is not drawn in square brackets (`[ Save ]`) | form | Look at the buttons |
@@ -754,20 +803,20 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | form-46 | form §Action area | After an action that keeps the form open is done, the focus stays on the button | form | After the action succeeds, look at the focus |
 | form-47 | form §Action area | When an action writes a value into a field, that field counts as changed | form | Let the action write into a field, then press `Esc`: a confirm comes first |
 | form-48 | form §Action area | No cancel button in the action area | form | Look at the action area: no `Cancel` or similar button |
-| form-49 | form §Moving | The focus moves by item: a field that takes typing or opens a popup is one item, each option of a radio or checkbox field is one, each button is one | form | Walk through with `j`, counting the stops |
+| form-49 | form §Moving | In a form and on a one-value-per-row panel, the focus moves by item: a field that takes typing or opens a popup is one item, each option of a radio or checkbox field is one, each button is one | form or one value per row | Walk through with `j`, counting the stops |
 | form-50 | form §Moving | The error row, while it holds an error, is an item too, after the last field; with no error the focus does not stop on it | form | Walk past the last field with `j` before and after a refused submit |
-| form-51 | form §Moving | Going on from a field's last option enters the next field; going back from its first option returns to the previous field | radio or checkbox | Press `j` on a radio field's last option and `k` on its first |
+| form-51 | form §Moving | In a form and on a one-value-per-row panel, going on from a field's last option enters the next field; going back from its first option returns to the previous field | radio or checkbox | Press `j` on a radio field's last option and `k` on its first |
 | form-52 | form §Moving | The action area runs in reading order: along a row from left to right, then on to the next row | form | Press `j` in the action area through every button |
 | form-53 | form §Moving | `gg\|G` go to the first and the last item of the area | form | Press `gg` and `G` in the field area and in the action area |
 | form-54 | form §Moving | `u\|d` move half a page, counted in items, and stop at the ends | form | On a form with many fields, press `d` to the bottom and once more: it does not wrap |
 | form-55 | form §Moving | The first time in the action area, the focus lands on the main submit (the bottom-right corner) | form | Open the form and press `Tab` for the first time |
 | form-56 | form §Moving | The error row belongs to the field area: `j\|k` and `e` reach it, and `Tab` on it goes to the action area | form | After a refused submit, walk to the error row with `j`, then press `Tab` |
 | form-57 | form §Moving | Each area wraps at its own ends: past the last item of the field area (the error row, when it holds an error) comes the first field again; past the last button comes the first button | form | Press `j` on the last item of the field area and on the last button |
-| form-58 | form §Moving | Disabled fields and options are skipped: `j\|k` do not stop on them | form | Walk past a disabled field with `j` |
+| form-58 | form §Moving | In a form and on a one-value-per-row panel, disabled fields and options are skipped: `j\|k` do not stop on them | form or one value per row | Walk past a disabled field with `j` |
 | form-59 | form §Moving | On opening, the focus is on the first item it can stop on (disabled ones skipped), for a new entry and an edit alike | form | Open a new-entry form and an edit form, looking at the focus in each |
 | form-60 | form §Moving | When the app opens the form from one field, the focus is on that field | form | Open an edit form from a row of a panel and look at the focus |
 | form-61 | form §Moving | On opening, no field's input popup opens by itself: what opens is always the form itself, left with one `Esc` | form | Open a new-entry form and press `Esc` once: back where it was opened from |
-| form-62 | form §Moving | Landing on a radio or checkbox field (the app opening the form at that field, a blocked submit, `e` on the error row), the focus stops on the first option with a value: a radio on the chosen option, a checkbox on the first ticked one; with no value, on the first | radio or checkbox | Give the radio field an error and submit; look at which option the focus stops on |
+| form-62 | form §Moving | Landing on a radio or checkbox field (the app opening the form at that field, a blocked submit, `e` on the error row), the focus stops on the first option with a value: a radio on the chosen option, a checkbox on the first ticked one; with no value, on the first | form | Give the radio field an error and submit; look at which option the focus stops on |
 | form-63 | form §`Enter` | `Enter` on a button presses it: submitting, or doing that button's action | form | `Tab` to a button and press `Enter` |
 | form-64 | form §Submit | There is one way only to submit: `Enter` with the focus on a submit button (no letter hotkey or other way to submit) | form | Press `s` and other letters on a field: none of them submits |
 | form-65 | form §Typing on a field | With the focus on a field that takes typing (text, password, number, textarea), a printable character that is not one of the form's keys (digits and `q` included) brings up a note to explain | form | Type `s`, `1` and `q` on a text field |
@@ -780,8 +829,8 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | form-72 | form §Typing on a field | On a field that opens another input popup (select, slider, date, colour, file, reorder, checkbox popup), a printable character brings up no note and does nothing | form | With the focus on a field such as a select, type `s`, `1` and `q`: no note, and nothing changes |
 | form-73 | form §Typing on a field | Other printable characters on options, buttons and the error row bring up no note and do nothing | form | With the focus on a button, type `s` |
 | form-74 | form §Hint | With the focus on a field that opens an input popup, the hint reads `Enter:edit` | form | Look at the hint on the bottom border |
-| form-75 | form §Hint | With the focus on a radio option, the hint reads `Enter:choose` | radio | Look at the hint on the bottom border |
-| form-76 | form §Hint | With the focus on a checkbox option, the hint reads `Enter\|Space:toggle` | checkbox | Look at the hint on the bottom border |
+| form-75 | form §Hint | In a form and on a one-value-per-row panel, with the focus on a radio option, the hint reads `Enter:choose` | radio | Look at the hint on the bottom border |
+| form-76 | form §Hint | On a form, with the focus on a checkbox option, the hint reads `Enter\|Space:toggle` | form + checkbox | Look at the hint on the bottom border |
 | form-77 | form §Hint | With the focus on a button, the hint gives the button's word: its verb in lower case, names and paths as they are (`Save` → `Enter:save`, `Save As` → `Enter:save as`) | form | `Tab` to each button and look at the hint |
 | form-78 | form §Hint | With the focus on a field with a problem, `e:error` is added (`Enter:edit e:error Tab:actions Esc:cancel`) | form | After a refused submit, look at the hint |
 | form-79 | form §Hint | With the focus on the error row, the hint is `Enter:show e:edit Tab:actions Esc:cancel` | form | After a refused submit, walk to the error row and look at the hint |
@@ -799,7 +848,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | form-91 | form §Errors | `e` on a field with a problem: the focus moves to the error row, which switches to that field's message | form | With two fields in error, press `e` on the second |
 | form-92 | form §Errors | `Enter` on the error row opens an error popup with the whole message, its title the field's name, closed with `Enter` or `Esc` | form | Press `Enter` on the error row and read the title; close it with `Enter`, then again with `Esc` |
 | form-93 | form §Errors | `e` on the error row: the focus returns to the field the message belongs to | form | Press `e` on the error row |
-| form-94 | form §Errors | Errors follow the check: a form's Red labels and error row, and an input popup's error row, stay even when values change, until the next check (a form: a submit, or pressing an action that keeps the form open; an input popup: `Enter`) changes or clears them | input | After a refused submit, fix that field: the label is still Red, and only the next submit clears it |
+| form-94 | form §Errors | Errors follow the check: a form's Red labels and error row stay even when values change, until the next check (a submit, or pressing an action that keeps the form open) changes or clears them | form | After a refused submit, fix that field: the label is still Red, and only the next submit clears it |
+| form-95 | form §Typing on a field | The typing note takes only `Enter` and `Esc`: any other typable character (`q` and `?` included) does nothing and does not pass through | form | On a text field type `a` to bring up the note, then type `q`, `?`, `j`: the note stays and nothing happens |
+| form-96 | form §Errors | An input popup's error row stays even when the value changes, until the next `Enter` changes or clears it | input | Give an input popup an error, change the value: the error stays; only the next `Enter` changes it |
 
 ## dialog/menu
 
@@ -824,7 +875,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | menu-17 | menu §Look | The Space menu's title shows the focused panel's `[N] label` | everyone | Press `Space` on different panels and read the title |
 | menu-18 | menu §Look | The `Global operation` row's description is always `actions for the whole app` | everyone | Look at the Space menu's last row |
 | menu-19 | menu §Keys | The hint is `Enter:run Esc:close`, with no movement keys | everyone | Look at the menu's bottom border |
-| menu-20 | menu §Keys | A menu whose `Enter` opens the row's full text (e.g. a jobs list) has the hint `Enter:detail Esc:close` | everyone | Look at that menu's bottom border |
+| menu-20 | menu §Keys | On a jobs-list row with nothing to do on it, `Enter` opens the row's full text and the hint is `Enter:detail Esc:close` | jobs list | Move the cursor to a row with nothing to do on it and look at the bottom border |
+| menu-21 | menu §Jobs list | On a jobs-list row something can be done to (e.g. a running transfer that can be cancelled), `Enter` opens a confirm holding the row's full text, and the hint names that action (e.g. `Enter:cancel Esc:close`) | jobs list | Move the cursor to a row something can be done to, read the hint, then press `Enter` |
+| menu-22 | menu §Jobs list | While a jobs list is open, its rows follow the work (a row changes as soon as the progress or the state changes), with no closing and reopening | jobs list | Open the jobs list while work runs and watch a row's progress change |
 
 ## dialog/confirm
 
@@ -850,8 +903,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | note-1 | note §Look | The title is a glyph plus what is shown, drawn as the title capsule | everyone | Look at the titles of the key reference and of a viewer |
 | note-2 | note §Look | A viewer's title: the kind in uppercase; to say which one is shown, ` — ` and then the name, the name as it is (e.g. `YAML — pod/nginx`) | viewer | Look at the viewer's title |
 | note-3 | note §Look | When a viewer wraps, N is the line of the top row, M the line of the bottom row and T the number of lines | viewer | Narrow the window until the content wraps; compare the scroll position with the line numbers |
-| note-4 | note §Look | In a viewer, a line wider than the frame continues on the next row (wraps) | viewer | Open content with a long line: it wraps onto the next row and is not cut |
-| note-5 | note §Look | A viewer (YAML view, App Log, file content) has line numbers on the left | viewer | Open a viewer and look at the left |
+| note-4 | note §Look | A viewer wraps by default: a line wider than the frame continues on the next row; for content to keep aligned, the app may keep it unwrapped, the part past the frame cut with `…` at the end of the line | viewer | Open content with a long line: it wraps onto the next row, or ends in `…` |
 | note-6 | note §Look | The first row of each line carries its number, right-aligned, with a space after it | viewer | Look at the gutter |
 | note-7 | note §Look | A wrapped row leaves the gutter blank | viewer | Look at the wrapped rows |
 | note-8 | note §Look (diagram) | The gutter comes right after the left padding (one cell from the frame), with no separator drawn between the numbers and the content | viewer | Look at where the gutter is |
@@ -882,7 +934,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | note-33 | note §Selection mode | The selection runs by characters: from the start to the cursor, the cursor's character included | viewer | Select a stretch, copy it, and check both ends |
 | note-34 | note §Selection mode | Once selecting, the hint is `y:copy Esc:cancel` | viewer | Press `v` a second time and look at the bottom border |
 | note-35 | note §Selection mode | Once selecting, `v` does nothing (it is not an alias for leaving) | viewer | Press `v` once selecting |
-| note-36 | note §Selection mode | `y` copies the selection and leaves the mode; the selection and the cursor disappear | viewer | Select a stretch and press `y` |
+| note-36 | note §Selection mode | `y` copies the selection and leaves the mode; the selection and the cursor disappear, and a Success toast says it is copied | viewer | Select a stretch and press `y` |
 | note-37 | note §Selection mode | `Esc` leaves the whole mode at either step without copying; the selection and the cursor disappear | viewer | Press `Esc` once with nothing selected yet and once while selecting |
 | note-38 | note §Selection mode | The cursor is one cell of the layer colour background with Base text | viewer | Press `v` and look at the cursor |
 | note-39 | note §Selection mode | The selection has a Yellow background with Base text, the cursor's cell keeping the layer colour | viewer | Select a stretch and look at the selection and the cursor |
@@ -896,14 +948,14 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | note-47 | note §Key reference | Rows from a menu: the label loses its hotkey marks and keeps its case (`[E]dit` becomes `Edit`) | everyone | Compare with the Space menu's rows |
 | note-48 | note §Key reference | Section titles as in a menu: `nf-md-hexagon`, uppercase, Overlay0, indented one cell, not bold | everyone | Look at the section titles |
 | note-49 | note §Key reference (diagram) | No separator and no blank row between sections: a section title comes right below the previous section's last row | everyone | Look between two sections |
-| note-50 | note §Key reference | On a panel the sections are, in order, `item operation`, `panel operation`, `move`, `core keys`, `app-wide` | everyone | Press `?` on a panel and look at the order of the sections |
+| note-50 | note §Key reference | On a panel the sections are, in order, (`what each row is`, when a one-value-per-row panel has it,) `item operation`, `panel operation`, `move`, `core keys`, `app-wide` | everyone | Press `?` on a panel and look at the order of the sections |
 | note-51 | note §Key reference | `item operation` and `panel operation` hold the same as the Space menu | everyone | Compare with the same panel's Space menu |
 | note-52 | note §Key reference | `move` lists only the movement keys that really work here | everyone | Press each key in `move` on this panel: each does something |
 | note-53 | note §Key reference | `core keys` lists the core keys that work on this panel: `Space`, `?`, `Tab`, `1–N`, `q\|Ctrl-C` | everyone | Look at the `core keys` section |
 | note-54 | note §Key reference | `1–N` is listed in `core keys` only with several panels | everyone | Check a screen with only one panel has no `1–N` |
 | note-55 | note §Key reference | `Esc` is listed in `core keys` only where it does something here (e.g. a filter to clear) | everyone | Press `?` with a filter and without one |
 | note-56 | note §Key reference | `Enter` is not listed in `core keys` (`item operation` already has it) | everyone | Check `core keys` has no `Enter` |
-| note-57 | note §Key reference | A panel's key reference lists the global hotkeys in the `app-wide` section | everyone | Compare with the global operation popup's hotkeys |
+| note-57 | note §Key reference | A panel's key reference lists the global hotkeys in the `app-wide` section; quitting's `q` is already in `core keys` and is not repeated | everyone | Compare with the global operation popup's hotkeys |
 | note-58 | note §Key reference | A key that can be pressed now is in Blue, not bold (for one that cannot, see note-60) | everyone | Look at the colour of the key column |
 | note-59 | note §Key reference | Descriptions are in Text | everyone | Look at the descriptions' colour |
 | note-60 | note §Key reference | A key that cannot be pressed right now (its target exists) is still listed, both key and description in Surface2 | disabled | Make an action disabled and press `?` |
@@ -912,10 +964,12 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | note-63 | note §Error popup | The title capsule is filled Red, with Base bold text | error popup | Look at the title capsule |
 | note-64 | note §Error popup | The title glyph is `nf-md-fire` (U+F0238) | error popup | Look at the title |
 | note-65 | note §Error popup | The message wraps inside the frame; when too long it scrolls with `j\|k` | error popup | Bring up a long message and press `j\|k` |
-| note-66 | note §Error popup | The title says what failed (`RENAME FAILED`, `SAVE FAILED`) | error popup | Read the title text |
+| note-66 | note §Error popup | The title says what failed (`RENAME FAILED`, `SAVE FAILED`); one opened from a form's error row gives that field's name (form-92) | error popup | Read the title text |
 | note-67 | note §Error popup | Both `Enter` and `Esc` close it | error popup | Close it with `Enter`, then again with `Esc` |
 | note-68 | note §Error popup | The hint is `Enter\|Esc:close` | error popup | Look at the bottom border |
 | note-69 | note §Error popup | After the error popup closes, it is back to the popup underneath, the focus where it was (when a form's submit or an action that keeps the form open fails, the focus is on that button, and one more `Enter` retries), every value still there | error popup | Close it and look at the popup underneath |
+| note-70 | note §Selection mode | Every viewer has the selection mode (`v` to select, `y` to copy) | viewer | Press `v` on every viewer |
+| note-71 | note §Look | A viewer's search: every match underlined, keeping its colour; the current match drawn as the cursor block; no Yellow | viewer | In a viewer with `/`, search for a word that appears several times; look at the underlines and the current match (a viewer with no search never has this case) |
 
 ## dialog/terminal
 
@@ -933,6 +987,14 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | terminal-10 | terminal §Keys | The exit key's verb says what pressing it really does: `Alt-Esc:exit` when it ends the subprocess, `Alt-Esc:leave` when it leaves with the subprocess still running | terminal popup | Read the hint, then press the exit key and compare with what happens |
 | terminal-11 | terminal §Keys | The exit key never reads `close` | terminal popup | Look at the hint |
 | terminal-12 | terminal §Keys | After the exit key come the key combinations the app keeps (`Alt-t:hide`, `PgUp:history`) | terminal popup | Look at the order in the hint |
+| terminal-13 | terminal §Look | While a terminal popup is open the footer is not drawn: both ends of the last row are blank, with no footer text showing | terminal popup | Open a terminal popup and look at both ends of the last row |
+| terminal-14 | terminal §Look | A PTY in a panel has no padding either: the panel's frame is drawn as usual, with the PTY against it | PTY | Look between the first character and the frame in a panel holding a PTY |
+| terminal-15 | terminal §History mode | `PgUp` on a PTY scrolls up into the history mode: the frame and the mode name take the mode colour, the mode name being `History` | PTY | Press `PgUp` on a PTY and look at the frame and the right of the top border |
+| terminal-16 | terminal §History mode | In the history mode, `j\|k`, `u\|d`, `gg\|G` and `PgUp\|PgDn` all scroll the history and are not sent to the subprocess | PTY | In the history mode press these keys: the history scrolls and the shell receives nothing |
+| terminal-17 | terminal §History mode | In the history mode, `Esc` leaves the mode, back to the live screen | PTY | In the history mode press `Esc` |
+| terminal-18 | terminal §Selection mode | A PTY's selection mode is entered with a key combination the app keeps, always shown like the other kept keys | PTY | Check that the footer or the terminal's bottom border shows the key entering the selection mode, and press it |
+| terminal-19 | terminal §Selection mode | Entering a PTY's selection mode freezes the screen: later output from the subprocess is not drawn yet, and the cursor can go up into the history; leaving returns to the live screen | PTY | Enter the selection mode while the shell keeps printing: the screen holds still and the cursor can go up |
+| terminal-20 | terminal §Selection mode | A PTY's selection mode follows the note's selection mode: the same keys, colours, scroll position and toast after copying | PTY | Select and copy a stretch in a PTY's selection mode and compare with a viewer's selection mode |
 
 ## dialog/toast
 
@@ -943,25 +1005,30 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | toast-3 | toast §Look | The bottom border is always on the third row from the bottom, so the two bottom rows always stay in sight (normally the panel's bottom border and the footer; with a terminal popup open, the PTY's last row and the terminal's bottom border; the same on a screen without panels) | toast | Bring up a toast once on an ordinary screen and once in a terminal popup; look at which row the bottom border is on |
 | toast-4 | toast §Look | The text is centred | toast | Look at where the message sits |
 | toast-5 | toast §Look | When too long it wraps, every row centred | toast | Bring up a long toast |
-| toast-6 | toast §Look | Three rows at most; beyond that, the third row ends with `…` | toast | Bring up a toast longer than three rows |
-| toast-7 | toast §Look | For a message that would be cut, the full message goes to an error popup or the app's log | toast | Read the code: a long message's full text is also written to an error popup or the log |
+| toast-6 | toast §Look | How many rows at most is the app's choice; when the app sets a limit and a message runs past it, the last row ends with `…` | toast | Bring up a very long toast and look at the rows and the end |
+| toast-7 | toast §Look | When the app sets a row limit, the full text of a message that would be cut goes to an error popup or the app's log | toast | Read the code: a long message's full text is also written to an error popup or the log |
 | toast-8 | toast §Look | Info: title `nf-fa-flag` (U+F024) `INFO`, text in Text | toast | Bring up an Info toast |
 | toast-9 | toast §Look | Warning: title `nf-md-alarm_light` (U+F078F) `WARNING`, text in Peach | toast | Bring up a Warning toast |
 | toast-10 | toast §Look | Error: title `nf-md-fire` (U+F0238) `ERROR`, text in Red | toast | Bring up an Error toast |
-| toast-11 | toast §Look | Info shows for 2200 ms | toast | Time how long an Info toast stays |
+| toast-11 | toast §Look | Success and Info show for 2200 ms | toast | Time how long a Success and an Info toast stay |
 | toast-12 | toast §Look | Warning and Error show for 4400 ms | toast | Time how long a Warning and an Error toast stay |
 | toast-13 | toast §Look | A second toast replaces the first at once, and the timer starts over | toast | Bring up two toasts one after the other |
 | toast-14 | toast §Keys | The hint is `Esc:close` | toast | Look at the toast's bottom border |
+| toast-15 | toast §Look | Success: title `nf-md-check_circle` (U+F05E0) `SUCCESS`, text in Green | toast | Bring up a Success toast |
+| toast-16 | toast §Look | What finished successfully uses Success (e.g. `Copied 3 paths`); Info is kept for messages that are neither a success nor a problem | toast | Complete an action: the toast is a Success |
+| toast-17 | toast §Purpose | A failure tied to a popup's action, which the user must read before deciding, uses an error popup, not a toast | toast | Make an action in a popup fail: an error popup comes up |
+| toast-18 | toast §Look | Done, or still usable, but with something worth noticing uses Warning (e.g. `3 files skipped`) | toast | Run an action that skips part of its work: the toast is a Warning |
+| toast-19 | toast §Look | A failed action is always an Error, never a Warning | toast | Make an action fail: the toast is an Error (or an error popup comes up) |
 
 ## input/README
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| input-1 | input §What an input is | opened from a form's field, an error names that field | form or input | make the value invalid and press `Enter`; the error row names the field |
+| input-1 | input §What an input is | opened from a field of a form or a one-value-per-row panel, an error names that field | form or one value per row | make the value invalid and press `Enter`; the error row names the field |
 | input-2 | input §What an input is | an input opened on its own (its title saying what it does, e.g. `RENAME`, `SAVE AS`): an error names the value by the name the app gives besides (e.g. `Name`), never by the title | input | on a popup such as `SAVE AS`, paste a control character and press `Enter`; the error says `Name can't …`, not `Save as can't …` |
 | input-3 | input §What an input is | `Esc`: closes, the value unchanged | input | change the value and press `Esc`; the field keeps the old value |
 | input-4 | input §What an input is | an input popup with a button: the hint says `Tab:actions` on a field and `Tab:fields` on a button | input | look at the hint on the bottom border in both places |
-| input-5 | input §The skeleton of a one-line input popup | there is an explanation row: one sentence saying what to enter, in Overlay0 | text or password or number | open a text, number or password popup and look at the sentence above the typing row |
+| input-5 | input §The skeleton of a one-line input popup | there is an explanation row: one sentence saying what to enter, in Overlay0 (a password's unlock look is the exception, see password-24) | text or password or number | open a text, number or password popup and look at the sentence above the typing row |
 | input-6 | input §The skeleton of a one-line input popup (diagram) | the explanation row is above the typing row | text or password or number | look at the order of the rows |
 | input-7 | input §The skeleton of a one-line input popup | there is a blank row between the explanation row and the typing row | text or password or number | count the blank rows between the two |
 | input-8 | input §The skeleton of a one-line input popup | what is being changed goes into the explanation row's sentence (e.g. `New name for assets`) | text or password or number | open a popup such as rename; the explanation row names what is being changed |
@@ -976,15 +1043,15 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | input-17 | input §When the value is longer than the box | moving the cursor scrolls by just enough, never pinning the cursor to the middle | text or password or number | in a long value, press `←` all the way from the end and watch the scrolling |
 | input-18 | input §When the value is longer than the box | cutting counts display width (a CJK character is 2 cells) | text or password or number | type a long CJK value; the border stays straight |
 | input-19 | input §When the value is longer than the box | cutting never splits a character in two, nor a red `\n` or `\x1b` | text or password or number | paste a long value holding `\x1b` and watch the edges while scrolling |
-| input-20 | input §Editing keys | characters and `Space` insert at the cursor | input or panel filter | move the cursor to the middle and type |
-| input-21 | input §Editing keys | `←` / `→` move the cursor one character left / right | input or panel filter | press `←` and `→` |
-| input-22 | input §Editing keys | `Backspace` deletes the character before the cursor | input or panel filter | press `Backspace` with the cursor in the middle |
-| input-23 | input §Editing keys | `Delete` deletes the character under the cursor | input or panel filter | press `Delete` with the cursor in the middle |
-| input-24 | input §Editing keys | a character is what looks like one: a CJK character and an emoji count as one each, and a combining mark counts as one together with the character before it | input or panel filter | type CJK, an emoji and a combining mark, then press `←` and `Backspace` |
-| input-25 | input §Editing keys | a pasted control character counts as one character each (`←\|→` and `Delete` cross or delete a whole `\x1b` at once) | input or panel filter | paste text holding `\x1b` and press `←` and `Delete` |
+| input-20 | input §Editing keys | characters and `Space` insert at the cursor (not a password) | input or panel filter | move the cursor to the middle and type |
+| input-21 | input §Editing keys | `←\|→` move the cursor one character left / right (not a password) | input or panel filter | press `←` and `→` |
+| input-22 | input §Editing keys | `Backspace` deletes the character before the cursor (not a password) | input or panel filter | press `Backspace` with the cursor in the middle |
+| input-23 | input §Editing keys | `Delete` deletes the character under the cursor (not a password) | input or panel filter | press `Delete` with the cursor in the middle |
+| input-24 | input §Editing keys | a character is what looks like one: a CJK character and an emoji count as one each, and a combining mark counts as one together with the character before it (not a password) | input or panel filter | type CJK, an emoji and a combining mark, then press `←` and `Backspace` |
+| input-25 | input §Editing keys | a pasted control character counts as one character each (`←\|→` and `Delete` cross or delete a whole `\x1b` at once) (not a password) | input or panel filter | paste text holding `\x1b` and press `←` and `Delete` |
 | input-26 | input §Editing keys | `Ctrl-U` and `Ctrl-W` are not taken | input or panel filter | type, then press `Ctrl-U` and `Ctrl-W`; the value does not change |
 | input-27 | input §Editing keys | other `Ctrl-` and `Alt-` combinations do nothing on the typing row and type nothing | input or panel filter | press `Ctrl-A` and `Alt-b`; the value does not change |
-| input-28 | input §Changing an existing value: the old value is a grey suggestion | the grey suggestion is for text and number only (a password shows grey dots, a textarea opens with the old value already in) | input | open a textarea and a password that have old values; neither has a grey suggestion |
+| input-28 | input §Changing an existing value: the old value is a grey suggestion | the grey suggestion is for text and number only (a password shows grey dots, a textarea opens with the old value already in) | input | open a text and a number that have old values: they have a grey suggestion; open a textarea and a password that have old values: neither has one |
 | input-29 | input §Changing an existing value: the old value is a grey suggestion | changing an existing value, the box opens empty and the old value is shown in grey (Overlay0) | text or number | open a field that has an old value |
 | input-30 | input §Changing an existing value: the old value is a grey suggestion | the grey text starts at the cursor's cell: the cursor sits on its first character (Lavender background, Base character), the grey text after it | text or number | on opening, look where the cursor and the grey text are |
 | input-31 | input §Changing an existing value: the old value is a grey suggestion | when the old value's first character is a control character, the cursor's cell is drawn as a control character (Red background, Base text) | text or number | open a field whose old value starts with `\x1b` |
@@ -995,18 +1062,18 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | input-36 | input §Changing an existing value: the old value is a grey suggestion | once the grey text has gone, `Enter` saves the value empty (where the field cannot be empty, it is handled as an error) | text or number | press `Backspace`, then `Enter`; the field turns empty or an error shows |
 | input-37 | input §Changing an existing value: the old value is a grey suggestion | `Enter` with grey text and nothing touched: the old value is kept and it closes (not saved empty) | text or number | open it and press `Enter` straight away |
 | input-38 | input §Changing an existing value: the old value is a grey suggestion | with grey text the hint adds `Tab:edit Backspace:clear` (e.g. `Enter:rename Tab:edit Backspace:clear Esc:cancel`) | text or number | look at the hint on the bottom border while there is grey text |
-| input-39 | input §Changing an existing value: the old value is a grey suggestion | a grey suggestion has only one source, the old value (no suggestions from history, completion and the like) | input or panel filter | type a few characters and look for any other grey text |
+| input-39 | input §Changing an existing value: the old value is a grey suggestion | a grey suggestion has only two sources: the old value, and the suggested value the app gives when there is no old value (no suggestions from history, completion and the like) | input or panel filter | type a few characters and look for any other grey text |
 | input-40 | input §No placeholder | an input popup has no placeholder (an empty typing row has no grey explanation) | input | open an input with no old value; the typing row has nothing but the glyph |
 | input-41 | input §No placeholder | the `nf-fa-angle_right` before a typing row is not text: it is never taken into the value, and it stays while typing | input or panel filter | type on an empty typing row; the glyph stays |
 | input-42 | input §Pasted control characters | only pasted text counts: pressed `Tab`, `Enter` and `Ctrl-J` keep their own roles and type no control character | input or panel filter | press `Ctrl-J` on the typing row; no `\n` is added to the value |
 | input-43 | input §Pasted control characters | no pasted control character is dropped or turned into a space; they stay in the value | input or panel filter | paste several lines of text |
-| input-44 | input §Pasted control characters | control characters are drawn as they are, in red (Red), never split | input or panel filter | paste several lines of text and look at the colour |
-| input-45 | input §Pasted control characters | `\r`, `\n` and `\t` are written by name (2 cells) | input or panel filter | paste text holding line breaks and tabs |
-| input-46 | input §Pasted control characters | every other C0, DEL and C1 is written as `\xNN` (4 cells, e.g. `\x1b`, `\x7f`, `\x85`) | input or panel filter | paste coloured text copied from a terminal |
-| input-47 | input §Pasted control characters | `\r\n` is drawn as it is, as the two `\r\n` | input or panel filter | paste text with CRLF line breaks |
-| input-48 | input §Pasted control characters | in a row drawn grey as a whole (a typing row without the focus, a suggestion), control characters are grey too | input or panel filter | with a `\n` on the typing row, move the focus to the list; or look at the grey text of an old value holding a control character |
-| input-49 | input §Pasted control characters | the cursor resting on a control character: the whole control character is drawn with a Red background and Base text (other characters keep the Lavender background) | input or panel filter | press `←` onto a `\x1b` |
-| input-50 | input §Pasted control characters | `Backspace` deletes a whole control character at once | input or panel filter | with the cursor after a `\x1b`, press `Backspace` once |
+| input-44 | input §Pasted control characters | control characters are drawn as they are, in red (Red), never split (not a password) | input or panel filter | paste several lines of text and look at the colour |
+| input-45 | input §Pasted control characters | `\r`, `\n` and `\t` are written by name (2 cells) (not a password) | input or panel filter | paste text holding line breaks and tabs |
+| input-46 | input §Pasted control characters | every other C0, DEL and C1 is written as `\xNN` (4 cells, e.g. `\x1b`, `\x7f`, `\x85`) (not a password) | input or panel filter | paste coloured text copied from a terminal |
+| input-47 | input §Pasted control characters | `\r\n` is drawn as it is, as the two `\r\n` (not a password) | input or panel filter | paste text with CRLF line breaks |
+| input-48 | input §Pasted control characters | in a row drawn grey as a whole (a typing row without the focus, a suggestion), control characters are grey too (not a password) | input or panel filter | with a `\n` on the typing row, move the focus to the list; or look at the grey text of an old value holding a control character |
+| input-49 | input §Pasted control characters | the cursor resting on a control character: the whole control character is drawn with a Red background and Base text (other characters keep the Lavender background) (not a password) | input or panel filter | press `←` onto a `\x1b` |
+| input-50 | input §Pasted control characters | `Backspace` deletes a whole control character at once (not a password) | input or panel filter | with the cursor after a `\x1b`, press `Backspace` once |
 | input-51 | input §Pasted control characters | masked values stay masked (a password with pasted control characters draws only the mask) | password | paste text holding `\n` into a password |
 | input-52 | input §Pasted control characters | values the user did not type (the original name, a value from a file or another program, a value filled back from a list, a default from the start directory, a suggestion…) go through the same filter | input or panel filter | bring in an old value holding `\x1b`: it is drawn in red and refused on confirming; or read the code |
 | input-53 | input §Pasted control characters | a value that is used (submitted, saved, run, handed to another program) is refused on `Enter` while it holds a control character | input | paste several lines and press `Enter`; the popup stays open |
@@ -1020,7 +1087,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | input-61 | input §How a value shows in a form and a panel | the grey text of an empty value does not teach keys (e.g. no `enter to browse ~/.ssh`) | form or input | look at the text of every empty value |
 | input-62 | input §How a value shows in a form and a panel | a value too long is cut from the end, with `…` | form or input | fill in a very long value |
 | input-63 | input §How a value shows in a form and a panel | a path too long is cut from the start (`…/.ssh/id_ed25519`) | file-picker | fill in a very long path |
-| input-64 | input §How a value shows in a form and a panel | text and number show the value itself | text or number | look at the value in a form or on a panel |
+| input-64 | input §How a value shows in a form and a panel | a text shows the value itself; a number shows the value itself, with its unit after a space when it has one, written in full (`10 seconds`) | text or number | look at the value in a form or on a panel |
 | input-65 | input §How a value shows in a form and a panel | a set password is always 8 `•`; not set, it shows as an empty value | password | look at one password field that is set and one that is not |
 | input-66 | input §How a value shows in a form and a panel | a textarea shows the first line, with `…` when more follows | textarea | fill in several lines and look at the field |
 | input-67 | input §How a value shows in a form and a panel | a select shows the chosen option's text | select | look at the field |
@@ -1028,16 +1095,20 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | input-69 | input §How a value shows in a form and a panel | a reorder's value is the items in their current order joined with `, `, with `…` when too long | reorder | reorder the items and look at the field |
 | input-70 | input §How a value shows in a form and a panel | a radio or checkbox drawn in a form shows the options themselves | radio or checkbox | look at the form |
 | input-71 | input §How a value shows in a form and a panel | a date or datetime picker shows the formatted date (and time) | datetime picker | look at the field |
-| input-72 | input §How a value shows in a form and a panel | a color picker's value shows as a swatch 3 cells wide (`███`), a space, and the hex (`███ #2A2A3C`) | color picker | look at the field |
+| input-72 | input §How a value shows in a form and a panel | a color picker's value shows as a swatch 3 cells wide (`███`), a space, and the hex (`███ #2A2A3C`, the hex always in upper case) | color picker | look at the field |
 | input-73 | input §How a value shows in a form and a panel | a file-picker shows the path, the home directory written as `~` | file-picker | choose a file under the home directory and look at the field |
+| input-74 | input §A new value: the suggested value | with no old value and a value suggested by the app, the suggested value shows as a grey suggestion (its look, `Tab`, typing over it, `Backspace` and the hint all as with an old value) | text or number | open a field for something new that has a suggested value (an app with no suggested values never has this case) |
+| input-75 | input §A new value: the suggested value | with a suggested value, `Enter` with nothing touched uses it: written back and checked as usual (a field that may not be empty does not complain it is empty) | text or number | open a field with a suggested value and press `Enter` at once |
+| input-76 | input §How a value shows in a form and a panel | a value holding control characters shows them on forms and panels as on the typing row, as red escapes (`\n`, `\t`, `\x1b`), never dropped or turned into spaces | input | give a field a value holding a Tab or `\x1b` and look at it on the form or panel |
+| input-77 | input §The skeleton of a one-line input popup | the typing row's `nf-fa-angle_right` is followed by one space before the value | text or password or number | look between the typing row's glyph and the value |
 
 ## input/text
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| text-1 | text §Purpose | several lines of text use a textarea, not a text | textarea | find the fields that take several lines; they open a textarea |
-| text-2 | text §Purpose | a digits-only value uses a number, not a text | number | find fields such as a port or seconds; they open a number |
-| text-3 | text §Purpose | a value not shown (a password, a PIN, a passphrase) uses a password | password | find the password-like fields; they open a password |
+| text-1 | text §Purpose | several lines of text use a textarea, not a text | text or textarea | find the fields that take several lines; they open a textarea |
+| text-2 | text §Purpose | a digits-only value uses a number, not a text | text or number | find fields such as a port or seconds; they open a number |
+| text-3 | text §Purpose | a value not shown (a password, a PIN, a passphrase) uses a password | text or password | find the password-like fields; they open a password |
 
 ## input/password
 
@@ -1066,12 +1137,14 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | password-21 | password §Keys | the hint adds `Backspace:clear` | password | look at the hint on the bottom border |
 | password-22 | password §Keys | characters always go at the end | password | while typing, press `←` and type again; the character still goes at the end |
 | password-23 | password §Keys | `←\|→`, `Home\|End` and `Delete` do nothing | password | type, then press these keys |
+| password-24 | password §Look | the unlock option has no explanation row; the title says what to enter (e.g. `UNLOCK`, `CURRENT PIN`, `NEW PIN`, `CONFIRM PIN`) | password | open a box in the unlock option and look at the explanation row and the title (an app with no unlock option never has this case) |
+| password-25 | password §Look (diagram) | inside an unlock-option box: two blank rows, the typing row, a blank row, the error row, 7 rows with the frame | password | count the rows of an unlock-option box |
 
 ## input/number
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| number-1 | number §Purpose | a value with a small range, quicker to pick than to type, uses a slider, not a number | slider | find the number fields with a small range; they use a slider |
+| number-1 | number §Purpose | a value with a small range, quicker to pick than to type, uses a slider, not a number | number or slider | find the number fields with a small range; they use a slider |
 | number-2 | number §Look | the explanation row gives the range (e.g. `Port, 1-65535`) | number | look at the explanation row |
 | number-3 | number §Keys | only digits are taken as typed; other keys do nothing | number | type letters and symbols |
 | number-4 | number §Keys | `-` is taken only if the field allows negatives | number | type `-` in a field that does not allow negatives |
@@ -1079,6 +1152,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | number-6 | number §Keys | pasting keeps only the characters that are taken | number | paste `a1b2` |
 | number-7 | number §Keys | no `↑\|↓` stepping | number | press `↑` and `↓`; the value does not change |
 | number-8 | number §Value | a range mistake is written in the error row, naming the value (e.g. `Port must be 1-65535`) | number | type a number out of range and press `Enter` |
+| number-9 | number §Value | when the field may be empty, an empty value skips the range check and is saved empty | number | clear a number field that may be empty and press `Enter` (an app with no such field never has this case) |
+| number-10 | number §Look | with a unit, a unit row sits below the typing row: the word in full (`seconds`, not `s`), Overlay0, lined up with the value's first cell, not moving as you type | number | open a number field with a unit and type a few digits, watching the unit row (an app with no units never has this case) |
+| number-11 | number §Look | with a unit row, the width counts the unit row among the widest rows | number | measure the frame of a number field with a unit |
 
 ## input/select
 
@@ -1094,8 +1170,8 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| radio-1 | radio §Purpose | one of five options or fewer is drawn straight in the form or the panel (radio) | radio | find the single-choice fields with five options or fewer |
-| radio-2 | radio §Purpose | one of more than five options uses a select | radio | find the single-choice fields with more than five options |
+| radio-1 | radio §Purpose | one of five options or fewer is drawn straight in the form or the panel (radio) | radio or select | find the single-choice fields with five options or fewer |
+| radio-2 | radio §Purpose | one of more than five options uses a select | radio or select | find the single-choice fields with more than five options |
 | radio-3 | radio §Look | chosen `nf-md-radiobox_marked` (U+F043E), not chosen `nf-md-radiobox_blank` (U+F043D) | radio | look at the glyph before each option |
 | radio-4 | radio §Look | the chosen one's text is Green, the others Text | radio | look at the options' colours |
 | radio-5 | radio §Look | always down, one option a row | radio | look at how the options are laid out |
@@ -1112,9 +1188,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | checkbox-2 | checkbox §Purpose | more than five to tick open a checkbox popup | checkbox | find the multi-choice fields with more than five options |
 | checkbox-3 | checkbox §Look | ticked `nf-md-checkbox_marked` (U+F0132), not ticked `nf-md-checkbox_blank_outline` (U+F0131); the same in a form, on a panel and on every row of a checkbox popup | checkbox | look at the glyph before each option |
 | checkbox-4 | checkbox §Look | a ticked one's text is Green | checkbox | look at the colour of ticked options |
-| checkbox-5 | checkbox §Look | an option not available is drawn in its place, not hidden | checkbox | check that options not available are still in the list |
-| checkbox-6 | checkbox §Look | an option not available is Surface2 all along the row, the tick too (not Green even when ticked) | checkbox | look at options not available, ticked and not ticked |
-| checkbox-7 | checkbox §Look | under the cursor, an option not available is drawn as the cursor block, like any other row | checkbox | move onto an option not available |
+| checkbox-5 | checkbox §Look | an option not available is drawn in its place, not hidden (an option not available is not a disabled one) | checkbox | check that options not available are still in the list |
+| checkbox-6 | checkbox §Look | an option not available is Surface2 all along the row, the tick too (not Green even when ticked) (an option not available is not a disabled one) | checkbox | look at options not available, ticked and not ticked |
+| checkbox-7 | checkbox §Look | under the cursor, an option not available is drawn as the cursor block, like any other row (an option not available is not a disabled one) | checkbox | move onto an option not available |
 | checkbox-8 | checkbox §Look | the checkbox popup is the finder's skeleton, without a preview | checkbox | open a checkbox popup |
 | checkbox-9 | checkbox §Keys | in a form or a panel, `Enter` flips it in place; the focus stays | checkbox | press `Enter` on a checkbox |
 | checkbox-10 | checkbox §Keys | in a form or a panel, a flip takes effect at once | checkbox | flip it and look at the effect |
@@ -1124,19 +1200,21 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | checkbox-14 | checkbox §Keys | `Enter` writes back the whole set currently ticked at once and closes the popup; only then does it take effect | checkbox | tick two options and press `Enter` |
 | checkbox-15 | checkbox §Keys | opened on its own, it applies only on `Enter` | checkbox | look at what it applies to before and after `Enter` |
 | checkbox-16 | checkbox §Keys | `Esc` cancels: none of the ticks count, and the value stays as it was when opened | checkbox | change the ticks, press `Esc`, then open it again and look |
-| checkbox-17 | checkbox §Keys | the cursor stops on an option not available | checkbox | move past an option not available with `j\|k` |
-| checkbox-18 | checkbox §Keys | an option not available can still be ticked or unticked (`Space` in a popup, `Enter` in a form or a panel) | checkbox | flip an option not available |
-| checkbox-19 | checkbox §Keys | `Enter` in a popup writes back the ticks on screen, options not available included | checkbox | tick an option not available, press `Enter`, and look at the value |
-| checkbox-20 | checkbox §Keys | when filtering, options not available are listed in the results too | checkbox | type to filter down to an option not available |
+| checkbox-17 | checkbox §Keys | the cursor stops on an option not available (an option not available is not a disabled one) | checkbox | move past an option not available with `j\|k` |
+| checkbox-18 | checkbox §Keys | an option not available can still be ticked or unticked (`Space` in a popup, `Enter` in a form or a panel) (an option not available is not a disabled one) | checkbox | flip an option not available |
+| checkbox-19 | checkbox §Keys | `Enter` in a popup writes back the ticks on screen, options not available included (an option not available is not a disabled one) | checkbox | tick an option not available, press `Enter`, and look at the value |
+| checkbox-20 | checkbox §Keys | when filtering, options not available are listed in the results too (an option not available is not a disabled one) | checkbox | type to filter down to an option not available |
 | checkbox-21 | checkbox §Keys | the list's hint is `Enter:apply Space:toggle Tab\|/:filter Esc:cancel` | checkbox | look at the hint on the bottom border |
 | checkbox-22 | checkbox §Keys | filtered down to no results, `Enter` on the list still writes back the whole set ticked (ticks filtered out count too) | checkbox | tick two options, type until there are no results, go to the list and press `Enter`; both are written back |
 | checkbox-23 | checkbox §Keys | filtered down to no results, the list's hint drops `Space`: `Enter:apply Tab\|/:filter Esc:cancel` | checkbox | type until there are no results, go to the list and look at the bottom border |
+| checkbox-24 | checkbox §Keys | `Enter` in a checkbox popup with nothing changed: no change, and it closes | checkbox | Open a checkbox popup and press `Enter` without changing anything |
+| checkbox-25 | checkbox §Keys | On a one-value-per-row panel with the focus on a checkbox, the hint is `Enter:toggle` (`Space` on a panel opens the Space menu and does not flip it) | one value per row + checkbox | Look at the panel's bottom-border hint |
 
 ## input/slider
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| slider-1 | slider §Purpose | a value that needs an exact number typed uses a number, not a slider | slider | find the fields that need an exact number; they use a number |
+| slider-1 | slider §Purpose | a value that needs an exact number typed uses a number, not a slider | number or slider | find the fields that need an exact number; they use a number |
 | slider-2 | slider §Look | in a form or a panel, a slider is drawn as a track and the number | slider | look at the field |
 | slider-3 | slider §Look | the track is a heavy line `━` | slider | look at the track's character |
 | slider-4 | slider §Look | `●` is drawn where the value is (on the track, further right for a larger value) | slider | change the value and watch the `●` move |
@@ -1218,6 +1296,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | color-picker-25 | color-picker §Keys | `Enter` on `Choose`: confirms, writes back and closes | color picker | Press `Enter` on `Choose` |
 | color-picker-26 | color-picker §Keys | The hint on R, G, B is `Enter:edit Tab:actions Esc:cancel` | color picker | Look at the hint on the bottom border |
 | color-picker-27 | color-picker §Keys | The hint on `Choose` is `Enter:choose Tab:fields Esc:cancel` | color picker | Look at the hint on the bottom border |
+| color-picker-28 | color-picker §Look | With no value to begin with, old has no swatch and reads `none` (Overlay0); new starts at `#000000` | color picker | Open a colour field that is unset (an app whose colours are always set never has this case) |
+| color-picker-29 | color-picker §Keys | With no value to begin with, `Choose` always counts as a change: written back even when new is `#000000` | color picker | Open an unset colour field and press `Choose` without changing anything: the value becomes `#000000` |
+| color-picker-30 | color-picker §Value | Hex is always written in upper case, however the file stores it: in the color picker, on forms and on panels | color picker | Store a lower-case hex in the config file and look at the hex in the color picker and on the panel |
 
 ## input/datetime-picker
 
@@ -1284,32 +1365,32 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | finder-6 | finder §Look | The filtered count `matches/total` (`3/41`) sits on the right of the typing row | finder | Look after typing to filter |
 | finder-7 | finder §Look | The count is in Overlay0 | finder | With the focus on the typing row, look at the count's colour |
 | finder-8 | finder §Look (diagram) | The count is on the right, one cell from the border | finder | Look at the distance between the count and the right border |
-| finder-9 | finder §Look | A plain finder always has a preview | finder | Open a plain finder |
-| finder-10 | finder §Look | The preview follows the entry under the cursor | finder | Move the cursor; the preview changes |
-| finder-11 | finder §Look | When it previews something other than a file or a directory, there is no metadata | finder | Look at the preview box |
-| finder-12 | finder §Look | The list and the preview together take one popup's width (the maximum of Rules F7) | finder | Measure the width of the two boxes together |
-| finder-13 | finder §Look | Terminal width 96 or more: the list and the preview side by side, half each | finder | Open it at 96 columns or more |
-| finder-14 | finder §Look | Terminal width 96 or more, with metadata: the right box is "preview / separator / metadata" | finder | Open it at 96 columns or more |
-| finder-15 | finder §Look (diagram) | In the right box the preview takes the height left at the top; the separator and the four metadata rows are at the bottom | finder | Look at the order of the rows in the right box |
-| finder-16 | finder §Look | Under 96, with metadata: the top row is the list box and the metadata box, half each | finder | Open it at 80 columns |
-| finder-17 | finder §Look | Under 96, with metadata: below them the preview box takes the full width | finder | Open it at 80 columns |
-| finder-18 | finder §Look | Under 96, with metadata: top and bottom take half the height each | finder | Measure the heights of the top and bottom rows of boxes |
-| finder-19 | finder §Look | When the metadata has a box of its own, it is titled `INFO` | finder | Open it at 80 columns and look at the title |
-| finder-20 | finder §Look (diagram) | The `INFO` box's bottom border carries no text | finder | Open it at 80 columns and look at the bottom border of `INFO` |
-| finder-21 | finder §Look | At 80×24 the list shows 5 entries and the preview 7 rows | finder | Open it at 80×24 and count the rows |
-| finder-22 | finder §Look | Under 96, without metadata: stacked, the list on top and the preview below, half each | finder | Open it at 80 columns |
-| finder-23 | finder §Look (diagram) | One blank cell between the two boxes side by side | finder | Look between the two boxes |
-| finder-24 | finder §Look (diagram) | When the width does not split evenly side by side, the right box gets one cell more (96 wide: 46 + 1 + 47; 80 wide: 38 + 1 + 39) | finder | Measure the widths of the two boxes |
-| finder-25 | finder §Look (diagram) | No blank row between the top and bottom rows of stacked boxes | finder | Open it at 80 columns and look between top and bottom |
-| finder-26 | finder §Look | The preview box's title is the chosen entry's name (or where it is) | finder | Look at the preview box's title |
-| finder-27 | finder §Look | The preview takes no focus | finder | Press `Tab` back and forth; the focus never reaches the preview |
-| finder-28 | finder §Look | The preview box's border and title capsule are in the layer colour | finder | Look at the preview box's colours |
-| finder-29 | finder §Look | The preview's content is not dimmed | finder | Look at the preview's content with the focus on the typing row and on the list |
-| finder-30 | finder §Look | The preview box's bottom border carries no text (no hint, no scroll position) | finder | Look at the preview box's bottom border |
+| finder-9 | finder §Look | A plain finder always has a preview | finder with a preview | Open a plain finder |
+| finder-10 | finder §Look | The preview follows the entry under the cursor | finder with a preview | Move the cursor; the preview changes |
+| finder-11 | finder §Look | When it previews something other than a file or a directory, there is no metadata | finder with a preview | Look at the preview box |
+| finder-12 | finder §Look | The list and the preview together take one popup's width (the maximum of Rules F7) | finder with a preview | Measure the width of the two boxes together |
+| finder-13 | finder §Look | Terminal width 96 or more: the list and the preview side by side, half each | finder with a preview | Open it at 96 columns or more |
+| finder-14 | finder §Look | Terminal width 96 or more, with metadata: the right box is "preview / separator / metadata" | finder with a preview | Open it at 96 columns or more |
+| finder-15 | finder §Look (diagram) | In the right box the preview takes the height left at the top; the separator and the four metadata rows are at the bottom | finder with a preview | Look at the order of the rows in the right box |
+| finder-16 | finder §Look | Under 96, with metadata: the top row is the list box and the metadata box, half each | finder with a preview | Open it at 80 columns |
+| finder-17 | finder §Look | Under 96, with metadata: below them the preview box takes the full width | finder with a preview | Open it at 80 columns |
+| finder-18 | finder §Look | Under 96, with metadata: top and bottom take half the height each | finder with a preview | Measure the heights of the top and bottom rows of boxes |
+| finder-19 | finder §Look | When the metadata has a box of its own, it is titled `INFO` | finder with a preview | Open it at 80 columns and look at the title |
+| finder-20 | finder §Look (diagram) | The `INFO` box's bottom border carries no text | finder with a preview | Open it at 80 columns and look at the bottom border of `INFO` |
+| finder-21 | finder §Look | At 80×24 the list shows 5 entries and the preview 7 rows | finder with a preview | Open it at 80×24 and count the rows |
+| finder-22 | finder §Look | Under 96, without metadata: stacked, the list on top and the preview below, half each | finder with a preview | Open it at 80 columns |
+| finder-23 | finder §Look (diagram) | One blank cell between the two boxes side by side | finder with a preview | Look between the two boxes |
+| finder-24 | finder §Look (diagram) | When the width does not split evenly side by side, the right box gets one cell more (96 wide: 46 + 1 + 47; 80 wide: 38 + 1 + 39) | finder with a preview | Measure the widths of the two boxes |
+| finder-25 | finder §Look (diagram) | No blank row between the top and bottom rows of stacked boxes | finder with a preview | Open it at 80 columns and look between top and bottom |
+| finder-26 | finder §Look | The preview box's title is the chosen entry's name (or where it is) | finder with a preview | Look at the preview box's title |
+| finder-27 | finder §Look | The preview takes no focus | finder with a preview | Press `Tab` back and forth; the focus never reaches the preview |
+| finder-28 | finder §Look | The preview box's border and title capsule are in the layer colour | finder with a preview | Look at the preview box's colours |
+| finder-29 | finder §Look | The preview's content is not dimmed | finder with a preview | Look at the preview's content with the focus on the typing row and on the list |
+| finder-30 | finder §Look | The preview box's bottom border carries no text (no hint, no scroll position) | finder with a preview | Look at the preview box's bottom border |
 | finder-31 | finder §Look | Listed while searching: results are listed as they arrive | finder | Open it on a large search scope |
 | finder-32 | finder §Look | While it is still searching, a loading icon after the title | finder | Look at the title during a search |
 | finder-33 | finder §Look | While none has arrived it reads `(indexing…)` | finder | Look at the list just after opening |
-| finder-34 | finder §Look | A finder with a preview always takes the maximum height of Rules F7 (the screen height − 2); a short list leaves space below | finder | Measure the box's height when there are few results |
+| finder-34 | finder §Look | A finder with a preview always takes the maximum height of Rules F7 (the screen height − 2); a short list leaves space below | finder with a preview | Measure the box's height when there are few results |
 | finder-35 | finder §Markers in the list | Every row of a select starts with a radio glyph: chosen U+F043E, not chosen U+F043D | select | Look at the start of every row in the list |
 | finder-36 | finder §Markers in the list | The current value's text is in Green | select or checkbox | Look at the current value's row |
 | finder-37 | finder §Markers in the list | Every row's text lines up | select or checkbox | Look at the left edge of each row's text |
@@ -1318,14 +1399,14 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | finder-40 | finder §States | With the focus on the typing row, the typing row is drawn as an input's typing row: the value Lavender, with a cursor | finder | Look with the focus on the typing row |
 | finder-41 | finder §States | With the focus on the typing row, the list's cursor is the layer colour cursor, dimmed once more | finder | With the focus on the typing row, look at the list |
 | finder-42 | finder §States | With the focus on the list, the whole typing row is Overlay0 (the count included), with no cursor | finder | With the focus on the list, look at the typing row |
-| finder-43 | finder §Keys | A plain finder opens with the focus on the typing row | finder | Open a plain finder and type straight away; the text goes into the typing row |
+| finder-43 | finder §Keys | A plain finder opens with the focus on the typing row | finder with a preview | Open a plain finder and type straight away; the text goes into the typing row |
 | finder-44 | finder §Typing row | Typing filters the list at once | panel filter or finder | Type and look at the list |
 | finder-45 | finder §Typing row | On the typing row, `↑\|↓` move the cursor between results | panel filter or finder | Press `↓` on the typing row |
 | finder-46 | finder §Matching | Matching is case-insensitive | panel filter or finder | Type `READ`; `README` is found |
 | finder-47 | finder §Matching | What is typed must appear unbroken in the item (merely holding those letters in order does not count) | panel filter or finder | Type `prod`; `db-replica-tokyo-ap-northeast-1` is not in the results |
 | finder-48 | finder §Matching | Each word separated by spaces must appear, in any order | panel filter or finder | Type `me read` |
 | finder-49 | finder §Matching | The results keep the list's own order and are not reordered | panel filter or finder | Type, then check that the results are in the list's order |
-| finder-50 | finder §Matching | In the list's order, numbers sort by value (`9` before `10`), text as text | panel filter or finder | Look at the order of a list with numbers in it |
+| finder-50 | finder §Matching | In the list's order, numbers sort by value (`9` before `10`), text as text | panel filter or finder | Look at the order of a list with numbers in it (a list with no numbers never has this case) |
 | finder-51 | finder §List | `Enter` in the list: goes there (a select chooses, a checkbox popup applies, a file-picker chooses the file or goes into the directory) | finder | Press `Enter` in the list |
 | finder-52 | finder §List | With no results (a search still listing as it goes, before the first result arrives, included), `Enter` in the list does nothing (a checkbox popup excepted) | select or finder or file-picker | Type until there are no results, `Tab` to the list and press `Enter`; nothing happens |
 | finder-53 | finder §List | `Tab\|/` in the list: back to the typing row | finder | Press `Tab` and `/` in the list |
@@ -1334,6 +1415,10 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | finder-56 | finder §Hint | The list's hint is `Enter:<the verb for going there> Tab\|/:filter Esc:cancel` | finder | With the focus on the list, look at the bottom border |
 | finder-57 | finder §Hint | With no results (a search still listing as it goes, before the first result arrives, included), the typing row's hint drops `Enter`: `Tab:list Esc:cancel`, and puts it back once there are results | select or checkbox or finder or file-picker | Type until there are no results and look at the bottom border; delete text until there are results and look again |
 | finder-58 | finder §Hint | With no results, the list's hint drops `Enter`: `Tab\|/:filter Esc:cancel` | select or finder or file-picker | Type until there are no results, `Tab` to the list and look at the bottom border |
+| finder-59 | finder §Look | The typing row's `nf-fa-angle_right` is followed by one space before what is typed | finder | Type a few characters and look between the glyph and the text |
+| finder-60 | finder §Look | A select's and a checkbox popup's width follows its options (known when it opens); only a finder listing results as they come, waiting on a search, uses F7's limit | select or checkbox | Open a select and a checkbox popup on a very wide terminal and measure the frame |
+| finder-61 | finder §Matching | When searching takes time (reading every file, handing it to a search tool or a remote side), results are listed as they come: the loading icon after the title, results arriving one by one, the typing row taking keys as usual | finder | Keep typing in a slow search: typing does not stall and results keep arriving (an app whose searches are all quick never has this case) |
+| finder-62 | finder §Look | A preview starting at a given line (e.g. a file found by its content, shown from the line found): that line sits on the preview's third row, with two lines of context above, not otherwise marked; line numbers are the file's | finder with a preview | Find a file by its content and look at the preview (an app with no such preview never has this case) |
 
 ## input/file-picker
 
@@ -1356,53 +1441,53 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | file-picker-15 | file-picker §Look | An icon before every row: `nf-md-folder` (U+F024B) for directories, `nf-md-file` (U+F0214) for files | file-picker | Look at the start of every row in the list; read the code to check the code points |
 | file-picker-16 | file-picker §Look | When the field already has a value, the cursor opens on that file | file-picker | Open a field with a value |
 | file-picker-17 | file-picker §Look | The field's original value is in Green | file-picker | Open a field with a value, move the cursor away and look |
-| file-picker-18 | file-picker §The preview | At most 64 KB is read for the preview | finder or file-picker | Read the code; or preview a large file and look at its end |
-| file-picker-19 | file-picker §The preview | A directory is previewed as a tree | finder or file-picker | Move the cursor onto a directory |
-| file-picker-20 | file-picker §The preview | An archive (zip, tar, tar.gz, tar.bz2) shows its contents as a directory tree | finder or file-picker | Move the cursor onto an archive |
-| file-picker-21 | file-picker §The preview | A text file shows its content, with syntax colours (chroma's catppuccin-mocha, foreground only) | finder or file-picker | Move the cursor onto a source file |
-| file-picker-22 | file-picker §The preview | A text file has line numbers: Overlay0, right-aligned, one space after | finder or file-picker | Look at the left of a text file's preview |
-| file-picker-23 | file-picker §The preview | In a text file a Tab is drawn as `input_tab_width` spaces | finder or file-picker | Preview a file with Tabs in it |
-| file-picker-24 | file-picker §The preview | In a text file the `\r` of a CRLF is not drawn | finder or file-picker | Preview a file with CRLF line endings |
-| file-picker-25 | file-picker §The preview | In a text file any other control character is drawn by name in Red | finder or file-picker | Preview a file with `\x1b` in it |
-| file-picker-26 | file-picker §The preview | PDF: a grey first row with the page count (`12 pages`), a blank row, then the text of the first 20 pages (at most 128 KB) | finder or file-picker | Preview a PDF |
-| file-picker-27 | file-picker §The preview | A PDF with no extractable text reads `(no extractable text)` | finder or file-picker | Preview a scanned PDF |
-| file-picker-28 | file-picker §The preview | Image (png, jpg, gif, bmp, webp, tiff, ico, avif, heic): a grey first row `data:image/png · 12.4 KB`, a blank row, then the base64 data URI wrapped at the preview's width | finder or file-picker | Preview a small image |
-| file-picker-29 | file-picker §The preview | An image over 1 MB shows only `(1.4 MB — too large to inline as a data URI)` | finder or file-picker | Preview an image over 1 MB |
-| file-picker-30 | file-picker §The preview | Any other file is shown in hexadecimal: always 8 bytes a row, followed by ASCII (`89 50 4e 47 0d 0a 1a 0a  .PNG....`, 33 cells) | finder or file-picker | Preview a binary file, once side by side and once stacked |
-| file-picker-31 | file-picker §The preview | An unreadable file reads `(unreadable)` | finder or file-picker | Preview a file without read permission |
-| file-picker-32 | file-picker §The preview | A directory's tree has at most three levels | finder or file-picker | Preview a deep directory |
-| file-picker-33 | file-picker §The preview | The tree's first level has no branches; from the second on, `├─`, `└─` and `│` join them | finder or file-picker | Look at the tree |
-| file-picker-34 | file-picker §The preview | The branches are in Overlay0 | finder or file-picker | Look at the branches' colour |
-| file-picker-35 | file-picker §The preview (diagram) | The second level's branches start at the column of the first level's names (indented 2 cells); each level deeper is indented 3 cells more (`│  ` or 3 blank cells) | finder or file-picker | Look at a three-level tree |
-| file-picker-36 | file-picker §The preview (diagram) | One space after a branch, then the icon | finder or file-picker | Look between a branch and its icon |
-| file-picker-37 | file-picker §The preview | Each entry in the tree has the same icon, colour and order as in the list | finder or file-picker | Compare the tree with the list after going in |
-| file-picker-38 | file-picker §The preview | The tree does not list hidden files | finder or file-picker | Preview a directory with hidden files |
-| file-picker-39 | file-picker §The preview | The tree cannot scroll: it is drawn until the preview area is full, with `…` on the last row | finder or file-picker | Preview a large directory |
-| file-picker-40 | file-picker §The preview | An empty directory reads `(empty)`, in grey | finder or file-picker | Preview an empty directory |
-| file-picker-41 | file-picker §The preview | An unreadable directory reads `(permission denied)`, in grey | finder or file-picker | Preview a directory without read permission |
-| file-picker-42 | file-picker §The preview | A subdirectory is expanded to the bottom before the next one | finder or file-picker | Preview a directory with several subdirectories |
-| file-picker-43 | file-picker §Metadata | Always four rows (`TYPE`, `SIZE`, `MODIFIED`, `MODE`), for files and directories alike | finder or file-picker | Move between files and directories; the preview area's height does not jump |
-| file-picker-44 | file-picker §Metadata | Labels in uppercase and the layer colour | finder or file-picker | Look at the labels |
-| file-picker-45 | file-picker §Metadata | Values in Text | finder or file-picker | Look at the values' colour |
-| file-picker-46 | file-picker §Metadata | The label column is as wide as the longest label, two cells before the value | finder or file-picker | Look at the values' left edge |
-| file-picker-47 | file-picker §Metadata | A file's `TYPE` is the preview's kind: `text`, `private key`, `image`, `PDF`, `archive`, `binary` | finder or file-picker | Look at one file of each kind |
-| file-picker-48 | file-picker §Metadata | A symlink's `TYPE` is `link → <target>` | finder or file-picker | Move the cursor onto a symlink |
-| file-picker-49 | file-picker §Metadata | A directory's `TYPE` is `directory` | finder or file-picker | Move the cursor onto a directory |
-| file-picker-50 | file-picker §Metadata | A file's `SIZE` reads `411 B`, `4.2 KB`, `3.4 MB` (powers of 1024, one decimal) | finder or file-picker | Look at a few files of different sizes |
-| file-picker-51 | file-picker §Metadata | A directory's `SIZE` reads `12 items` (hidden files not counted) | finder or file-picker | Look at a directory with hidden files |
-| file-picker-52 | file-picker §Metadata | `MODIFIED` reads `2026-09-30 14:02` (local time, to the minute) | finder or file-picker | Compare with `ls -l` |
-| file-picker-53 | file-picker §Metadata | `MODE` is written as `ls -l` does (`-rw-------`, `drwx------`) | finder or file-picker | Compare with `ls -l` |
-| file-picker-54 | file-picker §Metadata | A file whose first line is a private key's header has the `TYPE` `private key`, whether `hide_secrets_in_preview` is on or not | finder or file-picker | Look at a private key with the setting on and with it off |
-| file-picker-55 | file-picker §Metadata | A symlink's `SIZE`, `MODIFIED` and `MODE` are the target's | finder or file-picker | Look at a link such as `/etc/localtime` |
-| file-picker-56 | file-picker §Metadata | An unreadable directory's `SIZE` is `—`; the time modified and the permissions are written as usual | finder or file-picker | Look at a directory without read permission |
-| file-picker-57 | file-picker §Metadata | A broken link's `SIZE`, `MODIFIED` and `MODE` are `—` | finder or file-picker | Look at a broken link |
-| file-picker-58 | file-picker §Metadata | When a value cannot be read, the four rows stay: no row is left out, and it is not written as `0 items` | finder or file-picker | Look at a broken link and an unreadable directory |
-| file-picker-59 | file-picker §Metadata | No path, owner, or access and creation times | finder or file-picker | Check that the metadata has only four rows |
-| file-picker-60 | file-picker §Hiding secrets | When it is on, a file whose first line is a private key's header (starting with `-----BEGIN` and containing `PRIVATE KEY`, or starting with `PuTTY-User-Key-File-`) shows only its first line, then the grey line `(sensitive content not shown)` | finder or file-picker | With the setting on, preview a renamed private key |
-| file-picker-61 | file-picker §Hiding secrets | When it is on, a file readable by its owner only (no read permission for group or other) shows not a single line, only that grey line, whatever its kind | finder or file-picker | With the setting on, preview a `600` text file |
-| file-picker-62 | file-picker §Hiding secrets | Directories do not count (a `700` directory is previewed as usual) | finder or file-picker | With the setting on, preview `~/.ssh` |
-| file-picker-63 | file-picker §Hiding secrets | Any other file is previewed as usual | finder or file-picker | With the setting on, preview a `644` text file |
-| file-picker-64 | file-picker §Hiding secrets | The metadata shows as usual either way | finder or file-picker | With the setting on, look at a private key's metadata |
+| file-picker-18 | file-picker §The preview | At most 64 KB is read for the preview | file preview | Read the code; or preview a large file and look at its end |
+| file-picker-19 | file-picker §The preview | A directory is previewed as a tree | file preview | Move the cursor onto a directory |
+| file-picker-20 | file-picker §The preview | An archive (zip, tar, tar.gz, tar.bz2) shows its contents as a directory tree | file preview | Move the cursor onto an archive |
+| file-picker-21 | file-picker §The preview | A text file shows its content, with syntax colours (chroma's catppuccin-mocha, foreground only) | file preview | Move the cursor onto a source file |
+| file-picker-22 | file-picker §The preview | A text file has line numbers: Overlay0, right-aligned, one space after | file preview | Look at the left of a text file's preview |
+| file-picker-23 | file-picker §The preview | In a text file a Tab is drawn as `input_tab_width` spaces | file preview | Preview a file with Tabs in it |
+| file-picker-24 | file-picker §The preview | In a text file the `\r` of a CRLF is not drawn | file preview | Preview a file with CRLF line endings |
+| file-picker-25 | file-picker §The preview | In a text file any other control character is drawn by name in Red | file preview | Preview a file with `\x1b` in it |
+| file-picker-26 | file-picker §The preview | PDF: a grey first row with the page count (`12 pages`), a blank row, then the text of the first 20 pages (at most 128 KB) | file preview | Preview a PDF |
+| file-picker-27 | file-picker §The preview | A PDF with no extractable text reads `(no extractable text)` | file preview | Preview a scanned PDF |
+| file-picker-28 | file-picker §The preview | Image (png, jpg, gif, bmp, webp, tiff, ico, avif, heic): a grey first row `data:image/png · 12.4 KB`, a blank row, then the base64 data URI wrapped at the preview's width | file preview | Preview a small image |
+| file-picker-29 | file-picker §The preview | An image over 1 MB shows only `(1.4 MB — too large to inline as a data URI)` | file preview | Preview an image over 1 MB |
+| file-picker-30 | file-picker §The preview | Any other file is shown in hexadecimal: always 8 bytes a row, followed by ASCII (`89 50 4e 47 0d 0a 1a 0a  .PNG....`, 33 cells) | file preview | Preview a binary file, once side by side and once stacked |
+| file-picker-31 | file-picker §The preview | An unreadable file reads `(unreadable)` | file preview | Preview a file without read permission |
+| file-picker-32 | file-picker §The preview | A directory's tree has at most three levels | file preview | Preview a deep directory |
+| file-picker-33 | file-picker §The preview | The tree's first level has no branches; from the second on, `├─`, `└─` and `│` join them | file preview | Look at the tree |
+| file-picker-34 | file-picker §The preview | The branches are in Overlay0 | file preview | Look at the branches' colour |
+| file-picker-35 | file-picker §The preview (diagram) | The second level's branches start at the column of the first level's names (indented 2 cells); each level deeper is indented 3 cells more (`│  ` or 3 blank cells) | file preview | Look at a three-level tree |
+| file-picker-36 | file-picker §The preview (diagram) | One space after a branch, then the icon | file preview | Look between a branch and its icon |
+| file-picker-37 | file-picker §The preview | Each entry in the tree has the same icon, colour and order as in the list | file preview | Compare the tree with the list after going in |
+| file-picker-38 | file-picker §The preview | The tree does not list hidden files | file preview | Preview a directory with hidden files |
+| file-picker-39 | file-picker §The preview | The tree cannot scroll: it is drawn until the preview area is full, with `…` on the last row | file preview | Preview a large directory |
+| file-picker-40 | file-picker §The preview | An empty directory reads `(empty)`, in grey | file preview | Preview an empty directory |
+| file-picker-41 | file-picker §The preview | An unreadable directory reads `(permission denied)`, in grey | file preview | Preview a directory without read permission |
+| file-picker-42 | file-picker §The preview | A subdirectory is expanded to the bottom before the next one | file preview | Preview a directory with several subdirectories |
+| file-picker-43 | file-picker §Metadata | Always four rows (`TYPE`, `SIZE`, `MODIFIED`, `MODE`), for files and directories alike | file preview | Move between files and directories; the preview area's height does not jump |
+| file-picker-44 | file-picker §Metadata | Labels in uppercase and the layer colour | file preview | Look at the labels |
+| file-picker-45 | file-picker §Metadata | Values in Text | file preview | Look at the values' colour |
+| file-picker-46 | file-picker §Metadata | The label column is as wide as the longest label, two cells before the value | file preview | Look at the values' left edge |
+| file-picker-47 | file-picker §Metadata | A file's `TYPE` is the preview's kind: `text`, `private key`, `image`, `PDF`, `archive`, `binary` | file preview | Look at one file of each kind |
+| file-picker-48 | file-picker §Metadata | A symlink's `TYPE` is `link → <target>` | file preview | Move the cursor onto a symlink |
+| file-picker-49 | file-picker §Metadata | A directory's `TYPE` is `directory` | file preview | Move the cursor onto a directory |
+| file-picker-50 | file-picker §Metadata | A file's `SIZE` reads `411 B`, `4.2 KB`, `3.4 MB` (powers of 1024, one decimal) | file preview | Look at a few files of different sizes |
+| file-picker-51 | file-picker §Metadata | A directory's `SIZE` reads `12 items`, and `1 item` for one (hidden files not counted) | file preview | Look at a directory with hidden files and one with a single item |
+| file-picker-52 | file-picker §Metadata | `MODIFIED` reads `2026-09-30 14:02` (local time, to the minute) | file preview | Compare with `ls -l` |
+| file-picker-53 | file-picker §Metadata | `MODE` is written as `ls -l` does (`-rw-------`, `drwx------`) | file preview | Compare with `ls -l` |
+| file-picker-54 | file-picker §Metadata | A file whose first line is a private key's header has the `TYPE` `private key`, whether `hide_secrets_in_preview` is on or not | file preview | Look at a private key with the setting on and with it off |
+| file-picker-55 | file-picker §Metadata | A symlink's `SIZE`, `MODIFIED` and `MODE` are the target's | file preview | Look at a link such as `/etc/localtime` |
+| file-picker-56 | file-picker §Metadata | An unreadable directory's `SIZE` is `—`; the time modified and the permissions are written as usual | file preview | Look at a directory without read permission |
+| file-picker-57 | file-picker §Metadata | A broken link's `SIZE`, `MODIFIED` and `MODE` are `—` | file preview | Look at a broken link |
+| file-picker-58 | file-picker §Metadata | When a value cannot be read, the four rows stay: no row is left out, and it is not written as `0 items` | file preview | Look at a broken link and an unreadable directory |
+| file-picker-59 | file-picker §Metadata | No path, owner, or access and creation times | file preview | Check that the metadata has only four rows |
+| file-picker-60 | file-picker §Hiding secrets | When it is on, a file whose first line is a private key's header (starting with `-----BEGIN` and containing `PRIVATE KEY`, or starting with `PuTTY-User-Key-File-`) shows only its first line, then the grey line `(sensitive content not shown)` | file preview | With the setting on, preview a renamed private key |
+| file-picker-61 | file-picker §Hiding secrets | When it is on, a file readable by its owner only (no read permission for group or other) shows not a single line, only that grey line, whatever its kind | file preview | With the setting on, preview a `600` text file |
+| file-picker-62 | file-picker §Hiding secrets | Directories do not count (a `700` directory is previewed as usual) | file preview | With the setting on, preview `~/.ssh` |
+| file-picker-63 | file-picker §Hiding secrets | Any other file is previewed as usual | file preview | With the setting on, preview a `644` text file |
+| file-picker-64 | file-picker §Hiding secrets | The metadata shows as usual either way | file preview | With the setting on, look at a private key's metadata |
 | file-picker-65 | file-picker §Keys | `Enter` in the list on a directory: goes in | file-picker | Press `Enter` on a directory |
 | file-picker-66 | file-picker §Keys | Going into a directory clears the typed filter | file-picker | Filter, then press `Enter` on a directory |
 | file-picker-67 | file-picker §Keys | After going into a directory, the focus stays on the list and the cursor rests on the first item below `..` | file-picker | Look at the cursor after going into a directory |
@@ -1429,6 +1514,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | file-picker-88 | file-picker §Choosing a directory | While the typing row holds a filter or a wildcard, there is no `.` row | file-picker | Type a filter and look at the list |
 | file-picker-89 | file-picker §Choosing a directory | Wildcard results list directories only | file-picker | Type `~/*` |
 | file-picker-90 | file-picker §Choosing a directory | The hint on `.` is `Enter:choose Tab\|/:filter Esc:cancel` | file-picker | With the cursor on `.`, look at the bottom border |
+| file-picker-91 | file-picker §Metadata | A file gone after being listed (deleted, moved), writes `—` in every row it cannot get | file preview | Delete a file elsewhere after it is listed, move the cursor to it and look at the metadata |
 
 ## input/reorder
 
@@ -1449,7 +1535,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | reorder-13 | reorder §Keys | `Esc` on the discard confirm: closes the confirm and returns to the list, the order still there | reorder | Press `Esc` on the confirm |
 | reorder-14 | reorder §Keys | "Changed": an item dropped somewhere other than where it was picked up, never cleared after that (moving one away and back still counts) | reorder | Move an item away and back, then press `Esc`; it still asks first |
 | reorder-15 | reorder §Keys | Holding nothing, the hint is `Enter:apply D:drag Esc:cancel` | reorder | Look at the hint on the bottom border |
-| reorder-16 | reorder §Keys | While holding, `j\|k` swap the item with the next or the previous one, the cursor going with it | reorder | Press `k` while holding |
+| reorder-16 | reorder §Keys | While holding, `j\|l` swap the item with the next one and `h\|k` with the previous one, the cursor going with it | reorder | Press `k` and `l` while holding |
 | reorder-17 | reorder §Keys | `Enter` while holding: drops it and leaves the Drag mode; the cursor stays on it | reorder | Press `Enter` while holding |
 | reorder-18 | reorder §Keys | `Esc` while holding: puts it back where it was picked up and leaves the Drag mode (the popup does not close) | reorder | While holding, move it two places, then press `Esc` |
 | reorder-19 | reorder §Keys | While holding, other keys do nothing: `Space` opens no menu; `D` is not an alias for dropping | reorder | Press `Space` and `D` while holding |
@@ -1469,9 +1555,9 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | project-8 | project §Template files | With a Windows build, `windows-latest` is added to the test matrix of `release.yml` | Windows build | Read the file: the matrix in `.github/workflows/release.yml` |
 | project-9 | project §Template files | With a Windows build, the comments marked `Windows` in `.goreleaser.yaml` are all opened | Windows build | Read the file: `.goreleaser.yaml` |
 | project-10 | project §Template files | With a Windows build, `WINDOWS` in `install.sh` is set to `yes` (as the template's comment says) | Windows build | Read the file: `WINDOWS` in `install.sh` |
-| project-11 | project §Directories | Go code lives only in `cmd/<app>/` and `internal/` | everyone | Read the files: every `.go` file is under these two directories |
+| project-11 | project §Directories | The app's own Go code lives only in `cmd/<app>/` and `internal/`; development tools may go in a top-level `tools/` | everyone | Read the files: every `.go` file outside `tools/` is under these two directories |
 | project-12 | project §Directories (diagram) | The main package is in `cmd/<app>/main.go` | everyone | Read the files |
-| project-13 | project §Directories | `go install github.com/vulcanshen/<app>/cmd/<app>@latest` installs it | everyone | Read the files: the module in `go.mod` is `github.com/vulcanshen/<app>`, and `cmd/<app>` is the main package |
+| project-13 | project §Directories | `go install github.com/<account>/<app>/cmd/<app>@latest` installs it (a family member's account is `vulcanshen`, an app made by tdp uses its own) | everyone | Read the files: the module in `go.mod` is `github.com/<account>/<app>`, and `cmd/<app>` is the main package |
 | project-14 | project §Directories (diagram) | The README's demo gif is in `docs/` | everyone | Read the files: the gif the README refers to is under `docs/` |
 | project-15 | project §Directories (diagram) | `go.mod` and `go.sum` are at the root | everyone | Read the files |
 | project-16 | project §Directories (diagram) | `LICENSE` is at the root | everyone | Read the files |
@@ -1479,7 +1565,7 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | project-18 | project §Directories | The family mark's original is `docs/icon.svg`; the copy the splash uses lives in the code (a copy of the file under `internal/`, or the cells written out) | everyone | Read the files: `docs/icon.svg` exists; read the code: the splash draws the copy under `internal/` or the cells written out |
 | project-19 | project §Directories | An app with a Windows build also has `install.ps1` and `uninstall.ps1` | Windows build | Read the files |
 | project-20 | project §Version | `<app> version` and the splash's version print `Display()` of `internal/version` | everyone | Read the code: both places call `Display()` |
-| project-21 | project §Version | A release's version is the tag injected without its v, and printed with the v (e.g. tag `v0.2.0` prints `v0.2.0`) | everyone | Install a release and run `<app> version`; it prints the same as the tag |
+| project-21 | project §Version | A release's version is the tag injected without its v, and printed with the v (e.g. tag `v0.2.0` prints `v0.2.0`) | everyone | Read the files: `.goreleaser.yaml` injects the tag without its v and `internal/version` prints it with the v; for an app that has released, install a release and run `<app> version`: it prints the same as the tag |
 | project-22 | project §Version | A local `make build` or `go build` injects no version; the version is `dev` | everyone | After a local `make build`, run `./<app> version`; it prints `dev` |
 | project-23 | project §Makefile | `Makefile` only sets variables and does `include family.mk`; the app's own targets all go in the last section, `##@ <app> 自己的` | everyone | Read the file; run `make help`: the family's sections in family.mk's order, the app's own section last |
 | project-24 | project §Makefile | The variables are set before `include family.mk` | everyone | Read the file |
@@ -1487,11 +1573,11 @@ The items of tdp v0.7.4. What each column means, what an item applies to and the
 | project-26 | project §Makefile | The two comment lines at the start of the Makefile are the template's (`<app> — build / run / test / package（家族共用的 target 在 family.mk）` and 「跑 make（或 make help）列出所有指令。」) | everyone | Read the start of the file |
 | project-27 | project §Makefile | The app's own targets have names that are not family.mk's | everyone | Read the files: compare the target names on both sides |
 | project-28 | project §CHANGELOG | `CHANGELOG.md` starts as in the template: `# Changelog`, then `Each release names the version of terminu design (tdp) it follows.` | everyone | Read the start of the file |
-| project-29 | project §CHANGELOG | Each release's heading is the tag pushed (with its v), then ` — tdp <version>` | everyone | Read the file: the heading of every release made after tdp v0.7.0 |
+| project-29 | project §CHANGELOG | Each release's heading is the tag pushed (with its v), then ` — tdp <version>` | has released | Read the file: the heading of every release made after tdp v0.7.0 |
 | project-30 | project §CHANGELOG | Changes not yet released are written in `## Unreleased` at the top | everyone | Read the file and the commits after the latest tag: every change is recorded in `## Unreleased` at the top |
-| project-31 | project §CHANGELOG | Releases made before tdp v0.7.0 keep the headings they were written with | everyone | Read the file: in `git log -p CHANGELOG.md`, the old releases' headings have not been rewritten |
+| project-31 | project §CHANGELOG | Releases made before tdp v0.7.0 keep the headings they were written with | has released | Read the file: in `git log -p CHANGELOG.md`, the old releases' headings have not been rewritten |
 | project-32 | project §CHANGELOG | The CHANGELOG is written in English | everyone | Read the file |
-| project-33 | project §CHANGELOG | A GitHub release's notes are that release's section of the CHANGELOG | everyone | Compare `gh release view <tag>` with that section of the CHANGELOG |
-| project-34 | project §Release | A release's tag is `vX.Y.Z` | everyone | Run `git tag` |
-| project-35 | project §Release | `make check` passes on the release's commit | everyone | Check out the latest tag and run `make check` |
+| project-33 | project §CHANGELOG | A GitHub release's notes are that release's section of the CHANGELOG | has released | Compare `gh release view <tag>` with that section of the CHANGELOG |
+| project-34 | project §Release | A release's tag is `vX.Y.Z` | has released | Run `git tag` |
+| project-35 | project §Release | `make check` passes on the repo as it is now | everyone | Run `make check` on the repo as it is now |
 | project-36 | project §Release | A release with a Windows build also pushes to the scoop bucket | Windows build | Check that the scoop bucket has this release |

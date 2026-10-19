@@ -102,7 +102,7 @@ value (as in the one-value panel of [`layout/panel`](../layout/panel.md)).
 | Label | File | Directory |
 |---|---|---|
 | `TYPE` | the preview's kind: `text`, `private key`, `image`, `PDF`, `archive`, `binary`; a symlink is `link → <target>` | `directory` |
-| `SIZE` | `411 B`, `4.2 KB`, `3.4 MB` (powers of 1024, one decimal) | `12 items` (as in the list, hidden files not counted) |
+| `SIZE` | `411 B`, `4.2 KB`, `3.4 MB` (powers of 1024, one decimal) | `12 items`, `1 item` for one (as in the list, hidden files not counted) |
 | `MODIFIED` | `2026-09-30 14:02` (local time, to the minute) | the same |
 | `MODE` | written as `ls -l` does: `-rw-------` | `drwx------` |
 
@@ -112,7 +112,8 @@ value (as in the one-value panel of [`layout/panel`](../layout/panel.md)).
   and its `MODE` is the permission that actually applies. E.g. `/etc/localtime` reads `761 B` and `-rw-r--r--`, not the
   link's own `37 B` and `lrwxr-xr-x` (as `ls -l` writes them). That it is a link, and to where, `TYPE` already says.
 - **A value that cannot be read is `—`**: the `SIZE` of an unreadable directory (its items cannot be counted; the time
-  and permissions are written as usual); the `SIZE`, `MODIFIED` and `MODE` of a broken link. The four rows stay — no
+  and permissions are written as usual); the `SIZE`, `MODIFIED` and `MODE` of a broken link; every row that cannot be
+  read of a file gone since it was listed (deleted, moved). The four rows stay — no
   row is left out, and no `0 items`, which would read as empty.
 - No path (the title and the list already have it), owner, or access and creation times: choosing a file does not need
   them.

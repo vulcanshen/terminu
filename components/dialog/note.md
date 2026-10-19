@@ -5,8 +5,9 @@
 ## Purpose
 
 Read-only content that scrolls and may have hotkeys and modes of its own (Rules F1): the key reference, viewers (a YAML
-view, the App Log, a file's content), the error popup, the typing explanation on a form ([`dialog/form`](form.md)). With
-a list of options to run with `Enter`, it is a menu, not a note.
+view, the App Log, a file's content), the error popup, the typing explanation on a form ([`dialog/form`](form.md)). A
+viewer always has a selection mode (see "Selection mode" below). With a list of options to run with `Enter`, it is a
+menu, not a note.
 
 ## Look
 
@@ -20,9 +21,16 @@ a list of options to run with `Enter`, it is a menu, not a note.
   wrapped row of line 6 and the bottom row is line 10: `6-10 of 42`).
 - **Width**: notes whose content is known when they open (the key reference, the error popup, explanations) follow the
   content; a viewer's content width is not known, so it takes the Rules F7 cap.
-- **A viewer's wrapping**: a line wider than the frame continues on the next row, as in [the components'
-  "Wrapping"](../README.md): breaking between words, and only a word wider than a row on its own is cut by cells.
-- **A viewer's line numbers**: a viewer (YAML view, App Log, file content) has line numbers on the left, as in
+- **Wrapping when too long**: a note that is a piece of prose, such as the error popup or a form's typing explanation,
+  wraps when it does not fit, as in [the components' "Wrapping"](../README.md), and is never cut. The key reference's
+  descriptions are the exception, below.
+- **A viewer's wrapping**: wrapping by default — a line wider than the frame continues on the next row, as in [the
+  components' "Wrapping"](../README.md): breaking between words, and only a word wider than a row on its own is cut by
+  cells. For content that must stay aligned (side by side, a table), the app may turn wrapping off: what is wider than
+  the frame is cut, with `…` at the end of the line.
+- **A viewer's line numbers**: whether a viewer draws line numbers on the left is up to the app: content where a line
+  is a line, such as file content, a YAML view or the App Log, usually has them; a table the app lays out itself (e.g.
+  filu's file info) gains nothing from them and may go without. When drawn they follow
   [`input/textarea`](../input/textarea.md): the first row of each line carries its number, right-aligned, with a space
   after it; a wrapped row leaves the gutter blank. Numbers are Overlay0; in the selection mode the cursor's line has its
   number in Text. Copying leaves the numbers out. The gutter is **at least three digits**: where the line count is known
@@ -45,6 +53,9 @@ a list of options to run with `Enter`, it is a menu, not a note.
   drawn by name in Red (`\r`, `\x07`, as in "Pasted control characters" in [`input/README`](../input/README.md)). Copying
   takes the original characters, not the spaces or names drawn. A viewer is for reading: a red `\r` on every line of a
   CRLF file is only noise, and Red is what tells a control character from the four characters `\x07` written in a file.
+- **A viewer's search** (where it has `/`): every hit is underlined, keeping its own colour; the current one is drawn as
+  the cursor block (layer colour background, bold Base, the cursor in [`color`](../color.md)), saying "you are here". No
+  colour is added: the mode colour Yellow is kept for the selection mode's range.
 
 ```
 ┃   1 apiVersion: v1                            ┃   ← a three-digit gutter (this YAML has 42 lines); numbers in Overlay0
@@ -75,6 +86,8 @@ a file looks the same in the preview and in a viewer.
 - **Closed with `Esc` only**. `Enter` does not close it; nor does `Space` (Rules K5).
 - **The exceptions**: the error popup (whether it popped up by itself or was opened with `Enter` on a form's error row)
   and the typing explanation on a form close on `Enter` too; the key reference also closes on a second `?` (Rules K6).
+- **A form's typing explanation takes only `Enter` and `Esc`**: every other typeable character (`q` and `?` included)
+  does nothing — no quitting, no key reference (typing on a field in [`dialog/form`](form.md)).
 - **Hint**: the note's own hotkeys first, `Esc:close` last. E.g. `y:copy /:search v:visual Esc:close`.
 
 **Why**: for a note the user opened, `Esc` after reading is the most natural; `Space` pages down in readers such as
@@ -87,8 +100,8 @@ the message, `Enter` back, `e` to the field, `Enter` to change it).
 
 ## Selection mode (viewers only)
 
-A viewer (a YAML view, the App Log, a file's content) can select a stretch of text to copy; the key reference, the error
-popup and a form's typing explanation have no such mode, and `j|k` only scroll there.
+Every viewer (a YAML view, the App Log, a file's content…) has a selection mode, to select a stretch of text and copy
+it; the key reference, the error popup and a form's typing explanation have no such mode, and `j|k` only scroll there.
 
 - **No cursor by default**: `j|k`, `u|d`, `gg|G` scroll; with tabs, `h|l` switch tabs (Rules K12).
 - **The first `v`**: enters the selection mode (a mode, Rules K11: the frame and the mode name turn the mode colour
@@ -97,7 +110,8 @@ popup and a form's typing explanation have no such mode, and `j|k` only scroll t
 - **The second `v`**: starts the selection where the cursor is; moving the cursor then stretches it. The selection runs
   by characters (vim's `v`): from the start to the cursor, the cursor's character included; for whole lines, move the
   cursor to the start of the line first. Hint `y:copy Esc:cancel`. Once selecting, `v` does nothing.
-- **`y`**: copies the selection and leaves the mode; the selection and the cursor disappear.
+- **`y`**: copies the selection and leaves the mode; the selection and the cursor disappear, and a Success toast says
+  it is copied ([`dialog/toast`](toast.md)).
 - **`Esc`**: leaves the whole mode at either step without copying; the selection and the cursor disappear (K11: back
   to the state before it was entered). `v` is not taken as an alias for leaving (K12).
 - **Colours**: the cursor is one cell of the layer colour background with Base text (the same as Move in
@@ -110,7 +124,8 @@ popup and a form's typing explanation have no such mode, and `j|k` only scroll t
 start, and with selection starting on the first `v`, the start would always be the first visible line. With no cursor
 by default, `j|k` still scroll and `h|l` still switch tabs, and a note read and closed carries no cursor it never uses.
 By characters: what is copied out of a note is often a word, a command or a URL. Copying usually finishes the job, so it
-takes no extra `Esc`.
+takes no extra `Esc`. Every viewer has it: nobody has to remember which viewers can select and which cannot, and any
+stretch of text you can see in the family can be copied.
 
 ## Key reference
 
@@ -149,15 +164,24 @@ The "what keys work here" opened with `?` (Rules K6, M4).
 - **Rows from a menu**: the description reads `label — description`; the label loses its hotkey marks and keeps its case
   (a menu's `[E]dit` becomes `Edit — change this host`).
 - **Sections**: section titles as in a menu (`nf-md-hexagon`, uppercase, Overlay0, indented one cell, not bold). On a panel they are, in order:
+  - `what each row is` (optional, only on a panel of one value per row): see "Each row" below.
   - `item operation`, `panel operation`: as in the Space menu.
-  - `move`: the movement keys that work here (Rules K12), only those that really do (e.g. `h|l` only with tabs).
+  - `move`: the movement keys that work here (Rules K12), only those that really do (e.g. `h|l` to switch tabs only
+    with tabs). A one-dimensional list (a form, a one-value-per-row panel without tabs, a menu) shows `h|k` going back
+    and `j|l` going on. Nothing is listed when there is nothing to act on (Rules M6): no movement keys on an empty list,
+    no scrolling keys when the content fits.
   - `core keys`: the core keys that work on this panel — `Space`, `?`, `Tab`, `1–N` (with several panels, Rules K1),
     `q|Ctrl-C`; `Esc` only where it does something here (e.g. a filter to clear); `Enter` is not repeated, since
     `item operation` already says what it does here.
-  - `app-wide`: the global hotkeys.
+  - `app-wide`: the global hotkeys. Quitting's `q` is already listed in `core keys` and is not repeated here (as with
+    `Enter`).
   - A section about **another surface** (Rules M6; e.g. the keys inside a PTY in the panel, titled `terminal`): last,
     after `app-wide`. The sections before it come in the same order on every panel, so `core keys` and `app-wide` stay
     where they are with or without it; users read "what can be pressed here" first, then "once inside".
+- **Each row** (a panel of one value per row, optional): the key reference may start with a section saying what each
+  row of the panel means. The left column is the setting's name in the plain text colour (Text, not the keys' Blue: it
+  is not a key), the right column the explanation; the sections of keys come after it. Whether to have it is up to the
+  app.
 - **On a popup** only that popup's own keys are listed (Rules K6): its hotkeys, `Enter`, `Esc`, the movement keys.
 - **Colours**: keys in Blue, not bold; descriptions in Text. A key that cannot be pressed right now has both key and
   description in Surface2 (Rules M6).
