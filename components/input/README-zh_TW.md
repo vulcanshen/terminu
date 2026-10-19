@@ -37,7 +37,9 @@ text、password、number 共用。
 ┗━ Enter:rename Esc:cancel ━━━━━━━━━━━━━━━━┛
 ```
 
-- **說明列**：一句話說要輸入什麼（`New name for assets`），Overlay0。跟值之間空一列。要改的對象是誰，寫進這一句。
+- **說明列**：一句話說要輸入什麼（`New name for assets`），Overlay0。跟值之間空一列。要改的對象是誰，寫進這一句。說明太長時
+  折行（照 [components 的「折行」](../README-zh_TW.md)；例：網頁的 `prompt()` 寫來的好幾句話），popup 照 Rules F7 的高度跟著長高；長到最高
+  還放不下時，最後一列結尾加 `…`。
 - **打字列**：最前面是 `nf-fa-angle_right`（U+F105），離框一格，後面空一格才接值，跟 [`finder`](finder-zh_TW.md) 的打字列一樣。
   顏色照 finder：打字時是層色 —— 單行 input popup 一直在打字，所以一直是層色。一看就知道游標停的這一列是要打字的地方。
 - **值**：Lavender —— [`color`](../color-zh_TW.md) 裡 Lavender 是「正在編輯的東西」，input popup 裡正在編輯的就是這個值。游標是一格

@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.8.2 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.8.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -1037,6 +1037,7 @@ tdp v0.8.2 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | input-6 | input §單行 input popup 的骨架（圖） | 說明列在打字列上面 | text、password、number | 看內容的列序 |
 | input-7 | input §單行 input popup 的骨架 | 說明列跟打字列之間空一列 | text、password、number | 數兩列之間的空列 |
 | input-8 | input §單行 input popup 的骨架 | 要改的對象是誰，寫進說明列那一句（例 `New name for assets`） | text、password、number | 打開 rename 之類的 popup，看說明列寫出對象 |
+| input-78 | input §單行 input popup 的骨架 | 說明太長時折行、popup 跟著長高；長到最高還放不下，最後一列結尾加 `…` | text、password、number | 讓說明比框寬（例：網頁 prompt 的長問題），看它折行 |
 | input-9 | input §單行 input popup 的骨架 | 打字列最前面是 `nf-fa-angle_right`（U+F105），離框一格（password 解鎖方案除外） | text、password、number | 看打字列第一個字元與左框的距離 |
 | input-10 | input §單行 input popup 的骨架 | 單行 input popup 的 `nf-fa-angle_right` 一直是層色 | text、password、number | 打開後與打字中各看一次 glyph 的顏色 |
 | input-11 | input §單行 input popup 的骨架 | 值是 Lavender | text、password、number | 打幾個字看顏色 |
