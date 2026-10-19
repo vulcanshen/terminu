@@ -779,7 +779,7 @@ splash **佔滿整個畫面**：開著時原本的畫面（chip 列、panel、fo
 ### S2 不揭露 `固定`
 
 splash 不出現在 Space menu、global operation popup、key reference、footer、panel hint，也不寫進 README、CHANGELOG 與
-release notes。
+release notes —— 已經發出去的舊段落與 GitHub 上的 release notes 也一樣拿掉（版本標題不動）。
 
 **為什麼**：彩蛋被列出來就不是彩蛋了。release notes 照 CHANGELOG 發在 GitHub 上，使用者一樣看得到。它是 tdp「揭露是唯一機制」（Principle P2）的唯一
 例外，而且只有這一個 —— 所以寫在這裡，不寫在任何 app 裡。
@@ -908,7 +908,7 @@ design 做」並附上連結，不列家族成員（E7）。其他規定兩種 a
 | 設定 | `$XDG_CONFIG_HOME/<app>`（fallback `~/.config/<app>`） | `<APP>__CONFIG` |
 | 狀態（app 有另外存時） | 設定目錄裡 | `<APP>__STATE` |
 | 資料 | `~/.<app>/` 底下 | `<APP>__DATA` |
-| 快取 | 系統的快取目錄（macOS `~/Library/Caches/<app>`；Linux `$XDG_CACHE_HOME/<app>`，fallback `~/.cache/<app>`；Windows `%LOCALAPPDATA%\<app>`） | `<APP>__CACHE` |
+| 快取 | 系統的快取目錄（macOS `~/Library/Caches/<app>`；Linux `$XDG_CACHE_HOME/<app>`，fallback `~/.cache/<app>`；Windows `%LOCALAPPDATA%\<app>\cache`，跟 install.ps1 放執行檔的 `%LOCALAPPDATA%\<app>` 分開：刪快取不會刪到程式） | `<APP>__CACHE` |
 
 **Windows**：`~` 是 `%USERPROFILE%` —— 設定 `%USERPROFILE%\.config\<app>`、資料 `%USERPROFILE%\.<app>\`，跟 macOS、Linux 同一套算法，
 不用 `%APPDATA%`。
@@ -923,8 +923,16 @@ design 做」並附上連結，不列家族成員（E7）。其他規定兩種 a
 - **快取**：刪了 app 會自己重建或重抓的（例：下載的瀏覽器、索引）。
 - 例外：使用者手寫的連線清單（像 `~/.ssh/config`；例：sshu 的 hosts、credentials）算設定。
 
-**換了位置時**：app 改版把東西換到新位置，新位置沒有、舊位置有的，第一次啟動時把整個目錄搬到新位置，跳一個 Info toast 說從
-哪裡搬到哪裡；搬不動時照舊用舊位置，開 error popup 寫出兩個路徑，請使用者自己搬。
+**換了位置時**：app 改版把東西換到新位置，第一次啟動時逐項搬，跳一個 Info toast 說從哪裡搬到哪裡：
+
+- 新位置沒有的那一項，搬過去。
+- 新位置已經有的那一項（例：app 自己先在新位置建好了快取）：快取就刪掉舊的 —— 重新產生就有；設定、狀態、資料不刪，留在舊位置，
+  開 error popup 寫出兩個路徑，請使用者自己合併。
+- 搬完把空了的舊目錄拿掉。
+- 搬不動時照舊用舊位置，開 error popup 寫出兩個路徑，請使用者自己搬。
+
+逐項搬，是因為新位置常常在搬家之前就被 app 自己建出來（例：ccdrawu 的 mod 一開 session 就往新的快取目錄寫）；整個目錄搬時，
+舊目錄就永遠搬不了。
 
 **家族共用的設定 key**：同一件事在每個 app 的設定檔裡用同一個名字，有用到的 app 才有。
 

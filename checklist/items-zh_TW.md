@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.8.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.8.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -313,7 +313,7 @@ tdp v0.8.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | S1-1 | S1 | 在 panel 上按 `V` 打開 splash（把 `V` 給 panel operation 用的 panel 除外） | 都要 | 在每個 panel 上按 `V` |
 | S1-2 | S1 | 有 panel 把 `V` 拿去用時，app 裡至少有一個 panel 的 `V` 仍是 splash | 都要 | 在每個 panel 按 `V`，至少一個打開 splash |
 | S2-1 | S2 | splash 不出現在 Space menu、global operation popup、key reference、footer、panel hint | 都要 | 打開這些地方，找不到 `V` 或 splash |
-| S2-2 | S2 | README、CHANGELOG 與 release notes 不寫 splash | 都要 | 讀檔案：兩份 README、CHANGELOG 都沒提到 splash 或 `V` 的彩蛋；發過版的看 GitHub release 的內文也沒有 |
+| S2-2 | S2 | README、CHANGELOG 與 release notes 不寫 splash，已經發出去的舊段落與 release notes 也一樣 | 都要 | 讀檔案：兩份 README、CHANGELOG（含舊版本的段落）都沒提到 splash 或 `V` 的彩蛋；發過版的看 GitHub 上每一個 release 的內文也沒有 |
 | S3-1 | S3 | splash 開著時任何鍵都只關掉它，那個鍵不再做別的事（包括 `q`、`Ctrl-C`、`Esc`、`Space`、`?`） | 都要 | 打開 splash 後分別按這些鍵，每次都只關 splash；按 `Ctrl-C` 不離開 app |
 | S4-1 | S4 | 啟動時不播 splash | 都要 | 啟動 app，直接進主畫面 |
 | S4-2 | S4 | popup 開著時按 `V` 不叫出 splash | 都要 | 開著 Space menu 按 `V` |
@@ -365,15 +365,16 @@ tdp v0.8.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | E3-4 | E3 | 狀態的位置可以用 `<APP>__STATE` 覆寫 | 存設定或資料 | 設 `<APP>__STATE` 啟動，狀態改存到那裡 |
 | E3-5 | E3 | 資料預設在 `~/.<app>/` 底下 | 存設定或資料 | 讀程式或啟動後看資料的位置 |
 | E3-6 | E3 | 資料的位置可以用 `<APP>__DATA` 覆寫 | 存設定或資料 | 設 `<APP>__DATA` 啟動，資料改存到那裡 |
-| E3-7 | E3 | 快取在系統的快取目錄（macOS `~/Library/Caches/<app>`；Linux `$XDG_CACHE_HOME/<app>`，fallback `~/.cache/<app>`；Windows `%LOCALAPPDATA%\<app>`） | 存設定或資料 | 讀程式或啟動後看快取的位置 |
+| E3-7 | E3 | 快取在系統的快取目錄（macOS `~/Library/Caches/<app>`；Linux `$XDG_CACHE_HOME/<app>`，fallback `~/.cache/<app>`；Windows `%LOCALAPPDATA%\<app>\cache`） | 存設定或資料 | 讀程式或啟動後看快取的位置 |
 | E3-8 | E3 | 快取的位置可以用 `<APP>__CACHE` 覆寫 | 存設定或資料 | 設 `<APP>__CACHE` 啟動，快取改存到那裡 |
 | E3-9 | E3 | Windows 上 `~` 是 `%USERPROFILE%`：設定 `%USERPROFILE%\.config\<app>`、資料 `%USERPROFILE%\.<app>\`，不用 `%APPDATA%` | 出 Windows 版 | 讀程式：Windows 的路徑算法 |
 | E3-10 | E3 | popup 預覽裡藏起私鑰與只有擁有者能讀的檔，用設定 key `hide_secrets_in_preview`（放在 app 的設定檔），預設 `false`：全部照常顯示 | 有檔案預覽 | 讀程式與設定檔：key 的名字與預設值 |
 | E3-11 | E3 | 寫入狀態按 `Tab` 插入幾個空白、畫在畫面上的內容（viewer、檔案預覽、清單、menu 的文字）裡的 Tab 畫幾格，用設定 key `input_tab_width`，預設 `4` | 都要 | 讀程式與設定檔：key 的名字與預設值 |
 | E3-12 | E3 | 設定檔是設定目錄裡的 `config.yaml` | 存設定或資料 | 讀程式或啟動後看設定檔的名字與格式 |
 | E3-13 | E3 | 東西照「刪掉會怎樣」放：使用者自己設的選項是設定；刪了只是回到預設的是狀態；刪了找不回來、會想備份的（書籤、紀錄、log）是資料；刪了會自己重建或重抓的是快取；使用者手寫的連線清單算設定 | 存設定或資料 | 讀程式：每一種寫到磁碟的東西，放在哪一類的位置 |
-| E3-14 | E3 | 改版換了位置時，新位置沒有、舊位置有的，第一次啟動把整個目錄搬到新位置，跳一個 Info toast 說從哪裡搬到哪裡 | 存設定或資料 | 讀程式；或在舊位置放東西後啟動新版（app 換過位置時） |
+| E3-14 | E3 | 改版換了位置時，第一次啟動逐項搬：新位置沒有的那一項搬過去，跳一個 Info toast 說從哪裡搬到哪裡；搬完把空了的舊目錄拿掉 | 存設定或資料 | 讀程式；或在舊位置放東西後啟動新版（app 換過位置時） |
 | E3-15 | E3 | 搬不動時照舊用舊位置，開 error popup 寫出兩個路徑 | 存設定或資料 | 讀程式；或讓新位置寫不進去後啟動 |
+| E3-16 | E3 | 搬家時新位置已經有的那一項：快取刪掉舊的；設定、狀態、資料不刪、留在舊位置，開 error popup 寫出兩個路徑 | 存設定或資料 | 讀程式；或在新、舊位置都放同一項後啟動新版 |
 | E4-1 | E4 | 程式碼裡的 PUA glyph 寫成 code point | 都要 | 讀程式：掃原始碼找不到 PUA 字元 |
 | E4-2 | E4 | README 的需求段寫明需要 Nerd Font | 都要 | 讀兩份 README 的前置需求 |
 | E4-3 | E4 | README 的需求段跟 Nerd Font 並列寫明需要 truecolor terminal（24-bit 色） | 都要 | 讀兩份 README 的前置需求 |
@@ -675,6 +676,7 @@ tdp v0.8.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-131 | panel §位置列 | 位置列只顯示：不能按，cursor 不會停在上面，捲動位置也不算它；panel 失焦時跟著淡化 | 位置列 | 用 `j\|k` 走到最上面，看 cursor 不停在位置列；看 `N of M`；按 `Tab` 換走 |
 | panel-132 | panel §一般清單 | 清單空了時空狀態取代整塊，表頭一起不畫，句子置中在整個 panel | 都要 | 讓有表頭的清單空掉，看表頭也不見、句子在 panel 正中間 |
 | panel-133 | panel §一般清單 | 清單的順序固定：同一份資料每次打開、重抓都排得一樣；資料本身沒有順序時 app 先排好（預設照名稱、數字照數值） | 都要 | 關掉再打開、重抓幾次，看順序不變；讀程式：沒有順序的資料（例：map）先排序 |
+| panel-134 | panel §位置列 | 清單空了時位置列照樣留著，只有表頭與清單被空狀態取代 | 位置列 | 讓有位置列的清單空掉（例：進一個空目錄），看位置列還在 |
 
 ## layout/popup
 
@@ -970,6 +972,7 @@ tdp v0.8.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-69 | note §error popup | 關掉 error popup 之後回到底下的 popup，focus 留在原位（表單的送出或不關表單的動作失敗時，focus 在那顆按鈕上，再按 `Enter` 就是重試），值都還在 | error popup | 關掉後看底下的 popup |
 | note-70 | note §選取模式 | 每個 viewer 都有選取模式（`v` 選取、`y` 複製） | viewer | 在每個 viewer 上按 `v` |
 | note-71 | note §長相 | viewer 的搜尋：命中的字全部加底線、保留原本的顏色；目前那一筆畫成 cursor 色塊；不用 Yellow | viewer | 在有 `/` 的 viewer 搜一個出現好幾次的字，看底線與目前那一筆（沒有搜尋的 viewer 沒有這種情況） |
+| note-72 | note §長相 | 不折行的 viewer，選取模式的游標走進截掉的部分時，畫面跟著左右捲到看得見，左邊被捲掉的開頭加 `…`；截掉的內容選得到、複製得到 | viewer | 在不折行的 viewer 進選取模式，把游標往右走到截掉的地方 |
 
 ## dialog/terminal
 

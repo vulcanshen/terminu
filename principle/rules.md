@@ -942,7 +942,8 @@ Every terminu app has a splash, opened with **`V`** on a panel. `V` is reserved 
 ### S2 Not disclosed `fixed`
 
 The splash does not appear in the Space menu, the global operation popup, the key reference, the footer or panel hints,
-and is not written in the README, the CHANGELOG or the release notes.
+and is not written in the README, the CHANGELOG or the release notes — entries already released and the release notes
+already on GitHub are cleaned too (their version headings stay).
 
 **Why**: a listed easter egg is no longer an easter egg. The release notes, published on GitHub from the CHANGELOG, are
 read by users just the same. It is the one and only exception to "disclosure is the only
@@ -1097,7 +1098,7 @@ underscores separate the app name from the variable name because the variable na
 | Config | `$XDG_CONFIG_HOME/<app>` (falling back to `~/.config/<app>`) | `<APP>__CONFIG` |
 | State (when the app keeps it separately) | in the config directory | `<APP>__STATE` |
 | Data | under `~/.<app>/` | `<APP>__DATA` |
-| Cache | the system's cache directory (macOS `~/Library/Caches/<app>`; Linux `$XDG_CACHE_HOME/<app>`, falling back to `~/.cache/<app>`; Windows `%LOCALAPPDATA%\<app>`) | `<APP>__CACHE` |
+| Cache | the system's cache directory (macOS `~/Library/Caches/<app>`; Linux `$XDG_CACHE_HOME/<app>`, falling back to `~/.cache/<app>`; Windows `%LOCALAPPDATA%\<app>\cache`, apart from `%LOCALAPPDATA%\<app>` where install.ps1 puts the executable, so deleting the cache never deletes the program) | `<APP>__CACHE` |
 
 **Windows**: `~` is `%USERPROFILE%` — config in `%USERPROFILE%\.config\<app>`, data under `%USERPROFILE%\.<app>\`, worked
 out as on macOS and Linux, not in `%APPDATA%`.
@@ -1113,10 +1114,19 @@ out as on macOS and Linux, not in `%APPDATA%`.
 - The exception: a connection list the user writes by hand (like `~/.ssh/config`; e.g. sshu's hosts and credentials)
   is config.
 
-**When a location changes**: when a new version of the app moves something to a new location, and the new location is
-empty while the old one holds it, the first start moves the whole directory to the new location and shows an Info toast
-saying from where to where; if it can't be moved, the app keeps using the old location and opens an error popup giving
-both paths, for the user to move it themselves.
+**When a location changes**: when a new version of the app moves something to a new location, the first start moves it
+item by item and shows an Info toast saying from where to where:
+
+- An item missing at the new location is moved over.
+- An item already at the new location (e.g. a cache the app itself has already started there): for a cache, the old one is
+  deleted — it comes back when rebuilt; settings, state and data are not deleted but left at the old location, and an
+  error popup gives both paths for the user to merge them.
+- Once moved, the emptied old directory is removed.
+- If it can't be moved, the app keeps using the old location and opens an error popup giving both paths, for the user to
+  move it themselves.
+
+Item by item, because the new location is often created by the app before the move (e.g. ccdrawu's mod writes to the new
+cache directory as soon as a session starts); moving the whole directory would then never move the old one.
 
 **Config keys shared by the family**: the same setting has the same name in every app's config file, in the apps that use
 it.

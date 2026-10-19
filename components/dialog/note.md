@@ -27,7 +27,9 @@ menu, not a note.
 - **A viewer's wrapping**: wrapping by default — a line wider than the frame continues on the next row, as in [the
   components' "Wrapping"](../README.md): breaking between words, and only a word wider than a row on its own is cut by
   cells. For content that must stay aligned (side by side, a table), the app may turn wrapping off: what is wider than
-  the frame is cut, with `…` at the end of the line.
+  the frame is cut, with `…` at the end of the line. Unwrapped, when the selection cursor walks into the cut part, the
+  view scrolls sideways just enough to show it (as vim's nowrap does), with `…` at the start of lines cut on the left;
+  the cut text can still be selected and copied. Leaving the selection mode returns the view to the left edge.
 - **A viewer's line numbers**: whether a viewer draws line numbers on the left is up to the app: content where a line
   is a line, such as file content, a YAML view or the App Log, usually has them; a table the app lays out itself (e.g.
   filu's file info) gains nothing from them and may go without. When drawn they follow

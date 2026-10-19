@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.8.0. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.8.1. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -313,7 +313,7 @@ The items of tdp v0.8.0. What each column means and what an item applies to: [RE
 | S1-1 | S1 | `V` on a panel opens the splash (a panel giving `V` to a panel operation excepted) | everyone | Press `V` on every panel |
 | S1-2 | S1 | When some panel takes `V`, at least one panel in the app keeps `V` for the splash | everyone | Press `V` on every panel: at least one opens the splash |
 | S2-1 | S2 | The splash does not appear in the Space menu, the global operation popup, the key reference, the footer or panel hints | everyone | Open these places: no `V` or splash to be found |
-| S2-2 | S2 | The README, the CHANGELOG and the release notes do not mention the splash | everyone | Read the files: neither README nor the CHANGELOG mentions the splash or the `V` easter egg; for an app that has released, the GitHub release notes do not either |
+| S2-2 | S2 | The README, the CHANGELOG and the release notes do not mention the splash, entries already released included | everyone | Read the files: neither README nor the CHANGELOG (old versions' entries included) mentions the splash or the `V` easter egg; for an app that has released, no release's notes on GitHub do either |
 | S3-1 | S3 | While the splash is open, any key only closes it, and the key does nothing else (`q`, `Ctrl-C`, `Esc`, `Space` and `?` included) | everyone | Open the splash and press each of these keys: each time it only closes the splash; `Ctrl-C` does not quit the app |
 | S4-1 | S4 | The splash is not played at start-up | everyone | Start the app: it goes straight to the main screen |
 | S4-2 | S4 | With a popup open, `V` does not summon the splash | everyone | Press `V` with the Space menu open |
@@ -365,15 +365,16 @@ The items of tdp v0.8.0. What each column means and what an item applies to: [RE
 | E3-4 | E3 | The state location can be overridden with `<APP>__STATE` | stores settings or data | Start with `<APP>__STATE` set: state is stored there instead |
 | E3-5 | E3 | Data is under `~/.<app>/` by default | stores settings or data | Read the code, or start the app and see where the data is |
 | E3-6 | E3 | The data location can be overridden with `<APP>__DATA` | stores settings or data | Start with `<APP>__DATA` set: data is stored there instead |
-| E3-7 | E3 | The cache is in the system's cache directory (macOS `~/Library/Caches/<app>`; Linux `$XDG_CACHE_HOME/<app>`, falling back to `~/.cache/<app>`; Windows `%LOCALAPPDATA%\<app>`) | stores settings or data | Read the code, or start the app and see where the cache is |
+| E3-7 | E3 | The cache is in the system's cache directory (macOS `~/Library/Caches/<app>`; Linux `$XDG_CACHE_HOME/<app>`, falling back to `~/.cache/<app>`; Windows `%LOCALAPPDATA%\<app>\cache`) | stores settings or data | Read the code, or start the app and see where the cache is |
 | E3-8 | E3 | The cache location can be overridden with `<APP>__CACHE` | stores settings or data | Start with `<APP>__CACHE` set: the cache is stored there instead |
 | E3-9 | E3 | On Windows `~` is `%USERPROFILE%`: config in `%USERPROFILE%\.config\<app>`, data under `%USERPROFILE%\.<app>\`, not in `%APPDATA%` | Windows build | Read the code: how the paths are worked out on Windows |
 | E3-10 | E3 | Hiding private keys and owner-only files in the previews of popups uses the config key `hide_secrets_in_preview` (in the app's config file), `false` by default: everything shown as usual | file preview | Read the code and the config file: the key's name and its default |
 | E3-11 | E3 | How many spaces `Tab` inserts in the writing state, and how many cells a Tab is drawn as in content on screen (viewers, file previews, lists, menu text), uses the config key `input_tab_width`, `4` by default | everyone | Read the code and the config file: the key's name and its default |
 | E3-12 | E3 | The config file is `config.yaml` in the config directory | stores settings or data | Read the code, or start the app and look at the config file's name and format |
 | E3-13 | E3 | Things go where "what happens if it is deleted" puts them: options the user set are settings; what only falls back to defaults is state; what cannot be got back and would be backed up (bookmarks, records, logs) is data; what the app rebuilds or fetches again is cache; a connection list the user writes by hand counts as settings | stores settings or data | Read the code: where each kind of thing written to disk goes |
-| E3-14 | E3 | After a release moves a location, what is missing at the new place but present at the old is moved over, whole directory, on first start, with an Info toast saying from where to where | stores settings or data | Read the code; or put things at the old place and start the new release (for an app that moved a location) |
+| E3-14 | E3 | After a release moves a location, the first start moves it item by item: an item missing at the new place is moved over, with an Info toast saying from where to where; the emptied old directory is then removed | stores settings or data | Read the code; or put things at the old place and start the new release (for an app that moved a location) |
 | E3-15 | E3 | When the move fails, the old place is used as before, and an error popup gives both paths | stores settings or data | Read the code; or make the new place unwritable and start the app |
+| E3-16 | E3 | An item already at the new place when moving: a cache's old copy is deleted; settings, state and data are not deleted but left at the old place, with an error popup giving both paths | stores settings or data | Read the code; or put the same item at both places and start the new release |
 | E4-1 | E4 | PUA glyphs are written as code points in the source | everyone | Read the code: a scan of the source finds no PUA characters |
 | E4-2 | E4 | The README's requirements say a Nerd Font is required | everyone | Read the prerequisites in both READMEs |
 | E4-3 | E4 | The README's requirements say, next to the Nerd Font, that a truecolor terminal (24-bit colour) is required | everyone | Read the prerequisites in both READMEs |
@@ -675,6 +676,7 @@ The items of tdp v0.8.0. What each column means and what an item applies to: [RE
 | panel-131 | panel §Location row | The location row is display only: it cannot be pressed, the cursor never rests on it, and the scroll position does not count it; it dims with the panel on blur | location row | Walk to the top with `j\|k`: the cursor does not rest on the location row; look at `N of M`; press `Tab` to move away |
 | panel-132 | panel §Ordinary lists | When the list is empty, the empty state takes the whole panel: the header is not drawn either, and the sentences are centred in the whole panel | everyone | Empty a list with a header: the header goes too, and the sentences sit in the middle of the panel |
 | panel-133 | panel §Ordinary lists | The list's order is fixed: the same data comes out in the same order every time it opens or is fetched again; data with no order of its own is sorted by the app first (by name by default, numbers by value) | everyone | Close and reopen, fetch again a few times: the order holds; read the code: data with no order (e.g. a map) is sorted first |
+| panel-134 | panel §Location row | When the list is empty, the location row stays; only the header and the list give way to the empty state | location row | Empty a list with a location row (e.g. open an empty directory): the location row is still there |
 
 ## layout/popup
 
@@ -970,6 +972,7 @@ The items of tdp v0.8.0. What each column means and what an item applies to: [RE
 | note-69 | note §Error popup | After the error popup closes, it is back to the popup underneath, the focus where it was (when a form's submit or an action that keeps the form open fails, the focus is on that button, and one more `Enter` retries), every value still there | error popup | Close it and look at the popup underneath |
 | note-70 | note §Selection mode | Every viewer has the selection mode (`v` to select, `y` to copy) | viewer | Press `v` on every viewer |
 | note-71 | note §Look | A viewer's search: every match underlined, keeping its colour; the current match drawn as the cursor block; no Yellow | viewer | In a viewer with `/`, search for a word that appears several times; look at the underlines and the current match (a viewer with no search never has this case) |
+| note-72 | note §Look | In an unwrapped viewer, when the selection cursor walks into the cut part, the view scrolls sideways to show it, with `…` at the start of lines cut on the left; the cut text can be selected and copied | viewer | In an unwrapped viewer, enter the selection mode and walk the cursor right into the cut part |
 
 ## dialog/terminal
 
