@@ -16,6 +16,7 @@
 - **錯誤點名的是值的名字**：從表單的欄位打開的，就是那一欄的名字；自己打開的 input，標題寫的是這個 popup 在做什麼
   （[`layout/popup`](../layout/popup-zh_TW.md) 的 `RENAME`、`SAVE AS`），值的名字由 app 另外給（`Name`）。例：`SAVE AS` 上寫
   `Name can't have control characters`，不寫 `Save as can't have control characters` —— 標題說的是在做什麼，不是值叫什麼。
+  不是每句錯誤都要帶名字：能直接指出錯在哪裡的，照指出的寫（例：`10.0 is not an IPv4 or IPv6 address`，不必寫成 `Addresses: …`）。
 - **`Esc`**：關掉，值不變。
 - **從表單打開的**：確定之後 focus 留在表單的同一欄（Rules K3）。
 - **有按鈕的 input popup**（例：color picker 的 `Choose`）：動作區照 [`dialog/form`](../dialog/form-zh_TW.md) —— `Tab|Shift-Tab`

@@ -1,5 +1,42 @@
 # Changelog
 
+## v0.9.0 — 2026-10-20
+
+What the rebuilt hostu (its judge, then its reviewer) and terminu-go's tdptest found, settled with the user.
+
+- dialog/terminal: the history and selection modes go by what a PTY is for — an interactive terminal (a shell, an ssh
+  session, `kubectl exec`) always has both; a PTY the app opens to run a program for one job (an editor, sudo asking for
+  a password) has neither and gives that program every key, `PgUp` included. While the subprocess takes the whole
+  screen (vim, less, htop), `PgUp` goes to it; while the user gives every key to the subprocess (sshu's locked cell),
+  the selection mode steps aside and `PgUp|PgDn` go straight in. The selection mode is entered with `Alt-v`: the
+  family's `v`, with `Alt` to get out of the subprocess, not a key the app picks (Rules K10, M1 and layout/screen follow)
+- components: control characters are never sent to the terminal as they are, wherever the app's text shows (from
+  terminu-go's tdptest, G100). Content for reading (a viewer, a log on a panel, a file preview) is drawn as a terminal
+  would: `\n` breaks the line, even inside a line the app hands over; a Tab is spaces; colour codes colour the text; a
+  `\r` within a line keeps only the last state; anything else is a red name. Names and short text (values, list cells,
+  menus, titles, toasts, confirms, error popups, options, empty states, the statusbar…) interpret nothing: every
+  control character, a Tab and a colour code's ESC included, is a red name, as on a form (dialog/note, input/file-picker,
+  layout/panel and color follow)
+- dialog/note: every app has an App Log, opened with `!` on a panel (a new core key, Rules K1, F5, M1): what the app
+  has done and what went wrong — the user's actions, every toast, the app's background work — one entry per line with
+  time and level, kept in memory only; layout/screen: the footer always shows `!:log`, which becomes `!:2 errors` or
+  `!:1 warning` until the App Log is opened (from hostu, HU15)
+- Rules E3: when the app's own settings, state or data cannot be read, a confirm at start offers to move it to `.bak`
+  (never overwriting an older one) and start a new one, or to quit with the reason on stderr; a cache is just rebuilt;
+  things outside the app stay a panel error with details in the App Log (dialog/confirm: the one `Esc:quit`). Config
+  is only the options the app runs with: lists the user writes for the app are data, the exception for hand-written
+  connection lists is gone (sshu's hosts and credentials move to the data directory) (from hostu, HU15, HU17)
+- dialog/terminal: raising privileges — the app never asks for or handles a password; the system's tool asks in a
+  terminal popup (from hostu, HU18)
+- dialog/toast: Success or Info for something finished is the app's call (HU19); input/README: an error need not carry
+  the field's name when it can point at what is wrong (HU16)
+- checklist: terminal-15–20 apply to an interactive terminal, terminal-18 reworded, panel-31 and panel-64 name the
+  features they need, the features "interactive terminal", "panel without a cursor" and "raising privileges" added;
+  E3-13, E3-14, K1-1, M1-1, M1-2, screen-6, screen-7, toast-16 and input-1 reworded; terminal-21–24, panel-136,
+  components-27–28, note-74–79, file-picker-93, E3-17–21, K1-9, K11-13, F5-3 and screen-35 added (1418 items)
+- principle/README and README: the checklist is for checking whether an app does what tdp asks, no longer for counting
+  genes (the harness dropped its judge and gene count)
+
 ## v0.8.3 — 2026-10-19
 
 From webu, moving a web page's `prompt()` onto the library's input.

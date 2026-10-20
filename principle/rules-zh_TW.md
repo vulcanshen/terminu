@@ -44,6 +44,7 @@
 | `Esc` | 取消 / 關閉最上層 | K4 |
 | `Space` | 在 panel 上開 / 關 Space menu（這裡能做什麼） | K5、M2 |
 | `?` | 開 / 關 key reference：最前端那個 surface 能按什麼鍵（唯讀） | K6、M4 |
+| `!` | 在 panel 上打開 App Log：app 做過的事與出問題的事（唯讀） | F5、M1 |
 | `q` | 離開 app | K9 |
 | `1`–`9` | 在 panel 上跳到目前畫面的第 N 個 panel（框上的 `[N]`） | 本條、K11 |
 
@@ -234,12 +235,14 @@ focus 在 PTY（跑在 app 裡的 shell、編輯器、遠端 session）時，**�
   很常見，confirm 讓誤觸的人按 `Esc` 回到 PTY。
 - **其他 Alt 組合的出口鍵**（例：kbu 的 `Alt-t` 隱藏 Alterm、sshu 鎖住的格子的 `Alt-Enter`）同樣會被「`Esc` 再按那個鍵」
   拼出來；要不要 confirm 由 app 決定。
-- 出口鍵以外，PTY 裡要不要再保留其他 app 的組合鍵（例：sshu 在格子裡的放大、換格、捲歷史），由 app 決定。
+- 互動 terminal（使用者在裡面打自己指令的 PTY）一定有歷史模式（`PgUp`）與選取模式（`Alt-v`），見
+  [components/dialog/terminal](../components/dialog/terminal-zh_TW.md)。
+- 除此之外，PTY 裡要不要再保留其他 app 的組合鍵（例：sshu 在格子裡的放大、換格），由 app 決定。
   保留的鍵跟出口鍵一樣常駐揭露（M1）。
 - 按了出口鍵之後 focus 落在哪裡，由 app 決定。
 - 子程序還沒準備好收鍵時（例：遠端還在連線），app 可以不轉送一般的按鍵（免得晚幾分鐘才落到遠端）；但 **`Ctrl-C` 照樣
   轉送給子程序**，出口鍵照樣有效、照樣揭露。focus 在 PTY 裡時，使用者認為每個鍵都是在 PTY 裡按的；例外只有明示揭露的
-  出口鍵與 app 保留的組合鍵。
+  出口鍵、互動 terminal 的 `Alt-v` 與 `PgUp`，以及 app 保留的組合鍵。
 
 > **實作參考（不是規定）**：用 bubbletea v1.3.10 實測，前面有鍵在排隊時，間隔 150ms 的兩次 `Esc` 也會黏在一起。
 
@@ -254,6 +257,7 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 | 鍵 | 模式裡 |
 |---|---|
 | `Space` | **不開任何 menu**，不作用 |
+| `!` | 不作用（App Log 在模式外打開） |
 | `?` | 這個模式的 key reference（唯讀，K6）：模式裡能按什麼鍵、做什麼 |
 | `Esc` | 離開模式（K4），回到進入前的狀態 |
 | `q`、`Ctrl-C` | 照 K9 進入離開流程 |
@@ -315,10 +319,10 @@ panel，使用者不預期它們有反應，多回應反而是雜訊。
 
 ### M1 入口要被看得到 `固定`
 
-非輸入態的每一個畫面都必須**常駐顯示** `?`，以及 `Space`（模式裡 `Space` 不作用，不必顯示，K11），讓第一次打開
+非輸入態的每一個畫面都必須**常駐顯示** `?`，以及 `Space`、`!`（模式裡 `Space`、`!` 不作用，不必顯示，K11），讓第一次打開
 app、沒讀過任何文件的使用者看得到。樣子見 [components/layout/screen](../components/layout/screen-zh_TW.md) 的 footer。
 
-focus 在 PTY 裡時，這兩個鍵都屬於子程序（K10），不顯示；常駐揭露的是出口鍵與 app 保留的鍵（K10；樣子見
+focus 在 PTY 裡時，這些鍵都屬於子程序（K10），不顯示；常駐揭露的是出口鍵、互動 terminal 的 `Alt-v` 與 `PgUp`、app 保留的鍵（K10；樣子見
 [components/layout/screen](../components/layout/screen-zh_TW.md) 的 footer 與 [components/dialog/terminal](../components/dialog/terminal-zh_TW.md)）。
 
 **為什麼**：使用者不可能按一個不知道存在的鍵。入口沒被揭露，後面揭露得再完整也
@@ -564,7 +568,7 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 | **form** | 一列一個值；`Tab` 在欄位區與動作區之間切換、hjkl 在那一區裡一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕送出或做它的動作（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark |
 | **note** | 唯讀，可以捲動（K12）；沒有可用 `Enter` 執行的選項清單 | key reference、YAML 檢視、App Log、error popup |
 | **toast** | 從下方彈出的短訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它 | 「已複製」、操作失敗 |
-| **terminal** | 跑在框裡的子程序，按鍵都給它，只有出口鍵與 app 保留的組合鍵屬於 app（K10） | kbu 的 Alterm、filu 的 shell |
+| **terminal** | 跑在框裡的子程序，按鍵都給它，只有出口鍵與 app 保留的組合鍵（互動 terminal 還有 `Alt-v`、`PgUp`）屬於 app（K10） | kbu 的 Alterm、filu 的 shell |
 
 - **note 可以有自己的熱鍵與模式**：例如 YAML 檢視的 `/` 搜尋。**每個 viewer 都有選取模式**（`v` 選取、`y` 複製；模式，K11；
   [components/dialog/note](../components/dialog/note-zh_TW.md)）：家族裡任何 viewer 都能選一段文字複製。熱鍵揭露在
@@ -630,8 +634,8 @@ popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中�
 
 ### F5 錯誤立刻看得到，但不擋住 app `概念`
 
-錯誤必須立刻出現（toast 或 popup），`Esc` 可關，且**不能阻塞 app**。有沒有錯誤歷史
-可查由 app 決定。
+錯誤必須立刻出現（toast 或 popup），`Esc` 可關，且**不能阻塞 app**。錯誤也記進
+App Log（`!`，[components/dialog/note](../components/dialog/note-zh_TW.md)），toast 收掉之後照樣查得到；每個 app 都有 App Log。
 
 **為什麼**：看不到的錯誤等於沒發生；擋住 app 的錯誤讓使用者無法處理錯誤本身。
 
@@ -917,13 +921,13 @@ design 做」並附上連結，不列家族成員（E7）。其他規定兩種 a
 
 **東西放哪一類，看刪掉會怎樣**：
 
-- **設定**：使用者自己設的選項。
+- **設定**：app 自己的設定 —— app 啟動與運作用的選項（設定檔 `config.yaml`）。
 - **狀態**：刪了只是回到預設（例：上次開的分頁、cursor 停在哪）。
-- **資料**：刪了就找不回來、使用者會想備份的（例：書籤、紀錄、log）。
+- **資料**：刪了就找不回來、使用者會想備份的（例：書籤、紀錄、log）。使用者寫給 app 用的清單也是資料（例：sshu 的 hosts 與
+  credentials、hostu 的 profiles）。
 - **快取**：刪了 app 會自己重建或重抓的（例：下載的瀏覽器、索引）。
-- 例外：使用者手寫的連線清單（像 `~/.ssh/config`；例：sshu 的 hosts、credentials）算設定。
 
-**換了位置時**：app 改版把東西換到新位置，第一次啟動時逐項搬，跳一個 Info toast 說從哪裡搬到哪裡：
+**換了位置時**：app 改版把東西換到新位置，第一次啟動時逐項搬，跳一個 toast 說從哪裡搬到哪裡：
 
 - 新位置沒有的那一項，搬過去。
 - 新位置已經有的那一項（例：app 自己先在新位置建好了快取）：快取就刪掉舊的 —— 重新產生就有；設定、狀態、資料不刪，留在舊位置，
@@ -934,17 +938,41 @@ design 做」並附上連結，不列家族成員（E7）。其他規定兩種 a
 逐項搬，是因為新位置常常在搬家之前就被 app 自己建出來（例：ccdrawu 的 mod 一開 session 就往新的快取目錄寫）；整個目錄搬時，
 舊目錄就永遠搬不了。
 
+**讀不了時**：app 自己的設定、狀態、資料讀不了（格式錯、檔案壞掉、沒有權限……原因不分）時，app 不在這個狀態下繼續操作，啟動時開一個
+confirm（[components/dialog/confirm](../components/dialog/confirm-zh_TW.md)），寫出路徑與原因：
+
+```
+┏━󰻌 MOVE ASIDE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                   ┃
+┃ ~/.hostu/profiles.yaml can't be read:             ┃
+┃ line 3: mapping values are not allowed here       ┃
+┃                                                   ┃
+┃ Move it to profiles.yaml.bak and start a new one? ┃
+┃                                                   ┃
+┗━ Enter:move Esc:quit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+- **`Enter`**（`move`）：把那個檔改名成 `<檔名>.bak`，在原本的位置建一個新的（設定用預設值，狀態、資料從空的開始），照常開始。
+  `.bak` 已經有了就用 `.bak.1`、`.bak.2`……，一律不蓋掉；問句寫實際會用的名字。
+- **`Esc`**（`quit`）：離開 app，不是回到 app；路徑與原因寫到 stderr，回到 shell 還看得到要修哪裡。
+- **快取**讀不了：不問，丟掉重建。
+- **app 外面的東西**讀不到（叢集、網路、遠端）：不是 app 自己有問題，app 照常開著，照 [components/layout/panel](../components/layout/panel-zh_TW.md)
+  的「loading 與錯誤」寫，細節記進 App Log（F5）。
+
+讀不了的時候還照常操作，接下來存檔就可能把使用者的東西蓋掉；改名成 `.bak` 一個鍵就能重新開始，原本的東西一點都沒丟。不想讓 app 動它
+的人按 `Esc` 離開，自己處理。
+
 **家族共用的設定 key**：同一件事在每個 app 的設定檔裡用同一個名字，有用到的 app 才有。
 
 | key | 意思 | 預設 |
 |---|---|---|
 | `hide_secrets_in_preview` | popup 的預覽裡藏起私鑰與只有擁有者能讀的檔（[components/input/file-picker](../components/input/file-picker-zh_TW.md)） | `false` |
-| `input_tab_width` | 多行文字的寫入狀態下，按一次 `Tab` 插入幾個空白（[components/input/textarea](../components/input/textarea-zh_TW.md)）；畫在畫面上的內容裡的 Tab（viewer、檔案預覽、清單、menu 的文字……）也畫成這麼多格空白；表單與 panel 上的值、輸入框的打字列例外，Tab 照 [components/input/README](../components/input/README-zh_TW.md) 畫成紅色的 `\t` | `4` |
+| `input_tab_width` | 多行文字的寫入狀態下，按一次 `Tab` 插入幾個空白（[components/input/textarea](../components/input/textarea-zh_TW.md)）；拿來讀的內容裡的 Tab（viewer、檔案預覽、panel 上的 log）也畫成這麼多格空白；名字與短字（表單與 panel 上的值、清單的格子、menu 的文字……）與輸入框的打字列裡，Tab 畫成紅色的 `\t`（[components](../components/README-zh_TW.md) 的「控制字元」） | `4` |
 
 **為什麼**：五個 app 放在同一套位置，使用者知道去哪裡找、要備份哪些。macOS 不用系統慣用的 `~/Library/Application Support`，
 Windows 也不用 `%APPDATA%`：每個平台同一套算法，在哪台機器上都是同一個地方。快取放在系統的快取目錄，清快取的工具才找得到它，
-也不會被當成要備份的資料。用「刪掉會怎樣」分：使用者看位置就知道哪些要備份、哪些刪了也沒關係；手寫的連線清單是使用者花
-心思打的，跟 `~/.ssh/config` 一樣當設定看待。設定檔同一個名字與格式：使用者打開哪個 app 的設定目錄都知道改哪個檔。換位置時
+也不會被當成要備份的資料。用「刪掉會怎樣」分：使用者看位置就知道哪些要備份、哪些刪了也沒關係；設定只放 app 自己運作用的
+選項；使用者寫給 app 用的清單（連線、profile、書籤）是使用者花心思打的，刪了就找不回來，跟書籤一樣是資料。設定檔同一個名字與格式：使用者打開哪個 app 的設定目錄都知道改哪個檔。換位置時
 自己搬過去：使用者不會升級一次就發現書籤、紀錄不見了；搬不動時說出兩個路徑，不默默開一份新的。共用的設定 key 用同一個名字：
 使用者在一個 app 設過，就知道在另一個 app 怎麼設。
 

@@ -49,12 +49,17 @@ menu, not a note.
   and may colour it as its situation needs (e.g. the ERROR and WARN lines of a log). The lib adds no syntax colours but
   keeps the colours the app gives. Line numbers stay Overlay0; the selection mode's
   range stays Yellow with Base text, with no syntax colours inside it.
-- **Tabs and control characters in a viewer** (as in the [`input/file-picker`](../input/file-picker.md) preview): a Tab is
-  drawn as `input_tab_width` spaces (the same setting as [`input/textarea`](../input/textarea.md)), not aligned to tab
-  stops; a `\r` before a line break (CRLF) is not drawn, being part of the line break; any other control character is
-  drawn by name in Red (`\r`, `\x07`, as in "Pasted control characters" in [`input/README`](../input/README.md)). Copying
-  takes the original characters, not the spaces or names drawn. A viewer is for reading: a red `\r` on every line of a
-  CRLF file is only noise, and Red is what tells a control character from the four characters `\x07` written in a file.
+- **Tabs and control characters in a viewer** (as in the [`input/file-picker`](../input/file-picker.md) preview; the
+  rule for the whole family is "Control characters" in [components](../README.md)): drawn as a terminal would draw
+  them. A Tab is drawn as `input_tab_width` spaces (the same setting as [`input/textarea`](../input/textarea.md)), not
+  aligned to tab stops; `\n` is a line break, and in content the app hands over line by line, a `\n` inside one line
+  splits it in two too; a `\r` before a line break (CRLF) is not drawn, being part of the line break; colour codes
+  (SGR) colour the text; a `\r` within a line (a progress bar) keeps only the last state; any other control character,
+  and any sequence that is not a colour code, is drawn by name in Red (`\x07`; `\x1b[2J`, which clears the screen, as a
+  red `\x1b` followed by `[2J`, as in "Pasted control characters" in [`input/README`](../input/README.md)). Copying
+  takes the original characters, not the spaces or names drawn. A viewer is for reading: a program's output is meant to
+  look that way in a terminal; a red `\r` on every line of a CRLF file is only noise; and Red is what tells a control
+  character from the four characters `\x07` written in a file.
 - **A viewer's search** (where it has `/`): every hit is underlined, keeping its own colour; the current one is drawn as
   the cursor block (layer colour background, bold Base, the cursor in [`color`](../color.md)), saying "you are here". No
   colour is added: the mode colour Yellow is kept for the selection mode's range.
@@ -224,3 +229,31 @@ message opened with `Enter` on a form's error row is one too.
 **Why**: an error popup is an error through and through, so its frame and text are Red; it is always on top and closes
 with one key, so without the layer colour nobody is left wondering which layer it is. A popup with an error row is not
 itself an error — only one value in it fails a rule — so its frame keeps the layer colour.
+
+## App Log
+
+Every app has an App Log (Rules F5): what the app has done and what went wrong, newest last. `!` on a panel opens it
+(Rules K1); it is a viewer (the viewer's rules and its selection mode above apply), and while it is open new entries
+keep arriving, as in streaming content.
+
+```
+14:02:11 INFO switched to Pods
+14:02:40 OK   deployment.apps/nginx scaled
+14:03:02 WARN CRD discovery: the server is currently unable to handle the request
+14:03:30 ERR  namespace fetch failed: Forbidden
+```
+
+- **What goes in**: what the user did and how it ended; every toast (the same words); what the app did on its own in
+  the background (e.g. a move under Rules E3, a default made at start, the details of something outside the app that
+  could not be read).
+- **Each entry**: the time `HH:MM:SS` (Overlay0), a level, and what happened. The level follows the toast's kinds and
+  colours: `INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, in a level column four cells wide, left-aligned.
+- **Kept in memory only**: it is emptied when the app quits; the number of entries has a limit, and when it is full the
+  oldest goes.
+- **Errors and warnings not seen yet**: shown on the footer's `!` (the footer in [`layout/screen`](../layout/screen.md));
+  opening the App Log counts as seeing them.
+
+**Why**: a toast is gone in seconds, and someone who missed it never learns an error happened; the App Log keeps it.
+Errors alone do not show what was done before them, and the entries just before are often the cause; what the app does
+in the background can only be seen here. `!`, like `?` and `Space`, works in every app of the family. Memory only: what
+matters is what happened while the app was open this time, with no further kind of thing to store and clean up.

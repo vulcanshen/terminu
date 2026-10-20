@@ -17,13 +17,16 @@
 
 | 情況 | footer |
 |---|---|
-| 一般 | `Space:menu ?:help Tab\|1–N:panels q:quit` |
-| 只有一個 panel 的畫面 | `Space:menu ?:help q:quit` |
+| 一般 | `Space:menu ?:help !:log Tab\|1–N:panels q:quit` |
+| 只有一個 panel 的畫面 | `Space:menu ?:help !:log q:quit` |
 | 在模式裡（Rules K11） | `?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>`。例：`?:help Enter:drop Esc:cancel` |
 | panel filter 打字中（輸入態） | `Enter\|Tab:list Esc:clear` |
 | panel filter 打字中，沒有結果 | `Tab:list Esc:clear`（`Enter` 不作用，照 [`input/finder`](../input/finder-zh_TW.md) 的 hint） |
-| focus 在 panel 裡的 PTY | 出口鍵，再加 app 保留的鍵（Rules K10）。例：`Alt-Esc:leave Alt-z:zoom PgUp:history` |
+| focus 在 panel 裡的 PTY | 出口鍵，再加 app 保留的鍵（Rules K10）；互動 terminal 再接 `Alt-v:select`、`PgUp:history`（dialog/terminal）。例：`Alt-Esc:leave Alt-z:zoom Alt-v:select PgUp:history` |
 | popup 開著時 | 照底下畫面的寫，跟著整個畫面淡化（Rules F8）；popup 自己的鍵在它的下框 hint |
+
+**`!` 的提醒**：App Log（[`dialog/note`](../dialog/note-zh_TW.md)）裡有沒看過的錯誤時，`!:log` 換成 `!:2 errors`（說明 Red）；只有沒看過的
+警告時換成 `!:1 warning`（Peach）；打開 App Log 之後回到 `!:log`。
 
 terminal popup 開著時不畫 footer：terminal 蓋住最下面一列，兩端露出來的地方是空白，不露出 footer 的字
 （[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。

@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.8.3. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.0. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -35,7 +35,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| K1-1 | K1 | `Tab` `Enter` `Esc` `Space` `?` `q` `1`–`9` carry the meaning in the K1 table on every surface; the only exceptions are input state, PTY, modes, `q` on a form, and a form's typing note | everyone | Press these keys on every kind of panel and popup: nowhere uses them for something else |
+| K1-1 | K1 | `Tab` `Enter` `Esc` `Space` `?` `!` `q` `1`–`9` carry the meaning in the K1 table on every surface; the only exceptions are input state, PTY, modes, `q` on a form, and a form's typing note | everyone | Press these keys on every kind of panel and popup: nowhere uses them for something else |
 | K1-2 | K1 | A core key the app designates keeps its meaning on every surface | everyone | Press that key on every kind of panel and popup: it does the same thing |
 | K1-3 | K1 | No letter hotkey takes over a key in the K1 table | everyone | Read the code, or look at every menu and key reference: no hotkey uses `Tab` `Enter` `Esc` `Space` `?` `q` (a label marking the core key's own action, like `[Enter] Edit`, does not count; for digits see K1-7) |
 | K1-4 | K1 | On a panel (with no popup open), `1`–`9` move focus to the panel marked `[N]` on its frame in the current screen | several panels | On a panel press `1`, `2`…; in an app with several screens, switch to another screen and press again: the jump goes to that screen's panels |
@@ -43,6 +43,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | K1-6 | K1 | A digit with no such panel on the screen does nothing | everyone | On a panel press a digit larger than the number of panels: nothing happens |
 | K1-7 | K1 | The app registers no digit as a hotkey on a panel | everyone | Read the code, or look at the panels' Space menus and key references: no digit hotkeys |
 | K1-8 | K1 | A global hotkey that is a digit can only be pressed inside the global operation popup; that digit on a panel jumps to a panel | everyone | On a panel that digit only jumps to a panel; only inside the global operation popup does it run |
+| K1-9 | K1 | `!` on a panel opens the App Log | everyone | Press `!` on a panel |
 | K2-1 | K2 | On a screen, `Tab` moves focus to the next panel of the same screen, wrapping from the last to the first, without crossing screens | several panels | Press `Tab` again and again on a panel: after a full round it is back at the first, and the screen does not change |
 | K2-2 | K2 | In a popup with an action area (a form, an input popup with a button), `Tab` switches between the field area and the action area | form or color picker | Open a form and press `Tab`: focus goes back and forth between the field area and the action area |
 | K2-3 | K2 | When `Tab` comes back to an area, it lands on the item it left | form or color picker | Move to the third field in the field area, `Tab` to the action area and `Tab` back: focus is on the third field |
@@ -95,7 +96,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | K9-3 | K9 | `Ctrl-C` still starts the quit flow on a form and on a form's typing note | form | Press `Ctrl-C` on a form and on its typing note |
 | K9-4 | K9 | Pressing `Ctrl-C` again during the quit flow (e.g. while the confirm before quitting is open) quits at once, with no further questions (an app that quits straight away never has this case) | everyone | Press `Ctrl-C`, and once the confirm appears press `Ctrl-C` again |
 | K9-5 | K9 | Quitting is listed in the global operation popup | everyone | `Space` → `Global operation`: quitting is there |
-| K10-1 | K10 | With focus in a PTY (in a panel or a terminal popup), keys go to the subprocess: core keys and the app's hotkeys (the splash's `V` included) stop working, and only the exit key and the chords the app keeps belong to the app; `Esc` goes to the subprocess too, so an open toast can only wait for its timer to go | PTY | In the PTY press `Space` `?` `q` `Tab` `Esc` `1` and the app's hotkeys: all go to the subprocess |
+| K10-1 | K10 | With focus in a PTY (in a panel or a terminal popup), keys go to the subprocess: core keys and the app's hotkeys (the splash's `V` included) stop working, and only the exit key and the chords the app keeps (in an interactive terminal also `Alt-v` and `PgUp`) belong to the app; `Esc` goes to the subprocess too, so an open toast can only wait for its timer to go | PTY | In the PTY press `Space` `?` `q` `Tab` `Esc` `1` and the app's hotkeys: all go to the subprocess |
 | K10-2 | K10 | At least one exit key moves focus out of the PTY | PTY | In the PTY, the exit key gets back to the app |
 | K10-3 | K10 | The exit key is `Alt-Esc` | PTY | In the PTY press `Alt-Esc` |
 | K10-4 | K10 | Whenever pressing `Alt-Esc` would move focus out of the PTY or end the subprocess, a confirm always comes first: `Enter` leaves, `Esc` returns to the PTY | PTY | In the PTY press `Alt-Esc`: a confirm appears; press `Esc`: back in the PTY; press `Alt-Esc` again and then `Enter`: it leaves |
@@ -113,6 +114,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | K11-10 | K11 | Leaving the mode restores the mode name and the frame colour | mode | Press `Esc` to leave and look at that frame |
 | K11-11 | K11 | With the mode in a popup, `Tab` and the digit keys do whatever they do in that popup (never switching panels), with no extra response; the footer stays as it is while a popup is open, not changing to the mode's words | mode (in a popup) | Enter a mode in a popup, press `Tab`, `2`, and look at the footer |
 | K11-12 | K11 | With the mode on a PTY (a terminal's history or selection mode), any key other than the mode's own keys, `?` and `Esc` first leaves the mode, then goes to the subprocess; `q` and `Ctrl-C` too, never starting the quit flow | PTY | Enter the history mode on a PTY, type a character, press `q` and `Ctrl-C`: the mode is left first and the key lands in the subprocess |
+| K11-13 | K11 | Inside a mode `!` does nothing | mode | Enter a mode and press `!` |
 | K12-1 | K12 | Where you are not typing, no action takes `j` `k` `u` `d` `g` `G` `h` `l` (two-key chords starting with `g` excepted) | everyone | Read the code, or look at every menu and key reference: none of these letters is registered to an action |
 | K12-2 | K12 | `h\|j\|k\|l` are `←\|↓\|↑\|→`: the arrow keys do the same | everyone | On a list, a menu and a form press hjkl and the arrow keys in turn: the same effect |
 | K12-3 | K12 | With a left-right structure (tabs within one surface, two sides, a grid), `j\|k` go up and down and `h\|l` left and right (switching tabs, crossing to the other side) | everyone | On a panel with tabs press `h\|l` to switch tabs |
@@ -135,8 +137,8 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| M1-1 | M1 | Every screen outside input state always shows `?` and `Space` (inside a mode `Space` does nothing and may go unshown) | everyone | Look at the footer on every screen and in every mode |
-| M1-2 | M1 | With the focus in a PTY, `?` and `Space` are not shown; what is always shown is the exit key and the keys the app keeps | PTY | Go into a PTY and look at the footer or the terminal's bottom border |
+| M1-1 | M1 | Every screen outside input state always shows `?`, `Space` and `!` (inside a mode `Space` and `!` do nothing and may go unshown) | everyone | Look at the footer on every screen and in every mode |
+| M1-2 | M1 | With the focus in a PTY, `?`, `Space` and `!` are not shown; what is always shown is the exit key and the keys the app keeps (in an interactive terminal also `Alt-v` and `PgUp`) | PTY | Go into a PTY and look at the footer or the terminal's bottom border |
 | M2-1 | M2 | The Space menu is split into regions by what each acts on, in a fixed order: `item operation` → `panel operation` → the global row | everyone | Press `Space` on every panel |
 | M2-2 | M2 | Each action is in the right place: one acting on the item under the cursor is in item operation, one acting on the current panel (or its tab) as a whole is in panel operation, and one belonging to no panel is in the global operation popup | everyone | Look at each panel's Space menu and the global operation popup, judging what each row acts on |
 | M2-3 | M2 | The last row is always `Global operation`, with no hotkey | everyone | Look at the last row of the Space menu |
@@ -252,6 +254,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | F4-2 | F4 | Cancelling B returns to A | everyone | Press `Esc` on the global operation popup and on a popup opened by one of the app's own actions: back to the Space menu each time |
 | F5-1 | F5 | Errors appear immediately (a toast or a popup) | everyone | Trigger an error (e.g. no network, no permission): a toast or a popup shows at once |
 | F5-2 | F5 | Errors do not block the app | everyone | After an error appears, the app works as usual, and the user can go on to deal with the error itself |
+| F5-3 | F5 | Errors also go into the App Log, to be looked up after the toast has gone | everyone | Cause an error, wait for the toast to go, press `!` |
 | F6-1 | F6 | An action set to be confirmed is confirmed every time (a choice made explicitly in a picker may count as the confirmation) | confirm | Do the same action two or three times: a confirm every time |
 | F6-2 | F6 | On a confirm, `Enter` accepts and `Esc` cancels | confirm | On a confirm press `Enter`, and `Esc` |
 | F6-3 | F6 | A confirm's only answers are the two keys `Enter` and `Esc`; no `y` or `n` | confirm | On a confirm press `y`, `n`: nothing happens |
@@ -369,12 +372,17 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | E3-8 | E3 | The cache location can be overridden with `<APP>__CACHE` | stores settings or data | Start with `<APP>__CACHE` set: the cache is stored there instead |
 | E3-9 | E3 | On Windows `~` is `%USERPROFILE%`: config in `%USERPROFILE%\.config\<app>`, data under `%USERPROFILE%\.<app>\`, not in `%APPDATA%` | Windows build | Read the code: how the paths are worked out on Windows |
 | E3-10 | E3 | Hiding private keys and owner-only files in the previews of popups uses the config key `hide_secrets_in_preview` (in the app's config file), `false` by default: everything shown as usual | file preview | Read the code and the config file: the key's name and its default |
-| E3-11 | E3 | How many spaces `Tab` inserts in the writing state, and how many cells a Tab is drawn as in content on screen (viewers, file previews, lists, menu text), uses the config key `input_tab_width`, `4` by default | everyone | Read the code and the config file: the key's name and its default |
+| E3-11 | E3 | How many spaces `Tab` inserts in the writing state, and how many cells a Tab is drawn as in content for reading (viewers, file previews, a log on a panel), uses the config key `input_tab_width`, `4` by default | everyone | Read the code and the config file: the key's name and its default |
 | E3-12 | E3 | The config file is `config.yaml` in the config directory | stores settings or data | Read the code, or start the app and look at the config file's name and format |
-| E3-13 | E3 | Things go where "what happens if it is deleted" puts them: options the user set are settings; what only falls back to defaults is state; what cannot be got back and would be backed up (bookmarks, records, logs) is data; what the app rebuilds or fetches again is cache; a connection list the user writes by hand counts as settings | stores settings or data | Read the code: where each kind of thing written to disk goes |
-| E3-14 | E3 | After a release moves a location, the first start moves it item by item: an item missing at the new place is moved over, with an Info toast saying from where to where; the emptied old directory is then removed | stores settings or data | Read the code; or put things at the old place and start the new release (for an app that moved a location) |
+| E3-13 | E3 | Things go where "what happens if it is deleted" puts them: the options the app itself starts and runs with are settings; what only falls back to defaults is state; what cannot be got back and would be backed up (bookmarks, records, logs, lists the user writes for the app) is data; what the app rebuilds or fetches again is cache | stores settings or data | Read the code: where each kind of thing written to disk goes |
+| E3-14 | E3 | After a release moves a location, the first start moves it item by item: an item missing at the new place is moved over, with a toast saying from where to where; the emptied old directory is then removed | stores settings or data | Read the code; or put things at the old place and start the new release (for an app that moved a location) |
 | E3-15 | E3 | When the move fails, the old place is used as before, and an error popup gives both paths | stores settings or data | Read the code; or make the new place unwritable and start the app |
 | E3-16 | E3 | An item already at the new place when moving: a cache's old copy is deleted; settings, state and data are not deleted but left at the old place, with an error popup giving both paths | stores settings or data | Read the code; or put the same item at both places and start the new release |
+| E3-17 | E3 | When the app's own settings, state or data cannot be read, a confirm at start gives the path and the reason, with the hint `Enter:move Esc:quit` | stores settings or data | Damage the config file's format and start the app |
+| E3-18 | E3 | `Enter` on that confirm renames the file to `.bak`, creates a new one in its place and starts as usual | stores settings or data | As above, press `Enter` and look at the `.bak` and the new file |
+| E3-19 | E3 | With a `.bak` already there, `.bak.1`, `.bak.2`… are used, nothing overwritten; the question names the file really used | stores settings or data | Leave a `.bak` in place, damage the file and start the app |
+| E3-20 | E3 | `Esc` on that confirm quits the app and writes the path and the reason to stderr | stores settings or data | As above, press `Esc`: the app ends and the terminal shows the message |
+| E3-21 | E3 | A cache that cannot be read is thrown away and rebuilt, with no question | stores settings or data | Damage a cache file and start the app: no confirm |
 | E4-1 | E4 | PUA glyphs are written as code points in the source | everyone | Read the code: a scan of the source finds no PUA characters |
 | E4-2 | E4 | The README's requirements say a Nerd Font is required | everyone | Read the prerequisites in both READMEs |
 | E4-3 | E4 | The README's requirements say, next to the Nerd Font, that a truecolor terminal (24-bit colour) is required | everyone | Read the prerequisites in both READMEs |
@@ -468,6 +476,8 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | components-24 | components §Wrapping | Text that is only shown (a confirm, a note, a toast, an error popup, an empty state, the splash) does not draw the space it breaks at: the next row does not start with a blank cell | everyone | Make the text of a toast, a confirm or a too-narrow splash wrap right after a word; check that the next row starts with no blank and stays centred |
 | components-25 | components §Diagrams and spacing | A statusbar group is written `label: value`, one space after the colon; two cells between groups, with no separator symbol | statusbar | Look at each statusbar group and between groups |
 | components-26 | components §Uppercase | A name in a panel title keeps its case (`[2] PODS: nginx-7d4f`), and a label that is all name keeps it too (`[1] prod-web-01`) | everyone | Look at the capsules of panels whose label holds a name |
+| components-27 | components §Control characters | In names and short text (values on forms and panels, list cells, menus, popup titles, toasts, confirms, error popups, options, explanation rows, empty states, the statusbar, tab names, finder items), every control character, a Tab, a `\n` and the ESC of a colour code included, is drawn by name in red; never dropped, turned into spaces or sent to the terminal as it is | everyone | Give a name that shows in these places (e.g. a file name, a web page title) a Tab or `\x1b[31m` and look at the list, the menu and the confirm; or read the code |
+| components-28 | components §Control characters | A log on a panel is drawn as a terminal would draw it: `\n` is a line break, a Tab is spaces, colour codes colour the text, a `\r` within a line keeps only the last state, and any other control character or sequence that is not a colour code is drawn by name in red | streaming content | Feed the log a coloured line, a line `10%\r100%` and a line holding `\x1b[2J`, and look at the log panel |
 
 ## color
 
@@ -509,11 +519,11 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | screen-3 | screen §From top to bottom | The bottom row is the footer, one row only | everyone | Look at the bottom row of the screen |
 | screen-4 | screen §Footer | Keys in the footer are Blue, the colon and description Overlay0 | everyone | Look at the footer's colours |
 | screen-5 | screen §Footer | When the footer is too narrow, whole pairs are dropped from the end | everyone | Narrow the terminal; check that the footer loses whole `key:description` pairs from the end |
-| screen-6 | screen §Footer | On a screen with several panels, the footer is `Space:menu ?:help Tab\|1–N:panels q:quit` | several panels | Look at the footer on a screen with several panels |
-| screen-7 | screen §Footer | On a screen with only one panel, the footer is `Space:menu ?:help q:quit` | everyone | Look at the footer on a screen with only one panel (in a multi-screen app, on each screen) |
+| screen-6 | screen §Footer | On a screen with several panels, the footer is `Space:menu ?:help !:log Tab\|1–N:panels q:quit` | several panels | Look at the footer on a screen with several panels |
+| screen-7 | screen §Footer | On a screen with only one panel, the footer is `Space:menu ?:help !:log q:quit` | everyone | Look at the footer on a screen with only one panel (in a multi-screen app, on each screen) |
 | screen-8 | screen §Footer | With a mode on a panel, the footer is `?:help`, the mode's own keys, and last `Esc:<verb for leaving>` | mode (on a panel) | Enter a mode and look at the footer |
 | screen-9 | screen §Footer | While typing in a panel filter, the footer is `Enter\|Tab:list Esc:clear` | panel filter | Press `/` and look at the footer while typing |
-| screen-10 | screen §Footer | With the focus on a PTY in a panel, the footer has the exit key plus the keys the app keeps; no `?` or `Space` | PTY | Enter the PTY; check that the footer's first pair is the exit key |
+| screen-10 | screen §Footer | With the focus on a PTY in a panel, the footer has the exit key plus the keys the app keeps (in an interactive terminal also `Alt-v` and `PgUp`); no `?` or `Space` | PTY | Enter the PTY; check that the footer's first pair is the exit key |
 | screen-11 | screen §Footer | While a popup is open, the footer is as for the screen underneath, its words unchanged (a terminal popup is the exception: the footer is not drawn, terminal-13) | everyone | Compare the footer's words before and after opening a popup |
 | screen-12 | screen §Screen chip row | One capsule per screen, drawn as the capsule chain | several screens | Look at the top row |
 | screen-13 | screen §Screen chip row | The selected screen is filled with Blue, its text Base bold | several screens | Look at the current screen's chip |
@@ -538,6 +548,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | screen-32 | screen §Screen chip row | In a single-screen app, a long task's progress is written in that task's own row | long task | Start a long task in a single-screen app and look at the task's row |
 | screen-33 | screen §Zoom | Zooming a panel follows the default (only the focused panel drawn, filling the panel area; the panel reached with `Tab` or a digit is zoomed too; pressing the zoom key again restores), and what departs from it is written in the dev-remarks' design decisions | zoom | Zoom, press `Tab` and a digit, then press the zoom key; read the files: the dev-remarks' design decisions when not following the default |
 | screen-34 | screen §Empty states | An empty-state sentence too long for the panel wraps between words, each row centred, still one cell from the frame on each side; never cut | everyone | Narrow a panel with no data and look at the two sentences |
+| screen-35 | screen §Footer | With errors in the App Log not seen yet, the footer's `!:log` becomes `!:N errors` (Red), with only warnings `!:N warning` (Peach); after the App Log is opened it is `!:log` again | everyone | Cause an error and look at the footer; press `!`, then look again |
 
 ## layout/panel
 
@@ -573,7 +584,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | panel-28 | panel §Capsule chain | On a panel the chain's colour is the border colour, changing with focus, unfocus and mode | everyone | Press `Tab` to change panels and enter a mode; check that the capsule's colour follows the frame line |
 | panel-29 | panel §Capsule chain | For the tabs after a popup title, the chain's colour is the layer colour | popup tab | Open a popup with tabs and look at the selected tab |
 | panel-30 | panel §Capsule chain | The `[N] label` capsule counts as selected | everyone | Check that the `[N] label` capsule is filled |
-| panel-31 | panel §Capsule chain | An unselected part has no fill, its text in the chain's colour, not bold | everyone | Look at an unselected tab |
+| panel-31 | panel §Capsule chain | An unselected part has no fill, its text in the chain's colour, not bold | several screens or panel tab or popup tab | Look at an unselected tab |
 | panel-32 | panel §Capsule chain | Joins: U+E0B0 where the colour changes, U+E0B1 between parts of the same colour | several screens or panel tab | Change tabs and look at the shape of the joins; read the code to check the code points |
 | panel-33 | panel §Capsule chain | The join from selected to unselected is U+E0B0, foreground the chain's colour, background Base | several screens or panel tab | Look at the join on the right of the selected part |
 | panel-34 | panel §Capsule chain | The join from unselected to selected is U+E0B0, foreground Base, background the chain's colour | several screens or panel tab | Look at the join on the left of the selected part |
@@ -606,7 +617,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | panel-61 | panel §Ordinary lists | When the content does not fit, the right of the bottom border reads `N of M` (which entry the cursor is on, how many in all) | everyone | Make the list longer than the panel, move the cursor and look at the bottom right |
 | panel-62 | panel §Ordinary lists | The scroll position is in the border colour | everyone | Check that `N of M` is the same colour as the frame line |
 | panel-63 | panel §Ordinary lists | No scroll position when everything fits | everyone | Make the list short enough to fit; check that there is no `N of M` at the bottom right |
-| panel-64 | panel §Ordinary lists | A panel without a cursor (a preview, a log) shows the visible lines, `N-M of T` | everyone | Look at the bottom right of a preview or log panel |
+| panel-64 | panel §Ordinary lists | A panel without a cursor (a preview, a log) shows the visible lines, `N-M of T` | panel without a cursor | Look at the bottom right of a preview or log panel |
 | panel-65 | panel §Ordinary lists | Every row keeps a one-cell mark column at its very start | marks | Check that every row keeps one blank cell at its start even when nothing is marked |
 | panel-66 | panel §Ordinary lists | A marked row shows a Green U+F0132 | marks | Mark a row and look at the mark column |
 | panel-67 | panel §Ordinary lists | An unmarked row leaves it blank, the column width always kept, so rows never shift sideways when marked or unmarked | marks | Mark a row, then unmark it; check that the row's text does not move |
@@ -678,6 +689,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | panel-133 | panel §Ordinary lists | The list's order is fixed: the same data comes out in the same order every time it opens or is fetched again; data with no order of its own is sorted by the app first (by name by default, numbers by value) | everyone | Close and reopen, fetch again a few times: the order holds; read the code: data with no order (e.g. a map) is sorted first |
 | panel-134 | panel §Location row | When the list is empty, the location row stays; only the header and the list give way to the empty state | location row | Empty a list with a location row (e.g. open an empty directory): the location row is still there |
 | panel-135 | panel §Ordinary lists | The columns that may be cut short (names, URLs, a line of text) share the width left and are cut their own way; the other, short columns take their widest value and never shrink | header | Put a very long name in the list: the other columns stay whole and the name is cut short |
+| panel-136 | panel §Ordinary lists | A value in a cell (a file name or a name that came from a file or another program) holding control characters shows them as red escapes, as on the typing row (`\n`, `\t`, `\x1b`): never dropped, turned into spaces or sent to the terminal as they are | everyone | Put an item whose name holds a newline or `\x1b` in a list (e.g. a file name) and look at that cell; or read the code |
 
 ## layout/popup
 
@@ -975,6 +987,12 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | note-71 | note §Look | A viewer's search: every match underlined, keeping its colour; the current match drawn as the cursor block; no Yellow | viewer | In a viewer with `/`, search for a word that appears several times; look at the underlines and the current match (a viewer with no search never has this case) |
 | note-72 | note §Look | In an unwrapped viewer, when the selection cursor walks into the cut part, the view scrolls sideways to show it, with `…` at the start of lines cut on the left; the cut text can be selected and copied | viewer | In an unwrapped viewer, enter the selection mode and walk the cursor right into the cut part |
 | note-73 | note §Key reference | A long explanation in the "Each row" section wraps in the right column with the name column kept, instead of being cut; the sections of keys stay one key per row, cut when too long | one value per row | Give a row an explanation wider than the frame and press `?`: it wraps |
+| note-74 | note §Look | In a viewer, a line the app hands over that holds a `\n` is split in two | viewer | Hand the viewer a line holding a `\n` (e.g. an error message over several lines) and check that it shows as two lines |
+| note-75 | note §Look | In a viewer, colour codes (SGR) colour the text, a `\r` within a line keeps only the last state, and a sequence that is not a colour code is drawn by name in red | viewer | Open content with colour codes, `10%\r100%` and `\x1b[2J` |
+| note-76 | note §App Log | Every app has an App Log, a viewer with the newest entry last, where new entries keep arriving while it is open | everyone | Press `!`, do a few things, and watch new entries arrive |
+| note-77 | note §App Log | It records what the user did and how it ended, every toast, and what the app did in the background | everyone | Do something, get a toast, press `!`; read the code |
+| note-78 | note §App Log | Each entry: the time `HH:MM:SS` (Overlay0), the level (`INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, four cells wide, left-aligned), and what happened | everyone | Look at the App Log's levels |
+| note-79 | note §App Log | Kept in memory only, emptied when the app quits; the number of entries has a limit, and the oldest goes when it is full | everyone | Read the code; or quit and start again: the App Log is empty |
 
 ## dialog/terminal
 
@@ -994,12 +1012,16 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | terminal-12 | terminal §Keys | After the exit key come the key combinations the app keeps (`Alt-t:hide`, `PgUp:history`) | terminal popup | Look at the order in the hint |
 | terminal-13 | terminal §Look | While a terminal popup is open the footer is not drawn: both ends of the last row are blank, with no footer text showing | terminal popup | Open a terminal popup and look at both ends of the last row |
 | terminal-14 | terminal §Look | A PTY in a panel has no padding either: the panel's frame is drawn as usual, with the PTY against it | PTY | Look between the first character and the frame in a panel holding a PTY |
-| terminal-15 | terminal §History mode | `PgUp` on a PTY scrolls up into the history mode: the frame and the mode name take the mode colour, the mode name being `History` | PTY | Press `PgUp` on a PTY and look at the frame and the right of the top border |
-| terminal-16 | terminal §History mode | In the history mode, `j\|k`, `u\|d`, `gg\|G` and `PgUp\|PgDn` all scroll the history and are not sent to the subprocess | PTY | In the history mode press these keys: the history scrolls and the shell receives nothing |
-| terminal-17 | terminal §History mode | In the history mode, `Esc` leaves the mode, back to the live screen | PTY | In the history mode press `Esc` |
-| terminal-18 | terminal §Selection mode | A PTY's selection mode is entered with a key combination the app keeps, always shown like the other kept keys | PTY | Check that the footer or the terminal's bottom border shows the key entering the selection mode, and press it |
-| terminal-19 | terminal §Selection mode | Entering a PTY's selection mode freezes the screen: later output from the subprocess is not drawn yet, and the cursor can go up into the history; leaving returns to the live screen | PTY | Enter the selection mode while the shell keeps printing: the screen holds still and the cursor can go up |
-| terminal-20 | terminal §Selection mode | A PTY's selection mode follows the note's selection mode: the same keys, colours, scroll position and toast after copying | PTY | Select and copy a stretch in a PTY's selection mode and compare with a viewer's selection mode |
+| terminal-15 | terminal §History mode | `PgUp` on a PTY scrolls up into the history mode: the frame and the mode name take the mode colour, the mode name being `History` | interactive terminal | Press `PgUp` on a PTY and look at the frame and the right of the top border |
+| terminal-16 | terminal §History mode | In the history mode, `j\|k`, `u\|d`, `gg\|G` and `PgUp\|PgDn` all scroll the history and are not sent to the subprocess | interactive terminal | In the history mode press these keys: the history scrolls and the shell receives nothing |
+| terminal-17 | terminal §History mode | In the history mode, `Esc` leaves the mode, back to the live screen | interactive terminal | In the history mode press `Esc` |
+| terminal-18 | terminal §Selection mode | An interactive terminal's selection mode is entered with `Alt-v` (the family's `v`, with `Alt` to get out of the subprocess in a PTY), always shown like the kept keys | interactive terminal | Check that the footer or the terminal's bottom border shows `Alt-v:select`, and press it |
+| terminal-19 | terminal §Selection mode | Entering a PTY's selection mode freezes the screen: later output from the subprocess is not drawn yet, and the cursor can go up into the history; leaving returns to the live screen | interactive terminal | Enter the selection mode while the shell keeps printing: the screen holds still and the cursor can go up |
+| terminal-20 | terminal §Selection mode | A PTY's selection mode follows the note's selection mode: the same keys, colours, scroll position and toast after copying | interactive terminal | Select and copy a stretch in a PTY's selection mode and compare with a viewer's selection mode |
+| terminal-21 | terminal §Which PTYs have these modes | A PTY the app opens to run a program for one job (an editor, sudo asking for a password) has no history or selection mode; every key goes to that program, `PgUp` included | PTY | In a PTY running an editor press `PgUp`: the editor pages up itself and the frame does not take the mode colour |
+| terminal-22 | terminal §Which PTYs have these modes | While the subprocess takes the whole screen (vim, less, htop), `PgUp` goes to it and the bottom border has no `PgUp:history`; once it is back on the normal screen, `PgUp` enters the history mode again | interactive terminal | Run `less` in the shell and press `PgUp`: less pages up and the bottom border has no `PgUp:history`; quit less and press `PgUp` again |
+| terminal-23 | terminal §Which PTYs have these modes | While the user gives every key to the subprocess (e.g. a locked cell in sshu), the selection mode steps aside and `PgUp\|PgDn` go straight in; the key that unlocks is always shown, and both modes come back after unlocking | interactive terminal | In an app with such a state: enter it, press `Alt-v` and `PgUp` and check that both reach the subprocess and the bottom border shows the unlocking key; unlock and press them again |
+| terminal-24 | terminal §Raising privileges | When privileges are raised, the app neither asks for the password nor handles it: it first tries without one, and when one is needed the system's tool asks in a terminal popup that closes itself when done | raising privileges | Do something that needs privileges on a machine that asks for a password; read the code: the password never passes through the app |
 
 ## dialog/toast
 
@@ -1020,7 +1042,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | toast-13 | toast §Look | A second toast replaces the first at once, and the timer starts over | toast | Bring up two toasts one after the other |
 | toast-14 | toast §Keys | The hint is `Esc:close` | toast | Look at the toast's bottom border |
 | toast-15 | toast §Look | Success: title `nf-md-check_circle` (U+F05E0) `SUCCESS`, text in Green | toast | Bring up a Success toast |
-| toast-16 | toast §Look | What finished successfully uses Success (e.g. `Copied 3 paths`); Info is kept for messages that are neither a success nor a problem | toast | Complete an action: the toast is a Success |
+| toast-16 | toast §Look | Whether something finished is told with Success or Info is the app's call; a failure is always an Error | toast | Complete an action: the toast is a Success or an Info; make an action fail: it is an Error |
 | toast-17 | toast §Purpose | A failure tied to a popup's action, which the user must read before deciding, uses an error popup, not a toast | toast | Make an action in a popup fail: an error popup comes up |
 | toast-18 | toast §Look | Done, or still usable, but with something worth noticing uses Warning (e.g. `3 files skipped`) | toast | Run an action that skips part of its work: the toast is a Warning |
 | toast-19 | toast §Look | A failed action is always an Error, never a Warning | toast | Make an action fail: the toast is an Error (or an error popup comes up) |
@@ -1029,7 +1051,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| input-1 | input §What an input is | opened from a field of a form or a one-value-per-row panel, an error names that field | form or one value per row | make the value invalid and press `Enter`; the error row names the field |
+| input-1 | input §What an input is | opened from a field of a form or a one-value-per-row panel, an error that names the value uses the field's name, not the title; one that can point straight at what is wrong does so | form or one value per row | make the value invalid and press `Enter`; the error row names the field or the wrong part, never the title |
 | input-2 | input §What an input is | an input opened on its own (its title saying what it does, e.g. `RENAME`, `SAVE AS`): an error names the value by the name the app gives besides (e.g. `Name`), never by the title | input | on a popup such as `SAVE AS`, paste a control character and press `Enter`; the error says `Name can't …`, not `Save as can't …` |
 | input-3 | input §What an input is | `Esc`: closes, the value unchanged | input | change the value and press `Esc`; the field keeps the old value |
 | input-4 | input §What an input is | an input popup with a button: the hint says `Tab:actions` on a field and `Tab:fields` on a button | input | look at the hint on the bottom border in both places |
@@ -1522,6 +1544,7 @@ The items of tdp v0.8.3. What each column means and what an item applies to: [RE
 | file-picker-90 | file-picker §Choosing a directory | The hint on `.` is `Enter:choose Tab\|/:filter Esc:cancel` | file-picker | With the cursor on `.`, look at the bottom border |
 | file-picker-91 | file-picker §Metadata | A file gone after being listed (deleted, moved), writes `—` in every row it cannot get | file preview | Delete a file elsewhere after it is listed, move the cursor to it and look at the metadata |
 | file-picker-92 | file-picker §The preview | The preview and the metadata are read in the background: typing and moving the cursor never wait; while reading, the preview frame has the loading icon after its title, reads `(loading…)` in grey, and the metadata values stay empty; what has been read is kept by path and not read again | file preview | Move the cursor fast on a slow (e.g. remote) file system: typing never stalls, and the reading state looks as described; read the code: files are not read while drawing |
+| file-picker-93 | file-picker §The preview | In a text file, colour codes colour the text and a `\r` within a line keeps only the last state | file preview | Preview a file with colour codes and `10%\r100%` in it |
 
 ## input/reorder
 

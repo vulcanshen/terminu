@@ -20,6 +20,8 @@ A kind of popup: a value is entered or chosen, and written back once confirmed; 
   has a title saying what the popup does (`RENAME`, `SAVE AS` in [`layout/popup`](../layout/popup.md)), so the app gives
   the value's name besides (`Name`). E.g. on `SAVE AS`, `Name can't have control characters`, not `Save as can't have
   control characters` — the title says what is being done, not what the value is called.
+  Not every error has to carry the name: one that can point straight at what is wrong does so (e.g.
+  `10.0 is not an IPv4 or IPv6 address`, no need for `Addresses: …`).
 - **`Esc`**: closes, the value unchanged.
 - **Opened from a form**: after confirming, the focus stays on the same field of the form (Rules K3).
 - **An input popup with a button** (e.g. the colour picker's `Choose`): the action area works as in

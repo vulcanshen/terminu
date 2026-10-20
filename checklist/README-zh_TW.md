@@ -57,6 +57,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | statusbar | 有 statusbar |
 | zoom | 有放大 panel 的功能（layout/screen） |
 | 串流內容 | 有一直進來的內容（例：log） |
+| 沒有 cursor 的 panel | 有沒有 cursor 的 panel（預覽、log） |
 | loading | 有 panel 或 popup 要等內容載入 |
 | 模式 | 有模式（Rules K11） |
 | 模式（在 panel 上） | 有開在 panel 上的模式（例：panel 的 Drag） |
@@ -65,7 +66,9 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 長時間工作 | 有長時間的工作（畫面 chip 列下的進度，或單畫面 app 工作那一列的進度） |
 | 工作清單 | 有工作清單：列出 app 正在跑或跑過的工作的 menu（例：sshu 的 Jobs） |
 | PTY | 有 PTY（在 panel 裡或 terminal popup） |
+| 互動 terminal | 有讓使用者在裡面打自己指令的 PTY（shell、ssh 連線、`kubectl exec`）；app 開一個程式做一件事的（編輯器、讓 sudo 問密碼）不算 |
 | terminal popup | 有 terminal popup |
+| 提權 | 要用系統的提權工具（例：sudo）寫 app 以外的檔 |
 | popup tab | 有帶 tab 的 popup |
 | 表單 | 有表單 |
 | viewer | 有 viewer |

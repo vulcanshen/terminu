@@ -4,8 +4,9 @@
 
 ## Purpose
 
-A subprocess running in a frame (a shell, an editor, a remote session): every key goes to it; only the exit key and the
-key combinations the app keeps belong to the app (Rules F1, K10). A PTY placed in a panel (e.g. sshu's grid cells) is
+A subprocess running in a frame (a shell, an editor, a remote session): every key goes to it; only the exit key, the
+key combinations the app keeps, and an interactive terminal's `Alt-v` and `PgUp` ("Which PTYs have these
+modes" below) belong to the app (Rules F1, K10). A PTY placed in a panel (e.g. sshu's grid cells) is
 not a popup: its frame follows [`layout/panel`](../layout/panel.md), and the PTY's keys are written in the footer
 ([`layout/screen`](../layout/screen.md)).
 
@@ -19,7 +20,7 @@ not a popup: its frame follows [`layout/panel`](../layout/panel.md), and the PTY
 ┃NAME          READY   STATUS    RESTARTS   AGE          ┃
 ┃nginx-7d4f    1/1     Running   0          3d           ┃
 ┃$ █                                                     ┃
-┗━ Alt-Esc:exit Alt-t:hide PgUp:history ━━━━━━━━━━━━━━━━━┛   ← down to the screen's last row; the footer is not drawn
+┗━ Alt-Esc:exit Alt-t:hide Alt-v:select PgUp:history ━━━━┛   ← down to the screen's last row; the footer is not drawn
 ```
 
 - **Size** (the terminal exception of Rules F7): width `terminal width − 2`, with no 120-column cap. Above, the
@@ -52,14 +53,36 @@ with no two rows of hints.
   - `Alt-Esc:exit`: ends the subprocess.
   - `Alt-Esc:leave`: leaves, with the subprocess still running.
   - Never `close`.
-- After the exit key come the key combinations the app keeps (e.g. `Alt-t:hide`, `PgUp:history`).
+- After the exit key come the key combinations the app keeps (e.g. `Alt-t:hide`), then, in an interactive terminal,
+  `Alt-v:select` and `PgUp:history` (below).
 - `Alt-Esc` always asks for confirmation first (Rules K10).
 - `Home` and `End` belong to the subprocess (Rules K10); to reach the top or the bottom of the history, use `gg|G` in
   history mode (below).
 
+## Which PTYs have these modes
+
+The history and selection modes below go by what a PTY is for, not by its being a PTY:
+
+- **An interactive terminal**: a PTY where the user types their own commands (a shell, an ssh session, `kubectl exec`)
+  always has both modes.
+- **A PTY the app opens to run a program for one job** (editing a file in `$EDITOR`, sudo asking for a password): it has
+  neither mode, and every key goes to that program, `PgUp` included. Scrolling, moving and selecting are that program's
+  own business.
+- **While the subprocess takes the whole screen** (vim, less or htop started in an interactive terminal, switching to the
+  terminal's other screen): `PgUp` goes to it and the bottom border has no `PgUp:history`; once it is back on the normal
+  screen, `PgUp` enters the history mode again. The selection mode works as usual, on the frozen screen.
+- **While the user gives every key to the subprocess** (e.g. a locked cell in sshu, for a sshu started inside it): the
+  selection mode steps aside; `PgUp|PgDn` go straight in, and the innermost PTY scrolls its own history, as if used
+  directly. The key that unlocks is always shown, as in Rules K10, and both modes come back after unlocking.
+
+**Why**: what the family looks after is the user's own commands: the output of what they typed in a shell has to scroll
+back and be selectable. Editors and full-screen programs handle their own scrolling and selection; we have not rewritten
+them, so we do not take their keys. Their screens never reach the history either: catching `PgUp` would only stop vim
+from paging and give an empty history instead.
+
 ## History mode
 
-On a PTY's live screen every letter belongs to the subprocess (a shell needs `j`, `k`, `g`), so scrolling up into the
+On an interactive terminal's live screen every letter belongs to the subprocess (a shell needs `j`, `k`, `g`), so scrolling up into the
 history is a mode (Rules K11), and only there do the family's movement keys work.
 
 - **Entering**: scrolling up with `PgUp` enters it. The frame and the mode name take the mode colour, as in K11; the mode
@@ -77,14 +100,30 @@ old habit for scrolling back in a terminal, so pressing it gets you in; someone 
 
 ## Selection mode
 
-A PTY's selection mode follows the selection mode of [`dialog/note`](note.md): the same keys, colours, scroll
+An interactive terminal's selection mode follows the selection mode of [`dialog/note`](note.md): the same keys, colours, scroll
 position, and toast after copying.
 
-- **Entering**: every letter in a PTY belongs to the subprocess, so it is entered with a key combination the app keeps
-  (e.g. sshu's `Alt-v`), disclosed all the time like the other kept keys (Rules K10, M1).
+- **Entering**: the family enters the selection mode with `v`; every letter in a PTY belongs to the subprocess, so `v`
+  would be typed into the shell, and `Alt` gets out of it: `Alt-v`. It is not a key the app picks; it is disclosed all
+  the time like the kept keys (Rules K10, M1).
 - **The screen freezes**: on entering, later output from the subprocess is not drawn yet, so new output does not push
   the selection away; the cursor can move up into the history. Leaving returns to the live screen.
 - **After leaving**: keys go to the subprocess as usual.
 
 **Why**: in a shell, what you most often want to copy is a piece of output; with the same keys as the viewer, learning
 it once lets you select anywhere in the family.
+
+## Raising privileges
+
+When an app writes a system file (e.g. hostu writing `/etc/hosts`), it **neither asks for the password nor ever handles
+it**; the system's tool for raising privileges does:
+
+- First try without a password (e.g. `sudo -n`); if that works, write at once, opening nothing.
+- When a password is needed, open a terminal popup running the tool (e.g. `sudo cp <temp file> /etc/hosts`) and let it
+  ask; the popup closes itself when it is done. This PTY runs a program for one job, so it has no history or selection
+  mode ("Which PTYs have these modes" above).
+- Which tool is up to the app and the platform (e.g. sudo, doas when there is none; on Windows gsudo or the built-in
+  sudo, with the system's UAC prompt).
+
+**Why**: a password that never passes through the app cannot be stored or end up in the App Log; sudo's own settings
+(how long it remembers, fingerprint unlock) still work, just as when the user runs sudo in a terminal.

@@ -47,7 +47,8 @@ deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast.
   | Warning | done, or still usable, but with something worth noticing (Peach: worth noticing, not broken) | `3 files skipped`, `Unknown key in config.yaml` |
   | Error | an action failed (Red: an error) | `Can't connect to cluster` |
 
-  A failure is always an Error, never a Warning; a failure tied to a popup's action, which the user must read before
+  Whether something finished is told with Success or Info is up to the app: a Success is itself a kind of notice, and
+  whether to mark it as a success is the app's call. A failure is always an Error, never a Warning; a failure tied to a popup's action, which the user must read before
   deciding, uses an error popup as "Purpose" says.
 - **Time**: Success and Info 2200 ms; Warning and Error 4400 ms.
 - **When a second toast comes**: it replaces the first at once, and the timer starts over.
