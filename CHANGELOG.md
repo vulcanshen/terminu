@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.9.1 — 2026-10-20
+
+What the members found while moving to tdp v0.9.0 and terminu-go v0.4.0, settled with the user.
+
+- Rules E3: lists the user writes for the app are data even when they hold how the app works (locku's and hostu's
+  profiles, filu's Open with list, kbu's pins), and so are original values the app keeps for the user (ccdrawu's);
+  config is left with the app's own single options. When the data is one record per file, an unreadable record is
+  moved to `.bak` and the rest goes on, with nothing new made (kamonu's KM18). The App Log alone does not count as
+  using `input_tab_width`.
+- components: a list column the app marks as "a line of text" draws a Tab as spaces (webu's DevTools source, WB21).
+- checklist: E3-11's applicability narrowed, E3-13 reworded, E3-22 and components-29 added (1420 items)
+
 ## v0.9.0 — 2026-10-20
 
 What the rebuilt hostu (its judge, then its reviewer) and terminu-go's tdptest found, settled with the user.

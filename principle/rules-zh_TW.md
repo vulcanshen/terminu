@@ -923,8 +923,9 @@ design 做」並附上連結，不列家族成員（E7）。其他規定兩種 a
 
 - **設定**：app 自己的設定 —— app 啟動與運作用的選項（設定檔 `config.yaml`）。
 - **狀態**：刪了只是回到預設（例：上次開的分頁、cursor 停在哪）。
-- **資料**：刪了就找不回來、使用者會想備份的（例：書籤、紀錄、log）。使用者寫給 app 用的清單也是資料（例：sshu 的 hosts 與
-  credentials、hostu 的 profiles）。
+- **資料**：刪了就找不回來、使用者會想備份的（例：書籤、紀錄、log）。使用者寫給 app 用的清單也是資料，就算內容是 app 怎麼
+  運作的選項（例：sshu 的 hosts 與 credentials、hostu 與 locku 的 profiles、filu 的 Open with 清單、kbu 的釘選）；app 替使用者記下的原值
+  也是（例：ccdrawu 換掉 Claude Code 的 theme 之前記下的原值）。設定只剩 app 自己一個一個的選項。
 - **快取**：刪了 app 會自己重建或重抓的（例：下載的瀏覽器、索引）。
 
 **換了位置時**：app 改版把東西換到新位置，第一次啟動時逐項搬，跳一個 toast 說從哪裡搬到哪裡：
@@ -953,7 +954,8 @@ confirm（[components/dialog/confirm](../components/dialog/confirm-zh_TW.md)）�
 ```
 
 - **`Enter`**（`move`）：把那個檔改名成 `<檔名>.bak`，在原本的位置建一個新的（設定用預設值，狀態、資料從空的開始），照常開始。
-  `.bak` 已經有了就用 `.bak.1`、`.bak.2`……，一律不蓋掉；問句寫實際會用的名字。
+  `.bak` 已經有了就用 `.bak.1`、`.bak.2`……，一律不蓋掉；問句寫實際會用的名字。資料是一筆一個檔時（例：kamonu 一個家紋一個檔），
+  讀不了的那一筆改名成 `.bak` 就好，不另外建，其他照常讀；問句寫 `Move it to <檔名>.bak and go on without it?`。
 - **`Esc`**（`quit`）：離開 app，不是回到 app；路徑與原因寫到 stderr，回到 shell 還看得到要修哪裡。
 - **快取**讀不了：不問，丟掉重建。
 - **app 外面的東西**讀不到（叢集、網路、遠端）：不是 app 自己有問題，app 照常開著，照 [components/layout/panel](../components/layout/panel-zh_TW.md)
@@ -967,12 +969,12 @@ confirm（[components/dialog/confirm](../components/dialog/confirm-zh_TW.md)）�
 | key | 意思 | 預設 |
 |---|---|---|
 | `hide_secrets_in_preview` | popup 的預覽裡藏起私鑰與只有擁有者能讀的檔（[components/input/file-picker](../components/input/file-picker-zh_TW.md)） | `false` |
-| `input_tab_width` | 多行文字的寫入狀態下，按一次 `Tab` 插入幾個空白（[components/input/textarea](../components/input/textarea-zh_TW.md)）；拿來讀的內容裡的 Tab（viewer、檔案預覽、panel 上的 log）也畫成這麼多格空白；名字與短字（表單與 panel 上的值、清單的格子、menu 的文字……）與輸入框的打字列裡，Tab 畫成紅色的 `\t`（[components](../components/README-zh_TW.md) 的「控制字元」） | `4` |
+| `input_tab_width` | 多行文字的寫入狀態下，按一次 `Tab` 插入幾個空白（[components/input/textarea](../components/input/textarea-zh_TW.md)）；拿來讀的內容裡的 Tab（viewer、檔案預覽、panel 上的 log）也畫成這麼多格空白（每個 app 都有的 App Log 不算用到：只有它的 app 照預設，不必有這個 key）；名字與短字（表單與 panel 上的值、清單的格子、menu 的文字……）與輸入框的打字列裡，Tab 畫成紅色的 `\t`（[components](../components/README-zh_TW.md) 的「控制字元」） | `4` |
 
 **為什麼**：五個 app 放在同一套位置，使用者知道去哪裡找、要備份哪些。macOS 不用系統慣用的 `~/Library/Application Support`，
 Windows 也不用 `%APPDATA%`：每個平台同一套算法，在哪台機器上都是同一個地方。快取放在系統的快取目錄，清快取的工具才找得到它，
 也不會被當成要備份的資料。用「刪掉會怎樣」分：使用者看位置就知道哪些要備份、哪些刪了也沒關係；設定只放 app 自己運作用的
-選項；使用者寫給 app 用的清單（連線、profile、書籤）是使用者花心思打的，刪了就找不回來，跟書籤一樣是資料。設定檔同一個名字與格式：使用者打開哪個 app 的設定目錄都知道改哪個檔。換位置時
+選項；使用者寫給 app 用的清單（連線、profile、書籤）是使用者花心思打的，app 替使用者記下的原值也是使用者的東西，刪了就找不回來，跟書籤一樣是資料。設定檔同一個名字與格式：使用者打開哪個 app 的設定目錄都知道改哪個檔。換位置時
 自己搬過去：使用者不會升級一次就發現書籤、紀錄不見了；搬不動時說出兩個路徑，不默默開一份新的。共用的設定 key 用同一個名字：
 使用者在一個 app 設過，就知道在另一個 app 怎麼設。
 

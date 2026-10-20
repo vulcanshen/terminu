@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -372,9 +372,9 @@ tdp v0.9.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | E3-8 | E3 | 快取的位置可以用 `<APP>__CACHE` 覆寫 | 存設定或資料 | 設 `<APP>__CACHE` 啟動，快取改存到那裡 |
 | E3-9 | E3 | Windows 上 `~` 是 `%USERPROFILE%`：設定 `%USERPROFILE%\.config\<app>`、資料 `%USERPROFILE%\.<app>\`，不用 `%APPDATA%` | 出 Windows 版 | 讀程式：Windows 的路徑算法 |
 | E3-10 | E3 | popup 預覽裡藏起私鑰與只有擁有者能讀的檔，用設定 key `hide_secrets_in_preview`（放在 app 的設定檔），預設 `false`：全部照常顯示 | 有檔案預覽 | 讀程式與設定檔：key 的名字與預設值 |
-| E3-11 | E3 | 寫入狀態按 `Tab` 插入幾個空白、拿來讀的內容（viewer、檔案預覽、panel 上的 log）裡的 Tab 畫幾格，用設定 key `input_tab_width`，預設 `4` | 都要 | 讀程式與設定檔：key 的名字與預設值 |
+| E3-11 | E3 | （只有 App Log 的 app 不算）寫入狀態按 `Tab` 插入幾個空白、拿來讀的內容（viewer、檔案預覽、panel 上的 log）裡的 Tab 畫幾格，用設定 key `input_tab_width`，預設 `4` | textarea、viewer、串流內容、有檔案預覽 | 讀程式與設定檔：key 的名字與預設值 |
 | E3-12 | E3 | 設定檔是設定目錄裡的 `config.yaml` | 存設定或資料 | 讀程式或啟動後看設定檔的名字與格式 |
-| E3-13 | E3 | 東西照「刪掉會怎樣」放：app 自己啟動與運作用的選項是設定；刪了只是回到預設的是狀態；刪了找不回來、會想備份的（書籤、紀錄、log、使用者寫給 app 用的清單）是資料；刪了會自己重建或重抓的是快取 | 存設定或資料 | 讀程式：每一種寫到磁碟的東西，放在哪一類的位置 |
+| E3-13 | E3 | 東西照「刪掉會怎樣」放：app 自己一個一個的選項是設定；刪了只是回到預設的是狀態；刪了找不回來、會想備份的（書籤、紀錄、log、使用者寫給 app 用的清單——就算內容是 app 怎麼運作的選項——、app 替使用者記下的原值）是資料；刪了會自己重建或重抓的是快取 | 存設定或資料 | 讀程式：每一種寫到磁碟的東西，放在哪一類的位置 |
 | E3-14 | E3 | 改版換了位置時，第一次啟動逐項搬：新位置沒有的那一項搬過去，跳一個 toast 說從哪裡搬到哪裡；搬完把空了的舊目錄拿掉 | 存設定或資料 | 讀程式；或在舊位置放東西後啟動新版（app 換過位置時） |
 | E3-15 | E3 | 搬不動時照舊用舊位置，開 error popup 寫出兩個路徑 | 存設定或資料 | 讀程式；或讓新位置寫不進去後啟動 |
 | E3-16 | E3 | 搬家時新位置已經有的那一項：快取刪掉舊的；設定、狀態、資料不刪、留在舊位置，開 error popup 寫出兩個路徑 | 存設定或資料 | 讀程式；或在新、舊位置都放同一項後啟動新版 |
@@ -383,6 +383,7 @@ tdp v0.9.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | E3-19 | E3 | `.bak` 已經在時用 `.bak.1`、`.bak.2`……，不蓋掉；問句寫實際會用的名字 | 存設定或資料 | 先放一個 `.bak` 再讓檔案壞掉、啟動 |
 | E3-20 | E3 | 讀不了的 confirm 按 `Esc`：離開 app，路徑與原因寫到 stderr | 存設定或資料 | 同上按 `Esc`，看 app 結束、終端機上的訊息 |
 | E3-21 | E3 | 快取讀不了時不問，丟掉重建 | 存設定或資料 | 把快取的檔弄壞後啟動，沒有 confirm |
+| E3-22 | E3 | 資料是一筆一個檔時，讀不了的那一筆按 `Enter` 只改名成 `.bak`、不另外建，其他照常讀；問句寫 `go on without it` | 存設定或資料 | 把其中一筆的檔弄壞後啟動，按 `Enter` |
 | E4-1 | E4 | 程式碼裡的 PUA glyph 寫成 code point | 都要 | 讀程式：掃原始碼找不到 PUA 字元 |
 | E4-2 | E4 | README 的需求段寫明需要 Nerd Font | 都要 | 讀兩份 README 的前置需求 |
 | E4-3 | E4 | README 的需求段跟 Nerd Font 並列寫明需要 truecolor terminal（24-bit 色） | 都要 | 讀兩份 README 的前置需求 |
@@ -478,6 +479,7 @@ tdp v0.9.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | components-26 | components §大寫 | panel 標題裡的名稱照原樣（`[2] PODS: nginx-7d4f`），整個 label 就是名稱時照原樣（`[1] prod-web-01`） | 都要 | 看 label 裡有名稱的 panel 的膠囊 |
 | components-27 | components §控制字元 | 名字與短字（表單與 panel 上的值、清單的格子、menu、popup 標題、toast、confirm、error popup、選項、說明列、空狀態、statusbar、tab 名稱、finder 的項目）裡的控制字元，連 Tab、`\n`、顏色碼的 ESC，都畫成紅色的名字；不丟、不換成空白、不原樣送給終端機 | 都要 | 讓一個會出現在這些地方的名字（例：檔名、網頁標題）含 Tab 或 `\x1b[31m`，看清單、menu、confirm；或讀程式 |
 | components-28 | components §控制字元 | panel 上的 log 照終端機的樣子畫：`\n` 是換行，Tab 是空白，顏色碼照著上色，一行裡的 `\r` 只留最後的狀態，其他控制字元與不是顏色碼的序列畫成紅色的名字 | 串流內容 | 讓 log 收到一行彩色的字、一行 `10%\r100%`、一行含 `\x1b[2J`，看 log panel |
+| components-29 | components §控制字元 | app 標成「一行文字」的清單欄（原始碼、log 的一行）裡，Tab 畫成 `input_tab_width` 格空白，其他控制字元照舊畫成紅色的名字 | 都要 | 讓那一欄有一行含 Tab 的文字，看縮排；讀程式：哪些欄標了 |
 
 ## color
 

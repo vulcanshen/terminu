@@ -1116,7 +1116,10 @@ out as on macOS and Linux, not in `%APPDATA%`.
 - **Config**: the app's own settings — the options the app starts and runs with (the config file `config.yaml`).
 - **State**: deleting it only goes back to defaults (e.g. the tabs open last time, where the cursor was).
 - **Data**: deleting it loses it for good, and the user would want a backup (e.g. bookmarks, records, logs). Lists the
-  user writes for the app to use are data too (e.g. sshu's hosts and credentials, hostu's profiles).
+  user writes for the app to use are data too, even when what they hold is how the app works (e.g. sshu's hosts and
+  credentials, hostu's and locku's profiles, filu's Open with list, kbu's pins); so are original values the app keeps
+  for the user (e.g. what ccdrawu notes before replacing Claude Code's theme). Config is left with the app's own
+  single options.
 - **Cache**: deleting it makes the app rebuild or fetch it again (e.g. a downloaded browser, an index).
 
 **When a location changes**: when a new version of the app moves something to a new location, the first start moves it
@@ -1150,7 +1153,9 @@ permission… whatever the cause), the app does not go on working in that state:
 
 - **`Enter`** (`move`): renames that file to `<name>.bak`, creates a new one in its place (settings with their defaults,
   state and data empty), and starts as usual. If a `.bak` is already there, `.bak.1`, `.bak.2`… are used — nothing is
-  ever overwritten; the question names the file that will really be used.
+  ever overwritten; the question names the file that will really be used. When the data is one record per file (e.g.
+  kamonu's one file per mark), the record that cannot be read is just renamed to `.bak`, nothing new is made, and the
+  rest is read as usual; the question reads `Move it to <name>.bak and go on without it?`.
 - **`Esc`** (`quit`): quits the app, rather than going back to it; the path and the reason are written to stderr, so the
   shell still shows what to fix.
 - **A cache** that cannot be read: no question; it is thrown away and rebuilt.
@@ -1168,7 +1173,7 @@ it.
 | Key | Meaning | Default |
 |---|---|---|
 | `hide_secrets_in_preview` | hide private keys and owner-only files in the previews of popups ([components/input/file-picker](../components/input/file-picker.md)) | `false` |
-| `input_tab_width` | how many spaces one `Tab` inserts in the writing state of multi-line text ([components/input/textarea](../components/input/textarea.md)); a Tab in content for reading (viewers, file previews, a log on a panel) is drawn as that many spaces too; in names and short text (values on forms and panels, list cells, menu text…) and an input's typing row, a Tab is drawn as a red `\t` ("Control characters" in [components](../components/README.md)) | `4` |
+| `input_tab_width` | how many spaces one `Tab` inserts in the writing state of multi-line text ([components/input/textarea](../components/input/textarea.md)); a Tab in content for reading (viewers, file previews, a log on a panel) is drawn as that many spaces too (the App Log every app has does not count as using it: an app with only that keeps the default and needs no such key); in names and short text (values on forms and panels, list cells, menu text…) and an input's typing row, a Tab is drawn as a red `\t` ("Control characters" in [components](../components/README.md)) | `4` |
 
 **Why**: with the five apps in the same places, users know where to look and what to back up. macOS does not use the
 system's usual `~/Library/Application Support`, nor Windows `%APPDATA%`: one way of working it out on every platform, the
@@ -1176,7 +1181,8 @@ same place on whatever machine. The cache goes in the
 system's cache directory so that cache-cleaning tools can find it, and so it is not taken for data to back up. Sorting
 by what deleting would do: from the location alone the user knows what to back up and what can go without harm; config
 holds only the options the app itself runs with; lists the user writes for the app (connections, profiles,
-bookmarks) took the user's effort and cannot be got back once deleted, so like bookmarks they are data. One name and format
+bookmarks) took the user's effort, and original values the app keeps are the user's too; neither can be got back once
+deleted, so like bookmarks they are data. One name and format
 for the config file: whichever app's config directory the user opens, they know which file to edit. Moving things over
 when a location changes: users never upgrade once and find their bookmarks and records gone; when the move fails, the
 app names both paths instead of quietly starting a new copy. Shared config keys have one name: set once in one app, the
