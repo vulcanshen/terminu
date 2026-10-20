@@ -121,6 +121,9 @@ depends on the group it is in:
   a value on a form, with nothing interpreted — every control character, a Tab, a `\n` and the ESC of a colour code
   included, is drawn by name in red (`\t`, `\n`, `\x1b`, spelt as in "Pasted control characters" in input), never
   dropped or turned into spaces.
+  - The exception: when the app marks a list column as "a line of text" (e.g. a line of source code, a line of a log),
+    a Tab in that column is drawn as `input_tab_width` spaces, and other control characters stay as they are. Such a
+    column is for reading: a Tab there is layout, not something odd in a name.
 
 **Why**: sent as they are, a `\r` writes over its row from the start, `\x1b[2J` clears the whole screen, and widths can
 no longer be measured (Rules L4). Names and short text are what the user acts on next: dropped or turned into spaces,

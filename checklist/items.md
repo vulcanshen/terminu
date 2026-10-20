@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.0. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.1. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -372,9 +372,9 @@ The items of tdp v0.9.0. What each column means and what an item applies to: [RE
 | E3-8 | E3 | The cache location can be overridden with `<APP>__CACHE` | stores settings or data | Start with `<APP>__CACHE` set: the cache is stored there instead |
 | E3-9 | E3 | On Windows `~` is `%USERPROFILE%`: config in `%USERPROFILE%\.config\<app>`, data under `%USERPROFILE%\.<app>\`, not in `%APPDATA%` | Windows build | Read the code: how the paths are worked out on Windows |
 | E3-10 | E3 | Hiding private keys and owner-only files in the previews of popups uses the config key `hide_secrets_in_preview` (in the app's config file), `false` by default: everything shown as usual | file preview | Read the code and the config file: the key's name and its default |
-| E3-11 | E3 | How many spaces `Tab` inserts in the writing state, and how many cells a Tab is drawn as in content for reading (viewers, file previews, a log on a panel), uses the config key `input_tab_width`, `4` by default | everyone | Read the code and the config file: the key's name and its default |
+| E3-11 | E3 | (An app with only the App Log does not count.) How many spaces `Tab` inserts in the writing state, and how many cells a Tab is drawn as in content for reading (viewers, file previews, a log on a panel), uses the config key `input_tab_width`, `4` by default | textarea or viewer or streaming content or file preview | Read the code and the config file: the key's name and its default |
 | E3-12 | E3 | The config file is `config.yaml` in the config directory | stores settings or data | Read the code, or start the app and look at the config file's name and format |
-| E3-13 | E3 | Things go where "what happens if it is deleted" puts them: the options the app itself starts and runs with are settings; what only falls back to defaults is state; what cannot be got back and would be backed up (bookmarks, records, logs, lists the user writes for the app) is data; what the app rebuilds or fetches again is cache | stores settings or data | Read the code: where each kind of thing written to disk goes |
+| E3-13 | E3 | Things go where "what happens if it is deleted" puts them: the app's own single options are settings; what only falls back to defaults is state; what cannot be got back and would be backed up (bookmarks, records, logs, lists the user writes for the app — even when they hold how the app works — and original values the app keeps for the user) is data; what the app rebuilds or fetches again is cache | stores settings or data | Read the code: where each kind of thing written to disk goes |
 | E3-14 | E3 | After a release moves a location, the first start moves it item by item: an item missing at the new place is moved over, with a toast saying from where to where; the emptied old directory is then removed | stores settings or data | Read the code; or put things at the old place and start the new release (for an app that moved a location) |
 | E3-15 | E3 | When the move fails, the old place is used as before, and an error popup gives both paths | stores settings or data | Read the code; or make the new place unwritable and start the app |
 | E3-16 | E3 | An item already at the new place when moving: a cache's old copy is deleted; settings, state and data are not deleted but left at the old place, with an error popup giving both paths | stores settings or data | Read the code; or put the same item at both places and start the new release |
@@ -383,6 +383,7 @@ The items of tdp v0.9.0. What each column means and what an item applies to: [RE
 | E3-19 | E3 | With a `.bak` already there, `.bak.1`, `.bak.2`… are used, nothing overwritten; the question names the file really used | stores settings or data | Leave a `.bak` in place, damage the file and start the app |
 | E3-20 | E3 | `Esc` on that confirm quits the app and writes the path and the reason to stderr | stores settings or data | As above, press `Esc`: the app ends and the terminal shows the message |
 | E3-21 | E3 | A cache that cannot be read is thrown away and rebuilt, with no question | stores settings or data | Damage a cache file and start the app: no confirm |
+| E3-22 | E3 | When the data is one record per file, `Enter` only renames the unreadable record to `.bak`, making nothing new, and the rest is read as usual; the question says `go on without it` | stores settings or data | Damage one record's file, start the app, press `Enter` |
 | E4-1 | E4 | PUA glyphs are written as code points in the source | everyone | Read the code: a scan of the source finds no PUA characters |
 | E4-2 | E4 | The README's requirements say a Nerd Font is required | everyone | Read the prerequisites in both READMEs |
 | E4-3 | E4 | The README's requirements say, next to the Nerd Font, that a truecolor terminal (24-bit colour) is required | everyone | Read the prerequisites in both READMEs |
@@ -478,6 +479,7 @@ The items of tdp v0.9.0. What each column means and what an item applies to: [RE
 | components-26 | components §Uppercase | A name in a panel title keeps its case (`[2] PODS: nginx-7d4f`), and a label that is all name keeps it too (`[1] prod-web-01`) | everyone | Look at the capsules of panels whose label holds a name |
 | components-27 | components §Control characters | In names and short text (values on forms and panels, list cells, menus, popup titles, toasts, confirms, error popups, options, explanation rows, empty states, the statusbar, tab names, finder items), every control character, a Tab, a `\n` and the ESC of a colour code included, is drawn by name in red; never dropped, turned into spaces or sent to the terminal as it is | everyone | Give a name that shows in these places (e.g. a file name, a web page title) a Tab or `\x1b[31m` and look at the list, the menu and the confirm; or read the code |
 | components-28 | components §Control characters | A log on a panel is drawn as a terminal would draw it: `\n` is a line break, a Tab is spaces, colour codes colour the text, a `\r` within a line keeps only the last state, and any other control character or sequence that is not a colour code is drawn by name in red | streaming content | Feed the log a coloured line, a line `10%\r100%` and a line holding `\x1b[2J`, and look at the log panel |
+| components-29 | components §Control characters | In a list column the app marks as "a line of text" (a line of source code or of a log), a Tab is drawn as `input_tab_width` spaces and other control characters stay red names | everyone | Put a line holding a Tab in that column and look at the indent; read the code: which columns are marked |
 
 ## color
 
