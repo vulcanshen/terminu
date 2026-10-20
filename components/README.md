@@ -99,6 +99,35 @@ to copy, not half of it hanging after the words before it.
 the content there is to read or change. Key names and hotkey markers stay: `q` and `Q` are different keys; content
 stays: users recognise it as it is.
 
+## Control characters
+
+The text an app puts on the screen often comes from outside (file names, web page titles, config files, a program's
+output) and may hold control characters. Wherever it is, it is never sent to the terminal as it is; how it is drawn
+depends on the group it is in:
+
+- **Where the user types** (input, textarea): as in "Pasted control characters" in [`input`](input/README.md) and in
+  [`input/textarea`](input/textarea.md).
+- **Content for reading** (a viewer, a log on a panel, a file preview): as a terminal would draw it (details in the
+  viewer of [`dialog/note`](dialog/note.md)) —
+  - `\n` is a line break: in content the app hands over line by line, a `\n` inside one line splits it in two too; a
+    `\r` before a line break (CRLF) is not drawn.
+  - A Tab is drawn as `input_tab_width` spaces (Rules E3).
+  - Colour codes (SGR, e.g. `\x1b[32m`) colour the text; a `\r` within a line (a progress bar) keeps only the last
+    state.
+  - Any other control character, and any sequence that is not a colour code (e.g. `\x1b[2J`, which clears the screen),
+    is drawn by name in red.
+- **Names and short text** (values on forms and panels, list cells, menu labels and descriptions, popup titles,
+  toasts, confirms, error popups, options, explanation rows, empty states, the statusbar, tab names, finder items): as
+  a value on a form, with nothing interpreted — every control character, a Tab, a `\n` and the ESC of a colour code
+  included, is drawn by name in red (`\t`, `\n`, `\x1b`, spelt as in "Pasted control characters" in input), never
+  dropped or turned into spaces.
+
+**Why**: sent as they are, a `\r` writes over its row from the start, `\x1b[2J` clears the whole screen, and widths can
+no longer be measured (Rules L4). Names and short text are what the user acts on next: dropped or turned into spaces,
+two different names look the same (`a b.txt` and `a⇥b.txt` with a Tab in the middle); the list, the confirm and the
+rename input must all show the same thing. Content for reading is different: a program's output is meant to look that
+way in a terminal, so drawing it as a terminal would is how it really looks, and red names would only hide it.
+
 ## Choosing among the options
 
 Fields differ in nature — long or short values, few or many options — and so does the look that suits them. So the

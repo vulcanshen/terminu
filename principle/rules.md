@@ -52,6 +52,7 @@ the same set. Once published, IDs are never renumbered; a retired rule keeps its
 | `Esc` | Cancel / close the top layer | K4 |
 | `Space` | On a panel, open / close the Space menu (what can be done here) | K5, M2 |
 | `?` | Open / close the key reference: what keys work on the frontmost surface (read-only) | K6, M4 |
+| `!` | On a panel, open the App Log: what the app has done and what went wrong (read-only) | F5, M1 |
 | `q` | Quit the app | K9 |
 | `1`–`9` | On a panel, jump to the Nth panel of the current screen (the `[N]` on its frame) | this rule, K11 |
 
@@ -280,13 +281,16 @@ chord.
   to go back to the PTY.
 - **Other Alt-chord exit keys** (e.g. kbu's `Alt-t` hiding Alterm, `Alt-Enter` on a locked cell in sshu) can likewise be
   spelled by "`Esc` then that key"; whether they confirm is up to the app.
-- Whether the app keeps other chords of its own inside the PTY besides the exit key (e.g. sshu's zoom, cell switching and
-  history scrolling inside a cell) is up to the app. Any it keeps are disclosed permanently, like the exit key (M1).
+- An interactive terminal (a PTY where the user types their own commands) always has the history mode (`PgUp`) and the
+  selection mode (`Alt-v`); see [components/dialog/terminal](../components/dialog/terminal.md).
+- Beyond that, whether the app keeps other chords of its own inside the PTY besides the exit key (e.g. sshu's zoom and
+  cell switching inside a cell) is up to the app. Any it keeps are disclosed permanently, like the exit key (M1).
 - Where focus lands after the exit key is up to the app.
 - While the subprocess is not ready for keys yet (e.g. the remote end is still connecting), the app may hold ordinary
   keys back (so they don't land on the remote end minutes later); but **`Ctrl-C` is still forwarded to the
   subprocess**, and the exit key still works and is still disclosed. With focus in a PTY the user takes every key as
-  pressed inside the PTY; the only exceptions are the explicitly disclosed exit key and the chords the app keeps.
+  pressed inside the PTY; the only exceptions are the explicitly disclosed exit key, an interactive terminal's `Alt-v` and `PgUp`, and the
+  chords the app keeps.
 
 > **Implementation reference (not a requirement)**: measured with bubbletea v1.3.10, with keys already queued, two `Esc`s
 > 150 ms apart still merged.
@@ -304,6 +308,7 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 | Key | Inside a mode |
 |---|---|
 | `Space` | **opens no menu**; does nothing |
+| `!` | does nothing (the App Log opens outside a mode) |
 | `?` | the mode's key reference (read-only, K6): which keys work in the mode and what they do |
 | `Esc` | leaves the mode (K4), back to the state before it was entered |
 | `q`, `Ctrl-C` | run the quit flow, as K9 |
@@ -388,12 +393,12 @@ key fail.
 
 ### M1 The entry points are visible `fixed`
 
-Every screen outside the input state must **permanently show** `?`, and `Space` (inside a mode `Space` does nothing and
-need not be shown, K11), so a first-time user who has read no documentation can see them. How it looks: the footer in
+Every screen outside the input state must **permanently show** `?`, and `Space` and `!` (inside a mode `Space` and `!`
+do nothing and need not be shown, K11), so a first-time user who has read no documentation can see them. How it looks: the footer in
 [components/layout/screen](../components/layout/screen.md).
 
-With focus in a PTY, both keys belong to the subprocess (K10) and are not shown; what is disclosed permanently is the
-exit key and the keys the app keeps (K10; how it looks: the footer in
+With focus in a PTY, these keys belong to the subprocess (K10) and are not shown; what is disclosed permanently is the
+exit key, an interactive terminal's `Alt-v` and `PgUp`, and the keys the app keeps (K10; how it looks: the footer in
 [components/layout/screen](../components/layout/screen.md) and
 [components/dialog/terminal](../components/dialog/terminal.md)).
 
@@ -671,7 +676,7 @@ The family's popups come in these seven classes only, each with fixed key meanin
 | **form** | one value per row; `Tab` switches between the field area and the action area, hjkl move item by item within that area (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing a button), a button submits or does its action ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Sign in and Add bookmark |
 | **note** | read-only, scrollable (K12); no list of options to run with `Enter` | key reference, YAML viewer, App Log, error popup |
 | **toast** | a short message popping up from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it | "Copied", an operation failed |
-| **terminal** | a subprocess running in the box; every key is its, only the exit key and the chords the app keeps are the app's (K10) | kbu's Alterm, filu's shell |
+| **terminal** | a subprocess running in the box; every key is its, only the exit key and the chords the app keeps (in an interactive terminal also `Alt-v` and `PgUp`) are the app's (K10) | kbu's Alterm, filu's shell |
 
 - **A note may have hotkeys and modes of its own**: e.g. the YAML viewer's `/` search. **Every viewer has a selection
   mode** (`v` select, `y` copy; a mode, K11; [components/dialog/note](../components/dialog/note.md)): any viewer in the
@@ -757,8 +762,9 @@ walk the whole way again. (Whether A stays after B completes is T1.)
 
 ### F5 Errors show at once, without blocking the app `concept`
 
-Errors must appear immediately (toast or popup), close on `Esc`, and **must not block the app**. Whether there is an
-error history to look back at is up to the app.
+Errors must appear immediately (toast or popup), close on `Esc`, and **must not block the app**. Errors also go into
+the App Log (`!`, [components/dialog/note](../components/dialog/note.md)), so they can be looked up after the toast
+has gone; every app has an App Log.
 
 **Why**: an error you can't see never happened; an error that blocks the app keeps the user from dealing with the error
 itself.
@@ -1107,15 +1113,14 @@ out as on macOS and Linux, not in `%APPDATA%`.
 
 **Which kind a thing is: ask what deleting it would do**:
 
-- **Config**: the options the user sets.
+- **Config**: the app's own settings — the options the app starts and runs with (the config file `config.yaml`).
 - **State**: deleting it only goes back to defaults (e.g. the tabs open last time, where the cursor was).
-- **Data**: deleting it loses it for good, and the user would want a backup (e.g. bookmarks, records, logs).
+- **Data**: deleting it loses it for good, and the user would want a backup (e.g. bookmarks, records, logs). Lists the
+  user writes for the app to use are data too (e.g. sshu's hosts and credentials, hostu's profiles).
 - **Cache**: deleting it makes the app rebuild or fetch it again (e.g. a downloaded browser, an index).
-- The exception: a connection list the user writes by hand (like `~/.ssh/config`; e.g. sshu's hosts and credentials)
-  is config.
 
 **When a location changes**: when a new version of the app moves something to a new location, the first start moves it
-item by item and shows an Info toast saying from where to where:
+item by item and shows a toast saying from where to where:
 
 - An item missing at the new location is moved over.
 - An item already at the new location (e.g. a cache the app itself has already started there): for a cache, the old one is
@@ -1128,20 +1133,50 @@ item by item and shows an Info toast saying from where to where:
 Item by item, because the new location is often created by the app before the move (e.g. ccdrawu's mod writes to the new
 cache directory as soon as a session starts); moving the whole directory would then never move the old one.
 
+**When it cannot be read**: when the app's own settings, state or data cannot be read (bad format, a damaged file, no
+permission… whatever the cause), the app does not go on working in that state: at start it opens a confirm
+([components/dialog/confirm](../components/dialog/confirm.md)) giving the path and the reason:
+
+```
+┏━󰻌 MOVE ASIDE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                                   ┃
+┃ ~/.hostu/profiles.yaml can't be read:             ┃
+┃ line 3: mapping values are not allowed here       ┃
+┃                                                   ┃
+┃ Move it to profiles.yaml.bak and start a new one? ┃
+┃                                                   ┃
+┗━ Enter:move Esc:quit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+- **`Enter`** (`move`): renames that file to `<name>.bak`, creates a new one in its place (settings with their defaults,
+  state and data empty), and starts as usual. If a `.bak` is already there, `.bak.1`, `.bak.2`… are used — nothing is
+  ever overwritten; the question names the file that will really be used.
+- **`Esc`** (`quit`): quits the app, rather than going back to it; the path and the reason are written to stderr, so the
+  shell still shows what to fix.
+- **A cache** that cannot be read: no question; it is thrown away and rebuilt.
+- **Something outside the app** that cannot be read (a cluster, the network, a remote host): the app itself is fine and
+  stays open; the panel shows it as "Loading and errors" in [components/layout/panel](../components/layout/panel.md)
+  says, and the details go into the App Log (F5).
+
+Working on as usual while a file cannot be read could overwrite the user's things at the next save; renaming it to
+`.bak` starts again with one key and loses nothing. Whoever does not want the app to touch it presses `Esc`, quits and
+deals with it themselves.
+
 **Config keys shared by the family**: the same setting has the same name in every app's config file, in the apps that use
 it.
 
 | Key | Meaning | Default |
 |---|---|---|
 | `hide_secrets_in_preview` | hide private keys and owner-only files in the previews of popups ([components/input/file-picker](../components/input/file-picker.md)) | `false` |
-| `input_tab_width` | how many spaces one `Tab` inserts in the writing state of multi-line text ([components/input/textarea](../components/input/textarea.md)); a Tab in content drawn on screen (viewers, file previews, lists, menu text…) is drawn as that many spaces too; values on forms and panels and an input's typing row are the exception, where a Tab is drawn as a red `\t` by [components/input/README](../components/input/README.md) | `4` |
+| `input_tab_width` | how many spaces one `Tab` inserts in the writing state of multi-line text ([components/input/textarea](../components/input/textarea.md)); a Tab in content for reading (viewers, file previews, a log on a panel) is drawn as that many spaces too; in names and short text (values on forms and panels, list cells, menu text…) and an input's typing row, a Tab is drawn as a red `\t` ("Control characters" in [components](../components/README.md)) | `4` |
 
 **Why**: with the five apps in the same places, users know where to look and what to back up. macOS does not use the
 system's usual `~/Library/Application Support`, nor Windows `%APPDATA%`: one way of working it out on every platform, the
 same place on whatever machine. The cache goes in the
 system's cache directory so that cache-cleaning tools can find it, and so it is not taken for data to back up. Sorting
-by what deleting would do: from the location alone the user knows what to back up and what can go without harm; a
-connection list typed by hand took the user's effort, and is treated as config, like `~/.ssh/config`. One name and format
+by what deleting would do: from the location alone the user knows what to back up and what can go without harm; config
+holds only the options the app itself runs with; lists the user writes for the app (connections, profiles,
+bookmarks) took the user's effort and cannot be got back once deleted, so like bookmarks they are data. One name and format
 for the config file: whichever app's config directory the user opens, they know which file to edit. Moving things over
 when a location changes: users never upgrade once and find their bookmarks and records gone; when the move fails, the
 app names both paths instead of quietly starting a new copy. Shared config keys have one name: set once in one app, the

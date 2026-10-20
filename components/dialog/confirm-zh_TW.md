@@ -33,6 +33,7 @@ Red 是已經發生的錯誤，這時候還沒有出錯。
 ## 按鍵
 
 - `Enter` 接受，`Esc` 取消（Rules F6），回答只有這兩個鍵（沒有 `y`、`n`）。`Space` 不作用（Rules K5）。
-- **hint**：`Enter:<動詞> Esc:cancel`，動詞寫接受會做的事（例：`Enter:delete Esc:cancel`）。
+- **hint**：`Enter:<動詞> Esc:cancel`，動詞寫接受會做的事（例：`Enter:delete Esc:cancel`）。唯一的例外是 Rules E3 的「讀不了時」：
+  `Esc` 離開 app，寫 `Esc:quit`。
 - **從 menu 打開的**：`Esc` 取消，一律回到 menu（Rules F4）；`Enter` 之後 menu 留不留照 Rules T1 的表，看接受之後做的事 ——
   confirm 只是一道門，不是一種 target。

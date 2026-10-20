@@ -175,6 +175,11 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   the front (`…/.ssh/id_ed25519`); where both ends matter (e.g. a pod's name: the deployment at the front, the random
   part that tells one from another at the end), it is cut in the middle, with the `…` there (`demo-app…66-gm72n`). The
   app sets where each column is cut.
+- **Control characters**: a value in a cell (a file name or a name that came from a file or another program) holding
+  control characters shows them as red escapes, as on the typing row and as a value on a form (`\n`, `\t`, `\x1b`;
+  "Control characters" in [components](../README.md)): never dropped, never turned into spaces, never sent to
+  the terminal as they are. Dropping them makes two different names look the same (`report.txt` and a `report⏎.txt`
+  with a newline in the middle); sending them as they are scrambles the screen and recolours what follows.
 - **Empty**: as the empty states in [`screen`](screen.md). The empty state takes the whole panel, the header included,
   its sentence centred in the panel; a location row, when there is one, stays (see "Location row").
 

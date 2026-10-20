@@ -35,10 +35,13 @@
   content type）；檔案內容照檔名判斷，跟預覽一樣。沒有固定格式的（例：App Log）、判斷不出來的，上不上色由 app 決定：不上色時是
   純文字 Text；app 知道自己的內容，可以依情境上色（例：log 裡 ERROR、WARN 的行）。lib 不上語法顏色，但保留 app 給的顏色。
   行號照舊 Overlay0；選取模式的範圍照舊 Yellow 底、Base 字，語法顏色在範圍裡不顯示。
-- **viewer 裡的 Tab 與控制字元**（跟 [`input/file-picker`](../input/file-picker-zh_TW.md) 的預覽一樣）：Tab 畫成 `input_tab_width` 格空白
-  （跟 [`input/textarea`](../input/textarea-zh_TW.md) 同一個設定），不對齊 tab 停點；換行前面的 `\r`（CRLF）不畫，算換行的一部分；其他控制字元
-  畫成名字，Red（`\r`、`\x07`，跟 [`input/README`](../input/README-zh_TW.md) 的「貼上的控制字元」一樣）。複製照原樣，不是畫出來的空白或名字。
-  viewer 是用來讀的：CRLF 每一行都掛一個紅色的 `\r` 只是雜訊；控制字元用 Red，才分得出檔案裡本來就寫著 `\x07` 這四個字。
+- **viewer 裡的 Tab 與控制字元**（跟 [`input/file-picker`](../input/file-picker-zh_TW.md) 的預覽一樣；全家族的規定見 [components](../README-zh_TW.md)
+  的「控制字元」）：照終端機會畫的樣子。Tab 畫成 `input_tab_width` 格空白（跟 [`input/textarea`](../input/textarea-zh_TW.md) 同一個設定），
+  不對齊 tab 停點；`\n` 是換行，app 一行一行交來的內容，一行裡夾著 `\n` 也拆成兩行；換行前面的 `\r`（CRLF）不畫，算換行的一部分；
+  顏色碼（SGR）照著上色；一行裡的 `\r`（進度列）只留最後的狀態；其他控制字元與不是顏色碼的序列畫成名字，Red（`\x07`；清畫面的
+  `\x1b[2J` 畫成紅色的 `\x1b` 接著 `[2J`，跟 [`input/README`](../input/README-zh_TW.md) 的「貼上的控制字元」一樣）。複製照原樣，不是畫出來的
+  空白或名字。viewer 是用來讀的：程式的輸出本來就是要在終端機裡長那個樣子；CRLF 每一行都掛一個紅色的 `\r` 只是雜訊；控制字元用
+  Red，才分得出檔案裡本來就寫著 `\x07` 這四個字。
 - **viewer 的搜尋**（有 `/` 時）：命中的字全部加底線，保留原本的顏色；目前那一筆畫成 cursor 色塊（層色底、Base 粗體，
   [`color`](../color-zh_TW.md) 的 cursor），意思是「你在這裡」。不另外加顏色：模式的 Yellow 只留給選取模式的範圍。
 
@@ -176,3 +179,26 @@ popup 的動作失敗時（[`layout/popup`](../layout/popup-zh_TW.md) 的錯誤�
 
 **為什麼**：error popup 整個就是錯誤，框與字都是 Red；它一定在最上層、一個鍵就關掉，少了層色也不會讓人搞不清第幾層。有錯誤列的
 popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的框維持層色。
+
+## App Log
+
+每個 app 都有 App Log（Rules F5）：app 做過的事與出問題的事，最新的在最下面。在 panel 上按 `!` 打開（Rules K1），是一個 viewer
+（上面 viewer 的規定與選取模式照樣適用）；開著時新的一筆照樣進來，跟串流的內容一樣。
+
+```
+14:02:11 INFO switched to Pods
+14:02:40 OK   deployment.apps/nginx scaled
+14:03:02 WARN CRD discovery: the server is currently unable to handle the request
+14:03:30 ERR  namespace fetch failed: Forbidden
+```
+
+- **記什麼**：使用者做的動作與結果；每一個 toast（同一句話）；app 自己在背景做的事（例：Rules E3 的搬家、啟動時建好的預設值、
+  讀不到外面的東西的細節）。
+- **每一筆**：時間 `HH:MM:SS`（Overlay0）、等級、發生的事。等級跟著 toast 的種類與顏色：`INFO` Text、`OK` Green、`WARN` Peach、
+  `ERR` Red，等級欄四格寬、靠左。
+- **只放在記憶體**：app 關掉就清空；筆數有上限，滿了丟掉最舊的。
+- **沒看過的錯誤與警告**：寫在 footer 的 `!`（[`layout/screen`](../layout/screen-zh_TW.md) 的 footer）；打開 App Log 就算看過。
+
+**為什麼**：toast 幾秒就收掉，沒注意到的人不會知道出過錯；App Log 留著。只記錯誤看不出出錯前做了什麼，前面那幾筆往往就是原因；
+app 在背景做的事，使用者也只有這裡看得到。`!` 跟 `?`、`Space` 一樣，在家族哪個 app 都按得到。只放在記憶體：要看的是這次開 app
+發生了什麼，不多一種要存、要清的東西。

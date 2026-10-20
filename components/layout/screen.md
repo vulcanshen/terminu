@@ -20,13 +20,17 @@ narrow, whole pairs are dropped from the end (the hint in [`popup`](popup.md)). 
 
 | Situation | Footer |
 |---|---|
-| Normal | `Space:menu ?:help Tab\|1–N:panels q:quit` |
-| A screen with only one panel | `Space:menu ?:help q:quit` |
+| Normal | `Space:menu ?:help !:log Tab\|1–N:panels q:quit` |
+| A screen with only one panel | `Space:menu ?:help !:log q:quit` |
 | In a mode (Rules K11) | `?:help`, the mode's own keys, and last `Esc:<verb for leaving>`. E.g. `?:help Enter:drop Esc:cancel` |
 | Typing in a panel filter (input state) | `Enter\|Tab:list Esc:clear` |
 | Typing in a panel filter, no results | `Tab:list Esc:clear` (`Enter` does nothing, as in the hint of [`input/finder`](../input/finder.md)) |
-| Focus on a PTY in a panel | the exit key, plus the keys the app keeps (Rules K10). E.g. `Alt-Esc:leave Alt-z:zoom PgUp:history` |
+| Focus on a PTY in a panel | the exit key, plus the keys the app keeps (Rules K10); in an interactive terminal, then `Alt-v:select` and `PgUp:history` (dialog/terminal). E.g. `Alt-Esc:leave Alt-z:zoom Alt-v:select PgUp:history` |
 | A popup is open | as for the screen underneath, dimmed with the whole screen (Rules F8); the popup's own keys are in its bottom-border hint |
+
+**The reminder on `!`**: when the App Log ([`dialog/note`](../dialog/note.md)) holds errors not seen yet, `!:log`
+becomes `!:2 errors` (the description in Red); with only warnings not seen yet, `!:1 warning` (Peach); once the App Log
+has been opened, it is `!:log` again.
 
 While a terminal popup is open, the footer is not drawn: the terminal covers the bottom row, and the bits left showing at
 its two ends are blank, with none of the footer's words peeking out ([`dialog/terminal`](../dialog/terminal.md)).
