@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.4. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.5. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -504,7 +504,7 @@ The items of tdp v0.9.4. What each column means and what an item applies to: [RE
 | color-16 | color §Colour codes | Cells whose content is a colour (the `███` of a colour value) keep their own colour on a cursor block, while the other text on the block still turns Base | color picker | Move the cursor to a colour value's row; check that the `███` keeps its colour and the other text is Base |
 | color-17 | color §Colour codes | The screen's background is not painted: cells with no background of their own are left to the terminal's own background | everyone | Set the terminal's background to a colour other than Base; check that the screen is not painted Base |
 | color-18 | color §Popup layer colours | A closing popup does not count toward K: when a target opens while its source closes, the target takes the layer colour of the layer it ends up on from its first frame, and does not change colour when the source is gone | everyone | Open a target from a source that is cleared, and look at the target's frame colour frame by frame |
-| color-19 | color §Dimming | The dimming formula is `dim(c) = c × 0.45 + base × 0.55` (base `#1e1e2e`), each channel rounded half up (.5 goes up) | everyone | Open a popup and measure the colours beneath (e.g. Blue `#89b4fa` dims to `(78,98,138)`) |
+| color-19 | color §Dimming | The dimming formula is `dim(c) = c × 0.45 + t × 0.55` (t `#0c0c13`, the step after Crust), each channel rounded half up (.5 goes up) | everyone | Open a popup and measure the colours beneath (e.g. Blue `#89b4fa` dims to `(68,88,123)`) |
 | color-20 | color §Dimming | 256-colour codes 16–255 are turned into RGB by their standard values before dimming | everyone | Read the code: 256 colours are turned into RGB by the standard values |
 | color-21 | color §Dimming | The 16 colours (0–15) are turned into RGB by the terminal's palette, asked with OSC 4 at startup (at the same time as the icon-width probe of Rules E5) | everyone | Read the code: the OSC 4 queries are sent at startup; in a terminal with a changed palette, check that 16-colour content keeps its hue when dimmed |
 | color-22 | color §Dimming | With no answer about the palette, the xterm defaults are used | everyone | Read the code: the 16-colour values used when there is no answer are the xterm defaults |
@@ -530,7 +530,7 @@ The items of tdp v0.9.4. What each column means and what an item applies to: [RE
 | screen-11 | screen §Footer | While a popup is open, the footer is as for the screen underneath, its words unchanged (a terminal popup is the exception: the footer is not drawn, terminal-13) | everyone | Compare the footer's words before and after opening a popup |
 | screen-12 | screen §Screen chip row | One capsule per screen, drawn as the capsule chain | several screens | Look at the top row |
 | screen-13 | screen §Screen chip row | The selected screen is filled with Blue, its text Base bold | several screens | Look at the current screen's chip |
-| screen-14 | screen §Screen chip row | The unselected screens are filled with Crust, their text Blue, not bold | several screens | Look at the other screens' chips |
+| screen-14 | screen §Screen chip row | The unselected screens are filled with Mantle, their text Blue, not bold | several screens | Look at the other screens' chips |
 | screen-15 | screen §Screen chip row, §Statusbar | A multi-screen app puts the statusbar's content on the right of the chip row, not on a row of its own | several screens + statusbar | Look at the right of the chip row |
 | screen-16 | screen §Screen chip row | Below the chip row runs a full-width heavy line `━` in Overlay0 | several screens | Look at the second row |
 | screen-17 | screen §Screen chip row | During a long task the separator fills with Green from the left as a progress bar | several screens + long task | Start a long task and look at the line below the chip row |
@@ -587,14 +587,14 @@ The items of tdp v0.9.4. What each column means and what an item applies to: [RE
 | panel-28 | panel §Capsule chain | On a panel the chain's colour is the border colour, changing with focus, unfocus and mode | everyone | Press `Tab` to change panels and enter a mode; check that the capsule's colour follows the frame line |
 | panel-29 | panel §Capsule chain | For the tabs after a popup title, the chain's colour is the layer colour | popup tab | Open a popup with tabs and look at the selected tab |
 | panel-30 | panel §Capsule chain | The `[N] label` capsule counts as selected | everyone | Check that the `[N] label` capsule is filled |
-| panel-31 | panel §Capsule chain | An unselected part is filled with Crust, its text in the chain's colour, not bold | several screens or panel tab or popup tab | Look at an unselected tab; set the terminal's background to a colour other than Base and check that the unselected parts are still Crust |
+| panel-31 | panel §Capsule chain | An unselected part is filled with Mantle, its text in the chain's colour, not bold | several screens or panel tab or popup tab | Look at an unselected tab; set the terminal's background to a colour other than Base and check that the unselected parts are still Mantle |
 | panel-32 | panel §Capsule chain | Joins are always slants: a solid slant where the colour changes, a thin slant between two unselected parts | several screens or panel tab | Change tabs and look at the shape of the joins; read the code to check the code points |
-| panel-33 | panel §Capsule chain | The join from selected to unselected is U+E0BC, foreground the chain's colour, background Crust | several screens or panel tab | Look at the join on the right of the selected part |
-| panel-34 | panel §Capsule chain | The join from unselected to selected is U+E0BA, foreground the chain's colour, background Crust | several screens or panel tab | Look at the join on the left of the selected part |
-| panel-35 | panel §Capsule chain | The join between two unselected parts is U+E0BB, foreground the chain's colour, background Crust | several screens or panel tab | Look between two unselected parts side by side |
-| panel-36 | panel §Capsule chain | Each end's foreground is the fill of the part beside it: the chain's colour beside a selected part, Crust beside an unselected one; no background is painted outside | everyone | Look at the start and end of the capsule chain, then change tabs so that the last part is unselected; set the terminal's background to a colour other than Base or Crust and check that there is no block outside the ends |
+| panel-33 | panel §Capsule chain | The join from selected to unselected is U+E0BC, foreground the chain's colour, background Mantle | several screens or panel tab | Look at the join on the right of the selected part |
+| panel-34 | panel §Capsule chain | The join from unselected to selected is U+E0BA, foreground the chain's colour, background Mantle | several screens or panel tab | Look at the join on the left of the selected part |
+| panel-35 | panel §Capsule chain | The join between two unselected parts is U+E0BB, foreground the chain's colour, background Mantle | several screens or panel tab | Look between two unselected parts side by side |
+| panel-36 | panel §Capsule chain | Each end's foreground is the fill of the part beside it: the chain's colour beside a selected part, Mantle beside an unselected one; no background is painted outside | everyone | Look at the start and end of the capsule chain, then change tabs so that the last part is unselected; set the terminal's background to a colour other than Base or Mantle and check that there is no block outside the ends |
 | panel-37 | panel §Capsule chain | Every end and join takes the width of one powerline symbol, so changing the selected part shifts no text | several screens or panel tab | Change tabs; check that no part's text moves |
-| panel-137 | panel §Capsule chain | When the panel loses focus or is covered, the chain's colour dims as usual and Crust does not | several screens or panel tab or popup tab | Press `Tab` to another panel; check that the unselected parts on the unfocused panel keep their background |
+| panel-137 | panel §Capsule chain | On an unfocused panel the unselected parts stay Mantle (the chain's colour turns to the unfocused border colour); covered, they dim with the whole screen and Mantle becomes Crust `#11111b` | several screens or panel tab or popup tab | Press `Tab` to another panel and check that the unselected parts on the unfocused panel keep their background; open a popup and measure the background of the unselected parts beneath |
 | panel-38 | panel §Capsule chain | No space before or after the text inside a capsule (`[1] TABS`) | everyone | Look between a capsule's text and its ends |
 | panel-39 | panel §Capsule chain | On a panel with tabs, `[N]` is a part of its own and always selected | panel tab | Change to the second tab; check that `[N]` is still filled |
 | panel-40 | panel §Capsule chain | Each tab after `[N]` is a part, and only the current tab is selected | panel tab | Change tabs; check that only the current tab is filled |

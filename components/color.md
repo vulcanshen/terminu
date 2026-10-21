@@ -31,8 +31,8 @@ syntax highlighting) are up to the app; this file governs the interface elements
 
 | Meaning | Used for | Colour |
 |---|---|---|
-| Background | not painted on the screen; used where a background colour has to be written out: text on a block (the cursor, capsules), what dimming fades towards | Base `#1e1e2e` |
-| Unselected capsule | the fill of a capsule chain's unselected parts and the background of its joins (the capsule chain in [`layout/panel`](layout/panel.md)); not dimmed | Crust `#11111b` |
+| Background | not painted on the screen; used where a background colour has to be written out: text on a block (the cursor, capsules) | Base `#1e1e2e` |
+| Unselected capsule | the fill of a capsule chain's unselected parts and the background of its joins (the capsule chain in [`layout/panel`](layout/panel.md)); dimmed when covered, it turns exactly into Crust `#11111b` | Mantle `#181825` |
 | Focus | the focused frame (heavy line `┏━┓`); keys that can be pressed now in hints, the footer and the key reference; the labels and a list's header row in the focused panel; the screen chip row | Blue `#89b4fa` |
 | Unavailable | an unfocused frame (light line `┌─┐`, the same width as the heavy line, so switching shifts nothing); disabled rows, labels and options; a checkbox option not available (a state only, still tickable); days out of range | Surface2 `#585b70` |
 | Layer colour | a popup's frame (heavy line `┏━┓`) and the fill of its title capsule; the cursor block in a popup | see "Popup layer colours" below |
@@ -56,8 +56,9 @@ syntax highlighting) are up to the app; this file governs the interface elements
   in) keep their own colour, while the other text on the block still turns Base. The colour is that cell's value, and
   it matters most just when it is about to be changed.
 - **The screen's background is not painted**: cells with no background of their own are left to the terminal's own
-  background. When the terminal's background is not Base, dimming leans towards Base; the family colours are designed
-  for a dark background, so on a dark terminal the difference is small.
+  background. When the terminal's background is not Base, dimming still leans towards the fixed `#0c0c13`, not
+  towards the terminal's background; the family colours are designed for a dark background, so on a dark terminal the
+  difference is small.
 
 **Why**: the user's terminal theme, transparency and background image stay; none of the family apps paints the
 background today, so moving to the shared lib does not change the screen.
@@ -87,15 +88,18 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
 Rewrite every colour code (SGR) in the already-drawn screen, leaving text and layout alone:
 
 ```
-dim(c) = c × 0.45 + base × 0.55        base = #1e1e2e
+dim(c) = c × 0.45 + t × 0.55        t = #0c0c13
 ```
 
+- **t is the step after Crust**: catppuccin-mocha's Base, Mantle and Crust share one hue and lose 3% of lightness at
+  each step (15%, 12%, 9%); t is the next step down, 6%. catppuccin has no such colour; it is never drawn, only used in
+  this formula.
 - Both foreground and background go through it; 16- and 256-colour codes are turned into RGB first: colours 16–255 of the
   256 by their standard values; 0–15 (the 16 colours) by the terminal's palette — asked with OSC 4 at startup (at the
   same time as the icon-width probe of Rules E5), with the xterm defaults when there is no answer.
 - **Each channel is rounded half up** (.5 goes up) before it is compared with the original.
 - **Dimming never lightens a colour**: each channel takes the smaller of its original and dimmed value — a colour darker
-  than base (e.g. `#000000`) would get lighter, so it keeps its original.
+  than t (e.g. `#000000`) would get lighter, so it keeps its original.
 - Output is always 24-bit (`38;2;…` / `48;2;…`): the family requires a truecolor terminal (Rules E4), so dimming need not
   step down to the colour depth.
 - Text with no foreground of its own gets the dimmed default text colour (`dim(Text #cdd6f4)`).
@@ -105,8 +109,10 @@ dim(c) = c × 0.45 + base × 0.55        base = #1e1e2e
 
 **Why**: what the 16 colours actually look like is set by the user's palette; dimmed by the xterm values, the hue jumps
 when the palette is not xterm's — e.g. with the palette's blue set to `#89b4fa`, dimming the xterm `(0,0,238)` gives a
-saturated dark blue `(0,0,132)`, while the actual colour dims to a greyish blue `(78,98,138)`, breaking "the same
-colour, only fainter". With no answer, the xterm values are what the family apps use today.
+saturated dark blue `(0,0,118)`, while the actual colour dims to a greyish blue `(68,88,123)`, breaking "the same
+colour, only fainter". With no answer, the xterm values are what the family apps use today. The target is t rather than
+Base so that colours darker than Base get darker too: the unselected parts of a capsule chain are Mantle and dim
+exactly into Crust, so a covered layer's whole chain falls back; leaning towards Base, they would not change at all.
 
 > **Implementation reference (not a requirement)**: filu's `internal/ui/dim.go` (the xterm 16 colours are there). Asking
 > for the palette: send the 16 queries `ESC ] 4 ; n ; ? ESC \` (n = 0–15) together, followed by a DA1 (`ESC [ c`); the

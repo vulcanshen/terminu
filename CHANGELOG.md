@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.9.5 — 2026-10-21
+
+Settled with the user before terminu-go drew v0.9.4's capsule chain.
+
+- color: dimming leans towards `#0c0c13`, the step after Crust (catppuccin-mocha's Base, Mantle and Crust lose 3% of
+  lightness at each step; this is the next one), instead of Base; the ratio stays 0.45 and dimming still never lightens
+  a colour. Colours darker than Base now dim too
+- layout/panel: the unselected parts of a capsule chain and its joins are Mantle instead of Crust; covered, they dim
+  exactly into Crust; on an unfocused panel the chain is on the border and Mantle stays (layout/screen follows)
+- checklist: color-19, panel-31 to panel-37, panel-137 and screen-14 reworded (1422 items)
+
 ## v0.9.4 — 2026-10-21
 
 What the user found testing the apps by hand, settled with the user.
