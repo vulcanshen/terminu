@@ -1151,11 +1151,12 @@ permission… whatever the cause), the app does not go on working in that state:
 ┗━ Enter:move Esc:quit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-- **`Enter`** (`move`): renames that file to `<name>.bak`, creates a new one in its place (settings with their defaults,
-  state and data empty), and starts as usual. If a `.bak` is already there, `.bak.1`, `.bak.2`… are used — nothing is
-  ever overwritten; the question names the file that will really be used. When the data is one record per file (e.g.
-  kamonu's one file per mark), the record that cannot be read is just renamed to `.bak`, nothing new is made, and the
-  rest is read as usual; the question reads `Move it to <name>.bak and go on without it?`.
+- **`Enter`** (`move`): renames that file to `<name>.bak` and starts as on the first start: settings take their
+  defaults, state and data start empty, and a file the first start makes is made again, while one it does not make
+  appears at the first save. If a `.bak` is already there, `.bak.1`, `.bak.2`… are used — nothing is ever overwritten;
+  the question names the file that will really be used. When the data is one record per file (e.g. kamonu's one file
+  per mark), the record that cannot be read is just renamed to `.bak`, nothing new is made, and the rest is read as
+  usual; the question reads `Move it to <name>.bak and go on without it?`.
 - **`Esc`** (`quit`): quits the app, rather than going back to it; the path and the reason are written to stderr, so the
   shell still shows what to fix.
 - **A cache** that cannot be read: no question; it is thrown away and rebuilt.

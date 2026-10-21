@@ -237,17 +237,18 @@ Every app has an App Log (Rules F5): what the app has done and what went wrong, 
 keep arriving, as in streaming content.
 
 ```
-14:02:11 INFO switched to Pods
-14:02:40 OK   deployment.apps/nginx scaled
+14:02:11 INFO Switched to Pods
+14:02:40 OK   Scaled deployment.apps/nginx
 14:03:02 WARN CRD discovery: the server is currently unable to handle the request
-14:03:30 ERR  namespace fetch failed: Forbidden
+14:03:30 ERR  Namespace fetch failed: Forbidden
 ```
 
 - **What goes in**: what the user did and how it ended; every toast (the same words); what the app did on its own in
   the background (e.g. a move under Rules E3, a default made at start, the details of something outside the app that
   could not be read).
-- **Each entry**: the time `HH:MM:SS` (Overlay0), a level, and what happened. The level follows the toast's kinds and
-  colours: `INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, in a level column four cells wide, left-aligned.
+- **Each entry**: the time `HH:MM:SS` (Overlay0), a level, and what happened, capitalised like a toast. The level
+  follows the toast's kinds and colours: `INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, in a level column four cells
+  wide, left-aligned.
 - **Kept in memory only**: it is emptied when the app quits; the number of entries has a limit, and when it is full the
   oldest goes.
 - **Errors and warnings not seen yet**: shown on the footer's `!` (the footer in [`layout/screen`](../layout/screen.md));

@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.2 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -379,7 +379,7 @@ tdp v0.9.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | E3-15 | E3 | 搬不動時照舊用舊位置，開 error popup 寫出兩個路徑 | 存設定或資料 | 讀程式；或讓新位置寫不進去後啟動 |
 | E3-16 | E3 | 搬家時新位置已經有的那一項：快取刪掉舊的；設定、狀態、資料不刪、留在舊位置，開 error popup 寫出兩個路徑 | 存設定或資料 | 讀程式；或在新、舊位置都放同一項後啟動新版 |
 | E3-17 | E3 | app 自己的設定、狀態、資料讀不了時，啟動時開 confirm 寫出路徑與原因，hint 是 `Enter:move Esc:quit` | 存設定或資料 | 把設定檔改成壞掉的格式後啟動 |
-| E3-18 | E3 | 讀不了的 confirm 按 `Enter`：檔案改名成 `.bak`，原本的位置建一個新的，照常開始 | 存設定或資料 | 同上按 `Enter`，看 `.bak` 與新的檔 |
+| E3-18 | E3 | 讀不了的 confirm 按 `Enter`：檔案改名成 `.bak`，像第一次打開一樣照常開始 | 存設定或資料 | 同上按 `Enter`：有 `.bak`，app 跟第一次打開時一樣（第一次打開會建的檔又建了） |
 | E3-19 | E3 | `.bak` 已經在時用 `.bak.1`、`.bak.2`……，不蓋掉；問句寫實際會用的名字 | 存設定或資料 | 先放一個 `.bak` 再讓檔案壞掉、啟動 |
 | E3-20 | E3 | 讀不了的 confirm 按 `Esc`：離開 app，路徑與原因寫到 stderr | 存設定或資料 | 同上按 `Esc`，看 app 結束、終端機上的訊息 |
 | E3-21 | E3 | 快取讀不了時不問，丟掉重建 | 存設定或資料 | 把快取的檔弄壞後啟動，沒有 confirm |
@@ -993,7 +993,7 @@ tdp v0.9.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-75 | note §長相 | viewer 的內容裡，顏色碼（SGR）照著上色，一行裡的 `\r` 只留最後的狀態，不是顏色碼的序列畫成紅色的名字 | viewer | 打開含顏色碼、`10%\r100%`、`\x1b[2J` 的內容 |
 | note-76 | note §App Log | 每個 app 都有 App Log，是 viewer，最新的在最下面，開著時新的一筆照樣進來 | 都要 | 按 `!`，做幾件事，看新的一筆進來 |
 | note-77 | note §App Log | 記使用者的動作與結果、每一個 toast、app 在背景做的事 | 都要 | 做一個動作、跳一個 toast 後按 `!`；讀程式 |
-| note-78 | note §App Log | 每一筆：時間 `HH:MM:SS`（Overlay0）、等級（`INFO` Text、`OK` Green、`WARN` Peach、`ERR` Red，四格寬靠左）、發生的事 | 都要 | 看 App Log 的各種等級 |
+| note-78 | note §App Log | 每一筆：時間 `HH:MM:SS`（Overlay0）、等級（`INFO` Text、`OK` Green、`WARN` Peach、`ERR` Red，四格寬靠左）、發生的事（跟 toast 一樣大寫開頭） | 都要 | 看 App Log 的各種等級 |
 | note-79 | note §App Log | 只放在記憶體，app 關掉就清空；筆數有上限，滿了丟掉最舊的 | 都要 | 讀程式；或關掉再開，App Log 是空的 |
 
 ## dialog/terminal
