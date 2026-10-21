@@ -91,6 +91,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | finder with a preview | a finder with a preview: an ordinary finder, a file-picker (a select and a checkbox popup have none) |
 | file preview | a popup previewing files and directories: a file-picker, or a finder previewing files |
 | stores settings or data | settings, data, state or a cache written to disk |
+| a file no longer used | a new version stopped using a settings, state or data file (e.g. sshu's errors.yaml, kbu's theme.yaml) |
 | Windows build | a Windows release |
 | has released | a release made (a tag and a GitHub release); for an app not yet released, what only exists after a release (the release, the formula on the tap…) does not apply, and what can be seen is checked on the repo as it is now |
 | mouse | mouse support |

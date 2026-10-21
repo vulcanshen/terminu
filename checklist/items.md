@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.2. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.3. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -384,6 +384,7 @@ The items of tdp v0.9.2. What each column means and what an item applies to: [RE
 | E3-20 | E3 | `Esc` on that confirm quits the app and writes the path and the reason to stderr | stores settings or data | As above, press `Esc`: the app ends and the terminal shows the message |
 | E3-21 | E3 | A cache that cannot be read is thrown away and rebuilt, with no question | stores settings or data | Damage a cache file and start the app: no confirm |
 | E3-22 | E3 | When the data is one record per file, `Enter` only renames the unreadable record to `.bak`, making nothing new, and the rest is read as usual; the question says `go on without it` | stores settings or data | Damage one record's file, start the app, press `Enter` |
+| E3-23 | E3 | A settings, state or data file the app no longer uses is not deleted and gets no toast; while it is there, every start writes an INFO entry with its path to the App Log | a file no longer used | Put an old file the app no longer uses in place, start, look at the App Log and the disk; restart and look at the App Log again |
 | E4-1 | E4 | PUA glyphs are written as code points in the source | everyone | Read the code: a scan of the source finds no PUA characters |
 | E4-2 | E4 | The README's requirements say a Nerd Font is required | everyone | Read the prerequisites in both READMEs |
 | E4-3 | E4 | The README's requirements say, next to the Nerd Font, that a truecolor terminal (24-bit colour) is required | everyone | Read the prerequisites in both READMEs |

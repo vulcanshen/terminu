@@ -1136,19 +1136,27 @@ item by item and shows a toast saying from where to where:
 Item by item, because the new location is often created by the app before the move (e.g. ccdrawu's mod writes to the new
 cache directory as soon as a session starts); moving the whole directory would then never move the old one.
 
+**Files no longer used**: a settings, state or data file that a new version of the app no longer uses is not deleted,
+and no toast is shown: what to do with it is the user's call. While the file is there, every start writes an INFO entry
+to the App Log giving its path and saying the app no longer uses it (e.g. `No longer used: ~/.sshu/errors.yaml; delete
+it if you don't need it`); the CHANGELOG says so too.
+
+The App Log is kept in memory only and starts empty every time, so the entry is written at every start, for whoever
+opens it.
+
 **When it cannot be read**: when the app's own settings, state or data cannot be read (bad format, a damaged file, no
 permission… whatever the cause), the app does not go on working in that state: at start it opens a confirm
 ([components/dialog/confirm](../components/dialog/confirm.md)) giving the path and the reason:
 
 ```
-┏━󰻌 MOVE ASIDE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                                   ┃
-┃ ~/.hostu/profiles.yaml can't be read:             ┃
-┃ line 3: mapping values are not allowed here       ┃
-┃                                                   ┃
-┃ Move it to profiles.yaml.bak and start a new one? ┃
-┃                                                   ┃
-┗━ Enter:move Esc:quit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━󰻌 MOVE ASIDE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                               ┃
+┃ ~/.hostu/profiles.yaml can't be read:         ┃
+┃ line 3: mapping values are not allowed here   ┃
+┃                                               ┃
+┃ Move it to profiles.yaml.bak and start fresh? ┃
+┃                                               ┃
+┗━ Enter:move Esc:quit ━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 - **`Enter`** (`move`): renames that file to `<name>.bak` and starts as on the first start: settings take their
