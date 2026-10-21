@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -504,7 +504,7 @@ tdp v0.9.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | color-16 | color §色碼 | 內容本身是顏色的格子（顏色值的 `███`）放在 cursor 色塊上時保留自己的顏色，同一塊上的其他字照樣換成 Base | color picker | 把 cursor 移到顏色值那一列，看 `███` 的顏色不變、其他字是 Base |
 | color-17 | color §色碼 | 畫面不塗底色：沒有指定背景的格子留給終端機自己的底色 | 都要 | 把終端機底色換成不是 Base 的顏色，看畫面沒有被塗成 Base |
 | color-18 | color §popup 的層色 | 在收的 popup 不算進 K：target 打開、source 同時收起時，target 從第一格就用它最後所在那一層的層色，source 收完時不跳色 | 都要 | 從會被清掉的 source 打開 target，逐格看 target 框的顏色 |
-| color-19 | color §淡化 | 淡化公式是 `dim(c) = c × 0.45 + base × 0.55`（base `#1e1e2e`），每個通道四捨五入（.5 進位） | 都要 | 開 popup，量底下的顏色（例：Blue `#89b4fa` 淡化成 `(78,98,138)`） |
+| color-19 | color §淡化 | 淡化公式是 `dim(c) = c × 0.45 + t × 0.55`（t `#0c0c13`，Crust 的下一格），每個通道四捨五入（.5 進位） | 都要 | 開 popup，量底下的顏色（例：Blue `#89b4fa` 淡化成 `(68,88,123)`） |
 | color-20 | color §淡化 | 256 色的 16–255 照標準值換成 RGB 再淡化 | 都要 | 讀程式：256 色轉 RGB 用標準值 |
 | color-21 | color §淡化 | 16 色（0–15）用終端機的調色盤換成 RGB：啟動時（跟 Rules E5 的 icon 寬度探測同一個時間點）用 OSC 4 問 | 都要 | 讀程式：啟動時送 OSC 4 的查詢；在改過調色盤的終端機裡看 16 色內容淡化後色相不跳 |
 | color-22 | color §淡化 | 問不到調色盤時用 xterm 的預設值 | 都要 | 讀程式：沒回答時的 16 色值是 xterm 的預設 |
@@ -530,7 +530,7 @@ tdp v0.9.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | screen-11 | screen §footer | popup 開著時 footer 照底下畫面的寫，不換字（terminal popup 例外：footer 不畫，terminal-13） | 都要 | 開 popup 前後比對 footer 的字 |
 | screen-12 | screen §畫面 chip 列 | 每個畫面一個膠囊，照膠囊串畫 | 多畫面 | 看最上面一列 |
 | screen-13 | screen §畫面 chip 列 | 選中的畫面填 Blue、字 Base 粗體 | 多畫面 | 看目前畫面的 chip |
-| screen-14 | screen §畫面 chip 列 | 沒選中的畫面底是 Crust、字 Blue、不加粗 | 多畫面 | 看其他畫面的 chip |
+| screen-14 | screen §畫面 chip 列 | 沒選中的畫面底是 Mantle、字 Blue、不加粗 | 多畫面 | 看其他畫面的 chip |
 | screen-15 | screen §畫面 chip 列、§statusbar | 多畫面的 app 把 statusbar 的內容放在 chip 列的右邊，不另開一列 | 多畫面＋statusbar | 看 chip 列右邊 |
 | screen-16 | screen §畫面 chip 列 | chip 列下面一條全寬的粗線 `━`，Overlay0 | 多畫面 | 看第二列 |
 | screen-17 | screen §畫面 chip 列 | 長時間的工作進行時，分隔線從左邊填 Green 當進度條 | 多畫面＋長時間工作 | 開始一個長時間的工作，看 chip 列下面的線 |
@@ -587,14 +587,14 @@ tdp v0.9.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-28 | panel §膠囊串 | panel 上這串的顏色是框線色，跟著 focus、失焦、模式換 | 都要 | 按 `Tab` 換 panel、進入模式，看膠囊的顏色跟著框線變 |
 | panel-29 | panel §膠囊串 | popup 標題後的 tab，這串的顏色是層色 | popup tab | 打開有 tab 的 popup，看選中的 tab |
 | panel-30 | panel §膠囊串 | `[N] label` 膠囊算選中的 | 都要 | 看 `[N] label` 膠囊是填色的 |
-| panel-31 | panel §膠囊串 | 沒選中的段底是 Crust，字用這串的顏色、不加粗 | 多畫面、panel tab、popup tab | 看沒選中的 tab；把終端機底色換成不是 Base 的顏色，沒選中的段照樣是 Crust |
+| panel-31 | panel §膠囊串 | 沒選中的段底是 Mantle，字用這串的顏色、不加粗 | 多畫面、panel tab、popup tab | 看沒選中的 tab；把終端機底色換成不是 Base 的顏色，沒選中的段照樣是 Mantle |
 | panel-32 | panel §膠囊串 | 接縫一律是斜線：顏色換的地方用實心的斜角，兩段都沒選中時用細斜線 | 多畫面、panel tab | 換 tab，看接縫的形狀；讀程式核對 code point |
-| panel-33 | panel §膠囊串 | 選中 → 沒選中的接縫是 U+E0BC，前景這串的顏色、背景 Crust | 多畫面、panel tab | 看選中的段右邊的接縫 |
-| panel-34 | panel §膠囊串 | 沒選中 → 選中的接縫是 U+E0BA，前景這串的顏色、背景 Crust | 多畫面、panel tab | 看選中的段左邊的接縫 |
-| panel-35 | panel §膠囊串 | 兩段都沒選中的接縫是 U+E0BB，前景這串的顏色、背景 Crust | 多畫面、panel tab | 看兩個相鄰的沒選中的段之間 |
-| panel-36 | panel §膠囊串 | 兩端的前景是旁邊那一段的底：旁邊是選中的段時是這串的顏色，是沒選中的段時是 Crust；外側不塗背景 | 都要 | 看膠囊串頭尾，再換 tab 讓尾端變成沒選中的段；把終端機底色換成不是 Base 也不是 Crust 的顏色，兩端外側沒有色塊 |
+| panel-33 | panel §膠囊串 | 選中 → 沒選中的接縫是 U+E0BC，前景這串的顏色、背景 Mantle | 多畫面、panel tab | 看選中的段右邊的接縫 |
+| panel-34 | panel §膠囊串 | 沒選中 → 選中的接縫是 U+E0BA，前景這串的顏色、背景 Mantle | 多畫面、panel tab | 看選中的段左邊的接縫 |
+| panel-35 | panel §膠囊串 | 兩段都沒選中的接縫是 U+E0BB，前景這串的顏色、背景 Mantle | 多畫面、panel tab | 看兩個相鄰的沒選中的段之間 |
+| panel-36 | panel §膠囊串 | 兩端的前景是旁邊那一段的底：旁邊是選中的段時是這串的顏色，是沒選中的段時是 Mantle；外側不塗背景 | 都要 | 看膠囊串頭尾，再換 tab 讓尾端變成沒選中的段；把終端機底色換成不是 Base 也不是 Mantle 的顏色，兩端外側沒有色塊 |
 | panel-37 | panel §膠囊串 | 斜角與接縫各佔一個 powerline 符號的寬度，換選中的段時字不位移 | 多畫面、panel tab | 換 tab，看各段的字位置不動 |
-| panel-137 | panel §膠囊串 | 失焦、被蓋住時這串的顏色照常淡化，Crust 不淡化 | 多畫面、panel tab、popup tab | 按 `Tab` 換 panel，看失焦的 panel 上沒選中的段底色不變 |
+| panel-137 | panel §膠囊串 | 失焦時沒選中的段照樣是 Mantle（串的顏色換成失焦的框線色）；被蓋住時跟整個畫面一起淡化，Mantle 變成 Crust `#11111b` | 多畫面、panel tab、popup tab | 按 `Tab` 換 panel，看失焦的 panel 上沒選中的段底色不變；開一個 popup，量底下沒選中的段的底色 |
 | panel-38 | panel §膠囊串 | 膠囊裡的字前後不加空白（`[1] TABS`） | 都要 | 看膠囊的字與兩端之間 |
 | panel-39 | panel §膠囊串 | 有 tab 的 panel，`[N]` 自己是一段，一直是選中的 | panel tab | 換到第二個 tab，看 `[N]` 還是填色 |
 | panel-40 | panel §膠囊串 | `[N]` 後面每個 tab 一段，只有目前的 tab 選中 | panel tab | 換 tab，看只有目前的 tab 填色 |

@@ -67,16 +67,18 @@ are all drawn the same way:
 - **Selected**: filled with the chain's colour, text Base bold. On a panel the chain's colour is the border colour
   (changing with focus, unfocus and mode); in a popup it is the layer colour; for the screen chips it is Blue. The `[N]`
   capsule and the current tab both count as selected.
-- **Unselected**: filled with Crust, text in the chain's colour, not bold.
+- **Unselected**: filled with Mantle, text in the chain's colour, not bold.
 - **Joins**: always a slant, leaning the same way as the left end. Where the colour changes, a solid slant: selected →
   unselected U+E0BC (`nf-ple-upper_left_triangle`), unselected → selected U+E0BA (`nf-ple-lower_right_triangle`);
   between two unselected parts a thin slant, U+E0BB (`nf-ple-forwardslash_separator`).
 - **Colours of the ends and joins**:
-  - A join in the middle: foreground the chain's colour, background Crust. Only `[N]` and the first tab are ever both
+  - A join in the middle: foreground the chain's colour, background Mantle. Only `[N]` and the first tab are ever both
     selected, and there it is as in "A panel's tabs" below: a blank one powerline symbol wide, no seam.
-  - The ends: foreground the fill of the part beside them (the chain's colour for a selected part, Crust for an
+  - The ends: foreground the fill of the part beside them (the chain's colour for a selected part, Mantle for an
     unselected one); outside, no background is painted: it is the terminal's own.
-  - Crust is not dimmed: when the panel loses focus or is covered, the chain's colour dims as usual and Crust stays.
+  - Losing focus: the chain's colour turns to the unfocused border colour and Mantle stays (T2 dims a panel's content,
+    and the chain is on the border). Covered: dimmed with the whole screen under F8, Mantle turns exactly into Crust
+    (dimming in [`color`](../color.md)).
   - Every end and join takes the width of one powerline symbol (Rules E5: one cell as a rule; two on a terminal where it
     takes two), so changing the selected part shifts no text.
 - No space before or after the text inside a capsule: `[1] TABS`. The text is uppercase, a name as it is
@@ -102,13 +104,13 @@ are all drawn the same way:
 **Why**: in the family a capsule means "a name" — what the panel is called, which page, which screen (Principle P4).
 With all these uses sharing one look, the user who recognises one recognises them all. Unselected ones do not use
 Surface2: Surface2 means disabled, and unselected pages would look as if they could not be switched to.
-Unselected parts are filled with Crust and every join is a slant: every cell of the chain has its colour written out and
+Unselected parts are filled with Mantle and every join is a slant: every cell of the chain has its colour written out and
 only the outside is left to the terminal, so it looks the same on any background, a transparent one or a background
 image, without depending on the terminal's background being Base (kbu's KB26: with any other background, the old seams
-showed patches of Base). Crust is darker than Base, so the unselected parts stay in the back and the selected one shows
+showed patches of Base). Mantle is a step darker than Base, so the unselected parts stay in the back and the selected one shows
 at a glance; the slants lean the same way as the left end, so the chain reads as one band. Between two unselected parts
-both sides are Crust and a solid slant would not show, hence the thin one. Crust is a background colour, like Base, and
-is not dimmed.
+both sides are Mantle and a solid slant would not show, hence the thin one. When covered, Mantle dims into Crust and the
+whole chain falls back.
 `[N]` is a part of its own: apart
 from the number only the current tab is lit, so there are never two blocks that both look current; on the first tab a
 blank joins them, the same as a panel without tabs, and no panel with tabs needs a name of its own; the blank is as wide
