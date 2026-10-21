@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.9.4 — 2026-10-21
+
+What the user found testing the apps by hand, settled with the user.
+
+- layout/panel: the capsule chain no longer leans on the terminal's background being Base (from kbu, KB26). Unselected
+  parts are filled with Crust; every join is a slant, U+E0BC from selected to unselected, U+E0BA from unselected to
+  selected, U+E0BB between two unselected parts, all on Crust; the ends keep the terminal's own background outside.
+  Crust is not dimmed. The panel title, a panel's tabs, the screen chips and the tabs after a popup title all change
+  (color, layout/screen, layout/popup and dialog/terminal follow)
+- project: family.mk gains `make dev`, which builds `./<app>` as `make build` does and runs it
+- checklist: panel-31 to panel-37 and screen-14 reworded, panel-137 added (1422 items)
+
 ## v0.9.3 — 2026-10-21
 
 What the members found while moving to tdp v0.9.2 and terminu-go v0.4.3, settled with the user.

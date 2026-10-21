@@ -39,7 +39,7 @@ popup 上按 `?` 打開的本來就是這個 popup 的 key reference（Rules M1�
 ## 畫面 chip 列
 
 多畫面的 app 最上面一列：每個畫面一個膠囊，畫法照 [`panel`](panel-zh_TW.md) 的膠囊串，串的顏色是 Blue（選中的畫面填 Blue、
-字 Base 粗體；沒選中的不填底色、字 Blue、不加粗）。放不下時照膠囊串的規則縮：先縮成 `[M] [F] [S]`，再收掉沒選中的。
+字 Base 粗體；沒選中的底是 Crust、字 Blue、不加粗）。放不下時照膠囊串的規則縮：先縮成 `[M] [F] [S]`，再收掉沒選中的。
 
 右邊放 statusbar 的內容（見下）。chip 列下面一條全寬的粗線 `━`，Overlay0；長時間的工作（傳檔、下載）進行時，從左邊填 Green
 當進度條，旁邊的狀態文字也是 Green。terminal popup 開著時，chip 列與這條分隔線都留著（[`dialog/terminal`](../dialog/terminal-zh_TW.md)）：

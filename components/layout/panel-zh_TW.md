@@ -11,7 +11,7 @@ panel 的框、一般清單（含位置列、分組）、一列一個值的 pane
 - **上框左邊：`[N] label` 膠囊**，緊接著框的角。`N` 同時是直接跳到該 panel 的數字鍵（只在目前的畫面裡，Rules K1）。panel 有
   tab 時，`[N]` 自己是一段，tab 接在後面，第一個 tab 的名字就是 label（見下面的膠囊串）。label 裡的名稱照原樣，跟 popup 的標題一樣
   （`[2] PODS: nginx-7d4f`、`[1] prod-web-01`；[components](../README-zh_TW.md) 的「大寫」）。panel 在 loading 時，loading icon 放在整串膠囊（含 tab）的後面，前後各空一格
-  （例：`┏[2] PODSEVENTSYAML 󰪞 ━━━┓`；[`popup`](popup-zh_TW.md) 的 loading）。
+  （例：`┏[2] PODSEVENTSYAML 󰪞 ━━━┓`；[`popup`](popup-zh_TW.md) 的 loading）。
 - **上框右邊：模式名**（Rules K11），夾在兩個框線接頭之間，像框上嵌了一個標籤：`┏[1] KINDS━━━┫Drag┣━┓`、
   `┏━YAML━━━━┫Visual┣━┓`。接頭跟框同色、線型跟著框 —— 粗線框（有 focus 的 panel、popup）用 `┫` `┣`，細線框（失焦的
   panel）用 `┤` `├`；模式名用模式色加粗，大小寫照原樣。
@@ -51,15 +51,15 @@ panel 標題的膠囊、panel 的 tab、[`screen`](screen-zh_TW.md) 的畫面 ch
   它自己是一個圓角的膠囊（[`popup`](popup-zh_TW.md) 的標題）；popup 標題後面的 tab 照這串畫。
 - **選中的**：填滿這串的顏色，字 Base 粗體。panel 上這串的顏色是框線色（跟著 focus、失焦、模式換）；popup 裡是層色；
   畫面 chip 是 Blue。`[N]` 膠囊與目前的 tab 都算選中的。
-- **沒選中的**：不填底色，字用這串的顏色、不加粗。
-- **接縫**：顏色換的地方用 U+E0B0（`nf-pl-left_hard_divider`），同色之間用 U+E0B1（`nf-pl-left_soft_divider`）。
-- **斜角與接縫的顏色**（照 Powerline）：前景是左邊那一段的底、背景是右邊那一段的底；沒選中的段的底當作 Base（實心的三角形靠它畫出沒填色的那一邊；兩段都沒選中的細線不塗背景，見下），串外面是終端機的底。
-  - 選中 → 沒選中：U+E0B0，前景這串的顏色、背景 Base；沒選中 → 選中：U+E0B0，前景 Base、背景這串的顏色。
-  - 兩段都沒選中：U+E0B1，前景這串的顏色，不塗背景；兩段都選中：U+E0B1，前景 Base、背景這串的顏色（只有 `[N]` 與第一個 tab
-    會兩段都選中，那裡照下面的「panel 的 tab」：一個 powerline 符號寬的空白、不畫接縫）。
-  - 兩端的斜角畫成旁邊那一段的底：頭或尾是沒選中的段時，那一端是 Base（終端機的底是 Base 時看不見，只留一個 powerline 符號寬的空）。
-  - 斜角與接縫一律各佔一個 powerline 符號的寬度（Rules E5：多半是一格；佔兩格的終端機上是兩格），看不見時也照樣佔著，換選中的段時
-    字不位移。
+- **沒選中的**：底是 Crust，字用這串的顏色、不加粗。
+- **接縫**：一律是斜線，跟左端的斜角同一個方向。顏色換的地方用實心的斜角：選中 → 沒選中 U+E0BC（`nf-ple-upper_left_triangle`），
+  沒選中 → 選中 U+E0BA（`nf-ple-lower_right_triangle`）；兩段都沒選中時用細斜線 U+E0BB（`nf-ple-forwardslash_separator`）。
+- **斜角與接縫的顏色**：
+  - 中間的接縫：前景是這串的顏色，背景 Crust。兩段都選中的只有 `[N]` 與第一個 tab，那裡照下面的「panel 的 tab」：一個
+    powerline 符號寬的空白、不畫接縫。
+  - 兩端：前景是旁邊那一段的底（選中的是這串的顏色，沒選中的是 Crust）；外側不塗背景，是終端機自己的底。
+  - Crust 不淡化：失焦、被蓋住時，這串的顏色照常淡化，Crust 不變。
+  - 斜角與接縫一律各佔一個 powerline 符號的寬度（Rules E5：多半是一格；佔兩格的終端機上是兩格），換選中的段時字不位移。
 - 膠囊裡的字前後不加空白：`[1] TABS`。字一律大寫，名稱照原樣（`[2] PODS: nginx-7d4f`），熱鍵標記裡的字母照原樣
   （[components](../README-zh_TW.md) 的「大寫」）。
 - **panel 的 tab**：`[N]` 自己是一段，一直是選中的；後面每個 tab 一段，只有目前的 tab 選中。panel 沒有另外的名字，第一個 tab 的
@@ -67,8 +67,8 @@ panel 標題的膠囊、panel 的 tab、[`screen`](screen-zh_TW.md) 的畫面 ch
   跟接縫一樣佔一個 powerline 符號的寬度（powerline 符號佔兩格的終端機上是兩格空白），換 tab 時字不位移：
 
   ```
-  ┏[2] PODSEVENTSYAML━━━━━━━━━┓   ← 在 PODS：「[2] PODS」填色
-  ┏[2]PODSEVENTSYAML━━━━━━━━━┓   ← 在 EVENTS：「[2]」與「EVENTS」填色
+  ┏[2] PODSEVENTSYAML━━━━━━━━━┓   ← 在 PODS：「[2] PODS」填色
+  ┏[2]PODSEVENTSYAML━━━━━━━━━┓   ← 在 EVENTS：「[2]」與「EVENTS」填色
   ```
 
 - **popup 標題後的 tab**：跟圓角的標題之間隔一段線（[`popup`](popup-zh_TW.md) 的標題）。
@@ -77,9 +77,11 @@ panel 標題的膠囊、panel 的 tab、[`screen`](screen-zh_TW.md) 的畫面 ch
   照樣留一段線（例：`┏[2] DEPLOYM…━┓`）。
 
 **為什麼**：膠囊在家族裡的意思是「名稱」—— panel 叫什麼、在哪一頁、在哪個畫面（Principle P4）。這幾種用途共用一套，
-使用者認得一次就認得全部。沒選中的不用 Surface2：Surface2 是停用，沒選中的頁面看起來會像不能切。接縫用原始 Powerline
-的兩個符號，字型支援最普遍；上色也照 Powerline，色塊只出現在選中的段，一眼看得出選了哪一個，沒選中的段旁邊不會冒出色塊的尖角。
-兩段都沒選中的細線不塗背景：細線的形狀不靠背景，只有實心的三角形要用 Base 畫出沒填色的那一邊。
+使用者認得一次就認得全部。沒選中的不用 Surface2：Surface2 是停用，沒選中的頁面看起來會像不能切。
+沒選中的段塗 Crust、中間一律用斜線：整串每一格都寫明了顏色，只有串的外面留給終端機，所以在任何底色、透明背景、背景圖上看起來
+都一樣，不靠終端機的底是 Base（kbu 的 KB26：底色不是 Base 時，舊的接縫露出 Base 色塊）。Crust 比 Base 深，沒選中的段照樣退在
+後面，選中的段一眼看得出來；斜線跟左端同一個方向，整串讀成一條帶子。兩段都沒選中時兩邊都是 Crust，實心的斜角看不見，所以用
+細斜線。Crust 跟 Base 一樣是底色，不淡化。
 `[N]` 自己一段：除了編號，只有目前的 tab 亮，不會有兩塊看起來都是目前的；在第一個 tab 時用空白接，跟沒有 tab 的 panel 一樣，
 也不用幫有 tab 的 panel 另外取名字；那段空白跟接縫一樣寬，在第一個 tab 與其他 tab 之間換，字才不會跳一格。選中的段太長時
 截字不截斜角：斜角是「這是膠囊」的形狀，截掉了就看不出是名稱。兩端用斜角、popup 的標題用圓角：固定在畫面上的 panel 與浮在上面的 popup，看膠囊的兩端就分得出來。

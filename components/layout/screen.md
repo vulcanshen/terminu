@@ -45,8 +45,8 @@ footer, and `?` on a popup opens that popup's key reference anyway (Rules M1).
 ## Screen chip row
 
 The top row of a multi-screen app: one capsule per screen, drawn as the capsule chain in [`panel`](panel.md), the chain's
-colour being Blue (the selected screen filled with Blue, its text Base bold; the unselected ones unfilled, their text
-Blue, not bold). When it does not fit, it shrinks by the capsule chain's rules: first down to `[M] [F] [S]`, then the
+colour being Blue (the selected screen filled with Blue, its text Base bold; the unselected ones filled with Crust, their
+text Blue, not bold). When it does not fit, it shrinks by the capsule chain's rules: first down to `[M] [F] [S]`, then the
 unselected ones are folded away.
 
 The statusbar's content goes on its right (see below). Below the chip row runs a full-width heavy line `━` in Overlay0; during

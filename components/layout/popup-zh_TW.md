@@ -25,7 +25,7 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   後面、用 `: ` 隔開（`EDIT: filu`、`ALTERM: myhost`）；viewer 與 file-picker 照自己的寫法（[`dialog/note`](../dialog/note-zh_TW.md)
   的 `YAML — pod/nginx`、[`input/file-picker`](../input/file-picker-zh_TW.md) 的 `IDENTITY FILE · ~/.ssh`）。太長從尾端截，加 `…`。
   標題後面接 tab 時，tab 照 [`panel`](panel-zh_TW.md) 的膠囊串畫，跟標題之間隔一段線
-  （例：`┏━TITLE━CONSOLENETWORK━┓`）。glyph：
+  （例：`┏━TITLE━CONSOLENETWORK━┓`）。glyph：
 
   | popup | glyph |
   |---|---|

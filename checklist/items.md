@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.3. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.4. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -530,7 +530,7 @@ The items of tdp v0.9.3. What each column means and what an item applies to: [RE
 | screen-11 | screen §Footer | While a popup is open, the footer is as for the screen underneath, its words unchanged (a terminal popup is the exception: the footer is not drawn, terminal-13) | everyone | Compare the footer's words before and after opening a popup |
 | screen-12 | screen §Screen chip row | One capsule per screen, drawn as the capsule chain | several screens | Look at the top row |
 | screen-13 | screen §Screen chip row | The selected screen is filled with Blue, its text Base bold | several screens | Look at the current screen's chip |
-| screen-14 | screen §Screen chip row | The unselected screens are unfilled, their text Blue, not bold | several screens | Look at the other screens' chips |
+| screen-14 | screen §Screen chip row | The unselected screens are filled with Crust, their text Blue, not bold | several screens | Look at the other screens' chips |
 | screen-15 | screen §Screen chip row, §Statusbar | A multi-screen app puts the statusbar's content on the right of the chip row, not on a row of its own | several screens + statusbar | Look at the right of the chip row |
 | screen-16 | screen §Screen chip row | Below the chip row runs a full-width heavy line `━` in Overlay0 | several screens | Look at the second row |
 | screen-17 | screen §Screen chip row | During a long task the separator fills with Green from the left as a progress bar | several screens + long task | Start a long task and look at the line below the chip row |
@@ -587,13 +587,14 @@ The items of tdp v0.9.3. What each column means and what an item applies to: [RE
 | panel-28 | panel §Capsule chain | On a panel the chain's colour is the border colour, changing with focus, unfocus and mode | everyone | Press `Tab` to change panels and enter a mode; check that the capsule's colour follows the frame line |
 | panel-29 | panel §Capsule chain | For the tabs after a popup title, the chain's colour is the layer colour | popup tab | Open a popup with tabs and look at the selected tab |
 | panel-30 | panel §Capsule chain | The `[N] label` capsule counts as selected | everyone | Check that the `[N] label` capsule is filled |
-| panel-31 | panel §Capsule chain | An unselected part has no fill, its text in the chain's colour, not bold | several screens or panel tab or popup tab | Look at an unselected tab |
-| panel-32 | panel §Capsule chain | Joins: U+E0B0 where the colour changes, U+E0B1 between parts of the same colour | several screens or panel tab | Change tabs and look at the shape of the joins; read the code to check the code points |
-| panel-33 | panel §Capsule chain | The join from selected to unselected is U+E0B0, foreground the chain's colour, background Base | several screens or panel tab | Look at the join on the right of the selected part |
-| panel-34 | panel §Capsule chain | The join from unselected to selected is U+E0B0, foreground Base, background the chain's colour | several screens or panel tab | Look at the join on the left of the selected part |
-| panel-35 | panel §Capsule chain | The join between two unselected parts is U+E0B1, foreground the chain's colour, no background painted | several screens or panel tab | Look between two unselected parts side by side; set the terminal's background to a colour other than Base and check that there is no Base block behind the thin line |
-| panel-36 | panel §Capsule chain | Each end takes the fill of the part beside it: the chain's colour beside a selected part, Base beside an unselected one; outside the chain is the terminal's own background | everyone | Look at the ends at the start and end of the capsule chain, then change tabs so that the last part is unselected |
-| panel-37 | panel §Capsule chain | Every end and join takes the width of one powerline symbol (keeping it even where it cannot be seen), so changing the selected part shifts no text | several screens or panel tab | Change tabs; check that no part's text moves |
+| panel-31 | panel §Capsule chain | An unselected part is filled with Crust, its text in the chain's colour, not bold | several screens or panel tab or popup tab | Look at an unselected tab; set the terminal's background to a colour other than Base and check that the unselected parts are still Crust |
+| panel-32 | panel §Capsule chain | Joins are always slants: a solid slant where the colour changes, a thin slant between two unselected parts | several screens or panel tab | Change tabs and look at the shape of the joins; read the code to check the code points |
+| panel-33 | panel §Capsule chain | The join from selected to unselected is U+E0BC, foreground the chain's colour, background Crust | several screens or panel tab | Look at the join on the right of the selected part |
+| panel-34 | panel §Capsule chain | The join from unselected to selected is U+E0BA, foreground the chain's colour, background Crust | several screens or panel tab | Look at the join on the left of the selected part |
+| panel-35 | panel §Capsule chain | The join between two unselected parts is U+E0BB, foreground the chain's colour, background Crust | several screens or panel tab | Look between two unselected parts side by side |
+| panel-36 | panel §Capsule chain | Each end's foreground is the fill of the part beside it: the chain's colour beside a selected part, Crust beside an unselected one; no background is painted outside | everyone | Look at the start and end of the capsule chain, then change tabs so that the last part is unselected; set the terminal's background to a colour other than Base or Crust and check that there is no block outside the ends |
+| panel-37 | panel §Capsule chain | Every end and join takes the width of one powerline symbol, so changing the selected part shifts no text | several screens or panel tab | Change tabs; check that no part's text moves |
+| panel-137 | panel §Capsule chain | When the panel loses focus or is covered, the chain's colour dims as usual and Crust does not | several screens or panel tab or popup tab | Press `Tab` to another panel; check that the unselected parts on the unfocused panel keep their background |
 | panel-38 | panel §Capsule chain | No space before or after the text inside a capsule (`[1] TABS`) | everyone | Look between a capsule's text and its ends |
 | panel-39 | panel §Capsule chain | On a panel with tabs, `[N]` is a part of its own and always selected | panel tab | Change to the second tab; check that `[N]` is still filled |
 | panel-40 | panel §Capsule chain | Each tab after `[N]` is a part, and only the current tab is selected | panel tab | Change tabs; check that only the current tab is filled |

@@ -13,7 +13,7 @@ not a popup: its frame follows [`layout/panel`](../layout/panel.md), and the PTY
 ## Look
 
 ```
-[M]ANAGE[F]ILE TRANSFER[S]SH        2 live sessions    ← statusbar / screen chip row: kept
+[M]ANAGE[F]ILE TRANSFER[S]SH        2 live sessions    ← statusbar / screen chip row: kept
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━   ← the divider under the chip row: kept (a progress bar during a transfer)
 ┏━󰆍 ALTERM: myhost━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃$ kubectl get pods                                      ┃   ← the PTY touches the frame, no padding on any side

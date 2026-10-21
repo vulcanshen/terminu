@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -530,7 +530,7 @@ tdp v0.9.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | screen-11 | screen §footer | popup 開著時 footer 照底下畫面的寫，不換字（terminal popup 例外：footer 不畫，terminal-13） | 都要 | 開 popup 前後比對 footer 的字 |
 | screen-12 | screen §畫面 chip 列 | 每個畫面一個膠囊，照膠囊串畫 | 多畫面 | 看最上面一列 |
 | screen-13 | screen §畫面 chip 列 | 選中的畫面填 Blue、字 Base 粗體 | 多畫面 | 看目前畫面的 chip |
-| screen-14 | screen §畫面 chip 列 | 沒選中的畫面不填底色、字 Blue、不加粗 | 多畫面 | 看其他畫面的 chip |
+| screen-14 | screen §畫面 chip 列 | 沒選中的畫面底是 Crust、字 Blue、不加粗 | 多畫面 | 看其他畫面的 chip |
 | screen-15 | screen §畫面 chip 列、§statusbar | 多畫面的 app 把 statusbar 的內容放在 chip 列的右邊，不另開一列 | 多畫面＋statusbar | 看 chip 列右邊 |
 | screen-16 | screen §畫面 chip 列 | chip 列下面一條全寬的粗線 `━`，Overlay0 | 多畫面 | 看第二列 |
 | screen-17 | screen §畫面 chip 列 | 長時間的工作進行時，分隔線從左邊填 Green 當進度條 | 多畫面＋長時間工作 | 開始一個長時間的工作，看 chip 列下面的線 |
@@ -587,13 +587,14 @@ tdp v0.9.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-28 | panel §膠囊串 | panel 上這串的顏色是框線色，跟著 focus、失焦、模式換 | 都要 | 按 `Tab` 換 panel、進入模式，看膠囊的顏色跟著框線變 |
 | panel-29 | panel §膠囊串 | popup 標題後的 tab，這串的顏色是層色 | popup tab | 打開有 tab 的 popup，看選中的 tab |
 | panel-30 | panel §膠囊串 | `[N] label` 膠囊算選中的 | 都要 | 看 `[N] label` 膠囊是填色的 |
-| panel-31 | panel §膠囊串 | 沒選中的段不填底色，字用這串的顏色、不加粗 | 多畫面、panel tab、popup tab | 看沒選中的 tab |
-| panel-32 | panel §膠囊串 | 接縫：顏色換的地方用 U+E0B0，同色之間用 U+E0B1 | 多畫面、panel tab | 換 tab，看接縫的形狀；讀程式核對 code point |
-| panel-33 | panel §膠囊串 | 選中 → 沒選中的接縫是 U+E0B0，前景這串的顏色、背景 Base | 多畫面、panel tab | 看選中的段右邊的接縫 |
-| panel-34 | panel §膠囊串 | 沒選中 → 選中的接縫是 U+E0B0，前景 Base、背景這串的顏色 | 多畫面、panel tab | 看選中的段左邊的接縫 |
-| panel-35 | panel §膠囊串 | 兩段都沒選中的接縫是 U+E0B1，前景這串的顏色，不塗背景 | 多畫面、panel tab | 看兩個相鄰的沒選中的段之間；把終端機底色換成不是 Base 的顏色，細線後面沒有 Base 的色塊 |
-| panel-36 | panel §膠囊串 | 兩端的斜角畫成旁邊那一段的底：旁邊是選中的段時是這串的顏色，是沒選中的段時是 Base；串外面是終端機的底 | 都要 | 看膠囊串頭尾的斜角，再換 tab 讓尾端變成沒選中的段 |
-| panel-37 | panel §膠囊串 | 斜角與接縫各佔一個 powerline 符號的寬度（看不見時也照樣佔著），換選中的段時字不位移 | 多畫面、panel tab | 換 tab，看各段的字位置不動 |
+| panel-31 | panel §膠囊串 | 沒選中的段底是 Crust，字用這串的顏色、不加粗 | 多畫面、panel tab、popup tab | 看沒選中的 tab；把終端機底色換成不是 Base 的顏色，沒選中的段照樣是 Crust |
+| panel-32 | panel §膠囊串 | 接縫一律是斜線：顏色換的地方用實心的斜角，兩段都沒選中時用細斜線 | 多畫面、panel tab | 換 tab，看接縫的形狀；讀程式核對 code point |
+| panel-33 | panel §膠囊串 | 選中 → 沒選中的接縫是 U+E0BC，前景這串的顏色、背景 Crust | 多畫面、panel tab | 看選中的段右邊的接縫 |
+| panel-34 | panel §膠囊串 | 沒選中 → 選中的接縫是 U+E0BA，前景這串的顏色、背景 Crust | 多畫面、panel tab | 看選中的段左邊的接縫 |
+| panel-35 | panel §膠囊串 | 兩段都沒選中的接縫是 U+E0BB，前景這串的顏色、背景 Crust | 多畫面、panel tab | 看兩個相鄰的沒選中的段之間 |
+| panel-36 | panel §膠囊串 | 兩端的前景是旁邊那一段的底：旁邊是選中的段時是這串的顏色，是沒選中的段時是 Crust；外側不塗背景 | 都要 | 看膠囊串頭尾，再換 tab 讓尾端變成沒選中的段；把終端機底色換成不是 Base 也不是 Crust 的顏色，兩端外側沒有色塊 |
+| panel-37 | panel §膠囊串 | 斜角與接縫各佔一個 powerline 符號的寬度，換選中的段時字不位移 | 多畫面、panel tab | 換 tab，看各段的字位置不動 |
+| panel-137 | panel §膠囊串 | 失焦、被蓋住時這串的顏色照常淡化，Crust 不淡化 | 多畫面、panel tab、popup tab | 按 `Tab` 換 panel，看失焦的 panel 上沒選中的段底色不變 |
 | panel-38 | panel §膠囊串 | 膠囊裡的字前後不加空白（`[1] TABS`） | 都要 | 看膠囊的字與兩端之間 |
 | panel-39 | panel §膠囊串 | 有 tab 的 panel，`[N]` 自己是一段，一直是選中的 | panel tab | 換到第二個 tab，看 `[N]` 還是填色 |
 | panel-40 | panel §膠囊串 | `[N]` 後面每個 tab 一段，只有目前的 tab 選中 | panel tab | 換 tab，看只有目前的 tab 填色 |
