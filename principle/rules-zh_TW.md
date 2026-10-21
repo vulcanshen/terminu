@@ -939,18 +939,24 @@ design 做」並附上連結，不列家族成員（E7）。其他規定兩種 a
 逐項搬，是因為新位置常常在搬家之前就被 app 自己建出來（例：ccdrawu 的 mod 一開 session 就往新的快取目錄寫）；整個目錄搬時，
 舊目錄就永遠搬不了。
 
+**不再用的檔**：app 改版後不再用的設定、狀態、資料檔，app 不刪，也不跳 toast：怎麼處理是使用者的事。檔案還在時，每次啟動在
+App Log 記一筆 INFO，寫出路徑、說 app 不再用它（例：`No longer used: ~/.sshu/errors.yaml; delete it if you don't need it`）；
+CHANGELOG 也寫一句。
+
+App Log 只放在記憶體，每次打開都是空的，所以每次啟動都記，打開 App Log 的人才看得到。
+
 **讀不了時**：app 自己的設定、狀態、資料讀不了（格式錯、檔案壞掉、沒有權限……原因不分）時，app 不在這個狀態下繼續操作，啟動時開一個
 confirm（[components/dialog/confirm](../components/dialog/confirm-zh_TW.md)），寫出路徑與原因：
 
 ```
-┏━󰻌 MOVE ASIDE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                                                   ┃
-┃ ~/.hostu/profiles.yaml can't be read:             ┃
-┃ line 3: mapping values are not allowed here       ┃
-┃                                                   ┃
-┃ Move it to profiles.yaml.bak and start a new one? ┃
-┃                                                   ┃
-┗━ Enter:move Esc:quit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┏━󰻌 MOVE ASIDE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                                               ┃
+┃ ~/.hostu/profiles.yaml can't be read:         ┃
+┃ line 3: mapping values are not allowed here   ┃
+┃                                               ┃
+┃ Move it to profiles.yaml.bak and start fresh? ┃
+┃                                               ┃
+┗━ Enter:move Esc:quit ━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
 - **`Enter`**（`move`）：把那個檔改名成 `<檔名>.bak`，像第一次打開一樣照常開始：設定用預設值，狀態、資料從空的開始；

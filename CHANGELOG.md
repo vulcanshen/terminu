@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.9.3 — 2026-10-21
+
+What the members found while moving to tdp v0.9.2 and terminu-go v0.4.3, settled with the user.
+
+- Rules E3: a settings, state or data file a new version of the app no longer uses is not deleted and gets no toast;
+  while it is there, every start writes an INFO entry to the App Log with its path, and the CHANGELOG says so too
+  (from sshu, SS42). The question on the confirm for an unreadable file now ends `and start fresh?`, as no new file
+  may be made (from terminu-go)
+- checklist: E3-23 added, with a new applicability, "a file no longer used" (1421 items)
+
 ## v0.9.2 — 2026-10-21
 
 What hostu's review found after moving to tdp v0.9.1, settled from what tdp already says.

@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.2 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -384,6 +384,7 @@ tdp v0.9.2 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | E3-20 | E3 | 讀不了的 confirm 按 `Esc`：離開 app，路徑與原因寫到 stderr | 存設定或資料 | 同上按 `Esc`，看 app 結束、終端機上的訊息 |
 | E3-21 | E3 | 快取讀不了時不問，丟掉重建 | 存設定或資料 | 把快取的檔弄壞後啟動，沒有 confirm |
 | E3-22 | E3 | 資料是一筆一個檔時，讀不了的那一筆按 `Enter` 只改名成 `.bak`、不另外建，其他照常讀；問句寫 `go on without it` | 存設定或資料 | 把其中一筆的檔弄壞後啟動，按 `Enter` |
+| E3-23 | E3 | app 不再用的設定、狀態、資料檔不刪、不跳 toast；檔案還在時每次啟動在 App Log 記一筆 INFO，寫出路徑 | 不再用的檔 | 放一個 app 不再用的舊檔後啟動，看 App Log 與磁碟；重開再看一次 App Log |
 | E4-1 | E4 | 程式碼裡的 PUA glyph 寫成 code point | 都要 | 讀程式：掃原始碼找不到 PUA 字元 |
 | E4-2 | E4 | README 的需求段寫明需要 Nerd Font | 都要 | 讀兩份 README 的前置需求 |
 | E4-3 | E4 | README 的需求段跟 Nerd Font 並列寫明需要 truecolor terminal（24-bit 色） | 都要 | 讀兩份 README 的前置需求 |
