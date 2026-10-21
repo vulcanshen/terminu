@@ -15,7 +15,7 @@ in [`screen`](screen.md).
   own, the tabs follow it, and the first tab's name is the label (see the capsule chain below). A name in the label keeps
   its case, as in a popup title (`[2] PODS: nginx-7d4f`, `[1] prod-web-01`; "Uppercase" in the
   [components](../README.md)). While the panel is loading, the loading icon sits after the whole capsule chain (tabs
-  included), with one space on each side (e.g. `┏[2] PODSEVENTSYAML 󰪞 ━━━┓`; the loading in [`popup`](popup.md)).
+  included), with one space on each side (e.g. `┏[2] PODSEVENTSYAML 󰪞 ━━━┓`; the loading in [`popup`](popup.md)).
 - **Right of the top border: the mode name** (Rules K11), set between two border junctions like a tag inlaid in the
   frame: `┏[1] KINDS━━━┫Drag┣━┓`, `┏━YAML━━━━┫Visual┣━┓`. The junctions take the frame's colour and follow its
   line style — `┫` `┣` on a heavy frame (a focused panel, a popup), `┤` `├` on a light one (an unfocused panel); the mode
@@ -67,22 +67,18 @@ are all drawn the same way:
 - **Selected**: filled with the chain's colour, text Base bold. On a panel the chain's colour is the border colour
   (changing with focus, unfocus and mode); in a popup it is the layer colour; for the screen chips it is Blue. The `[N]`
   capsule and the current tab both count as selected.
-- **Unselected**: no fill, text in the chain's colour, not bold.
-- **Joins**: U+E0B0 (`nf-pl-left_hard_divider`) where the colour changes, U+E0B1 (`nf-pl-left_soft_divider`) between
-  parts of the same colour.
-- **Colours of the ends and joins** (as in Powerline): the foreground is the fill of the part on the left, the
-  background the fill of the part on the right; an unselected part's fill counts as Base (a solid triangle needs
-  it to draw its unfilled side; the thin line between two unselected parts paints no background, see below), and outside
-  the chain is the terminal's own background.
-  - Selected → unselected: U+E0B0, foreground the chain's colour, background Base; unselected → selected: U+E0B0,
-    foreground Base, background the chain's colour.
-  - Both unselected: U+E0B1, foreground the chain's colour, no background painted; both selected: U+E0B1, foreground
-    Base, background the chain's colour (only `[N]` and the first tab are ever both selected, and there it is as in "A
-    panel's tabs" below: a blank one powerline symbol wide, no seam).
-  - Each end takes the fill of the part beside it: when the first or last part is unselected, that end is Base
-    (invisible on a Base terminal background, leaving a gap one powerline symbol wide).
+- **Unselected**: filled with Crust, text in the chain's colour, not bold.
+- **Joins**: always a slant, leaning the same way as the left end. Where the colour changes, a solid slant: selected →
+  unselected U+E0BC (`nf-ple-upper_left_triangle`), unselected → selected U+E0BA (`nf-ple-lower_right_triangle`);
+  between two unselected parts a thin slant, U+E0BB (`nf-ple-forwardslash_separator`).
+- **Colours of the ends and joins**:
+  - A join in the middle: foreground the chain's colour, background Crust. Only `[N]` and the first tab are ever both
+    selected, and there it is as in "A panel's tabs" below: a blank one powerline symbol wide, no seam.
+  - The ends: foreground the fill of the part beside them (the chain's colour for a selected part, Crust for an
+    unselected one); outside, no background is painted: it is the terminal's own.
+  - Crust is not dimmed: when the panel loses focus or is covered, the chain's colour dims as usual and Crust stays.
   - Every end and join takes the width of one powerline symbol (Rules E5: one cell as a rule; two on a terminal where it
-    takes two), and keeps it even where it cannot be seen, so changing the selected part shifts no text.
+    takes two), so changing the selected part shifts no text.
 - No space before or after the text inside a capsule: `[1] TABS`. The text is uppercase, a name as it is
   (`[2] PODS: nginx-7d4f`), the letters in a hotkey marker as written ("Uppercase" in the [components](../README.md)).
 - **A panel's tabs**: `[N]` is a part of its own and always selected; each tab after it is a part, and only the current
@@ -92,8 +88,8 @@ are all drawn the same way:
   two), so changing tabs shifts no text:
 
   ```
-  ┏[2] PODSEVENTSYAML━━━━━━━━━┓   ← on PODS: "[2] PODS" filled
-  ┏[2]PODSEVENTSYAML━━━━━━━━━┓   ← on EVENTS: "[2]" and "EVENTS" filled
+  ┏[2] PODSEVENTSYAML━━━━━━━━━┓   ← on PODS: "[2] PODS" filled
+  ┏[2]PODSEVENTSYAML━━━━━━━━━┓   ← on EVENTS: "[2]" and "EVENTS" filled
   ```
 
 - **Tabs after a popup title**: one line segment away from the rounded title (the title in [`popup`](popup.md)).
@@ -105,11 +101,15 @@ are all drawn the same way:
 
 **Why**: in the family a capsule means "a name" — what the panel is called, which page, which screen (Principle P4).
 With all these uses sharing one look, the user who recognises one recognises them all. Unselected ones do not use
-Surface2: Surface2 means disabled, and unselected pages would look as if they could not be switched to. The joins use the
-two symbols of the original Powerline, the most widely supported by fonts; they are coloured as in Powerline too, so a
-block of colour appears only on the selected part, which shows at a glance which one is selected, and no coloured point
-sticks out beside an unselected one. The thin line between two unselected parts paints no background: its shape does
-not depend on one, and only the solid triangles need Base to draw their unfilled side. `[N]` is a part of its own: apart
+Surface2: Surface2 means disabled, and unselected pages would look as if they could not be switched to.
+Unselected parts are filled with Crust and every join is a slant: every cell of the chain has its colour written out and
+only the outside is left to the terminal, so it looks the same on any background, a transparent one or a background
+image, without depending on the terminal's background being Base (kbu's KB26: with any other background, the old seams
+showed patches of Base). Crust is darker than Base, so the unselected parts stay in the back and the selected one shows
+at a glance; the slants lean the same way as the left end, so the chain reads as one band. Between two unselected parts
+both sides are Crust and a solid slant would not show, hence the thin one. Crust is a background colour, like Base, and
+is not dimmed.
+`[N]` is a part of its own: apart
 from the number only the current tab is lit, so there are never two blocks that both look current; on the first tab a
 blank joins them, the same as a panel without tabs, and no panel with tabs needs a name of its own; the blank is as wide
 as a seam, so moving between the first tab and the others never jumps the text by a cell. A selected part that is too

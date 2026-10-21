@@ -29,7 +29,7 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
   it names what the popup acts on, the name follows after `: ` (`EDIT: filu`, `ALTERM: myhost`); viewers and the
   file-picker keep their own form (`YAML — pod/nginx` in [`dialog/note`](../dialog/note.md), `IDENTITY FILE · ~/.ssh` in
   [`input/file-picker`](../input/file-picker.md)). When too long it is cut at the end with `…`. Tabs after the title follow
-  the capsule chain of [`panel`](panel.md), one line segment away from the title (e.g. `┏━TITLE━CONSOLENETWORK━┓`). Glyphs:
+  the capsule chain of [`panel`](panel.md), one line segment away from the title (e.g. `┏━TITLE━CONSOLENETWORK━┓`). Glyphs:
 
   | popup | glyph |
   |---|---|

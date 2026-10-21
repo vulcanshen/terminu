@@ -122,7 +122,7 @@ include family.mk
 |---|---|
 | 編譯（build） | `build`, `install`, `uninstall`, `tidy` |
 | 發布（release） | `release-check`, `snapshot` |
-| 執行（run） | `run` |
+| 執行（run） | `run`, `dev` |
 | 測試 / 檢查（test） | `test`, `test-race`, `check-lib`, `vet`, `fmt`, `fmt-check`, `check` |
 | 打包（package） | `package` |
 | 展示（demo） | `gif` |

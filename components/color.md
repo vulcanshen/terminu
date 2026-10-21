@@ -31,7 +31,8 @@ syntax highlighting) are up to the app; this file governs the interface elements
 
 | Meaning | Used for | Colour |
 |---|---|---|
-| Background | not painted on the screen; used where a background colour has to be written out: text on a block (the cursor, capsules), the unfilled side of a capsule seam, what dimming fades towards | Base `#1e1e2e` |
+| Background | not painted on the screen; used where a background colour has to be written out: text on a block (the cursor, capsules), what dimming fades towards | Base `#1e1e2e` |
+| Unselected capsule | the fill of a capsule chain's unselected parts and the background of its joins (the capsule chain in [`layout/panel`](layout/panel.md)); not dimmed | Crust `#11111b` |
 | Focus | the focused frame (heavy line `┏━┓`); keys that can be pressed now in hints, the footer and the key reference; the labels and a list's header row in the focused panel; the screen chip row | Blue `#89b4fa` |
 | Unavailable | an unfocused frame (light line `┌─┐`, the same width as the heavy line, so switching shifts nothing); disabled rows, labels and options; a checkbox option not available (a state only, still tickable); days out of range | Surface2 `#585b70` |
 | Layer colour | a popup's frame (heavy line `┏━┓`) and the fill of its title capsule; the cursor block in a popup | see "Popup layer colours" below |
@@ -55,8 +56,8 @@ syntax highlighting) are up to the app; this file governs the interface elements
   in) keep their own colour, while the other text on the block still turns Base. The colour is that cell's value, and
   it matters most just when it is about to be changed.
 - **The screen's background is not painted**: cells with no background of their own are left to the terminal's own
-  background. When the terminal's background is not Base, a small patch of Base shows at a capsule seam and dimming leans
-  towards Base; the family colours are designed for a dark background, so on a dark terminal the difference is small.
+  background. When the terminal's background is not Base, dimming leans towards Base; the family colours are designed
+  for a dark background, so on a dark terminal the difference is small.
 
 **Why**: the user's terminal theme, transparency and background image stay; none of the family apps paints the
 background today, so moving to the shared lib does not change the screen.
