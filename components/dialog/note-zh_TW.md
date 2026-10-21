@@ -186,16 +186,16 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 （上面 viewer 的規定與選取模式照樣適用）；開著時新的一筆照樣進來，跟串流的內容一樣。
 
 ```
-14:02:11 INFO switched to Pods
-14:02:40 OK   deployment.apps/nginx scaled
+14:02:11 INFO Switched to Pods
+14:02:40 OK   Scaled deployment.apps/nginx
 14:03:02 WARN CRD discovery: the server is currently unable to handle the request
-14:03:30 ERR  namespace fetch failed: Forbidden
+14:03:30 ERR  Namespace fetch failed: Forbidden
 ```
 
 - **記什麼**：使用者做的動作與結果；每一個 toast（同一句話）；app 自己在背景做的事（例：Rules E3 的搬家、啟動時建好的預設值、
   讀不到外面的東西的細節）。
-- **每一筆**：時間 `HH:MM:SS`（Overlay0）、等級、發生的事。等級跟著 toast 的種類與顏色：`INFO` Text、`OK` Green、`WARN` Peach、
-  `ERR` Red，等級欄四格寬、靠左。
+- **每一筆**：時間 `HH:MM:SS`（Overlay0）、等級、發生的事（跟 toast 一樣大寫開頭）。等級跟著 toast 的種類與顏色：`INFO` Text、
+  `OK` Green、`WARN` Peach、`ERR` Red，等級欄四格寬、靠左。
 - **只放在記憶體**：app 關掉就清空；筆數有上限，滿了丟掉最舊的。
 - **沒看過的錯誤與警告**：寫在 footer 的 `!`（[`layout/screen`](../layout/screen-zh_TW.md) 的 footer）；打開 App Log 就算看過。
 

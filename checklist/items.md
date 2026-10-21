@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.1. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.2. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -379,7 +379,7 @@ The items of tdp v0.9.1. What each column means and what an item applies to: [RE
 | E3-15 | E3 | When the move fails, the old place is used as before, and an error popup gives both paths | stores settings or data | Read the code; or make the new place unwritable and start the app |
 | E3-16 | E3 | An item already at the new place when moving: a cache's old copy is deleted; settings, state and data are not deleted but left at the old place, with an error popup giving both paths | stores settings or data | Read the code; or put the same item at both places and start the new release |
 | E3-17 | E3 | When the app's own settings, state or data cannot be read, a confirm at start gives the path and the reason, with the hint `Enter:move Esc:quit` | stores settings or data | Damage the config file's format and start the app |
-| E3-18 | E3 | `Enter` on that confirm renames the file to `.bak`, creates a new one in its place and starts as usual | stores settings or data | As above, press `Enter` and look at the `.bak` and the new file |
+| E3-18 | E3 | `Enter` on that confirm renames the file to `.bak` and starts as on the first start | stores settings or data | As above, press `Enter`: the `.bak` is there and the app is as on its first start (a file the first start makes is made again) |
 | E3-19 | E3 | With a `.bak` already there, `.bak.1`, `.bak.2`… are used, nothing overwritten; the question names the file really used | stores settings or data | Leave a `.bak` in place, damage the file and start the app |
 | E3-20 | E3 | `Esc` on that confirm quits the app and writes the path and the reason to stderr | stores settings or data | As above, press `Esc`: the app ends and the terminal shows the message |
 | E3-21 | E3 | A cache that cannot be read is thrown away and rebuilt, with no question | stores settings or data | Damage a cache file and start the app: no confirm |
@@ -993,7 +993,7 @@ The items of tdp v0.9.1. What each column means and what an item applies to: [RE
 | note-75 | note §Look | In a viewer, colour codes (SGR) colour the text, a `\r` within a line keeps only the last state, and a sequence that is not a colour code is drawn by name in red | viewer | Open content with colour codes, `10%\r100%` and `\x1b[2J` |
 | note-76 | note §App Log | Every app has an App Log, a viewer with the newest entry last, where new entries keep arriving while it is open | everyone | Press `!`, do a few things, and watch new entries arrive |
 | note-77 | note §App Log | It records what the user did and how it ended, every toast, and what the app did in the background | everyone | Do something, get a toast, press `!`; read the code |
-| note-78 | note §App Log | Each entry: the time `HH:MM:SS` (Overlay0), the level (`INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, four cells wide, left-aligned), and what happened | everyone | Look at the App Log's levels |
+| note-78 | note §App Log | Each entry: the time `HH:MM:SS` (Overlay0), the level (`INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, four cells wide, left-aligned), and what happened, capitalised like a toast | everyone | Look at the App Log's levels |
 | note-79 | note §App Log | Kept in memory only, emptied when the app quits; the number of entries has a limit, and the oldest goes when it is full | everyone | Read the code; or quit and start again: the App Log is empty |
 
 ## dialog/terminal

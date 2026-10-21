@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.9.2 — 2026-10-21
+
+What hostu's review found after moving to tdp v0.9.1, settled from what tdp already says.
+
+- Rules E3: `Enter` on the confirm for an unreadable file starts the app as on its first start — a file the first start
+  makes is made again, one it does not make appears at the first save (from hostu, HU21)
+- dialog/note: the App Log's examples start with a capital, as a toast does, since an entry holds the toast's own words
+  (from hostu, HU23)
+- checklist: E3-18 and note-78 reworded (1420 items)
+
 ## v0.9.1 — 2026-10-20
 
 What the members found while moving to tdp v0.9.0 and terminu-go v0.4.0, settled with the user.

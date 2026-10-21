@@ -953,7 +953,8 @@ confirm（[components/dialog/confirm](../components/dialog/confirm-zh_TW.md)）�
 ┗━ Enter:move Esc:quit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-- **`Enter`**（`move`）：把那個檔改名成 `<檔名>.bak`，在原本的位置建一個新的（設定用預設值，狀態、資料從空的開始），照常開始。
+- **`Enter`**（`move`）：把那個檔改名成 `<檔名>.bak`，像第一次打開一樣照常開始：設定用預設值，狀態、資料從空的開始；
+  第一次打開就會建的檔照樣建，不會建的等第一次存檔時才有。
   `.bak` 已經有了就用 `.bak.1`、`.bak.2`……，一律不蓋掉；問句寫實際會用的名字。資料是一筆一個檔時（例：kamonu 一個家紋一個檔），
   讀不了的那一筆改名成 `.bak` 就好，不另外建，其他照常讀；問句寫 `Move it to <檔名>.bak and go on without it?`。
 - **`Esc`**（`quit`）：離開 app，不是回到 app；路徑與原因寫到 stderr，回到 shell 還看得到要修哪裡。
