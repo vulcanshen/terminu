@@ -24,9 +24,10 @@ in [`screen`](screen.md).
   would be dropped); when space runs out, the title is clipped first and the mode name stays. The capsule turns the mode
   colour along with the frame.
   - **It opens and closes**: entering the mode, the tag opens from its middle: the two junctions start side by side
-    there and move apart, the name showing from its middle; leaving plays it backwards, down to the plain line. About
-    288ms either way whatever the name's length, the same as a popup's (Rules F2), the progress taken from the clock. An
-    odd length leaves the middle half a cell off, either side will do. The title keeps room for the whole tag for as long
+    there and move apart, the name showing from its middle; leaving plays it backwards, down to the plain line. The
+    junctions take the first frame and every frame after shows one more letter, 32ms a frame as in a popup (Rules F2):
+    every frame changes something, so the length follows the name (`Drag` 5 frames, about 160ms; `Compare` 8, about
+    256ms), the progress taken from the clock. An odd length leaves the middle half a cell off, either side will do. The title keeps room for the whole tag for as long
     as the tag is there, so it never shifts frame by frame.
 
     ```
@@ -42,7 +43,9 @@ in [`screen`](screen.md).
     along (unlike a popup opening, Rules F3). While closing, the name stays in the mode colour and the junctions take the
     frame's colour as usual.
   - **Why**: as with a popup, the animation lets the switch be felt; modes are entered and left in quick runs, so the
-    animation never holds a key and never starts over (the user, 2026-10-22).
+    animation never holds a key and never starts over (the user, 2026-10-22). A tag has only as many steps as its name
+    has letters: spread over a fixed 288ms, each step held for about 72ms and the tag stuttered, so it goes a letter a
+    frame instead (the user, testing kbu).
 - **Left of the bottom border: the hint**, which every panel must have — the exceptions are while the focus is on a
   panel filter's typing row and while it is in a PTY in the panel: no hint then, and it comes back on the list or on
   leaving the PTY; nor when no key on the panel does anything (see the hint below). Right of the bottom border: the
