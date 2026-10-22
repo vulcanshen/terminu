@@ -213,6 +213,11 @@ select 的打字列、panel filter。select 與 picker 的清單、textarea 的�
   都屬於子程序（K10）。
 - **離開流程由 app 決定**（概念）：直接離開、先確認，或讓使用者選擇離開的方式。
   例：sshu 有 session 開著時先問要不要關掉；filu 讓使用者選要不要把 shell 切到最後的目錄。
+- **有 popup 開著時，離開流程一定先問**：有任何 popup 開著（menu、viewer、picker、比較……；toast 不是 popup）時，第一下 `q`
+  或 `Ctrl-C` 一定不會直接離開。流程第一步本來就會問的照舊（filu 問 shell 要停在哪個目錄、sshu 問要不要關掉開著的 session）；
+  當下會直接離開的流程，改開離開的 confirm（`Quit <app>?`，`Enter:quit Esc:cancel`，
+  [components/dialog/confirm](../components/dialog/confirm-zh_TW.md)）。在跳出來的東西上按 `Esc` 回到 popup。在 panel 上
+  （包括 panel 上的模式）照 app 的流程。問什麼由 app 決定；要不要先問不由 app 決定，沒有 app 能關掉這一條。
 - **離開流程進行中再按一次 `Ctrl-C`，立刻離開**，不再詢問。
 - 離開列在 global operation popup 裡（M4）。
 
@@ -220,6 +225,8 @@ select 的打字列、panel filter。select 與 picker 的清單、textarea 的�
 使用者就得記哪個會問、哪個不會。連按兩次 `Ctrl-C` 強制離開，讓使用者不會被自己的確認框困住。表單上的 `q` 是例外：
 表單看起來像可以打字的地方，使用者以為在打字、打到 `q` 卻離開了 app，這個代價太高。打字說明 note 是同一個情況的下一步：
 它跳出來時使用者還在打字，後面的字照樣接著打進來；`q` 在那裡開了離開的 confirm，習慣性再按 `Enter` 就離開了。
+有 popup 開著是另一個誤按 `q` 代價太高的地方：使用者正做到一半（看 viewer、在 menu 裡挑、看比較），手還在連續按鍵，直接離開會
+把開著的東西和看到的位置都丟掉（user 2026-10-22）。
 
 ### K10 PTY：按鍵屬於子程序，至少留一個出口鍵 `固定`
 

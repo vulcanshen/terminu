@@ -253,6 +253,13 @@ input box is a trap with no exit.
 - **The quit flow is up to the app** (concept): quit at once, confirm first, or let the user choose how to quit.
   E.g. sshu asks whether to close open sessions first; filu lets the user choose whether to switch the shell to the last
   directory.
+- **With a popup open, the quit flow asks first**: with any popup open (a menu, a viewer, a picker, the comparison…; a
+  toast is not a popup), the first `q` or `Ctrl-C` never quits. A flow whose first step already asks stays as it is
+  (filu's choice of where the shell goes, sshu's question about open sessions); a flow that would quit at once at that
+  moment opens the quit confirm instead (`Quit <app>?`, `Enter:quit Esc:cancel`,
+  [components/dialog/confirm](../components/dialog/confirm.md)). `Esc` on what opened goes back to the popup. On a
+  panel (a mode on a panel included) the app's flow runs as it is. What asks is up to the app; whether something asks
+  is not: no app can turn this off.
 - **Pressing `Ctrl-C` again during the quit flow quits at once**, with no further questions.
 - Quitting is listed in the global operation popup (M4).
 
@@ -261,7 +268,9 @@ differently, users would have to remember which one asks and which one doesn't. 
 means users can never be trapped by their own confirm box. `q` on a form is the exception: a form looks like a place to
 type, and a user who thinks they are typing, hits `q` and leaves the app pays too high a price. The typing note is the
 next step of the same case: it pops up while the user is still typing, and the next characters keep coming; a `q` there
-would open the quit confirm, and a habitual `Enter` would quit.
+would open the quit confirm, and a habitual `Enter` would quit. An open popup is the other place where a stray `q` costs
+too much: the user is in the middle of something (reading a viewer, picking from a menu, looking at a comparison) and
+pressing keys in runs, and quitting at once would throw away what is open and where they were (the user, 2026-10-22).
 
 ### K10 PTY: keys belong to the subprocess, with at least one exit key `fixed`
 

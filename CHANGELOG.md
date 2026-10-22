@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.9.8 — 2026-10-22
+
+What the user found testing kbu by hand, settled with the user (from kbu, KB29).
+
+- Rules K9: with a popup open, the first `q` or `Ctrl-C` never quits. A quit flow whose first step already asks stays as
+  it is; one that would quit at once at that moment opens the quit confirm `Quit <app>?` instead, and `Esc` goes back to
+  the popup. On a panel the app's flow runs as it is. What asks is up to the app; that something asks is not
+- dialog/menu: the row that leaves a mode is named with the verb `Esc` has in the mode's hint (`[Esc] Leave` in the
+  Compare mode, `[Esc] Cancel` where the hint says `Esc:cancel`)
+- checklist: K9-4 and menu-26 reworded, K9-6 added (1442 items)
+
 ## v0.9.7 — 2026-10-22
 
 What the user found testing kbu by hand, settled with the user (from kbu, KB28).

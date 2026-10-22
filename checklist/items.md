@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.7. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.8. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -94,8 +94,9 @@ The items of tdp v0.9.7. What each column means and what an item applies to: [RE
 | K9-1 | K9 | `q` and `Ctrl-C` do the same thing: start the app's quit flow | everyone | On a panel press `q`, then `Ctrl-C`: the same flow appears |
 | K9-2 | K9 | `q` does not start the quit flow on a form or on a form's typing note (on a field that takes typing it brings up the typing note; elsewhere it does nothing) | form | On a form (not on a typing row) press `q`; on a field that takes typing, type a character to bring up the typing note, then press `q` |
 | K9-3 | K9 | `Ctrl-C` still starts the quit flow on a form and on a form's typing note | form | Press `Ctrl-C` on a form and on its typing note |
-| K9-4 | K9 | Pressing `Ctrl-C` again during the quit flow (e.g. while the confirm before quitting is open) quits at once, with no further questions (an app that quits straight away never has this case) | everyone | Press `Ctrl-C`, and once the confirm appears press `Ctrl-C` again |
+| K9-4 | K9 | Pressing `Ctrl-C` again during the quit flow (e.g. while the confirm before quitting is open) quits at once, with no further questions (an app that quits straight away has it only with a popup open, K9-6) | everyone | Press `Ctrl-C`, and once the confirm appears press `Ctrl-C` again |
 | K9-5 | K9 | Quitting is listed in the global operation popup | everyone | `Space` → `Global operation`: quitting is there |
+| K9-6 | K9 | With a popup open, the first `q` or `Ctrl-C` never quits: a flow that would quit at once opens the quit confirm (`Quit <app>?`) instead, a flow whose first step already asks stays as it is; `Esc` goes back to the popup; on a panel the app's flow is unchanged | everyone | Open the Space menu and press `q`, then `Esc`; close the menu and press `q` on a panel |
 | K10-1 | K10 | With focus in a PTY (in a panel or a terminal popup), keys go to the subprocess: core keys and the app's hotkeys (the splash's `V` included) stop working, and only the exit key and the chords the app keeps (in an interactive terminal also `Alt-v` and `PgUp`) belong to the app; `Esc` goes to the subprocess too, so an open toast can only wait for its timer to go | PTY | In the PTY press `Space` `?` `q` `Tab` `Esc` `1` and the app's hotkeys: all go to the subprocess |
 | K10-2 | K10 | At least one exit key moves focus out of the PTY | PTY | In the PTY, the exit key gets back to the app |
 | K10-3 | K10 | The exit key is `Alt-Esc` | PTY | In the PTY press `Alt-Esc` |
@@ -908,7 +909,7 @@ The items of tdp v0.9.7. What each column means and what an item applies to: [RE
 | menu-23 | menu §Inside a mode | The mode's Space menu has two sections, `ITEM OPERATION` and `<mode name> MODE`; no panel, item or global actions | mode | Enter a mode and press `Space` |
 | menu-24 | menu §Inside a mode | Item operations run like any row, picking one being the same as pressing its key; what cannot be done now is disabled | mode | Run one from the menu; open the menu with the cursor where it cannot be done |
 | menu-25 | menu §Inside a mode | Movement keys are only shown: the key in Blue, the description in Overlay0, skipped by the cursor, `Enter` doing nothing | mode | Move the cursor in the menu |
-| menu-26 | menu §Inside a mode | Leaving the mode (`[Esc] Leave`) runs from the menu; `Esc` in the menu only closes it, back to the mode | mode | Pick Leave; open the menu again and press `Esc` |
+| menu-26 | menu §Inside a mode | Leaving the mode (named with the verb of `Esc` in the mode's hint, e.g. `[Esc] Leave`) runs from the menu; `Esc` in the menu only closes it, back to the mode | mode | Pick Leave; open the menu again and press `Esc` |
 | menu-27 | menu §Inside a mode | The title is where the mode lives: the panel's `[N] label`, or the popup's title | mode | Open it in a mode on a panel and in one in a popup |
 
 ## dialog/confirm
