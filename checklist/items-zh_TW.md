@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.8 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.9 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -604,6 +604,9 @@ tdp v0.9.8 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-143 | panel §比較模式 | 兩邊一模一樣時不打開，跳 Info toast，留在模式裡 | 比較模式 | 比兩個一樣的項目 |
 | panel-144 | panel §比較模式 | `Esc` 離開模式、拿掉 anchor；`Tab` 與數字鍵暫停 | 比較模式 | 模式裡按 `Tab`、`Esc` |
 | panel-145 | panel §比較模式 | anchor 不在了時離開模式，跳 Warning toast | 比較模式 | 在模式裡讓 anchor 那一項被刪掉 |
+| panel-146 | panel §框 | 進入模式時模式名從中間打開：兩個接頭並排出現、往兩邊撐開，名字從中間露出來；離開時倒著播；不管名字長短都約 288ms | 模式 | 進入再離開模式，看上框右邊 |
+| panel-147 | panel §框 | 模式名開或關到一半時又切換，從當下的位置轉向，不從頭播 | 模式 | 快速進出模式幾次（例：`D` `Esc` `D`） |
+| panel-148 | panel §框 | 模式立刻生效、外框立刻變色；模式名播動畫時照樣收鍵 | 模式 | 進入模式後馬上按模式的鍵；看外框顏色 |
 | panel-38 | panel §膠囊串 | 膠囊裡的字前後不加空白（`[1] TABS`） | 都要 | 看膠囊的字與兩端之間 |
 | panel-39 | panel §膠囊串 | 有 tab 的 panel，`[N]` 自己是一段，一直是選中的 | panel tab | 換到第二個 tab，看 `[N]` 還是填色 |
 | panel-40 | panel §膠囊串 | `[N]` 後面每個 tab 一段，只有目前的 tab 選中 | panel tab | 換 tab，看只有目前的 tab 填色 |

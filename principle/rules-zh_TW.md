@@ -276,7 +276,8 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
   開始選之後的 `[y] Copy`）；**模式操作**：這個模式本身的鍵 —— 移動鍵只顯示、不能執行，離開模式這種真的做事的照樣能執行。
   panel、item、global 的動作一律不列。模式的鍵也揭露在 `?` 的 key reference 與 footer / 下框 hint（footer 在模式裡的樣子見
   [components/layout/screen](../components/layout/screen-zh_TW.md)）。
-- **模式要標示自己**：模式名顯示在模式所在的框（panel 或 popup）的上框右側，外框換成模式色；離開模式就恢復。模式名是字，
+- **模式要標示自己**：模式名顯示在模式所在的框（panel 或 popup）的上框右側，外框換成模式色；離開模式就恢復。模式名開關時有一小段
+  動畫，不會讓模式等它：模式與外框顏色都立刻換。模式名是字，
   不只靠顏色：模式裡 focus 的 panel 照樣看得出是 focus（L5）。樣子見 [components/layout/panel](../components/layout/panel-zh_TW.md)。
 - **模式在 popup 裡時**（例：viewer 的選取模式、reorder 的 Drag mode）：框與模式名、`Space`、`?`、`Esc`、`q` 與 `Ctrl-C` 照上面；
   `Tab` 與數字鍵照那個 popup 本來的作用（popup 裡它們不換 panel），不用另外回應；footer 照 popup 開著時的樣子，不換成模式的字
