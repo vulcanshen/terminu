@@ -72,7 +72,7 @@ glyph 那一格每一列都留：拿起時只有那一列換色、多一個 glyp
     它到最後一項（Rules K12）。
   - **`Enter`**：放下，離開 Drag mode，cursor 留在那一項。
   - **`Esc`**：放回拿起前的位置，離開 Drag mode（K11：回到進入前的狀態；Rules K4 一次一層）。再按一次 `Esc` 才是上面的取消。
-  - 其他鍵不作用（K11）：`Space` 不開任何 menu；`D` 不是放下的別名。
+  - `Space` 打開 Drag mode 的 Space menu（K11）；其他鍵不作用，`D` 不是放下的別名。
   - **hint**：`Enter:drop Esc:cancel`。
 - **`?`**：這個 popup 的 key reference（Rules K6）；拿著時是 Drag mode 的鍵（K11）。
 

@@ -142,11 +142,11 @@ popup 開出 popup 時（例：Space menu → global operation popup → confirm
 - focus 在 panel 上時，`Space` 打開 Space menu（M2）；Space menu 開著時，再按 `Space` 關掉它。
   `Esc` 也能關。
 - **`Space` 只關它自己開的 Space menu。** 其他 popup（由 `Enter` 或熱鍵打開的 confirm、input、
-  note……）上按 `Space` **不作用**，它們由 `Esc` 或自己的流程關閉。唯一的例外：checkbox 的選項上（checkbox popup 的清單、
+  note……）上按 `Space` **不作用**，它們由 `Esc` 或自己的流程關閉。例外：模式裡（K11，包括在 popup 裡的模式），`Space` 打開那個模式的 Space menu；checkbox 的選項上（checkbox popup 的清單、
   表單上直接畫出來的 checkbox），`Space` 是勾或取消勾
   （[components/input/checkbox](../components/input/checkbox-zh_TW.md)、[components/dialog/form](../components/dialog/form-zh_TW.md)）。
 - popup 自己的操作用熱鍵執行，揭露在該 popup 的 `?` help（K6；下框 hint 寫哪些，照各元件寫的 hint），
-  不在 popup 上再疊一個 Space menu。
+  不在 popup 上再疊一個 Space menu（popup 裡的模式除外，K11）。
 
 **為什麼**：只能開、不能用同一個鍵關的入口是陷阱 —— 使用者伸手按同一個鍵想退出，
 結果沒反應。但 `Space` 若也能關 confirm，它就兼了 `Esc` 的「取消」（P4）；若能在 popup
@@ -256,7 +256,7 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 
 | 鍵 | 模式裡 |
 |---|---|
-| `Space` | **不開任何 menu**，不作用 |
+| `Space` | 打開這個模式的 Space menu（見下面） |
 | `!` | 不作用（App Log 在模式外打開） |
 | `?` | 這個模式的 key reference（唯讀，K6）：模式裡能按什麼鍵、做什麼 |
 | `Esc` | 離開模式（K4），回到進入前的狀態 |
@@ -264,19 +264,22 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 | `Tab`、`1`–`9` | 模式在 panel 上時：模式可以暫停 `Tab` 與數字鍵，但按了要有回應，說明先 `Esc` 離開模式（例：toast）；toast 還在時，第一個 `Esc` 先收掉它（K4）。模式在 popup 裡時見下面 |
 
 - **模式裡只有模式自己的鍵與上表的 core key 作用**：panel 的熱鍵與 global 熱鍵都不作用，按了不出聲。
-- 模式裡沒有 Space menu，也沒有任何可以執行的按鍵清單。模式自己的鍵（移動、選取、拖曳）直接按；它們揭露在
-  `?` 的 key reference 與 footer / 下框 hint（footer 在模式裡的樣子見 [components/layout/screen](../components/layout/screen-zh_TW.md)）。
+- **模式的 Space menu**（[components/dialog/menu](../components/dialog/menu-zh_TW.md) 的「模式裡」）：只列模式裡能做的事，分兩區 ——
+  **項目操作**：現在對 cursor 上那一項（或選起來的範圍）能做的事，選了就等於按那個鍵（例：Compare 模式的 `[C]ompare`、選取模式
+  開始選之後的 `[y] Copy`）；**模式操作**：這個模式本身的鍵 —— 移動鍵只顯示、不能執行，離開模式這種真的做事的照樣能執行。
+  panel、item、global 的動作一律不列。模式的鍵也揭露在 `?` 的 key reference 與 footer / 下框 hint（footer 在模式裡的樣子見
+  [components/layout/screen](../components/layout/screen-zh_TW.md)）。
 - **模式要標示自己**：模式名顯示在模式所在的框（panel 或 popup）的上框右側，外框換成模式色；離開模式就恢復。模式名是字，
   不只靠顏色：模式裡 focus 的 panel 照樣看得出是 focus（L5）。樣子見 [components/layout/panel](../components/layout/panel-zh_TW.md)。
 - **模式在 popup 裡時**（例：viewer 的選取模式、reorder 的 Drag mode）：框與模式名、`Space`、`?`、`Esc`、`q` 與 `Ctrl-C` 照上面；
   `Tab` 與數字鍵照那個 popup 本來的作用（popup 裡它們不換 panel），不用另外回應；footer 照 popup 開著時的樣子，不換成模式的字
   （[components/layout/screen](../components/layout/screen-zh_TW.md) 的 footer）。
-- **模式在 PTY 上時**（例：terminal 的歷史模式、選取模式）：focus 還在 PTY 裡，模式自己的鍵、`?`、`Esc` 以外的鍵，先離開模式、再照 K10
+- **模式在 PTY 上時**（例：terminal 的歷史模式、選取模式）：focus 還在 PTY 裡，模式自己的鍵、`Space`、`?`、`Esc` 以外的鍵，先離開模式、再照 K10
   送給子程序 —— `q` 與 `Ctrl-C` 也一樣，不進離開流程（[components/dialog/terminal](../components/dialog/terminal-zh_TW.md)）。
 
-**為什麼**：模式一定是特殊情況，裡面的鍵是移動、選取這類要直接、連續按的鍵，不是對某個 item 的動作，也沒有
-item / panel / global 可分。把它們做成一個能選、能執行的清單（連 `h j k l` 都要從清單執行）只是多繞一層；使用者
-要的只是「這裡能按什麼」，那正是 `?` 的工作。熱鍵在模式裡不作用：拖曳、選取做到一半不會被切走（例：拖到一半按了切畫面的
+**為什麼**：「不知道怎麼辦就按 `Space`」在模式裡也要成立 —— 家族的想法是零學習成本，使用者進了模式、不知道能做什麼時，`Space`
+一定要有回應（user 2026-10-22）。模式裡的鍵多半是移動、選取這類直接、連續按的鍵，所以 menu 分兩區：對眼前這一項能做的事照樣
+從 menu 執行；移動鍵只告訴使用者能按什麼，從清單「執行一次往下移」沒有意義。熱鍵在模式裡不作用：拖曳、選取做到一半不會被切走（例：拖到一半按了切畫面的
 熱鍵，拖曳的狀態就說不清），模式的 `?` 也只需要列模式的鍵；要做別的事先 `Esc`，跟 PTY 同一個想法。數字鍵跟 `Tab` 一樣是
 換 panel，使用者預期有反應，所以暫停時要回應；其他字母不出聲，免得亂按跳出一堆 toast。popup 裡的 `Tab` 與數字本來就不換
 panel，使用者不預期它們有反應，多回應反而是雜訊。

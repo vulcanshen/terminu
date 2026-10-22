@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.9.7 — 2026-10-22
+
+What the user found testing kbu by hand, settled with the user (from kbu, KB28).
+
+- Rules K11: "when in doubt, hit `Space`" holds inside a mode too: `Space` opens the mode's Space menu, with the item
+  operations (what can be done to the item under the cursor or the selected range, run like any row) and the mode
+  operations (the movement keys only shown, leaving the mode runnable); panel, item and global actions are never listed.
+  Modes in a popup and on a PTY have it too (Rules K5, dialog/menu, layout/screen's footer and input/reorder follow)
+- checklist: K5-3, K5-5, K11-1, M1-1, screen-8 and reorder-19 reworded, menu-23 to menu-27 added (1441 items)
+
 ## v0.9.6 — 2026-10-22
 
 What the user found testing kbu by hand, settled with the user (from kbu, KB27).

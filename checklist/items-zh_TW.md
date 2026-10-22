@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.7 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -73,9 +73,9 @@ tdp v0.9.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K4-4 | K4 | `Esc` 永遠不離開 app，到了最上層什麼都不做 | 都要 | 在 panel 上沒有 popup、沒有模式時連按 `Esc`，app 不關 |
 | K5-1 | K5 | focus 在任何 panel 上（包括沒有項目的 panel，以及 cursor 停在 checkbox 那一列時），`Space` 打開 Space menu，不翻 checkbox | 都要 | 在每個 panel 上按 `Space` |
 | K5-2 | K5 | Space menu 開著時，再按 `Space` 關掉它 | 都要 | 開 Space menu 後再按 `Space` |
-| K5-3 | K5 | Space menu 以外的 popup 上，`Space` 不作用 | 都要 | 在 global operation popup、key reference、confirm 上按 `Space`，什麼都沒發生 |
+| K5-3 | K5 | Space menu 以外的 popup 上，`Space` 不作用（popup 裡的模式除外） | 都要 | 在 global operation popup、key reference、confirm 上按 `Space`，什麼都沒發生 |
 | K5-4 | K5 | checkbox 的選項上（checkbox popup 的清單、表單上直接畫出來的 checkbox），`Space` 勾或取消勾 | checkbox | 在 checkbox 選項上按 `Space` |
-| K5-5 | K5 | popup 自己的操作用熱鍵執行，popup 上不再疊 Space menu | 都要 | 在各種 popup 上找不到開 menu 的方式，操作都靠熱鍵 |
+| K5-5 | K5 | popup 自己的操作用熱鍵執行，popup 上不再疊 Space menu（popup 裡的模式除外） | 都要 | 在各種 popup 上找不到開 menu 的方式，操作都靠熱鍵 |
 | K6-1 | K6 | `?` 在任何 surface 都有回應（輸入態、PTY 照 K8、K10；textarea 的「移」不是輸入態，照樣打開 key reference） | 都要 | 在每種 panel、popup、模式裡按 `?` |
 | K6-2 | K6 | key reference 開著時再按 `?` 關掉 | 都要 | 開 key reference 後再按 `?` |
 | K6-3 | K6 | `?` 打開的是最前端那個 surface 的 key reference | 都要 | 在 popup 上按 `?`，列的是那個 popup 的鍵，不是底下 panel 的 |
@@ -102,7 +102,7 @@ tdp v0.9.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K10-4 | K10 | 按 `Alt-Esc` 會讓 focus 離開 PTY 或結束子程序時，一律先跳 confirm：`Enter` 離開、`Esc` 回到 PTY | PTY | 在 PTY 裡按 `Alt-Esc` 出現 confirm；按 `Esc` 回到 PTY，再按一次 `Alt-Esc` 後按 `Enter` 離開 |
 | K10-5 | K10 | 子程序還沒準備好收鍵時，`Ctrl-C` 照樣轉送給子程序 | PTY | 子程序啟動或連線中按 `Ctrl-C`；讀程式：有轉送 |
 | K10-6 | K10 | 子程序還沒準備好收鍵時，出口鍵照樣有效、照樣揭露 | PTY | 子程序啟動或連線中看 footer、按出口鍵 |
-| K11-1 | K11 | 模式裡 `Space` 不開任何 menu、不作用 | 模式 | 進模式按 `Space` |
+| K11-1 | K11 | 模式裡 `Space` 打開模式的 Space menu，只列模式裡能做的事 | 模式 | 進模式按 `Space` |
 | K11-2 | K11 | 模式裡 `?` 打開這個模式的 key reference：模式裡能按什麼鍵、做什麼 | 模式 | 進模式按 `?` |
 | K11-3 | K11 | 模式裡 `Esc` 離開模式，回到進入前的狀態 | 模式 | 進模式做點事後按 `Esc`，狀態回到進入前 |
 | K11-4 | K11 | panel 與 popup 裡的模式，`q`、`Ctrl-C` 照 K9 進入離開流程 | 模式 | 進模式按 `q`、`Ctrl-C` |
@@ -137,7 +137,7 @@ tdp v0.9.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| M1-1 | M1 | 非輸入態的每一個畫面都常駐顯示 `?`、`Space` 與 `!`（模式裡 `Space`、`!` 不作用，可以不顯示） | 都要 | 在每個畫面、每個模式看 footer |
+| M1-1 | M1 | 非輸入態的每一個畫面都常駐顯示 `?`、`Space` 與 `!`（模式裡 `!` 不作用，可以不顯示） | 都要 | 在每個畫面、每個模式看 footer |
 | M1-2 | M1 | focus 在 PTY 裡時不顯示 `?`、`Space` 與 `!`，常駐顯示的是出口鍵與 app 保留的鍵（互動 terminal 還有 `Alt-v`、`PgUp`） | PTY | 進 PTY 看 footer 或 terminal 的下框 |
 | M2-1 | M2 | Space menu 依作用對象分區，順序固定：`item operation` → `panel operation` → global 那一列 | 都要 | 在每個 panel 上按 `Space` |
 | M2-2 | M2 | 動作放對地方：作用在 cursor 那一項的在 item operation，作用在當前 panel（或它的 tab）整體的在 panel operation，不屬於任何 panel 的在 global operation popup | 都要 | 看每個 panel 的 Space menu 與 global operation popup，逐列判斷作用對象 |
@@ -524,7 +524,7 @@ tdp v0.9.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | screen-5 | screen §footer | footer 寬度不夠時從尾端整組捨棄 | 都要 | 把終端機縮窄，看 footer 從尾端少掉整組 `鍵:說明` |
 | screen-6 | screen §footer | 畫面有好幾個 panel 時，footer 是 `Space:menu ?:help !:log Tab\|1–N:panels q:quit` | 多 panel | 在有好幾個 panel 的畫面看 footer |
 | screen-7 | screen §footer | 只有一個 panel 的畫面，footer 是 `Space:menu ?:help !:log q:quit` | 都要 | 在只有一個 panel 的畫面看 footer（多畫面的 app 每個畫面各看一次） |
-| screen-8 | screen §footer | 模式在 panel 上時，footer 是 `?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>` | 模式（在 panel 上） | 進入模式，看 footer |
+| screen-8 | screen §footer | 模式在 panel 上時，footer 是 `Space:menu ?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>` | 模式（在 panel 上） | 進入模式，看 footer |
 | screen-9 | screen §footer | panel filter 打字中，footer 是 `Enter\|Tab:list Esc:clear` | panel filter | 按 `/` 打字時看 footer |
 | screen-10 | screen §footer | focus 在 panel 裡的 PTY 時，footer 寫出口鍵，再加 app 保留的鍵（互動 terminal 還有 `Alt-v`、`PgUp`）；不寫 `?` 與 `Space` | PTY | 進 PTY，看 footer 第一組是出口鍵 |
 | screen-11 | screen §footer | popup 開著時 footer 照底下畫面的寫，不換字（terminal popup 例外：footer 不畫，terminal-13） | 都要 | 開 popup 前後比對 footer 的字 |
@@ -905,6 +905,11 @@ tdp v0.9.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | menu-20 | menu §按鍵 | 工作清單上沒有動作可做的列，`Enter` 打開那一列的全文，hint 寫 `Enter:detail Esc:close` | 工作清單 | cursor 移到沒有動作可做的列，看下框 |
 | menu-21 | menu §工作清單 | 工作清單上可以對那一列做事的（例：進行中的傳輸可以取消），`Enter` 打開帶那一列全文的 confirm，hint 寫那個動作（例 `Enter:cancel Esc:close`） | 工作清單 | cursor 移到可以做事的列，看 hint 後按 `Enter` |
 | menu-22 | menu §工作清單 | 工作清單開著時，列跟著工作更新（進度、狀態一變那一列就變），不用關掉重開 | 工作清單 | 工作進行中打開工作清單，看列的進度在變 |
+| menu-23 | menu §模式裡 | 模式的 Space menu 分兩區：`ITEM OPERATION` 與 `<模式名> MODE`；panel、item、global 的動作不列 | 模式 | 進模式按 `Space` |
+| menu-24 | menu §模式裡 | 項目操作跟平常的列一樣能執行，選了等於按那個鍵；現在不能做的停用 | 模式 | 從 menu 執行一項；cursor 停在不能做的地方再開 menu |
+| menu-25 | menu §模式裡 | 移動鍵只顯示：鍵 Blue、說明 Overlay0，cursor 跳過，`Enter` 不作用 | 模式 | 在 menu 裡移 cursor |
+| menu-26 | menu §模式裡 | 離開模式（`[Esc] Leave`）能從 menu 執行；menu 裡按 `Esc` 只關 menu、回到模式 | 模式 | 選 Leave；另外開一次 menu 按 `Esc` |
+| menu-27 | menu §模式裡 | 標題寫模式所在的地方：panel 的 `[N] label`，或 popup 的標題 | 模式 | 在 panel 上與 popup 裡的模式各開一次 |
 
 ## dialog/confirm
 
@@ -1586,7 +1591,7 @@ tdp v0.9.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | reorder-16 | reorder §按鍵 | 拿著時 `j\|l` 把它跟下一項交換、`h\|k` 跟上一項交換，cursor 跟著它 | reorder | 拿著按 `k`、`l` |
 | reorder-17 | reorder §按鍵 | 拿著時 `Enter`：放下，離開 Drag mode，cursor 留在那一項 | reorder | 拿著按 `Enter` |
 | reorder-18 | reorder §按鍵 | 拿著時 `Esc`：放回拿起前的位置，離開 Drag mode（不關 popup） | reorder | 拿著搬兩格後按 `Esc` |
-| reorder-19 | reorder §按鍵 | 拿著時其他鍵不作用：`Space` 不開任何 menu，`D` 不是放下的別名 | reorder | 拿著按 `Space`、`D` |
+| reorder-19 | reorder §按鍵 | 拿著時 `Space` 打開 Drag mode 的 Space menu，其他鍵不作用，`D` 不是放下的別名 | reorder | 拿著按 `Space`、`D` |
 | reorder-20 | reorder §按鍵 | 拿著時 hint 是 `Enter:drop Esc:cancel` | reorder | 拿著看下框 hint |
 
 ## project

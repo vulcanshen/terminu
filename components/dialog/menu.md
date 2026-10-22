@@ -72,6 +72,27 @@ like another frame.
 - **Hint**: `Enter:run Esc:close` (no movement keys, see the hint in [`layout/popup`](../layout/popup.md)). A jobs
   list's hint is below.
 
+## Inside a mode
+
+The Space menu that `Space` opens inside a mode (Rules K11) lists only what can be done in the mode:
+
+- **Title**: where the mode lives, as usual — the focused panel's `[N] label` on a panel, that popup's title in a popup.
+- **`ITEM OPERATION`**: what can be done now to the item under the cursor (or the selected range); rows run as usual,
+  picking one being the same as pressing its key (e.g. `[C]ompare` in the Compare mode, described `with <anchor>`;
+  `[v] Select` before a selection starts and `[y] Copy` after). What cannot be done now is disabled by M6 (e.g. with the
+  cursor on the anchor).
+- **`<mode name> MODE`** (e.g. `COMPARE MODE`): the mode's own keys. The movement keys are only shown — the key in the
+  label's place, in Blue (as in the key reference, "a key that can be pressed now"), the description in Overlay0; the
+  cursor skips them and `Enter` does nothing there. What really does something (leaving the mode: `[Esc] Leave`) runs
+  like any other row.
+- Panel, item and global actions and the `Global operation` row are never listed.
+- `Esc` in the menu still closes the menu (K4), back to the mode; the `[Esc]` of `[Esc] Leave` is the key pressed in the
+  mode, as with `[Enter] Connect`.
+
+**Why**: "when in doubt, hit `Space`" must answer inside a mode too. What applies to the thing at hand runs straight from
+the menu, as in any Space menu; running a movement key from a list makes no sense, so those rows only tell what can be
+pressed: the cursor skips them and the keys are Blue.
+
 ## Jobs list
 
 Lists the jobs the app is running or has run (e.g. sshu's Jobs).
