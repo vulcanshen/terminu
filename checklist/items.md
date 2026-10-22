@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.9. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.10. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -604,7 +604,7 @@ The items of tdp v0.9.9. What each column means and what an item applies to: [RE
 | panel-143 | panel §Compare mode | When the two are identical nothing opens: an Info toast, and the mode stays | compare mode | Compare two identical items |
 | panel-144 | panel §Compare mode | `Esc` leaves the mode and drops the anchor; `Tab` and the number keys are paused | compare mode | In the mode press `Tab`, then `Esc` |
 | panel-145 | panel §Compare mode | When the anchor is gone the mode is left with a Warning toast | compare mode | In the mode, have the anchor's item deleted |
-| panel-146 | panel §Frame | Entering a mode, the mode name opens from its middle: the junctions start side by side and move apart, the name showing from its middle; leaving plays it backwards; about 288ms whatever the name's length | mode | Enter and leave a mode and watch the right of the top border |
+| panel-146 | panel §Frame | Entering a mode, the mode name opens from its middle: the junctions start side by side and move apart, the name showing from its middle; leaving plays it backwards; the junctions take the first frame, then one more letter every 32ms frame | mode | Enter and leave a mode and watch the right of the top border |
 | panel-147 | panel §Frame | Switched again while the mode name is opening or closing, it turns around from where it is, without starting over | mode | Enter and leave a mode quickly several times (e.g. `D` `Esc` `D`) |
 | panel-148 | panel §Frame | The mode takes effect at once and the frame turns its colour at once; keys are taken while the mode name animates | mode | Enter a mode and press one of its keys at once; watch the frame colour |
 | panel-38 | panel §Capsule chain | No space before or after the text inside a capsule (`[1] TABS`) | everyone | Look between a capsule's text and its ends |

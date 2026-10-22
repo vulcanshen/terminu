@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.9.10 — 2026-10-22
+
+What the user found testing kbu by hand, settled with the user (KB30).
+
+- layout/panel: the mode name opens a letter a frame, 32ms a frame as in a popup, instead of over a fixed 288ms: a tag
+  has only as many steps as letters, and spread over 288ms each step held for about 72ms and stuttered. The length now
+  follows the name (`Drag` about 160ms, `Compare` about 256ms)
+- checklist: panel-146 reworded (1445 items)
+
 ## v0.9.9 — 2026-10-22
 
 What the user asked for while testing kbu by hand, settled with the user (KB30).
