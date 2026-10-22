@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.9.6 — 2026-10-22
+
+What the user found testing kbu by hand, settled with the user (from kbu, KB27).
+
+- layout/panel: a compare mode (Rules K11; the key is the app's): the compare key on a row makes it the anchor, drawn
+  all in the mode colour; another row is then compared with it, and closing the comparison goes back to the mode with
+  the anchor kept; identical ones only get an Info toast. Only text, or content shown as text, is compared
+- dialog/note: the comparison is a viewer titled `DIFF — <anchor> ↔ <the other>` (`nf-md-compare`) with two tabs,
+  `UNIFIED` and `SPLIT`, switched with `h|l` and remembered, always UNIFIED below 96 columns; only the parts that
+  differ with 3 lines around; added lines Green, removed Red (layout/popup and color follow)
+- checklist: panel-138 to panel-145 and note-80 to note-85 added, with a new applicability, "compare mode" (1436 items)
+
 ## v0.9.5 — 2026-10-21
 
 Settled with the user before terminu-go drew v0.9.4's capsule chain.

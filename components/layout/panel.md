@@ -173,6 +173,22 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   comes back once it is dropped. A panel with a Drag keeps the mark column on every row too. The keys are those of
   [`input/reorder`](../input/reorder.md) while holding an item: `j|k` move it (wrapping at the ends, Rules K12),
   `Enter` drops it, `Esc` puts it back.
+- **The compare mode** (Rules K11; the compare key is up to the app, e.g. `C` in kbu): the compare key on a row enters
+  the mode and makes that row the anchor; then another row is picked and the two are compared ("Compare" in
+  [`dialog/note`](../dialog/note.md)).
+  - **Text only**: text, or content shown as text (e.g. a kbu resource's YAML, a text file in filu). A file goes by the
+    kind of its preview in [`input/file-picker`](../input/file-picker.md); anything but `text` (image, PDF, archive,
+    binary…) cannot be compared: the item has no compare action (Rules M2), and in the mode the compare key is
+    disabled while the cursor rests on it (M6).
+  - **The anchor row**: the whole row in the mode colour — a Yellow background, Base text, not bold, no arrow on the
+    right ("the range selected in a mode" in [`color`](../color.md)); the cursor is drawn as usual, and on the anchor
+    the cursor is what is drawn.
+  - **The mode's keys**: `j|k`, `u|d`, `gg|G` move; the compare key or `Enter` opens the comparison with the anchor,
+    and closing it goes back to the mode with the anchor kept, ready for the next row; both keys are disabled while
+    the cursor rests on the anchor (M6). When the two are identical nothing opens: an Info toast says so (`No
+    differences between <a> and <b>`) and the mode stays. `Esc` leaves the mode and drops the anchor; `Tab` and the
+    number keys are paused (K11).
+  - **When the anchor is gone** (deleted, moved away): the mode is left, with a Warning toast saying why.
 - **Truncation**: cut at the end, with `…`. Where the end matters more, such as paths and file names, it may be cut at
   the front (`…/.ssh/id_ed25519`); where both ends matter (e.g. a pod's name: the deployment at the front, the random
   part that tells one from another at the end), it is cut in the middle, with the `…` there (`demo-app…66-gm72n`). The
