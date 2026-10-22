@@ -23,6 +23,26 @@ in [`screen`](screen.md).
   one word if possible (`Drag`, `Visual`, `Select`: a narrow panel has no room for two, and the whole top-right text
   would be dropped); when space runs out, the title is clipped first and the mode name stays. The capsule turns the mode
   colour along with the frame.
+  - **It opens and closes**: entering the mode, the tag opens from its middle: the two junctions start side by side
+    there and move apart, the name showing from its middle; leaving plays it backwards, down to the plain line. About
+    288ms either way whatever the name's length, the same as a popup's (Rules F2), the progress taken from the clock. An
+    odd length leaves the middle half a cell off, either side will do. The title keeps room for the whole tag for as long
+    as the tag is there, so it never shifts frame by frame.
+
+    ```
+    ━━━━━━━━━┓   before
+    ━━━━┫┣━━━┓   the junctions appear side by side at the tag's middle
+    ━━━┫ra┣━━┓   moving apart, the name showing from its middle
+    ━━┫Drag┣━┓   open
+    ```
+
+  - **Turning around**: switched again halfway (entering and leaving in quick runs), the tag turns around from where it
+    is and does not start over: half open, it closes from half; closing, it opens again from where it got to.
+  - **Only the tag animates**: the mode takes effect at once and the frame turns its colour at once; keys are taken all
+    along (unlike a popup opening, Rules F3). While closing, the name stays in the mode colour and the junctions take the
+    frame's colour as usual.
+  - **Why**: as with a popup, the animation lets the switch be felt; modes are entered and left in quick runs, so the
+    animation never holds a key and never starts over (the user, 2026-10-22).
 - **Left of the bottom border: the hint**, which every panel must have — the exceptions are while the focus is on a
   panel filter's typing row and while it is in a PTY in the panel: no hint then, and it comes back on the list or on
   leaving the PTY; nor when no key on the panel does anything (see the hint below). Right of the bottom border: the

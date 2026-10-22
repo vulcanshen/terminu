@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.9.9 — 2026-10-22
+
+What the user asked for while testing kbu by hand, settled with the user (KB30).
+
+- layout/panel: the mode name opens and closes: entering a mode, the tag opens from its middle (the junctions side by
+  side, moving apart, the name showing from its middle), and leaving plays it backwards, about 288ms whatever the
+  name's length; switched again halfway, it turns around from where it is. Only the tag animates: the mode takes
+  effect at once, the frame turns its colour at once and keys are taken all along (Rules K11 follows)
+- checklist: panel-146 to panel-148 added (1445 items)
+
 ## v0.9.8 — 2026-10-22
 
 What the user found testing kbu by hand, settled with the user (from kbu, KB29).

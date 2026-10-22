@@ -333,8 +333,9 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   never listed. The mode's keys are also disclosed in the `?` key reference and in the footer / bottom-border hint (how
   the footer looks inside a mode: [components/layout/screen](../components/layout/screen.md)).
 - **A mode shows itself**: the mode name appears at the right of the top border of the frame the mode lives in (panel or
-  popup), and the frame turns the mode colour; leaving the mode restores both. The mode name is a word, not colour
-  alone: a focused panel in a mode still shows that it has focus (L5). How it looks:
+  popup), and the frame turns the mode colour; leaving the mode restores both. The mode name opens and closes with a
+  short animation that never holds the mode up: the mode and the frame colour change at once. The mode name is a word,
+  not colour alone: a focused panel in a mode still shows that it has focus (L5). How it looks:
   [components/layout/panel](../components/layout/panel.md).
 - **A mode inside a popup** (e.g. a viewer's selection mode, a reorder's Drag mode): the frame and mode name, `Space`,
   `?`, `Esc`, `q` and `Ctrl-C` work as above; `Tab` and the digit keys keep whatever they do in that popup (in a popup
