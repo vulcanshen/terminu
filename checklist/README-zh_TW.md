@@ -81,6 +81,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 有預覽的 finder | 有帶預覽的 finder：一般的 finder、file-picker（select、checkbox popup 沒有預覽） |
 | 有檔案預覽 | 有預覽檔案、目錄的 popup：file-picker，或預覽檔案的 finder |
 | 存設定或資料 | 有設定、資料、狀態或快取寫到磁碟 |
+| 比較模式 | 有 panel 的比較模式（先挑 anchor、再挑另一列來比） |
 | 不再用的檔 | 改版後有不再用的設定、狀態或資料檔（例：sshu 的 errors.yaml、kbu 的 theme.yaml） |
 | 出 Windows 版 | 發布 Windows 版 |
 | 發過版 | 發布過（有 tag 與 GitHub release）；還沒發過版的 app，只有發版之後才有的東西（release、tap 上的 formula……）不適用，看得到的照現在的 repo 查 |

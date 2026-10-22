@@ -34,6 +34,7 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   | confirm | `nf-md-shield_alert`（U+F0ECC） |
   | toast | 依種類，見 [`dialog/toast`](../dialog/toast-zh_TW.md) |
   | terminal | `nf-md-console`（U+F018D） |
+  | 比較 | `nf-md-compare`（U+F018A） |
   | input、表單、note | 由 app 選：它編輯或顯示的東西（例：Rename 用一支筆）；避開太細的 outline glyph |
 
 - **hint**：放在下框 `┗━ ` 後面，寫法照 Rules M5。

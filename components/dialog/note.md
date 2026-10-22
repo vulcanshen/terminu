@@ -258,3 +258,28 @@ keep arriving, as in streaming content.
 Errors alone do not show what was done before them, and the entries just before are often the cause; what the app does
 in the background can only be seen here. `!`, like `?` and `Space`, works in every app of the family. Memory only: what
 matters is what happened while the app was open this time, with no further kind of thing to store and clean up.
+
+## Compare
+
+The popup the compare mode of a panel opens ([`layout/panel`](../layout/panel.md)): a viewer (the viewer's rules and its
+selection mode above apply). The title glyph is `nf-md-compare` (U+F018A), the title `DIFF — <anchor> ↔ <the other>`;
+two tabs follow it, `UNIFIED` and `SPLIT`, switched with `h|l` (Rules K12).
+
+- **Only the parts that differ**, each with 3 unchanged lines before and after; a separator between parts (Overlay0, as
+  the separators in a popup).
+- **The anchor is the base**: the anchor is the removed side, the other the added side.
+- **UNIFIED**: a removed line starts with `-`, in Red; an added line with `+`, in Green; an unchanged line with a space,
+  in Text. Two line-number columns, the anchor's and the other's, the other column blank on a line found on one side
+  only; line numbers in Overlay0.
+- **SPLIT**: the anchor on the left, the other on the right, half each, each with its own line numbers; removed lines on
+  the left in Red, added lines on the right in Green, a blank row where the other side has no counterpart. Not wrapped:
+  what is wider than its half is cut with `…` at the end (the viewer's unwrapped content).
+- **The choice is remembered** (state, Rules E3). On a terminal narrower than 96 it is always UNIFIED and `SPLIT` is
+  disabled (Rules M6), whichever was remembered.
+
+**Why**: text only, because a binary or an image has no line-by-line difference to look at. Only the parts that differ,
+so a long content changed in one or two places shows them at once, with 3 lines around to tell where they are (`git
+diff`'s default). Green for added and Red for removed is the common diff convention, and `+` and `-` keep it from
+reading as an error. The two layouts are tabs: no extra key, and the title shows which one is on; side by side needs 96,
+the same threshold as the finder. Identical ones only get a toast: the result fits in one sentence, with no extra `Esc`
+to press.

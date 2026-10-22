@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -595,6 +595,14 @@ tdp v0.9.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-36 | panel §膠囊串 | 兩端的前景是旁邊那一段的底：旁邊是選中的段時是這串的顏色，是沒選中的段時是 Mantle；外側不塗背景 | 都要 | 看膠囊串頭尾，再換 tab 讓尾端變成沒選中的段；把終端機底色換成不是 Base 也不是 Mantle 的顏色，兩端外側沒有色塊 |
 | panel-37 | panel §膠囊串 | 斜角與接縫各佔一個 powerline 符號的寬度，換選中的段時字不位移 | 多畫面、panel tab | 換 tab，看各段的字位置不動 |
 | panel-137 | panel §膠囊串 | 失焦時沒選中的段照樣是 Mantle（串的顏色換成失焦的框線色）；被蓋住時跟整個畫面一起淡化，Mantle 變成 Crust `#11111b` | 多畫面、panel tab、popup tab | 按 `Tab` 換 panel，看失焦的 panel 上沒選中的段底色不變；開一個 popup，量底下沒選中的段的底色 |
+| panel-138 | panel §比較模式 | 在一列上按比較鍵進入 K11 的模式，那一列成為 anchor；框與模式名 Yellow | 比較模式 | 按比較鍵，看框與模式名 |
+| panel-139 | panel §比較模式 | 只比文字或用文字呈現的內容；`text` 以外的項目沒有比較的動作 | 比較模式 | 在不是文字的項目上開 Space menu，看沒有比較 |
+| panel-140 | panel §比較模式 | 模式裡 cursor 停在 anchor 或不能比的項目上時，比較鍵與 `Enter` 停用 | 比較模式 | 停在 anchor 上按 `?`，比較鍵是停用色；按了不作用 |
+| panel-141 | panel §比較模式 | anchor 那一列整列 Yellow 底、Base 字、不加粗、沒有右邊的箭頭；cursor 停在上面時畫 cursor | 比較模式 | 進入後移開 cursor 看 anchor，再移回去 |
+| panel-142 | panel §比較模式 | 比較鍵或 `Enter` 打開跟 anchor 的比較；關掉後回到模式，anchor 留著 | 比較模式 | 比一次、關掉，看還在模式裡、anchor 還在 |
+| panel-143 | panel §比較模式 | 兩邊一模一樣時不打開，跳 Info toast，留在模式裡 | 比較模式 | 比兩個一樣的項目 |
+| panel-144 | panel §比較模式 | `Esc` 離開模式、拿掉 anchor；`Tab` 與數字鍵暫停 | 比較模式 | 模式裡按 `Tab`、`Esc` |
+| panel-145 | panel §比較模式 | anchor 不在了時離開模式，跳 Warning toast | 比較模式 | 在模式裡讓 anchor 那一項被刪掉 |
 | panel-38 | panel §膠囊串 | 膠囊裡的字前後不加空白（`[1] TABS`） | 都要 | 看膠囊的字與兩端之間 |
 | panel-39 | panel §膠囊串 | 有 tab 的 panel，`[N]` 自己是一段，一直是選中的 | panel tab | 換到第二個 tab，看 `[N]` 還是填色 |
 | panel-40 | panel §膠囊串 | `[N]` 後面每個 tab 一段，只有目前的 tab 選中 | panel tab | 換 tab，看只有目前的 tab 填色 |
@@ -997,6 +1005,12 @@ tdp v0.9.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-77 | note §App Log | 記使用者的動作與結果、每一個 toast、app 在背景做的事 | 都要 | 做一個動作、跳一個 toast 後按 `!`；讀程式 |
 | note-78 | note §App Log | 每一筆：時間 `HH:MM:SS`（Overlay0）、等級（`INFO` Text、`OK` Green、`WARN` Peach、`ERR` Red，四格寬靠左）、發生的事（跟 toast 一樣大寫開頭） | 都要 | 看 App Log 的各種等級 |
 | note-79 | note §App Log | 只放在記憶體，app 關掉就清空；筆數有上限，滿了丟掉最舊的 | 都要 | 讀程式；或關掉再開，App Log 是空的 |
+| note-80 | note §比較 | 標題 glyph `nf-md-compare`（U+F018A），`DIFF — <anchor> ↔ <另一個>`，後面接 `UNIFIED`、`SPLIT` 兩個 tab，`h\|l` 切 | 比較模式 | 打開比較，按 `h\|l`；讀程式核對 code point |
+| note-81 | note §比較 | 只顯示有差異的段落，前後各 3 行沒變的，段落之間一條 Overlay0 的分隔線 | 比較模式 | 比兩個長內容、只差兩處的項目 |
+| note-82 | note §比較 | UNIFIED：刪掉的行 `-` Red、加上的行 `+` Green、沒變的 Text；anchor 是刪掉的那一邊；行號兩欄、Overlay0 | 比較模式 | 看 UNIFIED |
+| note-83 | note §比較 | SPLIT：左 anchor、右另一個，各自標行號；刪 Red 在左、加 Green 在右，對應不到的留空列；不折行，太長截掉加 `…` | 比較模式 | 看 SPLIT |
+| note-84 | note §比較 | 記住上次選的 tab（狀態） | 比較模式 | 換成 SPLIT 後關掉 app、再開、再比一次 |
+| note-85 | note §比較 | 終端機寬不到 96 時一律 UNIFIED，`SPLIT` 停用 | 比較模式 | 把終端機縮到 96 以下再比 |
 
 ## dialog/terminal
 

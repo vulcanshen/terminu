@@ -128,6 +128,17 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
   Yellow 底、Base 粗體，右邊的箭頭也是 Yellow；標記欄畫 `nf-md-swap_vertical`（U+F04E2），放下後回到那一列原本的標記。有 Drag 的
   panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reorder-zh_TW.md) 拿著一項時一樣：`j|k` 搬（到頭尾繞回，Rules K12）、
   `Enter` 放下、`Esc` 放回。
+- **比較模式**（Rules K11；比較鍵由 app 決定，例：kbu 的 `C`）：在一列上按比較鍵，進入模式，那一列成為 anchor；接著挑另一列，
+  打開兩個的比較（[`dialog/note`](../dialog/note-zh_TW.md) 的「比較」）。
+  - **只比文字**：文字，或用文字呈現的內容（例：kbu 資源的 YAML、filu 的文字檔）。檔案照 [`input/file-picker`](../input/file-picker-zh_TW.md)
+    預覽的種類判，`text` 以外（image、PDF、archive、binary……）不能比：那一項沒有比較的動作（Rules M2），模式裡 cursor 停在上面時
+    比較鍵停用（M6）。
+  - **anchor 那一列**：整列模式色 —— Yellow 底、Base 字、不加粗、沒有右邊的箭頭（[`color`](../color-zh_TW.md) 的「模式裡選起來的
+    範圍」）；cursor 照舊，停在 anchor 上時畫 cursor。
+  - **模式的鍵**：`j|k`、`u|d`、`gg|G` 移動；比較鍵或 `Enter` 打開跟 anchor 的比較，關掉後回到模式、anchor 留著，可以再挑下一列；
+    cursor 在 anchor 上時這兩個鍵停用（M6）。兩邊一模一樣時不打開，跳 Info toast（`No differences between <a> and <b>`），留在
+    模式裡。`Esc` 離開模式、拿掉 anchor；`Tab` 與數字鍵暫停（K11）。
+  - **anchor 不在了**（被刪掉、搬走）：離開模式，跳 Warning toast 說明。
 - **截斷**：從尾端截，加 `…`。路徑、檔名這類尾端比較重要的，可以從前面截（`…/.ssh/id_ed25519`）；兩端都有意義的（例：pod
   的名稱，前面是 deployment、後面是辨識那一個的亂碼），從中間截，`…` 放在中間（`demo-app…66-gm72n`）。從哪裡截由 app 替每一欄
   決定。

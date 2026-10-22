@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.5. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.6. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -595,6 +595,14 @@ The items of tdp v0.9.5. What each column means and what an item applies to: [RE
 | panel-36 | panel §Capsule chain | Each end's foreground is the fill of the part beside it: the chain's colour beside a selected part, Mantle beside an unselected one; no background is painted outside | everyone | Look at the start and end of the capsule chain, then change tabs so that the last part is unselected; set the terminal's background to a colour other than Base or Mantle and check that there is no block outside the ends |
 | panel-37 | panel §Capsule chain | Every end and join takes the width of one powerline symbol, so changing the selected part shifts no text | several screens or panel tab | Change tabs; check that no part's text moves |
 | panel-137 | panel §Capsule chain | On an unfocused panel the unselected parts stay Mantle (the chain's colour turns to the unfocused border colour); covered, they dim with the whole screen and Mantle becomes Crust `#11111b` | several screens or panel tab or popup tab | Press `Tab` to another panel and check that the unselected parts on the unfocused panel keep their background; open a popup and measure the background of the unselected parts beneath |
+| panel-138 | panel §Compare mode | The compare key on a row enters a K11 mode and makes that row the anchor; the frame and mode name are Yellow | compare mode | Press the compare key; look at the frame and the mode name |
+| panel-139 | panel §Compare mode | Only text or content shown as text is compared; an item that is not `text` has no compare action | compare mode | Open the Space menu on an item that is not text; there is no compare |
+| panel-140 | panel §Compare mode | In the mode, the compare key and `Enter` are disabled while the cursor rests on the anchor or on an item that cannot be compared | compare mode | On the anchor press `?`: the compare key is in the disabled colour; pressing it does nothing |
+| panel-141 | panel §Compare mode | The anchor row is all Yellow, Base text, not bold, no arrow on the right; with the cursor on it, the cursor is drawn | compare mode | After entering, move the cursor away and look at the anchor, then move back |
+| panel-142 | panel §Compare mode | The compare key or `Enter` opens the comparison with the anchor; closing it goes back to the mode with the anchor kept | compare mode | Compare once, close it; the mode and the anchor are still there |
+| panel-143 | panel §Compare mode | When the two are identical nothing opens: an Info toast, and the mode stays | compare mode | Compare two identical items |
+| panel-144 | panel §Compare mode | `Esc` leaves the mode and drops the anchor; `Tab` and the number keys are paused | compare mode | In the mode press `Tab`, then `Esc` |
+| panel-145 | panel §Compare mode | When the anchor is gone the mode is left with a Warning toast | compare mode | In the mode, have the anchor's item deleted |
 | panel-38 | panel §Capsule chain | No space before or after the text inside a capsule (`[1] TABS`) | everyone | Look between a capsule's text and its ends |
 | panel-39 | panel §Capsule chain | On a panel with tabs, `[N]` is a part of its own and always selected | panel tab | Change to the second tab; check that `[N]` is still filled |
 | panel-40 | panel §Capsule chain | Each tab after `[N]` is a part, and only the current tab is selected | panel tab | Change tabs; check that only the current tab is filled |
@@ -997,6 +1005,12 @@ The items of tdp v0.9.5. What each column means and what an item applies to: [RE
 | note-77 | note §App Log | It records what the user did and how it ended, every toast, and what the app did in the background | everyone | Do something, get a toast, press `!`; read the code |
 | note-78 | note §App Log | Each entry: the time `HH:MM:SS` (Overlay0), the level (`INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, four cells wide, left-aligned), and what happened, capitalised like a toast | everyone | Look at the App Log's levels |
 | note-79 | note §App Log | Kept in memory only, emptied when the app quits; the number of entries has a limit, and the oldest goes when it is full | everyone | Read the code; or quit and start again: the App Log is empty |
+| note-80 | note §Compare | Title glyph `nf-md-compare` (U+F018A), `DIFF — <anchor> ↔ <the other>`, followed by two tabs, `UNIFIED` and `SPLIT`, switched with `h\|l` | compare mode | Open a comparison and press `h\|l`; read the code to check the code point |
+| note-81 | note §Compare | Only the parts that differ, with 3 unchanged lines before and after, an Overlay0 separator between parts | compare mode | Compare two long items that differ in two places |
+| note-82 | note §Compare | UNIFIED: removed lines `-` in Red, added lines `+` in Green, unchanged in Text; the anchor is the removed side; two line-number columns in Overlay0 | compare mode | Look at UNIFIED |
+| note-83 | note §Compare | SPLIT: the anchor on the left, the other on the right, each with its line numbers; removed in Red on the left, added in Green on the right, a blank row where there is no counterpart; not wrapped, cut with `…` | compare mode | Look at SPLIT |
+| note-84 | note §Compare | The last chosen tab is remembered (state) | compare mode | Switch to SPLIT, quit, start again, compare again |
+| note-85 | note §Compare | Narrower than 96 it is always UNIFIED and `SPLIT` is disabled | compare mode | Shrink the terminal below 96 and compare |
 
 ## dialog/terminal
 
