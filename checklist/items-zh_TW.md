@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.7 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.8 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -94,8 +94,9 @@ tdp v0.9.7 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K9-1 | K9 | `q` 與 `Ctrl-C` 做同一件事：進入 app 的離開流程 | 都要 | 在 panel 上分別按 `q`、`Ctrl-C`，出現的流程一樣 |
 | K9-2 | K9 | `q` 在表單與表單的打字說明 note 上不進入離開流程（在要打字的欄位上跳說明 note，其他地方不作用） | 表單 | 在表單上（不在打字列）按 `q`；在要打字的欄位上打一個字跳出說明 note 後再按 `q` |
 | K9-3 | K9 | `Ctrl-C` 在表單與表單的打字說明 note 上仍然進入離開流程 | 表單 | 在表單上與打字說明 note 上各按 `Ctrl-C` |
-| K9-4 | K9 | 離開流程進行中（例：離開前的 confirm 開著時）再按一次 `Ctrl-C`，立刻離開、不再詢問（直接離開的 app 沒有這種情況） | 都要 | 按 `Ctrl-C` 出現確認後再按一次 `Ctrl-C` |
+| K9-4 | K9 | 離開流程進行中（例：離開前的 confirm 開著時）再按一次 `Ctrl-C`，立刻離開、不再詢問（直接離開的 app 只有 popup 開著時才有這種情況，K9-6） | 都要 | 按 `Ctrl-C` 出現確認後再按一次 `Ctrl-C` |
 | K9-5 | K9 | 離開列在 global operation popup 裡 | 都要 | `Space` → `Global operation`，裡面有離開 |
+| K9-6 | K9 | 有 popup 開著時，第一下 `q` 或 `Ctrl-C` 一定不會直接離開：當下會直接離開的流程改開離開的 confirm（`Quit <app>?`），第一步本來就會問的照舊；按 `Esc` 回到 popup；在 panel 上照 app 的流程 | 都要 | 開 Space menu 按 `q`，再按 `Esc`；關掉 menu 後在 panel 上按 `q` |
 | K10-1 | K10 | focus 在 PTY 時（panel 裡或 terminal popup）按鍵都送給子程序，core key 與 app 的熱鍵（含 splash 的 `V`）都失效，只有出口鍵與 app 保留的組合鍵（互動 terminal 還有 `Alt-v`、`PgUp`）屬於 app；`Esc` 也給子程序，toast 開著時只能等時間到收掉 | PTY | 在 PTY 裡按 `Space` `?` `q` `Tab` `Esc` `1` 與 app 的熱鍵，都進子程序 |
 | K10-2 | K10 | 至少有一個出口鍵讓 focus 離開 PTY | PTY | 在 PTY 裡按出口鍵能回到 app |
 | K10-3 | K10 | 出口鍵用 `Alt-Esc` | PTY | 在 PTY 裡按 `Alt-Esc` |
@@ -908,7 +909,7 @@ tdp v0.9.7 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | menu-23 | menu §模式裡 | 模式的 Space menu 分兩區：`ITEM OPERATION` 與 `<模式名> MODE`；panel、item、global 的動作不列 | 模式 | 進模式按 `Space` |
 | menu-24 | menu §模式裡 | 項目操作跟平常的列一樣能執行，選了等於按那個鍵；現在不能做的停用 | 模式 | 從 menu 執行一項；cursor 停在不能做的地方再開 menu |
 | menu-25 | menu §模式裡 | 移動鍵只顯示：鍵 Blue、說明 Overlay0，cursor 跳過，`Enter` 不作用 | 模式 | 在 menu 裡移 cursor |
-| menu-26 | menu §模式裡 | 離開模式（`[Esc] Leave`）能從 menu 執行；menu 裡按 `Esc` 只關 menu、回到模式 | 模式 | 選 Leave；另外開一次 menu 按 `Esc` |
+| menu-26 | menu §模式裡 | 離開模式（字用模式 hint 裡 `Esc` 的動詞，例：`[Esc] Leave`）能從 menu 執行；menu 裡按 `Esc` 只關 menu、回到模式 | 模式 | 選 Leave；另外開一次 menu 按 `Esc` |
 | menu-27 | menu §模式裡 | 標題寫模式所在的地方：panel 的 `[N] label`，或 popup 的標題 | 模式 | 在 panel 上與 popup 裡的模式各開一次 |
 
 ## dialog/confirm

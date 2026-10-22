@@ -66,9 +66,10 @@
   模式的 `[C]ompare`，說明 `with <anchor>`；選取模式還沒開始選時的 `[v] Select`、開始選之後的 `[y] Copy`）。現在不能做的照 M6 停用
   （例：cursor 在 anchor 上）。
 - **`<模式名> MODE`**（例：`COMPARE MODE`）：模式本身的鍵。移動鍵只顯示 —— 鍵寫在 label 的位置、Blue（跟 key reference 一樣是
-  「現在按得了的鍵」），說明 Overlay0；cursor 跳過，`Enter` 不作用。真的做事的（離開模式：`[Esc] Leave`）跟一般的列一樣能執行。
+  「現在按得了的鍵」），說明 Overlay0；cursor 跳過，`Enter` 不作用。真的做事的跟一般的列一樣能執行：離開模式，
+  字用模式 hint 裡 `Esc` 的動詞（Compare 模式是 `[Esc] Leave`，hint 寫 `Esc:cancel` 的是 `[Esc] Cancel`）。
 - panel、item、global 的動作與 `Global operation` 那一列一律不列。
-- menu 裡按 `Esc` 照舊是關掉 menu（K4）、回到模式；`[Esc] Leave` 的 `[Esc]` 是在模式裡按的鍵，跟 `[Enter] Connect` 一樣。
+- menu 裡按 `Esc` 照舊是關掉 menu（K4）、回到模式；離開那一列的 `[Esc]` 是在模式裡按的鍵，跟 `[Enter] Connect` 一樣。
 
 **為什麼**：「不知道怎麼辦就按 `Space`」在模式裡也要有回應。對眼前這一項的事跟平常的 Space menu 一樣能直接執行；移動鍵從清單
 執行沒有意義，只告訴使用者能按什麼，所以 cursor 跳過、鍵用 Blue。

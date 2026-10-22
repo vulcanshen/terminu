@@ -83,11 +83,12 @@ The Space menu that `Space` opens inside a mode (Rules K11) lists only what can 
   cursor on the anchor).
 - **`<mode name> MODE`** (e.g. `COMPARE MODE`): the mode's own keys. The movement keys are only shown — the key in the
   label's place, in Blue (as in the key reference, "a key that can be pressed now"), the description in Overlay0; the
-  cursor skips them and `Enter` does nothing there. What really does something (leaving the mode: `[Esc] Leave`) runs
-  like any other row.
+  cursor skips them and `Enter` does nothing there. What really does something runs like any other row: leaving the
+  mode, named with the verb `Esc` has in the mode's hint (`[Esc] Leave` in the Compare mode, `[Esc] Cancel` where the
+  hint says `Esc:cancel`).
 - Panel, item and global actions and the `Global operation` row are never listed.
-- `Esc` in the menu still closes the menu (K4), back to the mode; the `[Esc]` of `[Esc] Leave` is the key pressed in the
-  mode, as with `[Enter] Connect`.
+- `Esc` in the menu still closes the menu (K4), back to the mode; the `[Esc]` of the leaving row is the key pressed in
+  the mode, as with `[Enter] Connect`.
 
 **Why**: "when in doubt, hit `Space`" must answer inside a mode too. What applies to the thing at hand runs straight from
 the menu, as in any Space menu; running a movement key from a list makes no sense, so those rows only tell what can be
