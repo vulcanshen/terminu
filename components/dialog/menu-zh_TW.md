@@ -57,6 +57,22 @@
 - `Esc` 關掉（global operation popup 回到 Space menu，Rules F4）；Space menu 也可以再按 `Space` 關（Rules K5）。
 - **hint**：`Enter:run Esc:close`（不寫移動鍵，見 [`layout/popup`](../layout/popup-zh_TW.md) 的 hint）。工作清單的 hint 見下面。
 
+## 模式裡
+
+模式裡按 `Space`（Rules K11）打開的 Space menu，只列模式裡能做的事：
+
+- **標題**：跟平常一樣寫模式所在的地方 —— panel 上寫 focus panel 的 `[N] label`，popup 裡寫那個 popup 的標題。
+- **`ITEM OPERATION`**：現在對 cursor 上那一項（或選起來的範圍）能做的事，跟平常的列一樣能執行，選了就等於按那個鍵（例：Compare
+  模式的 `[C]ompare`，說明 `with <anchor>`；選取模式還沒開始選時的 `[v] Select`、開始選之後的 `[y] Copy`）。現在不能做的照 M6 停用
+  （例：cursor 在 anchor 上）。
+- **`<模式名> MODE`**（例：`COMPARE MODE`）：模式本身的鍵。移動鍵只顯示 —— 鍵寫在 label 的位置、Blue（跟 key reference 一樣是
+  「現在按得了的鍵」），說明 Overlay0；cursor 跳過，`Enter` 不作用。真的做事的（離開模式：`[Esc] Leave`）跟一般的列一樣能執行。
+- panel、item、global 的動作與 `Global operation` 那一列一律不列。
+- menu 裡按 `Esc` 照舊是關掉 menu（K4）、回到模式；`[Esc] Leave` 的 `[Esc]` 是在模式裡按的鍵，跟 `[Enter] Connect` 一樣。
+
+**為什麼**：「不知道怎麼辦就按 `Space`」在模式裡也要有回應。對眼前這一項的事跟平常的 Space menu 一樣能直接執行；移動鍵從清單
+執行沒有意義，只告訴使用者能按什麼，所以 cursor 跳過、鍵用 Blue。
+
 ## 工作清單
 
 列出 app 正在跑或跑過的工作（例：sshu 的 Jobs）。

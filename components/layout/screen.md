@@ -22,7 +22,7 @@ narrow, whole pairs are dropped from the end (the hint in [`popup`](popup.md)). 
 |---|---|
 | Normal | `Space:menu ?:help !:log Tab\|1–N:panels q:quit` |
 | A screen with only one panel | `Space:menu ?:help !:log q:quit` |
-| In a mode (Rules K11) | `?:help`, the mode's own keys, and last `Esc:<verb for leaving>`. E.g. `?:help Enter:drop Esc:cancel` |
+| In a mode (Rules K11) | `Space:menu ?:help`, the mode's own keys, and last `Esc:<verb for leaving>`. E.g. `Space:menu ?:help Enter:drop Esc:cancel` |
 | Typing in a panel filter (input state) | `Enter\|Tab:list Esc:clear` |
 | Typing in a panel filter, no results | `Tab:list Esc:clear` (`Enter` does nothing, as in the hint of [`input/finder`](../input/finder.md)) |
 | Focus on a PTY in a panel | the exit key, plus the keys the app keeps (Rules K10); in an interactive terminal, then `Alt-v:select` and `PgUp:history` (dialog/terminal). E.g. `Alt-Esc:leave Alt-z:zoom Alt-v:select PgUp:history` |
@@ -35,8 +35,8 @@ has been opened, it is `!:log` again.
 While a terminal popup is open, the footer is not drawn: the terminal covers the bottom row, and the bits left showing at
 its two ends are blank, with none of the footer's words peeking out ([`dialog/terminal`](../dialog/terminal.md)).
 
-**Why**: the footer is the entry point of Rules M1, so what it shows must be keys that can be pressed now. In a mode
-`Space` does nothing, while typing `Space` `?` `q` are characters, and in a PTY every key goes to the subprocess —
+**Why**: the footer is the entry point of Rules M1, so what it shows must be keys that can be pressed now. While
+typing `Space` `?` `q` are characters, and in a PTY every key goes to the subprocess —
 writing the usual footer there would teach the user to press the wrong keys. With a popup open the footer keeps its
 words and is only dimmed: dimmed means "you are not here now" (Principle P6, the same thing as Rules F8); as popups open
 and close, the bottom row only darkens and brightens instead of changing its words all the time; `?` is still on the

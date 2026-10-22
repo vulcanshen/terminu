@@ -85,7 +85,7 @@ row's colour and adds one glyph, and nothing else moves by a cell.
   - **`Enter`**: drops it and leaves the Drag mode; the cursor stays on it.
   - **`Esc`**: puts it back where it was picked up and leaves the Drag mode (K11: back to the state before it; Rules K4,
     one layer at a time). Only the next `Esc` is the cancel above.
-  - Other keys do nothing (K11): `Space` opens no menu; `D` is not an alias for dropping.
+  - `Space` opens the Drag mode's Space menu (K11); other keys do nothing, and `D` is not an alias for dropping.
   - **Hint**: `Enter:drop Esc:cancel`.
 - **`?`**: this popup's key reference (Rules K6); while holding, the Drag mode's keys (K11).
 

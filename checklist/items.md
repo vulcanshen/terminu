@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.6. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.7. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -73,9 +73,9 @@ The items of tdp v0.9.6. What each column means and what an item applies to: [RE
 | K4-4 | K4 | `Esc` never leaves the app; at the top it does nothing | everyone | On a panel with no popup and no mode, press `Esc` again and again: the app does not close |
 | K5-1 | K5 | With focus on any panel (including a panel with no items, and with the cursor on a checkbox row), `Space` opens the Space menu and does not flip the checkbox | everyone | Press `Space` on every panel |
 | K5-2 | K5 | While the Space menu is open, `Space` closes it again | everyone | Open the Space menu and press `Space` again |
-| K5-3 | K5 | On any popup other than the Space menu, `Space` does nothing | everyone | Press `Space` on the global operation popup, the key reference and a confirm: nothing happens |
+| K5-3 | K5 | On any popup other than the Space menu, `Space` does nothing (except for a mode inside it) | everyone | Press `Space` on the global operation popup, the key reference and a confirm: nothing happens |
 | K5-4 | K5 | On checkbox options (a checkbox popup's list, the checkboxes drawn on a form), `Space` checks or unchecks | checkbox | Press `Space` on a checkbox option |
-| K5-5 | K5 | A popup's own operations run by hotkey; no Space menu is stacked on top of a popup | everyone | No kind of popup offers a way to open a menu; every operation is by hotkey |
+| K5-5 | K5 | A popup's own operations run by hotkey; no Space menu is stacked on top of a popup (except for a mode inside it) | everyone | No kind of popup offers a way to open a menu; every operation is by hotkey |
 | K6-1 | K6 | `?` responds on any surface (input state and PTY follow K8 and K10; a textarea's moving state is not input state and opens the key reference as usual) | everyone | Press `?` in every kind of panel, popup and mode |
 | K6-2 | K6 | While the key reference is open, `?` closes it again | everyone | Open the key reference and press `?` again |
 | K6-3 | K6 | `?` opens the key reference of the frontmost surface | everyone | Press `?` on a popup: it lists that popup's keys, not those of the panel underneath |
@@ -102,7 +102,7 @@ The items of tdp v0.9.6. What each column means and what an item applies to: [RE
 | K10-4 | K10 | Whenever pressing `Alt-Esc` would move focus out of the PTY or end the subprocess, a confirm always comes first: `Enter` leaves, `Esc` returns to the PTY | PTY | In the PTY press `Alt-Esc`: a confirm appears; press `Esc`: back in the PTY; press `Alt-Esc` again and then `Enter`: it leaves |
 | K10-5 | K10 | While the subprocess is not ready for keys yet, `Ctrl-C` is still forwarded to the subprocess | PTY | Press `Ctrl-C` while the subprocess is starting or connecting; read the code: it is forwarded |
 | K10-6 | K10 | While the subprocess is not ready for keys yet, the exit key still works and is still disclosed | PTY | While the subprocess is starting or connecting, look at the footer and press the exit key |
-| K11-1 | K11 | Inside a mode, `Space` opens no menu and does nothing | mode | Enter a mode and press `Space` |
+| K11-1 | K11 | Inside a mode, `Space` opens the mode's Space menu, listing only what can be done in the mode | mode | Enter a mode and press `Space` |
 | K11-2 | K11 | Inside a mode, `?` opens the mode's key reference: which keys work in the mode and what they do | mode | Enter a mode and press `?` |
 | K11-3 | K11 | Inside a mode, `Esc` leaves the mode, back to the state before it was entered | mode | Enter a mode, do something and press `Esc`: the state is back to what it was before the mode |
 | K11-4 | K11 | Inside a mode on a panel or in a popup, `q` and `Ctrl-C` run the quit flow, as K9 | mode | Enter a mode and press `q`, `Ctrl-C` |
@@ -137,7 +137,7 @@ The items of tdp v0.9.6. What each column means and what an item applies to: [RE
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| M1-1 | M1 | Every screen outside input state always shows `?`, `Space` and `!` (inside a mode `Space` and `!` do nothing and may go unshown) | everyone | Look at the footer on every screen and in every mode |
+| M1-1 | M1 | Every screen outside input state always shows `?`, `Space` and `!` (inside a mode `!` does nothing and may go unshown) | everyone | Look at the footer on every screen and in every mode |
 | M1-2 | M1 | With the focus in a PTY, `?`, `Space` and `!` are not shown; what is always shown is the exit key and the keys the app keeps (in an interactive terminal also `Alt-v` and `PgUp`) | PTY | Go into a PTY and look at the footer or the terminal's bottom border |
 | M2-1 | M2 | The Space menu is split into regions by what each acts on, in a fixed order: `item operation` → `panel operation` → the global row | everyone | Press `Space` on every panel |
 | M2-2 | M2 | Each action is in the right place: one acting on the item under the cursor is in item operation, one acting on the current panel (or its tab) as a whole is in panel operation, and one belonging to no panel is in the global operation popup | everyone | Look at each panel's Space menu and the global operation popup, judging what each row acts on |
@@ -524,7 +524,7 @@ The items of tdp v0.9.6. What each column means and what an item applies to: [RE
 | screen-5 | screen §Footer | When the footer is too narrow, whole pairs are dropped from the end | everyone | Narrow the terminal; check that the footer loses whole `key:description` pairs from the end |
 | screen-6 | screen §Footer | On a screen with several panels, the footer is `Space:menu ?:help !:log Tab\|1–N:panels q:quit` | several panels | Look at the footer on a screen with several panels |
 | screen-7 | screen §Footer | On a screen with only one panel, the footer is `Space:menu ?:help !:log q:quit` | everyone | Look at the footer on a screen with only one panel (in a multi-screen app, on each screen) |
-| screen-8 | screen §Footer | With a mode on a panel, the footer is `?:help`, the mode's own keys, and last `Esc:<verb for leaving>` | mode (on a panel) | Enter a mode and look at the footer |
+| screen-8 | screen §Footer | With a mode on a panel, the footer is `Space:menu ?:help`, the mode's own keys, and last `Esc:<verb for leaving>` | mode (on a panel) | Enter a mode and look at the footer |
 | screen-9 | screen §Footer | While typing in a panel filter, the footer is `Enter\|Tab:list Esc:clear` | panel filter | Press `/` and look at the footer while typing |
 | screen-10 | screen §Footer | With the focus on a PTY in a panel, the footer has the exit key plus the keys the app keeps (in an interactive terminal also `Alt-v` and `PgUp`); no `?` or `Space` | PTY | Enter the PTY; check that the footer's first pair is the exit key |
 | screen-11 | screen §Footer | While a popup is open, the footer is as for the screen underneath, its words unchanged (a terminal popup is the exception: the footer is not drawn, terminal-13) | everyone | Compare the footer's words before and after opening a popup |
@@ -905,6 +905,11 @@ The items of tdp v0.9.6. What each column means and what an item applies to: [RE
 | menu-20 | menu §Keys | On a jobs-list row with nothing to do on it, `Enter` opens the row's full text and the hint is `Enter:detail Esc:close` | jobs list | Move the cursor to a row with nothing to do on it and look at the bottom border |
 | menu-21 | menu §Jobs list | On a jobs-list row something can be done to (e.g. a running transfer that can be cancelled), `Enter` opens a confirm holding the row's full text, and the hint names that action (e.g. `Enter:cancel Esc:close`) | jobs list | Move the cursor to a row something can be done to, read the hint, then press `Enter` |
 | menu-22 | menu §Jobs list | While a jobs list is open, its rows follow the work (a row changes as soon as the progress or the state changes), with no closing and reopening | jobs list | Open the jobs list while work runs and watch a row's progress change |
+| menu-23 | menu §Inside a mode | The mode's Space menu has two sections, `ITEM OPERATION` and `<mode name> MODE`; no panel, item or global actions | mode | Enter a mode and press `Space` |
+| menu-24 | menu §Inside a mode | Item operations run like any row, picking one being the same as pressing its key; what cannot be done now is disabled | mode | Run one from the menu; open the menu with the cursor where it cannot be done |
+| menu-25 | menu §Inside a mode | Movement keys are only shown: the key in Blue, the description in Overlay0, skipped by the cursor, `Enter` doing nothing | mode | Move the cursor in the menu |
+| menu-26 | menu §Inside a mode | Leaving the mode (`[Esc] Leave`) runs from the menu; `Esc` in the menu only closes it, back to the mode | mode | Pick Leave; open the menu again and press `Esc` |
+| menu-27 | menu §Inside a mode | The title is where the mode lives: the panel's `[N] label`, or the popup's title | mode | Open it in a mode on a panel and in one in a popup |
 
 ## dialog/confirm
 
@@ -1586,7 +1591,7 @@ The items of tdp v0.9.6. What each column means and what an item applies to: [RE
 | reorder-16 | reorder §Keys | While holding, `j\|l` swap the item with the next one and `h\|k` with the previous one, the cursor going with it | reorder | Press `k` and `l` while holding |
 | reorder-17 | reorder §Keys | `Enter` while holding: drops it and leaves the Drag mode; the cursor stays on it | reorder | Press `Enter` while holding |
 | reorder-18 | reorder §Keys | `Esc` while holding: puts it back where it was picked up and leaves the Drag mode (the popup does not close) | reorder | While holding, move it two places, then press `Esc` |
-| reorder-19 | reorder §Keys | While holding, other keys do nothing: `Space` opens no menu; `D` is not an alias for dropping | reorder | Press `Space` and `D` while holding |
+| reorder-19 | reorder §Keys | While holding, `Space` opens the Drag mode's Space menu and other keys do nothing; `D` is not an alias for dropping | reorder | Press `Space` and `D` while holding |
 | reorder-20 | reorder §Keys | While holding, the hint is `Enter:drop Esc:cancel` | reorder | Look at the hint on the bottom border while holding |
 
 ## project

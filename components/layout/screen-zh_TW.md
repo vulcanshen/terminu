@@ -19,7 +19,7 @@
 |---|---|
 | 一般 | `Space:menu ?:help !:log Tab\|1–N:panels q:quit` |
 | 只有一個 panel 的畫面 | `Space:menu ?:help !:log q:quit` |
-| 在模式裡（Rules K11） | `?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>`。例：`?:help Enter:drop Esc:cancel` |
+| 在模式裡（Rules K11） | `Space:menu ?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>`。例：`Space:menu ?:help Enter:drop Esc:cancel` |
 | panel filter 打字中（輸入態） | `Enter\|Tab:list Esc:clear` |
 | panel filter 打字中，沒有結果 | `Tab:list Esc:clear`（`Enter` 不作用，照 [`input/finder`](../input/finder-zh_TW.md) 的 hint） |
 | focus 在 panel 裡的 PTY | 出口鍵，再加 app 保留的鍵（Rules K10）；互動 terminal 再接 `Alt-v:select`、`PgUp:history`（dialog/terminal）。例：`Alt-Esc:leave Alt-z:zoom Alt-v:select PgUp:history` |
@@ -31,7 +31,7 @@
 terminal popup 開著時不畫 footer：terminal 蓋住最下面一列，兩端露出來的地方是空白，不露出 footer 的字
 （[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
 
-**為什麼**：footer 是 Rules M1 的入口，寫的必須是現在按得了的鍵。模式裡 `Space` 不作用、打字時 `Space` `?` `q` 都是字元、
+**為什麼**：footer 是 Rules M1 的入口，寫的必須是現在按得了的鍵。打字時 `Space` `?` `q` 都是字元、
 PTY 裡的鍵都送給子程序 —— 照常寫一般的 footer，反而教使用者按錯。popup 開著時 footer 不換字、只跟著淡化：淡化就是「現在不在
 這裡」（Principle P6，跟 Rules F8 同一件事）；popup 開開關關，最下面一列只變暗變亮，不會一直換字；`?` 照樣在 footer 上，而
 popup 上按 `?` 打開的本來就是這個 popup 的 key reference（Rules M1）。

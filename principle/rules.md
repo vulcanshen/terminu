@@ -173,11 +173,11 @@ its own key (K9).
 - With focus on a panel, `Space` opens the Space menu (M2); while the Space menu is open, `Space` closes it again.
   `Esc` closes it too.
 - **`Space` closes only the Space menu it opened itself.** On any other popup (a confirm, input,
-  note… opened by `Enter` or a hotkey), `Space` **does nothing**; those are closed by `Esc` or by their own flow. The one
-  exception: on checkbox options (a checkbox popup's list, the checkboxes drawn on a form), `Space` checks or unchecks
+  note… opened by `Enter` or a hotkey), `Space` **does nothing**; those are closed by `Esc` or by their own flow. The
+  exceptions: inside a mode (K11, a mode in a popup included), `Space` opens that mode's Space menu; on checkbox options (a checkbox popup's list, the checkboxes drawn on a form), `Space` checks or unchecks
   ([components/input/checkbox](../components/input/checkbox.md), [components/dialog/form](../components/dialog/form.md)).
 - A popup's own operations run by hotkey, disclosed in that popup's `?` help (K6; which of them the bottom-border hint
-  shows follows each component's hint); no Space menu is stacked on top of a popup.
+  shows follows each component's hint); no Space menu is stacked on top of a popup (except for a mode inside it, K11).
 
 **Why**: an entry key that opens but cannot close is a trap — users reach for the same key to get out and nothing
 happens. But if `Space` could also close a confirm, it would double as `Esc`'s "cancel" (P4); and if it could stack a
@@ -307,7 +307,7 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 
 | Key | Inside a mode |
 |---|---|
-| `Space` | **opens no menu**; does nothing |
+| `Space` | opens the mode's Space menu (below) |
 | `!` | does nothing (the App Log opens outside a mode) |
 | `?` | the mode's key reference (read-only, K6): which keys work in the mode and what they do |
 | `Esc` | leaves the mode (K4), back to the state before it was entered |
@@ -316,9 +316,13 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 
 - **Inside a mode only the mode's own keys and the core keys above work**: panel hotkeys and global hotkeys do nothing,
   silently.
-- A mode has no Space menu, and no list of keys to run either. The mode's own keys (move, select, drag) are pressed
-  directly; they are disclosed in the `?` key reference and in the footer / bottom-border hint (how the footer looks
-  inside a mode: [components/layout/screen](../components/layout/screen.md)).
+- **The mode's Space menu** ("Inside a mode" in [components/dialog/menu](../components/dialog/menu.md)): it lists only
+  what can be done in the mode, in two sections — **item operations**: what can be done now to the item under the
+  cursor (or the selected range), picking one being the same as pressing its key (e.g. `[C]ompare` in the Compare mode,
+  `[y] Copy` once a selection has started); **mode operations**: the mode's own keys — the movement keys are only shown,
+  not run, while what really does something, such as leaving the mode, runs as usual. Panel, item and global actions are
+  never listed. The mode's keys are also disclosed in the `?` key reference and in the footer / bottom-border hint (how
+  the footer looks inside a mode: [components/layout/screen](../components/layout/screen.md)).
 - **A mode shows itself**: the mode name appears at the right of the top border of the frame the mode lives in (panel or
   popup), and the frame turns the mode colour; leaving the mode restores both. The mode name is a word, not colour
   alone: a focused panel in a mode still shows that it has focus (L5). How it looks:
@@ -328,12 +332,14 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   they never switch panels) and need no extra response; the footer stays as it is while a popup is open and does not
   change to the mode's words ([components/layout/screen](../components/layout/screen.md), the footer).
 - **A mode on a PTY** (e.g. a terminal's history mode or selection mode): the focus is still in the PTY, so any key other
-  than the mode's own keys, `?` and `Esc` first leaves the mode, then goes to the child process by K10 — `q` and `Ctrl-C`
+  than the mode's own keys, `Space`, `?` and `Esc` first leaves the mode, then goes to the child process by K10 — `q` and `Ctrl-C`
   too; they do not start the quit flow ([components/dialog/terminal](../components/dialog/terminal.md)).
 
-**Why**: a mode is always a special case; its keys are movement and selection, pressed directly and in runs, not actions
-on an item, and there is no item / panel / global to split them by. Turning them into a list you pick and run from (even
-`h j k l` run from a list) only adds a detour; all the user needs is "what can I press here", which is exactly `?`'s job.
+**Why**: "when in doubt, hit `Space`" holds inside a mode too — the family's idea is zero learning cost, so when the
+user in a mode does not know what to do, `Space` must answer (the user, 2026-10-22). A mode's keys are mostly movement
+and selection, pressed directly and in runs, so the menu has two sections: what can be done to the thing at hand runs
+from the menu as usual, while the movement keys only tell what can be pressed — "running one step down" from a list
+makes no sense.
 Hotkeys do nothing inside a mode: a drag or a selection is never switched away from halfway (pressing the hotkey that
 switches screens in the middle of a drag would leave the drag in a state nobody can describe), and the mode's `?` only
 needs to list the mode's keys; to do something else, `Esc` first — the same idea as a PTY. The digit keys switch panels,
