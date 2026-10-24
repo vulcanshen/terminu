@@ -64,6 +64,8 @@ Each field takes one of two arrangements.
   or a checkbox popup instead (opened with `Enter`).
 - **A switch** (a value that is only on or off) may be drawn as one checkbox or as a radio with the two options off and
   on, as the app chooses ([`input/checkbox`](../input/checkbox.md), [`input/radio`](../input/radio.md)).
+- A checkbox group's first row is `Select all` ("Select all" in [`input/checkbox`](../input/checkbox.md)), on the
+  label's row with the options below it; it does not count towards the five.
 - Options always run down, one a row: the focus block runs from the option to the frame, and across it would cover the
   options after it and hide whether they are chosen.
 - The glyphs are in [`input/radio`](../input/radio.md) and [`input/checkbox`](../input/checkbox.md).
@@ -182,7 +184,7 @@ only a toast added on success: the form is still open, and the user needs to kno
 ### Moving
 
 In a form the focus moves by **item**: a field that takes typing or opens a popup is one item, each option of a radio or
-checkbox field is an item of its own, and each button is one item; the error row, while it holds an error, is an item too
+checkbox field is an item of its own (and so is a checkbox group's `Select all`), and each button is one item; the error row, while it holds an error, is an item too
 (after the last field). The items fall into two areas: the **field area**, the fields and the error row, and the
 **action area**, the buttons.
 
@@ -209,7 +211,7 @@ checkbox field is an item of its own, and each button is one item; the error row
   would open differently from an edit, and giving up would take two `Esc`s (the first closing only the input popup).
   What opens is always the form itself, left with one `Esc`.
 - **Landing on a radio or checkbox field, the focus stops on the first option with a value**: a radio on the chosen
-  option, a checkbox group on the first ticked one; with no value, on the first. The same in all three cases: the app
+  option, a checkbox group on the first ticked option; with no value, on the first option (`Select all` does not count). The same in all three cases: the app
   opening the form at that field, a blocked submit jumping to it, and `e` on the error row going back to it. Landing,
   the focus is on the field's current value.
 
@@ -237,7 +239,7 @@ to `Save` in the action area, and `Tab` on `Save` returns to privatekey.
   - A checkbox popup opened from a form: `Space` ticks, `Enter` writes the whole group back, `Esc` cancels
     ([`input/checkbox`](../input/checkbox.md)).
 - **On a radio option**: chooses it; **on a checkbox option**: flips it in place (`Space` flips it too, as in a checkbox
-  popup, Rules K5). Neither opens a popup; the focus stays
+  popup, Rules K5; on `Select all` the whole group flips). Neither opens a popup; the focus stays
   where it is and the change is immediate; a wrong choice is undone by pressing again right there.
 - **On a button**: presses it — submitting, or doing that button's action (see "Action area").
 

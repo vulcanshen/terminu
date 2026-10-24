@@ -8,6 +8,9 @@ A switch, or ticking several from a group. A switch and a group of five or fewer
 panel and flip in place; more than five open a checkbox popup (e.g. kbu's namespace picker). The checkbox popup is a
 kind of finder ([`input/finder`](finder.md)): only what differs is written here.
 
+A group of options always comes with a `Select all` row of its own, not an option (see "Select all" below); a switch
+has none.
+
 A switch may instead be drawn as a [`radio`](radio.md) with two options, `off` and `on`, the app's choice.
 
 ## Look
@@ -27,6 +30,33 @@ A switch may instead be drawn as a [`radio`](radio.md) with two options, `off` a
 not Green: Green says in effect, and a ticked option not available gets no effect; the solid tick's shape already says
 it is ticked.
 
+## Select all
+
+- A group of options (a switch is not one) always comes with a `Select all` row, drawn first: in a form or on a panel on
+  the label's row, the options below it; in a checkbox popup as the list's first row, scrolling with the list. Its
+  glyph and colour are drawn as an option's, Green when ticked; the focus and the cursor stop on it.
+- **It is not an option**: it is not part of the value and does not count towards the five; only the options' ticks are
+  written back. The app adds no option of its own standing for all of them (e.g. kbu's old `All Namespaces`): that is a
+  misuse. What every option ticked means is the app's reading (e.g. kbu reads it as the whole cluster, namespaces
+  created later included).
+- **Flipping it**: ticking it ticks every option, unticking it unticks them all, options not available included. The
+  key and when it takes effect are an option's: at once in a form or on a panel; in a checkbox popup only the ticks on
+  screen change, written back on `Enter`.
+- **It shows the state as it is**: it is ticked only while every option is. Unticking any option unticks it; ticking
+  them all one by one ticks it; opened with all of them ticked, it is ticked.
+- **Hidden while filtering**: while the checkbox popup's typing row holds text, the row is not drawn; it comes back when
+  the text is cleared.
+
+E.g. `default`, `kube-system`, `kube-public` and `monitoring`, with `kube-system` and `kube-public` ticked: `Select all`
+is not ticked. `Space` on `Select all` ticks all four, and it is ticked too; `Space` on `default` then unticks it, and
+`Select all` goes off with it while the other three stay.
+
+**Why**: ticking and unticking a whole group is something every group needs (the GUI convention); in the component it
+is the same in every app, and no app builds its own. An app's own "all" option fights the other ticks: tick it, then
+`default`, and what is written back is still all, `default` quietly lost (kbu's KB31). The row shows the group's true
+state; while filtering, the options filtered out cannot be seen, and however it were drawn it would not be the true
+state at that moment, so it is hidden (the user, 2026-10-24).
+
 ## Keys
 
 **In a form or a panel**: `Enter` flips it in place; the focus stays, and it takes effect at once. In a form `Space`
@@ -37,8 +67,8 @@ hint: `Enter|Space:toggle` in a form ([`dialog/form`](../dialog/form.md)); on a 
 **The checkbox popup**:
 
 - It opens with the focus on the list and the cursor on the option the app names (where it starts is the app's choice;
-  the first option when none is named).
-- **`Space`**: ticks or unticks the cursor's row — only the tick on screen changes; nothing is written back and nothing
+  the first option, not `Select all`, when none is named).
+- **`Space`**: ticks or unticks the cursor's row (the whole group on `Select all`, see "Select all") — only the tick on screen changes; nothing is written back and nothing
   takes effect (an exception to Rules K5).
 - **`Enter`**: writes back the whole set currently ticked at once and closes the popup; only then does it take effect.
   Opened from a form, it is written back to that field, the form notes it as changed, and the focus stays on that

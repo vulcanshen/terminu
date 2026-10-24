@@ -7,6 +7,8 @@
 一個開關，或從一組裡勾好幾個。開關與五個以內的一組，直接畫在表單或 panel 上、在原地翻；超過五個，開 checkbox popup
 （例：kbu 的 namespace picker）。checkbox popup 是 finder 的一種（[`input/finder`](finder-zh_TW.md)）：這裡只寫不同的地方。
 
+一組選項一定帶一列全選 `Select all`，是元件自己的一列，不是選項（見下面的「全選」）；一個開關沒有。
+
 一個開關也可以畫成 `off`、`on` 兩個選項的 [`radio`](radio-zh_TW.md)，由 app 選。
 
 ## 長相
@@ -21,6 +23,25 @@
 glyph 線條可能太細，看不清楚。不可用的選項整列用 Surface2、勾也不用 Green：Green 說的是「生效中」，不可用的選項勾著也拿不到
 效果；實心打勾的形狀已經說了它勾著。
 
+## 全選
+
+- 一組選項（一個開關不算）一定帶一列 `Select all`，畫在第一列：表單與 panel 上在 label 那一列，選項接在下面；checkbox popup
+  裡是清單的第一列，跟著清單捲。glyph 與顏色照選項畫，勾著是 Green；focus 與 cursor 照樣能停。
+- **它不是選項**：不算進值，也不算在「五個以內」裡；寫回的只有選項的勾。app 不另外放一個代表全部的選項（例：kbu 舊的
+  `All Namespaces`），那是用錯了；每一個都勾著代表什麼由 app 解讀（例：kbu 讀成整個 cluster，之後新建的 namespace 也算）。
+- **翻它**：勾起來，每一個選項都勾上；取消，每一個都取消；不可用的選項也算。鍵與生效的時機都跟選項一樣：表單、panel 上
+  馬上生效；checkbox popup 裡只改畫面上的勾，`Enter` 才寫回。
+- **它反映現在的狀態**：每一個選項都勾著，它才勾著。取消任何一個，它跟著取消；一個一個勾滿了，它跟著勾上；打開時就全勾著，
+  它也勾著。
+- **篩選時藏起來**：checkbox popup 的打字列有字時不畫這一列，清掉才回來。
+
+例：`default`、`kube-system`、`kube-public`、`monitoring`，勾著 `kube-system`、`kube-public`：`Select all` 沒勾。在 `Select all`
+上按 `Space`，四個都勾上，它也勾上；再到 `default` 上按 `Space`，`default` 取消，`Select all` 跟著取消，其他三個照舊。
+
+**為什麼**：勾一組，全選與全取消是一定會用到的操作（GUI 的慣例）；放在元件裡，每個 app 都一樣，也不用自己做。app 自己放的
+「全部」選項會跟其他勾打架：先勾它再勾 `default`，寫回的還是全部，`default` 被默默吃掉（kbu 的 KB31）。這一列反映的是整組真實
+的狀態；篩選時看不到被篩掉的選項，它不管怎麼畫都不是當下真實的狀態，所以藏起來（user 2026-10-24）。
+
 ## 按鍵
 
 **表單或 panel 上**：`Enter` 在原地翻，focus 不動，馬上生效。表單上 `Space` 也能翻（Rules K5 的例外，跟 checkbox popup 一樣）；
@@ -29,8 +50,8 @@ panel 上的 `Space` 照樣打開 Space menu。hint：表單上 `Enter|Space:tog
 
 **checkbox popup**：
 
-- 打開時 focus 在清單上，cursor 停在 app 指定的那一項（從哪一項開始由 app 決定，沒指定就是第一項）。
-- **`Space`**：勾或取消勾 cursor 那一列 —— 只改畫面上的勾，不寫回、不生效（Rules K5 的例外）。
+- 打開時 focus 在清單上，cursor 停在 app 指定的那一項（從哪一項開始由 app 決定，沒指定就是第一個選項，不是 `Select all`）。
+- **`Space`**：勾或取消勾 cursor 那一列（在 `Select all` 上是整組，見「全選」）—— 只改畫面上的勾，不寫回、不生效（Rules K5 的例外）。
 - **`Enter`**：把目前勾的整組一次寫回去、popup 關掉，這時才生效。從表單打開的，寫回那一欄、表單記成改過、focus 留在那一欄；
   單獨打開的，這時才套用（例：kbu 的 panel 2 這時才重抓）。什麼都沒改就按 `Enter`：不改，關掉。
 - **`Esc`**：取消，勾的都不算，值維持打開時的樣子。不先問：一個 popup 只有一個值。
