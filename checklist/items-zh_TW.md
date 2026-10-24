@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.14 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.15 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -482,6 +482,9 @@ tdp v0.9.14 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | components-27 | components §控制字元 | 名字與短字（表單與 panel 上的值、清單的格子、menu、popup 標題、toast、confirm、error popup、選項、說明列、空狀態、statusbar、tab 名稱、finder 的項目）裡的控制字元，連 Tab、`\n`、顏色碼的 ESC，都畫成紅色的名字；不丟、不換成空白、不原樣送給終端機 | 都要 | 讓一個會出現在這些地方的名字（例：檔名、網頁標題）含 Tab 或 `\x1b[31m`，看清單、menu、confirm；或讀程式 |
 | components-28 | components §控制字元 | panel 上的 log 照終端機的樣子畫：`\n` 是換行，Tab 是空白，顏色碼照著上色，一行裡的 `\r` 只留最後的狀態，其他控制字元與不是顏色碼的序列畫成紅色的名字 | 串流內容 | 讓 log 收到一行彩色的字、一行 `10%\r100%`、一行含 `\x1b[2J`，看 log panel |
 | components-29 | components §控制字元 | app 標成「一行文字」的清單欄（原始碼、log 的一行）裡，Tab 畫成 `input_tab_width` 格空白，其他控制字元照舊畫成紅色的名字 | 都要 | 讓那一欄有一行含 Tab 的文字，看縮排；讀程式：哪些欄標了 |
+| components-30 | components §控制字元 | app 自己寫的名字與短字裡沒有換行字元：用一般資料（沒有刁鑽值）走過時，畫面上沒有紅色的 `\n` | 都要 | 用一般資料走過每個會跳訊息的地方（error popup、toast、confirm）；或讀程式：app 的字串裡沒有 `\n` |
+| components-31 | components §控制字元 | error popup 的訊息、toast、confirm 的內容有好幾列時，每一列另起一列、太長折行，列跟列之間不空列 | 都要 | 讓一個訊息有兩列，看畫面 |
+| components-32 | components §控制字元 | 外面來的好幾行字不整段放進短字：放說原因的那一行，全文寫進 App Log | 都要 | 讓外面的程式失敗、吐出好幾行錯誤，看 toast 或 error popup 與 App Log |
 
 ## color
 

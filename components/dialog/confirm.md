@@ -22,7 +22,9 @@ One question, `Enter` accepting and `Esc` cancelling, saying what follows (Rules
 
 - **Title**: `nf-md-shield_alert` (U+F0ECC) plus the action's name (`DELETE`, `QUIT`, `CONNECT`).
 - **The question comes last**, with the hint right below it. What to read before answering sits above the question, with
-  a blank row between them (Rules F1); with nothing to read, there is only the question.
+  a blank row between them (Rules F1); with nothing to read, there is only the question. The content may have several
+  sentences, given by the app a row each ("Control characters" in [components](../README.md)), with no blank row
+  between them.
 - **Colours**: the question in Text, not bold; the content in Overlay0; the warning sentence in the content (e.g. "This
   cannot be undone", "2 sessions will be closed") in Peach, which sentence counts as a warning being up to the app.
 - **Too long**: the question and the content both wrap (as in [the components' "Wrapping"](../README.md)), never cut. When the content is long, only the content scrolls

@@ -26,7 +26,8 @@ deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast.
   bottom border (the exit key); on a screen without panels, the same position.
 - **Width**: the message is known when it opens, so it follows "content width known when it opens" in
   [`layout/popup`](../layout/popup.md).
-- **Text**: centred. When too long it wraps (as in [the components' "Wrapping"](../README.md)), every row centred. How
+- **Text**: centred. It may have several rows, given by the app a row at a time ("Control characters" in
+  [components](../README.md)), each starting a row of its own. When too long it wraps (as in [the components' "Wrapping"](../README.md)), every row centred. How
   many rows at most is up to the app; the spec sets no limit. When the app sets one and a message goes past it, the last
   row ends with `…`, and the full message goes to an error popup or the app's log.
 - **Four kinds**: the title names the kind.
