@@ -35,17 +35,32 @@ it is ticked.
 - A group of options (a switch is not one) always comes with a `Select all` row, drawn first: in a form or on a panel on
   the label's row, the options below it; in a checkbox popup as the list's first row, scrolling with the list. Its
   glyph and colour are drawn as an option's, Green when ticked; the focus and the cursor stop on it.
+- **The options sit two cells further in**: it shows the row is over the ones below (two cells further in, as a
+  panel group's items, [`layout/panel`](../layout/panel.md)). While it is hidden by a filter the options stay where
+  they are, not shifting.
 - **It is not an option**: it is not part of the value and does not count towards the five; only the options' ticks are
   written back. The app adds no option of its own standing for all of them (e.g. kbu's old `All Namespaces`): that is a
   misuse. What every option ticked means is the app's reading (e.g. kbu reads it as the whole cluster, namespaces
   created later included).
-- **Flipping it**: ticking it ticks every option, unticking it unticks them all, options not available included. The
-  key and when it takes effect are an option's: at once in a form or on a panel; in a checkbox popup only the ticks on
-  screen change, written back on `Enter`.
-- **It shows the state as it is**: it is ticked only while every option is. Unticking any option unticks it; ticking
-  them all one by one ticks it; opened with all of them ticked, it is ticked.
+- **Flipping it**: ticking it ticks every option, unticking it unticks them all, options not available included and
+  disabled ones not (an option that cannot be changed now in a form, "Disabled fields and options are skipped" in
+  [`dialog/form`](../dialog/form.md), stays as it is). The key and when it takes effect are an option's: at once in a
+  form or on a panel; in a checkbox popup only the ticks on screen change, written back on `Enter`.
+- **It shows the state as it is**: it is ticked only while every option is (disabled ones not counted; with every
+  option disabled, it is disabled too). Unticking any option unticks it; ticking them all one by one ticks it; opened
+  with all of them ticked, it is ticked.
 - **Hidden while filtering**: while the checkbox popup's typing row holds text, the row is not drawn; it comes back when
   the text is cleared.
+- **The focus and the cursor never start on it**; only moving reaches it: a form opening with it as the first item
+  starts on the first option; a checkbox popup with no option named starts on the first option; landing on a checkbox
+  group in a form stops on the first ticked option.
+
+```
+┃ Tags   󰄱 Select all                  ┃
+┃          󰄲 web                       ┃
+┃          󰄱 db                        ┃
+┃          󰄲 cache                     ┃
+```
 
 E.g. `default`, `kube-system`, `kube-public` and `monitoring`, with `kube-system` and `kube-public` ticked: `Select all`
 is not ticked. `Space` on `Select all` ticks all four, and it is ticked too; `Space` on `default` then unticks it, and

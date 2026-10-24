@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.9.12 — 2026-10-24
+
+Settled with the user after terminu-go drew v0.9.11's `Select all` (KB31).
+
+- input/checkbox: the options sit two cells further in than `Select all`, as a panel group's items, so the row reads as
+  over them; hidden by a filter, the options stay where they are. Disabled options are not flipped by it and not
+  counted; with every option disabled it is disabled too. The focus and the cursor never start on it (dialog/form's
+  opening follows)
+- checklist: form-14 and form-59 reworded, checkbox-31 to checkbox-33 added (1453 items)
+
 ## v0.9.11 — 2026-10-24
 
 What the user found testing kbu by hand, settled with the user (from kbu, KB31).

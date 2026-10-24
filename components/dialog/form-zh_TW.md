@@ -55,7 +55,7 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 - 選項**五個以內**的 radio、checkbox 畫在表單上；超過五個，改用 select 或 checkbox popup（按 `Enter` 打開）。
 - **開關**（只有開、關兩種的值）可以畫成一個 checkbox，也可以畫成 off／on 兩個選項的 radio，由 app 選
   （[`input/checkbox`](../input/checkbox-zh_TW.md)、[`input/radio`](../input/radio-zh_TW.md)）。
-- checkbox 組的第一列是 `Select all`（[`input/checkbox`](../input/checkbox-zh_TW.md) 的「全選」），在 label 那一列，選項接在下面；
+- checkbox 組的第一列是 `Select all`（[`input/checkbox`](../input/checkbox-zh_TW.md) 的「全選」），在 label 那一列，選項接在下面、多縮兩格；
   它不算在五個以內。
 - 一律直排，一個選項一列：focus 色塊從那個選項一直到框，橫排時會蓋住後面的選項，看不出它們選了沒。
 - glyph 見 [`input/radio`](../input/radio-zh_TW.md) 與 [`input/checkbox`](../input/checkbox-zh_TW.md)。
@@ -169,7 +169,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
   `j|k` 不會走出這一區，要到另一區用 `Tab`：按鈕多了以後，欄位與按鈕混在同一串裡走，要按很多次才到得了想要的那一個。
 - **停用的欄位與選項跳過**：`j|k` 不停在上面；照樣畫在原位。停用就是「現在不能改」，停在上面按 `Enter` 也沒事可做。
   checkbox 不可用的選項不是停用：照常停、照常翻（[`input/checkbox`](../input/checkbox-zh_TW.md)）。
-- **打開時**：focus 在第一個能停的項目（跳過停用的），新增與編輯都一樣；app 從某一欄打開表單時（例：panel 上對 Port 那一列
+- **打開時**：focus 在第一個能停的項目（跳過停用的；checkbox 組的 `Select all` 也跳過，停在它的第一個選項），新增與編輯都一樣；app 從某一欄打開表單時（例：panel 上對 Port 那一列
   按編輯），停在那一欄。新增時也不自動打開第一欄的 input popup：只省一次 `Enter`，卻讓新增與編輯打開的樣子不同，而且
   想放棄要按兩次 `Esc`（第一次只關 input popup）。打開的一定是表單本身，一次 `Esc` 就離開。
 - **跳進 radio、checkbox 那一欄時，停在第一個有值的選項**：radio 停在已選的那一個，checkbox 組停在第一個勾起來的選項；都沒有值就停
