@@ -38,9 +38,10 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   | input、表單、note | 由 app 選：它編輯或顯示的東西（例：Rename 用一支筆）；避開太細的 outline glyph |
 
 - **hint**：放在下框 `┗━ ` 後面，寫法照 Rules M5。
-  - **順序**：`Enter` 第一 → 這個 popup 自己的鍵 → 換塊的 `Tab:…` → `Esc` 最後。terminal 例外：出口鍵第一（[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
+  - **順序**：`Enter` 第一 → 切 tab 的 `h|l:tab` → 這個 popup 自己的鍵 → 換塊的 `Tab:…` → `Esc` 最後。terminal 例外：出口鍵第一（[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
   - **不寫在項目之間移動的鍵**（`j|k`、`↑|↓`），只寫動作與離開：使用者操作一下就知道。切換塊的鍵不算移動，
-    照寫（例：finder 的 `Tab:list`、表單的 `Tab:actions`）。
+    照寫（例：finder 的 `Tab:list`、表單的 `Tab:actions`）。切 tab 的 `h|l` 也照寫成 `h|l:tab`：`h|l` 在這裡換的是整頁內容，
+    不是在項目之間走（例：比較的 `UNIFIED`／`SPLIT`、有好幾頁的 viewer）；只有一個 tab、或 `h|l` 現在不切 tab（例：選取模式裡）時不寫。
   - **框到了最寬還放不下時，從尾端整組捨棄，但最後的 `Esc` 一定留著**：從 `Esc` 前面的那一組開始，一組一組往前捨，不截在
     項目中間；下框右邊的捲動位置留著。框的寬度本來就算進 hint 與捲動位置（見下面的「寬度」），只有 terminal 太窄時才會捨棄。
     例：`Enter:install Tab:actions Esc:cancel` 放不下時是 `Enter:install Esc:cancel`，再放不下是 `Esc:cancel`。

@@ -73,7 +73,7 @@
   再按一次 `?` 也能關（Rules K6）。
 - **表單上的打字說明只收 `Enter`、`Esc`**：其他可以打的字（包括 `q`、`?`）都不作用 —— 不進離開流程、不開 key reference
   （[`dialog/form`](form-zh_TW.md) 的「在欄位上打字」）。
-- **hint**：note 自己的熱鍵寫在前面，`Esc:close` 放最後。例：`y:copy /:search v:visual Esc:close`。
+- **hint**：note 自己的熱鍵寫在前面，`Esc:close` 放最後；有 tab 時 `h|l:tab` 寫在最前面（[`layout/popup`](../layout/popup-zh_TW.md) 的 hint）。例：`y:copy /:search v:visual Esc:close`。
 
 **為什麼**：使用者自己打開的 note，看完按 `Esc` 是最直覺的；`Space` 在 `less`、`man` 這類閱讀器裡是往下翻頁，熟的人在 note 上按
 `Space` 想往下翻，note 卻關掉了。自己跳出來的 error popup 與打字說明，出現時使用者的手正在打字或正要送出，`Enter` 是反射動作；

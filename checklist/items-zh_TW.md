@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.13 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.14 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -574,9 +574,9 @@ tdp v0.9.13 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | panel-14 | panel §框 | focus 在 panel filter 的打字列上時不寫 hint，focus 回到清單時 hint 回來 | panel filter | 按 `/` 看下框，再按 `Enter` 回清單看下框 |
 | panel-15 | panel §框 | focus 在 panel 裡的 PTY 時不寫 hint，離開 PTY 時回來 | PTY | 進 PTY 看下框，按出口鍵離開再看 |
 | panel-16 | panel §框 | 框上的字與角之間隔一段線：hint 是 `┗━ ` 開頭、捲動位置是 ` ━┛` 結尾、模式名後面是 `┣━┓`；只有 `[N] label` 膠囊緊接左上角 | 都要 | 看 panel 的四個角 |
-| panel-17 | panel §框 | hint 照 popup 的 hint 的順序：`Enter` 第一，再接這個 panel 自己的鍵 | 都要 | 看各 panel 的下框 hint，`Enter` 排第一（例 `Enter:logs .:helm`） |
+| panel-17 | panel §框 | hint 照 popup 的 hint 的順序：`Enter` 第一，有 tab 時接 `h\|l:tab`，再接這個 panel 自己的鍵 | 都要 | 看各 panel 的下框 hint，`Enter` 排第一（例 `Enter:logs .:helm`） |
 | panel-18 | panel §框 | hint 寫這個 panel 自己的鍵：`Enter` 在這裡做什麼、常用的熱鍵 | 都要 | 看各 panel 的 hint |
-| panel-19 | panel §框 | hint 不寫移動鍵 | 都要 | 看各 panel 的 hint 裡沒有 `j\|k` 這類鍵 |
+| panel-19 | panel §框 | hint 不寫移動鍵，例外是有兩個以上的 tab 時寫 `h\|l:tab` | 都要 | 看各 panel 的 hint 裡沒有 `j\|k` 這類鍵；有 tab 的 panel 有 `h\|l:tab` |
 | panel-20 | panel §框 | hint 不寫 footer 已經有的 core key | 都要 | 比對 hint 與 footer，沒有重複的 core key |
 | panel-21 | panel §框 | 有 focus 時 hint 的鍵 Blue、說明 Overlay0 | 都要 | 看有 focus 的 panel 的 hint |
 | panel-22 | panel §框 | 失焦時 hint 照樣留著，跟著 panel 一起淡化 | 多 panel | 按 `Tab` 換走，看原本 panel 的 hint 還在、變暗 |
@@ -722,8 +722,8 @@ tdp v0.9.13 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | popup-7 | popup §外框 | 標題太長從尾端截，加 `…` | 都要 | 對名稱很長的東西打開 popup，或把終端機縮窄 |
 | popup-8 | popup §外框 | 標題後面接 tab 時，tab 照膠囊串畫 | popup tab | 打開有 tab 的 popup，看標題後面 |
 | popup-9 | popup §外框 | tab 跟圓角的標題之間隔一段線（`┏━TITLE━CONSOLE…`） | popup tab | 看標題膠囊與第一個 tab 之間 |
-| popup-10 | popup §外框 | hint 的順序：`Enter` 第一 → 這個 popup 自己的鍵 → 換塊的 `Tab:…` → `Esc` 最後 | 都要 | 打開各種 popup，看 hint 的順序 |
-| popup-11 | popup §外框 | hint 不寫在項目之間移動的鍵（`j\|k`、`↑\|↓`） | 都要 | 看各種 popup 的 hint |
+| popup-10 | popup §外框 | hint 的順序：`Enter` 第一 → 切 tab 的 `h\|l:tab` → 這個 popup 自己的鍵 → 換塊的 `Tab:…` → `Esc` 最後 | 都要 | 打開各種 popup，看 hint 的順序 |
+| popup-11 | popup §外框 | hint 不寫在項目之間移動的鍵（`j\|k`、`↑\|↓`）；有兩個以上的 tab、`h\|l` 切 tab 時寫 `h\|l:tab` | 都要 | 看各種 popup 的 hint；打開比較的 viewer 看有 `h\|l:tab` |
 | popup-12 | popup §外框 | 框到了最寬還放不下時，hint 從 `Esc` 前面的那一組開始往前整組捨棄，不截在項目中間；最後的 `Esc` 一定留著 | 都要 | 把終端機縮到很窄，打開寬度到頂的 popup，看下框留著 `Esc` |
 | popup-13 | popup §外框 | hint 捨棄時，下框右邊的捲動位置留著 | 都要 | 同上，讓內容也放不下，看右下 |
 | popup-14 | popup §外框 | 框上的字與角之間隔一段線：`┏━TITLE`、`┗━ Enter:run`、`4 of 12 ━┛` | 都要 | 看 popup 的四個角 |

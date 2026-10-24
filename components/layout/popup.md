@@ -42,11 +42,13 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
   | input, form, note | chosen by the app: the thing it edits or shows (e.g. a pen for Rename); avoid outline glyphs that are too thin |
 
 - **Hint**: after `┗━ ` on the bottom border, written as Rules M5 says.
-  - **Order**: `Enter` first → this popup's own keys → the `Tab:…` that switches parts → `Esc` last. The terminal is the
+  - **Order**: `Enter` first → the `h|l:tab` that switches tabs → this popup's own keys → the `Tab:…` that switches parts → `Esc` last. The terminal is the
     exception: its exit key comes first ([`dialog/terminal`](../dialog/terminal.md)).
   - **Keys that move between items are left out** (`j|k`, `↑|↓`); only actions and leaving are written: users find
     movement out by using it. A key that switches parts is not movement and is written (e.g. a finder's `Tab:list`, a
-    form's `Tab:actions`).
+    form's `Tab:actions`). The `h|l` that switches tabs is written too, as `h|l:tab`: there `h|l` changes the whole page,
+    not the item (e.g. the comparison's `UNIFIED` and `SPLIT`, a viewer with several pages); not when there is only one
+    tab, or while `h|l` does not switch tabs (e.g. in the selection mode).
   - **When it still does not fit at the widest frame, whole pairs are dropped from the end, but the last `Esc` always
     stays**: starting from the pair before `Esc`, pairs are dropped one by one towards the front, never cut mid-pair; the
     scroll position at the right of the bottom border stays. The frame's width already counts the hint and the scroll
