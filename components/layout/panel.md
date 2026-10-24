@@ -78,7 +78,8 @@ in [`screen`](screen.md).
 ```
 
 **Hint**: written and ordered like the hint in [`popup`](popup.md) (`Enter` first). It holds this panel's own keys —
-what `Enter` does here, the common hotkeys; not the movement keys, nor the core keys the footer already has; all the keys
+what `Enter` does here, the common hotkeys; not the movement keys, except the `h|l` that switches tabs: with two tabs or
+more it is written `h|l:tab`, after `Enter` (as in the [`popup`](popup.md) hint); nor the core keys the footer already has; all the keys
 are in the Space menu and `?`. When the list has no items (a panel filter matched nothing, or it was empty to begin
 with), `Enter` and the hotkeys on an item are dropped, and only those on the whole panel stay — as with a finder and a
 form's buttons, the hint shows only keys that do something ([`input/finder`](../input/finder.md),
@@ -94,7 +95,9 @@ the keys for typing. The same in a PTY: the panel's keys all go to the subproces
 already in the footer ([`screen`](screen.md)). Text on the frame keeps away from the corners, the capsule alone excepted — the same rule for all
 four corners, so there is no odd one to remember; the capsule is the panel's name, easiest to find against the corner.
 The loading icon follows the whole capsule chain: the chain is one whole (where this is), loading is a state, and it
-does not split a row of tabs.
+does not split a row of tabs. The `h|l` that switches tabs is in the hint as the datetime picker's `h|l:month` is: it changes
+the whole page rather than moving between items, but it is a movement key, and left out, the other tabs are hard to
+find (the user, 2026-10-24, filu's FL27).
 
 ## Capsule chain
 

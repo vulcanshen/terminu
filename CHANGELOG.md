@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.9.14 — 2026-10-24
+
+What the user asked for in filu, settled with the user (from filu, FL27).
+
+- layout/panel and layout/popup: wherever `h|l` switches tabs, the hint writes `h|l:tab`, right after `Enter`: it
+  changes the whole page rather than moving between items, as the datetime picker's `h|l:month` does, and left out the
+  other tabs are hard to find. Not with only one tab, nor while `h|l` does something else (dialog/note follows)
+- checklist: panel-17, panel-19, popup-10 and popup-11 reworded (1455 items)
+
 ## v0.9.13 — 2026-10-24
 
 Settled with the user.

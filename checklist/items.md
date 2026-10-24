@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.13. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.14. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -574,9 +574,9 @@ The items of tdp v0.9.13. What each column means and what an item applies to: [R
 | panel-14 | panel §Frame | No hint while the focus is on a panel filter's typing row; it comes back when the focus returns to the list | panel filter | Press `/` and look at the bottom border, then press `Enter` to go back to the list and look again |
 | panel-15 | panel §Frame | No hint while the focus is in a PTY in the panel; it comes back on leaving the PTY | PTY | Enter the PTY and look at the bottom border, then press the exit key to leave and look again |
 | panel-16 | panel §Frame | Text on the frame keeps one line segment away from the corner: the hint starts with `┗━ `, the scroll position ends with ` ━┛`, the mode name is followed by `┣━┓`; only the `[N] label` capsule sits right after the top-left corner | everyone | Look at a panel's four corners |
-| panel-17 | panel §Frame | The hint is ordered like a popup's hint: `Enter` first, then this panel's own keys | everyone | Look at each panel's bottom-border hint; `Enter` comes first (e.g. `Enter:logs .:helm`) |
+| panel-17 | panel §Frame | The hint is ordered like a popup's hint: `Enter` first, `h\|l:tab` next when there are tabs, then this panel's own keys | everyone | Look at each panel's bottom-border hint; `Enter` comes first (e.g. `Enter:logs .:helm`) |
 | panel-18 | panel §Frame | The hint holds this panel's own keys: what `Enter` does here, the common hotkeys | everyone | Look at each panel's hint |
-| panel-19 | panel §Frame | The hint leaves out movement keys | everyone | Check that no panel's hint has keys such as `j\|k` |
+| panel-19 | panel §Frame | The hint leaves out movement keys, except `h\|l:tab` with two tabs or more | everyone | Check that no panel's hint has keys such as `j\|k`; a panel with tabs has `h\|l:tab` |
 | panel-20 | panel §Frame | The hint leaves out the core keys the footer already has | everyone | Compare the hint with the footer; no core key appears in both |
 | panel-21 | panel §Frame | When focused, the hint's keys are Blue and its descriptions Overlay0 | everyone | Look at the focused panel's hint |
 | panel-22 | panel §Frame | Unfocused, the hint stays and is dimmed with the panel | several panels | Press `Tab` to move away; check that the panel's hint is still there, dimmed |
@@ -722,8 +722,8 @@ The items of tdp v0.9.13. What each column means and what an item applies to: [R
 | popup-7 | popup §Frame | A title too long is cut at the end with `…` | everyone | Open a popup on something with a very long name, or narrow the terminal |
 | popup-8 | popup §Frame | Tabs after the title are drawn as the capsule chain | popup tab | Open a popup with tabs and look after the title |
 | popup-9 | popup §Frame | The tabs keep one line segment away from the rounded title (`┏━TITLE━CONSOLE…`) | popup tab | Look between the title capsule and the first tab |
-| popup-10 | popup §Frame | Hint order: `Enter` first → this popup's own keys → the `Tab:…` that switches parts → `Esc` last | everyone | Open various popups and look at the order of their hints |
-| popup-11 | popup §Frame | The hint leaves out keys that move between items (`j\|k`, `↑\|↓`) | everyone | Look at the hints of various popups |
+| popup-10 | popup §Frame | Hint order: `Enter` first → the `h\|l:tab` that switches tabs → this popup's own keys → the `Tab:…` that switches parts → `Esc` last | everyone | Open various popups and look at the order of their hints |
+| popup-11 | popup §Frame | The hint leaves out keys that move between items (`j\|k`, `↑\|↓`); with two tabs or more and `h\|l` switching them, `h\|l:tab` is written | everyone | Look at the hints of various popups; open the comparison viewer and find `h\|l:tab` |
 | popup-12 | popup §Frame | When the hint still does not fit at the widest frame, whole pairs are dropped working back from the one before `Esc`, never cut mid-pair; the final `Esc` always stays | everyone | Narrow the terminal a lot, open a popup at its full width and check that the bottom border keeps `Esc` |
 | popup-13 | popup §Frame | When pairs are dropped, the scroll position at the right of the bottom border stays | everyone | As above, with content that does not fit either, look at the bottom right |
 | popup-14 | popup §Frame | Text on the frame keeps one line segment away from the corner: `┏━TITLE`, `┗━ Enter:run`, `4 of 12 ━┛` | everyone | Look at a popup's four corners |

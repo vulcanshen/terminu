@@ -95,7 +95,8 @@ a file looks the same in the preview and in a viewer.
   and the typing explanation on a form close on `Enter` too; the key reference also closes on a second `?` (Rules K6).
 - **A form's typing explanation takes only `Enter` and `Esc`**: every other typeable character (`q` and `?` included)
   does nothing — no quitting, no key reference (typing on a field in [`dialog/form`](form.md)).
-- **Hint**: the note's own hotkeys first, `Esc:close` last. E.g. `y:copy /:search v:visual Esc:close`.
+- **Hint**: the note's own hotkeys first, `Esc:close` last; with tabs, `h|l:tab` comes first (the hint in
+  [`layout/popup`](../layout/popup.md)). E.g. `y:copy /:search v:visual Esc:close`.
 
 **Why**: for a note the user opened, `Esc` after reading is the most natural; `Space` pages down in readers such as
 `less` and `man`, and someone used to them presses `Space` on a note to page down, only to have the note close. When an

@@ -63,7 +63,8 @@ panel 的框、一般清單（含位置列、分組）、一列一個值的 pane
 ```
 
 **hint**：寫法與順序同 [`popup`](popup-zh_TW.md) 的 hint（`Enter` 第一）。內容是這個 panel 自己的鍵 —— `Enter` 在這裡做什麼、
-常用的熱鍵；不寫移動鍵，也不寫 footer 已經有的 core key；全部的鍵在 Space menu 與 `?`。清單一項都沒有時（panel filter
+常用的熱鍵；不寫移動鍵，例外是切 tab 的 `h|l`：有兩個以上的 tab 時寫 `h|l:tab`，放在 `Enter` 後面（跟 [`popup`](popup-zh_TW.md) 的 hint 一樣）；
+也不寫 footer 已經有的 core key；全部的鍵在 Space menu 與 `?`。清單一項都沒有時（panel filter
 篩到空，或本來就是空的），拿掉 `Enter` 與對項目的熱鍵，只留對整個 panel 的 —— 跟 finder、表單的按鈕一樣，hint 只寫按得動的鍵
 （[`input/finder`](../input/finder-zh_TW.md)、[`dialog/form`](../dialog/form-zh_TW.md)）。拿掉之後一個鍵都不剩時（例：唯讀的
 panel，或清單空了、又沒有對整個 panel 的鍵），下框左邊不寫 hint，只剩框線。有 focus 時鍵 Blue、說明 Overlay0；
@@ -74,7 +75,8 @@ panel，或清單空了、又沒有對整個 panel 的鍵），下框左邊不�
 （Rules K8），列出來會教使用者按錯；打字時的鍵 footer 已經寫了。PTY 裡也一樣：panel 的鍵都送給子程序，不會送進去的出口鍵 footer 已經寫了
 （[`screen`](screen-zh_TW.md) 的 footer）。框上的字都跟角隔一段線，只有膠囊例外 —— 四個角的規則一樣，
 不用記哪個角不同；膠囊是這個 panel 的名字，貼著角最好找。loading icon 接在整串膠囊後面：膠囊串是一個整體（這是哪裡），
-loading 是狀態，不切斷一串 tab。
+loading 是狀態，不切斷一串 tab。切 tab 的 `h|l` 跟 datetime picker 的 `h|l:month` 一樣寫在 hint 上：它換的是整頁內容，不是在項目之間走，
+可是它是移動鍵，不寫就很難發現有別的 tab 可以看（user 2026-10-24，filu 的 FL27）。
 
 ## 膠囊串
 
