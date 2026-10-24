@@ -65,7 +65,7 @@ Each field takes one of two arrangements.
 - **A switch** (a value that is only on or off) may be drawn as one checkbox or as a radio with the two options off and
   on, as the app chooses ([`input/checkbox`](../input/checkbox.md), [`input/radio`](../input/radio.md)).
 - A checkbox group's first row is `Select all` ("Select all" in [`input/checkbox`](../input/checkbox.md)), on the
-  label's row with the options below it; it does not count towards the five.
+  label's row with the options below it, two cells further in; it does not count towards the five.
 - Options always run down, one a row: the focus block runs from the option to the frame, and across it would cover the
   options after it and hide whether they are chosen.
 - The glyphs are in [`input/radio`](../input/radio.md) and [`input/checkbox`](../input/checkbox.md).
@@ -205,7 +205,8 @@ checkbox field is an item of its own (and so is a checkbox group's `Select all`)
 - **Disabled fields and options are skipped**: `j|k` do not stop on them; they are still drawn in place.
   Disabled means "cannot be changed now", and `Enter` on one would have nothing to do. A checkbox option not available
   is not disabled: the focus stops on it and it flips as usual ([`input/checkbox`](../input/checkbox.md)).
-- **On opening**: the focus is on the first item it can stop on (disabled ones skipped), for a new entry and an edit
+- **On opening**: the focus is on the first item it can stop on (disabled ones skipped, and a checkbox group's `Select all` too, for its
+  first option), for a new entry and an edit
   alike; when the app opens the form from one field (e.g. editing the Port row in a panel), it is on that field. A new
   entry does not open the first field's input popup by itself either: that would save only one `Enter`, but a new entry
   would open differently from an edit, and giving up would take two `Esc`s (the first closing only the input popup).

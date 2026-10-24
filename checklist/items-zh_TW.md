@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.11 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.12 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -799,7 +799,7 @@ tdp v0.9.11 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | form-11 | form §欄位的排法 | 上下式的欄位：label、值、錯誤的左緣對齊 | 表單 | 送出被擋後，看上下式的值、錯誤列與 label 的左緣在同一欄 |
 | form-12 | form §欄位的排法 | 左右式的 label 欄寬取左右式欄位裡最長的 label，上下式的 label 不算進去 | 表單 | 看左右式的值都從最長的左右式 label 後面同一欄開始 |
 | form-13 | form §選項畫在表單上 | 畫在表單或一列一個值的 panel 上的選項一律直排，一個選項一列 | radio、checkbox | 看選項沒有橫排 |
-| form-14 | form §移動（圖） | 表單與一列一個值的 panel 上左右式欄位的選項：第一個選項跟 label 同一列，其餘選項接在下面各一列、左緣對齊值，label 欄空白 | radio、checkbox | 看 radio 欄位第二個以後的選項，左緣對齊第一個選項 |
+| form-14 | form §移動（圖） | 表單與一列一個值的 panel 上左右式欄位的選項：第一個選項跟 label 同一列，其餘選項接在下面各一列、左緣對齊值，label 欄空白（checkbox 組的選項比 `Select all` 多縮兩格） | radio、checkbox | 看 radio 欄位第二個以後的選項，左緣對齊第一個選項 |
 | form-15 | form §focus 與 label | 欄位的 focus 色塊從值開始一直到框，蓋住右邊的留白 | 表單 | focus 停在一欄，看色塊從值的左緣到右框 |
 | form-16 | form §focus 與 label | 表單與一列一個值的 panel 上，選項的 focus 色塊從那個選項的 glyph 開始，一直到框 | radio、checkbox | focus 停在一個選項上看色塊 |
 | form-17 | form §focus 與 label | 值空著的欄位 focus 時也是一整塊底色 | 表單 | focus 停在空的欄位上看色塊 |
@@ -844,7 +844,7 @@ tdp v0.9.11 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | form-56 | form §移動 | 錯誤列屬於欄位區：`j\|k` 與 `e` 到得了，在它上面按 `Tab` 到動作區 | 表單 | 送出被擋後用 `j` 走到錯誤列，再按 `Tab` |
 | form-57 | form §移動 | 每一區各自頭尾繞回：欄位區最後一項（有錯誤時是錯誤列）往後回到第一欄，最後一個按鈕往後回到第一個按鈕 | 表單 | 在欄位區最後一項、最後一顆按鈕上按 `j` |
 | form-58 | form §移動 | 表單與一列一個值的 panel 上，停用的欄位與選項跳過，`j\|k` 不停在上面 | 表單、一列一個值的 panel | 用 `j` 經過停用的欄位 |
-| form-59 | form §移動 | 打開時 focus 在第一個能停的項目（跳過停用的），新增與編輯都一樣 | 表單 | 分別打開新增、編輯的表單看 focus |
+| form-59 | form §移動 | 打開時 focus 在第一個能停的項目（跳過停用的；checkbox 組的 `Select all` 也跳過，停在第一個選項），新增與編輯都一樣 | 表單 | 分別打開新增、編輯的表單看 focus |
 | form-60 | form §移動 | app 從某一欄打開表單時，focus 停在那一欄 | 表單 | 從 panel 的某一列打開編輯表單，看 focus |
 | form-61 | form §移動 | 打開時不自動打開任何欄位的 input popup：打開的一定是表單本身，一次 `Esc` 就離開 | 表單 | 打開新增表單，按一次 `Esc` 就回到原處 |
 | form-62 | form §移動 | 跳進 radio、checkbox 那一欄時（從那一欄打開、送出被擋、錯誤列按 `e`）停在第一個有值的選項：radio 已選的、checkbox 第一個勾的選項，都沒有值停第一個選項（`Select all` 不算） | 表單 | 讓 radio 那一欄出錯後送出，看 focus 停在哪個選項 |
@@ -1269,6 +1269,9 @@ tdp v0.9.11 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | checkbox-28 | checkbox §全選 | 勾 `Select all` 每一個選項都勾上，取消就都取消，不可用的選項也算；生效的時機跟選項一樣（popup 裡 `Enter` 才寫回） | checkbox | 在 `Select all` 上翻兩次，看每一列 |
 | checkbox-29 | checkbox §全選 | `Select all` 只在每一個選項都勾著時勾著：取消一個它跟著取消，一個一個勾滿它跟著勾上，打開時全勾著它也勾著 | checkbox | 全勾後取消一列，再勾回來 |
 | checkbox-30 | checkbox §全選 | checkbox popup 的打字列有字時不畫 `Select all`，清掉才回來 | checkbox | 打一個字看第一列，再清掉 |
+| checkbox-31 | checkbox §全選 | 選項比 `Select all` 多縮兩格；篩選時它藏起來，選項照樣縮著、不位移 | checkbox | 看選項的左緣；打一個字看選項有沒有移動 |
+| checkbox-32 | checkbox §全選 | 停用的選項不跟著 `Select all` 改，也不算進「每一個都勾著」；每一個選項都停用時它也停用 | checkbox | 有停用的選項時翻 `Select all` |
+| checkbox-33 | checkbox §全選 | focus 與 cursor 不從 `Select all` 開始：表單打開時、popup 沒指定時、跳進那一欄時都停在選項上 | checkbox | 打開第一欄是 checkbox 組的表單、打開 checkbox popup，看停在哪裡 |
 
 ## input/slider
 

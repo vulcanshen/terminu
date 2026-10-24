@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.11. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.12. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -799,7 +799,7 @@ The items of tdp v0.9.11. What each column means and what an item applies to: [R
 | form-11 | form §How a field is arranged | In a stacked field, the label, the value and the error share the same left edge | form | After a refused submit, look at a stacked field: the value, the error row and the label start in the same column |
 | form-12 | form §How a field is arranged | The label column of side-by-side fields is as wide as the longest label among the side-by-side fields; stacked labels do not count | form | Look at the side-by-side values: all start in the same column, after the longest side-by-side label |
 | form-13 | form §Options drawn in the form | Options drawn in a form or on a one-value-per-row panel always run down, one a row | radio or checkbox | Look at the options: none run across |
-| form-14 | form §Moving (diagram) | Options of a side-by-side field in a form or on a one-value-per-row panel: the first option on the label's row, each of the rest on a row of its own below, its left edge at the value's, the label column blank | radio or checkbox | Look at the second and later options of a radio field: their left edge lines up with the first option's |
+| form-14 | form §Moving (diagram) | Options of a side-by-side field in a form or on a one-value-per-row panel: the first option on the label's row, each of the rest on a row of its own below, its left edge at the value's, the label column blank (a checkbox group's options two cells further in than `Select all`) | radio or checkbox | Look at the second and later options of a radio field: their left edge lines up with the first option's |
 | form-15 | form §Focus and label | A field's focus block runs from the value all the way to the frame, covering the right padding | form | With the focus on a field, look at the block: from the value's left edge to the right border |
 | form-16 | form §Focus and label | In a form and on a one-value-per-row panel, an option's focus block runs from that option's glyph all the way to the frame | radio or checkbox | With the focus on an option, look at the block |
 | form-17 | form §Focus and label | A field with an empty value is still a full block of background when it has the focus | form | With the focus on an empty field, look at the block |
@@ -844,7 +844,7 @@ The items of tdp v0.9.11. What each column means and what an item applies to: [R
 | form-56 | form §Moving | The error row belongs to the field area: `j\|k` and `e` reach it, and `Tab` on it goes to the action area | form | After a refused submit, walk to the error row with `j`, then press `Tab` |
 | form-57 | form §Moving | Each area wraps at its own ends: past the last item of the field area (the error row, when it holds an error) comes the first field again; past the last button comes the first button | form | Press `j` on the last item of the field area and on the last button |
 | form-58 | form §Moving | In a form and on a one-value-per-row panel, disabled fields and options are skipped: `j\|k` do not stop on them | form or one value per row | Walk past a disabled field with `j` |
-| form-59 | form §Moving | On opening, the focus is on the first item it can stop on (disabled ones skipped), for a new entry and an edit alike | form | Open a new-entry form and an edit form, looking at the focus in each |
+| form-59 | form §Moving | On opening, the focus is on the first item it can stop on (disabled ones skipped, and a checkbox group's `Select all` too, for its first option), for a new entry and an edit alike | form | Open a new-entry form and an edit form, looking at the focus in each |
 | form-60 | form §Moving | When the app opens the form from one field, the focus is on that field | form | Open an edit form from a row of a panel and look at the focus |
 | form-61 | form §Moving | On opening, no field's input popup opens by itself: what opens is always the form itself, left with one `Esc` | form | Open a new-entry form and press `Esc` once: back where it was opened from |
 | form-62 | form §Moving | Landing on a radio or checkbox field (the app opening the form at that field, a blocked submit, `e` on the error row), the focus stops on the first option with a value: a radio on the chosen option, a checkbox on the first ticked option; with no value, on the first option (`Select all` does not count) | form | Give the radio field an error and submit; look at which option the focus stops on |
@@ -1269,6 +1269,9 @@ The items of tdp v0.9.11. What each column means and what an item applies to: [R
 | checkbox-28 | checkbox §Select all | Ticking `Select all` ticks every option, unticking it unticks them all, options not available included; it takes effect when an option would (in a popup only on `Enter`) | checkbox | Flip `Select all` twice and look at every row |
 | checkbox-29 | checkbox §Select all | `Select all` is ticked only while every option is: unticking one unticks it, ticking them all one by one ticks it, and it opens ticked when all are | checkbox | Tick all, untick one row, tick it back |
 | checkbox-30 | checkbox §Select all | While the checkbox popup's typing row holds text, `Select all` is not drawn; it comes back when the text is cleared | checkbox | Type a letter and look at the first row, then clear it |
+| checkbox-31 | checkbox §Select all | The options sit two cells further in than `Select all`; while a filter hides it, they stay where they are | checkbox | Look at the options' left edge; type a letter and see they do not move |
+| checkbox-32 | checkbox §Select all | Disabled options are not flipped by `Select all` and not counted in "every option ticked"; with every option disabled, it is disabled too | checkbox | Flip `Select all` with a disabled option in the group |
+| checkbox-33 | checkbox §Select all | The focus and the cursor never start on `Select all`: a form opening, a popup with no option named and landing on the field all stop on an option | checkbox | Open a form whose first field is a checkbox group and a checkbox popup, looking at where they start |
 
 ## input/slider
 

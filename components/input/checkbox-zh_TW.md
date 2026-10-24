@@ -27,13 +27,25 @@ glyph 線條可能太細，看不清楚。不可用的選項整列用 Surface2�
 
 - 一組選項（一個開關不算）一定帶一列 `Select all`，畫在第一列：表單與 panel 上在 label 那一列，選項接在下面；checkbox popup
   裡是清單的第一列，跟著清單捲。glyph 與顏色照選項畫，勾著是 Green；focus 與 cursor 照樣能停。
+- **選項比它多縮兩格**：看得出它管著下面這些（跟 panel 分組的項目一樣多縮兩格，[`layout/panel`](../layout/panel-zh_TW.md)）。
+  篩選時它藏起來，選項照樣縮著、不位移。
 - **它不是選項**：不算進值，也不算在「五個以內」裡；寫回的只有選項的勾。app 不另外放一個代表全部的選項（例：kbu 舊的
   `All Namespaces`），那是用錯了；每一個都勾著代表什麼由 app 解讀（例：kbu 讀成整個 cluster，之後新建的 namespace 也算）。
-- **翻它**：勾起來，每一個選項都勾上；取消，每一個都取消；不可用的選項也算。鍵與生效的時機都跟選項一樣：表單、panel 上
+- **翻它**：勾起來，每一個選項都勾上；取消，每一個都取消；不可用的選項也算，停用的不算（表單上現在不能改的選項，
+  [`dialog/form`](../dialog/form-zh_TW.md) 的「停用的欄位與選項跳過」，照樣維持原樣）。鍵與生效的時機都跟選項一樣：表單、panel 上
   馬上生效；checkbox popup 裡只改畫面上的勾，`Enter` 才寫回。
-- **它反映現在的狀態**：每一個選項都勾著，它才勾著。取消任何一個，它跟著取消；一個一個勾滿了，它跟著勾上；打開時就全勾著，
-  它也勾著。
+- **它反映現在的狀態**：每一個選項都勾著，它才勾著（停用的選項不算；每一個選項都停用時，它也停用）。取消任何一個，
+  它跟著取消；一個一個勾滿了，它跟著勾上；打開時就全勾著，它也勾著。
 - **篩選時藏起來**：checkbox popup 的打字列有字時不畫這一列，清掉才回來。
+- **focus 與 cursor 不從它開始**，移動才到得了它：表單打開時第一個項目是它，停在第一個選項；checkbox popup 沒指定時停第一個
+  選項；跳進表單上的 checkbox 組時停第一個勾起來的選項。
+
+```
+┃ Tags   󰄱 Select all                  ┃
+┃          󰄲 web                       ┃
+┃          󰄱 db                        ┃
+┃          󰄲 cache                     ┃
+```
 
 例：`default`、`kube-system`、`kube-public`、`monitoring`，勾著 `kube-system`、`kube-public`：`Select all` 沒勾。在 `Select all`
 上按 `Space`，四個都勾上，它也勾上；再到 `default` 上按 `Space`，`default` 取消，`Select all` 跟著取消，其他三個照舊。
