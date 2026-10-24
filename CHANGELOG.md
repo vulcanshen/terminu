@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.9.13 — 2026-10-24
+
+Settled with the user.
+
+- Rules K11 and layout/panel: a mode with layers adds each layer to its name after a `>`, with no spaces: a viewer's
+  selection mode, once selecting, is `Visual>select`. A layer added grows from the tail of the tag a letter a frame,
+  the right end staying, and going back takes it off the same way; `Esc` goes back one layer at a time
+- dialog/note: in the selection mode, `Esc` while selecting goes back to `Visual` (the selection gone, the cursor where
+  it is) instead of leaving the whole mode; the hint while selecting is `y:copy Esc:unselect` (dialog/menu follows)
+- checklist: K11-3, note-34 and note-37 reworded, panel-149 and panel-150 added (1455 items)
+
 ## v0.9.12 — 2026-10-24
 
 Settled with the user after terminu-go drew v0.9.11's `Select all` (KB31).

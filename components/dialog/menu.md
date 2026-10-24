@@ -81,7 +81,7 @@ The Space menu that `Space` opens inside a mode (Rules K11) lists only what can 
   picking one being the same as pressing its key (e.g. `[C]ompare` in the Compare mode, described `with <anchor>`;
   `[v] Select` before a selection starts and `[y] Copy` after). What cannot be done now is disabled by M6 (e.g. with the
   cursor on the anchor).
-- **`<mode name> MODE`** (e.g. `COMPARE MODE`): the mode's own keys. The movement keys are only shown — the key in the
+- **`<mode name> MODE`** (e.g. `COMPARE MODE`; with layers the whole name, e.g. `VISUAL>SELECT MODE`): the mode's own keys. The movement keys are only shown — the key in the
   label's place, in Blue (as in the key reference, "a key that can be pressed now"), the description in Overlay0; the
   cursor skips them and `Enter` does nothing there. What really does something runs like any other row: leaving the
   mode, named with the verb `Esc` has in the mode's hint (`[Esc] Leave` in the Compare mode, `[Esc] Cancel` where the
