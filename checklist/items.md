@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.12. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.13. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -105,7 +105,7 @@ The items of tdp v0.9.12. What each column means and what an item applies to: [R
 | K10-6 | K10 | While the subprocess is not ready for keys yet, the exit key still works and is still disclosed | PTY | While the subprocess is starting or connecting, look at the footer and press the exit key |
 | K11-1 | K11 | Inside a mode, `Space` opens the mode's Space menu, listing only what can be done in the mode | mode | Enter a mode and press `Space` |
 | K11-2 | K11 | Inside a mode, `?` opens the mode's key reference: which keys work in the mode and what they do | mode | Enter a mode and press `?` |
-| K11-3 | K11 | Inside a mode, `Esc` leaves the mode, back to the state before it was entered | mode | Enter a mode, do something and press `Esc`: the state is back to what it was before the mode |
+| K11-3 | K11 | Inside a mode, `Esc` leaves the mode, back to the state before it was entered; in a mode with layers, back one layer at a time (`Visual>select` back to `Visual`) | mode | Enter a mode, do something and press `Esc`: the state is back to what it was before the mode |
 | K11-4 | K11 | Inside a mode on a panel or in a popup, `q` and `Ctrl-C` run the quit flow, as K9 | mode | Enter a mode and press `q`, `Ctrl-C` |
 | K11-5 | K11 | When a mode on a panel suspends `Tab` or the digit keys, pressing them must respond, saying to leave the mode with `Esc` first | mode (on a panel) | Enter a mode and press `Tab`, `2`: an explanation appears (e.g. a toast) |
 | K11-6 | K11 | Inside a mode only the mode's own keys and the core keys in the K11 table work: panel hotkeys and global hotkeys do nothing | mode | Enter a mode and press panel hotkeys and global hotkeys: none does anything |
@@ -607,6 +607,8 @@ The items of tdp v0.9.12. What each column means and what an item applies to: [R
 | panel-146 | panel §Frame | Entering a mode, the mode name opens from its middle: the junctions start side by side and move apart, the name showing from its middle; leaving plays it backwards; the junctions take the first frame, then one more letter every 32ms frame | mode | Enter and leave a mode and watch the right of the top border |
 | panel-147 | panel §Frame | Switched again while the mode name is opening or closing, it turns around from where it is, without starting over | mode | Enter and leave a mode quickly several times (e.g. `D` `Esc` `D`) |
 | panel-148 | panel §Frame | The mode takes effect at once and the frame turns its colour at once; keys are taken while the mode name animates | mode | Enter a mode and press one of its keys at once; watch the frame colour |
+| panel-149 | panel §Frame | A mode with layers adds each layer to its name after a `>`, with no spaces (e.g. `Visual>select`) | mode | Press `v` a second time in a viewer's selection mode and look at the top right |
+| panel-150 | panel §Frame | A layer added grows from the tail, one letter every 32ms frame, the right end staying; going back a layer takes it off from the tail; switched again halfway it turns around; leaving the whole mode from a layer closes the whole tag from its middle | mode | In the selection mode press `v`, `Esc`, then `v`, `y`, watching the top right |
 | panel-38 | panel §Capsule chain | No space before or after the text inside a capsule (`[1] TABS`) | everyone | Look between a capsule's text and its ends |
 | panel-39 | panel §Capsule chain | On a panel with tabs, `[N]` is a part of its own and always selected | panel tab | Change to the second tab; check that `[N]` is still filled |
 | panel-40 | panel §Capsule chain | Each tab after `[N]` is a part, and only the current tab is selected | panel tab | Change tabs; check that only the current tab is filled |
@@ -968,10 +970,10 @@ The items of tdp v0.9.12. What each column means and what an item applies to: [R
 | note-31 | note §Selection mode | With nothing selected yet, the hint is `v:select Esc:cancel` | viewer | Press `v` once and look at the bottom border |
 | note-32 | note §Selection mode | The second `v` starts the selection where the cursor is; moving the cursor stretches it | viewer | Press `v` a second time, then move the cursor |
 | note-33 | note §Selection mode | The selection runs by characters: from the start to the cursor, the cursor's character included | viewer | Select a stretch, copy it, and check both ends |
-| note-34 | note §Selection mode | Once selecting, the hint is `y:copy Esc:cancel` | viewer | Press `v` a second time and look at the bottom border |
+| note-34 | note §Selection mode | Once selecting, the mode name is `Visual>select` and the hint `y:copy Esc:unselect` | viewer | Press `v` a second time and look at the bottom border |
 | note-35 | note §Selection mode | Once selecting, `v` does nothing (it is not an alias for leaving) | viewer | Press `v` once selecting |
 | note-36 | note §Selection mode | `y` copies the selection and leaves the mode; the selection and the cursor disappear, and a Success toast says it is copied | viewer | Select a stretch and press `y` |
-| note-37 | note §Selection mode | `Esc` leaves the whole mode at either step without copying; the selection and the cursor disappear | viewer | Press `Esc` once with nothing selected yet and once while selecting |
+| note-37 | note §Selection mode | `Esc` goes back one layer at a time: once selecting, the selection disappears and it is back to `Visual`, the cursor where it is; before selecting, it leaves the whole mode and the cursor disappears; neither copies | viewer | Press `Esc` while selecting, then again |
 | note-38 | note §Selection mode | The cursor is one cell of the layer colour background with Base text | viewer | Press `v` and look at the cursor |
 | note-39 | note §Selection mode | The selection has a Yellow background with Base text, the cursor's cell keeping the layer colour | viewer | Select a stretch and look at the selection and the cursor |
 | note-40 | note §Selection mode | An empty line inside the selection shows one cell | viewer | Select a stretch across an empty line |

@@ -23,6 +23,9 @@ in [`screen`](screen.md).
   one word if possible (`Drag`, `Visual`, `Select`: a narrow panel has no room for two, and the whole top-right text
   would be dropped); when space runs out, the title is clipped first and the mode name stays. The capsule turns the mode
   colour along with the frame.
+  A mode with layers (e.g. a viewer's selection mode, once selecting) adds each layer to its name after a `>`, with no
+  spaces: `┫Visual>select┣`; each part is one word if possible. The `>` reads as one layer in, and `Esc` goes back one
+  layer at a time (Rules K11).
   - **It opens and closes**: entering the mode, the tag opens from its middle: the two junctions start side by side
     there and move apart, the name showing from its middle; leaving plays it backwards, down to the plain line. The
     junctions take the first frame and every frame after shows one more letter, 32ms a frame as in a popup (Rules F2):
@@ -39,13 +42,27 @@ in [`screen`](screen.md).
 
   - **Turning around**: switched again halfway (entering and leaving in quick runs), the tag turns around from where it
     is and does not start over: half open, it closes from half; closing, it opens again from where it got to.
+  - **A layer added or taken off**: the right end stays; the layer added grows from the tail a letter a frame, the left
+    junction moving left with it, and going back a layer takes it off from the tail a letter at a time. 32ms a frame,
+    turning around as above. The title keeps room for the longest name in the animation. Leaving the whole mode straight
+    from a layer (e.g. `y` in the selection mode) closes the whole tag from its middle as above.
+
+    ```
+    ━━━━━━━━┫Visual┣━┓   before
+    ━━━━━━━┫Visual>┣━┓   a letter a frame
+    ━━━━━━┫Visual>s┣━┓
+    ━┫Visual>select┣━┓   grown
+    ```
+
   - **Only the tag animates**: the mode takes effect at once and the frame turns its colour at once; keys are taken all
     along (unlike a popup opening, Rules F3). While closing, the name stays in the mode colour and the junctions take the
     frame's colour as usual.
   - **Why**: as with a popup, the animation lets the switch be felt; modes are entered and left in quick runs, so the
     animation never holds a key and never starts over (the user, 2026-10-22). A tag has only as many steps as its name
     has letters: spread over a fixed 288ms, each step held for about 72ms and the tag stuttered, so it goes a letter a
-    frame instead (the user, testing kbu).
+    frame instead (the user, testing kbu). A layer added moves only what it adds: the mode has not changed, and `Visual`
+    stays in sight. The `>` reads as one layer in, where a colon is how hints are written and a slash looks like the
+    joins of a capsule chain, which part things side by side (the user, 2026-10-24).
 - **Left of the bottom border: the hint**, which every panel must have — the exceptions are while the focus is on a
   panel filter's typing row and while it is in a PTY in the panel: no hint then, and it comes back on the list or on
   leaving the PTY; nor when no key on the panel does anything (see the hint below). Right of the bottom border: the

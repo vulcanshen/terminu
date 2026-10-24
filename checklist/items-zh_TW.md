@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.12 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.13 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -105,7 +105,7 @@ tdp v0.9.12 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | K10-6 | K10 | 子程序還沒準備好收鍵時，出口鍵照樣有效、照樣揭露 | PTY | 子程序啟動或連線中看 footer、按出口鍵 |
 | K11-1 | K11 | 模式裡 `Space` 打開模式的 Space menu，只列模式裡能做的事 | 模式 | 進模式按 `Space` |
 | K11-2 | K11 | 模式裡 `?` 打開這個模式的 key reference：模式裡能按什麼鍵、做什麼 | 模式 | 進模式按 `?` |
-| K11-3 | K11 | 模式裡 `Esc` 離開模式，回到進入前的狀態 | 模式 | 進模式做點事後按 `Esc`，狀態回到進入前 |
+| K11-3 | K11 | 模式裡 `Esc` 離開模式，回到進入前的狀態；模式有好幾層時一次退一層（`Visual>select` 退回 `Visual`） | 模式 | 進模式做點事後按 `Esc`，狀態回到進入前 |
 | K11-4 | K11 | panel 與 popup 裡的模式，`q`、`Ctrl-C` 照 K9 進入離開流程 | 模式 | 進模式按 `q`、`Ctrl-C` |
 | K11-5 | K11 | 模式在 panel 上暫停 `Tab` 或數字鍵時，按了要有回應，說明先 `Esc` 離開模式 | 模式（在 panel 上） | 進模式按 `Tab`、`2`，出現說明（例：toast） |
 | K11-6 | K11 | 模式裡只有模式自己的鍵與 K11 表上的 core key 作用：panel 的熱鍵與 global 熱鍵都不作用 | 模式 | 進模式按 panel 的熱鍵與 global 熱鍵，都沒作用 |
@@ -607,6 +607,8 @@ tdp v0.9.12 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | panel-146 | panel §框 | 進入模式時模式名從中間打開：兩個接頭並排出現、往兩邊撐開，名字從中間露出來；離開時倒著播；第一幀是兩個接頭，之後每 32ms 一幀多露出一個字 | 模式 | 進入再離開模式，看上框右邊 |
 | panel-147 | panel §框 | 模式名開或關到一半時又切換，從當下的位置轉向，不從頭播 | 模式 | 快速進出模式幾次（例：`D` `Esc` `D`） |
 | panel-148 | panel §框 | 模式立刻生效、外框立刻變色；模式名播動畫時照樣收鍵 | 模式 | 進入模式後馬上按模式的鍵；看外框顏色 |
+| panel-149 | panel §框 | 模式有好幾層時，模式名把層接在後面，用 `>` 隔開、不加空白（例：`Visual>select`） | 模式 | viewer 的選取模式裡按第二次 `v`，看上框右邊 |
+| panel-150 | panel §框 | 多一層時右端不動，層的字從尾巴每 32ms 一幀長出一個字；退一層從尾巴收掉；一半又切換照樣轉向；從某一層直接離開整個模式時，整個標籤從中間關掉 | 模式 | 選取模式裡按 `v`、`Esc`，再按 `v`、`y`，看上框右邊 |
 | panel-38 | panel §膠囊串 | 膠囊裡的字前後不加空白（`[1] TABS`） | 都要 | 看膠囊的字與兩端之間 |
 | panel-39 | panel §膠囊串 | 有 tab 的 panel，`[N]` 自己是一段，一直是選中的 | panel tab | 換到第二個 tab，看 `[N]` 還是填色 |
 | panel-40 | panel §膠囊串 | `[N]` 後面每個 tab 一段，只有目前的 tab 選中 | panel tab | 換 tab，看只有目前的 tab 填色 |
@@ -968,10 +970,10 @@ tdp v0.9.12 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | note-31 | note §選取模式 | 還沒開始選時 hint 是 `v:select Esc:cancel` | viewer | 按一次 `v` 後看下框 |
 | note-32 | note §選取模式 | 第二次 `v` 從游標所在開始選，移動游標把範圍拉開 | viewer | 按第二次 `v` 後移動游標 |
 | note-33 | note §選取模式 | 範圍以字為單位：從起點到游標，含游標那個字 | viewer | 選一段後複製，看頭尾 |
-| note-34 | note §選取模式 | 開始選之後 hint 是 `y:copy Esc:cancel` | viewer | 按第二次 `v` 後看下框 |
+| note-34 | note §選取模式 | 開始選之後模式名是 `Visual>select`，hint 是 `y:copy Esc:unselect` | viewer | 按第二次 `v` 後看下框 |
 | note-35 | note §選取模式 | 開始選之後再按 `v` 不作用（不當離開的別名） | viewer | 開始選之後按 `v` |
 | note-36 | note §選取模式 | `y` 複製選起來的文字，離開選取模式，範圍與游標都消失；跳一個 Success toast 說複製好了 | viewer | 選一段後按 `y` |
-| note-37 | note §選取模式 | `Esc` 在哪一步都整個離開選取模式，不複製，範圍與游標都消失 | viewer | 在還沒選、已經選時各按一次 `Esc` |
+| note-37 | note §選取模式 | `Esc` 一次退一層：開始選之後範圍消失、回到 `Visual`，游標留在原地；還沒開始選時整個離開，游標消失；都不複製 | viewer | 開始選之後按 `Esc`，再按一次 |
 | note-38 | note §選取模式 | 游標是一格層色底、Base 字 | viewer | 按 `v` 後看游標 |
 | note-39 | note §選取模式 | 範圍是 Yellow 底、Base 字，游標那格維持層色 | viewer | 選一段後看範圍與游標 |
 | note-40 | note §選取模式 | 範圍裡的空行畫一格 | viewer | 選一段跨過空行的範圍 |

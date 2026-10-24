@@ -319,7 +319,7 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 | `Space` | opens the mode's Space menu (below) |
 | `!` | does nothing (the App Log opens outside a mode) |
 | `?` | the mode's key reference (read-only, K6): which keys work in the mode and what they do |
-| `Esc` | leaves the mode (K4), back to the state before it was entered |
+| `Esc` | leaves the mode (K4), back to the state before it was entered; in a mode with layers, back one layer at a time (e.g. `Visual>select` back to `Visual`) |
 | `q`, `Ctrl-C` | run the quit flow, as K9 |
 | `Tab`, `1`–`9` | with the mode on a panel: a mode may suspend `Tab` and the digit keys, but pressing them must respond, saying to leave the mode with `Esc` first (e.g. a toast); while the toast is up, the first `Esc` closes it (K4). With the mode in a popup, see below |
 
@@ -335,7 +335,9 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 - **A mode shows itself**: the mode name appears at the right of the top border of the frame the mode lives in (panel or
   popup), and the frame turns the mode colour; leaving the mode restores both. The mode name opens and closes with a
   short animation that never holds the mode up: the mode and the frame colour change at once. The mode name is a word,
-  not colour alone: a focused panel in a mode still shows that it has focus (L5). How it looks:
+  not colour alone: a focused panel in a mode still shows that it has focus (L5). A mode with layers adds each layer to its
+  name after a `>` (e.g. a viewer's selection mode, once selecting, is `Visual>select`), and `Esc` goes back one layer
+  at a time. How it looks:
   [components/layout/panel](../components/layout/panel.md).
 - **A mode inside a popup** (e.g. a viewer's selection mode, a reorder's Drag mode): the frame and mode name, `Space`,
   `?`, `Esc`, `q` and `Ctrl-C` work as above; `Tab` and the digit keys keep whatever they do in that popup (in a popup

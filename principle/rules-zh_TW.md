@@ -266,7 +266,7 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 | `Space` | 打開這個模式的 Space menu（見下面） |
 | `!` | 不作用（App Log 在模式外打開） |
 | `?` | 這個模式的 key reference（唯讀，K6）：模式裡能按什麼鍵、做什麼 |
-| `Esc` | 離開模式（K4），回到進入前的狀態 |
+| `Esc` | 離開模式（K4），回到進入前的狀態；模式有好幾層時一次退一層（例：`Visual>select` 退回 `Visual`） |
 | `q`、`Ctrl-C` | 照 K9 進入離開流程 |
 | `Tab`、`1`–`9` | 模式在 panel 上時：模式可以暫停 `Tab` 與數字鍵，但按了要有回應，說明先 `Esc` 離開模式（例：toast）；toast 還在時，第一個 `Esc` 先收掉它（K4）。模式在 popup 裡時見下面 |
 
@@ -278,7 +278,8 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
   [components/layout/screen](../components/layout/screen-zh_TW.md)）。
 - **模式要標示自己**：模式名顯示在模式所在的框（panel 或 popup）的上框右側，外框換成模式色；離開模式就恢復。模式名開關時有一小段
   動畫，不會讓模式等它：模式與外框顏色都立刻換。模式名是字，
-  不只靠顏色：模式裡 focus 的 panel 照樣看得出是 focus（L5）。樣子見 [components/layout/panel](../components/layout/panel-zh_TW.md)。
+  不只靠顏色：模式裡 focus 的 panel 照樣看得出是 focus（L5）。模式有好幾層時，模式名把層接在後面、用 `>` 隔開（例：viewer 的
+  選取模式開始選之後是 `Visual>select`），`Esc` 一次退一層。樣子見 [components/layout/panel](../components/layout/panel-zh_TW.md)。
 - **模式在 popup 裡時**（例：viewer 的選取模式、reorder 的 Drag mode）：框與模式名、`Space`、`?`、`Esc`、`q` 與 `Ctrl-C` 照上面；
   `Tab` 與數字鍵照那個 popup 本來的作用（popup 裡它們不換 panel），不用另外回應；footer 照 popup 開著時的樣子，不換成模式的字
   （[components/layout/screen](../components/layout/screen-zh_TW.md) 的 footer）。

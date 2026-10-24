@@ -116,11 +116,13 @@ it; the key reference, the error popup and a form's typing explanation have no s
   `0|$`, `u|d`, `gg|G` move it, and the view scrolls when it reaches the edge. Hint `v:select Esc:cancel`.
 - **The second `v`**: starts the selection where the cursor is; moving the cursor then stretches it. The selection runs
   by characters (vim's `v`): from the start to the cursor, the cursor's character included; for whole lines, move the
-  cursor to the start of the line first. Hint `y:copy Esc:cancel`. Once selecting, `v` does nothing.
+  cursor to the start of the line first. The mode name becomes `Visual>select` (the mode name in
+  [`layout/panel`](../layout/panel.md)). Hint `y:copy Esc:unselect`. Once selecting, `v` does nothing.
 - **`y`**: copies the selection and leaves the mode; the selection and the cursor disappear, and a Success toast says
   it is copied ([`dialog/toast`](toast.md)).
-- **`Esc`**: leaves the whole mode at either step without copying; the selection and the cursor disappear (K11: back
-  to the state before it was entered). `v` is not taken as an alias for leaving (K12).
+- **`Esc`**: goes back one layer at a time (Rules K4, K11): once selecting, the selection disappears and it is back to
+  `Visual`, the cursor where it is; before selecting, it leaves the whole mode and the cursor disappears. Neither copies.
+  `v` is not taken as an alias for going back (K12).
 - **Colours**: the cursor is one cell of the layer colour background with Base text (the same as Move in
   [`input/textarea`](../input/textarea.md)); the selection has a Yellow background with Base text, the cursor's cell
   keeping the layer colour; an empty line inside the selection shows one cell.
@@ -131,7 +133,8 @@ it; the key reference, the error popup and a form's typing explanation have no s
 start, and with selection starting on the first `v`, the start would always be the first visible line. With no cursor
 by default, `j|k` still scroll and `h|l` still switch tabs, and a note read and closed carries no cursor it never uses.
 By characters: what is copied out of a note is often a word, a command or a URL. Copying usually finishes the job, so it
-takes no extra `Esc`. Every viewer has it: nobody has to remember which viewers can select and which cannot, and any
+takes no extra `Esc`. `Esc` goes back one layer as everywhere else: one layer back from `Visual>select` is `Visual`,
+so a start picked wrong is put right by going back, moving and selecting again (the user, 2026-10-24). Every viewer has it: nobody has to remember which viewers can select and which cannot, and any
 stretch of text you can see in the family can be copied.
 
 ## Key reference
