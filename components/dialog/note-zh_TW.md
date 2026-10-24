@@ -174,7 +174,8 @@ popup 的動作失敗時（[`layout/popup`](../layout/popup-zh_TW.md) 的錯誤�
 ```
 
 - **樣子**：框、文字都是 Red；標題膠囊填 Red、字 Base 粗體（膠囊照 [`layout/popup`](../layout/popup-zh_TW.md)）。標題 glyph 跟
-  Error toast 一樣是 `nf-md-fire`（U+F0238）。訊息在框裡折行（照 [components 的「折行」](../README-zh_TW.md)）；太長時 `j|k` 捲動。
+  Error toast 一樣是 `nf-md-fire`（U+F0238）。訊息可以好幾列：app 一列一列給（[components](../README-zh_TW.md) 的「控制字元」），列跟列之間不空列；
+  每一列在框裡折行（照 [components 的「折行」](../README-zh_TW.md)）；太長時 `j|k` 捲動。
 - **標題**：寫哪件事失敗了（`RENAME FAILED`、`SAVE FAILED`）。從表單錯誤列打開的，標題寫那一欄的名字（`PORT`）。
 - **關掉**：`Enter` 與 `Esc` 都能關，hint `Enter|Esc:close`。
 - **關掉之後**：回到底下的 popup，focus 留在原位，值都還在（Rules F4）。連按 `Enter` 時，第一下關掉它，下一下等於在原來的位置再按

@@ -221,8 +221,9 @@ message opened with `Enter` on a form's error row is one too.
 
 - **Look**: frame and text in Red; the title capsule is filled Red with Base bold text (the capsule as in
   [`layout/popup`](../layout/popup.md)). The title glyph is `nf-md-fire` (U+F0238), the same as the Error toast. The
-  message wraps inside the frame (as in [the components' "Wrapping"](../README.md)); when too long it scrolls with
-  `j|k`.
+  message may have several rows, given by the app a row at a time ("Control characters" in
+  [components](../README.md)), with no blank row between them; each wraps inside the frame (as in [the components'
+  "Wrapping"](../README.md)); when too long it scrolls with `j|k`.
 - **Title**: what failed (`RENAME FAILED`, `SAVE FAILED`). Opened from a form's error row, it is the field's name
   (`PORT`).
 - **Closing**: both `Enter` and `Esc` close it, hint `Enter|Esc:close`.

@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.9.15 — 2026-10-24
+
+What the user found testing sshu by hand, settled with the user (from sshu, SS43).
+
+- components: the app's own text carries no line breaks. Where there are several rows (an error popup's message, a
+  toast, a confirm's content), the app gives them a row at a time, each starting a row of its own, with no blank row
+  between them; so a `\n` on screen always comes from outside and is drawn by name. Several lines from outside go into
+  short text as the line saying why, the whole into the App Log (dialog/note, dialog/toast and dialog/confirm follow)
+- checklist: components-30 to components-32 added (1458 items)
+
 ## v0.9.14 — 2026-10-24
 
 What the user asked for in filu, settled with the user (from filu, FL27).

@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.14. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.15. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -482,6 +482,9 @@ The items of tdp v0.9.14. What each column means and what an item applies to: [R
 | components-27 | components §Control characters | In names and short text (values on forms and panels, list cells, menus, popup titles, toasts, confirms, error popups, options, explanation rows, empty states, the statusbar, tab names, finder items), every control character, a Tab, a `\n` and the ESC of a colour code included, is drawn by name in red; never dropped, turned into spaces or sent to the terminal as it is | everyone | Give a name that shows in these places (e.g. a file name, a web page title) a Tab or `\x1b[31m` and look at the list, the menu and the confirm; or read the code |
 | components-28 | components §Control characters | A log on a panel is drawn as a terminal would draw it: `\n` is a line break, a Tab is spaces, colour codes colour the text, a `\r` within a line keeps only the last state, and any other control character or sequence that is not a colour code is drawn by name in red | streaming content | Feed the log a coloured line, a line `10%\r100%` and a line holding `\x1b[2J`, and look at the log panel |
 | components-29 | components §Control characters | In a list column the app marks as "a line of text" (a line of source code or of a log), a Tab is drawn as `input_tab_width` spaces and other control characters stay red names | everyone | Put a line holding a Tab in that column and look at the indent; read the code: which columns are marked |
+| components-30 | components §Control characters | The app's own names and short text carry no line breaks: walked with ordinary data (no tricky values), the screen shows no red `\n` | everyone | Walk every place that shows a message (error popup, toast, confirm) with ordinary data; or read the code: no `\n` in the app's strings |
+| components-31 | components §Control characters | An error popup's message, a toast or a confirm's content with several rows: each starts a row of its own and wraps, with no blank row between them | everyone | Give a message two rows and look at the screen |
+| components-32 | components §Control characters | Several lines from outside are not put whole into short text: the line saying why goes there, the whole into the App Log | everyone | Make an outside program fail with several lines of error; look at the toast or error popup and the App Log |
 
 ## color
 

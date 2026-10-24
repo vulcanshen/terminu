@@ -124,11 +124,20 @@ depends on the group it is in:
   - The exception: when the app marks a list column as "a line of text" (e.g. a line of source code, a line of a log),
     a Tab in that column is drawn as `input_tab_width` spaces, and other control characters stay as they are. Such a
     column is for reading: a Tab there is layout, not something odd in a name.
+  - **The app's own text carries no line breaks**: where there are several rows (an error popup's message, a toast, a
+    confirm's content), the app gives them a row at a time, each starting a row of its own and wrapping as in
+    "Wrapping", with no blank row between them. So a `\n` on screen always comes from outside (typed by the user, a file
+    name, a program's output) and is drawn by name as above.
+  - Several lines from outside (e.g. ssh's stderr) are not put whole into short text: the line saying why goes there,
+    and the whole of it into the App Log (Rules F5, the App Log in [`dialog/note`](dialog/note.md)).
 
 **Why**: sent as they are, a `\r` writes over its row from the start, `\x1b[2J` clears the whole screen, and widths can
 no longer be measured (Rules L4). Names and short text are what the user acts on next: dropped or turned into spaces,
 two different names look the same (`a b.txt` and `a⇥b.txt` with a Tab in the middle); the list, the confirm and the
-rename input must all show the same thing. Content for reading is different: a program's output is meant to look that
+rename input must all show the same thing. The app's own text carries no line breaks: the app's `\n` and a `\n` in a
+name look the same on screen; the lib once broke lines at the app's `\n`, and when it began drawing them by name the
+app's `\n`s quietly turned red, unseen by the compiler and the tests (sshu's SS43). With the app giving a row at a time,
+a red `\n` on screen always speaks of something from outside (the user, 2026-10-24). Content for reading is different: a program's output is meant to look that
 way in a terminal, so drawing it as a terminal would is how it really looks, and red names would only hide it.
 
 ## Choosing among the options
