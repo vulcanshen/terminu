@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.9.11 — 2026-10-24
+
+What the user found testing kbu by hand, settled with the user (from kbu, KB31).
+
+- input/checkbox: every group of options comes with a `Select all` row of its own, first in the group: in a form or on
+  a panel on the label's row, in a checkbox popup the list's first row. It is not an option and never part of the
+  value; ticking it ticks every option, unticking it unticks them all, and it is ticked only while every option is. In
+  a checkbox popup it is hidden while the typing row holds text. An app's own "all" option is a misuse (dialog/form
+  follows)
+- checklist: checkbox-12, form-49 and form-62 reworded, checkbox-26 to checkbox-30 added (1450 items)
+
 ## v0.9.10 — 2026-10-22
 
 What the user found testing kbu by hand, settled with the user (KB30).

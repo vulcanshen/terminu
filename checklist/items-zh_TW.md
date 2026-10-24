@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.10 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.11 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -834,7 +834,7 @@ tdp v0.9.10 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | form-46 | form §動作區 | 不關表單的動作做完後，focus 留在那顆按鈕上 | 表單 | 動作成功後看 focus |
 | form-47 | form §動作區 | 動作把值寫進某一欄時，那一欄算改過 | 表單 | 讓動作寫回一欄後按 `Esc`，先跳 confirm |
 | form-48 | form §動作區 | 動作區不放取消的按鈕 | 表單 | 看動作區沒有 `Cancel` 之類的按鈕 |
-| form-49 | form §移動 | 表單與一列一個值的 panel 上，focus 的單位是項目：要打字或開 popup 的欄位一個、radio／checkbox 每個選項各一個、每個按鈕一個 | 表單、一列一個值的 panel | 用 `j` 走一遍，數停的次數 |
+| form-49 | form §移動 | 表單與一列一個值的 panel 上，focus 的單位是項目：要打字或開 popup 的欄位一個、radio／checkbox 每個選項各一個、checkbox 組的 `Select all` 一個、每個按鈕一個 | 表單、一列一個值的 panel | 用 `j` 走一遍，數停的次數 |
 | form-50 | form §移動 | 錯誤列有錯誤時也是一個項目，在最後一欄後面；沒錯時不停 | 表單 | 送出被擋前後，各用 `j` 走過最後一欄 |
 | form-51 | form §移動 | 表單與一列一個值的 panel 上，走到一欄的最後一個選項再往後就到下一欄；在第一個選項再往前就回到上一欄 | radio、checkbox | 在 radio 的最後一個選項按 `j`、第一個選項按 `k` |
 | form-52 | form §移動 | 動作區照閱讀順序排成一串：一列裡由左到右，再到下一列 | 表單 | 在動作區按 `j` 走過每一顆按鈕 |
@@ -847,7 +847,7 @@ tdp v0.9.10 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | form-59 | form §移動 | 打開時 focus 在第一個能停的項目（跳過停用的），新增與編輯都一樣 | 表單 | 分別打開新增、編輯的表單看 focus |
 | form-60 | form §移動 | app 從某一欄打開表單時，focus 停在那一欄 | 表單 | 從 panel 的某一列打開編輯表單，看 focus |
 | form-61 | form §移動 | 打開時不自動打開任何欄位的 input popup：打開的一定是表單本身，一次 `Esc` 就離開 | 表單 | 打開新增表單，按一次 `Esc` 就回到原處 |
-| form-62 | form §移動 | 跳進 radio、checkbox 那一欄時（從那一欄打開、送出被擋、錯誤列按 `e`）停在第一個有值的選項：radio 已選的、checkbox 第一個勾的，都沒有值停第一個 | 表單 | 讓 radio 那一欄出錯後送出，看 focus 停在哪個選項 |
+| form-62 | form §移動 | 跳進 radio、checkbox 那一欄時（從那一欄打開、送出被擋、錯誤列按 `e`）停在第一個有值的選項：radio 已選的、checkbox 第一個勾的選項，都沒有值停第一個選項（`Select all` 不算） | 表單 | 讓 radio 那一欄出錯後送出，看 focus 停在哪個選項 |
 | form-63 | form §`Enter` | 在按鈕上按 `Enter` 按下它：送出，或做那個按鈕的動作 | 表單 | `Tab` 到按鈕按 `Enter` |
 | form-64 | form §送出 | 送出只有一個方法：focus 在送出的按鈕上按 `Enter`（沒有字母熱鍵或其他送出方式） | 表單 | 在欄位上按 `s` 等字母，都不會送出 |
 | form-65 | form §在欄位上打字 | focus 在要打字的欄位（text、password、number、textarea）上，按表單操作鍵以外的可列印字元（含數字、`q`）跳說明的 note | 表單 | 在 text 欄位上打 `s`、`1`、`q` |
@@ -1250,7 +1250,7 @@ tdp v0.9.10 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | checkbox-9 | checkbox §按鍵 | 表單或 panel 上 `Enter` 在原地翻，focus 不動 | checkbox | 在 checkbox 上按 `Enter` |
 | checkbox-10 | checkbox §按鍵 | 表單或 panel 上翻了馬上生效 | checkbox | 翻了之後看效果 |
 | checkbox-11 | checkbox §按鍵 | checkbox popup 打開時 focus 在清單上 | checkbox | 打開後看 hint 是清單的 hint |
-| checkbox-12 | checkbox §按鍵 | 打開時 cursor 停在 app 指定的那一項，沒指定就是第一項 | checkbox | 打開後看 cursor；或讀程式 |
+| checkbox-12 | checkbox §按鍵 | 打開時 cursor 停在 app 指定的那一項，沒指定就是第一個選項（不是 `Select all`） | checkbox | 打開後看 cursor；或讀程式 |
 | checkbox-13 | checkbox §按鍵 | `Space` 只改畫面上的勾，不寫回、不生效 | checkbox | 按 `Space` 後看底下的畫面沒變 |
 | checkbox-14 | checkbox §按鍵 | `Enter` 把目前勾的整組一次寫回、popup 關掉，這時才生效 | checkbox | 勾兩項後按 `Enter` |
 | checkbox-15 | checkbox §按鍵 | 單獨打開的，`Enter` 時才套用 | checkbox | 按 `Enter` 前後看套用的對象 |
@@ -1264,6 +1264,11 @@ tdp v0.9.10 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | checkbox-23 | checkbox §按鍵 | 篩到沒有結果時，清單的 hint 拿掉 `Space`：`Enter:apply Tab\|/:filter Esc:cancel` | checkbox | 打到沒有結果後到清單看下框 |
 | checkbox-24 | checkbox §按鍵 | checkbox popup 什麼都沒改就按 `Enter`：不改，關掉 | checkbox | 打開 checkbox popup 不動就按 `Enter` |
 | checkbox-25 | checkbox §按鍵 | 一列一個值的 panel 上 focus 在 checkbox 時，hint 寫 `Enter:toggle`（panel 上的 `Space` 開 Space menu，不翻） | 一列一個值的 panel＋checkbox | 看 panel 的下框 hint |
+| checkbox-26 | checkbox §全選 | 一組選項（表單、panel 上與 checkbox popup 裡）第一列是 `Select all`，glyph 與顏色照選項畫，focus 與 cursor 能停；一個開關沒有 | checkbox | 看每一組的第一列，走上去 |
+| checkbox-27 | checkbox §全選 | `Select all` 不是選項：不算進值、不算在五個以內；app 沒有另外代表全部的選項 | checkbox | 全勾後寫回，看值裡沒有它；找有沒有「All」之類的選項 |
+| checkbox-28 | checkbox §全選 | 勾 `Select all` 每一個選項都勾上，取消就都取消，不可用的選項也算；生效的時機跟選項一樣（popup 裡 `Enter` 才寫回） | checkbox | 在 `Select all` 上翻兩次，看每一列 |
+| checkbox-29 | checkbox §全選 | `Select all` 只在每一個選項都勾著時勾著：取消一個它跟著取消，一個一個勾滿它跟著勾上，打開時全勾著它也勾著 | checkbox | 全勾後取消一列，再勾回來 |
+| checkbox-30 | checkbox §全選 | checkbox popup 的打字列有字時不畫 `Select all`，清掉才回來 | checkbox | 打一個字看第一列，再清掉 |
 
 ## input/slider
 

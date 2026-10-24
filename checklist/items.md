@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.10. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.11. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -834,7 +834,7 @@ The items of tdp v0.9.10. What each column means and what an item applies to: [R
 | form-46 | form §Action area | After an action that keeps the form open is done, the focus stays on the button | form | After the action succeeds, look at the focus |
 | form-47 | form §Action area | When an action writes a value into a field, that field counts as changed | form | Let the action write into a field, then press `Esc`: a confirm comes first |
 | form-48 | form §Action area | No cancel button in the action area | form | Look at the action area: no `Cancel` or similar button |
-| form-49 | form §Moving | In a form and on a one-value-per-row panel, the focus moves by item: a field that takes typing or opens a popup is one item, each option of a radio or checkbox field is one, each button is one | form or one value per row | Walk through with `j`, counting the stops |
+| form-49 | form §Moving | In a form and on a one-value-per-row panel, the focus moves by item: a field that takes typing or opens a popup is one item, each option of a radio or checkbox field is one, a checkbox group's `Select all` is one, each button is one | form or one value per row | Walk through with `j`, counting the stops |
 | form-50 | form §Moving | The error row, while it holds an error, is an item too, after the last field; with no error the focus does not stop on it | form | Walk past the last field with `j` before and after a refused submit |
 | form-51 | form §Moving | In a form and on a one-value-per-row panel, going on from a field's last option enters the next field; going back from its first option returns to the previous field | radio or checkbox | Press `j` on a radio field's last option and `k` on its first |
 | form-52 | form §Moving | The action area runs in reading order: along a row from left to right, then on to the next row | form | Press `j` in the action area through every button |
@@ -847,7 +847,7 @@ The items of tdp v0.9.10. What each column means and what an item applies to: [R
 | form-59 | form §Moving | On opening, the focus is on the first item it can stop on (disabled ones skipped), for a new entry and an edit alike | form | Open a new-entry form and an edit form, looking at the focus in each |
 | form-60 | form §Moving | When the app opens the form from one field, the focus is on that field | form | Open an edit form from a row of a panel and look at the focus |
 | form-61 | form §Moving | On opening, no field's input popup opens by itself: what opens is always the form itself, left with one `Esc` | form | Open a new-entry form and press `Esc` once: back where it was opened from |
-| form-62 | form §Moving | Landing on a radio or checkbox field (the app opening the form at that field, a blocked submit, `e` on the error row), the focus stops on the first option with a value: a radio on the chosen option, a checkbox on the first ticked one; with no value, on the first | form | Give the radio field an error and submit; look at which option the focus stops on |
+| form-62 | form §Moving | Landing on a radio or checkbox field (the app opening the form at that field, a blocked submit, `e` on the error row), the focus stops on the first option with a value: a radio on the chosen option, a checkbox on the first ticked option; with no value, on the first option (`Select all` does not count) | form | Give the radio field an error and submit; look at which option the focus stops on |
 | form-63 | form §`Enter` | `Enter` on a button presses it: submitting, or doing that button's action | form | `Tab` to a button and press `Enter` |
 | form-64 | form §Submit | There is one way only to submit: `Enter` with the focus on a submit button (no letter hotkey or other way to submit) | form | Press `s` and other letters on a field: none of them submits |
 | form-65 | form §Typing on a field | With the focus on a field that takes typing (text, password, number, textarea), a printable character that is not one of the form's keys (digits and `q` included) brings up a note to explain | form | Type `s`, `1` and `q` on a text field |
@@ -1250,7 +1250,7 @@ The items of tdp v0.9.10. What each column means and what an item applies to: [R
 | checkbox-9 | checkbox §Keys | in a form or a panel, `Enter` flips it in place; the focus stays | checkbox | press `Enter` on a checkbox |
 | checkbox-10 | checkbox §Keys | in a form or a panel, a flip takes effect at once | checkbox | flip it and look at the effect |
 | checkbox-11 | checkbox §Keys | the checkbox popup opens with the focus on the list | checkbox | open it; the hint is the list's hint |
-| checkbox-12 | checkbox §Keys | it opens with the cursor on the option the app names, the first option when none is named | checkbox | open it and look at the cursor; or read the code |
+| checkbox-12 | checkbox §Keys | it opens with the cursor on the option the app names, the first option when none is named (not `Select all`) | checkbox | open it and look at the cursor; or read the code |
 | checkbox-13 | checkbox §Keys | `Space` changes only the tick on screen; nothing is written back and nothing takes effect | checkbox | press `Space`; the screen underneath does not change |
 | checkbox-14 | checkbox §Keys | `Enter` writes back the whole set currently ticked at once and closes the popup; only then does it take effect | checkbox | tick two options and press `Enter` |
 | checkbox-15 | checkbox §Keys | opened on its own, it applies only on `Enter` | checkbox | look at what it applies to before and after `Enter` |
@@ -1264,6 +1264,11 @@ The items of tdp v0.9.10. What each column means and what an item applies to: [R
 | checkbox-23 | checkbox §Keys | filtered down to no results, the list's hint drops `Space`: `Enter:apply Tab\|/:filter Esc:cancel` | checkbox | type until there are no results, go to the list and look at the bottom border |
 | checkbox-24 | checkbox §Keys | `Enter` in a checkbox popup with nothing changed: no change, and it closes | checkbox | Open a checkbox popup and press `Enter` without changing anything |
 | checkbox-25 | checkbox §Keys | On a one-value-per-row panel with the focus on a checkbox, the hint is `Enter:toggle` (`Space` on a panel opens the Space menu and does not flip it) | one value per row + checkbox | Look at the panel's bottom-border hint |
+| checkbox-26 | checkbox §Select all | A group of options (in a form, on a panel and in a checkbox popup) has `Select all` as its first row, drawn with the options' glyphs and colours, the focus and the cursor stopping on it; a switch has none | checkbox | Look at every group's first row and move onto it |
+| checkbox-27 | checkbox §Select all | `Select all` is not an option: not part of the value, not counted towards the five; the app has no option of its own standing for all | checkbox | Tick them all and write back, `Select all` is not in the value; look for an "All"-like option |
+| checkbox-28 | checkbox §Select all | Ticking `Select all` ticks every option, unticking it unticks them all, options not available included; it takes effect when an option would (in a popup only on `Enter`) | checkbox | Flip `Select all` twice and look at every row |
+| checkbox-29 | checkbox §Select all | `Select all` is ticked only while every option is: unticking one unticks it, ticking them all one by one ticks it, and it opens ticked when all are | checkbox | Tick all, untick one row, tick it back |
+| checkbox-30 | checkbox §Select all | While the checkbox popup's typing row holds text, `Select all` is not drawn; it comes back when the text is cleared | checkbox | Type a letter and look at the first row, then clear it |
 
 ## input/slider
 

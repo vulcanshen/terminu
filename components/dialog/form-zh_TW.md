@@ -55,6 +55,8 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 - 選項**五個以內**的 radio、checkbox 畫在表單上；超過五個，改用 select 或 checkbox popup（按 `Enter` 打開）。
 - **開關**（只有開、關兩種的值）可以畫成一個 checkbox，也可以畫成 off／on 兩個選項的 radio，由 app 選
   （[`input/checkbox`](../input/checkbox-zh_TW.md)、[`input/radio`](../input/radio-zh_TW.md)）。
+- checkbox 組的第一列是 `Select all`（[`input/checkbox`](../input/checkbox-zh_TW.md) 的「全選」），在 label 那一列，選項接在下面；
+  它不算在五個以內。
 - 一律直排，一個選項一列：focus 色塊從那個選項一直到框，橫排時會蓋住後面的選項，看不出它們選了沒。
 - glyph 見 [`input/radio`](../input/radio-zh_TW.md) 與 [`input/checkbox`](../input/checkbox-zh_TW.md)。
 
@@ -154,7 +156,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 
 ### 移動
 
-表單上 focus 的單位是**項目**：要打字或開 popup 的欄位是一個項目，radio、checkbox 的每一個選項各是一個項目，每一個按鈕是一個
+表單上 focus 的單位是**項目**：要打字或開 popup 的欄位是一個項目，radio、checkbox 的每一個選項各是一個項目（checkbox 組的 `Select all` 也是一個），每一個按鈕是一個
 項目；錯誤列有錯誤時也是一個項目（在最後一欄後面）。項目分成兩區：**欄位區**是欄位與錯誤列，**動作區**是按鈕。
 
 - **`j|l|↓|→` 下一個項目，`h|k|↑|←` 上一個項目，只在 focus 所在的那一區裡**（每一區都是一維清單，Rules K12）。走到一欄的
@@ -170,8 +172,8 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 - **打開時**：focus 在第一個能停的項目（跳過停用的），新增與編輯都一樣；app 從某一欄打開表單時（例：panel 上對 Port 那一列
   按編輯），停在那一欄。新增時也不自動打開第一欄的 input popup：只省一次 `Enter`，卻讓新增與編輯打開的樣子不同，而且
   想放棄要按兩次 `Esc`（第一次只關 input popup）。打開的一定是表單本身，一次 `Esc` 就離開。
-- **跳進 radio、checkbox 那一欄時，停在第一個有值的選項**：radio 停在已選的那一個，checkbox 組停在第一個勾起來的；都沒有值就停
-  第一個。三種情況都一樣：app 從那一欄打開表單、送出被擋跳到那一欄、在錯誤列按 `e` 回到那一欄。一跳進來，focus 就在這一欄現在的值上。
+- **跳進 radio、checkbox 那一欄時，停在第一個有值的選項**：radio 停在已選的那一個，checkbox 組停在第一個勾起來的選項；都沒有值就停
+  第一個選項（`Select all` 不算）。三種情況都一樣：app 從那一欄打開表單、送出被擋跳到那一欄、在錯誤列按 `e` 回到那一欄。一跳進來，focus 就在這一欄現在的值上。
 
 ```
 ┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -194,7 +196,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
   - 在 input popup 裡按 `Enter` 確定：值寫回表單那一欄，input popup 關掉，**focus 留在同一欄**（Rules K3）。
   - 在 input popup 裡按 `Esc`：關掉 input popup，這一欄的值不變。
   - 從表單打開的 checkbox popup：`Space` 勾、`Enter` 整組寫回、`Esc` 取消（[`input/checkbox`](../input/checkbox-zh_TW.md)）。
-- **在 radio 的選項上**：選它；**在 checkbox 的選項上**：在原地翻（`Space` 也能翻，跟 checkbox popup 一樣，Rules K5）。都不開 popup，focus 留在原位，馬上生效；選錯了在原地再按
+- **在 radio 的選項上**：選它；**在 checkbox 的選項上**：在原地翻（`Space` 也能翻，跟 checkbox popup 一樣，Rules K5；在 `Select all` 上整組一起翻）。都不開 popup，focus 留在原位，馬上生效；選錯了在原地再按
   一次就好。
 - **在按鈕上**：按下它 —— 送出，或做那個按鈕的動作（見「動作區」）。
 
