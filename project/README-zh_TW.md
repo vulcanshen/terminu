@@ -8,14 +8,14 @@ CHANGELOG、發布。principle 講使用者看得到的規則，components 講�
 
 app 的檔案引用 tdp 的條目寫 `tdp` 加編號（Rules 開頭的「引用」）；這一頁會被抄進 app 的段落也照這樣寫。
 
-## 什麼是規定
+## project.1 什麼是規定
 
-這裡的敘述都是規定。不是規定的只有四種：寫明「由 app 決定」的部分、標成「例」的例子、「為什麼」、標成「實作參考（不是規定）」
-的段落。
+這裡的敘述都是規定。不是規定的只有三種：標成「例」的例子、「為什麼」、標成「實作參考（不是規定）」的段落。寫「app 可以自行
+決定」的地方是明文放行，範圍內還要守的規定寫在旁邊（[Principle P5](../principle/README-zh_TW.md#p5-明文放行)）。
 
 範本檔也是規定：照原樣複製，只改「範本檔」表上最後一欄寫的地方。
 
-## 範本檔
+## project.2 範本檔
 
 | 檔 | 複製到 | app 自己改的 |
 |---|---|---|
@@ -35,15 +35,14 @@ app 的檔案引用 tdp 的條目寫 `tdp` 加編號（Rules 開頭的「引用�
 **為什麼**：家族本來共用一份 Makefile 範本，抄來抄去就走樣了 —— `fmt` 管的目錄、`check` 跑不跑 `-race`、`make help` 的欄寬、
 段名的括號，每個 app 都差一點。同一份檔案，diff 一下就知道哪裡不一樣；改的時候也只有一個地方要改。
 
-## 目錄
+## project.3 目錄
 
 ```
 <app>/
 ├── cmd/<app>/main.go               main package
 ├── internal/                       app 自己分的 package
 │   └── version/version.go          版本（見「版本」）
-├── docs/                           dev-remarks.md、icon.svg、README 的 demo gif、有待修時的
-│                                   <app>-terminu-fix.md（tdp E6、E7）
+├── docs/                           icon.svg、README 的 demo gif（tdp E6、E7）
 ├── .local/                         git 不收；demos/ 放 VHS 的 tape
 ├── .github/workflows/release.yml
 ├── .goreleaser.yaml
@@ -59,16 +58,16 @@ app 的檔案引用 tdp 的條目寫 `tdp` 加編號（Rules 開頭的「引用�
 
 - app 本身的 Go 程式只在 `cmd/<app>/` 與 `internal/`。`go install` 的路徑是 `github.com/vulcanshen/<app>/cmd/<app>@latest`
   （照 tdp 做的 app 換成自己的帳號：`github.com/<帳號>/<app>`，Rules 的 E 章開頭）。
-- **開發用的小工具**（Go 寫的也一樣）可以放頂層的 `tools/`，不算 app 本身；寫在 dev-remarks 的「建置與開發」。
-- 圖上沒有的其他頂層目錄與檔案（例：端到端測試、`CLAUDE.md`）由 app 決定，寫在 dev-remarks 的「建置與開發」。
+- **開發用的小工具**（Go 寫的也一樣）可以放頂層的 `tools/`，不算 app 本身。
+- 圖上沒有的其他頂層目錄與檔案（例：端到端測試、`CLAUDE.md`），app 可以自行決定。
 - **`docs/icon.svg` 是家族 mark 的正本**。Go 的 `go:embed` 讀不到 `docs/`，所以 splash 用的那一份放在程式裡（`internal/` 裡的副本檔，
   或寫死的格子），tdp E6 的測試守住它跟 `docs/icon.svg` 一模一樣。
-- 出 Windows 版的 app 另有 `install.ps1`、`uninstall.ps1`，由 app 自己寫，不在範本裡。
+- 要不要出 Windows 版，app 可以自行決定；出的話另有 `install.ps1`、`uninstall.ps1`，不在範本裡，怎麼寫 app 可以自行決定。
 
 **為什麼**：家族裡大多數 app 本來就是 `cmd/<app>` 加 `internal/`，照它搬的 app 最少。程式只在兩個地方，根目錄只剩 repo 層級的
 檔案，打開任何一個家族 repo 都知道東西在哪裡。
 
-## 版本
+## project.4 版本
 
 - 版本放在 `internal/version`（範本 [`version.go`](version.go)）：`Version` 是不帶 v 的版號，`Display()` 印出時補上 v。
 - goreleaser 發版時注入 tag 去掉 v 的版號（例：tag `v0.2.0` → `0.2.0`）。`<app> version` 與 splash 印 `Display()`（例：
@@ -78,7 +77,7 @@ app 的檔案引用 tdp 的條目寫 `tdp` 加編號（Rules 開頭的「引用�
 **為什麼**：`dev` 一眼看得出不是發布版。要比較版本新舊的地方（例：ccdrawu 的更新檢查）用不帶 v 的 `Version`，遇到 `dev`
 就知道是本機版、不去比。
 
-## Makefile
+## project.5 Makefile
 
 app 的 `Makefile` 只設變數、include [`family.mk`](family.mk)，自己的 target 寫在最後一段：
 
@@ -124,7 +123,7 @@ include family.mk
 **為什麼**：CI 跑的是 `go test -race`，`check` 跑同一個，本機過了 CI 才會過。`check-lib` 抓的是「本機用 `go.work` 指著還沒發版
 的 lib，過了；照 `go.mod` 就過不了」—— 發版前一定要過。app 自己的 target 集中在最後，看 `make help` 就分得出哪些是家族共用的。
 
-## CHANGELOG
+## project.6 CHANGELOG
 
 ```markdown
 # Changelog
@@ -149,7 +148,7 @@ Each release names the version of terminu design (tdp) it follows.
 每個 app 跟到哪一版規範。`Unreleased` 讓改動進來時就記下，session 中斷、或一版包了好幾個改動時不會漏寫。舊的標題不改：`release.yml` 只抓新 tag 的那一段，舊標題不影響；舊版當時跟的是
 哪一版 tdp 多半查不到，硬補會寫錯。
 
-## 發布
+## project.7 發布
 
 1. `make check` 通過。
 2. CHANGELOG 的 `## Unreleased` 改成 `## vX.Y.Z — tdp vA.B.C`。
@@ -170,6 +169,6 @@ Each release names the version of terminu design (tdp) it follows.
 Gatekeeper 擋下；formula 不會。一個 token 走到底，手動發版與 workflow 用的是同一個名字。release 內文另外蓋一次，是因為
 goreleaser 的 `--release-notes` 不可靠；推 tap 失敗時照樣蓋，是 kbu 遇過 tap 推送 401、release 的內文因此空著。
 
-## 參考實作
+## project.8 參考實作
 
 demou：家族的操作教學 app，照這一頁從零做。範本檔用起來的問題由它先遇到，回報成 tdp 的缺漏。

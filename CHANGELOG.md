@@ -1,5 +1,43 @@
 # Changelog
 
+## v0.10.0 — 2026-10-25
+
+tdp becomes the universe: every decision an app makes has its ground in tdp, either a requirement to follow or a place
+tdp explicitly leaves to the app. Asked for by the terminu harness, settled with the user.
+
+- principle: P5 is now "Leaving it to the app explicitly" in place of the fixed and concept zones. What is left to the
+  app always says "the app may decide for itself", with its scope and the requirements still holding inside it; what a
+  fixed part cannot do is reported as a gap in tdp, which adds a solution or leaves it to the app; the "departure" is
+  gone. P5 also sets tdp's scope: the function logic is the app's; the screen requirements cover only the TUI screens
+  the app draws itself; developer documents are outside tdp. The term "departure and violation" is retired
+- rules: the `fixed` / `concept` tags are gone; the opening says what a requirement is, how things are left to the app
+  and how to cite. K3, M8, F5 and T1 (the old concept rules) state what holds and leave the how to the app; every "up to
+  the app" across the rules, the components and the project now reads "the app may decide for itself" (K1, K2, K4, K6,
+  K9, K10, M5, M6, L1, F6, F7, E1, E7)
+- Rules F1 and layout/popup: popups come in eight classes; the eighth, an app's own popup, holds only content the seven
+  cannot (e.g. kamonu's popup for drawing cells): its frame and layers work as a popup, with values to submit it works
+  like a form, and how its content is drawn and the keys on it are left to the app, the core keys, K12 and `?` still
+  holding (K5: `Space` moves a cell with several values to the next one; K9, F3 follow). A box drawn by a panel's own
+  content (e.g. a web page's dialog in webu) is content, not a popup
+- Rules E7 and E8, project: the dev-remarks and `docs/<app>-terminu-fix.md` are no longer required, nor is "no
+  clause-by-clause mapping"; README section 10 links the CHANGELOG; `docs/` holds `icon.svg` and the README's gif; the
+  lib's "does not depart" becomes "reports a gap in tdp"
+- IDs: every section of the components and the project spec gets an ID, written before its heading: the file name, a
+  `.` and a number (`panel.1`), a `README` taking its folder's name (`components.1`, `input.1`, `project.1`); the
+  principle's terms get `terms.1` to `terms.12`. A whole component may be cited as its file (`tdp confirm`). IDs are
+  never renumbered, and each version's CHANGELOG names the IDs it changed
+- layout/panel: features only some lists have get sections of their own: a pointed panel (panel.2), the mode name
+  (panel.3), sorting (panel.6), marked rows (panel.7), Drag mode (panel.8), compare mode (panel.9)
+- changed in this version: P4, P5, terms.5; K1–K6, K9, K10, M5, M6, M8, L1, F1, F3, F5–F7, T1, E1, E7, E8; components.1,
+  components.2, components.6, components.8, color (opening), popup (opening), popup.1, popup.7, popup.8 (new), panel.1–panel.3,
+  panel.5–panel.10, panel.12, panel.13, screen.1, screen.4–screen.6, confirm.1, confirm.2, form.1, form.5, form.7,
+  note.2, note.5, terminal.7, toast.2, input.10, checkbox.1, checkbox.3, checkbox.4, datetime-picker.2–4, file-picker.2,
+  finder.7, password.2, radio.1, select.2, slider.2, project.1, project.3
+- checklist: the source column gives the section ID (`popup.1`) instead of the section's name; departure-1, E7-22 to
+  E7-37 and project-17 retired; references-1, F1-1, F3-1, E7-13, screen-33, panel-74, toast-6 and toast-16 reworded;
+  K5-6, K9-7, F1-18 to F1-20, F3-8, popup-71 to popup-73 added, with two new applicabilities, "an app's own popup" and
+  "panel content box" (1452 items)
+
 ## v0.9.16 — 2026-10-25
 
 What the user found testing sshu by hand, settled with the user (from sshu, SS44).

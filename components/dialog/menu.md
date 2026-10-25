@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](menu-zh_TW.md)
 
-## Purpose
+## menu.1 Purpose
 
 A list without search, choosing a row to run it (Rules F1): the Space menu, the global operation popup, a sort picker, a
 jobs list (see "Jobs list" below). A list that needs search is a finder
@@ -10,7 +10,7 @@ jobs list (see "Jobs list" below). A list that needs search is a finder
 ([`input/select`](../input/select.md)); moving items by hand into an order is a reorder
 ([`input/reorder`](../input/reorder.md)).
 
-## Look
+## menu.2 Look
 
 ```
 ┏━ [2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -58,7 +58,7 @@ layer colour is where `Enter` acts (in a form too). With the hexagon and upperca
 rows that run at a glance; dashes between sections are lighter than a solid line, dividing the list without looking
 like another frame.
 
-## Keys
+## menu.3 Keys
 
 - A menu is a one-dimensional list: `j|l|↓|→` go on, `h|k|↑|←` go back, wrapping at both ends; `u|d` half a page
   (stopping at the ends), `gg|G` to the top and the bottom (Rules K12).
@@ -72,7 +72,7 @@ like another frame.
 - **Hint**: `Enter:run Esc:close` (no movement keys, see the hint in [`layout/popup`](../layout/popup.md)). A jobs
   list's hint is below.
 
-## Inside a mode
+## menu.4 Inside a mode
 
 The Space menu that `Space` opens inside a mode (Rules K11) lists only what can be done in the mode:
 
@@ -94,7 +94,7 @@ The Space menu that `Space` opens inside a mode (Rules K11) lists only what can 
 the menu, as in any Space menu; running a movement key from a list makes no sense, so those rows only tell what can be
 pressed: the cursor skips them and the keys are Blue.
 
-## Jobs list
+## menu.5 Jobs list
 
 Lists the jobs the app is running or has run (e.g. sshu's Jobs).
 

@@ -2,16 +2,16 @@
 
 **Language**: [English](checkbox.md) · 繁體中文
 
-## 用途
+## checkbox.1 用途
 
 一個開關，或從一組裡勾好幾個。開關與五個以內的一組，直接畫在表單或 panel 上、在原地翻；超過五個，開 checkbox popup
 （例：kbu 的 namespace picker）。checkbox popup 是 finder 的一種（[`input/finder`](finder-zh_TW.md)）：這裡只寫不同的地方。
 
 一組選項一定帶一列全選 `Select all`，是元件自己的一列，不是選項（見下面的「全選」）；一個開關沒有。
 
-一個開關也可以畫成 `off`、`on` 兩個選項的 [`radio`](radio-zh_TW.md)，由 app 選。
+一個開關也可以畫成 `off`、`on` 兩個選項的 [`radio`](radio-zh_TW.md)，app 可以自行決定。
 
-## 長相
+## checkbox.2 長相
 
 - glyph：勾了 `nf-md-checkbox_marked`（U+F0132，實心打勾）、沒勾 `nf-md-checkbox_blank_outline`（U+F0131）。勾了的字是 Green（生效中）；popup 裡跟著畫面上的勾，`Space` 勾了就是 Green（[`finder`](finder-zh_TW.md) 的「清單的標記」）。
 - **不可用的選項**（not available，例：ccdrawu 要靠還拿不到的 API 的項目）：照樣畫在原位，整列 Surface2，勾也是（[`color`](../color-zh_TW.md)
@@ -23,14 +23,14 @@
 glyph 線條可能太細，看不清楚。不可用的選項整列用 Surface2、勾也不用 Green：Green 說的是「生效中」，不可用的選項勾著也拿不到
 效果；實心打勾的形狀已經說了它勾著。
 
-## 全選
+## checkbox.3 全選
 
 - 一組選項（一個開關不算）一定帶一列 `Select all`，畫在第一列：表單與 panel 上在 label 那一列，選項接在下面；checkbox popup
   裡是清單的第一列，跟著清單捲。glyph 與顏色照選項畫，勾著是 Green；focus 與 cursor 照樣能停。
 - **選項比它多縮兩格**：看得出它管著下面這些（跟 panel 分組的項目一樣多縮兩格，[`layout/panel`](../layout/panel-zh_TW.md)）。
   篩選時它藏起來，選項照樣縮著、不位移。
 - **它不是選項**：不算進值，也不算在「五個以內」裡；寫回的只有選項的勾。app 不另外放一個代表全部的選項（例：kbu 舊的
-  `All Namespaces`），那是用錯了；每一個都勾著代表什麼由 app 解讀（例：kbu 讀成整個 cluster，之後新建的 namespace 也算）。
+  `All Namespaces`），那是用錯了；每一個都勾著代表什麼，app 可以自行決定（例：kbu 讀成整個 cluster，之後新建的 namespace 也算）。
 - **翻它**：勾起來，每一個選項都勾上；取消，每一個都取消；不可用的選項也算，停用的不算（表單上現在不能改的選項，
   [`dialog/form`](../dialog/form-zh_TW.md) 的「停用的欄位與選項跳過」，照樣維持原樣）。鍵與生效的時機都跟選項一樣：表單、panel 上
   馬上生效；checkbox popup 裡只改畫面上的勾，`Enter` 才寫回。
@@ -54,7 +54,7 @@ glyph 線條可能太細，看不清楚。不可用的選項整列用 Surface2�
 「全部」選項會跟其他勾打架：先勾它再勾 `default`，寫回的還是全部，`default` 被默默吃掉（kbu 的 KB31）。這一列反映的是整組真實
 的狀態；篩選時看不到被篩掉的選項，它不管怎麼畫都不是當下真實的狀態，所以藏起來（user 2026-10-24）。
 
-## 按鍵
+## checkbox.4 按鍵
 
 **表單或 panel 上**：`Enter` 在原地翻，focus 不動，馬上生效。表單上 `Space` 也能翻（Rules K5 的例外，跟 checkbox popup 一樣）；
 panel 上的 `Space` 照樣打開 Space menu。hint：表單上 `Enter|Space:toggle`（[`dialog/form`](../dialog/form-zh_TW.md)）；panel 上只有 `Enter` 翻，
@@ -62,13 +62,13 @@ panel 上的 `Space` 照樣打開 Space menu。hint：表單上 `Enter|Space:tog
 
 **checkbox popup**：
 
-- 打開時 focus 在清單上，cursor 停在 app 指定的那一項（從哪一項開始由 app 決定，沒指定就是第一個選項，不是 `Select all`）。
+- 打開時 focus 在清單上，cursor 停在 app 指定的那一項（從哪一項開始，app 可以自行決定，沒指定就是第一個選項，不是 `Select all`）。
 - **`Space`**：勾或取消勾 cursor 那一列（在 `Select all` 上是整組，見「全選」）—— 只改畫面上的勾，不寫回、不生效（Rules K5 的例外）。
 - **`Enter`**：把目前勾的整組一次寫回去、popup 關掉，這時才生效。從表單打開的，寫回那一欄、表單記成改過、focus 留在那一欄；
   單獨打開的，這時才套用（例：kbu 的 panel 2 這時才重抓）。什麼都沒改就按 `Enter`：不改，關掉。
 - **`Esc`**：取消，勾的都不算，值維持打開時的樣子。不先問：一個 popup 只有一個值。
 - **不可用的選項跟其他選項一樣操作**：cursor 照樣停，`Space` 照樣勾或取消，`Enter` 照畫面上的勾寫回。不可用代表什麼、勾著的
-  要怎麼處理（例：drawer 上寫 `api unavailable`），由 app 決定；tdp 只畫出狀態。
+  要怎麼處理（例：drawer 上寫 `api unavailable`），app 可以自行決定；tdp 只畫出狀態。
 - 打字列照 finder；選項多時打字篩選，不可用的選項照樣列在結果裡。
 - **hint**：清單 `Enter:apply Space:toggle Tab|/:filter Esc:cancel`；打字列 `Enter|Tab:list Esc:cancel`。篩到沒有結果時：
   清單上的 `Enter` 照樣把勾好的整組寫回去（篩選不改勾了哪些，被篩掉的勾也算），`Space` 沒有東西可以勾，hint 拿掉 `Space`：

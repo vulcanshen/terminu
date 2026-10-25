@@ -2,13 +2,13 @@
 
 **Language**: English · [繁體中文](toast-zh_TW.md)
 
-## Purpose
+## toast.1 Purpose
 
 A short message popping up from the bottom, gone on `Esc` or when its time is up; every key but `Esc` passes through it
 (Rules F1, F3): "Copied", a failed operation. A failure tied to a popup's action that the user needs to read before
 deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast.
 
-## Look
+## toast.2 Look
 
 ```
 ┏━󰗠 SUCCESS━━━━┓
@@ -28,7 +28,7 @@ deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast.
   [`layout/popup`](../layout/popup.md).
 - **Text**: centred. It may have several rows, given by the app a row at a time ("Control characters" in
   [components](../README.md)), each starting a row of its own. When too long it wraps (as in [the components' "Wrapping"](../README.md)), every row centred. How
-  many rows at most is up to the app; the spec sets no limit. When the app sets one and a message goes past it, the last
+  many rows at most, the app may decide for itself; the spec sets no limit. When the app sets one and a message goes past it, the last
   row ends with `…`, and the full message goes to an error popup or the app's log.
 - **Four kinds**: the title names the kind.
 
@@ -48,7 +48,7 @@ deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast.
   | Warning | done, or still usable, but with something worth noticing (Peach: worth noticing, not broken) | `3 files skipped`, `Unknown key in config.yaml` |
   | Error | an action failed (Red: an error) | `Can't connect to cluster` |
 
-  Whether something finished is told with Success or Info is up to the app: a Success is itself a kind of notice, and
+  Whether something finished is told with Success or Info, the app may decide for itself: a Success is itself a kind of notice, and
   whether to mark it as a success is the app's call. A failure is always an Error, never a Warning; a failure tied to a popup's action, which the user must read before
   deciding, uses an error popup as "Purpose" says.
 - **Time**: Success and Info 2200 ms; Warning and Error 4400 ms.
@@ -63,7 +63,7 @@ screens. Warning and Error get double the time because what they say matters mor
 that something is done. Success is a tick in a circle, not a ticked box: a ticked box is a checkbox, and one look
 cannot have two meanings (Principle P4).
 
-## Keys
+## toast.3 Keys
 
 - `Esc` dismisses it at once (Rules F3), before any other popup is closed (Rules K4); every other key passes through it
   to what is underneath. With the focus in a PTY, `Esc` belongs to the subprocess, and the toast can only wait for its

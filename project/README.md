@@ -10,16 +10,18 @@ components give the parts, this page gives the repo; versions and the CHANGELOG 
 An app's files cite tdp rules as `tdp` plus the ID ("Citing" at the start of the Rules); the parts of this page that get
 copied into an app are written that way too.
 
-## What is a requirement
+## project.1 What is a requirement
 
-Everything written here is a requirement. Only four things are not: the parts stated as "up to the app", examples
-(however they are introduced: "e.g.", "for example", "Example:", "such as", an "Examples" column), the "Why", and
-paragraphs marked "Implementation reference (not a requirement)".
+Everything written here is a requirement. Only three things are not: examples (however they are introduced: "e.g.",
+"for example", "Example:", "such as", an "Examples" column), the "Why", and paragraphs marked "Implementation
+reference (not a requirement)". Where it says "the app may decide for itself", that part is left to the app
+explicitly, with what still holds inside that scope written beside it
+([Principle P5](../principle/README.md#p5-leaving-it-to-the-app-explicitly)).
 
 The template files are requirements too: they are copied as they are, changed only where the last column of the
 "Template files" table says.
 
-## Template files
+## project.2 Template files
 
 | File | Copied to | What the app changes |
 |---|---|---|
@@ -43,15 +45,14 @@ The template files are requirements too: they are copied as they are, changed on
 covers, whether `check` runs `-race`, the column width of `make help`, the brackets in the section names were each a
 little different from app to app. With one file, a diff shows what differs, and a change has one place to go.
 
-## Directories
+## project.3 Directories
 
 ```
 <app>/
 ├── cmd/<app>/main.go               the main package
 ├── internal/                       the app's own packages
 │   └── version/version.go          the version (see "Version")
-├── docs/                           dev-remarks.md, icon.svg, the README's demo gif, and
-│                                   <app>-terminu-fix.md while there is something to fix (tdp E6, E7)
+├── docs/                           icon.svg, the README's demo gif (tdp E6, E7)
 ├── .local/                         not in git; demos/ holds the VHS tapes
 ├── .github/workflows/release.yml
 ├── .goreleaser.yaml
@@ -68,19 +69,19 @@ little different from app to app. With one file, a diff shows what differs, and 
 - The app's own Go code lives only in `cmd/<app>/` and `internal/`. The `go install` path is
   `github.com/vulcanshen/<app>/cmd/<app>@latest` (an app made with tdp uses its own account:
   `github.com/<account>/<app>`; start of chapter E of the Rules).
-- **Small development tools** (Go ones too) may go in a top-level `tools/`; they are not the app itself. They are
-  described in the "建置與開發" (building and development) section of its dev-remarks.
-- Other top-level directories and files not in the tree (e.g. end-to-end tests, `CLAUDE.md`) are up to the app, and are
-  described in the same section.
+- **Small development tools** (Go ones too) may go in a top-level `tools/`; they are not the app itself.
+- Other top-level directories and files not in the tree (e.g. end-to-end tests, `CLAUDE.md`), the app may decide for
+  itself.
 - **`docs/icon.svg` is the family mark's original.** Go's `go:embed` cannot reach `docs/`, so the copy the splash uses
   lives in the code (a copy of the file under `internal/`, or the cells written out), and the tdp E6 test keeps it
   identical to `docs/icon.svg`.
-- An app with a Windows build also has `install.ps1` and `uninstall.ps1`, written by the app; they are not templates.
+- Whether to build for Windows, the app may decide for itself; an app with a Windows build also has `install.ps1` and
+  `uninstall.ps1`, which are not templates, and how to write them the app may decide for itself.
 
 **Why**: most family apps were already `cmd/<app>` plus `internal/`, so following them moves the fewest apps. With code
 in two places and only repo-level files at the root, anyone opening a family repo knows where things are.
 
-## Version
+## project.4 Version
 
 - The version lives in `internal/version` (template [`version.go`](version.go)): `Version` is the version without its v,
   and `Display()` adds the v when it is printed.
@@ -91,7 +92,7 @@ in two places and only repo-level files at the root, anyone opening a family rep
 **Why**: `dev` shows at a glance that a build is not a release. Where versions are compared (e.g. ccdrawu's update
 check), `Version` without the v is used, and `dev` tells it the build is local, so it does not compare.
 
-## Makefile
+## project.5 Makefile
 
 An app's `Makefile` only sets variables and includes [`family.mk`](family.mk); its own targets go in a last section:
 
@@ -138,7 +139,7 @@ include family.mk
 passes locally with `go.work` pointing at a lib that is not released yet, and fails with `go.mod`" — it must pass before a
 release. With the app's own targets together at the end, `make help` shows which are the family's.
 
-## CHANGELOG
+## project.6 CHANGELOG
 
 ```markdown
 # Changelog
@@ -167,7 +168,7 @@ the whole family; with the tdp version written, it is plain which version of the
 changes. Old headings stay: `release.yml` only looks for the new tag's section, so they do no harm, and which version of
 tdp an old release followed often cannot be found; filling it in would get it wrong.
 
-## Release
+## project.7 Release
 
 1. `make check` passes.
 2. The CHANGELOG's `## Unreleased` becomes `## vX.Y.Z — tdp vA.B.C`.
@@ -192,7 +193,7 @@ workflow use the same name. The release body is set a second time because gorele
 unreliable; it is set even when the tap push failed because kbu had a tap push fail with 401 and the release's body was
 left empty.
 
-## Reference implementation
+## project.8 Reference implementation
 
 demou: the family's app for learning the operations, built from scratch to this page. It meets problems with the
 templates first, and reports them as gaps in tdp.

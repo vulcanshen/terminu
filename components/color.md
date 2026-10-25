@@ -3,11 +3,11 @@
 **Language**: English · [繁體中文](color-zh_TW.md)
 
 A complete colour scheme: **presentation rules + colour codes + calculation**, used across the family. Whether a meaning
-is also expressed by means other than colour (borders, symbols) is up to the app — except where the rules say otherwise
+is also expressed by means other than colour (borders, symbols), the app may decide for itself — except where the rules say otherwise
 (e.g. focus is not told by colour alone, L5). The colours of the content itself (file types, pod states, log levels,
-syntax highlighting) are up to the app; this file governs the interface elements tdp defines (Principle P4).
+syntax highlighting), the app may decide for itself; this file governs the interface elements tdp defines (Principle P4).
 
-## Presentation rules
+## color.1 Presentation rules
 
 1. **Few anchors, everything else derived**: pick three anchors first — the background, the user footprint, the popups'
    end colour — and derive every other level from them, instead of picking a colour for each element.
@@ -27,7 +27,7 @@ syntax highlighting) are up to the app; this file governs the interface elements
    after a popup title, the splash's name (Rules S5), and the app's name in the middle of a screen smaller than the
    app's minimum size (Rules L1, [`layout/screen`](layout/screen.md)).
 
-## Colour codes (catppuccin-mocha)
+## color.2 Colour codes (catppuccin-mocha)
 
 | Meaning | Used for | Colour |
 |---|---|---|
@@ -63,7 +63,7 @@ syntax highlighting) are up to the app; this file governs the interface elements
 **Why**: the user's terminal theme, transparency and background image stay; none of the family apps paints the
 background today, so moving to the shared lib does not change the screen.
 
-## Popup layer colours
+## color.3 Popup layer colours
 
 ```
 layer colour of layer K = lerp(user footprint, end colour, K / N)    N = 4
@@ -83,7 +83,7 @@ With catppuccin-mocha plugged in (Lavender → Sapphire):
   takes the layer colour of the layer it ends up on from its first frame, and nothing changes colour when the source
   is gone.
 
-## Dimming (Rules F8, T2)
+## color.4 Dimming (Rules F8, T2)
 
 Rewrite every colour code (SGR) in the already-drawn screen, leaving text and layout alone:
 

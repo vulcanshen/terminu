@@ -2,13 +2,13 @@
 
 **Language**: [English](menu.md) · 繁體中文
 
-## 用途
+## menu.1 用途
 
 沒有搜尋的清單，選一列執行（Rules F1）：Space menu、global operation popup、排序選擇器、工作清單（見下面的「工作清單」）。
 清單需要搜尋時是 finder（[`input/finder`](../input/finder-zh_TW.md)）；選的是一個值、要寫回去時是 select（[`input/select`](../input/select-zh_TW.md)）；
 自己搬動項目、排出順序的是 reorder（[`input/reorder`](../input/reorder-zh_TW.md)）。
 
-## 長相
+## menu.2 長相
 
 ```
 ┏━ [2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -48,7 +48,7 @@
 就是 `Enter` 會作用的地方（表單也一樣）。區塊標題有六角形、又是大寫，一眼就跟能執行的列分開；區塊之間用虛線，比實線輕，
 只把清單分段，不會看起來像另一個框。
 
-## 按鍵
+## menu.3 按鍵
 
 - menu 是一維清單：`j|l|↓|→` 往後、`h|k|↑|←` 往前，到頭尾繞回；`u|d` 半頁（到頭尾停住）、`gg|G` 頭尾（Rules K12）。
 - `Enter` 執行 cursor 那一列，熱鍵直接執行那一列。
@@ -57,7 +57,7 @@
 - `Esc` 關掉（global operation popup 回到 Space menu，Rules F4）；Space menu 也可以再按 `Space` 關（Rules K5）。
 - **hint**：`Enter:run Esc:close`（不寫移動鍵，見 [`layout/popup`](../layout/popup-zh_TW.md) 的 hint）。工作清單的 hint 見下面。
 
-## 模式裡
+## menu.4 模式裡
 
 模式裡按 `Space`（Rules K11）打開的 Space menu，只列模式裡能做的事：
 
@@ -74,7 +74,7 @@
 **為什麼**：「不知道怎麼辦就按 `Space`」在模式裡也要有回應。對眼前這一項的事跟平常的 Space menu 一樣能直接執行；移動鍵從清單
 執行沒有意義，只告訴使用者能按什麼，所以 cursor 跳過、鍵用 Blue。
 
-## 工作清單
+## menu.5 工作清單
 
 列出 app 正在跑或跑過的工作（例：sshu 的 Jobs）。
 

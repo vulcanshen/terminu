@@ -7,7 +7,7 @@ tdp is the detailed specification behind [terminu design](../README.md), in four
 | Layer | Document | Nature |
 |---|---|---|
 | **Principle** | this document | The spirit: what it aims for, and why |
-| **Rules** | [rules.md](rules.md) | Must hold, each with its reason; split into a fixed zone and a concept zone (P5) |
+| **Rules** | [rules.md](rules.md) | Must hold, each with its reason; what is left to the app is left explicitly (P5) |
 | **Components** | [components](../components/README.md) | Component specs: the colour scheme, frames, dialogs, and how each kind of input looks and works; required, choosing only among the listed options |
 | **Project** | [project](../project/README.md) | The project spec: a family app repo's directories, Makefile, version, CHANGELOG and release; the template files are copied as they are |
 
@@ -104,39 +104,60 @@ The cost of double duty is that the user has to learn two sets of rules, which c
 litmus test for whether a new rule holds up.
 
 P4 governs the interface elements tdp defines (frames, cursors, hints, labels, capsules…). The colours and symbols of the
-content itself (file types, pod states, log levels, syntax highlighting) belong to the domain and are up to the app (P5).
+content itself (file types, pod states, log levels, syntax highlighting) belong to the domain, and the app may decide for itself (P5).
 
-## P5 Fixed zone and concept zone
+## P5 Leaving it to the app explicitly
 
-Every rule belongs to one of two zones:
+tdp is the universe: every decision an app makes has its ground in tdp — it follows a requirement, or it lies within
+what tdp explicitly leaves to the app. Wherever nothing is explicitly left to the app, the requirement is followed.
 
-| Zone | What tdp specifies | What the app may do |
-|---|---|---|
-| **Fixed zone** | the behaviour itself | Follow it. When the app's nature genuinely doesn't fit, it may depart, but must write down why |
-| **Concept zone** | the semantics — what this is meant to achieve | Decide for itself how to implement it. There is no "departure" here: breaking the semantics is breaking the fixed part |
+**How it is written**: always "the app may decide for itself", with the scope stated. Inside that scope the app may
+handle the UI/UX itself, and may also do without terminu-go (Rules E8); the requirements that still hold inside the
+scope are written beside it. Where tdp says "the app may…", it offers an option: whether to use it, the app may decide for
+itself; once used, it is followed as written there.
 
 Take core keys as an example:
 
-- `Space` is in the **fixed zone**: pressing `Space` always opens / closes the Space menu of the current focus; in input
+- `Space` is not left to the app: pressing `Space` always opens / closes the Space menu of the current focus; in input
   state it is a space character, and that exception is fixed by tdp too.
-- `Enter` is in the **concept zone**: tdp specifies that it is "the most obvious action on the focused item", not what
-  that action is — in filu it enters a directory, in sshu it connects, in locku it flips a setting.
+- `Enter` leaves the how to the app: tdp specifies that it is "the most obvious action on the focused item", and what that
+  action is, the app may decide for itself — in filu it enters a directory, in sshu it connects, in locku it flips a
+  setting; inside that scope, the same kind of item always gets the same action within an app (Rules K3).
 
-All of the components and the project spec are in the fixed zone ("Departure" at the start of the Rules).
+**When a fixed part does not fit**: it is reported as a gap in tdp, and tdp adds a solution or leaves it to the app
+explicitly. Doing it any other way, outside what is left to the app, is a violation.
 
-**What tdp does not specify:**
+**tdp's scope:**
 
-- **Domain hotkeys on a panel.** Which letter does what, whether case carries meaning, whether to use chords or `Alt`,
-  whether to cycle backwards with `Shift-Tab` (popups with an action area excepted, Rules K2) — all up to each app.
-  Hotkeys depend on the domain (in kbu `S` is shell, in filu `S` is sort), and they are not on the no-prior-learning
-  path — everything the user looks for is in `Space` and `?`. tdp governs only a few things about hotkeys: they **must
-  appear in a menu, marked with `[]`**, they **may not take over a core key**, and they **may not take over the movement
-  letters** (Rules K12). Keys inside a component (e.g. a form's `e`, a datetime picker's `t`, a textarea's `i|a|o`) are
-  part of the component spec.
-- **Domain symbols and colours.** File-type icons, status glyphs and the colours of the content itself are bound to the
-  concrete domain and left to each app. The glyphs of the components (radio, checkbox, the loading icon, borders, the
-  titles of each class of popup) and the colour scheme are part of the component spec; the family requires a Nerd Font
-  (Rules E4). Other rules still constrain how symbols are used (P4 dedication, stable width, explicitly marked hotkeys).
+- **The function logic, the app may decide for itself**: how data is handled, file formats, whether an entered value is
+  valid, which external commands to call. tdp governs the screens and operation the user sees, plus the app's command
+  line, environment variables, where config and data live, the README, the repo and releases (chapter E of the Rules,
+  [project](../project/README.md)); how an invalid value is shown follows the components.
+- **The screen requirements cover only the TUI screens the app draws itself**: on a screen that is not part of the TUI
+  (Rules K1, e.g. locku's screensaver and PIN box while locked) and on output printed for another program to show (e.g.
+  ccdrawu's `statusline` printed for Claude Code's status line), the app may decide for itself.
+- **Developer documents are outside tdp's scope**: design records and notes on developing and releasing — whether to
+  write them, how and where, tdp does not govern.
+
+**The larger openings:**
+
+- **Domain hotkeys on a panel, the app may decide for itself**: which letter does what, whether case carries meaning,
+  whether to use chords or `Alt`, whether to cycle backwards with `Shift-Tab` (popups with an action area excepted, Rules
+  K2). Inside that scope they **must appear in a menu, marked with `[]`**, they **may not take over a core key**, and
+  they **may not take over the movement letters** (Rules K12). Keys inside a component (e.g. a form's `e`, a datetime
+  picker's `t`, a textarea's `i|a|o`) are part of the component spec, not left to the app.
+- **Domain symbols and colours, the app may decide for itself**: file-type icons, status glyphs, the colours of the
+  content itself. Inside that scope, other rules still constrain how symbols are used (P4 dedication, stable width,
+  explicitly marked hotkeys); the family requires a Nerd Font (Rules E4). The glyphs of the components (radio, checkbox,
+  the loading icon, borders, the titles of each class of popup) and the colour scheme are part of the component spec,
+  not left to the app.
+
+**Why**: only what is written counts, so an app and whoever checks it look in one place only: a requirement to follow, or
+the sentence "the app may decide for itself". Letting every app write exceptions of its own, with enough of them
+the family stops being one way of working; what does not fit goes back to tdp, which adds a solution every other app
+gains from too. Hotkeys and domain symbols are bound to the concrete domain (in kbu `S` is shell, in filu `S` is sort)
+and are not on the no-prior-learning path — everything the user looks for is in `Space` and `?` — so they are left to the
+app; the function logic is the app itself, unseen by the user, and not tdp's to govern (the user, 2026-10-25).
 
 ## P6 What is lit is what has the focus
 
@@ -155,12 +176,12 @@ stays visible; it only says "not here right now".
 
 ## Terms
 
-### Surface
+### terms.1 Surface
 
 A UI container that can take focus and that the user interacts with directly; there are two kinds, **panel** and
 **popup**. Always-on areas (footer, statusbar, screen chip row) are not surfaces — focus never rests on them.
 
-### Screen
+### terms.2 Screen
 
 A set of panels shown at the same time. Some apps have a single screen, some have several, switched by a global
 operation.
@@ -169,7 +190,7 @@ operation.
 - Several screens: sshu's `[M]anage` / `[F]ile transfer` / `[S]SH`; webu's `[W]eb` / `[B]ookmarks` / `[H]istory` /
   `[D]ownloads` / `[S]ettings`
 
-### Panel
+### terms.3 Panel
 
 A permanent area of the screen with its own cursor and content, numbered `[N]`.
 
@@ -177,7 +198,7 @@ A permanent area of the screen with its own cursor and content, numbered `[N]`.
 - filu: `[1]` file list, `[2]` preview, `[3]` Marks / Tasks / Favorites
 - locku: `[1]` sidebar (Profiles, Savers, Integration, Settings), `[2]` property table of the item under the cursor
 
-### Panel tab
+### terms.4 Panel tab
 
 Several pages of content that can be switched within one panel. Switching panel tabs changes neither the panel nor the
 screen.
@@ -185,9 +206,9 @@ screen.
 - kbu `[3]`'s Logs / Events / Conditions / Relatives / History
 - filu `[1]`'s up to 5 directory tabs; `[3]`'s Marks / Tasks / Favorites
 
-### Popup
+### terms.5 Popup
 
-A transient surface laid over the panels; closing it returns to what is underneath. There are seven classes (Rules F1):
+A transient surface laid over the panels; closing it returns to what is underneath. There are eight classes (Rules F1):
 
 - menu: the Space menu, kbu's sort picker
 - confirm: filu's confirmation before deleting
@@ -196,8 +217,9 @@ A transient surface laid over the panels; closing it returns to what is undernea
 - note: kbu's YAML view, the key reference
 - toast: a short message when an operation completes or fails
 - terminal: kbu's Alterm, filu's shell — a subprocess (PTY) running inside a popup
+- an app's own popup: kamonu's popup for drawing cells — content the seven classes cannot hold
 
-### Focus
+### terms.6 Focus
 
 Where the user's keys go right now, on two levels:
 
@@ -207,13 +229,13 @@ Where the user's keys go right now, on two levels:
 
 "The target is within focus" means the target is the current surface itself, or the item at its position level.
 
-### Input state
+### terms.7 Input state
 
 When typed text is the content: focus is on a typing row, and what is typed becomes that row's content. E.g. filu's
 rename box, webu's address bar (`L`), locku's PIN entry, the typing row of a panel filter or of a finder. The list of a
 select or a picker, and a form itself, are not input state. See Rules K8.
 
-### Mode
+### terms.8 Mode
 
 A temporary state inside a panel or popup: once in it, some keys take on the mode's own meaning, and `Esc` leaves it.
 E.g. webu's visual mode (selecting text), kbu's drag mode (reordering pins), sshu's `Alt-v` selection mode, the selection
@@ -221,29 +243,22 @@ in filu's yank viewport. A mode is not input state — keys do not become charac
 which fills the screen with one panel) is not a mode either: no key changes meaning, `Esc` need not leave it, and its own
 key restores it. See Rules K11.
 
-### Core key
+### terms.9 Core key
 
 A key whose meaning is specified by tdp and never changes on any surface: `Tab`, `Enter`, `Esc`, `Space`, `?`, `q`,
 `1`–`9` (Rules, chapter K).
 
-### Letter hotkey
+### terms.10 Letter hotkey
 
 A key the app assigns to run a row of a menu directly. E.g. filu's `[r]ename`, kbu's `[C]ompare`, sshu's `[t]ransfer`
 and `[T]ransfer all`. It is a shortcut, not an extra feature (Rules M3).
 
-### Source and target
+### terms.11 Source and target
 
 When popup A opens popup B, A is the source and B is the target. E.g. opening the global operation popup from the global
 row of the Space menu — the Space menu is the source, the global operation popup the target.
 
-### Streaming content
+### terms.12 Streaming content
 
 Content with new information continuously flowing in. E.g. kbu `[3]`'s Logs, sshu's SSH session, filu's search results
 appearing one by one.
-
-### Departure and violation
-
-An app deliberately not following the fixed part, with the reason written down, is a **departure**; without a written
-reason it is a **violation**. For the definition and where to write it, see "Departure" at the start of the Rules. E.g.
-locku's lock screen shows no footer (M1), because its only action is pressing any key to bring up the PIN entry — this
-is written in locku's dev-remarks, so it is a departure.

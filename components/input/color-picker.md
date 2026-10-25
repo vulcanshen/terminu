@@ -2,11 +2,11 @@
 
 **Language**: English · [繁體中文](color-picker-zh_TW.md)
 
-## Purpose
+## color-picker.1 Purpose
 
 Choosing a colour: colour fields on webu pages, locku's colour settings.
 
-## Look
+## color-picker.2 Look
 
 ```
 ┏━BACKGROUND━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -48,7 +48,7 @@ Choosing a colour: colour fields on webu pages, locku's colour settings.
 **Why**: three sliders take too much room; a row of small swatches with hex is read at a glance. Colours in the family
 are all written in hex (`#2A2A3C`), and with the channels in hex too, they line up.
 
-## Keys
+## color-picker.3 Keys
 
 - **The four items R, G, B and `Choose` take the focus**. hjkl move only among R, G and B: `h|l` left and right, `j|k`
   back and on too (one-dimensional), wrapping at the ends (Rules K12); `Choose` is reached only with `Tab`. **old and new
@@ -74,7 +74,7 @@ with `Enter`, and the button can be seen — "fields change the value, the butto
 covers both the name and the hex and is as wide as the swatch: a one-cell block is easily missed, and the hex being
 changed lights up with it.
 
-## Value
+## color-picker.4 Value
 
 In a form or a panel: a swatch 3 cells wide (`███`), a space, and the hex (`███ #2A2A3C`); empty follows the rule for
 empty values in [`input/README`](README.md). With the cursor on the field, the swatch keeps its own colour and the hex

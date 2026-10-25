@@ -2,18 +2,18 @@
 
 **Language**: English · [繁體中文](note-zh_TW.md)
 
-## Purpose
+## note.1 Purpose
 
 Read-only content that scrolls and may have hotkeys and modes of its own (Rules F1): the key reference, viewers (a YAML
 view, the App Log, a file's content), the error popup, the typing explanation on a form ([`dialog/form`](form.md)). A
 viewer always has a selection mode (see "Selection mode" below). With a list of options to run with `Enter`, it is a
 menu, not a note.
 
-## Look
+## note.2 Look
 
 - The frame follows [`layout/popup`](../layout/popup.md): the padding above and below is always there, in a viewer too.
 - **Title**: a glyph plus what is shown, drawn as the title capsule: the kind in uppercase; to say which one is shown,
-  ` — ` and then the name, the name as it is (e.g. `YAML — pod/nginx`). The glyph is the app's choice; the glyphs of
+  ` — ` and then the name, the name as it is (e.g. `YAML — pod/nginx`). The glyph, the app may decide for itself; the glyphs of
   the key reference and the error popup are below.
 - **Scroll position**: when the content does not fit, the right end of the bottom border shows the visible lines,
   `N-M of T`; in a viewer's selection mode, the cursor's line `N of M` (see "Selection mode" below). When a viewer
@@ -30,7 +30,7 @@ menu, not a note.
   the frame is cut, with `…` at the end of the line. Unwrapped, when the selection cursor walks into the cut part, the
   view scrolls sideways just enough to show it (as vim's nowrap does), with `…` at the start of lines cut on the left;
   the cut text can still be selected and copied. Leaving the selection mode returns the view to the left edge.
-- **A viewer's line numbers**: whether a viewer draws line numbers on the left is up to the app: content where a line
+- **A viewer's line numbers**: whether a viewer draws line numbers on the left, the app may decide for itself: content where a line
   is a line, such as file content, a YAML view or the App Log, usually has them; a table the app lays out itself (e.g.
   filu's file info) gains nothing from them and may go without. When drawn they follow
   [`input/textarea`](../input/textarea.md): the first row of each line carries its number, right-aligned, with a space
@@ -45,7 +45,7 @@ menu, not a note.
   text file in [`input/file-picker`](../input/file-picker.md)'s preview table (chroma's catppuccin-mocha, foreground
   only). The app gives the language (a YAML view is YAML; a DevTools Network response goes by its content type); file
   content goes by the file name, as in the preview. Whether content with no fixed format (e.g. App Log), or whose
-  language cannot be told, is coloured is up to the app: uncoloured, it is plain text in Text; an app knows its content
+  language cannot be told, is coloured, the app may decide for itself: uncoloured, it is plain text in Text; an app knows its content
   and may colour it as its situation needs (e.g. the ERROR and WARN lines of a log). The lib adds no syntax colours but
   keeps the colours the app gives. Line numbers stay Overlay0; the selection mode's
   range stays Yellow with Base text, with no syntax colours inside it.
@@ -84,7 +84,7 @@ starts at two digits. Three digits: content within 999 lines never jumps. With t
 the width seen is kept, so switching tabs back and forth does not keep jumping. The syntax colours are the preview's, so
 a file looks the same in the preview and in a viewer.
 
-## Keys
+## note.3 Keys
 
 - Scrolling: `j|k`, `u|d`, `gg|G` (Rules K12). A viewer's selection mode is below.
 - **A wrapping viewer scrolls by rows as drawn** (as `less` does): `j|k` one row at a time, `u|d` half a page counted
@@ -106,7 +106,7 @@ The error popup opened from a form's error row looks exactly the same, so it tak
 tells how it was opened, and a form can be worked through with `Enter` all the way (`Enter` on the error row to read
 the message, `Enter` back, `e` to the field, `Enter` to change it).
 
-## Selection mode (viewers only)
+## note.4 Selection mode (viewers only)
 
 Every viewer (a YAML view, the App Log, a file's content…) has a selection mode, to select a stretch of text and copy
 it; the key reference, the error popup and a form's typing explanation have no such mode, and `j|k` only scroll there.
@@ -138,7 +138,7 @@ takes no extra `Esc`. `Esc` goes back one layer as everywhere else: one layer ba
 so a start picked wrong is put right by going back, moving and selecting again (the user, 2026-10-24). Every viewer has it: nobody has to remember which viewers can select and which cannot, and any
 stretch of text you can see in the family can be copied.
 
-## Key reference
+## note.5 Key reference
 
 The "what keys work here" opened with `?` (Rules K6, M4).
 
@@ -192,8 +192,8 @@ The "what keys work here" opened with `?` (Rules K6, M4).
     where they are with or without it; users read "what can be pressed here" first, then "once inside".
 - **Each row** (a panel of one value per row, optional): the key reference may start with a section saying what each
   row of the panel means. The left column is the setting's name in the plain text colour (Text, not the keys' Blue: it
-  is not a key), the right column the explanation; the sections of keys come after it. Whether to have it is up to the
-  app. A long explanation wraps in the right column ([the components' "Wrapping"](../README.md); the name column stays,
+  is not a key), the right column the explanation; the sections of keys come after it. Whether to have it, the app may
+  decide for itself. A long explanation wraps in the right column ([the components' "Wrapping"](../README.md); the name column stays,
   the following rows start where the explanation starts) instead of being cut: the section is sentences to read, not a
   table to look up, and the key reference scrolls, so a long one can still be read in full.
 - **On a popup** only that popup's own keys are listed (Rules K6): its hotkeys, `Enter`, `Esc`, the movement keys.
@@ -206,7 +206,7 @@ lists only actions — so without the movement keys, `u|d` and `gg|G` would have
 Labels are not lowercased: that would break abbreviations such as `SSH config` and `YAML`, and the hotkey is already in
 the key column on the left.
 
-## Error popup
+## note.6 Error popup
 
 The note laid over a popup whose action failed (see the error row in [`layout/popup`](../layout/popup.md)). The whole
 message opened with `Enter` on a form's error row is one too.
@@ -235,7 +235,7 @@ message opened with `Enter` on a form's error row is one too.
 with one key, so without the layer colour nobody is left wondering which layer it is. A popup with an error row is not
 itself an error — only one value in it fails a rule — so its frame keeps the layer colour.
 
-## App Log
+## note.7 App Log
 
 Every app has an App Log (Rules F5): what the app has done and what went wrong, newest last. `!` on a panel opens it
 (Rules K1); it is a viewer (the viewer's rules and its selection mode above apply), and while it is open new entries
@@ -264,7 +264,7 @@ Errors alone do not show what was done before them, and the entries just before 
 in the background can only be seen here. `!`, like `?` and `Space`, works in every app of the family. Memory only: what
 matters is what happened while the app was open this time, with no further kind of thing to store and clean up.
 
-## Compare
+## note.8 Compare
 
 The popup the compare mode of a panel opens ([`layout/panel`](../layout/panel.md)): a viewer (the viewer's rules and its
 selection mode above apply). The title glyph is `nf-md-compare` (U+F018A), the title `DIFF — <anchor> ↔ <the other>`;

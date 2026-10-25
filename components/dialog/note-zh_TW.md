@@ -2,17 +2,17 @@
 
 **Language**: [English](note.md) · 繁體中文
 
-## 用途
+## note.1 用途
 
 唯讀的內容，可以捲動，可以有自己的熱鍵與模式（Rules F1）：key reference、viewer（YAML 檢視、App Log、檔案內容）、error popup、
 表單上的打字說明（[`dialog/form`](form-zh_TW.md)）。viewer 一定有選取模式（見下面的「選取模式」）。有可以用 `Enter` 執行的選項清單時，
 它是 menu，不是 note。
 
-## 長相
+## note.2 長相
 
 - 框照 [`layout/popup`](../layout/popup-zh_TW.md)：上下留白一律有，viewer 也一樣。
 - **標題**：glyph 加上顯示的東西，畫成標題膠囊：種類大寫；要寫顯示的是哪一個時，接 ` — ` 再接名稱，名稱照原樣（例：
-  `YAML — pod/nginx`）。glyph 由 app 選；key reference 與 error popup 的 glyph 見下面。
+  `YAML — pod/nginx`）。glyph app 可以自行決定；key reference 與 error popup 的 glyph 見下面。
 - **捲動位置**：放不下時，下框右邊寫看得到的行 `N-M of T`；viewer 的選取模式裡寫游標所在的行 `N of M`（見下面的「選取模式」）。
   viewer 折行時，N 是最上面那一列所屬的行，M 是最下面那一列所屬的行，T 是總行數（例：最上面是第 6 行折下來的那一列、最下面是
   第 10 行，寫 `6-10 of 42`）。
@@ -23,7 +23,7 @@
   一列還長時才照格子切。要對齊的內容（左右並排、表格），app 可以讓它不折行：比框寬的部分截掉，行尾加 `…`。不折行時，選取模式的
   游標走進截掉的部分，畫面跟著左右捲到看得見（捲最少的量，像 vim 的 nowrap），左邊被捲掉的開頭也加 `…`；截掉的內容照樣選得到、
   複製得到。離開選取模式，回到最左邊。
-- **viewer 的行號**：viewer 左邊畫不畫行號由 app 決定：檔案內容、YAML 檢視、App Log 這種一行就是一行的內容通常要畫；app 自己排出來的
+- **viewer 的行號**：viewer 左邊畫不畫行號，app 可以自行決定：檔案內容、YAML 檢視、App Log 這種一行就是一行的內容通常要畫；app 自己排出來的
   表（例：filu 的檔案資訊）行號沒有意義，可以不畫。畫的時候照 [`input/textarea`](../input/textarea-zh_TW.md) 的行號：每一行的
   第一列畫行號，靠右對齊、後面空一格；折下來的列行號欄空白。行號 Overlay0，選取模式裡游標所在那一行的行號 Text。複製不含行號。
   行號欄**至少三位**：打開時就知道行數的（YAML 檢視、檔案內容）取 max(3, 總行數的位數)，打開後不變；串流的 App Log 從三位開始，
@@ -32,7 +32,7 @@
   切到行數更多的頁就變寬；切回行數少的頁，寬度留著不縮回。串流的頁一樣只變寬。
 - **viewer 的語法顏色**：內容有固定格式的（YAML、JSON、TOML、HTML、XML、Markdown……）照 [`input/file-picker`](../input/file-picker-zh_TW.md)
   預覽表的文字檔上色（chroma 的 catppuccin-mocha，只上前景色）。語言由 app 給（YAML 檢視是 YAML；DevTools Network 的回應照
-  content type）；檔案內容照檔名判斷，跟預覽一樣。沒有固定格式的（例：App Log）、判斷不出來的，上不上色由 app 決定：不上色時是
+  content type）；檔案內容照檔名判斷，跟預覽一樣。沒有固定格式的（例：App Log）、判斷不出來的，上不上色，app 可以自行決定：不上色時是
   純文字 Text；app 知道自己的內容，可以依情境上色（例：log 裡 ERROR、WARN 的行）。lib 不上語法顏色，但保留 app 給的顏色。
   行號照舊 Overlay0；選取模式的範圍照舊 Yellow 底、Base 字，語法顏色在範圍裡不顯示。
 - **viewer 裡的 Tab 與控制字元**（跟 [`input/file-picker`](../input/file-picker-zh_TW.md) 的預覽一樣；全家族的規定見 [components](../README-zh_TW.md)
@@ -63,7 +63,7 @@
 跳寬看得出原因，所以它從兩位起跳。三位：999 行以內的內容不會跳。有 tab 時切回去不縮回：看過的寬度留著，來回切 tab 不會一直跳。
 語法顏色跟預覽同一套，同一個檔案在預覽與 viewer 裡長得一樣。
 
-## 按鍵
+## note.3 按鍵
 
 - 捲動：`j|k`、`u|d`、`gg|G`（Rules K12）。viewer 的選取模式見下面。
 - **viewer 折行時以畫面上的一列為單位捲**（像 `less`）：`j|k` 一次一列，`u|d` 半頁照列算。比框還高的一行（例：壓縮過的 JSON）
@@ -81,7 +81,7 @@
 按鍵也一樣：畫面上分不出它是怎麼打開的，而且表單上一路 `Enter` 走得完（錯誤列 `Enter` 看訊息、`Enter` 回來、`e` 跳到那一欄、
 `Enter` 改）。
 
-## 選取模式（只有 viewer）
+## note.4 選取模式（只有 viewer）
 
 每個 viewer（YAML 檢視、App Log、檔案內容……）都有選取模式，可以把一段文字選起來複製；key reference、error popup、表單的打字說明沒有
 這個模式，`j|k` 只捲動。
@@ -105,7 +105,7 @@
 `Visual`，起點選錯了，退回去移好再選（user 2026-10-24）。每個 viewer 都有：使用者不用記哪個 viewer 能選、哪個不能，
 家族裡看得到一段文字的地方就複製得到。
 
-## key reference
+## note.5 key reference
 
 `?` 打開的「這裡能按什麼鍵」（Rules K6、M4）。
 
@@ -150,7 +150,7 @@
   - 說明**別的 surface** 的段（Rules M6；例：panel 裡的 PTY 進去之後的鍵，標題 `terminal`）：排在最後，`app-wide` 之後。
     每個 panel 前面幾段的順序都一樣，有沒有這一段，`core keys`、`app-wide` 都在原位；先讀「這裡能按什麼」，再讀「進去之後」。
 - **每一列**（一列一個值的 panel，可選）：key reference 最前面可以有一節說明 panel 上每一列是什麼意思。左欄是設定的名稱，用一般的字色
-  （Text，不是鍵的 Blue：它不是鍵），右欄是說明；按鍵的區塊接在後面。要不要有這一節由 app 決定。說明太長時在右欄折行（照
+  （Text，不是鍵的 Blue：它不是鍵），右欄是說明；按鍵的區塊接在後面。要不要有這一節，app 可以自行決定。說明太長時在右欄折行（照
   [components 的「折行」](../README-zh_TW.md)，名稱欄不動、接下來的列從說明的起點開始），不截斷：這一節是要讀的句子，不是對照表；
   key reference 本來就能捲，長了也看得完。
 - **popup 上**只列這個 popup 自己的鍵（Rules K6）：它的熱鍵、`Enter`、`Esc`、移動鍵。
@@ -160,7 +160,7 @@
 **為什麼**：key reference 是唯一列出全部按鍵的地方 —— hint 不列移動、Space menu 只列動作 —— 不列移動鍵，`u|d`、`gg|G` 就沒地方
 學（Principle P1）。label 不轉小寫：轉了會弄壞 `SSH config`、`YAML` 這種縮寫，而熱鍵已經寫在左邊的鍵欄。
 
-## error popup
+## note.6 error popup
 
 popup 的動作失敗時（[`layout/popup`](../layout/popup-zh_TW.md) 的錯誤列），蓋在那個 popup 上的 note。表單錯誤列 `Enter` 打開的完整訊息
 也是它。
@@ -184,7 +184,7 @@ popup 的動作失敗時（[`layout/popup`](../layout/popup-zh_TW.md) 的錯誤�
 **為什麼**：error popup 整個就是錯誤，框與字都是 Red；它一定在最上層、一個鍵就關掉，少了層色也不會讓人搞不清第幾層。有錯誤列的
 popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的框維持層色。
 
-## App Log
+## note.7 App Log
 
 每個 app 都有 App Log（Rules F5）：app 做過的事與出問題的事，最新的在最下面。在 panel 上按 `!` 打開（Rules K1），是一個 viewer
 （上面 viewer 的規定與選取模式照樣適用）；開著時新的一筆照樣進來，跟串流的內容一樣。
@@ -207,7 +207,7 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 app 在背景做的事，使用者也只有這裡看得到。`!` 跟 `?`、`Space` 一樣，在家族哪個 app 都按得到。只放在記憶體：要看的是這次開 app
 發生了什麼，不多一種要存、要清的東西。
 
-## 比較
+## note.8 比較
 
 panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)）打開的 popup：一個 viewer（上面 viewer 的規定與選取模式照樣適用）。
 標題 glyph `nf-md-compare`（U+F018A），寫 `DIFF — <anchor> ↔ <另一個>`；後面接兩個 tab：`UNIFIED`、`SPLIT`，`h|l` 切（Rules K12）。

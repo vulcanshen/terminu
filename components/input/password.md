@@ -2,14 +2,14 @@
 
 **Language**: English · [繁體中文](password-zh_TW.md)
 
-## Purpose
+## password.1 Purpose
 
 Entering a value that is not shown: a password, a PIN, a passphrase.
 
-## Look
+## password.2 Look
 
 - The skeleton follows the one-line input popup in [`input/README`](README.md).
-- **Two options for the mask; the app picks by use**:
+- **Two options for the mask; which one, the app may decide for itself by use**:
 
   | Option | Look | Suits |
   |---|---|---|
@@ -48,7 +48,7 @@ Entering a value that is not shown: a password, a PIN, a passphrase.
 - **Width**: with a length limit (e.g. a PIN), the width is set by the content (width in
   [`layout/popup`](../layout/popup.md)).
 
-## States
+## password.3 States
 
 **When a password is already set**:
 
@@ -75,7 +75,7 @@ Entering a value that is not shown: a password, a PIN, a passphrase.
 The grey dots are not a grey suggestion: there is no text behind them to take in, and the hint has no `Tab`; all they
 share with a suggestion is "`Enter` with nothing typed keeps the old one".
 
-## Keys
+## password.4 Keys
 
 - Pasting follows "Pasted control characters" in [`input/README`](README.md) (masked values stay masked).
 - **`Backspace` clears everything at once, not one character at a time**: with something typed it clears all of it,
@@ -86,7 +86,7 @@ share with a suggestion is "`Enter` with nothing typed keeps the old one".
 **Why**: with the characters unseen, moving the cursor means nothing; a mistake cannot be located either, so clearing
 it all with `Backspace` and typing again is fastest.
 
-## Value
+## password.5 Value
 
 Leading and trailing whitespace is not trimmed (whitespace may be part of a password). In a form or a panel: a set password is
 always 8 `•` in Text (the colour of values in a form or a panel), never giving away the length; not set follows the rule for empty values (e.g.

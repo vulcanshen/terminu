@@ -16,16 +16,17 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
   a gap in tdp.
 - **Checked on tdp alone, never on the implementation**: whether an app uses terminu-go, and whatever language it is
   written in, it is checked against the same list. An app on terminu-go does not meet everything by default either —
-  what the app supplies itself (e.g. `docs/icon.svg`, the README, the dev-remarks) is beyond the library.
-- The parts the spec leaves up to the app, examples, the "Why" and "Implementation reference (not a requirement)" are
-  not broken into items.
+  what the app supplies itself (e.g. `docs/icon.svg`, the README) is beyond the library.
+- Examples, the "Why" and "Implementation reference (not a requirement)" are not broken into items; nor is what the
+  spec leaves to the app ("the app may decide for itself") itself, while the requirements that still hold inside that
+  scope are.
 
 ## Each item
 
 | Column | What it holds |
 |---|---|
 | ID | `<source>-<number>` (e.g. `K4-1`, `form-3`), see "IDs" below |
-| Source | for the rules, the rule (`K4`); for the components and the project spec, `<file> §<section>` (e.g. `popup §Frame`); for the principle, `P3` or `Terms`. An item taken from a diagram is marked `(diagram)`. IDs are the same in both languages; sources name the sections in each language |
+| Source | for the rules, the rule (`K4`); for the components and the project spec, the section ID (e.g. `popup.1`, "Citing" at the start of the Rules); for the principle, `P3` or a term's ID (`terms.1`). An item taken from a diagram is marked `(diagram)`. IDs and sources are the same in both languages |
 | What to check | one thing that can be answered yes or no |
 | Applies to | which feature an app must have for the item to count, see "Applies to" below |
 | How to check | which key to press, where on the screen to look; what the screen cannot show says "read the code" or "read the file" |
@@ -36,8 +37,8 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
   same source. Results from different versions line up by ID.
 - **Prefixes**: the rules use the rule (`K4-1`); the components and the project spec use the file name (`popup-3`,
   `checkbox-4`), with `components-` for `components/README`, `input-` for `input/README` and `project-` for
-  `project/README`. Passages with no rule number: the rules' opening "Departure" and "Citing" use `departure-` and
-  `references-`, the principle's terms use `terms-`, and the opening of chapter S (the splash fills the whole screen)
+  `project/README`. Passages with no rule number: the rules' opening "Citing" uses `references-` (`departure-` is retired),
+  the principle's terms use `terms-`, and the opening of chapter S (the splash fills the whole screen)
   uses `S0-`. IDs are plain ASCII, the same in both languages, so that tools can read them.
 
 ## Applies to
@@ -93,6 +94,8 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | stores settings or data | settings, data, state or a cache written to disk |
 | compare mode | a panel's compare mode (an anchor first, then another row to compare with) |
 | pointed panel | a list row stands for another panel on screen, and the cursor points that panel out (e.g. sshu's session list and grid) |
+| an app's own popup | a popup whose content the seven classes cannot hold, drawn by the app itself (e.g. kamonu's popup for drawing cells) |
+| panel content box | a panel's content draws boxes of its own (e.g. the dialogs a web page pops up in webu) |
 | a file no longer used | a new version stopped using a settings, state or data file (e.g. sshu's errors.yaml, kbu's theme.yaml) |
 | Windows build | a Windows release |
 | has released | a release made (a tag and a GitHub release); for an app not yet released, what only exists after a release (the release, the formula on the tap…) does not apply, and what can be seen is checked on the repo as it is now |

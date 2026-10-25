@@ -2,11 +2,11 @@
 
 **Language**: [English](datetime-picker.md) · 繁體中文
 
-## 用途
+## datetime-picker.1 用途
 
 選一個日期（date picker），或日期加時間（datetime picker）。月曆參考 [pickdate](https://github.com/maraloon/pickdate)，做成家族自己的。
 
-## 長相
+## datetime-picker.2 長相
 
 **日期**：
 
@@ -32,7 +32,7 @@
 - 日曆上 cursor 停的那一天照 menu 的 cursor 畫（層色底、Base 粗體；一格一天，沒有箭頭）。**cursor 停在哪一天，就是要寫回去的那一天**，沒有「選了還沒確定」的另一個狀態。
 - 欄位原本的值字用 Green（跟 select 的目前的值一樣）；打開時 cursor 停在這一天，沒有值就停在今天。
 - 今天加底線，不另外上色；週末也不另外上色（Principle P4：不多加顏色的意思）。
-- 一週從週一或週日開始，由 app 決定。
+- 一週從週一或週日開始，app 可以自行決定。
 - 範圍外的日子用 Surface2（停用），cursor 不停在上面。
 
 **日期加時間**：右邊用一條直的分隔線切出另一塊放時間；只選日期的沒有這一塊。
@@ -61,10 +61,10 @@
 
 **為什麼**：選日期時間是「挑」，用移動就夠了；拆成時、分兩欄，一眼就知道是幾點幾分。
 
-## 按鍵
+## datetime-picker.3 按鍵
 
 可以拿 focus 的是：**月、年、日曆、時間**（只選日期的沒有時間）。picker 自己的操作只用 `Tab`、hjkl（方向鍵）、`Enter`、`Esc`，
-加上 `t`；core key 照 [`input/README`](README-zh_TW.md)（`?`、`q|Ctrl-C`），`Shift-Tab` 照 Rules K2 由 app 決定。
+加上 `t`；core key 照 [`input/README`](README-zh_TW.md)（`?`、`q|Ctrl-C`），要不要 `Shift-Tab`，照 Rules K2 app 可以自行決定。
 
 - **`Tab`** 照畫面順序換 focus：月 → 年 → 日曆 → 時間 → 回到月。打開時 focus 在日曆。
 - **月、年上**：`h|l`（`←|→`）換上一個、下一個月或年；日曆跟著翻，cursor 停在同一天（那個月沒有這一天就停在最後一天）。
@@ -90,7 +90,7 @@
 
 **為什麼**：換月換年不用 pickdate 的 `p`/`n`/`P`/`N`：那些是移動，hint 上看不到，使用者很難發現；`t` 會被用到，所以寫在 hint 上。
 
-## 值
+## datetime-picker.4 值
 
 - **範圍**：可以設最早與最晚。
-- **表單與 panel 上**：格式化的日期（時間），格式由 app 決定（`2026-10-15`、`2026-10-15 10:05`）；空的照 [`input/README`](README-zh_TW.md) 的空值規則。
+- **表單與 panel 上**：格式化的日期（時間），格式 app 可以自行決定（`2026-10-15`、`2026-10-15 10:05`）；空的照 [`input/README`](README-zh_TW.md) 的空值規則。

@@ -2,13 +2,13 @@
 
 **Language**: English · [繁體中文](confirm-zh_TW.md)
 
-## Purpose
+## confirm.1 Purpose
 
 One question, `Enter` accepting and `Esc` cancelling, saying what follows (Rules F6): before deleting, before quitting,
 "Connect to X?", before doing something to a row of a jobs list (its content is the row's full text; the jobs list in
-[`dialog/menu`](menu.md)). Which actions ask is up to the app (F6).
+[`dialog/menu`](menu.md)). Which actions ask, the app may decide for itself (F6).
 
-## Look
+## confirm.2 Look
 
 ```
 ┏━󰻌 QUIT━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -26,7 +26,7 @@ One question, `Enter` accepting and `Esc` cancelling, saying what follows (Rules
   sentences, given by the app a row each ("Control characters" in [components](../README.md)), with no blank row
   between them.
 - **Colours**: the question in Text, not bold; the content in Overlay0; the warning sentence in the content (e.g. "This
-  cannot be undone", "2 sessions will be closed") in Peach, which sentence counts as a warning being up to the app.
+  cannot be undone", "2 sessions will be closed") in Peach, and which sentence counts as a warning, the app may decide for itself.
 - **Too long**: the question and the content both wrap (as in [the components' "Wrapping"](../README.md)), never cut. When the content is long, only the content scrolls
   with `j|k`; the question stays fixed at the end.
 - **Width**: the content is known when it opens, so it follows "content width known when it opens" in
@@ -38,7 +38,7 @@ this one moment and make the user think again; a warning ⚠ hung on every confi
 (Principle P4). Peach rather than Red for a warning: Red is an error that has already happened, and at this point
 nothing has gone wrong yet.
 
-## Keys
+## confirm.3 Keys
 
 - `Enter` accepts, `Esc` cancels (Rules F6); these are the only two answers (no `y` or `n`).
   `Space` does nothing (Rules K5).

@@ -7,7 +7,7 @@ tdp 是 [terminu design](../README-zh_TW.md) 的細節規範，分四層：
 | 層 | 文件 | 性質 |
 |---|---|---|
 | **Principle** | 本文件 | 精神：要達成什麼、為什麼 |
-| **Rules** | [rules-zh_TW.md](rules-zh_TW.md) | 必須遵守，每條附理由；分固定區與概念區（P5） |
+| **Rules** | [rules-zh_TW.md](rules-zh_TW.md) | 必須遵守，每條附理由；交給 app 的地方明文放行（P5） |
 | **Components** | [components](../components/README-zh_TW.md) | 元件規格：配色、框、dialog、每一種 input 的樣子與操作；必須照做，只能在列出的方案裡挑 |
 | **Project** | [project](../project/README-zh_TW.md) | 專案規格：家族 app 的 repo 的目錄、Makefile、版本、CHANGELOG、發布；範本檔照原樣複製 |
 
@@ -97,36 +97,46 @@ global 排列，global 區一列打開 global operation popup；`?` 只列出「
 兼職的代價是使用者要學兩套規則，直接違反 P1。這條也是檢驗新規則是否站得住的試紙。
 
 P4 管的是 tdp 定的介面元素（框、cursor、hint、label、膠囊……）。內容本身的顏色與符號（檔案類型、pod 狀態、log 等級、
-語法上色）屬於領域，由 app 決定（P5）。
+語法上色）屬於領域，app 可以自行決定（P5）。
 
-## P5 固定區與概念區
+## P5 明文放行
 
-每一條 rule 屬於兩區之一：
+tdp 是宇集：app 的每一個決定，都要在 tdp 找得到根據 —— 照規定做，或在明文放行的範圍裡。沒有明文放行的地方，一律照做。
 
-| 區 | tdp 規定什麼 | app 能做什麼 |
-|---|---|---|
-| **固定區** | 行為本身 | 照做。性質真的不合時可以偏離，但要寫明原因 |
-| **概念區** | 語意 —— 這件事要達成什麼 | 自己決定具體怎麼做。沒有「偏離」這回事：違反了語意，就是違反固定的部分 |
+**放行怎麼寫**：一律寫「app 可以自行決定」，並寫明範圍。範圍內 app 可以自己處理 UI/UX，也可以不用 terminu-go（Rules E8）；
+範圍內還要守的規定，寫在放行的旁邊。tdp 寫「app 可以……」的地方是 tdp 給的選項：用不用，app 可以自行決定；用了就照那裡寫的做。
 
 以 core key 為例：
 
-- `Space` 在**固定區**：按 `Space` 一定開 / 關當前 focus 的 Space menu；輸入態時它是空白字元，
-  這個例外也由 tdp 寫死。
-- `Enter` 在**概念區**：tdp 規定它是「對 focus 項目最直觀的那個動作」，不規定那個動作
-  是什麼 —— filu 是進目錄，sshu 是連線，locku 是翻轉設定值。
+- `Space` 沒有放行：按 `Space` 一定開 / 關當前 focus 的 Space menu；輸入態時它是空白字元，這個例外也由 tdp 寫死。
+- `Enter` 放行了做法：tdp 規定它是「對 focus 項目最直觀的那個動作」，那個動作是什麼，app 可以自行決定 —— filu 是進目錄，
+  sshu 是連線，locku 是翻轉設定值；範圍內要守的是同一種項目在同一個 app 裡永遠是同一個動作（Rules K3）。
 
-components 與 project 全部算固定區（Rules 開頭的「偏離」）。
+**固定的部分不合用時**：回報成 tdp 的缺漏，由 tdp 加方案或明文放行。不照規定、也不在放行範圍裡的做法，就是違反。
 
-**tdp 不規定的：**
+**tdp 的範圍：**
 
-- **panel 上的領域熱鍵**。哪個字母做哪個動作、大小寫要不要分層、要不要 chord 或 `Alt`、要不要 `Shift-Tab` 反向切換
-  （有動作區的 popup 除外，Rules K2），由各 app 決定。熱鍵依賴領域（kbu 的 `S` 是 shell、filu 的 `S` 是排序），
-  而且不在「不需事先學習」的路徑上 —— 使用者要找的都在 `Space` 與 `?` 裡。tdp 只管熱鍵的
-  幾件事：**必須出現在 menu 裡、用 `[]` 標出**，**不能佔用 core key**，**不能佔用移動的字母**（Rules K12）。
-  元件裡的鍵（例：表單的 `e`、datetime picker 的 `t`、textarea 的 `i|a|o`）是元件規格的一部分。
-- **領域的符號與顏色**。檔案類型的 icon、狀態的 glyph、內容本身的顏色，綁在具體領域上，由各 app 決定。元件裡的 glyph
-  （radio、checkbox、loading icon、框線、各類 popup 的標題）與配色是元件規格的一部分；家族需要 Nerd Font（Rules E4）。
-  其他規則仍然約束符號的使用方式（P4 專職化、寬度穩定、熱鍵要顯式標記）。
+- **功能邏輯，app 可以自行決定**：資料怎麼處理、檔案格式、輸入的值合不合規則、要呼叫哪些外部指令。tdp 管的是使用者看得到的
+  畫面與操作，以及 app 的命令列、環境變數、設定與資料的位置、README、repo 與發布（Rules E 章、[project](../project/README-zh_TW.md)）；
+  值不合規則時怎麼顯示，照 components。
+- **畫面的規定只管 app 自己畫的 TUI 畫面**：不在 TUI 裡的畫面（Rules K1，例：locku 鎖定時的螢幕保護與 PIN 框）、印給別的程式
+  顯示的輸出（例：ccdrawu 的 `statusline` 印給 Claude Code 的狀態列），app 可以自行決定。
+- **開發者文件不在 tdp 的範圍裡**：設計紀錄、開發與發布的備忘，要不要寫、怎麼寫、放哪，tdp 不管。
+
+**幾處大的放行：**
+
+- **panel 上的領域熱鍵，app 可以自行決定**：哪個字母做哪個動作、大小寫要不要分層、要不要 chord 或 `Alt`、要不要 `Shift-Tab`
+  反向切換（有動作區的 popup 除外，Rules K2）。範圍內要守的：**必須出現在 menu 裡、用 `[]` 標出**，**不能佔用 core key**，
+  **不能佔用移動的字母**（Rules K12）。元件裡的鍵（例：表單的 `e`、datetime picker 的 `t`、textarea 的 `i|a|o`）是元件規格的
+  一部分，沒有放行。
+- **領域的符號與顏色，app 可以自行決定**：檔案類型的 icon、狀態的 glyph、內容本身的顏色。範圍內要守的：其他規則仍然約束符號
+  的使用方式（P4 專職化、寬度穩定、熱鍵要顯式標記）；家族需要 Nerd Font（Rules E4）。元件裡的 glyph（radio、checkbox、loading
+  icon、框線、各類 popup 的標題）與配色是元件規格的一部分，沒有放行。
+
+**為什麼**：寫到的才算數，app 和檢查它的人都只要找一個地方：照規定做，或找到「app 可以自行決定」那一句。讓每個 app 各寫一份
+自己的例外，例外一多，家族就不再是同一套操作；不合用的回報給 tdp，tdp 補上方案，其他 app 也一起受惠。熱鍵與領域的
+符號綁在具體領域上（kbu 的 `S` 是 shell、filu 的 `S` 是排序），而且不在「不需事先學習」的路徑上 —— 使用者要找的都在 `Space`
+與 `?` 裡，所以放給 app；功能邏輯是 app 本身，使用者看不到，tdp 不管（user 2026-10-25）。
 
 ## P6 亮的地方就是有 focus 的地方
 
@@ -144,12 +154,12 @@ components 與 project 全部算固定區（Rules 開頭的「偏離」）。
 
 ## 術語
 
-### Surface
+### terms.1 Surface
 
 能取得 focus、跟使用者直接互動的 UI 容器，分成 **panel** 與 **popup** 兩種。常駐顯示區
 （footer、statusbar、畫面 chip 列）不是 surface —— focus 不會停在上面。
 
-### Screen（畫面）
+### terms.2 Screen（畫面）
 
 一組同時顯示的 panel。有些 app 只有一個畫面，有些有多個，用 global operation 切換。
 
@@ -157,7 +167,7 @@ components 與 project 全部算固定區（Rules 開頭的「偏離」）。
 - 多畫面：sshu 的 `[M]anage` / `[F]ile transfer` / `[S]SH`；webu 的 `[W]eb` / `[B]ookmarks` /
   `[H]istory` / `[D]ownloads` / `[S]ettings`
 
-### Panel
+### terms.3 Panel
 
 畫面上常駐的一塊區域，有自己的 cursor 與內容，用 `[N]` 編號。
 
@@ -165,16 +175,16 @@ components 與 project 全部算固定區（Rules 開頭的「偏離」）。
 - filu：`[1]` 檔案清單、`[2]` 預覽、`[3]` Marks / Tasks / Favorites
 - locku：`[1]` 側欄（Profiles、Savers、Integration、Settings）、`[2]` cursor 所在項目的屬性表
 
-### Panel tab
+### terms.4 Panel tab
 
 同一個 panel 內可切換的幾頁內容。切換 panel tab 不換 panel、不換畫面。
 
 - kbu `[3]` 的 Logs / Events / Conditions / Relatives / History
 - filu `[1]` 最多 5 個目錄 tab；`[3]` 的 Marks / Tasks / Favorites
 
-### Popup
+### terms.5 Popup
 
-疊在 panel 之上的暫時性 surface，關掉之後回到底下的東西。分七類（Rules F1）：
+疊在 panel 之上的暫時性 surface，關掉之後回到底下的東西。分八類（Rules F1）：
 
 - menu：Space menu、kbu 的排序選擇器
 - confirm：filu 刪除前的確認
@@ -183,8 +193,9 @@ components 與 project 全部算固定區（Rules 開頭的「偏離」）。
 - note：kbu 的 YAML 檢視、key reference
 - toast：操作完成或失敗的短訊息
 - terminal：kbu 的 Alterm、filu 的 shell —— 一個跑在 popup 裡的子程序（PTY）
+- app 自己的 popup：kamonu 畫格子的 popup —— 七類裝不下的內容
 
-### Focus
+### terms.6 Focus
 
 使用者當下按鍵會送到的位置，分兩層：
 
@@ -194,37 +205,32 @@ components 與 project 全部算固定區（Rules 開頭的「偏離」）。
 
 「作用對象在 focus 範圍內」指作用對象是當前 surface 本身，或它位置層上的那一項。
 
-### 輸入態
+### terms.7 輸入態
 
 以打字輸入的文字當內容的狀況：focus 在一個打字列上，打的字就是那一列的內容。例：filu 的重新命名框、webu 的網址列（`L`）、
 locku 的 PIN 輸入、panel filter 與 finder 的打字列。select 與 picker 的清單、表單本身都不是輸入態。規則見 Rules K8。
 
-### 模式
+### terms.8 模式
 
 panel 或 popup 裡的一個暫時狀態：進入之後，一部分鍵換成這個模式自己的意思，`Esc` 離開。
 例：webu 的 visual mode（選字）、kbu 的拖曳模式（排 pin 的順序）、sshu 的 `Alt-v` 選取模式、
 filu yank viewport 裡的選取。模式不是輸入態 —— 按鍵不會變成字元。版面的切換（例：zoom 把一個 panel 放大到
 全畫面）也不是模式：沒有鍵換意思，`Esc` 不必退出它，由它自己的鍵還原。規則見 Rules K11。
 
-### Core key
+### terms.9 Core key
 
 tdp 規定意義、在所有 surface 意義不變的鍵：`Tab`、`Enter`、`Esc`、`Space`、`?`、`q`、`1`–`9`（Rules K 章）。
 
-### Letter hotkey
+### terms.10 Letter hotkey
 
 app 自己指定、用來直接執行 menu 裡某一列的鍵。例：filu 的 `[r]ename`、kbu 的 `[C]ompare`、
 sshu 的 `[t]ransfer` 與 `[T]ransfer all`。它是捷徑，不是額外的功能（Rules M3）。
 
-### Source 與 target
+### terms.11 Source 與 target
 
 從 popup A 開出 popup B 時，A 是 source、B 是 target。例：從 Space menu 的 global 列打開 global operation popup ——
 Space menu 是 source，global operation popup 是 target。
 
-### 串流內容
+### terms.12 串流內容
 
 持續有新資訊流入的內容。例：kbu `[3]` 的 Logs、sshu 的 SSH session、filu 的搜尋結果逐筆出現。
-
-### 偏離與違反
-
-app 有意不照固定的部分做、並寫明原因，是**偏離**；沒寫原因就是**違反**。定義與要寫在哪裡，見 Rules 開頭的「偏離」。
-例：locku 的鎖定畫面不顯示 footer（M1），因為唯一的動作是按任意鍵叫出 PIN —— 這寫在 locku 的 dev-remarks，是偏離。

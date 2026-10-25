@@ -2,9 +2,9 @@
 
 **Language**: [English](form.md) · 繁體中文
 
-## 用途
+## form.1 用途
 
-好幾個值填好後一起送出（sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark）。只有一個值時用 input popup（[`input/`](../README-zh_TW.md#input)）；
+好幾個值填好後一起送出（sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark）。只有一個值時用 input popup（[`input/`](../README-zh_TW.md#components12-input)）；
 改了就生效、不用送出的，用 panel 的一列一個值（[`layout/panel`](../layout/panel-zh_TW.md)）。框照 [`layout/popup`](../layout/popup-zh_TW.md)。
 
 表單上不打字。要打字的欄位（text、password…）和選項多到放不下的欄位（select、日期、顏色、選檔），按 `Enter` 打開那一欄的
@@ -14,14 +14,14 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 直接打字，同一張表單就有兩種操作方式。全部用 input popup 輸入，每一欄都一樣：`Enter` 進去改、`Enter` 確定。代價是每一欄
 多按一次 `Enter`（進去的那一下）。
 
-## 長相
+## form.2 長相
 
-### 標題
+### form.3 標題
 
 寫這張表單要做什麼（`NEW HOST`、`ADD BOOKMARK`），畫成標題膠囊（[`layout/popup`](../layout/popup-zh_TW.md)）。不寫型別（`number`、`path`、`email`）：型別是欄位的性質，欄位多於一個時
 也放不進一個標題。改的是某一筆時可以帶上它的名稱，接在後面、用 `: ` 隔開、照原樣（`EDIT: filu`）。
 
-### 欄位的排法
+### form.4 欄位的排法
 
 每個欄位從兩種裡挑一種。
 
@@ -50,10 +50,10 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 
 （這一節與下一節的圖只畫欄位；動作區見「動作區」。）
 
-### 選項畫在表單上
+### form.5 選項畫在表單上
 
 - 選項**五個以內**的 radio、checkbox 畫在表單上；超過五個，改用 select 或 checkbox popup（按 `Enter` 打開）。
-- **開關**（只有開、關兩種的值）可以畫成一個 checkbox，也可以畫成 off／on 兩個選項的 radio，由 app 選
+- **開關**（只有開、關兩種的值）可以畫成一個 checkbox，也可以畫成 off／on 兩個選項的 radio，app 可以自行決定
   （[`input/checkbox`](../input/checkbox-zh_TW.md)、[`input/radio`](../input/radio-zh_TW.md)）。
 - checkbox 組的第一列是 `Select all`（[`input/checkbox`](../input/checkbox-zh_TW.md) 的「全選」），在 label 那一列，選項接在下面、多縮兩格；
   它不算在五個以內。
@@ -62,7 +62,7 @@ input popup，在那裡輸入，確定後值寫回表單。選項少的欄位（
 
 **為什麼**：超過五個，表單一捲動，其他欄位就看不到了。
 
-### focus 與 label
+### form.6 focus 與 label
 
 focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dialog/menu`](menu-zh_TW.md)）。範圍從項目的開頭一直到框（蓋住右邊的留白）：
 欄位從值開始、選項從那個選項開始、按鈕就是按鈕本身；值空著也是一整塊底色。一直到框的色塊，右邊的留白是箭頭 U+E0B0（層色，
@@ -95,7 +95,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 就是 `Enter` 會作用的地方。Lavender 留給 input popup 裡真正在編輯的值；「掃一眼就知道在哪一欄」由色塊負責，色塊也指得出
 停在 radio 的哪一個選項。
 
-### 動作區
+### form.7 動作區
 
 ```
 ┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -123,10 +123,10 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 - **捲動位置**：欄位放不下時，下框右邊寫 focus 所在的欄位 `N of M`，M 只算欄位（錯誤列、按鈕不算）。focus 在錯誤列或按鈕上時
   不寫，回到欄位就回來：它們不是欄位，寫不出有意義的號碼。
 - **按鈕可以不只一個**：一定有一個主要的送出，放在動作區的右下角（只有一個按鈕時就是它）。其他按鈕可以是另一種送出（例：
-  `Save As`），也可以是不關表單的動作（例：sshu 的 `Test` 試連線）。每一列放哪些按鈕、排幾列由 app 決定；每一列都靠右，同一列的
+  `Save As`），也可以是不關表單的動作（例：sshu 的 `Test` 試連線）。每一列放哪些按鈕、排幾列，app 可以自行決定；每一列都靠右，同一列的
   按鈕之間隔一格。
 - **不關表單的動作**：
-  - 按下時先檢查**這個動作需要的欄位**（哪些由 app 依動作決定：`Test` 要 Host、不要 Name）。沒過時跟送出被擋一樣：有問題的
+  - 按下時先檢查**這個動作需要的欄位**（哪些，app 可以依動作自行決定：`Test` 要 Host、不要 Name）。沒過時跟送出被擋一樣：有問題的
     欄位 label 轉 Red、錯誤列寫第一個問題、focus 跳到那一欄（見「錯誤」）。
   - 成功：toast 一句（例：`Connected to web-01`）。失敗：開 error popup，跟送出失敗一樣；關掉後 focus 在按鈕上，再按 `Enter` 就是
     重試。結果是一段要看的內容（例：測試的完整輸出）時，開 note（[`dialog/note`](note-zh_TW.md)）。
@@ -142,7 +142,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 
 ```
 ┃ ────────────────────────────────────────────── ┃
-┃                                          Test  ┃   ← 每一列放哪些按鈕由 app 決定
+┃                                          Test  ┃   ← 每一列放哪些按鈕，app 可以自行決定
 ┃                                Save As   Save  ┃   ← 主要的送出在右下角；同一列的按鈕之間隔一格
 ┃                                                ┃
 ┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
@@ -152,9 +152,9 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 看得到、按得到的一件事，跟送出一樣用 `Tab` 過去、`Enter` 按下；結果照送出的那一套 —— 失敗開 error popup、再按一次就重試 ——
 只多了成功時的 toast：表單還開著，要讓使用者知道它做完了。
 
-## 按鍵
+## form.8 按鍵
 
-### 移動
+### form.9 移動
 
 表單上 focus 的單位是**項目**：要打字或開 popup 的欄位是一個項目，radio、checkbox 的每一個選項各是一個項目（checkbox 組的 `Select all` 也是一個），每一個按鈕是一個
 項目；錯誤列有錯誤時也是一個項目（在最後一欄後面）。項目分成兩區：**欄位區**是欄位與錯誤列，**動作區**是按鈕。
@@ -190,7 +190,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 `j` 一路往後：Name → password → privatekey → credential → forward，再往後回到 Name。在 privatekey 上按 `Tab` 到動作區的 `Save`，
 在 `Save` 上再按 `Tab` 回到 privatekey。
 
-### `Enter`
+### form.10 `Enter`
 
 - **在要打字或開 popup 的欄位上**：打開那一欄的 input popup，疊在表單上（Rules F8）。
   - 在 input popup 裡按 `Enter` 確定：值寫回表單那一欄，input popup 關掉，**focus 留在同一欄**（Rules K3）。
@@ -200,7 +200,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
   一次就好。
 - **在按鈕上**：按下它 —— 送出，或做那個按鈕的動作（見「動作區」）。
 
-### 送出
+### form.11 送出
 
 只有一個方法：focus 移到送出的按鈕上，按 `Enter`。明確按下按鈕，才保證是使用者要送出。
 
@@ -209,7 +209,7 @@ focus 的項目照 menu 的 cursor 列畫 —— 層色底、Base 粗體（[`dia
 - 不用字母熱鍵（例 `s`）送出：表單看起來是一排欄位，使用者容易直接開始打字，打 `server` 的第一個字就把表單送出了。
 - 不拿 `Esc` 把 focus 移到動作區：Rules F3 規定 `Esc` 立刻關閉 popup，表單若例外，使用者會關不掉。
 
-### 在欄位上打字
+### form.12 在欄位上打字
 
 表單不是輸入態（Rules K8），使用者卻常以為可以直接打字。focus 在「`Enter` 會打開打字的 input popup」的欄位上（text、password、
 number、textarea），按到一個不在表單操作鍵裡的可列印字元時（包括 `q`），跳一個說明的 note：
@@ -246,7 +246,7 @@ number、textarea），按到一個不在表單操作鍵裡的可列印字元時
 地方的移動，表單就是不打字的地方；同一個鍵的反應也不看狀態（`e` 不會沒錯時跳 note、有錯時跳錯誤列）。以為能直接打字的人，
 第一個字剛好是這些鍵時被吃掉，下一個字照樣跳 note，提醒的效果不變。
 
-### hint
+### form.13 hint
 
 ```
 Enter:edit Tab:actions Esc:cancel
@@ -261,9 +261,9 @@ Enter:edit Tab:actions Esc:cancel
 - 不寫移動的鍵（`j|k`）：使用者操作一下就知道。
 - `Esc:cancel` 不寫 `close`：表單上的 `Esc` 會丟掉內容，跟 confirm 的 `Esc:cancel` 同義。
 
-## 狀態
+## form.14 狀態
 
-### 取消
+### form.15 取消
 
 - **沒改過的表單**：`Esc` 直接關（Rules F3）。
 - **改過的表單**：`Esc` 先開 confirm 問要不要放棄（例：`Discard changes to New host?`）：`Enter` 放棄並關掉表單；`Esc` 關掉 confirm、
@@ -277,7 +277,7 @@ Enter:edit Tab:actions Esc:cancel
 **為什麼**：沒改過的表單不受影響，改過的多一層保護；程式不用管草稿，只管有沒有改過。連按 `Esc` 會在表單與 confirm 之間來回，
 但那不是陷阱：confirm 上寫著 `Enter` 放棄，連按 `Esc` 的人最後停在表單上、內容都在，正是 Rules K4 要的「安全的地方」。
 
-### 錯誤
+### form.16 錯誤
 
 - **一欄自己的規則**（格式、範圍：Port 要在 1–65535、keyword 只能是英數與連字號）：在 input popup 裡按 `Enter` 時擋，錯誤寫在
   input popup 的錯誤列，值不寫回、popup 不關（見各 input 檔）。不合格的值進不了表單。

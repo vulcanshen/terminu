@@ -2,12 +2,12 @@
 
 **Language**: English · [繁體中文](number-zh_TW.md)
 
-## Purpose
+## number.1 Purpose
 
 Entering a number: a port, seconds, a count, a number of columns. For a value with a small range, quicker to pick than
 to type, use [`slider`](slider.md).
 
-## Look
+## number.2 Look
 
 - The skeleton follows the one-line input popup in [`input/README`](README.md).
 - **The explanation row gives the range** (`Port, 1-65535`), rather than waiting for a mistake to tell.
@@ -35,7 +35,7 @@ to type, use [`slider`](slider.md).
 **Why**: with the unit in sight while typing, the user knows what is being entered — whether `10` is ten seconds or ten
 minutes; written as a whole word, there is no abbreviation to guess.
 
-## Keys
+## number.3 Keys
 
 - Editing keys, the grey suggestion and pasting follow [`input/README`](README.md).
 - **Only characters the field can use are taken as typed**: digits; `-` only if the field allows negatives, `.` only if
@@ -44,7 +44,7 @@ minutes; written as a whole word, there is no abbreviation to guess.
 
 **Why**: a character that can never be right need not get in only to be refused.
 
-## Value
+## number.4 Value
 
 - **The range is checked on `Enter`**, a mistake written in the error row naming the value (as in "What an input is" in [`README`](README.md):
   `Port must be 1-65535`).

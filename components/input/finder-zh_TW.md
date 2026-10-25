@@ -2,7 +2,7 @@
 
 **Language**: [English](finder.md) · 繁體中文
 
-## 用途
+## finder.1 用途
 
 清單加搜尋的 popup：上面打字篩選，下面清單選。一般的 finder 是「到那裡」（filu 的 Search、Find、Goto，webu 的 `/`）。
 
@@ -17,7 +17,7 @@
 沒有搜尋的清單是 menu（[`dialog/menu`](../dialog/menu-zh_TW.md)），排順序的是 reorder（[`reorder`](reorder-zh_TW.md)）。panel 上直接打字的篩選是 panel filter（[`layout/panel`](../layout/panel-zh_TW.md)），
 打字列的按鍵跟這裡一樣。
 
-## 長相
+## finder.2 長相
 
 terminal 寬 ≥ 96（例：96×24）：
 
@@ -98,7 +98,7 @@ terminal 寬不到 96（例：80×24）：
 - **寬度**：有預覽的照上面的「排法」，是 F7 的上限。選項打開時就知道的（select、checkbox popup）寬度照選項確定（[`layout/popup`](../layout/popup-zh_TW.md)
   的「內容的寬度打開時就確定」）；邊找邊列、結果要等搜尋的才不確定，用 F7 的上限。
 
-### 清單的標記
+### finder.3 清單的標記
 
 select 與 checkbox popup 的每一列，最前面放一個標記：
 
@@ -113,7 +113,7 @@ select 與 checkbox popup 的每一列，最前面放一個標記：
   讀成「按 `Enter` 就是這個值」：勾與顏色永遠一致，使用者不用讀兩種訊號；要回到原本的值按 `Esc`。
 - 單選用 radio glyph，多選用 checkbox glyph：看 glyph 就知道是單選還是多選，畫在表單上還是 popup 裡都一樣。
 
-## 狀態
+## finder.4 狀態
 
 只有有 focus 的那一塊是亮的（Principle P6、Rules F1）。這裡講的是 focus 會停的兩塊（打字列與清單）；預覽拿不到 focus，
 不在其中，一直照上面的「預覽」畫：
@@ -123,12 +123,12 @@ select 與 checkbox popup 的每一列，最前面放一個標記：
 | 打字列 | 照 input 的打字列畫：值 Lavender、有游標；前面的 icon 用層色 | 層色 cursor 再淡化一次 |
 | 清單 | 整列用灰色（Overlay0）畫（含前面的 icon 與筆數），沒有游標 | 層色底、Base 粗體，右邊的留白是箭頭（跟 menu 的 cursor 一樣） |
 
-## 按鍵
+## finder.5 按鍵
 
 一般的 finder 打開時 focus 在打字列：它是「到那裡」的搜尋，打開就是要打字（select、checkbox popup、file-picker 打開時在清單上，
 見各自的檔）。
 
-### 打字列
+### finder.6 打字列
 
 panel filter 也用這一張表。
 
@@ -140,7 +140,7 @@ panel filter 也用這一張表。
 | `Tab` | focus 移到清單 |
 | `Esc` | 關掉整個 finder（Rules F1：階段不是一層）；panel filter 是清掉篩選 |
 
-### 比對
+### finder.7 比對
 
 打字列上打的字怎麼篩選。一般的 finder、select、checkbox popup、file-picker 打的一般的字、panel filter 都一樣：
 
@@ -149,7 +149,7 @@ panel filter 也用這一張表。
 - **好幾個詞**：用空白分開的每個詞都要出現，順序不拘。例：`prod 22` 找得到 port 22 的 `prod-web-01`（panel 上可以跨欄）。
 - **順序**：結果保持清單本來的順序，不重排；清單本來的順序是固定的（資料沒有順序時 app 先排好，[`layout/panel`](../layout/panel-zh_TW.md)）。數字照數值排（`9` 在 `10` 前面），文字照文字排（[`layout/panel`](../layout/panel-zh_TW.md)
   的表頭）。
-- **比對的對象由 app 決定**：預設是每一項顯示的字；也可以是項目的其他內容（例：filu 用檔案的內容找檔，打的字比對的是檔案裡的字）。
+- **比對的對象，app 可以自行決定**：預設是每一項顯示的字；也可以是項目的其他內容（例：filu 用檔案的內容找檔，打的字比對的是檔案裡的字）。
 - **搜尋要花時間時**（例：讀每個檔的內容、交給搜尋工具或遠端一次找一批）：照上面的「邊找邊列」，標題後面放 loading icon，結果陸續
   列出；打字列照常能打，不等搜尋做完。
 
@@ -157,7 +157,7 @@ panel filter 也用這一張表。
 保持原本的順序，清單的排序（panel 表頭的排序標示）一直是對的；數字與文字也用同一種比對：打 `20`，剩下 20、120、200–209，
 照大小排（[`slider`](slider-zh_TW.md)）。
 
-### 清單
+### finder.8 清單
 
 | 鍵 | 作用 |
 |---|---|
@@ -166,7 +166,7 @@ panel filter 也用這一張表。
 | `Tab\|/` | 回打字列，接著舊的字打 |
 | `Esc` | 關掉整個 finder |
 
-### hint
+### finder.9 hint
 
 | focus 在 | hint |
 |---|---|

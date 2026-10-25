@@ -2,12 +2,12 @@
 
 **Language**: English · [繁體中文](datetime-picker-zh_TW.md)
 
-## Purpose
+## datetime-picker.1 Purpose
 
 Choosing a date (date picker), or a date and a time (datetime picker). The calendar takes after
 [pickdate](https://github.com/maraloon/pickdate), made the family's own.
 
-## Look
+## datetime-picker.2 Look
 
 **The date**:
 
@@ -40,7 +40,7 @@ Choosing a date (date picker), or a date and a time (datetime picker). The calen
   there is no value.
 - Today is underlined, with no colour of its own; weekends get no colour either (Principle P4: no extra colour
   meanings).
-- The week starts on Monday or Sunday, as the app decides.
+- Whether the week starts on Monday or Sunday, the app may decide for itself.
 - Days outside the range are in Surface2 (disabled), and the cursor does not stop on them.
 
 **Date and time**: a vertical separator on the right sets off another area for the time; a date-only picker has no such
@@ -77,11 +77,11 @@ area.
 **Why**: choosing a date and time is "picking", and moving is enough for it; split into hour and minute columns, the
 time is read at a glance.
 
-## Keys
+## datetime-picker.3 Keys
 
 What can take the focus: **month, year, calendar, time** (no time in a date-only picker). The picker's own operations
 use only `Tab`, hjkl (the arrow keys), `Enter` and `Esc`, plus `t`; core keys follow [`input/README`](README.md) (`?`,
-`q|Ctrl-C`), and `Shift-Tab` is the app's choice, as in Rules K2.
+`q|Ctrl-C`), and whether to have `Shift-Tab`, the app may decide for itself, as in Rules K2.
 
 - **`Tab`** moves the focus in screen order: month → year → calendar → time → back to month. It opens with the focus on
   the calendar.
@@ -115,8 +115,8 @@ use only `Tab`, hjkl (the arrow keys), `Enter` and `Esc`, plus `t`; core keys fo
 **Why**: months and years are not changed with pickdate's `p`/`n`/`P`/`N`: those are movement, absent from the hint,
 and hard for users to discover; `t` does get used, so it is written on the hint.
 
-## Value
+## datetime-picker.4 Value
 
 - **Range**: an earliest and a latest may be set.
-- **In a form or a panel**: the formatted date (and time), in the app's format (`2026-10-15`, `2026-10-15 10:05`);
+- **In a form or a panel**: the formatted date (and time), in a format the app may decide for itself (`2026-10-15`, `2026-10-15 10:05`);
   empty follows the rule for empty values in [`input/README`](README.md).

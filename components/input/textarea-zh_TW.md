@@ -2,12 +2,12 @@
 
 **Language**: [English](textarea.md) · 繁體中文
 
-## 用途
+## textarea.1 用途
 
 輸入多行文字：網頁表單的留言、說明。程式碼、設定檔這種「一行就是一行」的內容，交給使用者的 `$EDITOR`（例：sshu 的 File transfer），
 不用 textarea。
 
-## 長相
+## textarea.2 長相
 
 **一行太長時自動折行，左邊有行號**：
 
@@ -31,7 +31,7 @@
   兩種狀態的游標停在控制字元上時，整個控制字元畫成 Red 底、Base 字（照 [`input/README`](README-zh_TW.md) 的「貼上的控制字元」）。
 - **`\t`**：值裡的 `\t` 畫成 `input_tab_width` 格空白（見下面的 `Tab`），不對齊到哪一格。
 
-## 按鍵
+## textarea.3 按鍵
 
 **兩種狀態**：
 
@@ -63,6 +63,6 @@
 本來就是「cursor 停在這裡」。`Tab` 插空白、不對齊：終端機裡沒辦法靠 tab 對齊，使用者按 `Tab` 要的就是空幾格；空幾格由使用者設定。
 框一律開到最高：跟寬度「內容不確定取上限」同一個道理，舊值很短時也不會打幾行就開始捲。
 
-## 值
+## textarea.4 值
 
 在表單與 panel 上：第一行；後面還有就加 `…`（[`input/README`](README-zh_TW.md)）。

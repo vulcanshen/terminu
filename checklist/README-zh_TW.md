@@ -12,15 +12,15 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 
 - 清單從規範拆出來；兩者對不上時，以規範的文字為準，對不上的地方回報成 tdp 的缺漏。
 - **只看 tdp，不看用什麼實作**：用不用 terminu-go、用什麼語言寫，都照同一份清單查。用 terminu-go 的 app 也不會自動全部符合 ——
-  app 自己交的東西（例：`docs/icon.svg`、README、dev-remarks）lib 管不到。
-- 規範裡寫明「由 app 決定」的部分、例子、「為什麼」、「實作參考（不是規定）」不拆成條目。
+  app 自己交的東西（例：`docs/icon.svg`、README）lib 管不到。
+- 規範裡的例子、「為什麼」、「實作參考（不是規定）」不拆成條目；寫「app 可以自行決定」的放行本身也不拆，範圍內還要守的規定照樣拆。
 
 ## 每一條
 
 | 欄 | 寫什麼 |
 |---|---|
 | 編號 | `出處-序號`（例：`K4-1`、`form-3`），見下面的「編號」 |
-| 出處 | rules 寫規則編號（`K4`）；components 與 project 寫 `<檔名> §<節>`（例：`popup §外框`）；principle 寫 `P3` 或 `術語`。從圖拆出來的，後面標 `（圖）` |
+| 出處 | rules 寫規則編號（`K4`）；components 與 project 寫節編號（例：`popup.1`，Rules 開頭的「引用」）；principle 寫 `P3` 或術語的編號（`terms.1`）。從圖拆出來的，後面標 `（圖）` |
 | 檢查什麼 | 一件可以回答「是／不是」的事 |
 | 適用 | app 有哪個功能時才算這一條，見下面的「適用」 |
 | 怎麼驗 | 按哪個鍵、看畫面的哪裡；畫面上看不到的寫「讀程式」或「讀檔案」 |
@@ -29,8 +29,8 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 
 - **固定不變**：規定刪掉時編號作廢、不再用；新的規定接在同一個出處的最後。不同版本的結果用編號對得起來。
 - **前綴**：rules 用規則編號（`K4-1`）；components 與 project 用檔名（`popup-3`、`checkbox-4`），`components/README` 用 `components-`、
-  `input/README` 用 `input-`、`project/README` 用 `project-`。沒有規則編號的段落：rules 開頭的「偏離」「引用」用 `departure-`、
-  `references-`，principle 的術語用 `terms-`，S 章開頭（splash 佔滿整個畫面）用 `S0-`。編號只用英文字母、數字與 `-`，中英文兩份一樣，
+  `input/README` 用 `input-`、`project/README` 用 `project-`。沒有規則編號的段落：rules 開頭的「引用」用 `references-`（`departure-` 已作廢），
+  principle 的術語用 `terms-`，S 章開頭（splash 佔滿整個畫面）用 `S0-`。編號只用英文字母、數字與 `-`，中英文兩份一樣，
   工具也讀得了。
 
 ## 適用
@@ -83,6 +83,8 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 存設定或資料 | 有設定、資料、狀態或快取寫到磁碟 |
 | 比較模式 | 有 panel 的比較模式（先挑 anchor、再挑另一列來比） |
 | 被指到的 panel | 清單的一列代表畫面上另一個 panel，cursor 會指出那個 panel（例：sshu 的 sessions 清單與網格） |
+| app 自己的 popup | 有七類裝不下、內容由 app 自己畫的 popup（例：kamonu 畫格子的 popup） |
+| panel 內容的框 | panel 的內容自己會畫出框（例：webu 顯示的網頁跳出的彈窗） |
 | 不再用的檔 | 改版後有不再用的設定、狀態或資料檔（例：sshu 的 errors.yaml、kbu 的 theme.yaml） |
 | 出 Windows 版 | 發布 Windows 版 |
 | 發過版 | 發布過（有 tag 與 GitHub release）；還沒發過版的 app，只有發版之後才有的東西（release、tap 上的 formula……）不適用，看得到的照現在的 repo 查 |

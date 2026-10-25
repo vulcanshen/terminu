@@ -2,12 +2,12 @@
 
 **Language**: [English](confirm.md) · 繁體中文
 
-## 用途
+## confirm.1 用途
 
 問一句，`Enter` 接受、`Esc` 取消，並說出後果（Rules F6）：刪除前、離開前、「連線到 X？」、工作清單上對某一列做事前（內容是那一列的
-全文，[`dialog/menu`](menu-zh_TW.md) 的工作清單）。哪些動作要問由 app 決定（F6）。
+全文，[`dialog/menu`](menu-zh_TW.md) 的工作清單）。哪些動作要問，app 可以自行決定（F6）。
 
-## 長相
+## confirm.2 長相
 
 ```
 ┏━󰻌 QUIT━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -23,7 +23,7 @@
 - **問句放最後**，下面接著就是 hint。回答前要看的內容放在問句上面，跟問句之間空一列（Rules F1）；沒有內容時就只有問句。
   內容可以好幾句：app 一句一列給（[components](../README-zh_TW.md) 的「控制字元」），列跟列之間不空列。
 - **顏色**：問句用 Text，不加粗；內容用 Overlay0；內容裡警告的那一句（例：「無法復原」「2 個 session 會被關掉」）用 Peach，
-  哪一句算警告由 app 決定。
+  哪一句算警告，app 可以自行決定。
 - **太長**：問句與內容都折行（照 [components 的「折行」](../README-zh_TW.md)），不截斷。內容長時只有內容那一段用 `j|k` 捲，問句固定在最後。
 - **寬度**：內容打開時就確定，照 [`layout/popup`](../layout/popup-zh_TW.md) 的「內容的寬度打開時就確定」；長的折行到上限為止。
 
@@ -31,7 +31,7 @@
 就是擋這一下、讓使用者再想一次；警告的 ⚠ 若掛在每個 confirm 上，警告的意思就用掉了（Principle P4）。警告用 Peach 不用 Red：
 Red 是已經發生的錯誤，這時候還沒有出錯。
 
-## 按鍵
+## confirm.3 按鍵
 
 - `Enter` 接受，`Esc` 取消（Rules F6），回答只有這兩個鍵（沒有 `y`、`n`）。`Space` 不作用（Rules K5）。
 - **hint**：`Enter:<動詞> Esc:cancel`，動詞寫接受會做的事（例：`Enter:delete Esc:cancel`）。唯一的例外是 Rules E3 的「讀不了時」：

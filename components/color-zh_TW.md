@@ -2,11 +2,11 @@
 
 **Language**: [English](color.md) · 繁體中文
 
-一整套配色的**呈現規則 + 色碼 + 計算方式**，全家族照用。意義要不要同時用顏色以外的方式（框線、符號）表達，由 app
-決定 —— rules 另有規定的除外（例：focus 不能只靠顏色，L5）。內容本身的顏色（檔案類型、pod 狀態、log 等級、語法上色）
-由 app 決定；這裡管的是 tdp 定的介面元素（Principle P4）。
+一整套配色的**呈現規則 + 色碼 + 計算方式**，全家族照用。意義要不要同時用顏色以外的方式（框線、符號）表達，app 可以
+自行決定 —— rules 另有規定的除外（例：focus 不能只靠顏色，L5）。內容本身的顏色（檔案類型、pod 狀態、log 等級、語法上色），
+app 可以自行決定；這裡管的是 tdp 定的介面元素（Principle P4）。
 
-## 呈現規則
+## color.1 呈現規則
 
 1. **最少錨點，其餘推導**：先選三個錨點 —— 底色、使用者足跡、popup 的終點色 —— 其餘層次從錨點推導，不為每個元素各挑顏色。
 2. **層色是 z 軸**：popup 的框與標題用層色（error popup 用 Red，見 [`dialog/note`](dialog/note-zh_TW.md)）。起點是使用者足跡
@@ -20,7 +20,7 @@
 6. **粗體只用在**：cursor 上的字、popup 的標題、選中的膠囊的字、模式名、popup 標題後面的 loading icon、splash 的名稱（Rules S5）、
    畫面比 app 的最低尺寸小時正中央的 app 名稱（Rules L1，[`layout/screen`](layout/screen-zh_TW.md)）。
 
-## 色碼（catppuccin-mocha）
+## color.2 色碼（catppuccin-mocha）
 
 | 意義 | 用在 | 色 |
 |---|---|---|
@@ -51,7 +51,7 @@
 
 **為什麼**：不蓋掉使用者的終端機主題、透明背景與背景圖；家族的 app 本來就都不塗底色，改用共用的 lib 時畫面不會變。
 
-## popup 的層色
+## color.3 popup 的層色
 
 ```
 第 K 層的層色 = lerp(使用者足跡, 終點色, K / N)    N = 4
@@ -69,7 +69,7 @@ K ≥ N 時固定為終點色
 - **在收的 popup 不算進 K**：開始收起時它已經不是最上層（[`layout/popup`](layout/popup-zh_TW.md) 的開關動畫）。target 打開、source
   同時收起時（Rules T1），target 從第一格就用它最後所在那一層的層色，source 收完時不跳色。
 
-## 淡化（Rules F8、T2）
+## color.4 淡化（Rules F8、T2）
 
 改寫已經畫好的畫面裡每一個顏色碼（SGR），不動文字與版面：
 

@@ -2,7 +2,7 @@
 
 **Language**: [English](reorder.md) · 繁體中文
 
-## 用途
+## reorder.1 用途
 
 把一組項目一項一項搬，排出它們的順序（例：ccdrawu 的 drawer 項目顯示的順序）；值是整個順序，`Enter` 確定後寫回去（Rules F1 的
 input）。它就是 panel 的 Drag mode 放進 popup：拿起、搬、放下的按鍵與樣子都一樣（[`layout/panel`](../layout/panel-zh_TW.md)）。
@@ -13,7 +13,7 @@ input）。它就是 panel 的 Drag mode 放進 popup：拿起、搬、放下的
 沒有搜尋：篩選之後，畫面上的上一項不一定是真正的上一項，搬的時候說不清跟誰交換。所以它不是 finder；要排的通常是挑好的少數幾項，
 `j|k`、`u|d`、`gg|G` 就找得到。
 
-## 長相
+## reorder.2 長相
 
 沒拿東西時：
 
@@ -55,7 +55,7 @@ input）。它就是 panel 的 Drag mode 放進 popup：拿起、搬、放下的
 **為什麼**：拿著的一項用模式色、加上下箭頭：看得出「這一項被拿起來了，可以往上往下搬」，而 Yellow 在家族裡就是「在模式裡」。
 glyph 那一格每一列都留：拿起時只有那一列換色、多一個 glyph，其他列一格都不動。
 
-## 按鍵
+## reorder.3 按鍵
 
 - 打開時 focus 在清單上。
 - **沒拿東西時**：

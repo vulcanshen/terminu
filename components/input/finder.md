@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](finder-zh_TW.md)
 
-## Purpose
+## finder.1 Purpose
 
 A popup of a list with search: typing on top filters, the list below is chosen from. A plain finder means "go there"
 (filu's Search, Find and Goto, webu's `/`).
@@ -19,7 +19,7 @@ A list without search is a menu ([`dialog/menu`](../dialog/menu.md)), or a reord
 ([`reorder`](reorder.md)). Filtering by typing straight into a panel is the
 panel filter ([`layout/panel`](../layout/panel.md)), whose typing row has the same keys as here.
 
-## Look
+## finder.2 Look
 
 Terminal width 96 or more (e.g. 96×24):
 
@@ -114,7 +114,7 @@ Terminal width under 96 (e.g. 80×24):
   [`layout/popup`](../layout/popup.md)); only one listed while searching, its results waiting on the search, has no
   known width and takes the maximum of F7.
 
-### Markers in the list
+### finder.3 Markers in the list
 
 Every row of a select and of a checkbox popup starts with a marker:
 
@@ -133,7 +133,7 @@ Every row of a select and of a checkbox popup starts with a marker:
 - One-of-many uses radio glyphs, several-of-many checkbox glyphs: the glyph tells which, whether drawn in a form or in a
   popup.
 
-## States
+## finder.4 States
 
 Only the area holding the focus is lit (Principle P6, Rules F1). This means the two areas the focus can rest on (the
 typing row and the list); the preview never takes the focus, is not one of them, and is always drawn as "The
@@ -144,12 +144,12 @@ preview" above says:
 | Typing row | drawn as an input's typing row: the value Lavender, with a cursor; the icon before it in the layer colour | the layer colour cursor, dimmed once more |
 | List | the whole row drawn in grey (Overlay0), the icon and the count included, no cursor | layer colour background, Base bold, the arrow in its right padding (like a menu's cursor) |
 
-## Keys
+## finder.5 Keys
 
 A plain finder opens with the focus on the typing row: it is a "go there" search, and opening it means typing (a select,
 a checkbox popup and a file-picker open on the list, see their own files).
 
-### Typing row
+### finder.6 Typing row
 
 The panel filter uses this table too.
 
@@ -161,7 +161,7 @@ The panel filter uses this table too.
 | `Tab` | moves the focus to the list |
 | `Esc` | closes the whole finder (Rules F1: a phase is not a layer); in the panel filter it clears the filter |
 
-### Matching
+### finder.7 Matching
 
 How what is typed on the typing row filters. The same for a plain finder, a select, a checkbox popup, plain text typed in
 a file-picker, and the panel filter:
@@ -173,7 +173,7 @@ a file-picker, and the panel filter:
 - **Order**: the results keep the list's own order and are not reordered; that order is fixed (data with no order of its
   own is sorted by the app first, [`layout/panel`](../layout/panel.md)). Numbers sort by value (`9` before `10`), text
   as text (the header in [`layout/panel`](../layout/panel.md)).
-- **What is matched is the app's choice**: by default each item's shown text; it may also be other content of the item
+- **What is matched, the app may decide for itself**: by default each item's shown text; it may also be other content of the item
   (e.g. filu finding files by their content, what is typed matched against the text inside the file).
 - **When searching takes time** (e.g. reading every file's content, or handing the search to a search tool or a remote
   end that answers a batch at once): as in "Listed while searching" above, a loading icon after the title and results
@@ -184,7 +184,7 @@ items, which then need reordering by score to push the wanted one to the front. 
 sorting (a panel header's sort marker) true; numbers and text take the same matching: `20` leaves 20, 120, 200–209,
 in order of size ([`slider`](slider.md)).
 
-### List
+### finder.8 List
 
 | Key | Does |
 |---|---|
@@ -193,7 +193,7 @@ in order of size ([`slider`](slider.md)).
 | `Tab\|/` | back to the typing row, typing on after the old text |
 | `Esc` | closes the whole finder |
 
-### Hint
+### finder.9 Hint
 
 | Focus on | Hint |
 |---|---|

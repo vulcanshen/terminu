@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](terminal-zh_TW.md)
 
-## Purpose
+## terminal.1 Purpose
 
 A subprocess running in a frame (a shell, an editor, a remote session): every key goes to it; only the exit key, the
 key combinations the app keeps, and an interactive terminal's `Alt-v` and `PgUp` ("Which PTYs have these
@@ -10,7 +10,7 @@ modes" below) belong to the app (Rules F1, K10). A PTY placed in a panel (e.g. s
 not a popup: its frame follows [`layout/panel`](../layout/panel.md), and the PTY's keys are written in the footer
 ([`layout/screen`](../layout/screen.md)).
 
-## Look
+## terminal.2 Look
 
 ```
 [M]ANAGE[F]ILE TRANSFER[S]SH        2 live sessions    ← statusbar / screen chip row: kept
@@ -45,7 +45,7 @@ working in the shell. The footer is not needed: with the focus in a PTY, the foo
 subprocess, so showing it as usual would mislead; the PTY's keys appear in one place only, this frame's bottom border,
 with no two rows of hints.
 
-## Keys
+## terminal.3 Keys
 
 - Every key goes to the subprocess (Rules K10).
 - **Hint**: the exit key always comes first, and is the last to be dropped when the hint does not fit. The verb says
@@ -59,7 +59,7 @@ with no two rows of hints.
 - `Home` and `End` belong to the subprocess (Rules K10); to reach the top or the bottom of the history, use `gg|G` in
   history mode (below).
 
-## Which PTYs have these modes
+## terminal.4 Which PTYs have these modes
 
 The history and selection modes below go by what a PTY is for, not by its being a PTY:
 
@@ -80,7 +80,7 @@ back and be selectable. Editors and full-screen programs handle their own scroll
 them, so we do not take their keys. Their screens never reach the history either: catching `PgUp` would only stop vim
 from paging and give an empty history instead.
 
-## History mode
+## terminal.5 History mode
 
 On an interactive terminal's live screen every letter belongs to the subprocess (a shell needs `j`, `k`, `g`), so scrolling up into the
 history is a mode (Rules K11), and only there do the family's movement keys work.
@@ -98,7 +98,7 @@ screen every letter must reach the subprocess, so the family's movement keys can
 old habit for scrolling back in a terminal, so pressing it gets you in; someone who starts typing does not have to press
 `Esc` first, since the first character takes them back to the live screen.
 
-## Selection mode
+## terminal.6 Selection mode
 
 An interactive terminal's selection mode follows the selection mode of [`dialog/note`](note.md): the same keys, colours, scroll
 position, and toast after copying.
@@ -113,7 +113,7 @@ position, and toast after copying.
 **Why**: in a shell, what you most often want to copy is a piece of output; with the same keys as the viewer, learning
 it once lets you select anywhere in the family.
 
-## Raising privileges
+## terminal.7 Raising privileges
 
 When an app writes a system file (e.g. hostu writing `/etc/hosts`), it **neither asks for the password nor ever handles
 it**; the system's tool for raising privileges does:
@@ -122,7 +122,7 @@ it**; the system's tool for raising privileges does:
 - When a password is needed, open a terminal popup running the tool (e.g. `sudo cp <temp file> /etc/hosts`) and let it
   ask; the popup closes itself when it is done. This PTY runs a program for one job, so it has no history or selection
   mode ("Which PTYs have these modes" above).
-- Which tool is up to the app and the platform (e.g. sudo, doas when there is none; on Windows gsudo or the built-in
+- Which tool, the app may decide for itself by the platform (e.g. sudo, doas when there is none; on Windows gsudo or the built-in
   sudo, with the system's UAC prompt).
 
 **Why**: a password that never passes through the app cannot be stored or end up in the App Log; sudo's own settings

@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](checkbox-zh_TW.md)
 
-## Purpose
+## checkbox.1 Purpose
 
 A switch, or ticking several from a group. A switch and a group of five or fewer are drawn straight in the form or the
 panel and flip in place; more than five open a checkbox popup (e.g. kbu's namespace picker). The checkbox popup is a
@@ -11,9 +11,9 @@ kind of finder ([`input/finder`](finder.md)): only what differs is written here.
 A group of options always comes with a `Select all` row of its own, not an option (see "Select all" below); a switch
 has none.
 
-A switch may instead be drawn as a [`radio`](radio.md) with two options, `off` and `on`, the app's choice.
+A switch may instead be drawn as a [`radio`](radio.md) with two options, `off` and `on`, which the app may decide for itself.
 
-## Look
+## checkbox.2 Look
 
 - Glyphs: ticked `nf-md-checkbox_marked` (U+F0132, a solid tick), not ticked `nf-md-checkbox_blank_outline` (U+F0131).
   A ticked one's text is Green (in effect); in a popup it follows the tick on screen, Green as soon as `Space` ticks it
@@ -30,7 +30,7 @@ A switch may instead be drawn as a [`radio`](radio.md) with two options, `off` a
 not Green: Green says in effect, and a ticked option not available gets no effect; the solid tick's shape already says
 it is ticked.
 
-## Select all
+## checkbox.3 Select all
 
 - A group of options (a switch is not one) always comes with a `Select all` row, drawn first: in a form or on a panel on
   the label's row, the options below it; in a checkbox popup as the list's first row, scrolling with the list. Its
@@ -40,7 +40,7 @@ it is ticked.
   they are, not shifting.
 - **It is not an option**: it is not part of the value and does not count towards the five; only the options' ticks are
   written back. The app adds no option of its own standing for all of them (e.g. kbu's old `All Namespaces`): that is a
-  misuse. What every option ticked means is the app's reading (e.g. kbu reads it as the whole cluster, namespaces
+  misuse. What every option ticked means, the app may decide for itself (e.g. kbu reads it as the whole cluster, namespaces
   created later included).
 - **Flipping it**: ticking it ticks every option, unticking it unticks them all, options not available included and
   disabled ones not (an option that cannot be changed now in a form, "Disabled fields and options are skipped" in
@@ -72,7 +72,7 @@ is the same in every app, and no app builds its own. An app's own "all" option f
 state; while filtering, the options filtered out cannot be seen, and however it were drawn it would not be the true
 state at that moment, so it is hidden (the user, 2026-10-24).
 
-## Keys
+## checkbox.4 Keys
 
 **In a form or a panel**: `Enter` flips it in place; the focus stays, and it takes effect at once. In a form `Space`
 flips it too (the exception of Rules K5, as in a checkbox popup); on a panel `Space` still opens the Space menu. The
@@ -81,7 +81,7 @@ hint: `Enter|Space:toggle` in a form ([`dialog/form`](../dialog/form.md)); on a 
 
 **The checkbox popup**:
 
-- It opens with the focus on the list and the cursor on the option the app names (where it starts is the app's choice;
+- It opens with the focus on the list and the cursor on the option the app names (where it starts, the app may decide for itself;
   the first option, not `Select all`, when none is named).
 - **`Space`**: ticks or unticks the cursor's row (the whole group on `Select all`, see "Select all") — only the tick on screen changes; nothing is written back and nothing
   takes effect (an exception to Rules K5).
@@ -93,7 +93,7 @@ hint: `Enter|Space:toggle` in a form ([`dialog/form`](../dialog/form.md)); on a 
   only one value.
 - **An option not available works like any other**: the cursor stops on it, `Space` ticks or unticks it, and `Enter`
   writes back the ticks on screen. What not available means and what to do with a ticked one (e.g. the drawer shows
-  `api unavailable`) is the app's choice; tdp only draws the state.
+  `api unavailable`), the app may decide for itself; tdp only draws the state.
 - The typing row follows the finder; with many options, typing filters, and options not available are listed too.
 - **Hint**: on the list `Enter:apply Space:toggle Tab|/:filter Esc:cancel`; on the typing row
   `Enter|Tab:list Esc:cancel`. Filtered down to no results: on the list `Enter` still writes back the whole set ticked (the

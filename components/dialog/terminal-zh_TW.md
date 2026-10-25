@@ -2,12 +2,12 @@
 
 **Language**: [English](terminal.md) · 繁體中文
 
-## 用途
+## terminal.1 用途
 
 框裡跑的子程序（shell、編輯器、遠端 session）：按鍵都給它，只有出口鍵、app 保留的組合鍵，以及互動 terminal 的 `Alt-v`、`PgUp`（見下面的「哪些 PTY 有這兩種模式」）屬於 app（Rules F1、K10）。PTY 放在
 panel 裡時（例：sshu 的格子）不是 popup：框照 [`layout/panel`](../layout/panel-zh_TW.md)，PTY 的鍵寫在 footer（[`layout/screen`](../layout/screen-zh_TW.md)）。
 
-## 長相
+## terminal.2 長相
 
 ```
 [M]ANAGE[F]ILE TRANSFER[S]SH        2 live sessions    ← statusbar／畫面 chip 列：留著
@@ -35,7 +35,7 @@ panel 裡時（例：sshu 的格子）不是 popup：框照 [`layout/panel`](../
 focus 在 PTY 裡時，footer 上的 `Space`、`?`、`q` 都送給子程序，照常顯示反而誤導；PTY 的鍵只出現在一個地方，就是這個框的下框，
 不會有兩列 hint。
 
-## 按鍵
+## terminal.3 按鍵
 
 - 按鍵都送給子程序（Rules K10）。
 - **hint**：出口鍵永遠是第一個，放不下時最後才捨。動詞寫按下去真正會發生的事：
@@ -46,7 +46,7 @@ focus 在 PTY 裡時，footer 上的 `Space`、`?`、`q` 都送給子程序，�
 - `Alt-Esc` 一律先 confirm（Rules K10）。
 - `Home`、`End` 屬於子程序（Rules K10）；要到歷史的頭尾，用歷史模式的 `gg|G`（見下面）。
 
-## 哪些 PTY 有這兩種模式
+## terminal.4 哪些 PTY 有這兩種模式
 
 下面的歷史模式與選取模式看 PTY 拿來做什麼，不是看它是不是 PTY：
 
@@ -61,7 +61,7 @@ focus 在 PTY 裡時，footer 上的 `Space`、`?`、`q` 都送給子程序，�
 **為什麼**：要顧的是使用者自己的指令：在 shell 裡打的指令，輸出要捲得回去、選得起來。編輯器與佔滿畫面的程式自己管捲動與選取，
 我們沒有重寫它們，就不搶它們的鍵。它們的畫面也不會留進歷史，攔下 `PgUp` 只會讓 vim 翻不了頁，換來一個空的歷史。
 
-## 歷史模式
+## terminal.5 歷史模式
 
 互動 terminal 的即時畫面上，字母都屬於子程序（shell 要 `j`、`k`、`g`），所以捲上去看歷史就是一個模式（Rules K11），裡面才用家族的移動鍵。
 
@@ -74,7 +74,7 @@ focus 在 PTY 裡時，footer 上的 `Space`、`?`、`q` 都送給子程序，�
 **為什麼**：到頭到尾在家族裡是 `gg|G`，PTY 的歷史也一樣；但即時畫面上每個字母都要送給子程序，家族的移動鍵只能在模式裡用。
 `PgUp` 是終端機裡捲歷史的老習慣，按下去就進得來；打字的人不用先按 `Esc`，打下第一個字就回到即時畫面。
 
-## 選取模式
+## terminal.6 選取模式
 
 互動 terminal 的選取模式照 [`dialog/note`](note-zh_TW.md) 的選取模式：按鍵、顏色、捲動位置、複製後的 toast 都一樣。
 
@@ -85,14 +85,14 @@ focus 在 PTY 裡時，footer 上的 `Space`、`?`、`q` 都送給子程序，�
 
 **為什麼**：在 shell 裡最常想複製的就是一段輸出；跟 viewer 同一套鍵，學一次在家族哪裡都能選。
 
-## 要提權時
+## terminal.7 要提權時
 
 app 要寫系統檔（例：hostu 寫 `/etc/hosts`）時，**不自己問密碼，也不經手密碼**，交給系統的提權工具：
 
 - 先試不用密碼的（例：`sudo -n`）；成功就直接寫，不開任何東西。
 - 要密碼時，開 terminal popup 跑那個工具（例：`sudo cp <暫存檔> /etc/hosts`），讓它自己問；跑完 popup 自己關。這個 PTY 是 app 開
   一個程式做一件事，沒有歷史模式與選取模式（上面的「哪些 PTY 有這兩種模式」）。
-- 用哪個工具由 app 依平台決定（例：sudo，沒有時 doas；Windows 用 gsudo 或內建的 sudo，由系統跳 UAC）。
+- 用哪個工具，app 可以依平台自行決定（例：sudo，沒有時 doas；Windows 用 gsudo 或內建的 sudo，由系統跳 UAC）。
 
 **為什麼**：密碼不經過 app，就不會被存下來，也不會進 App Log；sudo 自己的設定（記住多久、指紋解鎖）照樣有效，跟使用者在終端機裡
 用 sudo 一樣。

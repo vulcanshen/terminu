@@ -7,17 +7,18 @@ the frame floating over the screen, and each kind of content in that frame — w
 The principle gives the principles and rules; the components give the concrete parts. Versions and the CHANGELOG are
 shared with tdp.
 
-## What is a requirement
+## components.1 What is a requirement
 
-Everything written here is a requirement. Only four things are not: the parts stated as "up to the app", examples
-(however they are introduced: "e.g.", "for example", "Example:", "such as", an "Examples" column), the "Why", and
-paragraphs marked "Implementation reference (not a requirement)".
+Everything written here is a requirement. Only three things are not: examples (however they are introduced: "e.g.",
+"for example", "Example:", "such as", an "Examples" column), the "Why", and paragraphs marked "Implementation
+reference (not a requirement)". Where it says "the app may decide for itself", that part is left to the app
+explicitly, with what still holds inside that scope written beside it
+([Principle P5](../principle/README.md#p5-leaving-it-to-the-app-explicitly)).
 
-All of the components are in the fixed zone (["Departure" at the start of the Rules](../principle/rules.md)): what an app
-cannot follow goes into the "偏離 tdp" (departures from tdp) section of its dev-remarks with the reason, and is reported
-as a gap in tdp at the same time.
+When a component's solution does not fit, it is reported as a gap in tdp, and tdp adds a solution or leaves it to the
+app explicitly (["Leaving it to the app" at the start of the Rules](../principle/rules.md)).
 
-## Diagrams and spacing
+## components.2 Diagrams and spacing
 
 - **A diagram's structure is a requirement; the data in it are examples**: frames, where glyphs go, spacing, alignment
   and the colours noted beside it are as drawn; names, values and descriptions are examples.
@@ -31,7 +32,7 @@ as a gap in tdp at the same time.
 - **Nerd Font glyphs in a diagram are drawn with their real code points** (capsule ends, the arrow at the end of a
   cursor, the hexagon of a section title, the loading icon and so on), and every one of them is named by its code point
   in the text; where there is no Nerd Font they show as boxes. Backgrounds cannot be drawn: `▓` stands for a cursor
-  block, and a capsule's fill is in the text. In a popup whose title glyph is chosen by the app (the glyph table in
+  block, and a capsule's fill is in the text. In a popup whose title glyph the app may decide for itself (the glyph table in
   [`layout/popup`](layout/popup.md)), the diagram draws no glyph; in fact the glyph goes before the title text, with one
   space.
 - **Two general rules**, which hold wherever the text says nothing else:
@@ -49,7 +50,7 @@ one cell after it reads as one unit with its text. The statusbar's `label: value
 label from the value, and two cells there would break it in two; two cells between groups are enough to keep them apart
 without drawing a symbol as well.
 
-## Wrapping
+## components.3 Wrapping
 
 Wherever text wraps — a textarea, a viewer, a confirm, a note (e.g. a form's typing note), a toast, an error popup, an
 empty state's sentence, the Rules S5 splash when too narrow — it wraps the same way, and what does not fit wraps rather
@@ -79,7 +80,7 @@ rule, text wraps the same wherever it wraps in the family. A long word starting 
 idea as "a word that does not fit moves whole to the next row": the URL begins a row of its own, easy to recognise and
 to copy, not half of it hanging after the words before it.
 
-## Uppercase
+## components.4 Uppercase
 
 - **In uppercase**: a panel's capsules (`[N] label` and tabs), screen chips, popup titles, table headers, group titles
   in lists, the labels of a panel with one value per row, and the section titles of menus and the key reference.
@@ -99,7 +100,7 @@ to copy, not half of it hanging after the words before it.
 the content there is to read or change. Key names and hotkey markers stay: `q` and `Q` are different keys; content
 stays: users recognise it as it is.
 
-## Control characters
+## components.5 Control characters
 
 The text an app puts on the screen often comes from outside (file names, web page titles, config files, a program's
 output) and may hold control characters. Wherever it is, it is never sent to the terminal as it is; how it is drawn
@@ -140,20 +141,20 @@ app's `\n`s quietly turned red, unseen by the compiler and the tests (sshu's SS4
 a red `\n` on screen always speaks of something from outside (the user, 2026-10-24). Content for reading is different: a program's output is meant to look that
 way in a terminal, so drawing it as a terminal would is how it really looks, and red names would only hide it.
 
-## Choosing among the options
+## components.6 Choosing among the options
 
 Fields differ in nature — long or short values, few or many options — and so does the look that suits them. So the
-components do not fix everything to one form; they list **a few options**, and the app picks by the nature of the field.
+components do not fix everything to one form; they list **a few options**, and which one to use, the app may decide for itself by the nature of the field.
 The choice is limited to the listed options: when none of them fits, that is a gap in tdp — report it and an option is
 added, rather than inventing one inside the app.
 
-## How to read
+## components.7 How to read
 
 Read in order: **color → layout (screen, panel, popup) → dialog → input**. color and layout are the common base: every
 component uses the colour scheme, and is drawn on the screen, in a panel or in a frame; dialog and input are what goes in
 the frame.
 
-## Three nouns
+## components.8 Three nouns
 
 | Noun | What | File |
 |---|---|---|
@@ -161,7 +162,8 @@ the frame.
 | **input** | a kind of popup: enters or chooses one value and, once confirmed, writes it back. One file per kind of value | `input/` |
 | **dialog** | a kind of popup that is not entering one value but the app talking to the user — a form, a list, a confirmation, read-only content, a message, a subprocess | `dialog/` |
 
-- The seven classes of rules F1: the input class maps to `input/`, the other six to `dialog/`, one file each.
+- The eight classes of rules F1: the input class maps to `input/`, menu, confirm, form, note, toast and terminal to
+  `dialog/`, one file each; an app's own popup is in `layout/popup`.
 - Nothing is typed into a form (`dialog/form`): a field that takes typing or has more options than fit opens its value's
   input popup on `Enter`; a radio or checkbox with few options has them drawn in the form and is chosen in place.
 - A list with search is a finder: a plain finder, a select, a checkbox popup and a file-picker are all kinds of finder
@@ -170,13 +172,13 @@ the frame.
 - Dialog rather than modal: modal names a behaviour — blocking what is underneath while open — and every popup but the
   toast does that, so it would not tell inputs from dialogs; dialog names the content — the app talking to you.
 
-## color
+## components.9 color
 
 | File | What |
 |---|---|
 | [`color`](color.md) | The colour scheme: presentation rules, calculation, colour codes |
 
-## layout
+## components.10 layout
 
 | File | What |
 |---|---|
@@ -184,7 +186,7 @@ the frame.
 | [`panel`](layout/panel.md) | Panels: frame, lists, the location row, one value per row, panel filter |
 | [`popup`](layout/popup.md) | The frame floating over the screen |
 
-## dialog
+## components.11 dialog
 
 | File | What |
 |---|---|
@@ -195,7 +197,7 @@ the frame.
 | [`toast`](dialog/toast.md) | a short message popping up from the bottom |
 | [`terminal`](dialog/terminal.md) | a subprocess running in a frame |
 
-## input
+## components.12 input
 
 Each is a popup that enters or chooses that kind of value.
 

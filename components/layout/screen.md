@@ -5,15 +5,15 @@
 The skeleton of the whole screen. A panel's frame is in [`panel`](panel.md), the frame floating over it in
 [`popup`](popup.md).
 
-## From top to bottom
+## screen.1 From top to bottom
 
 1. **The top row**: in a multi-screen app, the screen chip row, with a full-width separator below it; a single-screen app
-   may have a statusbar row (up to the app).
+   may have a statusbar row (whether to, the app may decide for itself).
 2. **The panel area**: the remaining height. Each screen numbers its own panels from `[1]`; `1`–`9` jump only to the
    panels of the current screen (Rules K1).
 3. **The bottom row**: the footer.
 
-## Footer
+## screen.2 Footer
 
 One row, written like a hint (Rules M5); keys Blue, colon and description Overlay0 ([`color`](../color.md)). When too
 narrow, whole pairs are dropped from the end (the hint in [`popup`](popup.md)). The content depends on the situation:
@@ -42,7 +42,7 @@ words and is only dimmed: dimmed means "you are not here now" (Principle P6, the
 and close, the bottom row only darkens and brightens instead of changing its words all the time; `?` is still on the
 footer, and `?` on a popup opens that popup's key reference anyway (Rules M1).
 
-## Screen chip row
+## screen.3 Screen chip row
 
 The top row of a multi-screen app: one capsule per screen, drawn as the capsule chain in [`panel`](panel.md), the chain's
 colour being Blue (the selected screen filled with Blue, its text Base bold; the unselected ones filled with Mantle, their
@@ -58,9 +58,9 @@ Green too. While a terminal popup is open, the chip row and this separator both 
 Green while it runs (e.g. the row in filu's `[3] Tasks` reads `3/10`, and the running glyph is Green). While a terminal
 popup is open, that row is covered and the progress is out of sight; that is fine, and no extra row is opened for it.
 
-## Statusbar
+## screen.4 Statusbar
 
-Whether there is one is up to the app. A single-screen app puts it on the top row; a multi-screen app uses the right of
+Whether there is one, the app may decide for itself. A single-screen app puts it on the top row; a multi-screen app uses the right of
 the chip row rather than a row of its own. It is not a surface; focus never rests on it.
 
 - Written like a label (Rules M5): hotkeys, if any, are marked (e.g. kbu's `[C]ontext: prod  [N]amespace: default`).
@@ -71,25 +71,25 @@ the chip row rather than a row of its own. It is not a surface; focus never rest
 - Fixed width (Rules L2): the last dynamic field is not padded, while the fields before it keep their fixed widths; when
   it does not fit it is truncated, never wrapped (L3).
 
-## Narrow widths
+## screen.5 Narrow widths
 
 When not all panels fit, only the focused panel is drawn, at full width; `Tab` changes panels as usual, showing one at a
-time. The threshold is set by the app from the minimum widths of its panels, but may not be above 80 (Rules L1: 80
+time. The threshold, the app may decide for itself from the minimum widths of its panels, but it may not be above 80 (Rules L1: 80
 columns must work properly). Narrow widths happen only at or above the app's minimum size; below it, see "Smaller than
 the minimum size" below.
 
-## Zoom
+## screen.6 Zoom
 
-Enlarging one panel is the app's own feature: whether there is one, and its key, are up to the app (e.g. filu's `z`).
+Enlarging one panel is the app's own feature: whether there is one, and its key, the app may decide for itself (e.g. filu's `z`).
 The spec gives the default: when zoomed, only the focused panel is drawn, filling the panel area, as with narrow widths;
 `Tab` and the digit keys change panels as usual, the panel changed to is zoomed too, and only pressing the zoom key again
-restores the layout. How a panel is enlarged is up to the app (e.g. filu sets the tabs of one panel side by side); the
-default needs no note, and a different one goes into the design decisions of the dev-remarks.
+restores the layout. How a panel is enlarged, the app may decide for itself (e.g. filu sets the tabs of one panel side by side);
+without a way of its own, the default holds.
 
 **Why**: what each app wants to see enlarged differs, so the spec keeps only a default everyone understands; with the
 default the same as narrow widths, what the user learns on a narrow screen works when zoomed too.
 
-## Smaller than the minimum size
+## screen.7 Smaller than the minimum size
 
 When the screen is smaller than the app's minimum size (Rules L1: 80×40 by default; the app may lower it, but not above
 80×40), the whole screen draws just two rows, centred both ways:
@@ -115,7 +115,7 @@ working blindfolded — something might be deleted by mistake, and what is typed
 does anything, and a double `Ctrl-C` is kept as the way out in an emergency. The quit flow may open a confirm to ask
 something, which cannot be drawn then, so `q` and a single `Ctrl-C` do nothing either.
 
-## Empty states
+## screen.8 Empty states
 
 One centred fact, plus a hint naming the key, both in Overlay0; keys in the hint are in square brackets (Rules M5).
 Example:

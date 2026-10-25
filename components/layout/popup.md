@@ -3,10 +3,10 @@
 **Language**: English · [繁體中文](popup-zh_TW.md)
 
 A popup is a frame floating over the screen. This file sets only the frame itself, not what goes in it: one that enters
-or chooses a value is an input ([`input/`](../README.md#input)), any other is a dialog ([`dialog/`](../README.md#dialog)).
+or chooses a value is an input ([`input/`](../README.md#components12-input)), any other is a dialog ([`dialog/`](../README.md#components11-dialog)).
 The popup's classes, size and dimming when stacked are in Rules F1–F8.
 
-## Frame
+## popup.1 Frame
 
 ```
 ┏━TITLE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -39,7 +39,7 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
   | toast | by kind, see [`dialog/toast`](../dialog/toast.md) |
   | terminal | `nf-md-console` (U+F018D) |
   | compare | `nf-md-compare` (U+F018A) |
-  | input, form, note | chosen by the app: the thing it edits or shows (e.g. a pen for Rename); avoid outline glyphs that are too thin |
+  | input, form, note, an app's own popup | the app may decide for itself: the thing it edits or shows (e.g. a pen for Rename); avoid outline glyphs that are too thin |
 
 - **Hint**: after `┗━ ` on the bottom border, written as Rules M5 says.
   - **Order**: `Enter` first → the `h|l:tab` that switches tabs → this popup's own keys → the `Tab:…` that switches parts → `Esc` last. The terminal is the
@@ -86,7 +86,7 @@ Tabs after the title keep a line segment away, like any other text on the frame:
 things, and the rounded and slanted capsules do not stick together. The title is a
 rounded capsule and a panel's is slanted: the ends tell a frame floating above from a panel on the screen.
 
-## Width
+## popup.2 Width
 
 The two widths of Rules F7, set when the popup opens and unchanged while it is open:
 
@@ -108,7 +108,7 @@ content: the widest row is the wider of the most digits and the unit.
 Narrow content is aligned left, one cell from the border (e.g. confirm, datetime picker, color picker); a toast's text
 and a password's unlock mask are centred.
 
-## Opening and closing animation
+## popup.3 Opening and closing animation
 
 Rules F2: opening and closing are both animated, in one form and one length across the family. Opening has three
 parts:
@@ -141,7 +141,7 @@ it plays: on a frame not yet drawn, users cannot see what their key landed on. S
 together, the same idea as T1's "play together, don't wait": each layer is seen backing away, and three layers do not
 make the user wait three times as long.
 
-## Loading
+## popup.4 Loading
 
 Rules F7: while a popup is loading, a spinning loading icon always sits after its title; when tabs follow the title (the
 capsule chain in [`panel`](panel.md)), after the whole row of tabs. While a form's button is running (an action that
@@ -160,11 +160,11 @@ keeps the form open, or a submit that takes a while), the loading icon sits afte
   the border colour, not bold (Blue with focus, Surface2 without, dimmed along with the frame) — the frame's colour
   either way.
 
-## Cancelling and completing
+## popup.5 Cancelling and completing
 
 Cancelling returns to the source (Rules F4); whether the source stays after completing follows Rules T1.
 
-## When the content does not fit
+## popup.6 When the content does not fit
 
 Rules F7: the height is fixed when it opens, at most the screen height − 2; beyond that the content scrolls inside the
 frame.
@@ -197,13 +197,13 @@ frame.
 ┗━ hint ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4 of 12 ━┛
 ```
 
-## Error row
+## popup.7 Error row
 
 - **Where**: a fixed row below the content area that never scrolls, with a blank row between it and the content. A kind
   may add fixed rows below it (e.g. a form's separator and action area).
 - **Reserved only in popups whose values can be invalid** (Rules F7): blank when there is no error, the height unchanged.
-- **Value errors only**: a value breaks a rule — format, range, a required field, a duplicate name; the message is
-  written by the app and is short.
+- **Value errors only**: a value breaks a rule — format, range, a required field, a duplicate name; what the message
+  says, the app may decide for itself, and it is short.
 - **When too many wrong values pause the input** (e.g. locku's cooldown after several wrong PINs), the countdown goes in
   the error row too: Red, updated every second (`try again in 27 s`), cleared when it ends. While paused, every key but
   `Esc` is swallowed and never reaches the typing row.
@@ -239,3 +239,25 @@ typing is possible again.
 >   confirm and options take keys before the menu under them.
 > - Whether a layer is "still there" is judged by opening-or-open (`owns()`), never by an `isActive()` that includes
 >   closing (Rules F3).
+
+## popup.8 An app's own popup
+
+Content the seven classes cannot hold (Rules F1, e.g. kamonu's popup for drawing cells) goes in an app's own popup.
+
+- **The same as any popup**: the frame, the title (its glyph from the table above), how the hint is written and ordered,
+  the width, the opening and closing animation, loading, content that does not fit, the layer colours and the dimming,
+  as on this page and in [`color`](../color.md).
+- **With values to submit, it works like a form** ([`dialog/form`](../dialog/form.md)): the action area sits below the
+  content as on a form, and `Tab` switches between the content and the action area; a button submits, and an invalid
+  value is reported on the error row; `q` does nothing; once something changed, `Esc` first opens a confirm asking whether
+  to discard it.
+- **How the content is drawn and the keys on it, the app may decide for itself.** Inside that scope:
+  - the core keys keep their meaning (Rules K1); when the focused cell has several values to cycle through, `Space` moves
+    it to the next value (Rules K5);
+  - movement follows Rules K12 (hjkl are the arrow keys);
+  - hotkeys on the content are disclosed in this popup's `?` (Rules K6, M5), and the hint follows "hint" above;
+  - where the focus is stays visible (Rules L5).
+
+**Why**: content the seven classes cannot hold, forced into one of them, makes that class's keys lie. An app's own popup
+keeps fixed what can be fixed — the frame, the layers, submitting, leaving — so when users open one, everything but the
+content itself is the same as any popup in the family (the user, 2026-10-25, kamonu).

@@ -4,7 +4,7 @@
 
 所有 input popup 共用的規則；各 input 檔只寫跟這裡不同的地方。
 
-## 什麼是 input
+## input.1 什麼是 input
 
 一種 popup：輸入或選出一個值，確定後寫回去；一個 popup 一個值（Rules F1）。
 
@@ -22,7 +22,7 @@
 - **有按鈕的 input popup**（例：color picker 的 `Choose`）：動作區照 [`dialog/form`](../dialog/form-zh_TW.md) —— `Tab|Shift-Tab`
   在欄位區與動作區之間來回，回來時停在離開前的那一個項目；hint 在欄位上寫 `Tab:actions`、在按鈕上寫 `Tab:fields`（Rules K2）。
 
-## 單行 input popup 的骨架
+## input.2 單行 input popup 的骨架
 
 text、password、number 共用。
 
@@ -53,7 +53,7 @@ text、password、number 共用。
 - **跟骨架不同的兩處**：password 的解鎖樣式沒有說明列，要輸入什麼由標題講（[`password`](password-zh_TW.md)）；number 有單位時，
   打字列下面多一列單位列（[`number`](number-zh_TW.md)）。
 
-## 值比框長時
+## input.3 值比框長時
 
 框裡顯示游標附近的那一段，被截掉的那一邊補 `…`。
 
@@ -65,7 +65,7 @@ text、password、number 共用。
 - 游標一定看得到；移動時只捲剛好夠的量，不把游標固定在中間（跟 popup 內容放不下時同一個捲法）。
 - 寬度照顯示寬度算（中文一個字 2 格）。一個字不切成兩半，紅色的 `\n`、`\x1b` 也一樣。
 
-## 編輯鍵
+## input.4 編輯鍵
 
 打字列上：
 
@@ -82,7 +82,7 @@ text、password、number 共用。
 **為什麼**：編輯鍵只收鍵帽上寫著的那幾個，看得到就知道怎麼用。`Ctrl-U`、`Ctrl-W` 在不同 shell 裡行為不一樣，收進來反而要記
 「這裡是哪一種」；改掉長值靠下面的灰字提議（重打一個值不用先刪）。
 
-## 改一個已經有的值：舊值是灰字提議
+## input.5 改一個已經有的值：舊值是灰字提議
 
 ```
 ┃  █eport-2025.pdf                    ┃   ← 框是空的；舊值是灰字（Overlay0），游標壓在第一個字（`r`）上
@@ -101,7 +101,7 @@ text、password、number 共用。
 **為什麼**：預填的長值要整個換掉時，得按住 `Backspace` 刪到底；提議讓「重打」不用先刪、「小改」多一下 `Tab`、「不改」直接 `Enter`。
 這是單行值（檔名、主機名稱）的情況；多行文字改的多半是補一句、改幾個字，而 textarea 的 `Tab` 是縮排，收不了提議。
 
-## 新建一個值：建議值
+## input.6 新建一個值：建議值
 
 ```
 ┃  █ssets.zip                         ┃   ← 沒有舊值；app 建議的值是灰字（Overlay0），游標壓在第一個字（`a`）上
@@ -117,14 +117,14 @@ text、password、number 共用。
 **為什麼**：新建東西時，多半有一個合理的名字可以直接用；建議值讓「照建議」直接 `Enter`、「小改」多一下 `Tab`、「自己取」直接打。
 舊值不碰就按 `Enter` 是什麼都不做，建議值不碰就按 `Enter` 是使用者接受了這個值 —— 不寫回的話，`Enter` 等於沒有作用。
 
-## 不放 placeholder
+## input.7 不放 placeholder
 
 input popup 裡不放 placeholder：要輸入什麼由說明列講；灰字只留給提議。打字列前面的 `nf-fa-angle_right`（單行 input、finder、
 panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：它不是字，按 `Tab` 不會收進來，打字時也不會消失。
 
 **為什麼**：兩種灰字長得一樣，一種按 `Tab` 會收進來、一種不會，會分不出來。
 
-## 貼上的控制字元
+## input.8 貼上的控制字元
 
 - **範圍**：一行的值。多行的 textarea 見 [`textarea`](textarea-zh_TW.md)：換行（含單獨的 `\r`）是真的換行，其他控制字元跟這裡一樣。
   只收數字的欄位照它原本的過濾。
@@ -145,16 +145,16 @@ panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：�
 只丟控制字元也清不乾淨：從終端機複製帶顏色的字，丟掉 `\x1b` 會留下 `[31m`。游標停在上面時用紅底：Lavender 底上的紅字對比太弱，
 照一般游標畫又看不出是控制字元。
 
-## 值
+## input.9 值
 
 - **一行的值確定時去掉前後的空白字元**：所有 Unicode 的空白字元（一般空格、全形空格 U+3000、NBSP……），不是只有某一種空白；
   password 不去。控制字元的檢查在去空白字元之前（見上面）。看不見的空白字元最難查：從網頁複製來的主機名稱尾巴夾著一個 NBSP、
   值的後面多打了一個全形空格，畫面上一模一樣，用起來卻不對。
 
-## 在表單與 panel 上怎麼顯示
+## input.10 在表單與 panel 上怎麼顯示
 
 - **顏色**：Text。
-- **空的值**：用灰字（Overlay0）寫出「空著代表什麼」，由 app 寫（`not set`、`ssh decides`、`none`）。一片空白看不出是沒設、設成空字串、
+- **空的值**：用灰字（Overlay0）寫出「空著代表什麼」，寫法 app 可以自行決定（`not set`、`ssh decides`、`none`）。一片空白看不出是沒設、設成空字串、
   還是還沒載入。不寫教人按鍵的字（例：`enter to browse ~/.ssh`）：hint 會寫 `Enter:edit`。
 - **太長**：從尾端截，加 `…`；路徑從前面截（`…/.ssh/id_ed25519`）。
 - **控制字元**：跟打字列一樣，照實寫成紅色的轉義（`\n`、`\x1b`，見上面的「貼上的控制字元」），不丟、不換成空白。
@@ -171,6 +171,6 @@ panel filter；[`finder`](finder-zh_TW.md)）是 glyph，不是 placeholder：�
   | reorder | 照目前的順序用 `, ` 接起來，太長加 `…` |
   | radio、checkbox（畫在表單上） | 選項本身（[`radio`](radio-zh_TW.md)、[`checkbox`](checkbox-zh_TW.md)） |
   | slider | 軌道加數字（[`slider`](slider-zh_TW.md)） |
-  | datetime picker | 格式化的日期（時間），格式由 app 決定（`2026-10-15`、`2026-10-15 10:05`） |
+  | datetime picker | 格式化的日期（時間），格式 app 可以自行決定（`2026-10-15`、`2026-10-15 10:05`） |
   | color picker | 3 格的色塊（`███`）、空一格、hex（`███ #2A2A3C`，一律大寫，[`color-picker`](color-picker-zh_TW.md)） |
   | file-picker | 路徑，家目錄寫成 `~` |

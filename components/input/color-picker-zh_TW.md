@@ -2,11 +2,11 @@
 
 **Language**: [English](color-picker.md) · 繁體中文
 
-## 用途
+## color-picker.1 用途
 
 選一個顏色：webu 網頁上的顏色欄位、locku 的配色設定。
 
-## 長相
+## color-picker.2 長相
 
 ```
 ┏━BACKGROUND━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -42,7 +42,7 @@
 
 **為什麼**：三條 slider 太佔版面；一列小色塊加 hex，一眼看完。顏色在家族裡都寫成 hex（`#2A2A3C`），各色版也用 hex，對得起來。
 
-## 按鍵
+## color-picker.3 按鍵
 
 - **可以 focus 的是 R、G、B 與 `Choose` 四個**。hjkl 只在 R、G、B 之間移：`h|l` 左右，`j|k` 也是前後（一維），到頭尾繞回
   （Rules K12）；`Choose` 只用 `Tab` 到。**old、new 不拿 focus**：old 不改就 `Esc`；new 是 R、G、B 改出來的結果，不用另外
@@ -61,7 +61,7 @@
 跟表單同一套，`Tab` 也跟表單一樣在色版與按鈕之間來回、hjkl 只在色版之間移。
 focus 的色塊蓋住名稱與 hex 兩列、跟色塊一樣寬：一格的色塊很容易漏看，正在改的 hex 值也一起亮。
 
-## 值
+## color-picker.4 值
 
 表單與 panel 上：3 格的色塊（`███`）、空一格、hex（`███ #2A2A3C`）；空的照 [`input/README`](README-zh_TW.md) 的空值規則。
 cursor 在這一欄時，色塊保留自己的顏色，hex 照樣換成 Base（[`color`](../color-zh_TW.md) 的 cursor 色塊）。

@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](select-zh_TW.md)
 
-## Purpose
+## select.1 Purpose
 
 Choosing **one** value from a list: a `<select>` on a webu page, kbu's context picker, a form field with more options
 than fit; a slider's list of numbers and a color picker's 00–FF are selects too. For five options or fewer drawn in a
@@ -10,15 +10,15 @@ form, use [`radio`](radio.md); for several values, the popup of [`checkbox`](che
 
 A select is a kind of finder ([`input/finder`](finder.md)): only what differs from the finder is written here.
 
-## Look
+## select.2 Look
 
 - The finder's skeleton, **without a preview**; the typing row is always shown, even for a short list.
 - A radio glyph before every row, the current value in Green ("Markers in the list" in the finder).
-- Options may have hotkeys (e.g. webu's digit keys), written as in Rules M5; whether to have them is the app's choice.
+- Options may have hotkeys (e.g. webu's digit keys), written as in Rules M5; whether to have them, the app may decide for itself.
 - **Width**: the options are known when it opens, so it follows "content width known when it opens" in
   [`layout/popup`](../layout/popup.md).
 
-## Keys
+## select.3 Keys
 
 - **It opens with the focus on the list, the cursor on the current value.**
 - `Enter` on the list: chooses — the value written back, the popup closed; opened from a form, the focus stays on that

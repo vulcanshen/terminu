@@ -2,14 +2,14 @@
 
 **Language**: English · [繁體中文](file-picker-zh_TW.md)
 
-## Purpose
+## file-picker.1 Purpose
 
 Choosing one **file**, handed back as a value: sshu's Identity file, webu's Upload and Import. When the value is a
 directory, "Choosing a directory" below applies. The file-picker is a kind of finder ([`input/finder`](finder.md)): the
 skeleton, the two areas, `Tab`, `Enter` on the typing row entering the list, which side is lit, and the preview all
 follow the finder; only what differs is written here.
 
-## Look
+## file-picker.2 Look
 
 ```
 ┏━IDENTITY FILE · ~/.ssh━━━━━━━━━━━━━━━━━━━┓ ┏━id_ed25519━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -55,13 +55,13 @@ any text file (see "Hiding secrets" below).
   last segment of a path) starts with `.` (`.ss` and `~/.ss` bring up `.ssh`). The same as shell globs: `*` does not
   match hidden files and `**` does not go into hidden directories, unless the pattern starts with `.`.
 - **An icon before every row**: `nf-md-folder` (U+F024B) for directories, `nf-md-file` (U+F0214) for files, coloured by
-  file type (content colours, the app's choice; e.g. filu uses eza's colours). When the field already has a value, the
+  file type (content colours, which the app may decide for itself; e.g. filu uses eza's colours). When the field already has a value, the
   cursor opens on that file, its text in Green (the current value).
 
 **Why**: a home directory holds dozens of hidden files, and listing them all would fill the top of the list; someone
 looking for a hidden file types `.` anyway — the shell's own rule, with no toggle key to learn.
 
-### The preview
+### file-picker.3 The preview
 
 The entry under the cursor, drawn by kind. At most 64 KB is read.
 
@@ -99,7 +99,7 @@ last row. An empty directory reads `(empty)`, an unreadable one `(permission den
 A subdirectory is expanded to the bottom before the next one: a large subdirectory can fill the preview area and hide
 the rest of the first level.
 
-### Metadata
+### file-picker.4 Metadata
 
 Always four rows, for files and directories alike, so the preview area keeps its height from entry to entry. Labels
 in uppercase and the layer colour, values in Text; the label column as wide as the longest label, two cells before the
@@ -128,7 +128,7 @@ value (as in the one-value panel of [`layout/panel`](../layout/panel.md)).
 private key (ssh wants `600`). `TYPE` uses the preview's kinds, so it tells what the preview will draw; the values are
 written for people, not as MIME types or octal.
 
-### Hiding secrets
+### file-picker.5 Hiding secrets
 
 The user's setting **`hide_secrets_in_preview`**, in each app's config file (Rules E3), defaults to `false`: everything
 shows as usual. When it is on (`true`):
@@ -150,7 +150,7 @@ tool's own mark for "not for others" (ssh private keys, `~/.aws/credentials`, `~
 are all `600`). A wrong guess errs on the safe side: an ordinary file that is held back just has no preview. A private
 key's header is not itself a secret, and it shows which kind of key it is.
 
-## Keys
+## file-picker.6 Keys
 
 - **`Enter` in the list**: on a directory it **goes in** — the typed filter is cleared, the focus stays on the list, and
   the cursor rests on the first item below `..`; only on a file does it **choose**, write back and close. **When choosing a
@@ -186,7 +186,7 @@ its last `/`, the list always shows the directory on the typing row, and there i
 typing `~/Documents/sideproj` one character at a time never jumps away and clears at `~/Documents`, only to take the
 `/sideproj` typed next as a path under the root; `Backspace` on the last segment goes back up a level.
 
-## Choosing a directory
+## file-picker.7 Choosing a directory
 
 A field whose value is a directory (e.g. where to download, a project's path) uses the file-picker's "choosing a
 directory". Everything else is as above: the current directory in the title, paths typed on the typing row, the rule for

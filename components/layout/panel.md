@@ -5,80 +5,18 @@
 A panel's frame, ordinary lists (the location row and groups included), panels with one value per row, details, and the panel filter. How the whole screen is laid out is
 in [`screen`](screen.md).
 
-## Frame
+## panel.1 Frame
 
 - **Line style and colour**: Blue heavy line `┏━┓` when focused, Surface2 light square line `┌─┐` when not; both are
   the same width, so switching shifts nothing (Rules L5, [`color`](../color.md)). Unfocused, the content is dimmed, streaming
-  content excepted (Rules T2).
-  - **A pointed panel** (the app's choice): when the cursor's row in a focused list stands for another panel on screen
-    (e.g. sshu's session list and the PTY panels in its grid on the right), that panel is "pointed": it stays an
-    unfocused light square frame and never takes the focus; only the frame's colour turns from Surface2 to Lavender
-    ("user footprint" in [`color`](../color.md)), the capsule chain turning with it. Which row stands for which panel,
-    and whether to use it at all, is the app's choice.
-    - The cursor moving to another row points at that row's panel instead; when that row's panel is not on screen, no
-      panel is pointed.
-    - It points only while that list has the focus: with the focus on the pointed panel, it is drawn as focused; with
-      the focus on another panel, no panel is pointed.
-    - The content is dimmed as unfocused (streaming content excepted); under a popup it is dimmed with everything else
-      (Rules F8).
-    - **Why**: a row in the list and a panel on screen are two sides of one thing (an sshu session and its cell), so
-      scanning the list tells which cell it is without reading titles, and a new cell is pointed at as soon as it
-      appears, showing it is done. The focus is still on the list, so it cannot become the focus and keeps the unfocused
-      line; Lavender is the colour of "where the user is now" (the location row, the statusbar), and here it says "the
-      cursor points here now" (the user, 2026-10-25, sshu's SS44).
+  content excepted (Rules T2). A panel a list's cursor points at turns its frame colour, see "A pointed panel" below.
 - **Left of the top border: the `[N] label` capsule**, right after the corner. `N` is also the digit key that jumps
   straight to that panel (within the current screen only, Rules K1). When the panel has tabs, `[N]` is a part of its
   own, the tabs follow it, and the first tab's name is the label (see the capsule chain below). A name in the label keeps
   its case, as in a popup title (`[2] PODS: nginx-7d4f`, `[1] prod-web-01`; "Uppercase" in the
   [components](../README.md)). While the panel is loading, the loading icon sits after the whole capsule chain (tabs
   included), with one space on each side (e.g. `┏[2] PODSEVENTSYAML 󰪞 ━━━┓`; the loading in [`popup`](popup.md)).
-- **Right of the top border: the mode name** (Rules K11), set between two border junctions like a tag inlaid in the
-  frame: `┏[1] KINDS━━━┫Drag┣━┓`, `┏━YAML━━━━┫Visual┣━┓`. The junctions take the frame's colour and follow its
-  line style — `┫` `┣` on a heavy frame (a focused panel, a popup), `┤` `├` on a light one (an unfocused panel); the mode
-  name is bold in the mode colour, its case as written. The mode name is
-  one word if possible (`Drag`, `Visual`, `Select`: a narrow panel has no room for two, and the whole top-right text
-  would be dropped); when space runs out, the title is clipped first and the mode name stays. The capsule turns the mode
-  colour along with the frame.
-  A mode with layers (e.g. a viewer's selection mode, once selecting) adds each layer to its name after a `>`, with no
-  spaces: `┫Visual>select┣`; each part is one word if possible. The `>` reads as one layer in, and `Esc` goes back one
-  layer at a time (Rules K11).
-  - **It opens and closes**: entering the mode, the tag opens from its middle: the two junctions start side by side
-    there and move apart, the name showing from its middle; leaving plays it backwards, down to the plain line. The
-    junctions take the first frame and every frame after shows one more letter, 32ms a frame as in a popup (Rules F2):
-    every frame changes something, so the length follows the name (`Drag` 5 frames, about 160ms; `Compare` 8, about
-    256ms), the progress taken from the clock. An odd length leaves the middle half a cell off, either side will do. The title keeps room for the whole tag for as long
-    as the tag is there, so it never shifts frame by frame.
-
-    ```
-    ━━━━━━━━━┓   before
-    ━━━━┫┣━━━┓   the junctions appear side by side at the tag's middle
-    ━━━┫ra┣━━┓   moving apart, the name showing from its middle
-    ━━┫Drag┣━┓   open
-    ```
-
-  - **Turning around**: switched again halfway (entering and leaving in quick runs), the tag turns around from where it
-    is and does not start over: half open, it closes from half; closing, it opens again from where it got to.
-  - **A layer added or taken off**: the right end stays; the layer added grows from the tail a letter a frame, the left
-    junction moving left with it, and going back a layer takes it off from the tail a letter at a time. 32ms a frame,
-    turning around as above. The title keeps room for the longest name in the animation. Leaving the whole mode straight
-    from a layer (e.g. `y` in the selection mode) closes the whole tag from its middle as above.
-
-    ```
-    ━━━━━━━━┫Visual┣━┓   before
-    ━━━━━━━┫Visual>┣━┓   a letter a frame
-    ━━━━━━┫Visual>s┣━┓
-    ━┫Visual>select┣━┓   grown
-    ```
-
-  - **Only the tag animates**: the mode takes effect at once and the frame turns its colour at once; keys are taken all
-    along (unlike a popup opening, Rules F3). While closing, the name stays in the mode colour and the junctions take the
-    frame's colour as usual.
-  - **Why**: as with a popup, the animation lets the switch be felt; modes are entered and left in quick runs, so the
-    animation never holds a key and never starts over (the user, 2026-10-22). A tag has only as many steps as its name
-    has letters: spread over a fixed 288ms, each step held for about 72ms and the tag stuttered, so it goes a letter a
-    frame instead (the user, testing kbu). A layer added moves only what it adds: the mode has not changed, and `Visual`
-    stays in sight. The `>` reads as one layer in, where a colon is how hints are written and a slash looks like the
-    joins of a capsule chain, which part things side by side (the user, 2026-10-24).
+- **Right of the top border: the mode name** (Rules K11), see "The mode name" below.
 - **Left of the bottom border: the hint**, which every panel must have — the exceptions are while the focus is on a
   panel filter's typing row and while it is in a PTY in the panel: no hint then, and it comes back on the list or on
   leaving the PTY; nor when no key on the panel does anything (see the hint below). Right of the bottom border: the
@@ -115,7 +53,80 @@ does not split a row of tabs. The `h|l` that switches tabs is in the hint as the
 the whole page rather than moving between items, but it is a movement key, and left out, the other tabs are hard to
 find (the user, 2026-10-24, filu's FL27).
 
-## Capsule chain
+### panel.2 A pointed panel
+
+When the cursor's row in a focused list stands for another panel on screen
+(e.g. sshu's session list and the PTY panels in its grid on the right), that panel is "pointed": it stays an
+unfocused light square frame and never takes the focus; only the frame's colour turns from Surface2 to Lavender
+("user footprint" in [`color`](../color.md)), the capsule chain turning with it. Which row stands for which panel,
+and whether to use it at all, the app may decide for itself.
+
+- The cursor moving to another row points at that row's panel instead; when that row's panel is not on screen, no
+  panel is pointed.
+- It points only while that list has the focus: with the focus on the pointed panel, it is drawn as focused; with
+  the focus on another panel, no panel is pointed.
+- The content is dimmed as unfocused (streaming content excepted); under a popup it is dimmed with everything else
+  (Rules F8).
+
+**Why**: a row in the list and a panel on screen are two sides of one thing (an sshu session and its cell), so
+scanning the list tells which cell it is without reading titles, and a new cell is pointed at as soon as it
+appears, showing it is done. The focus is still on the list, so it cannot become the focus and keeps the unfocused
+line; Lavender is the colour of "where the user is now" (the location row, the statusbar), and here it says "the
+cursor points here now" (the user, 2026-10-25, sshu's SS44).
+
+### panel.3 The mode name
+
+The right of the top border holds the mode name (Rules K11), set between two border junctions like a tag inlaid in the
+frame: `┏[1] KINDS━━━┫Drag┣━┓`, `┏━YAML━━━━┫Visual┣━┓`. The junctions take the frame's colour and follow its
+line style — `┫` `┣` on a heavy frame (a focused panel, a popup), `┤` `├` on a light one (an unfocused panel); the mode
+name is bold in the mode colour, its case as written. The mode name is
+one word if possible (`Drag`, `Visual`, `Select`: a narrow panel has no room for two, and the whole top-right text
+would be dropped); when space runs out, the title is clipped first and the mode name stays. The capsule turns the mode
+colour along with the frame.
+A mode with layers (e.g. a viewer's selection mode, once selecting) adds each layer to its name after a `>`, with no
+spaces: `┫Visual>select┣`; each part is one word if possible. The `>` reads as one layer in, and `Esc` goes back one
+layer at a time (Rules K11).
+
+- **It opens and closes**: entering the mode, the tag opens from its middle: the two junctions start side by side
+  there and move apart, the name showing from its middle; leaving plays it backwards, down to the plain line. The
+  junctions take the first frame and every frame after shows one more letter, 32ms a frame as in a popup (Rules F2):
+  every frame changes something, so the length follows the name (`Drag` 5 frames, about 160ms; `Compare` 8, about
+  256ms), the progress taken from the clock. An odd length leaves the middle half a cell off, either side will do. The title keeps room for the whole tag for as long
+  as the tag is there, so it never shifts frame by frame.
+
+  ```
+  ━━━━━━━━━┓   before
+  ━━━━┫┣━━━┓   the junctions appear side by side at the tag's middle
+  ━━━┫ra┣━━┓   moving apart, the name showing from its middle
+  ━━┫Drag┣━┓   open
+  ```
+
+- **Turning around**: switched again halfway (entering and leaving in quick runs), the tag turns around from where it
+  is and does not start over: half open, it closes from half; closing, it opens again from where it got to.
+- **A layer added or taken off**: the right end stays; the layer added grows from the tail a letter a frame, the left
+  junction moving left with it, and going back a layer takes it off from the tail a letter at a time. 32ms a frame,
+  turning around as above. The title keeps room for the longest name in the animation. Leaving the whole mode straight
+  from a layer (e.g. `y` in the selection mode) closes the whole tag from its middle as above.
+
+  ```
+  ━━━━━━━━┫Visual┣━┓   before
+  ━━━━━━━┫Visual>┣━┓   a letter a frame
+  ━━━━━━┫Visual>s┣━┓
+  ━┫Visual>select┣━┓   grown
+  ```
+
+- **Only the tag animates**: the mode takes effect at once and the frame turns its colour at once; keys are taken all
+  along (unlike a popup opening, Rules F3). While closing, the name stays in the mode colour and the junctions take the
+  frame's colour as usual.
+
+**Why**: as with a popup, the animation lets the switch be felt; modes are entered and left in quick runs, so the
+animation never holds a key and never starts over (the user, 2026-10-22). A tag has only as many steps as its name
+has letters: spread over a fixed 288ms, each step held for about 72ms and the tag stuttered, so it goes a letter a
+frame instead (the user, testing kbu). A layer added moves only what it adds: the mode has not changed, and `Visual`
+stays in sight. The `>` reads as one layer in, where a colon is how hints are written and a slash looks like the
+joins of a capsule chain, which part things side by side (the user, 2026-10-24).
+
+## panel.4 Capsule chain
 
 The capsule of a panel title, a panel's tabs, the screen chips of [`screen`](screen.md), and the tabs after a popup title
 are all drawn the same way:
@@ -179,7 +190,7 @@ a name. Slanted ends here and
 a rounded popup title: a panel fixed on the screen and a popup floating above it can be told apart by the ends of their
 capsules.
 
-## Ordinary lists
+## panel.5 Ordinary lists
 
 A panel with one entry per row, like kbu's resource list or filu's file list.
 
@@ -199,14 +210,10 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   on a terminal where it takes two, every row keeps two on the right), so the arrow fits and the text does not move.
   When the panel is unfocused it is dimmed as a whole (Rules T2), the cursor with it,
   not given another colour.
-- **Header**: a list with several columns always has one; for a single-column list it is up to the app. Blue, not bold,
+- **Header**: a list with several columns always has one; for a single-column list, the app may decide for itself. Blue, not bold,
   uppercase, fixed at the top and never scrolled. Each column holds numbers or text: numbers align right
   and sort by value (`9` before `10`), text aligns left and sorts as text. Two cells between columns
-  ("Diagrams and spacing" in the [components](../README.md)). A column being sorted on gets `nf-fa-sort_amount_asc` (U+F160, ascending) or `nf-fa-sort_amount_desc` (U+F161, descending) after its title;
-  when several columns sort together, the rank goes before the arrow, e.g. `Name (2)` followed by the arrow.
-  **Sort groups**: the app may give each row a group, in an order the app sets; sorting works only within a group, and
-  no title is drawn between groups (e.g. filu's directories always come before its files, and sorting by name sorts each
-  on its own).
+  ("Diagrams and spacing" in the [components](../README.md)). Sorting: see "Sorting" below.
 - **The list's order is fixed**: every time it opens and every time it is fetched again, the same data comes out in the
   same order. When the data has no order of its own (e.g. kubeconfig's contexts, which may read back in a different
   order each time), the app sorts it before showing it, by name by default, numbers by value; data with an order of its
@@ -222,36 +229,10 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
 - **Scroll position**: when the content does not fit, the right of the bottom border reads `N of M` (which entry the
   cursor is on, how many in all), in the border colour; nothing when everything fits. A panel without a cursor (a
   preview, a log) shows the visible lines, `N-M of T`.
-- **Marked rows** (the "batch of marked items" of Principle P3): every row keeps a one-cell mark column at its very start.
-  A marked row shows a Green `nf-md-checkbox_marked` (U+F0132); an unmarked one leaves it blank, the column width always
-  kept, so rows never shift sideways when marked or unmarked (Rules L2). Domain flags such as favourites and pins belong
-  to the content and are up to the app.
-- **The row held in the Drag mode** (Rules K11; the key that enters the Drag is up to the app, e.g. `D` in the
-  showcase and kbu): drawn as the cursor with Subtext1 swapped for the mode colour — a Yellow background, Base bold,
-  the arrow on the right Yellow too; the mark column shows `nf-md-swap_vertical` (U+F04E2), and the row's own mark
-  comes back once it is dropped. A panel with a Drag keeps the mark column on every row too. The keys are those of
-  [`input/reorder`](../input/reorder.md) while holding an item: `j|k` move it (wrapping at the ends, Rules K12),
-  `Enter` drops it, `Esc` puts it back.
-- **The compare mode** (Rules K11; the compare key is up to the app, e.g. `C` in kbu): the compare key on a row enters
-  the mode and makes that row the anchor; then another row is picked and the two are compared ("Compare" in
-  [`dialog/note`](../dialog/note.md)).
-  - **Text only**: text, or content shown as text (e.g. a kbu resource's YAML, a text file in filu). A file goes by the
-    kind of its preview in [`input/file-picker`](../input/file-picker.md); anything but `text` (image, PDF, archive,
-    binary…) cannot be compared: the item has no compare action (Rules M2), and in the mode the compare key is
-    disabled while the cursor rests on it (M6).
-  - **The anchor row**: the whole row in the mode colour — a Yellow background, Base text, not bold, no arrow on the
-    right ("the range selected in a mode" in [`color`](../color.md)); the cursor is drawn as usual, and on the anchor
-    the cursor is what is drawn.
-  - **The mode's keys**: `j|k`, `u|d`, `gg|G` move; the compare key or `Enter` opens the comparison with the anchor,
-    and closing it goes back to the mode with the anchor kept, ready for the next row; both keys are disabled while
-    the cursor rests on the anchor (M6). When the two are identical nothing opens: an Info toast says so (`No
-    differences between <a> and <b>`) and the mode stays. `Esc` leaves the mode and drops the anchor; `Tab` and the
-    number keys are paused (K11).
-  - **When the anchor is gone** (deleted, moved away): the mode is left, with a Warning toast saying why.
 - **Truncation**: cut at the end, with `…`. Where the end matters more, such as paths and file names, it may be cut at
   the front (`…/.ssh/id_ed25519`); where both ends matter (e.g. a pod's name: the deployment at the front, the random
-  part that tells one from another at the end), it is cut in the middle, with the `…` there (`demo-app…66-gm72n`). The
-  app sets where each column is cut.
+  part that tells one from another at the end), it is cut in the middle, with the `…` there (`demo-app…66-gm72n`). Where
+  each column is cut, the app may decide for itself.
 - **Control characters**: a value in a cell (a file name or a name that came from a file or another program) holding
   control characters shows them as red escapes, as on the typing row and as a value on a form (`\n`, `\t`, `\x1b`;
   "Control characters" in [components](../README.md)): never dropped, never turned into spaces, never sent to
@@ -269,20 +250,69 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   it stays, and the error is reported in a toast as Rules F5 says.
 
 **Why**: the cursor is "the row `Enter` acts on"; a solid background across the whole row, ending in an arrow, says so
-in both shape and colour (L5). Marks use the checkbox tick: marked means "picked", the same thing as a ticked checkbox, in the same colour.
+in both shape and colour (L5).
 A list with several columns always has a header: what the columns mean and the sort arrows both rest on it. With the
 header fixed, what each column is stays visible however far you scroll. A long value cut short is still recognisable
 (cut in the middle, it keeps both ends), while a short value cut at all can no longer be read, so the long columns
 give way and the short ones keep their width; one very long name no longer pushes every other column out. Only when
 they still do not fit do whole columns go: with every column shrunk a little, none can be read in full; with the least
-important one taken away, the rest still read in full, and the name is always there to tell which entry it is. Sort groups keep a fixed order such as "directories
-first" from being scattered by sorting. An empty list loses its header too: with no data, the column names have nothing
+important one taken away, the rest still read in full, and the name is always there to tell which entry it is. An empty list loses its header too: with no data, the column names have nothing
 to label, and one centred sentence says it best.
 
-### Location row
+### panel.6 Sorting
+
+- **A column being sorted on**: its title in the header gets `nf-fa-sort_amount_asc` (U+F160, ascending) or
+  `nf-fa-sort_amount_desc` (U+F161, descending) after it; when several columns sort together, the rank goes before the
+  arrow, e.g. `Name (2)` followed by the arrow. A number column sorts by value, a text column as text (see "Header"
+  above).
+- **Sort groups**: whether to give each row a group, and the groups' order, the app may decide for itself; sorting works
+  only within a group, and no title is drawn between groups (e.g. filu's directories always come before its files, and
+  sorting by name sorts each on its own).
+
+**Why**: sort groups keep a fixed order such as "directories first" from being scattered by sorting.
+
+### panel.7 Marked rows
+
+A list whose rows can be marked and worked on as a batch (the "batch of marked items" of Principle P3): every row keeps a one-cell mark column at its very start.
+A marked row shows a Green `nf-md-checkbox_marked` (U+F0132); an unmarked one leaves it blank, the column width always
+kept, so rows never shift sideways when marked or unmarked (Rules L2). Domain flags such as favourites and pins belong
+to the content, and the app may decide for itself.
+
+**Why**: marks use the checkbox tick: marked means "picked", the same thing as a ticked checkbox, in the same colour.
+
+### panel.8 Drag mode
+
+A list with a Drag mode (Rules K11; the key that enters the Drag, the app may decide for itself, e.g. `D` in the
+showcase and kbu): the row held is drawn as the cursor with Subtext1 swapped for the mode colour — a Yellow background, Base bold,
+the arrow on the right Yellow too; the mark column shows `nf-md-swap_vertical` (U+F04E2), and the row's own mark
+comes back once it is dropped. A panel with a Drag keeps the mark column on every row too. The keys are those of
+[`input/reorder`](../input/reorder.md) while holding an item: `j|k` move it (wrapping at the ends, Rules K12),
+`Enter` drops it, `Esc` puts it back.
+
+### panel.9 Compare mode
+
+A list with a compare mode (Rules K11; the compare key, the app may decide for itself, e.g. `C` in kbu): the compare key on a row enters
+the mode and makes that row the anchor; then another row is picked and the two are compared ("Compare" in
+[`dialog/note`](../dialog/note.md)).
+
+- **Text only**: text, or content shown as text (e.g. a kbu resource's YAML, a text file in filu). A file goes by the
+  kind of its preview in [`input/file-picker`](../input/file-picker.md); anything but `text` (image, PDF, archive,
+  binary…) cannot be compared: the item has no compare action (Rules M2), and in the mode the compare key is
+  disabled while the cursor rests on it (M6).
+- **The anchor row**: the whole row in the mode colour — a Yellow background, Base text, not bold, no arrow on the
+  right ("the range selected in a mode" in [`color`](../color.md)); the cursor is drawn as usual, and on the anchor
+  the cursor is what is drawn.
+- **The mode's keys**: `j|k`, `u|d`, `gg|G` move; the compare key or `Enter` opens the comparison with the anchor,
+  and closing it goes back to the mode with the anchor kept, ready for the next row; both keys are disabled while
+  the cursor rests on the anchor (M6). When the two are identical nothing opens: an Info toast says so (`No
+  differences between <a> and <b>`) and the mode stays. `Esc` leaves the mode and drops the anchor; `Tab` and the
+  number keys are paused (K11).
+- **When the anchor is gone** (deleted, moved away): the mode is left, with a Warning toast saying why.
+
+### panel.10 Location row
 
 A row above the list giving where you are now (a path, the level drilled down to), e.g. filu's directory, sshu's remote
-path, the level kbu reaches going from a Deployment into its Pods. **Whether there is one is up to the app**.
+path, the level kbu reaches going from a Deployment into its Pods. **Whether there is one, the app may decide for itself**.
 
 ```
 ┏[2] FILES━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -306,7 +336,7 @@ it; written in a row of its own inside the panel, the whole path fits, and the l
 it is the footprint the user left on the way here, the same meaning as the "where you are now" values on the statusbar.
 Not every app has a "where" to show, so the row is optional.
 
-### Groups
+### panel.11 Groups
 
 When a list's items fall into groups (kbu's resource kinds, locku's sidebar), each group starts with a group title row.
 
@@ -340,7 +370,7 @@ separator to draw. The mark goes in the two extra cells: the text stays three ce
 as in an ordinary list with marks, and shifts nothing. The cursor stops only on rows that do something, as with a menu's
 section titles. A group title left over an empty group looks as if it were still loading.
 
-## One value per row
+## panel.12 One value per row
 
 A panel with one value per row, like a settings screen (locku's preference, webu's Settings, the fields on a webu page).
 
@@ -368,12 +398,12 @@ A panel with one value per row, like a settings screen (locku's preference, webu
   dimmed with the panel when it is unfocused (T2). The label column is as wide as the longest of the labels and the
   header's first column name (e.g. a 7-cell `SETTING` header over a longest label `DRAWER` of 6 cells gives 7), with two
   cells between it and the values; the header's second column name lines up with the values.
-- **Header** (`PROPERTY  VALUE` in the example): whether there is one is up to the app. If there is, it takes Overlay0
+- **Header** (`PROPERTY  VALUE` in the example): whether there is one, the app may decide for itself. If there is, it takes Overlay0
   (dim text in [`color`](../color.md)); otherwise as an ordinary list's header (uppercase, not bold, fixed at the top
   and never scrolled).
 - **Scroll position**: as in a form, counted in fields — in `N of M`, N is the field the focus is on and M the number of
   fields; a radio's options count as one field (["When the content does not fit"](popup.md) in popup).
-- **The "each row" section of `?`** (whether there is one is up to the app): the key reference may open with a section
+- **The "each row" section of `?`** (whether there is one, the app may decide for itself): the key reference may open with a section
   saying what each row is — the setting's name on the left (in normal text), its description on the right; the key
   sections follow it (the key reference in [`dialog/note`](../dialog/note.md)).
 
@@ -388,7 +418,7 @@ alone, a wider header would push its second column out of line with the values. 
 a form: the user counts settings, not rows of text. When a label of a word or two cannot say what a row governs, the
 "each row" section at the top of `?` fills it in; an app with few settings whose names say enough needs no such section.
 
-## Details
+## panel.13 Details
 
 A panel that shows the item under another panel's cursor: locku's `[2]` property sheet, filu's preview, kbu's details.
 
@@ -396,13 +426,13 @@ A panel that shows the item under another panel's cursor: locku's `[2]` property
   with no `Enter`; when the label names the item (locku's `[2] clock`), the label switches too.
 - **The focus stays**: as the cursor moves, the focus remains on the panel it was on; to work in the details, go there
   with `Tab` or a number key (Rules K2, K1). The app may also let `Enter` on the list send the focus to the details,
-  whether and on which items being its call (the one place Rules K3 lets `Enter` change panels).
+  whether and on which items, the app may decide for itself (the one place Rules K3 lets `Enter` change panels).
 - The details themselves are drawn as what they are: an ordinary list, one value per row, a preview.
 
 **Why**: the details answer "what does the item under the cursor look like". If they changed only on `Enter`, what you
 saw while moving would always be the previous item; changing at once, you see wherever you are.
 
-## Panel filter
+## panel.14 Panel filter
 
 `/` brings up a typing row at the top of the panel (below the location row when there is one; above the header, when the
 list has one), and the list is filtered

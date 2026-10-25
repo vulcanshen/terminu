@@ -2,10 +2,10 @@
 
 **Language**: English · [繁體中文](form-zh_TW.md)
 
-## Purpose
+## form.1 Purpose
 
 Several values filled in and submitted together (sshu's Host form, webu's Sign in and Add bookmark). For a single value,
-use an input popup ([`input/`](../README.md#input)); for values that take effect when changed, with nothing to submit, use
+use an input popup ([`input/`](../README.md#components12-input)); for values that take effect when changed, with nothing to submit, use
 a panel with one value per row ([`layout/panel`](../layout/panel.md)). The frame follows
 [`layout/popup`](../layout/popup.md).
 
@@ -19,15 +19,15 @@ choosing from a list. If the other fields were typed into right in the form, one
 every value entered in an input popup, every field works the same: `Enter` to go in and edit, `Enter` to confirm. The cost
 is one more `Enter` per field (the one that goes in).
 
-## Look
+## form.2 Look
 
-### Title
+### form.3 Title
 
 Says what this form does (`NEW HOST`, `ADD BOOKMARK`), drawn as the title capsule ([`layout/popup`](../layout/popup.md)). Not the type (`number`, `path`, `email`): the type belongs to a
 field, and with more than one field it would not fit in one title anyway. A form that edits one item may name it, after
 `: `, in its own case (`EDIT: filu`).
 
-### How a field is arranged
+### form.4 How a field is arranged
 
 Each field takes one of two arrangements.
 
@@ -58,12 +58,12 @@ Each field takes one of two arrangements.
 
 (The drawings in this section and the next show the fields only; for the action area see "Action area".)
 
-### Options drawn in the form
+### form.5 Options drawn in the form
 
 - Radio and checkbox fields with **five options or fewer** have them drawn in the form; with more than five, use a select
   or a checkbox popup instead (opened with `Enter`).
 - **A switch** (a value that is only on or off) may be drawn as one checkbox or as a radio with the two options off and
-  on, as the app chooses ([`input/checkbox`](../input/checkbox.md), [`input/radio`](../input/radio.md)).
+  on, which the app may decide for itself ([`input/checkbox`](../input/checkbox.md), [`input/radio`](../input/radio.md)).
 - A checkbox group's first row is `Select all` ("Select all" in [`input/checkbox`](../input/checkbox.md)), on the
   label's row with the options below it, two cells further in; it does not count towards the five.
 - Options always run down, one a row: the focus block runs from the option to the frame, and across it would cover the
@@ -72,7 +72,7 @@ Each field takes one of two arrangements.
 
 **Why**: beyond five, the form starts scrolling and the other fields drop out of sight.
 
-### Focus and label
+### form.6 Focus and label
 
 The focused item is drawn like a menu's cursor row — the layer colour as background, bold Base text
 ([`dialog/menu`](menu.md)). It runs from the start of the item all the way to the frame (covering the right padding): from the value for a field, from
@@ -109,7 +109,7 @@ same way of drawing as a menu: in a family popup, the block on the layer colour 
 to the value actually being edited in an input popup; "a glance tells which field" is the block's job, and the block also
 shows which option of a radio field the focus is on.
 
-### Action area
+### form.7 Action area
 
 ```
 ┏━NEW HOST━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -144,10 +144,10 @@ shows which option of a radio field the focus is on.
   nothing is shown, and it comes back on a field: they are not fields, and no number would mean anything.
 - **There may be more than one button**: there is always one main submit, in the bottom-right corner of the action area
   (with one button, that is it). The other buttons may be another way to submit (e.g. `Save As`) or an action that
-  keeps the form open (e.g. sshu's `Test`, trying the connection). Which buttons go on which row, and how many rows, is
-  up to the app; every row sits on the right, with one cell between the buttons of a row.
+  keeps the form open (e.g. sshu's `Test`, trying the connection). Which buttons go on which row, and how many rows,
+  the app may decide for itself; every row sits on the right, with one cell between the buttons of a row.
 - **An action that keeps the form open**:
-  - Pressed, it first checks **the fields this action needs** (which ones is up to the app, per action: `Test` needs
+  - Pressed, it first checks **the fields this action needs** (which ones, the app may decide for itself per action: `Test` needs
     the Host, not the Name). If that fails, it shows as a refused submit does: the labels of the fields with a problem
     turn Red, the error row gives the first problem, and the focus jumps to that field (see "Errors").
   - Success: a toast of one sentence (e.g. `Connected to web-01`). Failure: an error popup, as when a submit fails; once
@@ -168,7 +168,7 @@ E.g. three buttons on two rows, as the app lays them out:
 
 ```
 ┃ ────────────────────────────────────────────── ┃
-┃                                          Test  ┃   ← which buttons go on which row is up to the app
+┃                                          Test  ┃   ← which buttons go on which row, the app may decide for itself
 ┃                                Save As   Save  ┃   ← the main submit in the bottom-right corner; one cell between buttons on a row
 ┃                                                ┃
 ┗━ Enter:edit Tab:actions Esc:cancel ━━━━━━━━━━━━┛
@@ -179,9 +179,9 @@ that keeps the form open is a button too: something on the form to see and press
 `Enter` like a submit; its result follows the submit's way — an error popup on failure, another press to retry — with
 only a toast added on success: the form is still open, and the user needs to know it is done.
 
-## Keys
+## form.8 Keys
 
-### Moving
+### form.9 Moving
 
 In a form the focus moves by **item**: a field that takes typing or opens a popup is one item, each option of a radio or
 checkbox field is an item of its own (and so is a checkbox group's `Select all`), and each button is one item; the error row, while it holds an error, is an item too
@@ -231,7 +231,7 @@ checkbox field is an item of its own (and so is a checkbox group's `Select all`)
 `j` all the way: Name → password → privatekey → credential → forward, and on back to Name. `Tab` on privatekey goes
 to `Save` in the action area, and `Tab` on `Save` returns to privatekey.
 
-### `Enter`
+### form.10 `Enter`
 
 - **On a field that takes typing or opens a popup**: opens that field's input popup, stacked on the form (Rules F8).
   - `Enter` in the input popup confirms: the value is written back to that field of the form, the input popup closes,
@@ -244,7 +244,7 @@ to `Save` in the action area, and `Tab` on `Save` returns to privatekey.
   where it is and the change is immediate; a wrong choice is undone by pressing again right there.
 - **On a button**: presses it — submitting, or doing that button's action (see "Action area").
 
-### Submit
+### form.11 Submit
 
 There is one way only: move the focus to a submit button and press `Enter`. Only an explicit press of the button makes sure
 the user means to submit.
@@ -256,7 +256,7 @@ the user means to submit.
 - `Esc` does not move the focus to the action area: Rules F3 has `Esc` close a popup at once, and if forms were an
   exception, users could not close one.
 
-### Typing on a field
+### form.12 Typing on a field
 
 A form is not in the input state (Rules K8), yet users often think they can type straight in. When the focus is on a
 field whose `Enter` opens an input popup for typing (text, password, number, textarea) and a printable character that is
@@ -302,7 +302,7 @@ does not react by state (`e` does not bring up the note with no error and jump t
 thinks they can type straight in loses the first character if it happens to be one of these keys, and the next one
 brings up the note anyway, so the reminder works just as well.
 
-### Hint
+### form.13 Hint
 
 ```
 Enter:edit Tab:actions Esc:cancel
@@ -320,9 +320,9 @@ Enter:edit Tab:actions Esc:cancel
 - No movement keys (`j|k`): users find them out by using the form.
 - `Esc:cancel`, not `close`: `Esc` on a form throws its content away, the same meaning as a confirm's `Esc:cancel`.
 
-## States
+## form.14 States
 
-### Cancel
+### form.15 Cancel
 
 - **A form with no changes**: `Esc` closes it at once (Rules F3).
 - **A form with changes**: `Esc` first opens a confirm asking whether to discard them (e.g. `Discard changes to New
@@ -343,7 +343,7 @@ only whether anything changed. Pressing `Esc` repeatedly goes back and forth bet
 is no trap: the confirm says `Enter` discards, and someone pressing `Esc` repeatedly ends up on the form with its content
 intact — the "safe place" Rules K4 asks for.
 
-### Errors
+### form.16 Errors
 
 - **A field's own rules** (format and range: Port within 1–65535, a keyword made only of letters, digits and hyphens):
   refused in the input popup on `Enter`, the error written in the input popup's error row; the value is not written back

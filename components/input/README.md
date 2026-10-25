@@ -4,7 +4,7 @@
 
 Rules shared by every input popup; each input file writes only what differs from here.
 
-## What an input is
+## input.1 What an input is
 
 A kind of popup: a value is entered or chosen, and written back once confirmed; one popup, one value (Rules F1).
 
@@ -28,7 +28,7 @@ A kind of popup: a value is entered or chosen, and written back once confirmed; 
   [`dialog/form`](../dialog/form.md) — `Tab|Shift-Tab` go back and forth between the field area and the action area,
   coming back to the item they left; the hint says `Tab:actions` on a field and `Tab:fields` on a button (Rules K2).
 
-## The skeleton of a one-line input popup
+## input.2 The skeleton of a one-line input popup
 
 Shared by text, password and number.
 
@@ -66,7 +66,7 @@ Shared by text, password and number.
   to enter ([`password`](password.md)); a number with a unit has a unit row below the typing row
   ([`number`](number.md)).
 
-## When the value is longer than the box
+## input.3 When the value is longer than the box
 
 The box shows the stretch around the cursor, with `…` on the side that is cut.
 
@@ -79,7 +79,7 @@ The box shows the stretch around the cursor, with `…` on the side that is cut.
   scrolling as a popup whose content does not fit).
 - Width is display width (a CJK character is 2 cells). A character is never split in two, nor is a red `\n` or `\x1b`.
 
-## Editing keys
+## input.4 Editing keys
 
 On the typing row:
 
@@ -99,7 +99,7 @@ On the typing row:
 differently in different shells, so taking them would mean remembering "which kind is this one"; replacing a long value
 is done with the grey suggestion below (typing a new value needs no deleting first).
 
-## Changing an existing value: the old value is a grey suggestion
+## input.5 Changing an existing value: the old value is a grey suggestion
 
 ```
 ┃  █eport-2025.pdf                    ┃   ← the box is empty; the old value is grey (Overlay0), the cursor on its first character (`r`)
@@ -124,7 +124,7 @@ anew" need no deleting, "small change" one `Tab` more, and "no change" a plain `
 values (file names, host names); a change to several lines of text is mostly a sentence added or a few words changed,
 and in a textarea `Tab` indents, so it could not take a suggestion anyway.
 
-## A new value: the suggested value
+## input.6 A new value: the suggested value
 
 ```
 ┃  █ssets.zip                         ┃   ← no old value; the value the app suggests is grey (Overlay0), the cursor on its first character (`a`)
@@ -144,7 +144,7 @@ suggested" a plain `Enter`, "small change" one `Tab` more, and "my own" just typ
 does nothing; `Enter` with the suggested value untouched is the user accepting that value — not writing it back would
 leave `Enter` doing nothing at all.
 
-## No placeholder
+## input.7 No placeholder
 
 An input popup has no placeholder: what to enter is said by the explanation row; grey text is kept for suggestions only.
 The `nf-fa-angle_right` before a typing row (a one-line input, a finder, a panel filter; [`finder`](finder.md)) is a
@@ -152,7 +152,7 @@ glyph, not a placeholder: it is not text, `Tab` never takes it in, and it stays 
 
 **Why**: two kinds of grey text that look alike, one taken in by `Tab` and one not, could not be told apart.
 
-## Pasted control characters
+## input.8 Pasted control characters
 
 - **Scope**: one-line values. For the multi-line textarea see [`textarea`](textarea.md): a line break (a lone `\r`
   too) is a real line break, and other control characters are handled as here. Digits-only fields keep their own filter.
@@ -179,7 +179,7 @@ not even clean up: text copied in colour from a terminal, with `\x1b` dropped, l
 they turn to a red background: red text on Lavender is too faint, and a plain cursor would hide that it is a control
 character.
 
-## Value
+## input.9 Value
 
 - **A one-line value has leading and trailing whitespace trimmed when confirmed**: every Unicode whitespace character
   (the ordinary space, the ideographic space U+3000, NBSP…), not just one kind of space; not for a password. The control
@@ -187,10 +187,10 @@ character.
   copied from a web page with an NBSP at its end, or an ideographic space typed after a value, looks exactly the same on
   screen but does not work.
 
-## How a value shows in a form and a panel
+## input.10 How a value shows in a form and a panel
 
 - **Colour**: Text.
-- **An empty value**: grey text (Overlay0) saying what empty means, written by the app (`not set`, `ssh decides`,
+- **An empty value**: grey text (Overlay0) saying what empty means, worded as the app may decide for itself (`not set`, `ssh decides`,
   `none`). A blank does not tell unset from an empty string from not loaded yet. No text teaching keys (e.g. `enter to
   browse ~/.ssh`): the hint says `Enter:edit`.
 - **Too long**: cut from the end, with `…`; a path is cut from the start (`…/.ssh/id_ed25519`).
@@ -209,6 +209,6 @@ character.
   | reorder | the items in their current order joined with `, `, with `…` when too long |
   | radio, checkbox (drawn in the form) | the options themselves ([`radio`](radio.md), [`checkbox`](checkbox.md)) |
   | slider | a track and the number ([`slider`](slider.md)) |
-  | datetime picker | the formatted date (and time), in the app's format (`2026-10-15`, `2026-10-15 10:05`) |
+  | datetime picker | the formatted date (and time), in a format the app may decide for itself (`2026-10-15`, `2026-10-15 10:05`) |
   | color picker | a swatch 3 cells wide (`███`), a space, and the hex (`███ #2A2A3C`, always upper case, [`color-picker`](color-picker.md)) |
   | file-picker | the path, the home directory written as `~` |

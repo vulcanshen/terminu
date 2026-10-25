@@ -2,10 +2,10 @@
 
 **Language**: [English](popup.md) · 繁體中文
 
-popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什麼：輸入或選出一個值的是 input（[`input/`](../README-zh_TW.md#input)），
-其他的是 dialog（[`dialog/`](../README-zh_TW.md#dialog)）。popup 的分類、尺寸、層疊淡化見 Rules F1–F8。
+popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什麼：輸入或選出一個值的是 input（[`input/`](../README-zh_TW.md#components12-input)），
+其他的是 dialog（[`dialog/`](../README-zh_TW.md#components11-dialog)）。popup 的分類、尺寸、層疊淡化見 Rules F1–F8。
 
-## 外框
+## popup.1 外框
 
 ```
 ┏━TITLE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -35,7 +35,7 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   | toast | 依種類，見 [`dialog/toast`](../dialog/toast-zh_TW.md) |
   | terminal | `nf-md-console`（U+F018D） |
   | 比較 | `nf-md-compare`（U+F018A） |
-  | input、表單、note | 由 app 選：它編輯或顯示的東西（例：Rename 用一支筆）；避開太細的 outline glyph |
+  | input、表單、note、app 自己的 popup | app 可以自行決定：它編輯或顯示的東西（例：Rename 用一支筆）；避開太細的 outline glyph |
 
 - **hint**：放在下框 `┗━ ` 後面，寫法照 Rules M5。
   - **順序**：`Enter` 第一 → 切 tab 的 `h|l:tab` → 這個 popup 自己的鍵 → 換塊的 `Tab:…` → `Esc` 最後。terminal 例外：出口鍵第一（[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
@@ -66,7 +66,7 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
 把框擠出去。標題後面的 tab 隔一段線：跟框上其他的字一樣，看得出標題與 tab 是兩件事，圓角與斜角兩種膠囊也不會黏在一起。標題是圓角的膠囊、panel 的膠囊是斜角：看兩端就知道是浮在上面的
 框，還是畫面上的 panel。
 
-## 寬度
+## popup.2 寬度
 
 Rules F7 的兩種寬度，打開時定好，開著時不變：
 
@@ -84,7 +84,7 @@ number 有單位時（[`input/number`](../input/number-zh_TW.md)），打字列�
 
 窄的內容靠左，離框一格（例：confirm、datetime picker、color picker）；toast 的文字與 password 的解鎖遮罩置中。
 
-## 開關動畫
+## popup.3 開關動畫
 
 Rules F2：打開與關閉都有動畫，全家族同一種、一樣長。打開分三段：
 
@@ -106,7 +106,7 @@ Rules F2：打開與關閉都有動畫，全家族同一種、一樣長。打開
 又不會讓人覺得在等。全家族同一種：換 app 時節奏和樣子都不變。播放中不收鍵：框還沒畫完，使用者看不到自己按到的是什麼。
 好幾層一起收、一起播，跟 T1 的「一起播、不等」同一個想法：每一層都看得到自己退下去，又不用三層等上三倍的時間。
 
-## loading
+## popup.4 loading
 
 Rules F7：popup 在 loading 時，標題後面一定放一個輪轉的 loading icon；標題後面接著 tab（[`panel`](panel-zh_TW.md) 的膠囊串）時，
 放在整串 tab 的後面。表單的按鈕（不關表單的動作與跑得久的送出）在跑時，標題後面也放 loading icon
@@ -119,11 +119,11 @@ Rules F7：popup 在 loading 時，標題後面一定放一個輪轉的 loading 
 - 顏色：跟旁邊的字同色；放在 popup 標題後面時用該層的層色（粗體）；放在 panel 上框時用框線色、不加粗（focus 時 Blue、失焦時 Surface2，
   跟著框一起淡化）—— 都是框的顏色。
 
-## 取消與完成
+## popup.5 取消與完成
 
 取消回到 source（Rules F4）；完成之後 source 留不留，照 Rules T1。
 
-## 內容放不下時
+## popup.6 內容放不下時
 
 Rules F7：打開時定高、最高是畫面高度 − 2，超過就在框裡捲動。
 
@@ -149,11 +149,11 @@ Rules F7：打開時定高、最高是畫面高度 − 2，超過就在框裡捲
 ┗━ hint ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4 of 12 ━┛
 ```
 
-## 錯誤列
+## popup.7 錯誤列
 
 - **位置**：內容區下面、固定不捲的一列，跟內容之間空一列。種類可以在它下面再加固定的列（例：表單的分隔線與動作區）。
 - **只有值可能不合格的 popup 才預留**（Rules F7）：沒有錯誤時空白，高度不變。
-- **只放值的錯**：值不合規則 —— 格式、範圍、必填、名字重複，訊息由 app 寫、很短。
+- **只放值的錯**：值不合規則 —— 格式、範圍、必填、名字重複，訊息寫什麼 app 可以自行決定，要很短。
 - **值錯太多次而暫停收值時**（例：locku 的 PIN 連錯幾次之後冷卻），倒數也寫在錯誤列：Red，每秒更新（`try again in 27 s`），倒數完
   清掉。暫停期間除了 `Esc` 的鍵都吞掉，不進打字列。
 - **樣子**：Red 字，左緣跟內容對齊（內容置中時錯誤列也置中）。框與標題不變色、維持層色：層色說的是「第幾層」，換成 Red
@@ -178,3 +178,20 @@ Rules F7：打開時定高、最高是畫面高度 − 2，超過就在框裡捲
 > - 「放在最上層」要同時改三處：按鍵路由、`closeTop`、繪製順序。
 > - `?` 的 key reference 疊在其他 popup 上時，按鍵路由與繪製都把它放在最上層；confirm、options 等框排在底下的 menu 之前拿鍵。
 > - 判斷一層「還在不在」用開啟中或已開（`owns()`），不用含關閉中的 `isActive()`（Rules F3）。
+
+## popup.8 app 自己的 popup
+
+七類裝不下的內容（Rules F1，例：kamonu 畫格子的 popup）放在 app 自己的 popup 裡。
+
+- **跟其他 popup 一樣的**：外框、標題（glyph 照上面的表）、hint 的寫法與順序、寬度、開關動畫、loading、內容放不下時、層色與
+  淡化，照這一頁與 [`color`](../color-zh_TW.md)。
+- **有要送出的值時照表單**（[`dialog/form`](../dialog/form-zh_TW.md)）：動作區照表單放在內容下面，`Tab` 在內容與動作區之間切換；
+  按鈕送出，值不合格時錯誤寫在錯誤列；`q` 不作用；改過的 `Esc` 先開 confirm 問要不要放棄。
+- **內容怎麼畫、內容上的按鍵，app 可以自行決定**。範圍內要守的：
+  - core key 的意義不變（Rules K1）；focus 的那一格有好幾個值可以輪流換時，`Space` 換到下一個值（Rules K5）。
+  - 移動照 Rules K12（hjkl 是方向鍵）。
+  - 內容上的熱鍵揭露在這個 popup 的 `?`（Rules K6、M5），hint 照上面的「hint」。
+  - focus 在哪裡要看得出來（Rules L5）。
+
+**為什麼**：七類裝不下的內容硬塞進其中一類，那一類的按鍵就會說謊。app 自己的 popup 把能固定的照舊固定 —— 框、層、送出、
+離開 —— 使用者打開它時，除了內容本身，其他都跟家族的 popup 一樣（user 2026-10-25，kamonu）。

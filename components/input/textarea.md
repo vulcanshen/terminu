@@ -2,12 +2,12 @@
 
 **Language**: English · [繁體中文](textarea-zh_TW.md)
 
-## Purpose
+## textarea.1 Purpose
 
 Entering several lines of text: a comment or a description in a web form. Content where a line is a line, such as code
 and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not to a textarea.
 
-## Look
+## textarea.2 Look
 
 **Long lines wrap, with line numbers on the left**:
 
@@ -39,7 +39,7 @@ and config files, goes to the user's `$EDITOR` (e.g. sshu's File transfer), not 
   control characters" in [`input/README`](README.md)).
 - **`\t`**: a `\t` in the value is drawn as `input_tab_width` spaces (see `Tab` below), not aligned to any column.
 
-## Keys
+## textarea.3 Keys
 
 **Two states**:
 
@@ -81,6 +81,6 @@ terminal cannot line things up with tabs, and pressing `Tab` means "some spaces"
 box always opens at the maximum: the same reason as the width ("content not known, take the maximum"), and a short old
 value does not start scrolling after a few lines.
 
-## Value
+## textarea.4 Value
 
 In a form or a panel: the first line, with `…` when more follows ([`input/README`](README.md)).

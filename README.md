@@ -34,17 +34,17 @@ When in doubt, press `Space`.
   one thing.
 - **Rules serve the UX.** When a rule gets in the way of good UX, the rule is extended,
   not the UX sacrificed.
-- **What is fixed, and what is left to the app, is spelled out.** Core-key behaviour is
-  fixed; everything else states what must be achieved and leaves the how to each app;
-  colour and how components look are set by the components; hotkeys on panels are each
-  app's own.
+- **What is not left to the app is followed.** Whatever is left to the app says so
+  explicitly, "the app may decide for itself" — hotkeys on panels, the domain's symbols
+  and colours, the function logic; colour and how components look are set by the
+  components.
 
 The details are in the **[terminu design principle (tdp)](principle/)**:
 
 | | |
 |---|---|
 | [Principle](principle/README.md) | The spirit: what it aims for and why |
-| [Rules](principle/rules.md) | What must hold, each with its reason, split into a fixed and a concept zone |
+| [Rules](principle/rules.md) | What must hold, each with its reason |
 | [Components](components/README.md) | Component specs: colour, frames, dialogs, and how each kind of input looks and works |
 | [Project](project/README.md) | The project spec: a family app repo's directories, Makefile, version, CHANGELOG and release |
 | [Checklist](checklist/README.md) | The item list: the requirements broken into items that can be checked, for checking whether an app does what tdp asks |

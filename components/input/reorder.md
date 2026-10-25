@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](reorder-zh_TW.md)
 
-## Purpose
+## reorder.1 Purpose
 
 Moving a set of items one by one into the order wanted (e.g. the order ccdrawu's drawer shows its items in); the value
 is the whole order, written back once `Enter` confirms it (an input, Rules F1). It is the panel's Drag mode put into a
@@ -15,7 +15,7 @@ No search: once filtered, the row above on screen is not always the real one abo
 swaps with. So it is not a finder; what gets ordered is usually a few items already chosen, easy to reach with `j|k`,
 `u|d` and `gg|G`.
 
-## Look
+## reorder.2 Look
 
 Holding nothing:
 
@@ -63,7 +63,7 @@ Holding Cost, after one `k` (Cost swapped with Usage):
 and Yellow means "in a mode" across the family. Every row keeps the glyph's cell: picking an item up changes only that
 row's colour and adds one glyph, and nothing else moves by a cell.
 
-## Keys
+## reorder.3 Keys
 
 - It opens with the focus on the list.
 - **Holding nothing**:
