@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.9.15 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.9.16 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -612,6 +612,9 @@ tdp v0.9.15 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | panel-148 | panel §框 | 模式立刻生效、外框立刻變色；模式名播動畫時照樣收鍵 | 模式 | 進入模式後馬上按模式的鍵；看外框顏色 |
 | panel-149 | panel §框 | 模式有好幾層時，模式名把層接在後面，用 `>` 隔開、不加空白（例：`Visual>select`） | 模式 | viewer 的選取模式裡按第二次 `v`，看上框右邊 |
 | panel-150 | panel §框 | 多一層時右端不動，層的字從尾巴每 32ms 一幀長出一個字；退一層從尾巴收掉；一半又切換照樣轉向；從某一層直接離開整個模式時，整個標籤從中間關掉 | 模式 | 選取模式裡按 `v`、`Esc`，再按 `v`、`y`，看上框右邊 |
+| panel-151 | panel §框 | 有 focus 的清單 cursor 那一列代表畫面上另一個 panel 時，那個 panel 的框是 Lavender 細線直角，不變成 focus，膠囊串跟著換色 | 被指到的 panel | 在清單上移動，看對應的 panel 的框 |
+| panel-152 | panel §框 | cursor 換列就換成指那一列的 panel；那一列的 panel 不在畫面上時，沒有 panel 被指到 | 被指到的 panel | 移到 panel 不在畫面上的那一列 |
+| panel-153 | panel §框 | 只在那個清單有 focus 時才指：focus 到被指的 panel 上照 focus 畫，focus 到別的 panel 上沒有 panel 被指到；被 popup 蓋住時一起淡化 | 被指到的 panel | 用 `Tab` 換 panel；開一個 popup |
 | panel-38 | panel §膠囊串 | 膠囊裡的字前後不加空白（`[1] TABS`） | 都要 | 看膠囊的字與兩端之間 |
 | panel-39 | panel §膠囊串 | 有 tab 的 panel，`[N]` 自己是一段，一直是選中的 | panel tab | 換到第二個 tab，看 `[N]` 還是填色 |
 | panel-40 | panel §膠囊串 | `[N]` 後面每個 tab 一段，只有目前的 tab 選中 | panel tab | 換 tab，看只有目前的 tab 填色 |

@@ -29,7 +29,7 @@
 | focus | focus 的框（粗線 `┏━┓`）；hint、footer、key reference 裡現在按得了的鍵；有 focus 的 panel 的 label 與清單的表頭；畫面 chip 列 | Blue `#89b4fa` |
 | 用不到 | 失焦的框（細線 `┌─┐`，跟粗線同寬，切換零位移）；停用的列、label、選項；checkbox 不可用的選項（只畫狀態，照樣能勾）；範圍外的日子 | Surface2 `#585b70` |
 | 層色 | popup 的框（粗線 `┏━┓`）與標題膠囊的底；popup 裡的 cursor 色塊 | 見下面的「popup 的層色」 |
-| 正在編輯、使用者足跡 | input popup 裡的值與游標；使用者留下的位置（panel 的位置列 —— 麵包屑，目前的路徑或 drill 到的層，見 [`layout/panel`](layout/panel-zh_TW.md)；statusbar 上「你現在在哪」的值） | Lavender `#b4befe` |
+| 正在編輯、使用者足跡 | input popup 裡的值與游標；使用者留下的位置（panel 的位置列 —— 麵包屑，目前的路徑或 drill 到的層，見 [`layout/panel`](layout/panel-zh_TW.md)；statusbar 上「你現在在哪」的值；被清單 cursor 指到的 panel 的框，見 [`layout/panel`](layout/panel-zh_TW.md)） | Lavender `#b4befe` |
 | 生效中 | 目前生效的值（select 選的、勾著的、開著的；popup 裡跟著畫面上的勾，讀成「按 `Enter` 就是這個值」）；活著的 session；進行中的工作與進度條（單畫面的 app 寫在工作的列裡，見 [`layout/screen`](layout/screen-zh_TW.md)）；成功完成的（Success toast 的字）；比較裡加上的行 | Green `#a6e3a1` |
 | 模式 | 模式的外框與模式名、模式裡選起來的範圍、Drag 拿著的那一列（Rules K11） | Yellow `#f9e2af` |
 | 警告：值得注意、但沒壞 | confirm 裡警告的那一句；Warning toast 的字 | Peach `#fab387` |

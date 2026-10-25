@@ -10,6 +10,22 @@ in [`screen`](screen.md).
 - **Line style and colour**: Blue heavy line `┏━┓` when focused, Surface2 light square line `┌─┐` when not; both are
   the same width, so switching shifts nothing (Rules L5, [`color`](../color.md)). Unfocused, the content is dimmed, streaming
   content excepted (Rules T2).
+  - **A pointed panel** (the app's choice): when the cursor's row in a focused list stands for another panel on screen
+    (e.g. sshu's session list and the PTY panels in its grid on the right), that panel is "pointed": it stays an
+    unfocused light square frame and never takes the focus; only the frame's colour turns from Surface2 to Lavender
+    ("user footprint" in [`color`](../color.md)), the capsule chain turning with it. Which row stands for which panel,
+    and whether to use it at all, is the app's choice.
+    - The cursor moving to another row points at that row's panel instead; when that row's panel is not on screen, no
+      panel is pointed.
+    - It points only while that list has the focus: with the focus on the pointed panel, it is drawn as focused; with
+      the focus on another panel, no panel is pointed.
+    - The content is dimmed as unfocused (streaming content excepted); under a popup it is dimmed with everything else
+      (Rules F8).
+    - **Why**: a row in the list and a panel on screen are two sides of one thing (an sshu session and its cell), so
+      scanning the list tells which cell it is without reading titles, and a new cell is pointed at as soon as it
+      appears, showing it is done. The focus is still on the list, so it cannot become the focus and keeps the unfocused
+      line; Lavender is the colour of "where the user is now" (the location row, the statusbar), and here it says "the
+      cursor points here now" (the user, 2026-10-25, sshu's SS44).
 - **Left of the top border: the `[N] label` capsule**, right after the corner. `N` is also the digit key that jumps
   straight to that panel (within the current screen only, Rules K1). When the panel has tabs, `[N]` is a part of its
   own, the tabs follow it, and the first tab's name is the label (see the capsule chain below). A name in the label keeps

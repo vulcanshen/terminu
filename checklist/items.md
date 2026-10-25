@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v0.9.15. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v0.9.16. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -612,6 +612,9 @@ The items of tdp v0.9.15. What each column means and what an item applies to: [R
 | panel-148 | panel §Frame | The mode takes effect at once and the frame turns its colour at once; keys are taken while the mode name animates | mode | Enter a mode and press one of its keys at once; watch the frame colour |
 | panel-149 | panel §Frame | A mode with layers adds each layer to its name after a `>`, with no spaces (e.g. `Visual>select`) | mode | Press `v` a second time in a viewer's selection mode and look at the top right |
 | panel-150 | panel §Frame | A layer added grows from the tail, one letter every 32ms frame, the right end staying; going back a layer takes it off from the tail; switched again halfway it turns around; leaving the whole mode from a layer closes the whole tag from its middle | mode | In the selection mode press `v`, `Esc`, then `v`, `y`, watching the top right |
+| panel-151 | panel §Frame | When the cursor's row in a focused list stands for another panel on screen, that panel's frame is a Lavender light square line, not focused, its capsule chain turning with it | pointed panel | Move along the list and look at the matching panel's frame |
+| panel-152 | panel §Frame | The cursor moving to another row points at that row's panel; when that row's panel is not on screen, no panel is pointed | pointed panel | Move to a row whose panel is not on screen |
+| panel-153 | panel §Frame | It points only while the list has the focus: with the focus on the pointed panel it is drawn as focused, with the focus on another panel none is pointed; under a popup it dims with the rest | pointed panel | Switch panels with `Tab`; open a popup |
 | panel-38 | panel §Capsule chain | No space before or after the text inside a capsule (`[1] TABS`) | everyone | Look between a capsule's text and its ends |
 | panel-39 | panel §Capsule chain | On a panel with tabs, `[N]` is a part of its own and always selected | panel tab | Change to the second tab; check that `[N]` is still filled |
 | panel-40 | panel §Capsule chain | Each tab after `[N]` is a part, and only the current tab is selected | panel tab | Change tabs; check that only the current tab is filled |

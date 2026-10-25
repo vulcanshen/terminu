@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.9.16 — 2026-10-25
+
+What the user found testing sshu by hand, settled with the user (from sshu, SS44).
+
+- layout/panel: a pointed panel, the app's choice: when the cursor's row in a focused list stands for another panel on
+  screen, that panel's frame turns Lavender ("user footprint") and stays an unfocused light line; it points only while
+  the list has the focus (color follows)
+- checklist: panel-151 to panel-153 added, with a new applicability, "pointed panel" (1461 items)
+
 ## v0.9.15 — 2026-10-24
 
 What the user found testing sshu by hand, settled with the user (from sshu, SS43).

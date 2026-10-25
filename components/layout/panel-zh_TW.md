@@ -8,6 +8,15 @@ panel 的框、一般清單（含位置列、分組）、一列一個值的 pane
 
 - **線型與顏色**：有 focus 是 Blue 粗線 `┏━┓`，失焦是 Surface2 細線 `┌─┐`（直角），兩者同寬，切換時不位移（Rules L5、[`color`](../color-zh_TW.md)）。
   失焦時內容淡化，串流內容除外（Rules T2）。
+  - **被指到的 panel**（app 選用）：有 focus 的清單上，cursor 那一列代表畫面上另一個 panel 時（例：sshu 的 sessions 清單與右邊
+    網格裡的 PTY panel），那個 panel 被「指到」：它還是失焦的細線直角，不變成 focus，只有框的顏色從 Surface2 換成 Lavender
+    （[`color`](../color-zh_TW.md) 的「使用者足跡」），膠囊串的顏色跟著框換。哪一列對應哪個 panel、要不要用，都由 app 決定。
+    - cursor 換到別列，就換成指那一列的 panel；那一列的 panel 不在畫面上時，沒有 panel 被指到。
+    - 只在那個清單有 focus 時才指：focus 到被指的 panel 上，它照 focus 畫；focus 到別的 panel 上，沒有 panel 被指到。
+    - 內容照失焦淡化（串流內容除外）；被 popup 蓋住時跟其他東西一起淡化（Rules F8）。
+    - **為什麼**：清單的一列與畫面上的一個 panel 是同一個東西的兩面（sshu 的 session 與它的格子），掃清單時不用讀標題就知道是
+      哪一格；新的一格一出現就被指著，看得出做好了。focus 還在清單上，所以它不能變成 focus，線型照失焦；Lavender 是「使用者
+      現在在哪」的顏色（位置列、statusbar），這裡說的就是「cursor 現在指著這裡」（user 2026-10-25，sshu 的 SS44）。
 - **上框左邊：`[N] label` 膠囊**，緊接著框的角。`N` 同時是直接跳到該 panel 的數字鍵（只在目前的畫面裡，Rules K1）。panel 有
   tab 時，`[N]` 自己是一段，tab 接在後面，第一個 tab 的名字就是 label（見下面的膠囊串）。label 裡的名稱照原樣，跟 popup 的標題一樣
   （`[2] PODS: nginx-7d4f`、`[1] prod-web-01`；[components](../README-zh_TW.md) 的「大寫」）。panel 在 loading 時，loading icon 放在整串膠囊（含 tab）的後面，前後各空一格

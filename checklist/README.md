@@ -92,6 +92,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | file preview | a popup previewing files and directories: a file-picker, or a finder previewing files |
 | stores settings or data | settings, data, state or a cache written to disk |
 | compare mode | a panel's compare mode (an anchor first, then another row to compare with) |
+| pointed panel | a list row stands for another panel on screen, and the cursor points that panel out (e.g. sshu's session list and grid) |
 | a file no longer used | a new version stopped using a settings, state or data file (e.g. sshu's errors.yaml, kbu's theme.yaml) |
 | Windows build | a Windows release |
 | has released | a release made (a tag and a GitHub release); for an app not yet released, what only exists after a release (the release, the formula on the tap…) does not apply, and what can be seen is checked on the repo as it is now |
