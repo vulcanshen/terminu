@@ -109,4 +109,4 @@ Press [A] to add a host, or [Space] to see what you can do here
   放得下而把句子縮短。
 - **清單空了**：空狀態取代整塊，連表頭一起不畫，句子置中在整個 panel（[`panel`](panel-zh_TW.md) 的一般清單）。
 
-panel 的 loading 與錯誤也用這個樣子（[`panel`](panel-zh_TW.md)）。
+panel 的 loading 與錯誤也用這個樣子（[`panel`](panel-zh_TW.md) 的「loading 與錯誤」）。

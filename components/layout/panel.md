@@ -241,13 +241,7 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
 - **Empty**: as the empty states in [`screen`](screen.md). The empty state takes the whole panel, the header included,
   its sentence centred in the panel; a location row, when there is one, stays (see "Location row").
 
-**Loading and errors**:
-
-- **Loading**: the loading icon sits after the whole capsule chain (tabs included), with one space on each side, in the border colour ([`popup`](popup.md)'s loading). While the panel has no content yet, one line is written in the
-  middle in the empty-state look, e.g. `󰪞 loading pods…`. On reload, the old content stays and is not cleared.
-- **Errors, lost connections, no permission**: two centred lines in the empty-state look: a fact in Red (e.g.
-  `Forbidden: pods in kube-system`) and a hint in Overlay0 (e.g. `Press [R] to retry`). If the old content is still there
-  it stays, and the error is reported in a toast as Rules F5 says.
+While loading and when the content cannot be read: see "Loading and errors" below.
 
 **Why**: the cursor is "the row `Enter` acts on"; a solid background across the whole row, ending in an arrow, says so
 in both shape and colour (L5).
@@ -472,3 +466,21 @@ The focus leaving and returning:
 panel filter is "narrow the list and keep using it" (in kbu, keeping the pods whose names contain api to watch their
 status; in sshu, typing `prod` to list a whole group of hosts and connect to them one by one). Their typing rows share
 one set of keys; only `Tab` and `Esc`, which concern the level, differ.
+
+## panel.15 Loading and errors
+
+The same for every kind of panel: an ordinary list, one value per row, details, a preview, a log, a PTY cell
+([`dialog/terminal`](../dialog/terminal.md): its frame is a panel's).
+
+- **Loading**: the loading icon sits after the whole capsule chain (tabs included), with one space on each side, in the
+  border colour ([`popup`](popup.md)'s loading). While the panel has no content yet, one line is written in the middle in
+  the empty-state look, e.g. `󰪞 loading pods…`, `󰪞 connecting to prod-web-01…`. On reload, the old content stays and is
+  not cleared.
+- **Errors, lost connections, no permission**: two centred lines in the empty-state look: a fact in Red (e.g.
+  `Forbidden: pods in kube-system`) and a hint in Overlay0 (e.g. `Press [R] to retry`). If the old content is still there
+  it stays, and the error is reported in a toast as Rules F5 says.
+
+**Why**: while a panel waits, or cannot read anything, users look at the same place — its middle — whether it usually
+holds a list, values or a terminal; written the same way, "still coming" and "cannot come" read the same in every kind of
+panel. These two points used to sit under the ordinary lists, but the empty state in screen and the loading icon on the
+frame both speak of every panel, so they got a section of their own (reported by sshu, 2026-10-26).

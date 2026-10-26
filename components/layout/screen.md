@@ -131,4 +131,4 @@ Press [A] to add a host, or [Space] to see what you can do here
 - **An empty list**: the empty state takes the whole panel, the header included, its sentence centred in the panel (the
   ordinary list in [`panel`](panel.md)).
 
-A panel's loading and errors use this look too ([`panel`](panel.md)).
+A panel's loading and errors use this look too ("Loading and errors" in [`panel`](panel.md)).

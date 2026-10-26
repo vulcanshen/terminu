@@ -636,12 +636,12 @@ tdp v0.10.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | panel-72 | panel.8 | 有 Drag 的 panel，每一列都保留標記欄 | Drag | 看有 Drag 的 panel 各列前面空著一格 |
 | panel-73 | panel.8 | 拿著時 `Enter` 放下 | Drag | 拿起、搬動後按 `Enter` |
 | panel-74 | panel.5 | 太長時截斷、加 `…`：預設從尾端截；路徑、檔名這類尾端比較重要的從前面截；兩端都有意義的（例：pod 的名稱）從中間截（`demo-app…66-gm72n`）；每一欄從哪裡截，app 可以自行決定 | 都要 | 看長名字的欄位 |
-| panel-75 | panel.5（loading 與錯誤） | panel 還沒有任何內容時，中間照空狀態的樣子寫一句 loading 的話 | loading | 讓 panel 第一次載入，看中間 |
-| panel-76 | panel.5（loading 與錯誤） | 重新載入時舊的內容留著，不清空 | loading | 重新載入，看舊內容還在 |
-| panel-77 | panel.5（loading 與錯誤） | panel 讀不到內容時（錯誤、斷線、沒有權限），照空狀態的樣子置中寫兩句，一句事實用 Red | 都要 | 讓沒有內容的 panel 讀取失敗，看中間的第一句 |
-| panel-78 | panel.5（loading 與錯誤） | 讀不到內容的另一句是提示，用 Overlay0 | 都要 | 同上，看第二句 |
-| panel-79 | panel.5（loading 與錯誤） | 載入失敗時舊的內容還在就留著 | loading | 有內容時讓它重新載入失敗，看內容還在 |
-| panel-80 | panel.5（loading 與錯誤） | 舊的內容還在時，錯誤用 toast 報 | loading | 同上，看跳出 toast |
+| panel-75 | panel.15 | panel 還沒有任何內容時，中間照空狀態的樣子寫一句 loading 的話 | loading | 讓 panel 第一次載入，看中間 |
+| panel-76 | panel.15 | 重新載入時舊的內容留著，不清空 | loading | 重新載入，看舊內容還在 |
+| panel-77 | panel.15 | panel 讀不到內容時（錯誤、斷線、沒有權限），照空狀態的樣子置中寫兩句，一句事實用 Red | 都要 | 讓沒有內容的 panel 讀取失敗，看中間的第一句 |
+| panel-78 | panel.15 | 讀不到內容的另一句是提示，用 Overlay0 | 都要 | 同上，看第二句 |
+| panel-79 | panel.15 | 載入失敗時舊的內容還在就留著 | loading | 有內容時讓它重新載入失敗，看內容還在 |
+| panel-80 | panel.15 | 舊的內容還在時，錯誤用 toast 報 | loading | 同上，看跳出 toast |
 | panel-81 | panel.11 | 分組的清單每組前面一列分組標題 | 分組清單 | 看分組清單 |
 | panel-82 | panel.11 | 分組標題 Blue | 分組清單 | 看分組標題的顏色 |
 | panel-83 | panel.11 | 分組標題沒有 glyph | 分組清單 | 看分組標題前面 |

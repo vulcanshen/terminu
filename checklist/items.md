@@ -636,12 +636,12 @@ The items of tdp v0.10.1. What each column means and what an item applies to: [R
 | panel-72 | panel.8 | A panel with a Drag keeps the mark column on every row | Drag | Check that every row of a panel with a Drag keeps one blank cell at its start |
 | panel-73 | panel.8 | While a row is held, `Enter` drops it | Drag | Pick up a row, move it and press `Enter` |
 | panel-74 | panel.5 | Text too long is cut with `…`: at the end by default; at the front for paths, file names and the like whose end matters more; in the middle for values meaningful at both ends (e.g. a pod's name: `demo-app…66-gm72n`); where each column is cut, the app may decide for itself | everyone | Look at columns with long names |
-| panel-75 | panel.5 (Loading and errors) | While the panel has no content yet, one loading line is written in the middle in the empty-state look | loading | Load a panel for the first time and look at its middle |
-| panel-76 | panel.5 (Loading and errors) | On reload, the old content stays and is not cleared | loading | Reload; check that the old content is still there |
-| panel-77 | panel.5 (Loading and errors) | When a panel cannot read its content (errors, a lost connection, no permission), two centred lines in the empty-state look, the fact in Red | everyone | Make a panel with no content fail to read and look at the first line in the middle |
-| panel-78 | panel.5 (Loading and errors) | The other line when the content cannot be read is a hint, in Overlay0 | everyone | As above, look at the second line |
-| panel-79 | panel.5 (Loading and errors) | When a load fails and the old content is still there, it stays | loading | With content in place, make a reload fail; check that the content is still there |
-| panel-80 | panel.5 (Loading and errors) | With the old content still there, the error is reported in a toast | loading | As above, check that a toast pops up |
+| panel-75 | panel.15 | While the panel has no content yet, one loading line is written in the middle in the empty-state look | loading | Load a panel for the first time and look at its middle |
+| panel-76 | panel.15 | On reload, the old content stays and is not cleared | loading | Reload; check that the old content is still there |
+| panel-77 | panel.15 | When a panel cannot read its content (errors, a lost connection, no permission), two centred lines in the empty-state look, the fact in Red | everyone | Make a panel with no content fail to read and look at the first line in the middle |
+| panel-78 | panel.15 | The other line when the content cannot be read is a hint, in Overlay0 | everyone | As above, look at the second line |
+| panel-79 | panel.15 | When a load fails and the old content is still there, it stays | loading | With content in place, make a reload fail; check that the content is still there |
+| panel-80 | panel.15 | With the old content still there, the error is reported in a toast | loading | As above, check that a toast pops up |
 | panel-81 | panel.11 | Each group in a grouped list starts with a group title row | grouped list | Look at a grouped list |
 | panel-82 | panel.11 | Group titles are Blue | grouped list | Look at the group titles' colour |
 | panel-83 | panel.11 | Group titles have no glyph | grouped list | Look before the group titles |

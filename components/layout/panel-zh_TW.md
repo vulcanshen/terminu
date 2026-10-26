@@ -181,12 +181,7 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
   不同的名字看起來一樣（`report.txt` 與中間有換行的 `report⏎.txt`）；原樣送出會弄亂畫面、改掉後面的字的顏色。
 - **空的**：照 [`screen`](screen-zh_TW.md) 的空狀態。空狀態取代整塊，連表頭一起不畫，句子置中在整個 panel；有位置列時位置列照樣留著（見「位置列」）。
 
-**loading 與錯誤**：
-
-- **loading**：loading icon 放在整串膠囊（含 tab）的後面，前後各空一格，用框線色（[`popup`](popup-zh_TW.md) 的 loading）。panel 還沒有任何內容時，中間照空狀態的樣子寫一句，例：`󰪞 loading pods…`。
-  重新載入時，舊的內容留著，不清空。
-- **錯誤、斷線、沒有權限**：照空狀態的樣子置中寫兩句：一句事實用 Red（例：`Forbidden: pods in kube-system`），一句提示用
-  Overlay0（例：`Press [R] to retry`）。舊的內容還在就留著，錯誤照 Rules F5 用 toast 報。
+loading 與讀不到內容時，照下面的「loading 與錯誤」。
 
 **為什麼**：cursor 是「`Enter` 會作用的那一列」，整列一塊實心底、尾端一個箭頭，形狀與顏色都說得出來（L5）。
 多欄的清單一定有表頭：欄的意思與排序的箭頭都靠它。表頭固定，
@@ -373,3 +368,17 @@ focus 離開與回來：
 **為什麼**：panel filter 跟 finder 做的事不一樣 —— finder 是「到某一項」，選了就關掉；panel filter 是「把清單縮小、留著繼續用」
 （kbu 留下名字有 api 的 pod 看它們的狀態、sshu 打 `prod` 把整群 host 列出來一台一台連）。兩者的打字列用同一套鍵，
 只有跟層級有關的 `Tab`、`Esc` 不同。
+
+## panel.15 loading 與錯誤
+
+每一種 panel 都一樣：一般清單、一列一個值、明細、預覽、log、PTY 的格子（[`dialog/terminal`](../dialog/terminal-zh_TW.md)：框照 panel）。
+
+- **loading**：loading icon 放在整串膠囊（含 tab）的後面，前後各空一格，用框線色（[`popup`](popup-zh_TW.md) 的 loading）。panel
+  還沒有任何內容時，中間照空狀態的樣子寫一句，例：`󰪞 loading pods…`、`󰪞 connecting to prod-web-01…`。重新載入時，舊的內容
+  留著，不清空。
+- **錯誤、斷線、沒有權限**：照空狀態的樣子置中寫兩句：一句事實用 Red（例：`Forbidden: pods in kube-system`），一句提示用
+  Overlay0（例：`Press [R] to retry`）。舊的內容還在就留著，錯誤照 Rules F5 用 toast 報。
+
+**為什麼**：panel 在等、或讀不到東西時，使用者看的是同一個地方 —— panel 中間 —— 不管它平常放的是清單、值還是終端機；寫法一樣，
+在哪一種 panel 都認得出「還在來」與「來不了」。這兩條本來寫在一般清單底下，但 screen 的空狀態與框上的 loading icon 講的都是
+每一個 panel，所以拆成自己的一節（sshu 2026-10-26 回報）。
