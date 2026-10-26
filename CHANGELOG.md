@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.10.1 — 2026-10-26
+
+Settled with the user (from terminu-go, G101).
+
+- layout/popup: an app's own popup with values to submit leaves to the app how an invalid value is reported — where
+  the error row goes and whether it takes the focus — the error still visible (Rules F5)
+- changed in this version: popup.8
+
 ## v0.10.0 — 2026-10-25
 
 tdp becomes the universe: every decision an app makes has its ground in tdp, either a requirement to follow or a place

@@ -248,9 +248,10 @@ Content the seven classes cannot hold (Rules F1, e.g. kamonu's popup for drawing
   the width, the opening and closing animation, loading, content that does not fit, the layer colours and the dimming,
   as on this page and in [`color`](../color.md).
 - **With values to submit, it works like a form** ([`dialog/form`](../dialog/form.md)): the action area sits below the
-  content as on a form, and `Tab` switches between the content and the action area; a button submits, and an invalid
-  value is reported on the error row; `q` does nothing; once something changed, `Esc` first opens a confirm asking whether
-  to discard it.
+  content as on a form, and `Tab` switches between the content and the action area; a button submits; `q` does
+  nothing; once something changed, `Esc` first opens a confirm asking whether to discard it. How an invalid value is
+  reported (where the error row goes, whether it takes the focus), the app may decide for itself; the error is still
+  visible (Rules F5).
 - **How the content is drawn and the keys on it, the app may decide for itself.** Inside that scope:
   - the core keys keep their meaning (Rules K1); when the focused cell has several values to cycle through, `Space` moves
     it to the next value (Rules K5);
@@ -260,4 +261,6 @@ Content the seven classes cannot hold (Rules F1, e.g. kamonu's popup for drawing
 
 **Why**: content the seven classes cannot hold, forced into one of them, makes that class's keys lie. An app's own popup
 keeps fixed what can be fixed — the frame, the layers, submitting, leaving — so when users open one, everything but the
-content itself is the same as any popup in the family (the user, 2026-10-25, kamonu).
+content itself is the same as any popup in the family (the user, 2026-10-25, kamonu). The error row is left to the app:
+the content is the app's own drawing, so only the app knows where in it an error points and whether the user should
+move there to see it (the user, 2026-10-26, terminu-go's G101).
