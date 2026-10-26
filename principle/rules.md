@@ -30,6 +30,10 @@ do not count. tdp's own documents write `Rules K4`, meaning this document in the
   `README` uses its folder's name (`tdp components.2`, `tdp input.2`, `tdp project.3`). The section ID is written before
   each section's heading.
 - When a whole component is used, the whole file may be cited (`tdp confirm`), meaning every section of it.
+- A project template file is cited by its path (`tdp project/install.sh`), meaning that template: the comment at the
+  top of each template says so, and is copied into the app as it is.
+- A checklist item may be cited the same way (`tdp K9-6`, `tdp note-78`), more precise than a whole rule; it points at
+  that item's source, and the spec's text is still what counts.
 - Once published, IDs are never renumbered: a new rule or section gets a new ID; a part split out of a section gets a new
   ID, the old one staying with what was there; a retired one keeps its ID and is marked retired. Section IDs need not
   follow the order in the file. Each tdp version's CHANGELOG names the IDs it changed.

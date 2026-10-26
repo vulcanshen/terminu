@@ -21,6 +21,8 @@
 - components 與 project 用節編號：檔名加 `.` 加序號（`tdp panel.1`、`tdp form.6`）；`README` 用資料夾名（`tdp components.2`、
   `tdp input.2`、`tdp project.3`）。節編號寫在每一節的標題前面。
 - 一個元件整個都用到時，可以引整個檔（`tdp confirm`），等於那個檔的每一節。
+- project 的範本檔寫路徑（`tdp project/install.sh`），等於那一份範本：範本開頭的註解就是這樣寫，照原樣複製進 app。
+- 清單的條目也可以這樣引用（`tdp K9-6`、`tdp note-78`），比整條精確；它指的是那一條的出處，依據還是規範的文字。
 - 編號一旦發布就不重排：新的規則、新的節拿新號；從一節拆出去的拿新號，舊號留給原本的內容；廢除的保留編號、標記廢除。節編號
   不必照檔內的順序。每一版 tdp 的 CHANGELOG 寫出改到的編號。
 
