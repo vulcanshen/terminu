@@ -36,6 +36,12 @@ The template files are requirements too: they are copied as they are, changed on
 - **An app made with tdp** (not a family member; start of chapter E of the Rules): the `vulcanshen` in the templates
   (the repo path, the tap's owner, the homepage) is replaced with its own account, which also counts as the last column
   of the table.
+- **How far a mark reaches**: a `# app:` comment in `goreleaser.yaml` stays as it is and covers the value of the key
+  right below it, a list or a whole block included (`ignore`, `description`, `caveats`); when the key it names is not
+  in the template yet (`dependencies`), the app adds that key where the comment is; other keys (`test:`, say) stay as
+  they are. Opening `Windows` takes the line marked `# Windows` with the commented lines of its block below it,
+  removing only the leading `# `; the trailing `# Windows` stays. The `<APP>` in a comment of `uninstall.sh` is not
+  `<app>` and stays as it is.
 - **Checking for drift**: put `<app>` back in place of the app's name and diff against the templates of the same tdp
   version; only what the last column of the table names should differ.
 - **A template changes here first**: a tdp release, then a copy into each app, never an edit in an app. A problem an

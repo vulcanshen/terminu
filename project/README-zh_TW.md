@@ -29,6 +29,10 @@ app 的檔案引用 tdp 的條目寫 `tdp` 加編號（Rules 開頭的「引用�
 
 - **照 tdp 做的 app**（不是家族成員，Rules 的 E 章開頭）：範本裡的 `vulcanshen`（repo 的路徑、tap 的 owner、首頁）換成自己的
   帳號，也算上表最後一欄的地方。
+- **標記管到哪裡**：`goreleaser.yaml` 的 `# app:` 註解照原樣留著，管的是緊接在它底下的那一個鍵的值，清單或整塊都算（`ignore`、
+  `description`、`caveats`）；註解講的鍵範本裡還沒有時（`dependencies`），在註解那裡加上那個鍵；其他的鍵（例：`test:`）照原樣。
+  打開 `Windows` 是標著 `# Windows` 的那一列連同它底下同一塊的註解列，只拿掉行首的 `# `，行尾的 `# Windows` 留著。
+  `uninstall.sh` 註解裡的 `<APP>` 不是 `<app>`，照原樣。
 - **檢查有沒有走樣**：把 app 的名字換回 `<app>`，跟這裡同一版 tdp 的範本 diff，只該差上表最後一欄的地方。
 - **範本要改，先改這裡**：發一版 tdp，再複製到每個 app，不在 app 裡改。app 用起來發現範本有問題，回報成 tdp 的缺漏。
 
