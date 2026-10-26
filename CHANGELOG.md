@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.10.3 — 2026-10-26
+
+What terminu-go met checking an app's project files against the templates (G102), and what the hostu trial of the
+harness found (an old `family.mk` without `make dev`), settled with the user.
+
+- project: how far a mark reaches — a `# app:` comment in `goreleaser.yaml` stays as it is and covers the value of the
+  key right below it, a list or a whole block included; when the key it names is not in the template yet
+  (`dependencies`) the app adds it where the comment is; other keys stay as they are. Opening `Windows` takes the line
+  marked `# Windows` with the commented lines of its block, removing only the leading `# `; the trailing `# Windows`
+  stays. The `<APP>` in a comment of `uninstall.sh` is not `<app>` and stays as it is. The templates did not change:
+  nothing to copy again
+- changed in this version: project.2
+- checklist: unchanged (1453 items)
+
 ## v0.10.2 — 2026-10-26
 
 What the members found moving to v0.10.0 (sshu, kbu, filu: KB32, KB33, FL29), settled with the user.
