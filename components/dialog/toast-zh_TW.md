@@ -24,6 +24,9 @@
 - **寬度**：訊息打開時就確定，照 [`layout/popup`](../layout/popup-zh_TW.md) 的「內容的寬度打開時就確定」。
 - **文字**：置中。可以好幾列，app 一列一列給（[components](../README-zh_TW.md) 的「控制字元」），每一列另起一列。太長時折行（照 [components 的「折行」](../README-zh_TW.md)），每一列都置中。最多幾列，app 可以自行決定，規範不設上限；app 設了上限、
   訊息超過時，最後一列結尾加 `…`，完整的訊息走 error popup 或 app 的 log。
+- **開頭大寫**：每一列的第一個字母大寫，其他照原樣（`Copied`、`Can't save filu: permission denied`）。一列從名稱或路徑開始時，
+  名稱照原樣，不改大小寫（`kbu.yaml saved`；[components](../README-zh_TW.md) 的「大寫」：名稱是內容）。App Log 的每一筆也照這條
+  （[`dialog/note`](note-zh_TW.md) 的 App Log）。
 - **四種**：標題寫種類。
 
   | 種類 | 標題 | 文字 |

@@ -1068,6 +1068,7 @@ The items of tdp v0.10.1. What each column means and what an item applies to: [R
 | toast-17 | toast.1 | A failure tied to a popup's action, which the user must read before deciding, uses an error popup, not a toast | toast | Make an action in a popup fail: an error popup comes up |
 | toast-18 | toast.2 | Done, or still usable, but with something worth noticing uses Warning (e.g. `3 files skipped`) | toast | Run an action that skips part of its work: the toast is a Warning |
 | toast-19 | toast.2 | A failed action is always an Error, never a Warning | toast | Make an action fail: the toast is an Error (or an error popup comes up) |
+| toast-20 | toast.2 | Each row of a toast starts with a capital letter, the rest as it is; a row starting with a name or a path keeps the name unchanged | toast | Bring up a few toasts (one starting with a file name) and look at the first letter of each row |
 
 ## input/README
 

@@ -30,6 +30,10 @@ deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast.
   [components](../README.md)), each starting a row of its own. When too long it wraps (as in [the components' "Wrapping"](../README.md)), every row centred. How
   many rows at most, the app may decide for itself; the spec sets no limit. When the app sets one and a message goes past it, the last
   row ends with `…`, and the full message goes to an error popup or the app's log.
+- **Capitalised**: each row starts with a capital letter, the rest as it is (`Copied`, `Can't save filu: permission
+  denied`). A row starting with a name or a path keeps the name's case (`kbu.yaml saved`; "Uppercase" in the
+  [components](../README.md): a name is content). Each App Log entry follows this too (the App Log in
+  [`dialog/note`](note.md)).
 - **Four kinds**: the title names the kind.
 
   | Kind | Title | Text |

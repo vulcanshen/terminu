@@ -198,7 +198,7 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 
 - **記什麼**：使用者做的動作與結果；每一個 toast（同一句話）；app 自己在背景做的事（例：Rules E3 的搬家、啟動時建好的預設值、
   讀不到外面的東西的細節）。
-- **每一筆**：時間 `HH:MM:SS`（Overlay0）、等級、發生的事（跟 toast 一樣大寫開頭）。等級跟著 toast 的種類與顏色：`INFO` Text、
+- **每一筆**：時間 `HH:MM:SS`（Overlay0）、等級、發生的事（照 [`dialog/toast`](toast-zh_TW.md) 的「開頭大寫」）。等級跟著 toast 的種類與顏色：`INFO` Text、
   `OK` Green、`WARN` Peach、`ERR` Red，等級欄四格寬、靠左。
 - **只放在記憶體**：app 關掉就清空；筆數有上限，滿了丟掉最舊的。
 - **沒看過的錯誤與警告**：寫在 footer 的 `!`（[`layout/screen`](../layout/screen-zh_TW.md) 的 footer）；打開 App Log 就算看過。

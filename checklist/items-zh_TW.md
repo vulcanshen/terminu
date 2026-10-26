@@ -1068,6 +1068,7 @@ tdp v0.10.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | toast-17 | toast.1 | 跟某個 popup 的動作有關、需要使用者看完再決定的失敗，用 error popup，不用 toast | toast | 讓 popup 裡的動作失敗，看跳的是 error popup |
 | toast-18 | toast.2 | 做完了或還能用、但有值得注意的地方用 Warning（例：`3 files skipped`） | toast | 做一個部分略過的動作，看跳的是 Warning |
 | toast-19 | toast.2 | 動作失敗一律用 Error，不用 Warning | toast | 讓一個動作失敗，看跳的是 Error（或 error popup） |
+| toast-20 | toast.2 | toast 每一列的第一個字母大寫，其他照原樣；一列從名稱或路徑開始時，名稱照原樣不改大小寫 | toast | 讓 app 跳幾個 toast（含開頭是檔名的），看每一列的第一個字 |
 
 ## input/README
 
