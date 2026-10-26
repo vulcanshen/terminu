@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.10.2 — 2026-10-26
+
+What the members found moving to v0.10.0 (sshu, kbu, filu: KB32, KB33, FL29), settled with the user.
+
+- layout/panel: loading and errors get a section of their own, panel.15, holding for every kind of panel — an ordinary
+  list, one value per row, details, a preview, a log, a PTY cell (e.g. `󰪞 connecting to prod-web-01…`); panel.5 and
+  screen.8 point there
+- Rules (opening), citing: a project template is cited by its path (`tdp project/install.sh`), meaning that template,
+  as the comment at the top of each template says; a checklist item may be cited by its ID (`tdp K9-6`), pointing at
+  that item's source, the spec's text still what counts
+- dialog/toast: each row starts with a capital letter, the rest as it is; a row starting with a name or a path keeps
+  the name's case; each App Log entry follows this too (note.7 points there)
+- changed in this version: Rules (opening); panel.5, panel.15 (new), screen.8, toast.2, note.7
+- checklist: panel-75 to panel-80 now give panel.15 as their source; toast-20 added (1453 items)
+
 ## v0.10.1 — 2026-10-26
 
 Settled with the user (from terminu-go, G101).
