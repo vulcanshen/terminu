@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.11.3 — 2026-10-27
+
+What demou met following v0.11.2 (DM42), settled with the user.
+
+- dialog/note: going into the detail with `Enter` on a list (or with its row in the menu) moves the focus (Rules K3)
+  and is not recorded in the App Log — the detail already follows the cursor, and going in shows nothing more (note.7)
+- changed in this version: note.7
+- checklist: no item changed (1453 items); the header names v0.11.3
+
 ## v0.11.2 — 2026-10-27
 
 What sshu and kbu met following v0.11.0 (SS46, KB34), settled with the user.
