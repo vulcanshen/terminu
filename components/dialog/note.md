@@ -255,7 +255,8 @@ keep arriving, as in streaming content.
   `Enter`; one that only looks without changing anything counts too (opening a viewer, switching screens: `Switched to
   Pods`). Moving the cursor, moving the focus (`Tab`, the number keys), opening the Space menu, `?` or `!` are not
   operations and go unrecorded; what is done inside a popup is not recorded on its own: the result of the operation it
-  belongs to is.
+  belongs to is. The panel filter ([`layout/panel`](../layout/panel.md)) goes unrecorded too: filtering only changes
+  what is in view, like moving the cursor, and a record of it means nothing (the user, 2026-10-27, G103).
 - **Each entry**: the time `HH:MM:SS` (Overlay0), a level, and what happened, capitalised as in [`dialog/toast`](toast.md). The level
   follows the toast's kinds and colours: `INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, in a level column four cells
   wide, left-aligned.
