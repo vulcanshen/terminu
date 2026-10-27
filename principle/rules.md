@@ -1109,7 +1109,7 @@ have installed one can install the others, and know where to find config and dat
 **Family members and apps made with tdp**: the family members are vulcanshen's apps. An app someone else makes with tdp
 replaces the few places tied to vulcanshen with its own: the repo path ([project](../project/README.md)), the Homebrew
 tap (E6), the author's e-mail address on the splash (S5); the README's terminu family section says instead that the app
-is "built with terminu design", with a link, and does not list the family members (E7). Every other rule is the same for
+is "built with terminu design", with a link (E7). Every other rule is the same for
 both.
 
 **Why**: an app made with tdp is not under vulcanshen's account and does not go into the same tap; copied word for word,
@@ -1355,8 +1355,8 @@ need to know:
 8. Configuration and where data is stored
 9. Limitations (written in the user's language)
 10. Related links: CHANGELOG; other links, the app may decide for itself
-11. terminu family: follows terminu design, lists the other family members (an app made with tdp: says it is "built with
-    terminu design", with a link, and lists no family members; start of chapter E)
+11. terminu family: follows terminu design, with links to tdp, terminu-go and terminu-harness, and lists no family
+    members (an app made with tdp: says it is "built with terminu design", with a link to tdp; start of chapter E)
 12. License
 
 - **All 12 sections are required, in this order.** Content that belongs to one of them goes into it as a subsection
@@ -1384,7 +1384,8 @@ Developer documents (design records, notes on developing and releasing) are outs
 it"; what is for developers stays out of it. With the 12 sections fixed, users know where to find the
 installation, the keys and the configuration in any family app's README; with the start and the end fixed, the middle
 can grow sections of the app's own. Too many gifs scatter the reader's attention: one representative gif at the start,
-and others only where a section truly needs one.
+and others only where a section truly needs one. The family members are listed only in tdp's README: a new
+member does not mean changing every app's README (the user, 2026-10-27).
 
 ### E8 The shared lib and its example app
 

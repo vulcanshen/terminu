@@ -902,7 +902,7 @@ app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度�
 
 **家族成員與照 tdp 做的 app**：家族成員是 vulcanshen 的 app。別人照 tdp 做的 app，綁著 vulcanshen 的幾處換成自己的：repo 的路徑
 （[project](../project/README-zh_TW.md)）、Homebrew tap（E6）、splash 的作者信箱（S5）；README 的 terminu family 段改成寫「照 terminu
-design 做」並附上連結，不列家族成員（E7）。其他規定兩種 app 都一樣。
+design 做」並附上連結（E7）。其他規定兩種 app 都一樣。
 
 **為什麼**：照 tdp 做的 app 不在 vulcanshen 的帳號底下，也不進同一個 tap；照字面抄，寫出來的就是錯的路徑與別人的信箱。
 
@@ -1099,8 +1099,8 @@ powerline 符號分開量，是因為同一台終端機上兩者可能不同：N
 8. 設定與資料存放位置
 9. 限制（用使用者的語言寫）
 10. 相關連結：CHANGELOG；其他要連的，app 可以自行決定
-11. terminu family：遵循 terminu design、列出家族其他成員（照 tdp 做的 app：寫「照 terminu design 做」並附上連結，不列家族成員；
-    E 章開頭）
+11. terminu family：遵循 terminu design，附上 tdp、terminu-go、terminu-harness 的連結，不列家族成員（照 tdp 做的 app：寫「照
+    terminu design 做」並附上 tdp 的連結；E 章開頭）
 12. License
 
 - **12 段都要有，順序不變**。屬於某一段的內容放進那一段當小節（例：更新放進「安裝」，跟移除放在一起）。
@@ -1121,7 +1121,8 @@ app 都讀到；在家族 app 的 PTY 裡跑時，外層 app 會替它設好（E
 
 **為什麼**：README 是工具的介紹，使用者要的是「這是什麼、怎麼裝、怎麼用」；開發者的東西不放進來。12 段固定，
 使用者在哪個家族 app 的 README 都知道去哪找安裝、按鍵、設定；開頭與結尾固定，中間才長得出 app 自己的段。gif 太多會分散
-使用者閱讀的注意力：開頭一張代表性的，其他的只在那一段真的需要時才放。
+使用者閱讀的注意力：開頭一張代表性的，其他的只在那一段真的需要時才放。家族成員只列在 tdp 的 README：每多一個
+成員，不用每個 app 的 README 都改一次（user 2026-10-27）。
 
 ### E8 共用 lib 與範例 app
 

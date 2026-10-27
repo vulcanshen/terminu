@@ -421,7 +421,7 @@ The items of tdp v1.0.0. What each column means and what an item applies to: [RE
 | E7-11 | E7 | README section 8: configuration and where data is stored | everyone | Read both READMEs |
 | E7-12 | E7 | README section 9: limitations, written in the user's language | everyone | Read the limitations section of both READMEs |
 | E7-13 | E7 | README section 10: related links, with the CHANGELOG | everyone | Read the related links of both READMEs |
-| E7-14 | E7 | README section 11: terminu family — a family member says it follows terminu design and lists the other family members; an app made by tdp says it is made by terminu design, with a link, and lists no family members | everyone | Read both READMEs |
+| E7-14 | E7 | README section 11: terminu family — a family member says it follows terminu design, with links to tdp, terminu-go and terminu-harness, and lists no family members; an app made by tdp says it is made by terminu design, with a link to tdp | everyone | Read both READMEs: the three links are there and no other app is listed |
 | E7-15 | E7 | README section 12: License | everyone | Read both READMEs |
 | E7-16 | E7 | The README has all 12 sections, in the order 1–12 | everyone | Read the order of the sections in both READMEs |
 | E7-17 | E7 | The README has no "status" section with a hard-coded version number | everyone | Read both READMEs |

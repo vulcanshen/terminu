@@ -421,7 +421,7 @@ tdp v1.0.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | E7-11 | E7 | README 第 8 段：設定與資料存放位置 | 都要 | 讀兩份 README |
 | E7-12 | E7 | README 第 9 段：限制，用使用者的語言寫 | 都要 | 讀兩份 README 的限制段 |
 | E7-13 | E7 | README 第 10 段：相關連結，有 CHANGELOG | 都要 | 讀兩份 README 的相關連結 |
-| E7-14 | E7 | README 第 11 段：terminu family —— 家族成員寫遵循 terminu design、列出家族其他成員；照 tdp 做的 app 寫照 terminu design 做、附上連結，不列家族成員 | 都要 | 讀兩份 README |
+| E7-14 | E7 | README 第 11 段：terminu family —— 家族成員寫遵循 terminu design，附上 tdp、terminu-go、terminu-harness 的連結，不列家族成員；照 tdp 做的 app 寫照 terminu design 做、附上 tdp 的連結 | 都要 | 讀兩份 README：三個連結都在，沒有列其他 app |
 | E7-15 | E7 | README 第 12 段：License | 都要 | 讀兩份 README |
 | E7-16 | E7 | README 的 12 段都在，照 1–12 的順序 | 都要 | 讀兩份 README 的段落順序 |
 | E7-17 | E7 | README 沒有寫死版本號的「現況」段 | 都要 | 讀兩份 README |
