@@ -54,19 +54,20 @@ terminu design 是一套 terminal UI 的設計語言：一組跨畫面、跨 app
 go run github.com/vulcanshen/terminu-go/examples/showcase@latest
 ```
 
-家族的新 app 都用它來做：kamonu 與 ccdrawu。做的時候發現 tdp 還沒寫到的，先回到這裡補規範，函式庫再跟上。
+家族的 app 都用它來做。做的時候發現 tdp 還沒寫到的，先回到這裡補規範，函式庫再跟上。
 
 ## terminu family
 
-| App | 是什麼 | 用 terminu-go |
-|---|---|:---:|
-| [kbu](https://github.com/vulcanshen/kbu) | Kubernetes TUI dashboard | — |
-| [filu](https://github.com/vulcanshen/filu) | 不用學的 terminal 檔案管理員 | — |
-| [sshu](https://github.com/vulcanshen/sshu) | ssh 與 sftp 的 terminal 前端 | — |
-| [webu](https://github.com/vulcanshen/webu) | 把網頁當文件讀的 terminal 瀏覽器 | — |
-| [locku](https://github.com/vulcanshen/locku) | 帶 PIN 鎖的 terminal 螢幕保護程式 | — |
-| [kamonu](https://github.com/vulcanshen/kamonu) | 一個字一個字畫家族 mark（家紋）的 terminal 編輯器 | ✓ |
-| [ccdrawu](https://github.com/vulcanshen/ccdrawu) | Claude Code 的側邊欄：用量、context、花費與 git 放在對話旁邊 | ✓ |
+| App | 是什麼 |
+|---|---|
+| [kbu](https://github.com/vulcanshen/kbu) | Kubernetes TUI dashboard |
+| [filu](https://github.com/vulcanshen/filu) | 不用學的 terminal 檔案管理員 |
+| [sshu](https://github.com/vulcanshen/sshu) | ssh 與 sftp 的 terminal 前端 |
+| [webu](https://github.com/vulcanshen/webu) | 把網頁當文件讀的 terminal 瀏覽器 |
+| [locku](https://github.com/vulcanshen/locku) | 帶 PIN 鎖的 terminal 螢幕保護程式 |
+| [kamonu](https://github.com/vulcanshen/kamonu) | 一個字一個字畫家族 mark（家紋）的 terminal 編輯器 |
+| [ccdrawu](https://github.com/vulcanshen/ccdrawu) | Claude Code 的側邊欄：用量、context、花費與 git 放在對話旁邊 |
+| [hostu](https://github.com/vulcanshen/hostu) | 在終端機裡用 profile 切換 hosts 檔 |
 
 ## 歷史
 
