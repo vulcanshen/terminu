@@ -254,7 +254,9 @@ keep arriving, as in streaming content.
 - **What the user did**: an item, panel or global operation of Rules P3, run from a menu, by a letter hotkey or by
   `Enter`; one that only looks without changing anything counts too (opening a viewer, switching screens: `Switched to
   Pods`). Moving the cursor, moving the focus (`Tab`, the number keys), opening the Space menu, `?` or `!` are not
-  operations and go unrecorded; what is done inside a popup is not recorded on its own: the result of the operation it
+  operations and go unrecorded; going into the detail with `Enter` on a list (or with its row in the menu) moves the
+  focus too (Rules K3): the detail already follows the cursor, and going in shows nothing more (DM42); what is done
+  inside a popup is not recorded on its own: the result of the operation it
   belongs to is. The panel filter ([`layout/panel`](../layout/panel.md)) goes unrecorded too: filtering only changes
   what is in view, like moving the cursor, and a record of it means nothing (the user, 2026-10-27, G103); nor does a
   panel's compare mode (note.8; the user, 2026-10-27, KB34). An operation

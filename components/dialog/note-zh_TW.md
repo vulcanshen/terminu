@@ -200,7 +200,8 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
   讀不到外面的東西的細節）。
 - **動作是哪些**：Rules P3 的 item、panel、global operation，不管是從 menu、letter hotkey 還是 `Enter` 執行的；只看不改的也算
   （例：開 viewer、切換畫面 `Switched to Pods`）。移動 cursor、換 focus（`Tab`、數字鍵）、打開 Space menu、`?`、`!` 不是動作，
-  不記；popup 裡的操作不另外記，記的是它所屬那個動作的結果。panel filter（[`layout/panel`](../layout/panel-zh_TW.md)）
+  不記；在清單上用 `Enter`（或 menu 上那一列）進明細也是換 focus（Rules K3）：明細本來就跟著 cursor 換，進去沒有多看到什麼
+  （DM42）；popup 裡的操作不另外記，記的是它所屬那個動作的結果。panel filter（[`layout/panel`](../layout/panel-zh_TW.md)）
   也不記：篩選只是換看得到的範圍，跟移動 cursor 一樣，記下來沒有意義（user 2026-10-27，G103）；panel 的比較模式
   （note.8）也不記（user 2026-10-27，KB34）。動作確定了才算做了：
   在動作前面的 confirm、或填值的表單與 input popup 上按 `Esc` 取消，動作沒做、沒有結果，不記（confirm 只是門，Rules T1；SS46）。
