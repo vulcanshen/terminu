@@ -1006,7 +1006,7 @@ tdp v0.11.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | note-74 | note.2 | viewer 的內容裡，app 一行一行交來的一行夾著 `\n` 時拆成兩行 | viewer | 讓 app 交給 viewer 的一行含 `\n`（例：多行的錯誤訊息），看是兩行 |
 | note-75 | note.2 | viewer 的內容裡，顏色碼（SGR）照著上色，一行裡的 `\r` 只留最後的狀態，不是顏色碼的序列畫成紅色的名字 | viewer | 打開含顏色碼、`10%\r100%`、`\x1b[2J` 的內容 |
 | note-76 | note.7 | 每個 app 都有 App Log，是 viewer，最新的在最下面，開著時新的一筆照樣進來 | 都要 | 按 `!`，做幾件事，看新的一筆進來 |
-| note-77 | note.7 | 記使用者的動作與結果、每一個 toast、app 在背景做的事；動作是 Rules P3 的三種 operation，只看不改的也記，移動 cursor、換 focus、panel filter 不記 | 都要 | 做一個改東西的動作、一個只看的動作（例：開 viewer）、跳一個 toast，移動幾次 cursor，按 `!`；讀程式 |
+| note-77 | note.7 | 記使用者的動作與結果、每一個 toast、app 在背景做的事；動作是 Rules P3 的三種 operation，只看不改的也記，移動 cursor、換 focus、panel filter、在 confirm 或表單上取消的不記 | 都要 | 做一個改東西的動作、一個只看的動作（例：開 viewer）、跳一個 toast，移動幾次 cursor，按 `!`；讀程式 |
 | note-78 | note.7 | 每一筆：時間 `HH:MM:SS`（Overlay0）、等級（`INFO` Text、`OK` Green、`WARN` Peach、`ERR` Red，四格寬靠左）、發生的事（跟 toast 一樣大寫開頭） | 都要 | 看 App Log 的各種等級 |
 | note-79 | note.7 | 只放在記憶體，app 關掉就清空；筆數有上限，滿了丟掉最舊的 | 都要 | 讀程式；或關掉再開，App Log 是空的 |
 | note-80 | note.8 | 標題 glyph `nf-md-compare`（U+F018A），`DIFF — <anchor> ↔ <另一個>`，後面接 `UNIFIED`、`SPLIT` 兩個 tab，`h\|l` 切 | 比較模式 | 打開比較，按 `h\|l`；讀程式核對 code point |
