@@ -269,10 +269,17 @@ to label, and one centred sentence says it best.
 
 A list whose rows can be marked and worked on as a batch (the "batch of marked items" of Principle P3): every row keeps a one-cell mark column at its very start.
 A marked row shows a Green `nf-md-checkbox_marked` (U+F0132); an unmarked one leaves it blank, the column width always
-kept, so rows never shift sideways when marked or unmarked (Rules L2). Domain flags such as favourites and pins belong
-to the content, and the app may decide for itself.
+kept, so rows never shift sideways when marked or unmarked (Rules L2). Domain flags such as the active one, favourites
+and pins belong to the content, and the app may decide for itself; **the mark column holds one sign per row**: in a
+list that can be marked it holds only the tick, and flags go in the content. In a list that cannot be marked the app
+may draw one kind of flag in the mark column (e.g. the Green `●` before locku's active profile), its glyph and colour
+the app's to decide; every row then keeps the mark column too, blank where there is no flag.
 
 **Why**: marks use the checkbox tick: marked means "picked", the same thing as a ticked checkbox, in the same colour.
+A flag written in the content pushes the text of its group in a grouped list two cells further in than the other
+groups' (locku LK22); drawn in the mark column, the text starts where every other row's does. The column has room for
+one sign: a tick and a flag in it would hide one another, so a list that can be marked keeps it for the tick (the
+user, 2026-10-27, LK22).
 
 ### panel.8 Drag mode
 
@@ -348,8 +355,8 @@ When a list's items fall into groups (kbu's resource kinds, locku's sidebar), ea
 
 - **Group title**: Blue, uppercase ("Uppercase" in the [components](../README.md)), not bold, no glyph; one cell from the
   frame. It is of a kind with the header: it says "what the rows below are", not a row of data.
-- **Items**: two cells further in than the group title. When the list has a mark column ("Marked rows" above), the mark
-  goes in those two extra cells: the mark one cell from the frame, a space, the text three cells from the frame; a group
+- **Items**: two cells further in than the group title. When the list has a mark column ("Marked rows" above: a tick or a
+  flag), the sign goes in those two extra cells: the sign one cell from the frame, a space, the text three cells from the frame; a group
   title row keeps no mark column.
 - **The cursor skips group titles** and stops only on items: `j|k` step over them; `gg|G` go to the first and last item;
   the `N of M` scroll position counts items only. When scrolling puts the cursor on a group's first item, that group's

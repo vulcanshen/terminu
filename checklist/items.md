@@ -647,8 +647,8 @@ The items of tdp v0.11.3. What each column means and what an item applies to: [R
 | panel-83 | panel.11 | Group titles have no glyph | grouped list | Look before the group titles |
 | panel-84 | panel.11 | Group titles are one cell from the frame | grouped list | Look between a group title and the left frame |
 | panel-85 | panel.11 | Items are two cells further in than the group title | grouped list | Compare where items and group titles start |
-| panel-86 | panel.11 | When a grouped list has a mark column, the mark goes in the items' two extra cells: the mark one cell from the frame, a space, the text three cells from the frame | grouped list + marks | Mark an item in a grouped list and count how many cells the mark and the text are from the left frame |
-| panel-87 | panel.11 | When a grouped list has a mark column, a group title row keeps no mark column | grouped list + marks | Check that with a mark column a group title still starts one cell from the frame, as without one |
+| panel-86 | panel.11 | When a grouped list has a mark column, the sign (a tick or a flag) goes in the items' two extra cells: the sign one cell from the frame, a space, the text three cells from the frame | grouped list + marks or flags | Mark an item in a grouped list and count how many cells the mark and the text are from the left frame |
+| panel-87 | panel.11 | When a grouped list has a mark column, a group title row keeps no mark column | grouped list + marks or flags | Check that with a mark column a group title still starts one cell from the frame, as without one |
 | panel-88 | panel.11 | The cursor skips group titles: `j\|k` step over them | grouped list | Press `j\|k` past a group title |
 | panel-89 | panel.11 | `gg\|G` go to the first and last item | grouped list | Press `gg` and `G`; check that the cursor stops on items |
 | panel-90 | panel.11 | The `N of M` scroll position counts items only | grouped list | Check that the total in `N of M` equals the number of items |
@@ -698,6 +698,8 @@ The items of tdp v0.11.3. What each column means and what an item applies to: [R
 | panel-134 | panel.10 | When the list is empty, the location row stays; only the header and the list give way to the empty state | location row | Empty a list with a location row (e.g. open an empty directory): the location row is still there |
 | panel-135 | panel.5 | The columns that may be cut short (names, URLs, a line of text) share the width left and are cut their own way; the other, short columns take their widest value and never shrink | header | Put a very long name in the list: the other columns stay whole and the name is cut short |
 | panel-136 | panel.5 | A value in a cell (a file name or a name that came from a file or another program) holding control characters shows them as red escapes, as on the typing row (`\n`, `\t`, `\x1b`): never dropped, turned into spaces or sent to the terminal as they are | everyone | Put an item whose name holds a newline or `\x1b` in a list (e.g. a file name) and look at that cell; or read the code |
+| panel-137 | panel.7 | In a list that cannot be marked the app may draw one kind of flag in the mark column, one at most per row; every row then keeps the mark column, blank where there is no flag | flags | Check that rows with and without a flag start their text in the same cell; give another row the flag and check that its text does not move |
+| panel-138 | panel.7 | In a list that can be marked the mark column holds only the tick; domain flags go in the content | marks | Check that the mark column holds only ticks or blanks |
 
 ## layout/popup
 

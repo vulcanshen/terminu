@@ -63,6 +63,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | location row | a panel's location row (layout/panel) |
 | sorting | a list that can be sorted |
 | marks | a list that can be marked for batch operations |
+| flags | a list drawing a domain flag in its mark column (one that cannot be marked, panel.7) |
 | Drag | a Drag mode |
 | panel filter | a panel filter |
 | statusbar | a statusbar |

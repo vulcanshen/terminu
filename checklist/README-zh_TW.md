@@ -52,6 +52,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 位置列 | 有 panel 的位置列（layout/panel） |
 | 排序 | 有可以排序的清單 |
 | 標記 | 有可以標記、整批操作的清單 |
+| 旗標 | 有在標記欄畫領域旗標的清單（不能標記的清單，panel.7） |
 | Drag | 有 Drag mode |
 | panel filter | 有 panel filter |
 | statusbar | 有 statusbar |
