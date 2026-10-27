@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.11.4 — 2026-10-27
+
+What the user's own testing of hostu and locku found (hostu, LK22), settled with the user.
+
+- dialog/terminal: when a password is needed to raise privileges, it is asked in a password popup (the unlock style,
+  titled `PASSWORD`) and handed to the tool on its standard input (`sudo -S`), not in a terminal popup filling the
+  screen for one line; a wrong one keeps the popup open with `Wrong password`. The password goes to the tool and
+  nowhere else — written to no file, not in the App Log, not on screen, not sent over the network — and an app on the
+  lib never gets hold of it; a tool that cannot read it on standard input (`doas`) still asks in a terminal popup
+  (terminal.7)
+- layout/panel: the mark column holds one sign per row; a list that cannot be marked may draw one kind of domain flag
+  there (e.g. an active profile), which in a grouped list sits in the items' two extra cells, the text three cells
+  from the frame like every other group's; a list that can be marked keeps the column for the tick (panel.7, panel.11)
+- changed in this version: terminal.4, terminal.7; panel.7, panel.11
+- checklist: terminal-21, terminal-24, panel-86 and panel-87 changed; panel-137 and panel-138 added; the applicability
+  flags added (1455 items)
+
 ## v0.11.3 — 2026-10-27
 
 What demou met following v0.11.2 (DM42), settled with the user.
