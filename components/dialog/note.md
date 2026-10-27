@@ -251,6 +251,11 @@ keep arriving, as in streaming content.
 - **What goes in**: what the user did and how it ended; every toast (the same words); what the app did on its own in
   the background (e.g. a move under Rules E3, a default made at start, the details of something outside the app that
   could not be read).
+- **What the user did**: an item, panel or global operation of Rules P3, run from a menu, by a letter hotkey or by
+  `Enter`; one that only looks without changing anything counts too (opening a viewer, switching screens: `Switched to
+  Pods`). Moving the cursor, moving the focus (`Tab`, the number keys), opening the Space menu, `?` or `!` are not
+  operations and go unrecorded; what is done inside a popup is not recorded on its own: the result of the operation it
+  belongs to is.
 - **Each entry**: the time `HH:MM:SS` (Overlay0), a level, and what happened, capitalised as in [`dialog/toast`](toast.md). The level
   follows the toast's kinds and colours: `INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, in a level column four cells
   wide, left-aligned.
@@ -260,7 +265,9 @@ keep arriving, as in streaming content.
   opening the App Log counts as seeing them.
 
 **Why**: a toast is gone in seconds, and someone who missed it never learns an error happened; the App Log keeps it.
-Errors alone do not show what was done before them, and the entries just before are often the cause; what the app does
+Errors alone do not show what was done before them, and the entries just before are often the cause — so is what was
+being looked at, so an operation that only looks is recorded too; what counts is drawn by the three kinds of operation
+of Rules P3, the same set the menus list, so every app records the same range (demou DM41); what the app does
 in the background can only be seen here. `!`, like `?` and `Space`, works in every app of the family. Memory only: what
 matters is what happened while the app was open this time, with no further kind of thing to store and clean up.
 

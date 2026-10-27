@@ -198,12 +198,15 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 
 - **記什麼**：使用者做的動作與結果；每一個 toast（同一句話）；app 自己在背景做的事（例：Rules E3 的搬家、啟動時建好的預設值、
   讀不到外面的東西的細節）。
+- **動作是哪些**：Rules P3 的 item、panel、global operation，不管是從 menu、letter hotkey 還是 `Enter` 執行的；只看不改的也算
+  （例：開 viewer、切換畫面 `Switched to Pods`）。移動 cursor、換 focus（`Tab`、數字鍵）、打開 Space menu、`?`、`!` 不是動作，
+  不記；popup 裡的操作不另外記，記的是它所屬那個動作的結果。
 - **每一筆**：時間 `HH:MM:SS`（Overlay0）、等級、發生的事（照 [`dialog/toast`](toast-zh_TW.md) 的「開頭大寫」）。等級跟著 toast 的種類與顏色：`INFO` Text、
   `OK` Green、`WARN` Peach、`ERR` Red，等級欄四格寬、靠左。
 - **只放在記憶體**：app 關掉就清空；筆數有上限，滿了丟掉最舊的。
 - **沒看過的錯誤與警告**：寫在 footer 的 `!`（[`layout/screen`](../layout/screen-zh_TW.md) 的 footer）；打開 App Log 就算看過。
 
-**為什麼**：toast 幾秒就收掉，沒注意到的人不會知道出過錯；App Log 留著。只記錯誤看不出出錯前做了什麼，前面那幾筆往往就是原因；
+**為什麼**：toast 幾秒就收掉，沒注意到的人不會知道出過錯；App Log 留著。只記錯誤看不出出錯前做了什麼，前面那幾筆往往就是原因 —— 出錯前在看什麼也是，所以只看不改的動作也記；「動作」照 Rules P3 的三種 operation 劃，跟 menu 列的是同一批，app 之間記的範圍一樣（demou DM41）；
 app 在背景做的事，使用者也只有這裡看得到。`!` 跟 `?`、`Space` 一樣，在家族哪個 app 都按得到。只放在記憶體：要看的是這次開 app
 發生了什麼，不多一種要存、要清的東西。
 
