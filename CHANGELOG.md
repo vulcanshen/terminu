@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.11.0 — 2026-10-27
+
+What the harness trials of hostu and demou found (hostu, DM41), settled with the user. Every app follows this round.
+
+- Rules L1: the standard size is 60×32, not 80×40 — at 60 columns × 32 rows every core task can be completed with
+  every panel side by side (two panels split 1:2 still have 20 | 40); a terminal split in half is often under 80
+  columns (the user's tmux pane is 77×32). The minimum size defaults to 60×32 and may not be above it; the narrow-width
+  threshold may not be above 60 (screen.5); the hint of a popup with only a typing row fits in 60 columns (M3, popup.1)
+- Rules L1, layout/screen: below the minimum size a third row says how to quit, `Press [Ctrl-C] twice to quit`
+  (Overlay0, written as an empty state's hint); when the rows don't fit, the size hint goes first, then this row, the
+  name always staying; a row wider than the screen doesn't fit either (screen.7)
+- dialog/note: the App Log's "what the user did" is an operation of the three kinds of Rules P3 — item, panel, global —
+  run from a menu, a letter hotkey or `Enter`, one that only looks included (opening a viewer, switching screens);
+  moving the cursor or the focus, opening the Space menu, `?` or `!` are not recorded (note.7)
+- changed in this version: L1, M3; screen.5, screen.7, popup.1, note.7
+- checklist: L1-1 to L1-4, M3-5, screen-26 and note-77 changed (1453 items); the header names v0.11.0
+
 ## v0.10.3 — 2026-10-26
 
 What terminu-go met checking an app's project files against the templates (G102), and what the hostu trial of the
