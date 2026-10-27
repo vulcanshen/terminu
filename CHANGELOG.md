@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.11.2 — 2026-10-27
+
+What sshu and kbu met following v0.11.0 (SS46, KB34), settled with the user.
+
+- dialog/note: an operation is done once it is accepted — cancelled with `Esc` at the confirm before it, or at the
+  form or input popup that takes its values, it was not done and is not recorded (a confirm is only a door, Rules T1);
+  a panel's compare mode (note.8) is not recorded either (note.7)
+- changed in this version: note.7
+- checklist: note-77 changed (1453 items)
+
 ## v0.11.1 — 2026-10-27
 
 Settled with the user (from terminu-go, G103).

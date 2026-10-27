@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v0.11.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v0.11.2 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
