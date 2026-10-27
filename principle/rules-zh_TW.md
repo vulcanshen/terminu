@@ -4,7 +4,7 @@
 
 這裡的每一條都是 **必須遵守**。每條附上「為什麼」，那是它的 origin UX（[Principle P0](README-zh_TW.md#p0-規則服務-ux不是反過來)）。
 
-**什麼是規定**：rules、[components](../components/README-zh_TW.md) 與 [project](../project/README-zh_TW.md) 裡的敘述都是規定。
+**什麼是規定**：rules、[components](../components/README-zh_TW.md) 與 [project](../project/README-zh_TW.md)（只綁家族成員，project.1）裡的敘述都是規定。
 不是規定的只有三種：標成「例」的例子、「為什麼」、標成「實作參考（不是規定）」的段落。圖也是規定：圖的結構（框、glyph 的位置、
 間距、對齊、旁邊標的顏色）照圖，圖裡的名稱、數值、說明文字是例；文字跟圖衝突時以文字為準（components 的
 「[圖與間距](../components/README-zh_TW.md#components2-圖與間距)」）。
@@ -900,9 +900,10 @@ splash 畫的是該 app 的 `docs/icon.svg` —— terminu family 的 mark —�
 app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度、發布、文件，以及共用 lib 與 app 的分工。這一章不是畫面上的 UX；它的理由是家族一致 ——
 五個 app 用同一套做法，使用者裝過一個就會裝其他的，也知道去哪找設定與資料。
 
-**家族成員與照 tdp 做的 app**：家族成員是 vulcanshen 的 app。別人照 tdp 做的 app，綁著 vulcanshen 的幾處換成自己的：repo 的路徑
-（[project](../project/README-zh_TW.md)）、Homebrew tap（E6）、splash 的作者信箱（S5）；README 的 terminu family 段改成寫「照 terminu
-design 做」並附上連結（E7）。其他規定兩種 app 都一樣。
+**家族成員與照 tdp 做的 app**：家族成員是 vulcanshen 的 app。別人照 tdp 做的 app，綁著 vulcanshen 的幾處換成自己的：Homebrew tap
+（E6）、splash 的作者信箱（S5）；README 的 terminu family 段改成寫「照 terminu design 做」並附上連結（E7）。
+[project](../project/README-zh_TW.md) 只綁家族成員：照 tdp 做的 app，repo 怎麼放 app 可以自行決定，可以拿 project 當起點
+（project.1）。其他規定兩種 app 都一樣。
 
 **為什麼**：照 tdp 做的 app 不在 vulcanshen 的帳號底下，也不進同一個 tap；照字面抄，寫出來的就是錯的路徑與別人的信箱。
 
@@ -1076,7 +1077,8 @@ powerline 符號分開量，是因為同一台終端機上兩者可能不同：N
 
 - 單一靜態 binary，goreleaser 建置；`install.sh` / `uninstall.sh`（`curl | sh`、免 sudo），
   另發到 Homebrew tap `vulcanshen/homebrew-tap`（照 tdp 做的 app 發到自己的 tap，E 章開頭）。
-- repo 的目錄、Makefile、版本、CHANGELOG 與發布流程照 [project](../project/README-zh_TW.md)；它的範本檔照原樣複製。
+- 家族成員的 repo 的目錄、Makefile、版本、CHANGELOG 與發布流程照 [project](../project/README-zh_TW.md)，範本檔照原樣複製；
+  照 tdp 做的 app 可以自行決定（project.1）。
 - 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（L4）。
 - `docs/icon.svg` 是 app 那一版的家族 mark（長相見 S5；tdp 自己的是 `principle/icon.svg`），是正本；splash（S 章）由它逐格畫出。
   程式裡另有一份給 splash 用（`internal/` 裡的副本檔，或寫死的格子；Go 的 `go:embed` 讀不到 `docs/`），用測試守住兩份一樣。

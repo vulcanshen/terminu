@@ -109,9 +109,10 @@ The two languages' lists line up by ID; the Traditional Chinese list names the s
 
 ### Family members and apps made by tdp
 
-Where an item gives two ways (the repo's account, the Homebrew tap, the splash's e-mail address, the README's terminu
+Where an item gives two ways (the Homebrew tap, the splash's e-mail address, the README's terminu
 family section; the opening of chapter E in the rules), check the one for what the app is: a family member, or an app
-made by tdp. Every other item is the same for both.
+made by tdp. The project items (`project-`) are for family members only (project.1); every other item is the same
+for both.
 
 ### Screens below the minimum size
 

@@ -12,7 +12,8 @@ copied into an app are written that way too.
 
 ## project.1 What is a requirement
 
-Everything written here is a requirement. Only three things are not: examples (however they are introduced: "e.g.",
+This page binds family members only (start of chapter E of the Rules). For a family member, everything written here
+is a requirement. Only three things are not: examples (however they are introduced: "e.g.",
 "for example", "Example:", "such as", an "Examples" column), the "Why", and paragraphs marked "Implementation
 reference (not a requirement)". Where it says "the app may decide for itself", that part is left to the app
 explicitly, with what still holds inside that scope written beside it
@@ -20,6 +21,15 @@ explicitly, with what still holds inside that scope written beside it
 
 The template files are requirements too: they are copied as they are, changed only where the last column of the
 "Template files" table says.
+
+**An app made with tdp** (not a family member): its repo's directories, Makefile, where the version lives, CHANGELOG
+and release steps, the app may decide for itself. This page and its templates are a starting point it may copy and
+change as it likes. What still holds is chapter E of the Rules (e.g. E1 `version`, E6 `install.sh` and the tap, E6's
+screen tests).
+
+**Why**: what this page is worth lands on whoever keeps the whole family: a release problem one app runs into is fixed
+once for all of them, the family shares one Homebrew tap, and a diff across the repos shows which one drifted. An app
+made on its own gets none of that, so binding it gains nothing (the user, 2026-10-27).
 
 ## project.2 Template files
 
@@ -33,9 +43,8 @@ The template files are requirements too: they are copied as they are, changed on
 | [`version.go`](version.go) | `internal/version/version.go` | `<app>` |
 | [`gitignore`](gitignore) | `.gitignore` | `<app>`; the app's own lines go after the last one |
 
-- **An app made with tdp** (not a family member; start of chapter E of the Rules): the `vulcanshen` in the templates
-  (the repo path, the tap's owner, the homepage) is replaced with its own account, which also counts as the last column
-  of the table.
+- **An app made with tdp** (not a family member; project.1) starting from the templates replaces the `vulcanshen` in
+  them (the repo path, the tap's owner, the homepage) with its own account.
 - **How far a mark reaches**: a `# app:` comment in `goreleaser.yaml` stays as it is and covers the value of the key
   right below it, a list or a whole block included (`ignore`, `description`, `caveats`); when the key it names is not
   in the template yet (`dependencies`), the app adds that key where the comment is; other keys (`test:`, say) stay as

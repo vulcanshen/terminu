@@ -9,7 +9,7 @@ tdp is the detailed specification behind [terminu design](../README.md), in four
 | **Principle** | this document | The spirit: what it aims for, and why |
 | **Rules** | [rules.md](rules.md) | Must hold, each with its reason; what is left to the app is left explicitly (P5) |
 | **Components** | [components](../components/README.md) | Component specs: the colour scheme, frames, dialogs, and how each kind of input looks and works; required, choosing only among the listed options |
-| **Project** | [project](../project/README.md) | The project spec: a family app repo's directories, Makefile, version, CHANGELOG and release; the template files are copied as they are |
+| **Project** | [project](../project/README.md) | The project spec: a family app repo's directories, Makefile, version, CHANGELOG and release; the template files are copied as they are; binds family members only |
 
 The [checklist](../checklist/README.md) breaks the requirements of these four layers into items that can each be
 checked, for checking whether an app does what tdp asks; it is not a requirement itself, and where it disagrees with the

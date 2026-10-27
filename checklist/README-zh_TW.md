@@ -95,8 +95,8 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 
 ### 家族成員與照 tdp 做的 app
 
-條目寫了兩種寫法的（repo 的帳號、Homebrew tap、splash 的作者信箱、README 的 terminu family 段；Rules 的 E 章開頭），照 app 是家族成員
-還是照 tdp 做的 app，查那一種。其他條目兩種 app 都一樣。
+條目寫了兩種寫法的（Homebrew tap、splash 的作者信箱、README 的 terminu family 段；Rules 的 E 章開頭），照 app 是家族成員
+還是照 tdp 做的 app，查那一種。project 的條目（`project-`）只查家族成員（project.1）；其他條目兩種 app 都一樣。
 
 ### 比最低尺寸小的畫面
 

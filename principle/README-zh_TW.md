@@ -9,7 +9,7 @@ tdp 是 [terminu design](../README-zh_TW.md) 的細節規範，分四層：
 | **Principle** | 本文件 | 精神：要達成什麼、為什麼 |
 | **Rules** | [rules-zh_TW.md](rules-zh_TW.md) | 必須遵守，每條附理由；交給 app 的地方明文放行（P5） |
 | **Components** | [components](../components/README-zh_TW.md) | 元件規格：配色、框、dialog、每一種 input 的樣子與操作；必須照做，只能在列出的方案裡挑 |
-| **Project** | [project](../project/README-zh_TW.md) | 專案規格：家族 app 的 repo 的目錄、Makefile、版本、CHANGELOG、發布；範本檔照原樣複製 |
+| **Project** | [project](../project/README-zh_TW.md) | 專案規格：家族 app 的 repo 的目錄、Makefile、版本、CHANGELOG、發布；範本檔照原樣複製；只綁家族成員 |
 
 [checklist](../checklist/README-zh_TW.md) 把這四層的規定拆成一條一條可以檢查的項目，用來檢查一個 app 照 tdp 做到了沒有；它本身不是規定，
 跟規範對不上時以規範為準。

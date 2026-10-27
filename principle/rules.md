@@ -6,8 +6,9 @@ Every rule here **must hold**. Each carries a "why", which is its origin UX
 ([Principle P0](README.md#p0-rules-serve-the-ux-not-the-other-way-round)).
 
 **What is a requirement**: everything stated in the rules, in [components](../components/README.md) and in
-[project](../project/README.md) is a requirement. Only three kinds of text are not: examples (however they are
-introduced: "e.g.", "for example", "Example:", "such as", an "Examples" column), the "why", and passages marked
+[project](../project/README.md) (for family members only; project.1) is a requirement. Only three kinds of text
+are not: examples (however they are introduced: "e.g.", "for example", "Example:", "such as", an "Examples"
+column), the "why", and passages marked
 "Implementation reference (not a requirement)". Diagrams are requirements too: their structure (frames, where glyphs go,
 spacing, alignment, the colours noted beside them) is as drawn, while the names, values and descriptions in them are
 examples; where the text and a diagram disagree, the text wins
@@ -1107,10 +1108,10 @@ This chapter is not on-screen UX; its reason is family consistency — the five 
 have installed one can install the others, and know where to find config and data.
 
 **Family members and apps made with tdp**: the family members are vulcanshen's apps. An app someone else makes with tdp
-replaces the few places tied to vulcanshen with its own: the repo path ([project](../project/README.md)), the Homebrew
-tap (E6), the author's e-mail address on the splash (S5); the README's terminu family section says instead that the app
-is "built with terminu design", with a link (E7). Every other rule is the same for
-both.
+replaces the few places tied to vulcanshen with its own: the Homebrew tap (E6), the author's e-mail address on the
+splash (S5); the README's terminu family section says instead that the app is "built with terminu design", with a link
+(E7). [project](../project/README.md) binds family members only: an app made with tdp may decide its repo for itself,
+and may start from project (project.1). Every other rule is the same for both.
 
 **Why**: an app made with tdp is not under vulcanshen's account and does not go into the same tap; copied word for word,
 it would carry the wrong path and someone else's e-mail address.
@@ -1328,8 +1329,9 @@ caught when the edge cases don't ask for it.
 - A single static binary built with goreleaser; `install.sh` / `uninstall.sh` (`curl | sh`, no sudo),
   also published to the Homebrew tap `vulcanshen/homebrew-tap` (an app made with tdp publishes to its own tap; start of
   chapter E).
-- The repo's directories, Makefile, version, CHANGELOG and release follow [project](../project/README.md); its
-  template files are copied as they are.
+- A family member's repo directories, Makefile, version, CHANGELOG and release follow
+  [project](../project/README.md), its template files copied as they are; an app made with tdp may decide these for
+  itself (project.1).
 - Screen tests across sizes: at several terminal sizes, every line is exactly the terminal width (L4).
 - `docs/icon.svg` is the app's version of the family mark (what it looks like: S5; tdp's own is `principle/icon.svg`),
   and it is the original; the splash (chapter S) is drawn from it cell for cell. The program keeps a second copy for the

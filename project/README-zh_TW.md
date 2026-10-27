@@ -10,10 +10,18 @@ app 的檔案引用 tdp 的條目寫 `tdp` 加編號（Rules 開頭的「引用�
 
 ## project.1 什麼是規定
 
-這裡的敘述都是規定。不是規定的只有三種：標成「例」的例子、「為什麼」、標成「實作參考（不是規定）」的段落。寫「app 可以自行
+這一頁只綁家族成員（Rules 的 E 章開頭）；對家族成員，這裡的敘述都是規定。
+不是規定的只有三種：標成「例」的例子、「為什麼」、標成「實作參考（不是規定）」的段落。寫「app 可以自行
 決定」的地方是明文放行，範圍內還要守的規定寫在旁邊（[Principle P5](../principle/README-zh_TW.md#p5-明文放行)）。
 
 範本檔也是規定：照原樣複製，只改「範本檔」表上最後一欄寫的地方。
+
+**照 tdp 做的 app**（不是家族成員）：repo 的目錄、Makefile、版本放在哪、CHANGELOG、發布的步驟，app 可以自行決定；這一頁與範本
+可以拿來當起點，複製之後怎麼改都可以。範圍內還要守的是 Rules 的 E 章（例：E1 的 `version`、E6 的 `install.sh` 與 tap、E6 的
+畫面測試）。
+
+**為什麼**：這一頁的價值都落在同時維護整個家族的人身上 —— 一個 app 踩過的發版問題修一次，全家族都拿到；家族共用一個
+Homebrew tap；跨 repo diff 一下就知道誰走樣。自己做一個 app 用不到這些，綁住也沒有好處（user 2026-10-27）。
 
 ## project.2 範本檔
 
@@ -27,8 +35,8 @@ app 的檔案引用 tdp 的條目寫 `tdp` 加編號（Rules 開頭的「引用�
 | [`version.go`](version.go) | `internal/version/version.go` | `<app>` |
 | [`gitignore`](gitignore) | `.gitignore` | `<app>`；app 自己的行接在最後 |
 
-- **照 tdp 做的 app**（不是家族成員，Rules 的 E 章開頭）：範本裡的 `vulcanshen`（repo 的路徑、tap 的 owner、首頁）換成自己的
-  帳號，也算上表最後一欄的地方。
+- **照 tdp 做的 app**（不是家族成員，project.1）拿範本當起點時，範本裡的 `vulcanshen`（repo 的路徑、tap 的 owner、首頁）換成
+  自己的帳號。
 - **標記管到哪裡**：`goreleaser.yaml` 的 `# app:` 註解照原樣留著，管的是緊接在它底下的那一個鍵的值，清單或整塊都算（`ignore`、
   `description`、`caveats`）；註解講的鍵範本裡還沒有時（`dependencies`），在註解那裡加上那個鍵；其他的鍵（例：`test:`）照原樣。
   打開 `Windows` 是標著 `# Windows` 的那一列連同它底下同一塊的註解列，只拿掉行首的 `# `，行尾的 `# Windows` 留著。
