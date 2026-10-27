@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.11.1 — 2026-10-27
+
+Settled with the user (from terminu-go, G103).
+
+- dialog/note: the panel filter is not recorded in the App Log — filtering only changes what is in view, like moving the
+  cursor (note.7)
+- changed in this version: note.7
+- checklist: note-77 changed (1453 items)
+
 ## v0.11.0 — 2026-10-27
 
 What the harness trials of hostu and demou found (hostu, DM41), settled with the user. Every app follows this round.
