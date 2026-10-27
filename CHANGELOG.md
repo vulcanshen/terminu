@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.0.1 — 2026-10-27
+
+Documentation only, settled with the user after the family's releases on v1.0.0.
+
+- Rules E7: a family member's README section 11 (terminu family) says it follows terminu design with links to tdp,
+  terminu-go and terminu-harness, and no longer lists the other members; the members are listed only in tdp's README,
+  so a new member does not mean changing every app's README
+- README: the family table no longer has an "On terminu-go" column (every app is on it) and lists hostu
+- changed in this version: E7 and the start of chapter E
+- checklist: E7-14 changed (1455 items); the header names v1.0.1
+
 ## v1.0.0 — 2026-10-27
 
 The stable version, settled with the user. Every app of the family follows v0.11.5 on terminu-go v0.6.5, the user
