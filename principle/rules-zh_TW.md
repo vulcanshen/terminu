@@ -375,7 +375,7 @@ Space menu 列出**當前 panel 能做的所有事**，依作用對象（Princip
 - 每個 global operation 都在 global operation popup 裡（從 Space menu 的 global 列打開）。
 - popup 自己的操作，都在該 popup 的 `?` key reference 裡（K6）；下框 hint 寫哪些，照
   [components/layout/popup](../components/layout/popup-zh_TW.md) 的 hint 與各元件寫的 hint。
-- **只有打字列的 popup**（text、password、number）：`?` 在那裡是字元（K8），所以它的 hint 要列出全部操作，而且 80 欄放得下
+- **只有打字列的 popup**（text、password、number）：`?` 在那裡是字元（K8），所以它的 hint 要列出全部操作，而且 60 欄放得下（L1）
   （[components/layout/popup](../components/layout/popup-zh_TW.md) 的 hint）。
 - **letter hotkey 是某個清單裡某一列的捷徑，不是額外的功能**。只能靠熱鍵觸發、哪裡都
   找不到的動作是違反。
@@ -514,13 +514,13 @@ focus 按下去會觸發哪一個**：會觸發的那個亮、不會的那個暗
 
 ## L 版面
 
-### L1 最低支援 80 欄 × 40 列
+### L1 最低支援 60 欄 × 32 列
 
-在 **80 欄 × 40 列**下，app 必須能完成所有核心任務。這大約是 16:9 螢幕切一半（8:9）
-開一個終端機視窗的大小。panel 怎麼拆，app 可以自行決定；放不下所有 panel 時怎麼畫，見
+在 **60 欄 × 32 列**下，app 必須能完成所有核心任務，所有 panel 照常並排。終端機左右對半分割後一格放得下這個大小
+（例：155×34 的終端機在 tmux 裡對半，一格是 77×32）。panel 怎麼拆，app 可以自行決定；放不下所有 panel 時怎麼畫，見
 [components/layout/screen](../components/layout/screen-zh_TW.md) 的窄寬。
 
-**最低尺寸**：每個 app 有一個最低尺寸，預設 80×40；要不要調低，app 可以自行決定，不能高於 80×40。最低尺寸到 80×40 之間，照 components/layout/screen 的窄寬
+**最低尺寸**：每個 app 有一個最低尺寸，預設 60×32；要不要調低，app 可以自行決定，不能高於 60×32。最低尺寸到 60×32 之間，照 components/layout/screen 的窄寬
 那些規則縮。
 
 **比最低尺寸小時**（寬或高任一邊不夠），不畫 app 的畫面，只在正中央畫三列：
@@ -528,7 +528,7 @@ focus 按下去會觸發哪一個**：會觸發的那個亮、不會的那個暗
 | 列 | 內容 | 顏色 |
 |---|---|---|
 | 1 | app 的名稱（跟 splash 的名稱一樣，S5） | Blue 粗體 |
-| 2 | `needs a terminal of at least <W>×<H>`，寫 app 的最低尺寸（例：`needs a terminal of at least 80×40`） | Overlay0 |
+| 2 | `needs a terminal of at least <W>×<H>`，寫 app 的最低尺寸（例：`needs a terminal of at least 60×32`） | Overlay0 |
 | 3 | `Press [Ctrl-C] twice to quit`：這時唯一作用的鍵，照空狀態的提示寫，鍵加方括號（M5，[components/layout/screen](../components/layout/screen-zh_TW.md) 的空狀態） | Overlay0 |
 
 - 放不下時先拿掉第 2 列，再拿掉第 3 列，名稱一定留著；一列比畫面寬也算放不下。一直縮到 1×1 都不能當掉。
@@ -536,8 +536,10 @@ focus 按下去會觸發哪一個**：會觸發的那個亮、不會的那個暗
 - app 的狀態照舊保留：視窗拉大，回到原本的畫面，什麼都沒變。
 
 **為什麼**：終端機常常只佔半個螢幕 —— 另一半是編輯器、瀏覽器或另一個終端機。只有全螢幕
-才好用的 TUI，在日常的分割視窗裡就不能用。80×40 是標準：在這之上一定完整好用。比最低尺寸還小時硬畫，框線、截斷全亂，使用者
-看到的是壞掉的畫面；直接說要多大，使用者把視窗拉大就好。最低尺寸讓 app 自己定，是因為版面簡單的 app 在更小的視窗也畫得下，
+才好用的 TUI，在日常的分割視窗裡就不能用。60×32 是標準：在這之上一定完整好用。標準原本是 80×40（「16:9 螢幕切一半」），
+但實際對半分割的窗格常常不到 80 欄（字型大小、tmux 的分隔線），user 的就是 77×32，最低尺寸 80 欄的 app 在那裡什麼都不能做；
+60 欄時兩個 panel 照 1:2 並排還有 20｜40，所以標準改成 60×32，panel 多的 app 也要排得下（user 2026-10-27，hostu 回報）。
+比最低尺寸還小時硬畫，框線、截斷全亂，使用者看到的是壞掉的畫面；直接說要多大，使用者把視窗拉大就好。最低尺寸讓 app 自己定，是因為版面簡單的 app 在更小的視窗也畫得下，
 80×24 的終端機與別的 app 的 PTY 裡照樣能用。看不到畫面時按下去的鍵等於矇著眼操作，所以都不作用；離開流程可能要開 confirm 問
 問題，這時畫不出來，所以只留下不用問的強制離開。強制離開要寫出來：按什麼都沒反應時，不知道規定的人想不到連按兩次 `Ctrl-C`，
 以為 app 卡住了；視窗拉不大時（例：對半分割的 tmux 窗格），這是唯一的出口，所以放不下時它比尺寸那一列晚拿掉（hostu 2026-10-27

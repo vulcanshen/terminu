@@ -74,8 +74,8 @@ the chip row rather than a row of its own. It is not a surface; focus never rest
 ## screen.5 Narrow widths
 
 When not all panels fit, only the focused panel is drawn, at full width; `Tab` changes panels as usual, showing one at a
-time. The threshold, the app may decide for itself from the minimum widths of its panels, but it may not be above 80 (Rules L1: 80
-columns must work properly). Narrow widths happen only at or above the app's minimum size; below it, see "Smaller than
+time. The threshold, the app may decide for itself from the minimum widths of its panels, but it may not be above 60 (Rules L1: 60
+columns must work properly, every panel side by side). Narrow widths happen only at or above the app's minimum size; below it, see "Smaller than
 the minimum size" below.
 
 ## screen.6 Zoom
@@ -91,8 +91,8 @@ default the same as narrow widths, what the user learns on a narrow screen works
 
 ## screen.7 Smaller than the minimum size
 
-When the screen is smaller than the app's minimum size (Rules L1: 80×40 by default; the app may lower it, but not above
-80×40), the whole screen draws just three rows, centred both ways:
+When the screen is smaller than the app's minimum size (Rules L1: 60×32 by default; the app may lower it, but not above
+60×32), the whole screen draws just three rows, centred both ways:
 
 ```
                 kbu

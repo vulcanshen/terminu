@@ -150,7 +150,7 @@ The items of tdp v0.10.1. What each column means and what an item applies to: [R
 | M3-2 | M3 | Every global operation is in the global operation popup | everyone | Read the code to list the global actions, then find each one in the global operation popup |
 | M3-3 | M3 | A popup's own operations are all in that popup's `?` key reference | everyone | Press `?` on every kind of popup and compare with the operations found by reading the code |
 | M3-4 | M3 | The hint of a popup with only a typing row (text, password, number) lists every operation | text or password or number | Look at that popup's bottom-border hint and compare with the code |
-| M3-5 | M3 | The hint of a popup with only a typing row fits in 80 columns | text or password or number | Set the terminal to 80 columns and open that popup: the hint is not cut |
+| M3-5 | M3 | The hint of a popup with only a typing row fits in 60 columns | text or password or number | Set the terminal to 60 columns and open that popup: the hint is not cut |
 | M3-6 | M3 | No action is triggered only by hotkey and found nowhere else: every letter hotkey is a shortcut to a row in some list | everyone | Read the code: every registered hotkey maps to a row of the Space menu, the global operation popup or another menu (for a popup's own keys see M3-3) |
 | M4-1 | M4 | The row that switches to the current screen is disabled as M6 says | several screens | Open the global operation popup on a screen: the row switching to this screen is in the disabled colour, and the cursor skips it |
 | M4-2 | M4 | With no popup open, the hotkeys in the global operation popup can also be pressed directly on a panel | everyone | Press a global hotkey directly on a panel |
@@ -202,8 +202,8 @@ The items of tdp v0.10.1. What each column means and what an item applies to: [R
 
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
-| L1-1 | L1 | At 80 columns × 40 rows, every core task can be completed | everyone | Open the terminal at 80 × 40 and go through every core task of the app |
-| L1-2 | L1 | The app's minimum size is no larger than 80×40 (80×40 by default; the app may lower it) | everyone | Read the code: the minimum size set; set the terminal to 80×40 and check that the app draws as usual |
+| L1-1 | L1 | At 60 columns × 32 rows, every core task can be completed, with every panel side by side | everyone | Open the terminal at 60 × 32 and go through every core task of the app |
+| L1-2 | L1 | The app's minimum size is no larger than 60×32 (60×32 by default; the app may lower it) | everyone | Read the code: the minimum size set; set the terminal to 60×32 and check that the app draws as usual |
 | L1-3 | L1 | Below the minimum size (too narrow or too short), the app's screen is not drawn; only three rows in the centre: the app's name (Blue bold), the hint `needs a terminal of at least <W>×<H>` (Overlay0, giving the app's minimum size) and `Press [Ctrl-C] twice to quit` (Overlay0) | everyone | Shrink the terminal below the minimum size (once only narrower, once only shorter) |
 | L1-4 | L1 | When they do not fit, the hint goes first, then `Press [Ctrl-C] twice to quit`, and the name stays; a row wider than the screen does not fit either; shrinking all the way to 1×1 never crashes | everyone | Shrink to two rows high and narrower than the hint (30 columns, say), once each, then all the way to 1×1 |
 | L1-5 | L1 | Below the minimum size no key does anything (nothing goes to the app or into a PTY); `q` and a single `Ctrl-C` do nothing, and only `Ctrl-C` pressed twice quits at once | everyone | Once shrunk, press a few keys that would change something, `q` and one `Ctrl-C`; enlarge and see nothing changed; shrink again and press `Ctrl-C` twice |
@@ -530,7 +530,7 @@ The items of tdp v0.10.1. What each column means and what an item applies to: [R
 | screen-23 | screen.4 | When the statusbar does not fit it is truncated, never wrapped | statusbar | Narrow the terminal; check that the statusbar stays one row |
 | screen-24 | screen.5 | When not all panels fit, only the focused panel is drawn, at full width | several panels | Narrow the terminal below the narrow-width threshold (but above the minimum size) |
 | screen-25 | screen.5 | At narrow widths `Tab` changes panels as usual, showing one at a time | several panels | Press `Tab` at a narrow width |
-| screen-26 | screen.5 | The narrow-width threshold is not above 80 columns | several panels | Set the terminal to 80 columns; check that the panels are side by side as usual |
+| screen-26 | screen.5 | The narrow-width threshold is not above 60 columns | several panels | Set the terminal to 60 columns; check that the panels are side by side as usual |
 | screen-27 | screen.8 | An empty state is one fact plus a hint naming the key | everyone | Leave a panel with no data and look at its middle |
 | screen-28 | screen.8 | An empty state is centred | everyone | As above, look at where the two lines are |
 | screen-29 | screen.8 | Both lines of an empty state are Overlay0 | everyone | As above, look at the colours |

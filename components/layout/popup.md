@@ -55,7 +55,7 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
     position ("Width" below), so pairs are dropped only on a terminal too narrow. E.g.
     `Enter:install Tab:actions Esc:cancel` that does not fit becomes `Enter:install Esc:cancel`, and then `Esc:cancel`.
   - **A popup with only a typing row** (text, password, number): `?` is a character there, so the hint must list every
-    operation, and fit in 80 columns (Rules M3).
+    operation, and fit in 60 columns (Rules M3, L1).
 - **Right of the bottom border**: the scroll position when the content does not fit (see "When the content does not fit"
   below).
 - **Text on the frame always keeps one line segment away from the corner**: the title `┏━TITLE`, the hint

@@ -45,7 +45,7 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   - **框到了最寬還放不下時，從尾端整組捨棄，但最後的 `Esc` 一定留著**：從 `Esc` 前面的那一組開始，一組一組往前捨，不截在
     項目中間；下框右邊的捲動位置留著。框的寬度本來就算進 hint 與捲動位置（見下面的「寬度」），只有 terminal 太窄時才會捨棄。
     例：`Enter:install Tab:actions Esc:cancel` 放不下時是 `Enter:install Esc:cancel`，再放不下是 `Esc:cancel`。
-  - **只有打字列的 popup**（text、password、number）：`?` 在那裡是字元，hint 要列出全部操作，而且 80 欄放得下（Rules M3）。
+  - **只有打字列的 popup**（text、password、number）：`?` 在那裡是字元，hint 要列出全部操作，而且 60 欄放得下（Rules M3、L1）。
 - **下框右邊**：內容放不下時的捲動位置（見下面的「內容放不下時」）。
 - **框上的字與角之間一律隔一段線**：標題 `┏━TITLE`、hint `┗━ Enter:run`、捲動位置 `4 of 12 ━┛`（panel 也一樣，只有
   panel 的膠囊緊接著角，[`panel`](panel-zh_TW.md)）。

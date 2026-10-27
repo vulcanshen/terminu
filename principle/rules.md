@@ -471,7 +471,7 @@ has a Space menu of the same shape.
 - A popup's own operations are all in that popup's `?` key reference (K6); which of them its bottom-border hint shows
   follows the hint in [components/layout/popup](../components/layout/popup.md) and the hint each component specifies.
 - **A popup with only a typing row** (text, password, number): `?` is a character there (K8), so its hint lists every
-  operation, and fits in 80 columns (the hint in [components/layout/popup](../components/layout/popup.md)).
+  operation, and fits in 60 columns (L1; the hint in [components/layout/popup](../components/layout/popup.md)).
 - **A letter hotkey is a shortcut to a row in some list, not an extra feature.** An action triggered only by hotkey and
   found nowhere else is a violation.
 
@@ -628,21 +628,21 @@ bright is what has focus (Principle P6).
 
 ## L Layout
 
-### L1 Minimum supported size: 80 columns × 40 rows
+### L1 Minimum supported size: 60 columns × 32 rows
 
-At **80 columns × 40 rows**, the app must be able to complete all its core tasks. That is roughly a terminal window on
-half of a 16:9 screen (8:9). How the panels split, the app may decide for itself; how to draw when not every panel fits: narrow widths
+At **60 columns × 32 rows**, the app must be able to complete all its core tasks, with every panel side by side as
+usual. A terminal split in half fits that size (a 155×34 terminal split in half in tmux gives 77×32 a pane). How the panels split, the app may decide for itself; how to draw when not every panel fits: narrow widths
 in [components/layout/screen](../components/layout/screen.md).
 
-**The minimum size**: every app has a minimum size, 80×40 by default; whether to lower it, the app may decide for itself,
-but it never goes above 80×40. Between the minimum size and 80×40, the app shrinks by the narrow-width rules of components/layout/screen.
+**The minimum size**: every app has a minimum size, 60×32 by default; whether to lower it, the app may decide for itself,
+but it never goes above 60×32. Between the minimum size and 60×32, the app shrinks by the narrow-width rules of components/layout/screen.
 
 **Smaller than the minimum size** (too narrow or too short), the app's screen is not drawn; only three rows, in the centre:
 
 | Row | Content | Colour |
 |---|---|---|
 | 1 | the app's name (the same name as the splash, S5) | Blue bold |
-| 2 | `needs a terminal of at least <W>×<H>`, giving the app's minimum size (e.g. `needs a terminal of at least 80×40`) | Overlay0 |
+| 2 | `needs a terminal of at least <W>×<H>`, giving the app's minimum size (e.g. `needs a terminal of at least 60×32`) | Overlay0 |
 | 3 | `Press [Ctrl-C] twice to quit`: the only key that does anything then, written as an empty state's hint, the key in brackets (M5, the empty states of [components/layout/screen](../components/layout/screen.md)) | Overlay0 |
 
 - When they don't fit, row 2 goes first, then row 3; the name always stays. A row wider than the screen doesn't fit
@@ -652,8 +652,11 @@ but it never goes above 80×40. Between the minimum size and 80×40, the app shr
 - The app keeps its state: once the window is made larger, the screen is back as it was, with nothing changed.
 
 **Why**: a terminal often takes only half the screen — the other half is an editor, a browser or another terminal. A TUI
-that only works full screen is unusable in the everyday split window. 80×40 is the standard: above it, everything works
-in full. Forcing a draw below the minimum size scrambles the borders and the truncation, and the user sees a broken screen;
+that only works full screen is unusable in the everyday split window. 60×32 is the standard: above it, everything works
+in full. The standard used to be 80×40 ("half of a 16:9 screen"), but a pane split in half often has fewer than 80
+columns (the font size, tmux's divider): the user's is 77×32, where an app with an 80-column minimum can do nothing; at
+60 columns two panels split 1:2 still have 20 | 40, so the standard became 60×32, and an app with more panels lays them
+out in it too (the user, 2026-10-27, reported by hostu). Forcing a draw below the minimum size scrambles the borders and the truncation, and the user sees a broken screen;
 saying how much room is needed lets them simply make the window larger. The minimum size is the app's to set because an app
 with a simple layout fits in a smaller window, and stays usable in an 80×24 terminal and inside another app's PTY. Keys
 pressed while the screen can't be seen act blindfolded, so none of them does anything; the quit flow may need to open a

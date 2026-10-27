@@ -150,7 +150,7 @@ tdp v0.10.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | M3-2 | M3 | 每個 global operation 都在 global operation popup 裡 | 都要 | 讀程式列出全域動作，逐一在 global operation popup 裡找 |
 | M3-3 | M3 | popup 自己的操作都在該 popup 的 `?` key reference 裡 | 都要 | 在每種 popup 上按 `?`，對照讀程式的操作清單 |
 | M3-4 | M3 | 只有打字列的 popup（text、password、number）的 hint 列出全部操作 | text、password、number | 看那個 popup 的下框 hint，對照讀程式 |
-| M3-5 | M3 | 只有打字列的 popup 的 hint 在 80 欄放得下 | text、password、number | 終端機調成 80 欄打開那個 popup，hint 沒被截 |
+| M3-5 | M3 | 只有打字列的 popup 的 hint 在 60 欄放得下 | text、password、number | 終端機調成 60 欄打開那個 popup，hint 沒被截 |
 | M3-6 | M3 | 沒有只能靠熱鍵觸發、哪裡都找不到的動作：每個 letter hotkey 都是某個清單裡某一列的捷徑 | 都要 | 讀程式：每個登記的熱鍵都對應到 Space menu、global operation popup 或其他 menu 的某一列（popup 自己的鍵見 M3-3） |
 | M4-1 | M4 | 目前所在畫面的切換列照 M6 停用 | 多畫面 | 在某個畫面打開 global operation popup，切到這個畫面的那一列是停用色、cursor 跳過 |
 | M4-2 | M4 | 沒有 popup 開著時，global operation popup 裡的熱鍵在 panel 上也能直接按 | 都要 | 在 panel 上直接按 global 熱鍵 |
@@ -202,8 +202,8 @@ tdp v0.10.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
-| L1-1 | L1 | 在 80 欄 × 40 列下能完成所有核心任務 | 都要 | 終端機開成 80 × 40，把 app 的每一個核心任務走一遍 |
-| L1-2 | L1 | app 的最低尺寸不高於 80×40（預設 80×40，app 可以調低） | 都要 | 讀程式：最低尺寸的設定；把終端機調到 80×40，看 app 照常畫 |
+| L1-1 | L1 | 在 60 欄 × 32 列下能完成所有核心任務，所有 panel 並排 | 都要 | 終端機開成 60 × 32，把 app 的每一個核心任務走一遍 |
+| L1-2 | L1 | app 的最低尺寸不高於 60×32（預設 60×32，app 可以調低） | 都要 | 讀程式：最低尺寸的設定；把終端機調到 60×32，看 app 照常畫 |
 | L1-3 | L1 | 比最低尺寸小時（寬或高任一邊不夠），不畫 app 的畫面，只在正中央畫三列：app 的名稱（Blue 粗體）、提示 `needs a terminal of at least <W>×<H>`（Overlay0，寫 app 的最低尺寸）、`Press [Ctrl-C] twice to quit`（Overlay0） | 都要 | 把終端機縮到比最低尺寸小（只縮寬、只縮高各一次） |
 | L1-4 | L1 | 放不下時先拿掉提示，再拿掉 `Press [Ctrl-C] twice to quit`，名稱一定留著；一列比畫面寬也算放不下；一直縮到 1×1 都不當掉 | 都要 | 縮到只剩兩列高、縮到比提示窄（例：30 欄）各看一次，再一直縮到 1×1 |
 | L1-5 | L1 | 比最低尺寸小時按鍵都不作用（不送進 app，也不送進 PTY）；`q` 與單按一次 `Ctrl-C` 不作用，只有連按兩次 `Ctrl-C` 立刻離開 | 都要 | 縮小後按幾個平常會改東西的鍵、`q`、一次 `Ctrl-C`，拉大看什麼都沒變；再縮小連按兩次 `Ctrl-C` |
@@ -530,7 +530,7 @@ tdp v0.10.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | screen-23 | screen.4 | statusbar 放不下時截斷，不折行 | statusbar | 把終端機縮窄，看 statusbar 還是一列 |
 | screen-24 | screen.5 | 所有 panel 放不下時，只畫有 focus 的那一個 panel，佔滿寬度 | 多 panel | 把終端機縮窄到窄寬的門檻以下（最低尺寸以上） |
 | screen-25 | screen.5 | 窄寬時 `Tab` 照樣換 panel，一次看一個 | 多 panel | 窄寬時按 `Tab` |
-| screen-26 | screen.5 | 窄寬的門檻不高於 80 欄 | 多 panel | 把終端機調到 80 欄，看 panel 照常並排 |
+| screen-26 | screen.5 | 窄寬的門檻不高於 60 欄 | 多 panel | 把終端機調到 60 欄，看 panel 照常並排 |
 | screen-27 | screen.8 | 空狀態寫一句事實，加上一句點名按鍵的提示 | 都要 | 讓一個 panel 沒有資料，看中間 |
 | screen-28 | screen.8 | 空狀態置中 | 都要 | 同上，看兩句的位置 |
 | screen-29 | screen.8 | 空狀態的兩句都用 Overlay0 | 都要 | 同上，看顏色 |
