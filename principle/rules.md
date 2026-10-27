@@ -637,14 +637,16 @@ in [components/layout/screen](../components/layout/screen.md).
 **The minimum size**: every app has a minimum size, 80×40 by default; whether to lower it, the app may decide for itself,
 but it never goes above 80×40. Between the minimum size and 80×40, the app shrinks by the narrow-width rules of components/layout/screen.
 
-**Smaller than the minimum size** (too narrow or too short), the app's screen is not drawn; only two rows, in the centre:
+**Smaller than the minimum size** (too narrow or too short), the app's screen is not drawn; only three rows, in the centre:
 
 | Row | Content | Colour |
 |---|---|---|
 | 1 | the app's name (the same name as the splash, S5) | Blue bold |
 | 2 | `needs a terminal of at least <W>×<H>`, giving the app's minimum size (e.g. `needs a terminal of at least 80×40`) | Overlay0 |
+| 3 | `Press [Ctrl-C] twice to quit`: the only key that does anything then, written as an empty state's hint, the key in brackets (M5, the empty states of [components/layout/screen](../components/layout/screen.md)) | Overlay0 |
 
-- When the two rows don't fit, the hint goes first; the name always stays. Shrinking all the way to 1×1 must never crash.
+- When they don't fit, row 2 goes first, then row 3; the name always stays. A row wider than the screen doesn't fit
+  either. Shrinking all the way to 1×1 must never crash.
 - **No key does anything**: nothing goes to the app or into a PTY. Only pressing `Ctrl-C` twice quits at once (K9's
   forced quit); `q` and a single `Ctrl-C` do nothing.
 - The app keeps its state: once the window is made larger, the screen is back as it was, with nothing changed.
@@ -655,7 +657,10 @@ in full. Forcing a draw below the minimum size scrambles the borders and the tru
 saying how much room is needed lets them simply make the window larger. The minimum size is the app's to set because an app
 with a simple layout fits in a smaller window, and stays usable in an 80×24 terminal and inside another app's PTY. Keys
 pressed while the screen can't be seen act blindfolded, so none of them does anything; the quit flow may need to open a
-confirm, which can't be drawn then, so only the forced quit, which asks nothing, is left.
+confirm, which can't be drawn then, so only the forced quit, which asks nothing, is left. The forced quit is written out:
+with no key doing anything, someone who doesn't know the rule won't think of pressing `Ctrl-C` twice and takes the app
+for stuck; when the window can't be made larger (a tmux pane split in half, say), it is the only way out, so it goes
+after the size row when they don't fit (reported by hostu, 2026-10-27).
 
 ### L2 Width does not follow content
 

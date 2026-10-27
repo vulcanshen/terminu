@@ -92,18 +92,22 @@ default the same as narrow widths, what the user learns on a narrow screen works
 ## screen.7 Smaller than the minimum size
 
 When the screen is smaller than the app's minimum size (Rules L1: 80×40 by default; the app may lower it, but not above
-80×40), the whole screen draws just two rows, centred both ways:
+80×40), the whole screen draws just three rows, centred both ways:
 
 ```
                 kbu
 needs a terminal of at least 60×20
+   Press [Ctrl-C] twice to quit
 ```
 
 - **The name**: the app's command name, Blue bold (as the splash's name, Rules S5).
 - **The hint**: on the row below the name, `needs a terminal of at least <width>×<height>`, giving the app's minimum
   size; Overlay0.
-- **When it does not fit**: the hint goes first, and the name always stays (drawn as far as it fits when it is wider
-  than the screen); nothing crashes, down to 1×1.
+- **How to quit**: on the row below the hint, `Press [Ctrl-C] twice to quit`, Overlay0; written as an empty state's
+  hint, the key in brackets (screen.8, Rules M5).
+- **When it does not fit**: the hint goes first, then the row on how to quit, and the name always stays (drawn as far
+  as it fits when it is wider than the screen); the hint or the row on how to quit wider than the screen does not fit
+  either. Nothing crashes, down to 1×1.
 - **No key does anything**: none goes to the app, none to a PTY; `q` and a single `Ctrl-C` do nothing either. Only
   pressing `Ctrl-C` twice quits at once (the forced quit of Rules K9).
 - **The state is kept**: once the window is back at or above the minimum size, the screen is as it was, nothing changed.
@@ -113,7 +117,10 @@ cut frames, unable to tell whether the app is broken or the window too small; sa
 user just enlarges the window. Meanwhile the user cannot see the app's state, so passing keys on as usual would be
 working blindfolded — something might be deleted by mistake, and what is typed into a shell cannot be seen; so no key
 does anything, and a double `Ctrl-C` is kept as the way out in an emergency. The quit flow may open a confirm to ask
-something, which cannot be drawn then, so `q` and a single `Ctrl-C` do nothing either.
+something, which cannot be drawn then, so `q` and a single `Ctrl-C` do nothing either. The way out is written on the
+screen: with no key doing anything, someone who doesn't know the rule takes the app for stuck; when the window can't be
+made larger (a tmux pane split in half, say) it is the only way out, so it goes after the hint (reported by hostu,
+2026-10-27).
 
 ## screen.8 Empty states
 
