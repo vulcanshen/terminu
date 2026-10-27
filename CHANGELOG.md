@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.0.0 — 2026-10-27
+
+The stable version, settled with the user. Every app of the family follows v0.11.5 on terminu-go v0.6.5, the user
+has tested each one by hand, and what that testing found is in v0.11.4 and v0.11.5; the apps now release on it.
+
+- nothing in the rules, the components, the templates or the checklist changed since v0.11.5 (1455 items); the
+  checklist header names v1.0.0
+
 ## v0.11.5 — 2026-10-27
 
 What the harness found in the checklist of v0.11.4, settled with the user.
