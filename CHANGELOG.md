@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.11.5 — 2026-10-27
+
+What the harness found in the checklist of v0.11.4, settled with the user.
+
+- checklist: the two items v0.11.4 added for flags in the mark column (panel.7) had taken panel-137 and panel-138, which
+  were already in use (panel.4, panel.9); they are panel-154 and panel-155. No rule changed (1455 items); the header
+  names v0.11.5
+
 ## v0.11.4 — 2026-10-27
 
 What the user's own testing of hostu and locku found (hostu, LK22), settled with the user.
@@ -14,8 +22,8 @@ What the user's own testing of hostu and locku found (hostu, LK22), settled with
   there (e.g. an active profile), which in a grouped list sits in the items' two extra cells, the text three cells
   from the frame like every other group's; a list that can be marked keeps the column for the tick (panel.7, panel.11)
 - changed in this version: terminal.4, terminal.7; panel.7, panel.11
-- checklist: terminal-21, terminal-24, panel-86 and panel-87 changed; panel-137 and panel-138 added; the applicability
-  flags added (1455 items)
+- checklist: terminal-21, terminal-24, panel-86 and panel-87 changed; two items added, numbered panel-137 and panel-138
+  by mistake (both already in use; panel-154 and panel-155 from v0.11.5); the applicability flags added (1455 items)
 
 ## v0.11.3 — 2026-10-27
 
