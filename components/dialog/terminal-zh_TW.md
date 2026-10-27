@@ -51,7 +51,7 @@ focus 在 PTY 裡時，footer 上的 `Space`、`?`、`q` 都送給子程序，�
 下面的歷史模式與選取模式看 PTY 拿來做什麼，不是看它是不是 PTY：
 
 - **互動 terminal**：使用者在裡面打自己指令的 PTY（shell、ssh 連線、`kubectl exec`），一定有這兩種模式。
-- **app 開一個程式做一件事的 PTY**（`$EDITOR` 編檔、讓 sudo 問密碼）：沒有這兩種模式，按鍵全部給那個程式，包括 `PgUp`。捲動、
+- **app 開一個程式做一件事的 PTY**（`$EDITOR` 編檔、讓 doas 問密碼）：沒有這兩種模式，按鍵全部給那個程式，包括 `PgUp`。捲動、
   移動、選取是那個程式自己的事。
 - **子程序佔滿整個畫面時**（在互動 terminal 裡開了 vim、less、htop，它們切到終端機的另一個畫面）：`PgUp` 送給它，下框不寫
   `PgUp:history`；它回到一般畫面後，`PgUp` 又進歷史模式。選取模式照常，選的是凍住的那個畫面。
@@ -87,12 +87,17 @@ focus 在 PTY 裡時，footer 上的 `Space`、`?`、`q` 都送給子程序，�
 
 ## terminal.7 要提權時
 
-app 要寫系統檔（例：hostu 寫 `/etc/hosts`）時，**不自己問密碼，也不經手密碼**，交給系統的提權工具：
+app 要寫系統檔（例：hostu 寫 `/etc/hosts`）時，交給系統的提權工具：
 
 - 先試不用密碼的（例：`sudo -n`）；成功就直接寫，不開任何東西。
-- 要密碼時，開 terminal popup 跑那個工具（例：`sudo cp <暫存檔> /etc/hosts`），讓它自己問；跑完 popup 自己關。這個 PTY 是 app 開
-  一個程式做一件事，沒有歷史模式與選取模式（上面的「哪些 PTY 有這兩種模式」）。
+- 要密碼時，開 password popup 問（[`input/password`](../input/password-zh_TW.md) 的解鎖方案，標題 `PASSWORD`），交給工具從標準
+  輸入讀（例：`sudo -S`）。密碼不對：popup 不關，點清掉，錯誤列寫 `Wrong password`；按 `Esc` 取消，什麼都不寫。
+- **密碼只交給提權工具**：除了交給工具的標準輸入，不寫進任何檔案、不進 App Log、不出現在畫面上（toast、錯誤訊息）、不送到網路上，
+  交出去就丟。用 lib 的 app 只給要跑的指令：問密碼、交給工具都由 lib 做，app 碰不到密碼（Rules E8）。
+- 工具不能從標準輸入讀密碼時（例：`doas`），開 terminal popup 跑它，讓它自己問；跑完 popup 自己關。這個 PTY 是 app 開一個程式做
+  一件事，沒有歷史模式與選取模式（上面的「哪些 PTY 有這兩種模式」）。
 - 用哪個工具，app 可以依平台自行決定（例：sudo，沒有時 doas；Windows 用 gsudo 或內建的 sudo，由系統跳 UAC）。
 
-**為什麼**：密碼不經過 app，就不會被存下來，也不會進 App Log；sudo 自己的設定（記住多久、指紋解鎖）照樣有效，跟使用者在終端機裡
-用 sudo 一樣。
+**為什麼**：問一行密碼，用不著撐滿畫面的終端機；問密碼的樣子跟家族其他 password popup 一樣。密碼因此經過 app，但家族是開源的，
+密碼拿去做了什麼，看程式就知道；lib 把它關在「問」與「交出去」之間，app 拿不到，就不會被存下來、記進 App Log 或送出去
+（user 2026-10-27，hostu）。sudo 記住多久照樣有效（先試 `sudo -n`）；指紋解鎖這類要工具自己問的設定用不到。

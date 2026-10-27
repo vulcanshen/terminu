@@ -65,7 +65,7 @@ The history and selection modes below go by what a PTY is for, not by its being 
 
 - **An interactive terminal**: a PTY where the user types their own commands (a shell, an ssh session, `kubectl exec`)
   always has both modes.
-- **A PTY the app opens to run a program for one job** (editing a file in `$EDITOR`, sudo asking for a password): it has
+- **A PTY the app opens to run a program for one job** (editing a file in `$EDITOR`, doas asking for a password): it has
   neither mode, and every key goes to that program, `PgUp` included. Scrolling, moving and selecting are that program's
   own business.
 - **While the subprocess takes the whole screen** (vim, less or htop started in an interactive terminal, switching to the
@@ -115,15 +115,24 @@ it once lets you select anywhere in the family.
 
 ## terminal.7 Raising privileges
 
-When an app writes a system file (e.g. hostu writing `/etc/hosts`), it **neither asks for the password nor ever handles
-it**; the system's tool for raising privileges does:
+When an app writes a system file (e.g. hostu writing `/etc/hosts`), the system's tool for raising privileges does it:
 
 - First try without a password (e.g. `sudo -n`); if that works, write at once, opening nothing.
-- When a password is needed, open a terminal popup running the tool (e.g. `sudo cp <temp file> /etc/hosts`) and let it
+- When a password is needed, ask in a password popup ([`input/password`](../input/password.md), the unlock style, titled
+  `PASSWORD`) and hand it to the tool on its standard input (e.g. `sudo -S`). A wrong password keeps the popup open, the
+  dots cleared and `Wrong password` on the error row; `Esc` cancels, and nothing is written.
+- **The password goes to the tool and nowhere else**: apart from the tool's standard input it is written to no file, not
+  recorded in the App Log, not shown on screen (a toast, an error message) and not sent over the network; once handed
+  over it is dropped. An app on the lib only gives the command to run: the lib asks for the password and hands it to the
+  tool, and the app never gets hold of it (Rules E8).
+- When the tool cannot read a password on its standard input (e.g. `doas`), open a terminal popup running it and let it
   ask; the popup closes itself when it is done. This PTY runs a program for one job, so it has no history or selection
   mode ("Which PTYs have these modes" above).
 - Which tool, the app may decide for itself by the platform (e.g. sudo, doas when there is none; on Windows gsudo or the built-in
   sudo, with the system's UAC prompt).
 
-**Why**: a password that never passes through the app cannot be stored or end up in the App Log; sudo's own settings
-(how long it remembers, fingerprint unlock) still work, just as when the user runs sudo in a terminal.
+**Why**: one line asking for a password needs no terminal filling the screen, and the password is asked for the way
+every other password popup in the family asks. The password then passes through the app, but the family is open
+source: what is done with it can be read in the code; the lib keeps it between asking and handing over, out of the
+app's reach, so it cannot be stored, end up in the App Log or be sent anywhere (the user, 2026-10-27, hostu). How long
+sudo remembers still works (`sudo -n` first); settings where the tool asks by itself, like fingerprint unlock, go unused.

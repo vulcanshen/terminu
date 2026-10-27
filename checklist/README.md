@@ -77,7 +77,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | long task | a long task (the progress under the screen chip row, or in the task's row in a single-screen app) |
 | jobs list | a jobs list: a menu listing the work the app is running or has run (e.g. sshu's Jobs) |
 | PTY | a PTY (in a panel or a terminal popup) |
-| interactive terminal | a PTY where the user types their own commands (a shell, an ssh session, `kubectl exec`); one the app opens to run a program for one job (an editor, sudo asking for a password) does not count |
+| interactive terminal | a PTY where the user types their own commands (a shell, an ssh session, `kubectl exec`); one the app opens to run a program for one job (an editor, doas asking for a password) does not count |
 | terminal popup | a terminal popup |
 | raising privileges | writing files outside the app with the system's tool for raising privileges (e.g. sudo) |
 | popup tab | a popup with tabs |

@@ -1040,10 +1040,10 @@ tdp v0.11.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | terminal-18 | terminal.6 | 互動 terminal 的選取模式用 `Alt-v` 進入（家族的 `v`，PTY 裡加 `Alt` 跳出子程序），跟保留鍵一樣常駐揭露 | 互動 terminal | 看 footer 或 terminal 的下框有 `Alt-v:select`，按下去 |
 | terminal-19 | terminal.6 | 進入 PTY 的選取模式時畫面凍住：子程序後來的輸出先不畫上去，游標可以往上走進歷史；離開時回到即時畫面 | 互動 terminal | 讓 shell 一直輸出時進選取模式，看畫面不動、游標能往上走 |
 | terminal-20 | terminal.6 | PTY 的選取模式照 note 的選取模式：按鍵、顏色、捲動位置、複製後的 toast 都一樣 | 互動 terminal | 在 PTY 的選取模式選一段複製，對照 viewer 的選取模式 |
-| terminal-21 | terminal.4 | app 開一個程式做一件事的 PTY（編輯器、讓 sudo 問密碼）沒有歷史模式與選取模式，按鍵全部給那個程式，包括 `PgUp` | PTY | 在開著編輯器的 PTY 按 `PgUp`，看編輯器自己往上翻、框沒有換成模式色 |
+| terminal-21 | terminal.4 | app 開一個程式做一件事的 PTY（編輯器、讓 doas 問密碼）沒有歷史模式與選取模式，按鍵全部給那個程式，包括 `PgUp` | PTY | 在開著編輯器的 PTY 按 `PgUp`，看編輯器自己往上翻、框沒有換成模式色 |
 | terminal-22 | terminal.4 | 子程序佔滿整個畫面時（vim、less、htop），`PgUp` 送給它，下框不寫 `PgUp:history`；它回到一般畫面後 `PgUp` 又進歷史模式 | 互動 terminal | 在 shell 裡開 `less` 按 `PgUp`，看 less 往上翻、下框沒有 `PgUp:history`；離開 less 再按 `PgUp` |
 | terminal-23 | terminal.4 | 使用者把所有鍵都給子程序時（例：sshu 鎖住格子），選取模式暫時讓出去，`PgUp\|PgDn` 直接送進去；解開的鍵常駐揭露，解開後兩種模式回來 | 互動 terminal | 有這種狀態的 app：進去後按 `Alt-v`、`PgUp`，看都送進子程序、下框寫著解開的鍵；解開後再按一次 |
-| terminal-24 | terminal.7 | 要提權時 app 不自己問密碼、不經手密碼：先試不用密碼的，要密碼時在 terminal popup 裡讓系統的工具自己問，跑完自己關 | 提權 | 在要密碼的機器上做要提權的動作；讀程式：密碼沒經過 app |
+| terminal-24 | terminal.7 | 要提權時先試不用密碼的；要密碼時用 password popup（解鎖）問，交給工具的標準輸入，打錯時 popup 不關、寫 `Wrong password`；密碼不寫進檔案、不進 App Log、不出現在畫面上、不送到網路上，app 拿不到；工具不能從標準輸入讀時（doas）在 terminal popup 裡讓它自己問 | 提權 | 在要密碼的機器上做要提權的動作，先打錯一次再打對；看 App Log 沒有密碼；讀程式：密碼只交給工具 |
 
 ## dialog/toast
 
