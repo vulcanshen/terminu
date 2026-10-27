@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.0.2 — 2026-10-27
+
+Settled with the user: project is the family's operations, not a design rule, so it binds family members only.
+Family members change nothing.
+
+- project.1: the page binds family members only; an app made with tdp may decide for itself its repo's directories,
+  Makefile, where the version lives, CHANGELOG and release steps, taking project and its templates as a starting point
+  it may change, with chapter E of the Rules still holding; a "Why": what the page is worth lands on whoever keeps
+  the whole family
+- project.2: an app made with tdp replaces the `vulcanshen` in the templates when it starts from them
+- Rules: "What is a requirement" says project is for family members only; the start of chapter E no longer lists the
+  repo path among what an app made with tdp makes its own, and says project binds family members only; E6 says the
+  same
+- Principle README: the Project row says it binds family members only
+- changed in this version: project.1, project.2, E6, the start of chapter E, the start of the Rules
+- checklist: the `project-` items are for family members only (checklist README); no item changed (1455 items); the
+  header names v1.0.2
+
 ## v1.0.1 — 2026-10-27
 
 Documentation only, settled with the user after the family's releases on v1.0.0.
