@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.1.0-beta.1. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.1.0-beta.2. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -1641,6 +1641,8 @@ The items of tdp v1.1.0-beta.1. What each column means and what an item applies 
 | project-31 | project.6 | Releases made before tdp v0.7.0 keep the headings they were written with | has released | Read the file: in `git log -p CHANGELOG.md`, the old releases' headings have not been rewritten |
 | project-32 | project.6 | The CHANGELOG is written in English | everyone | Read the file |
 | project-33 | project.6 | A GitHub release's notes are that release's section of the CHANGELOG | has released | Compare `gh release view <tag>` with that section of the CHANGELOG |
-| project-34 | project.7 | A release's tag is `vX.Y.Z` | has released | Run `git tag` |
+| project-34 | project.7 | A release's tag is `vX.Y.Z`, a beta's `vX.Y.Z-beta.N` | has released | Run `git tag` |
 | project-35 | project.7 | `make check` passes on the repo as it is now | everyone | Run `make check` on the repo as it is now |
 | project-36 | project.7 | A release with a Windows build also pushes to the scoop bucket | Windows build | Check that the scoop bucket has this release |
+| project-38 | project.7 | A beta, once released, is a GitHub pre-release, and the Homebrew tap (and the scoop bucket) still has the latest stable release | has released | `gh release view <beta tag> --json isPrerelease`; the version in the tap's formula |
+| project-39 | project.7 | The latest release's binaries have no `+dirty` in their build information | has released | Download a binary of the latest release and run `go version -m` on it: the main module's version is the tag, `vcs.modified=false` |

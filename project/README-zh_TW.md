@@ -155,6 +155,8 @@ Each release names the version of terminu design (tdp) it follows.
 ```
 
 - **每一版的標題** 是 push 的 tag（帶 v），接著 ` — tdp <版本>`：這一版跟的是哪一版 tdp。
+- **beta** 也有自己的標題，就是它帶 pre-release 的 tag（`## v0.2.0-beta.1 — tdp v1.1.0-beta.2`）；之後的正式版那一段寫上一個
+  正式版以來的全部改動，beta 的也算，沒裝 beta 的人才看得懂。
 - **`## Unreleased`**：改動進來就寫在這一段（沒有就開一個，放在最上面）；發版時把這一段的標題改成這一版的標題。
 - **tdp v0.7.0 以前發的版本照當時的寫法**，標題不改。
 - 用英文寫。release 的內文就是 CHANGELOG 裡這一版的那一段（見「發布」）。
@@ -174,6 +176,12 @@ Each release names the version of terminu design (tdp) it follows.
      scoop bucket）；
    - 用 CHANGELOG 那一段蓋過 release 的內文。goreleaser 推 tap 失敗時這一步照樣做；release 還沒建好就跳過。
 
+- **beta**：正式版之前，app 可以先發 beta：tag `vX.Y.Z-beta.N`（N 從 1 起），步驟一樣。goreleaser 把它發成 GitHub 的
+  pre-release，不推 Homebrew tap 與 scoop bucket（`skip_upload: auto`），所以 brew、scoop 與 `install.sh`（抓最新的
+  release）拿到的還是正式版；`go install …@vX.Y.Z-beta.N` 裝得到 beta。**為什麼**：v1.0.0 同一天就得補 v1.0.1（user
+  2026-10-27：發 stable 之前要先發 beta）；beta 把整個發版流程走一遍，又不動到 brew、scoop 使用者拿到的版本。
+- **release notes 寫在 checkout 外面**（`$RUNNER_TEMP`）：寫在 checkout 裡會讓工作目錄變髒，Go 記進執行檔的 build 資訊
+  就成了 `vX.Y.Z+dirty`（`go version -m` 看得到），家族 v1.0.0 那一輪的 release 都是這樣。
 - **token**：goreleaser 讀 `GITHUB_TOKEN`，發 release 與推 tap 都用它。workflow 在 repo 的 secret `ACTION_TOKEN`（PAT）有設時
   用它，沒設就用內建的 token —— 內建的寫不了 tap。在本機手動發版時用 shell 的 `GITHUB_TOKEN`。
 - **`make snapshot`** 在本機試打包，不發布、不推 tap。

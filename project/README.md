@@ -175,6 +175,9 @@ Each release names the version of terminu design (tdp) it follows.
 
 - **Each release's heading** is the tag pushed (with its v), then ` — tdp <version>`: the version of tdp this release
   follows.
+- **A beta** has a heading of its own, its tag with the pre-release part (`## v0.2.0-beta.1 — tdp v1.1.0-beta.2`); the
+  stable release after it covers everything since the previous stable release, the betas' changes included, so that
+  someone who skipped the betas can read it.
 - **`## Unreleased`**: a change goes into this section when it lands (opened at the top when there is none); a release
   turns its heading into the release's heading.
 - **Releases made before tdp v0.7.0 keep the headings they were written with.**
@@ -198,6 +201,14 @@ tdp an old release followed often cannot be found; filling it in would get it wr
    - sets the release's body to that section of the CHANGELOG. This step runs even when goreleaser's tap push failed,
      and skips when the release has not been made.
 
+- **A beta**: before a stable release, the app may release a beta: tag `vX.Y.Z-beta.N` (N from 1), the same steps.
+  goreleaser makes it a GitHub pre-release and leaves the Homebrew tap and the scoop bucket alone (`skip_upload:
+  auto`), so brew, scoop and `install.sh` (the latest release) keep the stable one; `go install …@vX.Y.Z-beta.N`
+  installs the beta. **Why**: v1.0.0 needed v1.0.1 the same day (the user, 2026-10-27: release a beta before a
+  stable one); a beta goes through the whole release without touching what brew and scoop users get.
+- **The release notes are written outside the checkout** (`$RUNNER_TEMP`): a file in the checkout leaves the tree
+  dirty, and Go writes the binaries' build information as `vX.Y.Z+dirty` (`go version -m`), as the family's v1.0.0
+  releases were.
 - **The token**: goreleaser reads `GITHUB_TOKEN` for the release and for the tap. The workflow hands it the repo secret
   `ACTION_TOKEN` (a PAT) when one is set, and the built-in token otherwise — the built-in one cannot write to the tap. A
   release run by hand takes the shell's `GITHUB_TOKEN`.
