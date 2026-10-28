@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.1.0-beta.2 — 2026-10-28
+
+The second beta of v1.1.0, settled with the user: before the stable release every family app releases a beta of its
+own, so the templates handle a pre-release, and the release notes leave the checkout.
+
+- template `goreleaser.yaml`: `release.prerelease: auto`, and `skip_upload: auto` on the tap (and on the bucket in the
+  Windows lines), so a tag like `v1.2.0-beta.1` is a GitHub pre-release that brew and scoop never get
+- template `release.yml`: the release notes are written to `$RUNNER_TEMP`, out of the checkout, and goreleaser runs
+  without `--skip=validate`; a file in the checkout had left the tree dirty, and the v1.0.0 binaries' build
+  information read `vX.Y.Z+dirty`
+- project.6: a beta's CHANGELOG heading, and the stable release covering everything since the previous stable one
+- project.7: a beta (the app may release one before a stable release), and the release notes outside the checkout
+- changed in this version: project.6, project.7, the templates `goreleaser.yaml` and `release.yml`
+- checklist: project-34 changed, project-38 and project-39 added (1458 items); the header names v1.1.0-beta.2
+
 ## v1.1.0-beta.1 — 2026-10-28
 
 The first beta of v1.1.0, the privacy sweep settled with the user: the maintainer's personal information leaves the
