@@ -1,5 +1,30 @@
 # Changelog
 
+## v1.1.0 — 2026-10-28
+
+The stable release after three betas, settled with the user: the maintainer's personal information leaves the
+family's public repositories, and a family release goes through a beta first. Every family app but webu released a
+beta on it and went through the whole release (webu aligns at its own redesign). Everything since v1.0.2:
+
+- project.3: Claude Code's files stay out of git — `CLAUDE.md` and what is under `.claude/` are not tracked, except
+  harness's `.claude/rules/terminu.md` (beta.1)
+- project.3: from v2 on the module path ends in `/vN`, the imports and the `go install` path with it, changed by the
+  release that moves to the new major (beta.3)
+- project.6: a beta's CHANGELOG heading; the stable release covers everything since the previous stable one (beta.2)
+- project.7: an app may release a beta, a GitHub pre-release that the tap and the bucket skip; the release notes are
+  written outside the checkout, so the binaries' build information is no longer `+dirty` (beta.2)
+- input.3: the diagram no longer shows a home directory (beta.1)
+- templates:
+  - `gitignore`: `CLAUDE.md` and `.claude/` left out but for `.claude/rules/terminu.md` (beta.1)
+  - `goreleaser.yaml`: `release.prerelease: auto` and `skip_upload: auto` (beta.2); the ldflags take
+    `{{ .ModulePath }}` (beta.3)
+  - `release.yml`: the notes in `$RUNNER_TEMP`, no `--skip=validate` (beta.2)
+  - `version.go`: its comment names the module path with its `/vN` rather than a path without it (this release)
+- changed since v1.0.2: project.3, project.6, project.7, input.3, the templates `gitignore`, `goreleaser.yaml`,
+  `release.yml` and `version.go`
+- checklist: project-37, project-38, project-39 added, project-13 and project-34 changed (1458 items); the header
+  names v1.1.0
+
 ## v1.1.0-beta.3 — 2026-10-28
 
 The third beta of v1.1.0, from the family's betas, settled with the user: an app from v2 on carries its major version
