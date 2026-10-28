@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.1.0-beta.3 — 2026-10-28
+
+The third beta of v1.1.0, from the family's betas, settled with the user: an app from v2 on carries its major version
+in its module path, as Go requires.
+
+- project.3: from v2 on the module path ends in `/vN` (kbu v4: `github.com/vulcanshen/kbu/v4`), the imports and the
+  `go install` path with it, changed by the release that moves to the new major; kbu's and sshu's betas showed
+  `go install …@latest` installing v1.7.x and the build information reading a pseudo-version
+- template `goreleaser.yaml`: the ldflags take the module path from goreleaser (`{{ .ModulePath }}`), so the line
+  is the same for every app, `/vN` included
+- changed in this version: project.3, the template `goreleaser.yaml`
+- checklist: project-13 changed (1458 items); the header names v1.1.0-beta.3
+
 ## v1.1.0-beta.2 — 2026-10-28
 
 The second beta of v1.1.0, settled with the user: before the stable release every family app releases a beta of its
