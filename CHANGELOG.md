@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.1.0-beta.1 — 2026-10-28
+
+The first beta of v1.1.0, the privacy sweep settled with the user: the maintainer's personal information leaves the
+family's public repos. Family members copy the new `gitignore` template and stop tracking Claude Code's files.
+
+- project.3: Claude Code's files stay out of git — `CLAUDE.md` and what is under `.claude/` are not tracked, except
+  harness's `.claude/rules/terminu.md`; the example of a file the app decides for itself no longer names `CLAUDE.md`
+- template `gitignore`: `CLAUDE.md`, `/.claude/*` with `.claude/rules/terminu.md` let back in, in place of
+  `.claude/settings.local.json` and `.claude/worktrees/`
+- input.3: the diagram's value starts with `~/Documents/sideproj` rather than a home directory's full path
+- changed in this version: project.3, the template `gitignore`, input.3
+- checklist: project-37 added (1456 items); the header names v1.1.0-beta.1
+
 ## v1.0.2 — 2026-10-27
 
 Settled with the user: project is the family's operations, not a design rule, so it binds family members only.
