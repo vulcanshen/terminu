@@ -84,6 +84,11 @@ little different from app to app. With one file, a diff shows what differs, and 
 - The app's own Go code lives only in `cmd/<app>/` and `internal/`. The `go install` path is
   `github.com/vulcanshen/<app>/cmd/<app>@latest` (an app made with tdp uses its own account:
   `github.com/<account>/<app>`; start of chapter E of the Rules).
+- **From v2 on, the module path ends in the major version**, as Go requires: kbu v4 is `github.com/vulcanshen/kbu/v4`,
+  its imports and its `go install` path (`github.com/vulcanshen/kbu/v4/cmd/kbu@latest`) with it. The release that
+  moves to a new major (v2 and up) changes them in the same commit. **Why**: without it Go does not take the tags
+  from v2 on as the module's versions: `go install …@latest` installed kbu v1.7.12 while kbu was v4.0.0, and the
+  binaries' build information read a pseudo-version (the user, 2026-10-28).
 - **Small development tools** (Go ones too) may go in a top-level `tools/`; they are not the app itself.
 - Other top-level directories and files not in the tree (e.g. end-to-end tests), the app may decide for itself.
 - **Claude Code's files stay out of git**: `CLAUDE.md` and what is under `.claude/` are not tracked (the template

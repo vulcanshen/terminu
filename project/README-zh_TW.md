@@ -70,6 +70,10 @@ Homebrew tap；跨 repo diff 一下就知道誰走樣。自己做一個 app 用�
 
 - app 本身的 Go 程式只在 `cmd/<app>/` 與 `internal/`。`go install` 的路徑是 `github.com/vulcanshen/<app>/cmd/<app>@latest`
   （照 tdp 做的 app 換成自己的帳號：`github.com/<帳號>/<app>`，Rules 的 E 章開頭）。
+- **v2 起，module 的路徑結尾帶大版號**，這是 Go 的規定：kbu v4 是 `github.com/vulcanshen/kbu/v4`，import 與 `go install`
+  的路徑（`github.com/vulcanshen/kbu/v4/cmd/kbu@latest`）跟著帶。升到新的大版號（v2 以上）的那一版，在同一個 commit 裡改。
+  **為什麼**：不帶的話，Go 不把 v2 以上的 tag 當成這個 module 的版本：kbu 已經是 v4.0.0，`go install …@latest` 裝到的卻是
+  v1.7.12，執行檔的 build 資訊也只是 pseudo-version（user 2026-10-28）。
 - **開發用的小工具**（Go 寫的也一樣）可以放頂層的 `tools/`，不算 app 本身。
 - 圖上沒有的其他頂層目錄與檔案（例：端到端測試），app 可以自行決定。
 - **Claude Code 的檔案不進 git**：`CLAUDE.md` 與 `.claude/` 底下的檔案不追蹤（範本 [`gitignore`](gitignore) 排除了），

@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.1.0-beta.2. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.1.0-beta.3. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -1620,7 +1620,7 @@ The items of tdp v1.1.0-beta.2. What each column means and what an item applies 
 | project-10 | project.2 | With a Windows build, `WINDOWS` in `install.sh` is set to `yes` (as the template's comment says) | Windows build | Read the file: `WINDOWS` in `install.sh` |
 | project-11 | project.3 | The app's own Go code lives only in `cmd/<app>/` and `internal/`; development tools may go in a top-level `tools/` | everyone | Read the files: every `.go` file outside `tools/` is under these two directories |
 | project-12 | project.3 (diagram) | The main package is in `cmd/<app>/main.go` | everyone | Read the files |
-| project-13 | project.3 | `go install github.com/<account>/<app>/cmd/<app>@latest` installs it (a family member's account is `vulcanshen`, an app made by tdp uses its own) | everyone | Read the files: the module in `go.mod` is `github.com/<account>/<app>`, and `cmd/<app>` is the main package |
+| project-13 | project.3 | `go install github.com/<account>/<app>/cmd/<app>@latest` installs its latest release, with `/vN` after `<app>` from v2 on (a family member's account is `vulcanshen`, an app made by tdp uses its own) | everyone | Read the files: the module in `go.mod` is `github.com/<account>/<app>`, ending in `/vN` when the latest release is vN.x.y with N ≥ 2, and `cmd/<app>` is the main package; `go list -m <module>@latest` gives the latest release |
 | project-14 | project.3 (diagram) | The README's demo gif is in `docs/` | everyone | Read the files: the gif the README refers to is under `docs/` |
 | project-15 | project.3 (diagram) | `go.mod` and `go.sum` are at the root | everyone | Read the files |
 | project-16 | project.3 (diagram) | `LICENSE` is at the root | everyone | Read the files |
