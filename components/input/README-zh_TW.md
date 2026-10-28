@@ -59,7 +59,7 @@ text、password、number 共用。
 
 ```
 ┃  …ideproj/terminu/components/layout█ ┃   ← 打字中：游標在尾端，前面截掉
-┃  █/Users/vulcan/Documents/sideproj/… ┃   ← Home 之後：游標在開頭，後面截掉
+┃  █~/Documents/sideproj/terminu/comp… ┃   ← Home 之後：游標在開頭，後面截掉
 ```
 
 - 游標一定看得到；移動時只捲剛好夠的量，不把游標固定在中間（跟 popup 內容放不下時同一個捲法）。

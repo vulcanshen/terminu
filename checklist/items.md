@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.0.2. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.1.0-beta.1. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -1626,6 +1626,7 @@ The items of tdp v1.0.2. What each column means and what an item applies to: [RE
 | project-16 | project.3 (diagram) | `LICENSE` is at the root | everyone | Read the files |
 | project-18 | project.3 | The family mark's original is `docs/icon.svg`; the copy the splash uses lives in the code (a copy of the file under `internal/`, or the cells written out) | everyone | Read the files: `docs/icon.svg` exists; read the code: the splash draws the copy under `internal/` or the cells written out |
 | project-19 | project.3 | An app with a Windows build also has `install.ps1` and `uninstall.ps1` | Windows build | Read the files |
+| project-37 | project.3 | No `CLAUDE.md` and no file under `.claude/` is tracked, except `.claude/rules/terminu.md` | everyone | Run `git ls-files \| grep -E '(^\|/)CLAUDE\.md$\|^\.claude/'`: nothing but `.claude/rules/terminu.md` |
 | project-20 | project.4 | `<app> version` and the splash's version print `Display()` of `internal/version` | everyone | Read the code: both places call `Display()` |
 | project-21 | project.4 | A release's version is the tag injected without its v, and printed with the v (e.g. tag `v0.2.0` prints `v0.2.0`) | everyone | Read the files: `.goreleaser.yaml` injects the tag without its v and `internal/version` prints it with the v; for an app that has released, install a release and run `<app> version`: it prints the same as the tag |
 | project-22 | project.4 | A local `make build` or `go build` injects no version; the version is `dev` | everyone | After a local `make build`, run `./<app> version`; it prints `dev` |

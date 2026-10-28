@@ -72,7 +72,7 @@ The box shows the stretch around the cursor, with `…` on the side that is cut.
 
 ```
 ┃  …ideproj/terminu/components/layout█ ┃   ← typing: the cursor at the end, the start cut
-┃  █/Users/vulcan/Documents/sideproj/… ┃   ← after Home: the cursor at the start, the end cut
+┃  █~/Documents/sideproj/terminu/comp… ┃   ← after Home: the cursor at the start, the end cut
 ```
 
 - The cursor is always in sight; moving scrolls by just enough, never pinning the cursor to the middle (the same

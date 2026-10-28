@@ -85,8 +85,11 @@ little different from app to app. With one file, a diff shows what differs, and 
   `github.com/vulcanshen/<app>/cmd/<app>@latest` (an app made with tdp uses its own account:
   `github.com/<account>/<app>`; start of chapter E of the Rules).
 - **Small development tools** (Go ones too) may go in a top-level `tools/`; they are not the app itself.
-- Other top-level directories and files not in the tree (e.g. end-to-end tests, `CLAUDE.md`), the app may decide for
-  itself.
+- Other top-level directories and files not in the tree (e.g. end-to-end tests), the app may decide for itself.
+- **Claude Code's files stay out of git**: `CLAUDE.md` and what is under `.claude/` are not tracked (the template
+  [`gitignore`](gitignore) leaves them out), except harness's `.claude/rules/terminu.md`. They may sit in the
+  working tree. **Why**: they are the maintainer's own instructions and settings, full of the paths of one machine;
+  a public repo has no use for them, and they gave the maintainer's paths away (the user, 2026-10-28).
 - **`docs/icon.svg` is the family mark's original.** Go's `go:embed` cannot reach `docs/`, so the copy the splash uses
   lives in the code (a copy of the file under `internal/`, or the cells written out), and the tdp E6 test keeps it
   identical to `docs/icon.svg`.

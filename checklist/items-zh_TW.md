@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v1.0.2 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v1.1.0-beta.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -1626,6 +1626,7 @@ tdp v1.0.2 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | project-16 | project.3（圖） | 根目錄有 `LICENSE` | 都要 | 讀檔案 |
 | project-18 | project.3 | 家族 mark 的正本是 `docs/icon.svg`；splash 用的那一份在程式裡（`internal/` 裡的副本檔，或寫死的格子） | 都要 | 讀檔案：有 `docs/icon.svg`；讀程式：splash 畫的是 `internal/` 裡的副本檔或寫死的格子 |
 | project-19 | project.3 | 出 Windows 版的 app 另有 `install.ps1`、`uninstall.ps1` | 出 Windows 版 | 讀檔案 |
+| project-37 | project.3 | 沒有追蹤任何 `CLAUDE.md`，`.claude/` 底下也只追蹤 `.claude/rules/terminu.md` | 都要 | 跑 `git ls-files \| grep -E '(^\|/)CLAUDE\.md$\|^\.claude/'`：除了 `.claude/rules/terminu.md` 什麼都沒有 |
 | project-20 | project.4 | `<app> version` 與 splash 的版本印的是 `internal/version` 的 `Display()` | 都要 | 讀程式：兩處都呼叫 `Display()` |
 | project-21 | project.4 | 發布版的版本是 tag 去掉 v 注入的，印出來帶 v（例：tag `v0.2.0` 印 `v0.2.0`） | 都要 | 讀檔案：`.goreleaser.yaml` 把 tag 去掉 v 注入、`internal/version` 印出時帶 v；發過版的，裝發布版跑 `<app> version`，印的跟 tag 一樣 |
 | project-22 | project.4 | 本機 `make build`、`go build` 不注入版本，版本是 `dev` | 都要 | 本機 `make build` 後跑 `./<app> version`，印 `dev` |

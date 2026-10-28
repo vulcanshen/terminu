@@ -71,7 +71,10 @@ Homebrew tap；跨 repo diff 一下就知道誰走樣。自己做一個 app 用�
 - app 本身的 Go 程式只在 `cmd/<app>/` 與 `internal/`。`go install` 的路徑是 `github.com/vulcanshen/<app>/cmd/<app>@latest`
   （照 tdp 做的 app 換成自己的帳號：`github.com/<帳號>/<app>`，Rules 的 E 章開頭）。
 - **開發用的小工具**（Go 寫的也一樣）可以放頂層的 `tools/`，不算 app 本身。
-- 圖上沒有的其他頂層目錄與檔案（例：端到端測試、`CLAUDE.md`），app 可以自行決定。
+- 圖上沒有的其他頂層目錄與檔案（例：端到端測試），app 可以自行決定。
+- **Claude Code 的檔案不進 git**：`CLAUDE.md` 與 `.claude/` 底下的檔案不追蹤（範本 [`gitignore`](gitignore) 排除了），
+  harness 的 `.claude/rules/terminu.md` 除外。工作目錄裡可以有。**為什麼**：那是維護者自己的指示與設定，寫滿一台機器的路徑；
+  公開的 repo 用不到，還把維護者的路徑公開了出去（user 2026-10-28）。
 - **`docs/icon.svg` 是家族 mark 的正本**。Go 的 `go:embed` 讀不到 `docs/`，所以 splash 用的那一份放在程式裡（`internal/` 裡的副本檔，
   或寫死的格子），tdp E6 的測試守住它跟 `docs/icon.svg` 一模一樣。
 - 要不要出 Windows 版，app 可以自行決定；出的話另有 `install.ps1`、`uninstall.ps1`，不在範本裡，怎麼寫 app 可以自行決定。
