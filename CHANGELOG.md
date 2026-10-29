@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.1.2 — 2026-10-29
+
+Settled with the user, from webu: the inspect toast, a toast saying what the item under the cursor is (in webu's Focus
+mode, where a link goes), there only while the cursor is on it. It replaces writing the address in the right of a
+panel's bottom border, which stays the scroll position. Only an app that wants one uses it; family members change
+nothing.
+
+- toast.4 (new): the inspect toast — a toast's look titled `nf-md-eye` (U+F0208) `INSPECT`, its text in Text, no hint;
+  there from when the cursor lands on an item that has one until it leaves, with no timer; every key passes through
+  it, `Esc` included; an ordinary toast replaces it and it comes back after; the view scrolls so that it never covers
+  the item under the cursor
+- toast.1: names the inspect toast as the exception
+- Rules K4, F1, F3, F8: `Esc` closes a toast first, but for the inspect toast, which takes no keys
+- layout/popup: the title glyph table names the inspect toast's own
+- changed in this version: toast.1, toast.4, popup.1, K4, F1, F3, F8
+- checklist: toast-21 to toast-25 added (1464 items), and "inspect toast" among what an item applies to; the header
+  names v1.1.2
+
 ## v1.1.1 — 2026-10-29
 
 Settled with the user: inside a mode `V` does not summon the splash, as K11 already has it (only the mode's own keys
