@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.3 — 2026-10-29
+
+Settled with the user, two things toast.4 left open, found by terminu-go while building the inspect toast. terminu-go
+v1.1.3 already does both; family members change nothing.
+
+- toast.4: with a popup opened over the panel, the inspect toast is not shown (the focus is on the popup), and it
+  comes back when the popup closes if the cursor is still on the item
+- toast.4, note.7: the inspect toast is not written to the App Log; note.7's "every toast" names it as the exception
+- changed in this version: toast.4, note.7
+- checklist: toast-26, toast-27 added, note-77 names the exception (1466 items); the header names v1.1.3
+
 ## v1.1.2 — 2026-10-29
 
 Settled with the user, from webu: the inspect toast, a toast saying what the item under the cursor is (in webu's Focus
