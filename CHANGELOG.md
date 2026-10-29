@@ -1,5 +1,30 @@
 # Changelog
 
+## v1.1.4 — 2026-10-29
+
+Settled with the user after webu v0.6.0, its reader: what webu brought up that tdp did not say, and the examples that
+named what webu no longer has. kbu and webu already do what the new rules say; any app checks E3's settings key and
+cache at its next release.
+
+- K12: two-dimensional content is read with no cursor, scrolling; going from item to item is a mode (e.g. webu's
+  Focus), where `j|k` step in reading order, wrapping, and `gg|G` go to the first and the last item. It replaces the
+  old webu's tabs and cursor
+- note.3: a viewer's search — `/` opens an input popup for the text, `n|N` go to the next and the previous hit,
+  wrapping and scrolling it into sight, and an Info toast says when there is no hit, as kbu's YAML viewer and webu's
+  pages have it
+- panel.14: a panel without a cursor searches its text as a viewer does, `Esc` clearing the hits (K4)
+- note.7: going into or out of a mode is not recorded in the App Log; what is done in it is, by its result
+- E3: a key in a settings file the app no longer reads is treated as a file no longer used (kept, no toast, an INFO
+  entry at every start); a cache no longer used is deleted at the first start, the App Log saying where and how large
+- examples: the address box is `o`; webu no longer has `[go]to`, tabs on its page, a Sign in form, colour fields,
+  sliders, Upload, digit keys on options or a finder on `/`; F1's box drawn by a panel's content is now a table's grid
+  on a page webu shows
+- changed in this version: K12, F1, E3, note.3, note.7, panel.12, panel.14, form.1, color-picker.1, slider.2,
+  file-picker.1, finder.1, select.2, the Principle README
+- checklist: E3-24, E3-25, note-86, panel-156 added, K12-17 and note-77 changed, and "two-dimensional content",
+  "a settings key no longer used" and "a cache no longer used" among what an item applies to (1470 items); the
+  header names v1.1.4
+
 ## v1.1.3 — 2026-10-29
 
 Settled with the user, two things toast.4 left open, found by terminu-go while building the inspect toast. terminu-go
