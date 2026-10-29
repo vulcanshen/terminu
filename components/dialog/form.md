@@ -4,7 +4,7 @@
 
 ## form.1 Purpose
 
-Several values filled in and submitted together (sshu's Host form, webu's Sign in and Add bookmark). For a single value,
+Several values filled in and submitted together (sshu's Host form, webu's Add bookmark). For a single value,
 use an input popup ([`input/`](../README.md#components12-input)); for values that take effect when changed, with nothing to submit, use
 a panel with one value per row ([`layout/panel`](../layout/panel.md)). The frame follows
 [`layout/popup`](../layout/popup.md).

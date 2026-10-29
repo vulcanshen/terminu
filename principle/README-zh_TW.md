@@ -207,7 +207,7 @@ tdp 是宇集：app 的每一個決定，都要在 tdp 找得到根據 —— �
 
 ### terms.7 輸入態
 
-以打字輸入的文字當內容的狀況：focus 在一個打字列上，打的字就是那一列的內容。例：filu 的重新命名框、webu 的網址列（`L`）、
+以打字輸入的文字當內容的狀況：focus 在一個打字列上，打的字就是那一列的內容。例：filu 的重新命名框、webu 的網址框（`o`）、
 locku 的 PIN 輸入、panel filter 與 finder 的打字列。select 與 picker 的清單、表單本身都不是輸入態。規則見 Rules K8。
 
 ### terms.8 模式

@@ -4,7 +4,7 @@
 
 ## form.1 用途
 
-好幾個值填好後一起送出（sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark）。只有一個值時用 input popup（[`input/`](../README-zh_TW.md#components12-input)）；
+好幾個值填好後一起送出（sshu 的 Host 表單、webu 的 Add bookmark）。只有一個值時用 input popup（[`input/`](../README-zh_TW.md#components12-input)）；
 改了就生效、不用送出的，用 panel 的一列一個值（[`layout/panel`](../layout/panel-zh_TW.md)）。框照 [`layout/popup`](../layout/popup-zh_TW.md)。
 
 表單上不打字。要打字的欄位（text、password…）和選項多到放不下的欄位（select、日期、顏色、選檔），按 `Enter` 打開那一欄的

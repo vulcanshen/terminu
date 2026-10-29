@@ -373,7 +373,7 @@ section titles. A group title left over an empty group looks as if it were still
 
 ## panel.12 One value per row
 
-A panel with one value per row, like a settings screen (locku's preference, webu's Settings, the fields on a webu page).
+A panel with one value per row, like a settings screen (locku's preference, webu's Settings).
 
 ```
 ┏[2] PREFERENCE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -438,6 +438,10 @@ saw while moving would always be the previous item; changing at once, you see wh
 `/` brings up a typing row at the top of the panel (below the location row when there is one; above the header, when the
 list has one), and the list is filtered
 live as you type, with no popup (kbu's panel search, sshu's Hosts, webu's list filters).
+
+**A panel without a cursor** (a preview, a log, a page webu shows) has no filter: where it searches its text, `/` works
+as a viewer's search ([`dialog/note`](../dialog/note.md), note.3: the input popup, the hits, `n|N`, the Info toast),
+and `Esc` clears the hits, going up one level as clearing a filter does (Rules K4; the user, 2026-10-29).
 
 ```
 ┏[2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

@@ -232,7 +232,7 @@ Where the user's keys go right now, on two levels:
 ### terms.7 Input state
 
 When typed text is the content: focus is on a typing row, and what is typed becomes that row's content. E.g. filu's
-rename box, webu's address bar (`L`), locku's PIN entry, the typing row of a panel filter or of a finder. The list of a
+rename box, webu's address box (`o`), locku's PIN entry, the typing row of a panel filter or of a finder. The list of a
 select or a picker, and a form itself, are not input state. See Rules K8.
 
 ### terms.8 Mode

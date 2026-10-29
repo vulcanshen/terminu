@@ -14,7 +14,7 @@ A select is a kind of finder ([`input/finder`](finder.md)): only what differs fr
 
 - The finder's skeleton, **without a preview**; the typing row is always shown, even for a short list.
 - A radio glyph before every row, the current value in Green ("Markers in the list" in the finder).
-- Options may have hotkeys (e.g. webu's digit keys), written as in Rules M5; whether to have them, the app may decide for itself.
+- Options may have hotkeys, written as in Rules M5; whether to have them, the app may decide for itself.
 - **Width**: the options are known when it opens, so it follows "content width known when it opens" in
   [`layout/popup`](../layout/popup.md).
 

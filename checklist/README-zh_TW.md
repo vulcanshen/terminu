@@ -86,8 +86,11 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 比較模式 | 有 panel 的比較模式（先挑 anchor、再挑另一列來比） |
 | 被指到的 panel | 清單的一列代表畫面上另一個 panel，cursor 會指出那個 panel（例：sshu 的 sessions 清單與網格） |
 | app 自己的 popup | 有七類裝不下、內容由 app 自己畫的 popup（例：kamonu 畫格子的 popup） |
-| panel 內容的框 | panel 的內容自己會畫出框（例：webu 顯示的網頁跳出的彈窗） |
+| 二維內容 | panel 的內容一列有好幾個項目（例：webu 網頁裡的連結） |
+| panel 內容的框 | panel 的內容自己會畫出框（例：webu 顯示的網頁上，表格畫出的格子） |
 | 不再用的檔 | 改版後有不再用的設定、狀態或資料檔（例：sshu 的 errors.yaml、kbu 的 theme.yaml） |
+| 不再用的設定 key | 改版後不再讀設定檔的某個 key（例：webu 的 measure） |
+| 不再用的快取 | 改版後不再用某個快取（例：舊版 webu 下載的 Chromium） |
 | 出 Windows 版 | 發布 Windows 版 |
 | 發過版 | 發布過（有 tag 與 GitHub release）；還沒發過版的 app，只有發版之後才有的東西（release、tap 上的 formula……）不適用，看得到的照現在的 repo 查 |
 | mouse | 有做 mouse |

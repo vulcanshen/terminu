@@ -4,7 +4,7 @@
 
 ## color-picker.1 Purpose
 
-Choosing a colour: colour fields on webu pages, locku's colour settings.
+Choosing a colour: locku's colour settings.
 
 ## color-picker.2 Look
 

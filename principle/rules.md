@@ -389,11 +389,12 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
 - **In a plain one-dimensional list with no left-right structure** (a form, a one-value-per-row panel without tabs, a
   menu): `h|k` (`←|↑`) go back, `j|l` (`↓|→`) go on.
 - A one-dimensional list in a panel with tabs: `h|l` switch tabs, `j|k` still move in the list.
-- Two-dimensional content (several items to a row, e.g. the links on one line of a web page, the cells of a table) in a
-  panel with tabs: `h|l` switch tabs, `j|k` step item by item in reading order (left to right along a row, then the next
-  row), wrapping at the ends; `u|d` and `gg|G` as usual.
+- **Two-dimensional content** (several items to a row, e.g. the links in the text of a page webu shows): it is read with
+  no cursor, `j|k`, `u|d` and `gg|G` scrolling as in a panel without a cursor; going from item to item is a mode (K11,
+  e.g. webu's Focus), where `j|k` step item by item in reading order (left to right along a row, then the next row),
+  wrapping at the ends, and `gg|G` go to the first and the last item (the user, 2026-10-29, as webu's reader).
 - **`u|d` move half a page, `gg|G` to the top and the bottom.** `g` is only the start of a two-key chord: `gg` goes to
-  the top, and other chords starting with `g` may be hotkeys (e.g. filu's and webu's `[go]to`); a single `g` does
+  the top, and other chords starting with `g` may be hotkeys (e.g. filu's `[go]to`); a single `g` does
   nothing. When the key after `g` is not a chord, it is as if `g` had not been pressed and that key works as usual (`g`
   then `j`: down a row). `Ctrl-U|Ctrl-D` are not taken as aliases.
 - **`Home` and `End` only on a typing row**: the cursor to the start and the end
@@ -414,7 +415,7 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
 
 **Why**: in the family hjkl are the arrow keys — forms, panels and lists all move with them; an app binding one to an
 action has users trigger an action while they think they are moving. With a left-right structure, left and right are
-left and right (filu's, kbu's and webu's `h|l` switch tabs, sshu's `h|l` cross to the other side); without one, the
+left and right (filu's and kbu's `h|l` switch tabs, sshu's `h|l` cross to the other side); without one, the
 left and right keys are idle and get "back" and "on", so all four arrow keys work on a one-dimensional list.
 `Ctrl-U|Ctrl-D` are not taken: one set of keys per action is one set fewer to remember; and in shells and many input
 boxes `Ctrl-U` means "clear this line", so the same chord would turn pages in one place in the family and delete text in
@@ -718,7 +719,7 @@ The family's popups come in these eight classes only, each with fixed key meanin
 | **menu** | a list with no search: `j\|k` moves the cursor, `Enter` or a hotkey runs the row | Space menu, global operation popup, a sort picker, a jobs list (`Enter` acts on the row: opens it in full, or opens a confirm carrying it in full) |
 | **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6); what to read first sits above, the question last | confirm before delete, the quit confirm, "Connect to X?" carrying the details |
 | **input** | enter or pick one value, written back once confirmed; one value per popup. On the typing row it is the input state (K8); other parts follow K1 | rename, address bar, select, datetime picker, reorder |
-| **form** | one value per row; `Tab` switches between the field area and the action area, hjkl move item by item within that area (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing a button), a button submits or does its action ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Sign in and Add bookmark |
+| **form** | one value per row; `Tab` switches between the field area and the action area, hjkl move item by item within that area (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing a button), a button submits or does its action ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Add bookmark |
 | **note** | read-only, scrollable (K12); no list of options to run with `Enter` | key reference, YAML viewer, App Log, error popup |
 | **toast** | a short message popping up from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it. The inspect toast is there while the cursor is on its item, and every key passes through it ([components/dialog/toast](../components/dialog/toast.md)) | "Copied", an operation failed, where a link goes (webu's Focus mode) |
 | **terminal** | a subprocess running in the box; every key is its, only the exit key and the chords the app keeps (in an interactive terminal also `Alt-v` and `PgUp`) are the app's (K10) | kbu's Alterm, filu's shell |
@@ -762,7 +763,7 @@ The family's popups come in these eight classes only, each with fixed key meanin
   - How the content is drawn and the keys on it, the app may decide for itself; inside that scope, the core keys keep
     their meaning (K1; `Space` see K5), movement follows K12, and hotkeys are disclosed in `?` (K6, M5).
 - The splash is not a popup (chapter S): it is not in these eight.
-- **A box drawn by a panel's own content is content, not a popup** (e.g. a dialog popped up by a web page webu shows).
+- **A box drawn by a panel's own content is content, not a popup** (e.g. the grid of a table on a page webu shows).
   It is not a layer: how it is drawn (whether the content under it is dimmed included), the app may decide for itself;
   keys work as on the panel it is in — `Space` is that panel's Space menu, `?` that panel's key reference, and `Esc` does
   what K4 says it does on a panel.
@@ -1202,7 +1203,11 @@ cache directory as soon as a session starts); moving the whole directory would t
 **Files no longer used**: a settings, state or data file that a new version of the app no longer uses is not deleted,
 and no toast is shown: what to do with it is the user's call. While the file is there, every start writes an INFO entry
 to the App Log giving its path and saying the app no longer uses it (e.g. `No longer used: ~/.sshu/errors.yaml; delete
-it if you don't need it`); the CHANGELOG says so too.
+it if you don't need it`); the CHANGELOG says so too. **A key in a settings file** that the app no longer reads is
+treated the same way (the user, 2026-10-29): kept, also when the app writes the file again, no toast, and an INFO
+entry at every start naming the key and the file (e.g. `No longer used: measure in ~/.config/webu/config.yaml; delete
+it if you don't need it`). **A cache no longer used** is deleted at the first start (the user, 2026-10-29, e.g. the
+Chromium an older webu downloaded), and an INFO entry in the App Log says where it was and how large.
 
 The App Log is kept in memory only and starts empty every time, so the entry is written at every start, for whoever
 opens it.

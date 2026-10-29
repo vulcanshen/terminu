@@ -288,7 +288,7 @@ label 也照樣是這個 panel 的名字。用 Lavender：使用者走到這裡�
 
 ## panel.12 一列一個值
 
-設定畫面這種一列一個值的 panel（locku 的 preference、webu 的 Settings、webu 頁面上的欄位）。
+設定畫面這種一列一個值的 panel（locku 的 preference、webu 的 Settings）。
 
 ```
 ┏[2] PREFERENCE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -341,6 +341,10 @@ label 也照樣是這個 panel 的名字。用 Lavender：使用者走到這裡�
 
 按 `/` 之後在 panel 最上面出現一列打字列（有位置列時在位置列下面；清單有表頭時在表頭上面），打字的同時清單即時篩選，不開 popup（kbu 的 panel 搜尋、
 sshu 的 Hosts、webu 的清單篩選）。
+
+**沒有 cursor 的 panel**（預覽、log、webu 顯示的網頁）沒有 filter：要搜自己的文字時，`/` 照 viewer 的搜尋
+（[`dialog/note`](../dialog/note-zh_TW.md)，note.3：input popup、命中的字、`n|N`、Info toast），`Esc` 清掉命中的字，
+跟清掉 filter 一樣是往上一層（Rules K4；user 2026-10-29）。
 
 ```
 ┏[2] HOSTS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓

@@ -13,7 +13,7 @@ select 是 finder 的一種（[`input/finder`](finder-zh_TW.md)）：這裡只�
 
 - finder 的骨架，**沒有預覽**；打字列一直顯示，短清單也是。
 - 每一列前面放 radio glyph，目前的值是 Green（finder 的「清單的標記」）。
-- 選項可以有熱鍵（例：webu 的數字鍵），寫法照 Rules M5；要不要有，app 可以自行決定。
+- 選項可以有熱鍵，寫法照 Rules M5；要不要有，app 可以自行決定。
 - **寬度**：選項打開時就確定，照 [`layout/popup`](../layout/popup-zh_TW.md) 的「內容的寬度打開時就確定」。
 
 ## select.3 按鍵

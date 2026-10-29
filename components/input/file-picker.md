@@ -4,7 +4,7 @@
 
 ## file-picker.1 Purpose
 
-Choosing one **file**, handed back as a value: sshu's Identity file, webu's Upload and Import. When the value is a
+Choosing one **file**, handed back as a value: sshu's Identity file, webu's Import bookmarks. When the value is a
 directory, "Choosing a directory" below applies. The file-picker is a kind of finder ([`input/finder`](finder.md)): the
 skeleton, the two areas, `Tab`, `Enter` on the typing row entering the list, which side is lit, and the preview all
 follow the finder; only what differs is written here.

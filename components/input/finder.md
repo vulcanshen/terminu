@@ -5,7 +5,7 @@
 ## finder.1 Purpose
 
 A popup of a list with search: typing on top filters, the list below is chosen from. A plain finder means "go there"
-(filu's Search, Find and Goto, webu's `/`).
+(filu's Search, Find and Goto).
 
 These are all kinds of finder, each writing only what differs from here:
 

@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v1.1.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v1.1.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -128,7 +128,7 @@ tdp v1.1.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K12-14 | K12 | Drag mode 拿著時 `j\|k` 搬動那一項，到頭尾也繞回：拿著最後一項往後一步，它到第一個、其他各往後一格；拿著第一項往前一步，它到最後一個 | Drag | 拿著最後一項按 `j` |
 | K12-15 | K12 | `u\|d` 到頭尾停在第一個、最後一個，不繞 | 都要 | 在倒數幾列按 `d`，停在最後一列 |
 | K12-16 | K12 | 照空間走、不是一串項目的不繞：日曆的日子、月與年、左右兩側、在一段文字裡移動（含輸入框打字列的游標） | 都要 | 在日曆最後一天往後、在右側再往右、在打字列的最後一個字往右，不繞回 |
-| K12-17 | K12 | 二維內容（一列有好幾個項目，例：網頁同一列的連結、表格的格）放在有 tab 的 panel 裡：`h\|l` 換 tab，`j\|k` 照閱讀順序一個項目一個項目走（同一列從左到右，再到下一列），到頭尾繞回 | panel tab | 在有 tab、內容是二維的 panel 上按 `h\|l`、`j\|k` |
+| K12-17 | K12 | 二維內容（一列有好幾個項目，例：網頁內文裡的連結）閱讀時沒有游標，`j\|k`、`u\|d`、`gg\|G` 捲動；一個項目一個項目走是一個模式，模式裡 `j\|k` 照閱讀順序走（同一列從左到右，再到下一列），到頭尾繞回，`gg\|G` 到第一個、最後一個 | 二維內容 | 在內容上按 `j\|k`，畫面捲動；進模式按 `j\|k` 走過最後一個，再按 `gg\|G` |
 
 ## rules — M Menu 與揭露
 
@@ -387,6 +387,8 @@ tdp v1.1.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | E3-21 | E3 | 快取讀不了時不問，丟掉重建 | 存設定或資料 | 把快取的檔弄壞後啟動，沒有 confirm |
 | E3-22 | E3 | 資料是一筆一個檔時，讀不了的那一筆按 `Enter` 只改名成 `.bak`、不另外建，其他照常讀；問句寫 `go on without it` | 存設定或資料 | 把其中一筆的檔弄壞後啟動，按 `Enter` |
 | E3-23 | E3 | app 不再用的設定、狀態、資料檔不刪、不跳 toast；檔案還在時每次啟動在 App Log 記一筆 INFO，寫出路徑 | 不再用的檔 | 放一個 app 不再用的舊檔後啟動，看 App Log 與磁碟；重開再看一次 App Log |
+| E3-24 | E3 | 設定檔裡 app 不再讀的 key 留著，app 重寫那個檔時也留著，不跳 toast；每次啟動在 App Log 記一筆 INFO，寫出 key 與檔案 | 不再用的設定 key | 在設定檔放一個 app 不再讀的 key 後啟動，改一個設定，看檔案與 App Log；重開再看一次 App Log |
+| E3-25 | E3 | app 不再用的快取在第一次啟動時刪掉，App Log 記一筆 INFO，寫出在哪裡、多大 | 不再用的快取 | 放舊的快取後啟動，看磁碟與 App Log |
 | E4-1 | E4 | 程式碼裡的 PUA glyph 寫成 code point | 都要 | 讀程式：掃原始碼找不到 PUA 字元 |
 | E4-2 | E4 | README 的需求段寫明需要 Nerd Font | 都要 | 讀兩份 README 的前置需求 |
 | E4-3 | E4 | README 的需求段跟 Nerd Font 並列寫明需要 truecolor terminal（24-bit 色） | 都要 | 讀兩份 README 的前置需求 |
@@ -686,6 +688,7 @@ tdp v1.1.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-121 | panel.14 | 清單上的 `/` 回到打字列，接著舊的字打 | panel filter | 篩選後在清單按 `/` |
 | panel-122 | panel.14 | focus 離開 panel 時篩選留著，往哪個方向離開都一樣 | panel filter | 篩選後用 `Tab` 與數字鍵離開再回來 |
 | panel-123 | panel.14 | focus 回到有篩選的 panel 時，直接在打字列上 | panel filter | 篩選後離開再回來，看 focus 在打字列 |
+| panel-156 | panel.14 | 沒有 cursor 的 panel 搜自己的文字時，照 viewer 的搜尋（`/`、`n\|N`、Info toast），`Esc` 清掉命中的字 | 沒有 cursor 的 panel | 在有 `/`、沒有 cursor 的 panel 上搜一個字、按 `n`，再按 `Esc`，底線不見 |
 | panel-124 | panel.1 | 清單一項都沒有時（panel filter 篩到空，或本來就是空的），hint 拿掉 `Enter` 與對項目的熱鍵，只留對整個 panel 的 | 都要 | 讓清單篩到空或清空，看下框 hint 沒有 `Enter` 與項目的熱鍵 |
 | panel-125 | panel.4 | 選中的那一段自己就太長時，字從尾端截、加 `…`；兩端的斜角照畫，跟框角之間照樣留一段線 | 都要 | 把終端機縮到很窄，看 label 很長的 panel 的膠囊 |
 | panel-126 | panel.6 | 排序的群：app 替列指定的群照 app 定的先後排，排序只在同一群裡排，群和群之間不畫標題（例：目錄一律在檔案前面） | 排序 | 對有群的清單換排序，看群的先後不變 |
@@ -1004,12 +1007,13 @@ tdp v1.1.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-69 | note.6 | 關掉 error popup 之後回到底下的 popup，focus 留在原位（表單的送出或不關表單的動作失敗時，focus 在那顆按鈕上，再按 `Enter` 就是重試），值都還在 | error popup | 關掉後看底下的 popup |
 | note-70 | note.4 | 每個 viewer 都有選取模式（`v` 選取、`y` 複製） | viewer | 在每個 viewer 上按 `v` |
 | note-71 | note.2 | viewer 的搜尋：命中的字全部加底線、保留原本的顏色；目前那一筆畫成 cursor 色塊；不用 Yellow | viewer | 在有 `/` 的 viewer 搜一個出現好幾次的字，看底線與目前那一筆（沒有搜尋的 viewer 沒有這種情況） |
+| note-86 | note.3 | viewer 的搜尋：`/` 開 input popup 問要找的字；`n\|N` 跳到下一筆、上一筆，到頭尾繞回並捲到看得見；一筆都沒有時跳 Info toast | viewer | 在有 `/` 的 viewer 搜一個出現幾次的字，按 `n` 走過最後一筆、按 `N` 走過第一筆；再搜一個沒有的字 |
 | note-72 | note.2 | 不折行的 viewer，選取模式的游標走進截掉的部分時，畫面跟著左右捲到看得見，左邊被捲掉的開頭加 `…`；截掉的內容選得到、複製得到 | viewer | 在不折行的 viewer 進選取模式，把游標往右走到截掉的地方 |
 | note-73 | note.5 | 「每一列」那一節的說明太長時在右欄折行、名稱欄不動，不截斷；按鍵的各節照舊一列一個鍵、太長截 | 一列一個值的 panel | 讓一列的說明比框寬，按 `?` 看它折行 |
 | note-74 | note.2 | viewer 的內容裡，app 一行一行交來的一行夾著 `\n` 時拆成兩行 | viewer | 讓 app 交給 viewer 的一行含 `\n`（例：多行的錯誤訊息），看是兩行 |
 | note-75 | note.2 | viewer 的內容裡，顏色碼（SGR）照著上色，一行裡的 `\r` 只留最後的狀態，不是顏色碼的序列畫成紅色的名字 | viewer | 打開含顏色碼、`10%\r100%`、`\x1b[2J` 的內容 |
 | note-76 | note.7 | 每個 app 都有 App Log，是 viewer，最新的在最下面，開著時新的一筆照樣進來 | 都要 | 按 `!`，做幾件事，看新的一筆進來 |
-| note-77 | note.7 | 記使用者的動作與結果、每一個 toast（inspect toast 除外）、app 在背景做的事；動作是 Rules P3 的三種 operation，只看不改的也記，移動 cursor、換 focus、panel filter、比較模式、在 confirm 或表單上取消的不記 | 都要 | 做一個改東西的動作、一個只看的動作（例：開 viewer）、跳一個 toast，移動幾次 cursor，按 `!`；讀程式 |
+| note-77 | note.7 | 記使用者的動作與結果、每一個 toast（inspect toast 除外）、app 在背景做的事；動作是 Rules P3 的三種 operation，只看不改的也記，移動 cursor、換 focus、panel filter、比較模式、進出其他模式、在 confirm 或表單上取消的不記 | 都要 | 做一個改東西的動作、一個只看的動作（例：開 viewer）、跳一個 toast，移動幾次 cursor，按 `!`；讀程式 |
 | note-78 | note.7 | 每一筆：時間 `HH:MM:SS`（Overlay0）、等級（`INFO` Text、`OK` Green、`WARN` Peach、`ERR` Red，四格寬靠左）、發生的事（跟 toast 一樣大寫開頭） | 都要 | 看 App Log 的各種等級 |
 | note-79 | note.7 | 只放在記憶體，app 關掉就清空；筆數有上限，滿了丟掉最舊的 | 都要 | 讀程式；或關掉再開，App Log 是空的 |
 | note-80 | note.8 | 標題 glyph `nf-md-compare`（U+F018A），`DIFF — <anchor> ↔ <另一個>`，後面接 `UNIFIED`、`SPLIT` 兩個 tab，`h\|l` 切 | 比較模式 | 打開比較，按 `h\|l`；讀程式核對 code point |

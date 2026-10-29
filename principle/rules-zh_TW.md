@@ -310,10 +310,11 @@ panel，使用者不預期它們有反應，多回應反而是雜訊。
 - **只有一維清單、沒有左右結構時**（表單、沒有 tab 的「一列一個值」panel、menu）：`h|k`（`←|↑`）往前，`j|l`（`↓|→`）
   往後。
 - 一維清單放在有 tab 的 panel 裡：`h|l` 給 tab，`j|k` 照樣在清單裡移。
-- 二維內容（一列有好幾個項目，例：網頁上同一列的連結、表格的格）放在有 tab 的 panel 裡：`h|l` 給 tab，`j|k` 照閱讀順序一個項目
-  一個項目走（同一列從左到右，再到下一列），到頭尾繞回；`u|d`、`gg|G` 照樣。
+- **二維內容**（一列有好幾個項目，例：webu 顯示的網頁內文裡的連結）：閱讀時沒有游標，`j|k`、`u|d`、`gg|G` 照沒有游標的 panel
+  捲動；要一個項目一個項目走時進一個模式（K11，例：webu 的 Focus），模式裡 `j|k` 照閱讀順序一個項目一個項目走（同一列從左到右，
+  再到下一列），到頭尾繞回，`gg|G` 到第一個、最後一個（user 2026-10-29，照 webu 的閱讀器）。
 - **`u|d` 半頁，`gg|G` 到頭、到尾**。`g` 只當兩鍵組合的開頭：`gg` 是到頭，其他 `g` 開頭的組合可以當熱鍵（例：filu、
-  webu 的 `[go]to`）；單按 `g` 不做任何事。`g` 後面接的鍵沒有登記成組合時，當作 `g` 沒按過，那個鍵照常作用（`g` 然後
+  `[go]to`）；單按 `g` 不做任何事。`g` 後面接的鍵沒有登記成組合時，當作 `g` 沒按過，那個鍵照常作用（`g` 然後
   `j`：往下一列）。不收 `Ctrl-U|Ctrl-D` 當別名。
 - **`Home`、`End` 只在打字列**：游標到最前面、最後面（[components/input/README](../components/input/README-zh_TW.md)）。清單、menu、
   viewer、textarea 的移動狀態都不作用：那裡有 `gg|G`、`0|$`。
@@ -327,7 +328,7 @@ panel，使用者不預期它們有反應，多回應反而是雜訊。
   （[components/dialog/note](../components/dialog/note-zh_TW.md) 的選取模式）。
 
 **為什麼**：hjkl 在家族裡是方向鍵，表單、panel、清單都靠它移動；一個 app 把其中一個綁成動作，使用者以為在移動，卻觸發
-了動作。有左右結構時左右就是左右（filu、kbu、webu 的 `h|l` 切 tab，sshu 的 `h|l` 跨到另一側）；沒有左右結構時左右鍵閒著，
+了動作。有左右結構時左右就是左右（filu、kbu 的 `h|l` 切 tab，sshu 的 `h|l` 跨到另一側）；沒有左右結構時左右鍵閒著，
 給它「往前往後」，一維清單上四個方向鍵都用得上。不收 `Ctrl-U|Ctrl-D`：一個動作一組鍵，少一組要記；而 `Ctrl-U` 在 shell
 與很多輸入框裡是「清掉這一行」，同一個組合在家族裡一處翻頁、一處刪字，按錯的代價太高。到頭尾繞回：同一個鍵在家族裡到頭尾
 只有一種反應，不用記哪裡繞、哪裡停；`u|d` 跨過頭尾的半頁落在哪裡猜不到，所以停住。`Home`、`End` 只在打字列：那裡 `g`、`0`
@@ -590,7 +591,7 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 | **menu** | 沒有搜尋的清單：`j\|k` 移動 cursor，`Enter` 或熱鍵執行那一列 | Space menu、global operation popup、排序選擇器、工作清單（`Enter` 對那一列：打開全文，或打開帶全文的 confirm） |
 | **confirm** | 讀一段提醒或警告，`Enter` 接受、`Esc` 取消（F6）；要先看的內容在上、問句最後 | 刪除前的確認、離開的確認、帶著明細的「連線到 X？」 |
 | **input** | 輸入或選出一個值，確定後寫回去；一個 popup 一個值。打字列上是輸入態（K8），其他部分照 K1 | 重新命名、網址列、select、datetime picker、reorder |
-| **form** | 一列一個值；`Tab` 在欄位區與動作區之間切換、hjkl 在那一區裡一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕送出或做它的動作（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark |
+| **form** | 一列一個值；`Tab` 在欄位區與動作區之間切換、hjkl 在那一區裡一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕送出或做它的動作（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Add bookmark |
 | **note** | 唯讀，可以捲動（K12）；沒有可用 `Enter` 執行的選項清單 | key reference、YAML 檢視、App Log、error popup |
 | **toast** | 從下方彈出的短訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它。inspect toast 在游標停在它那一項時存在，所有鍵都穿過它（[components/dialog/toast](../components/dialog/toast-zh_TW.md)） | 「已複製」、操作失敗、連結會去哪（webu 的 Focus mode） |
 | **terminal** | 跑在框裡的子程序，按鍵都給它，只有出口鍵與 app 保留的組合鍵（互動 terminal 還有 `Alt-v`、`PgUp`）屬於 app（K10） | kbu 的 Alterm、filu 的 shell |
@@ -623,7 +624,7 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
   - 內容怎麼畫、內容上的按鍵，app 可以自行決定；範圍內要守的：core key 的意義不變（K1，`Space` 見 K5）、移動照 K12、熱鍵
     揭露在 `?`（K6、M5）。
 - splash 不是 popup（S 章），不屬於這八類。
-- **panel 內容自己畫的框是內容，不是 popup**（例：webu 顯示的網頁自己跳出的彈窗）。它不是一層：怎麼畫（包括底下的內容要不要
+- **panel 內容自己畫的框是內容，不是 popup**（例：webu 顯示的網頁上，表格畫出的格子）。它不是一層：怎麼畫（包括底下的內容要不要
   淡化），app 可以自行決定；按鍵照它所在的 panel —— `Space` 是那個 panel 的 Space menu，`?` 是那個 panel 的 key reference，
   `Esc` 照 K4 在 panel 上的行為。
 
@@ -980,7 +981,10 @@ app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度�
 
 **不再用的檔**：app 改版後不再用的設定、狀態、資料檔，app 不刪，也不跳 toast：怎麼處理是使用者的事。檔案還在時，每次啟動在
 App Log 記一筆 INFO，寫出路徑、說 app 不再用它（例：`No longer used: ~/.sshu/errors.yaml; delete it if you don't need it`）；
-CHANGELOG 也寫一句。
+CHANGELOG 也寫一句。**設定檔裡 app 不再讀的 key** 一樣處理（user 2026-10-29）：留著，app 重寫那個檔時也留著，不跳 toast，
+每次啟動在 App Log 記一筆 INFO，寫出 key 與檔案（例：`No longer used: measure in ~/.config/webu/config.yaml; delete it if
+you don't need it`）。**不再用的快取**在第一次啟動時刪掉（user 2026-10-29，例：舊版 webu 下載的 Chromium），App Log 記一筆
+INFO，寫出在哪裡、多大。
 
 App Log 只放在記憶體，每次打開都是空的，所以每次啟動都記，打開 App Log 的人才看得到。
 

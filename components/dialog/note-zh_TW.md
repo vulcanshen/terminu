@@ -73,6 +73,10 @@
   再按一次 `?` 也能關（Rules K6）。
 - **表單上的打字說明只收 `Enter`、`Esc`**：其他可以打的字（包括 `q`、`?`）都不作用 —— 不進離開流程、不開 key reference
   （[`dialog/form`](form-zh_TW.md) 的「在欄位上打字」）。
+- **viewer 的搜尋**（有 `/` 時；user 2026-10-29，照 kbu 的 YAML viewer 與 webu 的網頁）：`/` 開一個 input popup 問要找的字
+  （[`input/text`](../input/text-zh_TW.md)；標題與 glyph，app 可以自行決定）；命中的字照 note.2 畫。`n|N` 跳到下一筆、上一筆，
+  到頭尾繞回，畫面捲到看得見那一筆。一筆都沒有時，跳一個 Info toast 說沒有（[`dialog/toast`](toast-zh_TW.md)）。viewer 關掉，
+  命中的字跟著不見。沒有 cursor 的 panel 搜自己的文字也一樣，在那裡 `Esc` 先清掉命中的字（[`layout/panel`](../layout/panel-zh_TW.md)，panel.14）。
 - **hint**：note 自己的熱鍵寫在前面，`Esc:close` 放最後；有 tab 時 `h|l:tab` 寫在最前面（[`layout/popup`](../layout/popup-zh_TW.md) 的 hint）。例：`y:copy /:search v:visual Esc:close`。
 
 **為什麼**：使用者自己打開的 note，看完按 `Esc` 是最直覺的；`Space` 在 `less`、`man` 這類閱讀器裡是往下翻頁，熟的人在 note 上按
@@ -203,7 +207,8 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
   不記；在清單上用 `Enter`（或 menu 上那一列）進明細也是換 focus（Rules K3）：明細本來就跟著 cursor 換，進去沒有多看到什麼
   （DM42）；popup 裡的操作不另外記，記的是它所屬那個動作的結果。panel filter（[`layout/panel`](../layout/panel-zh_TW.md)）
   也不記：篩選只是換看得到的範圍，跟移動 cursor 一樣，記下來沒有意義（user 2026-10-27，G103）；panel 的比較模式
-  （note.8）也不記（user 2026-10-27，KB34）。動作確定了才算做了：
+  （note.8）也不記（user 2026-10-27，KB34），進出其他模式也不記（Rules K11，例：webu 的 Visual、Focus，kbu 的 Drag）：
+  模式只是換一種移動或看的方式，在模式裡做完的事（複製、放下、按連結）照它的結果記（user 2026-10-29）。動作確定了才算做了：
   在動作前面的 confirm、或填值的表單與 input popup 上按 `Esc` 取消，動作沒做、沒有結果，不記（confirm 只是門，Rules T1；SS46）。
 - **每一筆**：時間 `HH:MM:SS`（Overlay0）、等級、發生的事（照 [`dialog/toast`](toast-zh_TW.md) 的「開頭大寫」）。等級跟著 toast 的種類與顏色：`INFO` Text、
   `OK` Green、`WARN` Peach、`ERR` Red，等級欄四格寬、靠左。

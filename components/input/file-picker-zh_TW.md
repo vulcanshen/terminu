@@ -4,7 +4,7 @@
 
 ## file-picker.1 用途
 
-選一個**檔案**，當成值交回去：sshu 的 Identity file、webu 的 Upload 與 Import。值是目錄時用下面的「選目錄」。file-picker 是 finder 的一種（[`input/finder`](finder-zh_TW.md)）：
+選一個**檔案**，當成值交回去：sshu 的 Identity file、webu 的 Import bookmarks。值是目錄時用下面的「選目錄」。file-picker 是 finder 的一種（[`input/finder`](finder-zh_TW.md)）：
 骨架、兩塊、`Tab`、打字列上 `Enter` 進清單、亮暗、預覽都照 finder；這裡只寫不同的地方。
 
 ## file-picker.2 長相

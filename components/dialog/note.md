@@ -95,6 +95,12 @@ a file looks the same in the preview and in a viewer.
   and the typing explanation on a form close on `Enter` too; the key reference also closes on a second `?` (Rules K6).
 - **A form's typing explanation takes only `Enter` and `Esc`**: every other typeable character (`q` and `?` included)
   does nothing — no quitting, no key reference (typing on a field in [`dialog/form`](form.md)).
+- **A viewer's search** (where it has `/`; the user, 2026-10-29, as kbu's YAML viewer and webu's pages have it): `/`
+  opens an input popup asking for the text ([`input/text`](../input/text.md); its title and glyph, the app may decide
+  for itself); the hits are drawn as note.2 says. `n|N` go to the next and the previous hit, wrapping at the ends, the
+  view scrolling it into sight. With no hit, an Info toast says so ([`dialog/toast`](toast.md)). The hits go when the
+  viewer closes. A panel without a cursor searches its text the same way, `Esc` clearing the hits there
+  ([`layout/panel`](../layout/panel.md), panel.14).
 - **Hint**: the note's own hotkeys first, `Esc:close` last; with tabs, `h|l:tab` comes first (the hint in
   [`layout/popup`](../layout/popup.md)). E.g. `y:copy /:search v:visual Esc:close`.
 
@@ -260,7 +266,9 @@ keep arriving, as in streaming content.
   inside a popup is not recorded on its own: the result of the operation it
   belongs to is. The panel filter ([`layout/panel`](../layout/panel.md)) goes unrecorded too: filtering only changes
   what is in view, like moving the cursor, and a record of it means nothing (the user, 2026-10-27, G103); nor does a
-  panel's compare mode (note.8; the user, 2026-10-27, KB34). An operation
+  panel's compare mode (note.8; the user, 2026-10-27, KB34), nor going into or out of any other mode (Rules K11, e.g.
+  webu's Visual and Focus, kbu's Drag): a mode only changes how you move or look, and what is done in it (copying,
+  dropping, pressing a link) is recorded by its result (the user, 2026-10-29). An operation
   is done once it is accepted: cancelled with `Esc` at the confirm before it, or at the form or input popup that takes
   its values, it was not done and has no result, and goes unrecorded (a confirm is only a door, Rules T1; SS46).
 - **Each entry**: the time `HH:MM:SS` (Overlay0), a level, and what happened, capitalised as in [`dialog/toast`](toast.md). The level

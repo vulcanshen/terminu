@@ -97,8 +97,11 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | compare mode | a panel's compare mode (an anchor first, then another row to compare with) |
 | pointed panel | a list row stands for another panel on screen, and the cursor points that panel out (e.g. sshu's session list and grid) |
 | an app's own popup | a popup whose content the seven classes cannot hold, drawn by the app itself (e.g. kamonu's popup for drawing cells) |
-| panel content box | a panel's content draws boxes of its own (e.g. the dialogs a web page pops up in webu) |
+| two-dimensional content | a panel whose content has several items to a row (e.g. the links in webu's pages) |
+| panel content box | a panel's content draws boxes of its own (e.g. the grid of a table on a page webu shows) |
 | a file no longer used | a new version stopped using a settings, state or data file (e.g. sshu's errors.yaml, kbu's theme.yaml) |
+| a settings key no longer used | a new version stopped reading a key of its settings file (e.g. webu's measure) |
+| a cache no longer used | a new version stopped using a cache (e.g. the Chromium an older webu downloaded) |
 | Windows build | a Windows release |
 | has released | a release made (a tag and a GitHub release); for an app not yet released, what only exists after a release (the release, the formula on the tap…) does not apply, and what can be seen is checked on the repo as it is now |
 | mouse | mouse support |

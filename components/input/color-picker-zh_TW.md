@@ -4,7 +4,7 @@
 
 ## color-picker.1 用途
 
-選一個顏色：webu 網頁上的顏色欄位、locku 的配色設定。
+選一個顏色：locku 的配色設定。
 
 ## color-picker.2 長相
 

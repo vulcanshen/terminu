@@ -16,7 +16,7 @@ Red          ━━━━━━●━━━━━ 128
 ```
 
 - The track is a heavy line `━`, with `●` where the value is. The track's width and colour, the app may decide for itself (e.g.
-  webu and locku use 12 cells; locku draws the track in its channel's colour).
+  locku uses 12 cells; locku draws the track in its channel's colour).
 
 **Why**: a thin `─` is too faint in many fonts to be seen as a track.
 

@@ -4,7 +4,7 @@
 
 ## finder.1 用途
 
-清單加搜尋的 popup：上面打字篩選，下面清單選。一般的 finder 是「到那裡」（filu 的 Search、Find、Goto，webu 的 `/`）。
+清單加搜尋的 popup：上面打字篩選，下面清單選。一般的 finder 是「到那裡」（filu 的 Search、Find、Goto）。
 
 這些都是 finder 的一種，各自只寫跟這裡不同的地方：
 
