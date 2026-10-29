@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.1.4. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.1.5. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -940,7 +940,7 @@ The items of tdp v1.1.4. What each column means and what an item applies to: [RE
 | note-1 | note.2 | The title is a glyph plus what is shown, drawn as the title capsule | everyone | Look at the titles of the key reference and of a viewer |
 | note-2 | note.2 | A viewer's title: the kind in uppercase; to say which one is shown, ` — ` and then the name, the name as it is (e.g. `YAML — pod/nginx`) | viewer | Look at the viewer's title |
 | note-3 | note.2 | When a viewer wraps, N is the line of the top row, M the line of the bottom row and T the number of lines | viewer | Narrow the window until the content wraps; compare the scroll position with the line numbers |
-| note-4 | note.2 | A viewer wraps by default: a line wider than the frame continues on the next row; for content to keep aligned, the app may keep it unwrapped, the part past the frame cut with `…` at the end of the line | viewer | Open content with a long line: it wraps onto the next row, or ends in `…` |
+| note-4 | note.2 | A viewer always wraps: a line wider than the frame continues on the next row, and no line is cut with `…` | viewer | Open content with a long line: it wraps onto the next row |
 | note-6 | note.2 | The first row of each line carries its number, right-aligned, with a space after it | viewer | Look at the gutter |
 | note-7 | note.2 | A wrapped row leaves the gutter blank | viewer | Look at the wrapped rows |
 | note-8 | note.2 (diagram) | The gutter comes right after the left padding (one cell from the frame), with no separator drawn between the numbers and the content | viewer | Look at where the gutter is |
@@ -1008,7 +1008,6 @@ The items of tdp v1.1.4. What each column means and what an item applies to: [RE
 | note-70 | note.4 | Every viewer has the selection mode (`v` to select, `y` to copy) | viewer | Press `v` on every viewer |
 | note-71 | note.2 | A viewer's search: every match underlined, keeping its colour; the current match drawn as the cursor block; no Yellow | viewer | In a viewer with `/`, search for a word that appears several times; look at the underlines and the current match (a viewer with no search never has this case) |
 | note-86 | note.3 | A viewer's search: `/` opens an input popup for the text; `n\|N` go to the next and the previous hit, wrapping at the ends and scrolling it into sight; with no hit, an Info toast says so | viewer | In a viewer with `/`, search for a word that appears a few times, press `n` past the last and `N` before the first; search for a word that is not there |
-| note-72 | note.2 | In an unwrapped viewer, when the selection cursor walks into the cut part, the view scrolls sideways to show it, with `…` at the start of lines cut on the left; the cut text can be selected and copied | viewer | In an unwrapped viewer, enter the selection mode and walk the cursor right into the cut part |
 | note-73 | note.5 | A long explanation in the "Each row" section wraps in the right column with the name column kept, instead of being cut; the sections of keys stay one key per row, cut when too long | one value per row | Give a row an explanation wider than the frame and press `?`: it wraps |
 | note-74 | note.2 | In a viewer, a line the app hands over that holds a `\n` is split in two | viewer | Hand the viewer a line holding a `\n` (e.g. an error message over several lines) and check that it shows as two lines |
 | note-75 | note.2 | In a viewer, colour codes (SGR) colour the text, a `\r` within a line keeps only the last state, and a sequence that is not a colour code is drawn by name in red | viewer | Open content with colour codes, `10%\r100%` and `\x1b[2J` |
@@ -1019,7 +1018,7 @@ The items of tdp v1.1.4. What each column means and what an item applies to: [RE
 | note-80 | note.8 | Title glyph `nf-md-compare` (U+F018A), `DIFF — <anchor> ↔ <the other>`, followed by two tabs, `UNIFIED` and `SPLIT`, switched with `h\|l` | compare mode | Open a comparison and press `h\|l`; read the code to check the code point |
 | note-81 | note.8 | Only the parts that differ, with 3 unchanged lines before and after, an Overlay0 separator between parts | compare mode | Compare two long items that differ in two places |
 | note-82 | note.8 | UNIFIED: removed lines `-` in Red, added lines `+` in Green, unchanged in Text; the anchor is the removed side; two line-number columns in Overlay0 | compare mode | Look at UNIFIED |
-| note-83 | note.8 | SPLIT: the anchor on the left, the other on the right, each with its line numbers; removed in Red on the left, added in Green on the right, a blank row where there is no counterpart; not wrapped, cut with `…` | compare mode | Look at SPLIT |
+| note-83 | note.8 | SPLIT: the anchor on the left, the other on the right, each with its line numbers; removed in Red on the left, added in Green on the right, a blank row where there is no counterpart; each side wraps within its half, the two lines of a row taking as many rows as the longer, the shorter filled with blank rows | compare mode | Look at SPLIT with a line longer than its half |
 | note-84 | note.8 | The last chosen tab is remembered (state) | compare mode | Switch to SPLIT, quit, start again, compare again |
 | note-85 | note.8 | Narrower than 96 it is always UNIFIED and `SPLIT` is disabled | compare mode | Shrink the terminal below 96 and compare |
 

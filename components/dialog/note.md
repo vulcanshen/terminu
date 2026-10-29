@@ -24,12 +24,9 @@ menu, not a note.
 - **Wrapping when too long**: a note that is a piece of prose, such as the error popup or a form's typing explanation,
   wraps when it does not fit, as in [the components' "Wrapping"](../README.md), and is never cut. The key reference's
   descriptions are the exception, below.
-- **A viewer's wrapping**: wrapping by default — a line wider than the frame continues on the next row, as in [the
-  components' "Wrapping"](../README.md): breaking between words, and only a word wider than a row on its own is cut by
-  cells. For content that must stay aligned (side by side, a table), the app may turn wrapping off: what is wider than
-  the frame is cut, with `…` at the end of the line. Unwrapped, when the selection cursor walks into the cut part, the
-  view scrolls sideways just enough to show it (as vim's nowrap does), with `…` at the start of lines cut on the left;
-  the cut text can still be selected and copied. Leaving the selection mode returns the view to the left edge.
+- **A viewer always wraps**: a line wider than the frame continues on the next row, as in [the components'
+  "Wrapping"](../README.md): breaking between words, and only a word wider than a row on its own is cut by cells. A
+  viewer never cuts a line with `…`, so nothing in it is ever out of sight sideways (the user, 2026-10-29).
 - **A viewer's line numbers**: whether a viewer draws line numbers on the left, the app may decide for itself: content where a line
   is a line, such as file content, a YAML view or the App Log, usually has them; a table the app lays out itself (e.g.
   filu's file info) gains nothing from them and may go without. When drawn they follow
@@ -299,8 +296,9 @@ two tabs follow it, `UNIFIED` and `SPLIT`, switched with `h|l` (Rules K12).
   in Text. Two line-number columns, the anchor's and the other's, the other column blank on a line found on one side
   only; line numbers in Overlay0.
 - **SPLIT**: the anchor on the left, the other on the right, half each, each with its own line numbers; removed lines on
-  the left in Red, added lines on the right in Green, a blank row where the other side has no counterpart. Not wrapped:
-  what is wider than its half is cut with `…` at the end (the viewer's unwrapped content).
+  the left in Red, added lines on the right in Green, a blank row where the other side has no counterpart. Each side
+  wraps within its half (note.2), and the two lines of a row take as many rows as the longer of them, the shorter side
+  filled with blank rows, so the two always start on the same row (the user, 2026-10-29).
 - **The choice is remembered** (state, Rules E3). On a terminal narrower than 96 it is always UNIFIED and `SPLIT` is
   disabled (Rules M6), whichever was remembered.
 

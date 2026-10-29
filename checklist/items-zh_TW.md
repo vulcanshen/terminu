@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v1.1.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v1.1.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -940,7 +940,7 @@ tdp v1.1.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-1 | note.2 | 標題是 glyph 加上顯示的東西，畫成標題膠囊 | 都要 | 看 key reference、viewer 的標題 |
 | note-2 | note.2 | viewer 的標題：種類大寫；要寫顯示的是哪一個時，接 ` — ` 再接名稱，名稱照原樣（例 `YAML — pod/nginx`） | viewer | 看 viewer 的標題 |
 | note-3 | note.2 | viewer 折行時，N 是最上面那一列所屬的行，M 是最下面那一列所屬的行，T 是總行數 | viewer | 把視窗縮窄讓內容折行，對照捲動位置與行號 |
-| note-4 | note.2 | viewer 預設折行：一行比框寬時接到下一列畫；要對齊的內容 app 讓它不折行時，比框寬的部分截掉、行尾加 `…` | viewer | 打開有長行的內容，看長行折到下一列、或行尾有 `…` |
+| note-4 | note.2 | viewer 一律折行：一行比框寬時接到下一列畫，不會用 `…` 截掉 | viewer | 打開有長行的內容，看長行折到下一列 |
 | note-6 | note.2 | 每一行的第一列畫行號，靠右對齊、後面空一格 | viewer | 看行號欄 |
 | note-7 | note.2 | 折下來的列，行號欄空白 | viewer | 看折行的那幾列 |
 | note-8 | note.2（圖） | 行號欄緊接在左邊的留白之後（離框一格），行號與內容之間不畫分隔線 | viewer | 看行號欄的位置 |
@@ -1008,7 +1008,6 @@ tdp v1.1.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-70 | note.4 | 每個 viewer 都有選取模式（`v` 選取、`y` 複製） | viewer | 在每個 viewer 上按 `v` |
 | note-71 | note.2 | viewer 的搜尋：命中的字全部加底線、保留原本的顏色；目前那一筆畫成 cursor 色塊；不用 Yellow | viewer | 在有 `/` 的 viewer 搜一個出現好幾次的字，看底線與目前那一筆（沒有搜尋的 viewer 沒有這種情況） |
 | note-86 | note.3 | viewer 的搜尋：`/` 開 input popup 問要找的字；`n\|N` 跳到下一筆、上一筆，到頭尾繞回並捲到看得見；一筆都沒有時跳 Info toast | viewer | 在有 `/` 的 viewer 搜一個出現幾次的字，按 `n` 走過最後一筆、按 `N` 走過第一筆；再搜一個沒有的字 |
-| note-72 | note.2 | 不折行的 viewer，選取模式的游標走進截掉的部分時，畫面跟著左右捲到看得見，左邊被捲掉的開頭加 `…`；截掉的內容選得到、複製得到 | viewer | 在不折行的 viewer 進選取模式，把游標往右走到截掉的地方 |
 | note-73 | note.5 | 「每一列」那一節的說明太長時在右欄折行、名稱欄不動，不截斷；按鍵的各節照舊一列一個鍵、太長截 | 一列一個值的 panel | 讓一列的說明比框寬，按 `?` 看它折行 |
 | note-74 | note.2 | viewer 的內容裡，app 一行一行交來的一行夾著 `\n` 時拆成兩行 | viewer | 讓 app 交給 viewer 的一行含 `\n`（例：多行的錯誤訊息），看是兩行 |
 | note-75 | note.2 | viewer 的內容裡，顏色碼（SGR）照著上色，一行裡的 `\r` 只留最後的狀態，不是顏色碼的序列畫成紅色的名字 | viewer | 打開含顏色碼、`10%\r100%`、`\x1b[2J` 的內容 |
@@ -1019,7 +1018,7 @@ tdp v1.1.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-80 | note.8 | 標題 glyph `nf-md-compare`（U+F018A），`DIFF — <anchor> ↔ <另一個>`，後面接 `UNIFIED`、`SPLIT` 兩個 tab，`h\|l` 切 | 比較模式 | 打開比較，按 `h\|l`；讀程式核對 code point |
 | note-81 | note.8 | 只顯示有差異的段落，前後各 3 行沒變的，段落之間一條 Overlay0 的分隔線 | 比較模式 | 比兩個長內容、只差兩處的項目 |
 | note-82 | note.8 | UNIFIED：刪掉的行 `-` Red、加上的行 `+` Green、沒變的 Text；anchor 是刪掉的那一邊；行號兩欄、Overlay0 | 比較模式 | 看 UNIFIED |
-| note-83 | note.8 | SPLIT：左 anchor、右另一個，各自標行號；刪 Red 在左、加 Green 在右，對應不到的留空列；不折行，太長截掉加 `…` | 比較模式 | 看 SPLIT |
+| note-83 | note.8 | SPLIT：左 anchor、右另一個，各自標行號；刪 Red 在左、加 Green 在右，對應不到的留空列；兩邊各自在半邊折行，左右對應的兩行照長的那邊佔一樣多列，短的補空白列 | 比較模式 | 看有一行比半邊長的 SPLIT |
 | note-84 | note.8 | 記住上次選的 tab（狀態） | 比較模式 | 換成 SPLIT 後關掉 app、再開、再比一次 |
 | note-85 | note.8 | 終端機寬不到 96 時一律 UNIFIED，`SPLIT` 停用 | 比較模式 | 把終端機縮到 96 以下再比 |
 
