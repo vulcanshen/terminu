@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.1.5 — 2026-10-29
+
+Settled with the user: a viewer always wraps. terminu-go asked how a search should reach a hit cut off past a
+viewer's …; the user's answer was that a viewer should not cut a line at all. No family app turned wrapping off;
+terminu-go's own unwrapped viewers (a terminal's history and selection modes, the comparison's SPLIT) wrap now.
+
+- note.2: a viewer always wraps and never cuts a line with …; the app's choice to turn wrapping off, and the
+  selection cursor scrolling sideways into a cut line, are gone
+- note.8: SPLIT wraps each side within its half; the two lines of a row take as many rows as the longer of them, the
+  shorter side filled with blank rows
+- changed in this version: note.2, note.8
+- checklist: note-4 and note-83 changed, note-72 removed (1469 items); the header names v1.1.5
+
 ## v1.1.4 — 2026-10-29
 
 Settled with the user after webu v0.6.0, its reader: what webu brought up that tdp did not say, and the examples that
