@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.1.0. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.1.1. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -321,6 +321,7 @@ The items of tdp v1.1.0. What each column means and what an item applies to: [RE
 | S3-1 | S3 | While the splash is open, any key only closes it, and the key does nothing else (`q`, `Ctrl-C`, `Esc`, `Space` and `?` included) | everyone | Open the splash and press each of these keys: each time it only closes the splash; `Ctrl-C` does not quit the app |
 | S4-1 | S4 | The splash is not played at start-up | everyone | Start the app: it goes straight to the main screen |
 | S4-2 | S4 | With a popup open, `V` does not summon the splash | everyone | Press `V` with the Space menu open |
+| S4-3 | S4 | Inside a mode, `V` does not summon the splash, unless `V` is one of the mode's own keys | mode | Enter a mode and press `V`: no splash |
 | S5-1 | S5 | The splash draws the app's `docs/icon.svg`, cell for cell | everyone | Press `V` and compare it cell by cell with `docs/icon.svg` |
 | S5-2 | S5 | The viewBox of `docs/icon.svg` is 250 × 250; each cell is one 10 × 10 rect; the background colour is `#000000` | everyone | Read the file: `docs/icon.svg` |
 | S5-3 | S5 | The mark takes 25 × 19 cells (x 0–240, y 30–210), its leftmost and rightmost columns being background | everyone | Read the file: the range of the rects' coordinates |

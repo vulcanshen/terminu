@@ -1025,11 +1025,12 @@ something else (quit, open a menu), the egg would be a trap.
 ### S4 On a panel only, and only when asked for
 
 - It is not played at start-up.
-- It can only be summoned with `V` on a panel; with a popup open, in input state or in a PTY, `V` does not summon it
-  (in input state `V` is a character, K8; in a PTY it belongs to the subprocess, K10).
+- It can only be summoned with `V` on a panel; with a popup open, in input state, in a PTY or inside a mode, `V` does
+  not summon it (in input state `V` is a character, K8; in a PTY it belongs to the subprocess, K10; inside a mode only
+  the mode's own keys and the core keys work, K11).
 
 **Why**: a splash played at start-up is an intro everyone waits through every time, not an easter egg; and one that pops
-up inside a popup, an input box or a PTY interrupts what the user is doing.
+up inside a popup, an input box, a PTY or a mode interrupts what the user is doing.
 
 ### S5 The content is the family icon
 

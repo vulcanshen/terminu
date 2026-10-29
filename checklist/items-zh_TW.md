@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v1.1.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v1.1.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -321,6 +321,7 @@ tdp v1.1.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | S3-1 | S3 | splash 開著時任何鍵都只關掉它，那個鍵不再做別的事（包括 `q`、`Ctrl-C`、`Esc`、`Space`、`?`） | 都要 | 打開 splash 後分別按這些鍵，每次都只關 splash；按 `Ctrl-C` 不離開 app |
 | S4-1 | S4 | 啟動時不播 splash | 都要 | 啟動 app，直接進主畫面 |
 | S4-2 | S4 | popup 開著時按 `V` 不叫出 splash | 都要 | 開著 Space menu 按 `V` |
+| S4-3 | S4 | 模式裡按 `V` 不叫出 splash（`V` 是模式自己的鍵時照那個鍵） | 模式 | 進模式按 `V`，沒有 splash |
 | S5-1 | S5 | splash 畫的是該 app 的 `docs/icon.svg`，一格對一格 | 都要 | 按 `V`，跟 `docs/icon.svg` 逐格比對 |
 | S5-2 | S5 | `docs/icon.svg` 的 viewBox 是 250 × 250；每一格是一個 10 × 10 的 rect；底色是 `#000000` | 都要 | 讀檔案：`docs/icon.svg` |
 | S5-3 | S5 | mark 佔 25 × 19 格（x 0–240、y 30–210），最左、最右一欄是底 | 都要 | 讀檔案：rect 的座標範圍 |
