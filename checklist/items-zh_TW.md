@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v1.1.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v1.1.2 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -1072,6 +1072,11 @@ tdp v1.1.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | toast-18 | toast.2 | 做完了或還能用、但有值得注意的地方用 Warning（例：`3 files skipped`） | toast | 做一個部分略過的動作，看跳的是 Warning |
 | toast-19 | toast.2 | 動作失敗一律用 Error，不用 Warning | toast | 讓一個動作失敗，看跳的是 Error（或 error popup） |
 | toast-20 | toast.2 | toast 每一列的第一個字母大寫，其他照原樣；一列從名稱或路徑開始時，名稱照原樣不改大小寫 | toast | 讓 app 跳幾個 toast（含開頭是檔名的），看每一列的第一個字 |
+| toast-21 | toast.4 | inspect toast 只在游標停在它那一項時存在：停上去就出現、離開就消失，沒有計時 | inspect toast | 把游標移到有的項目上等一下，它一直在；移開，它消失 |
+| toast-22 | toast.4 | 所有鍵都穿過 inspect toast，`Esc` 也是：`Esc` 照底下的意思做（例：離開模式），toast 跟著游標消失 | inspect toast | 它在的時候按 `j`，游標移動；按 `Esc`，底下立刻照做 |
+| toast-23 | toast.4 | inspect toast 的標題是 `nf-md-eye`（U+F0208）`INSPECT`，文字 Text，下框沒有 hint | inspect toast | 看它的標題、文字與下框 |
+| toast-24 | toast.4 | 一般 toast 取代 inspect toast；那個走了以後，游標還在那一項上，inspect toast 就回來 | inspect toast | 它在的時候做一個會跳 toast 的動作（例：複製），等一下，inspect toast 回來 |
+| toast-25 | toast.4 | inspect toast 不蓋住游標那一項：畫面捲動，讓那一項露在它上面 | inspect toast | 把游標移到靠下面的項目，那一項一直在 toast 上面看得到 |
 
 ## input/README
 

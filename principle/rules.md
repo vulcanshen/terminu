@@ -169,7 +169,8 @@ lands somewhere else.
 
 ### K4 `Esc` closes one layer at a time and never leaves the app
 
-`Esc` cancels the current operation or closes the top layer: a popup if there is one (toasts included, F3); while the
+`Esc` cancels the current operation or closes the top layer: a popup if there is one (toasts included, F3, but for the
+inspect toast, which takes no keys); while the
 popup is in a mode, it leaves the mode first (K11), and the next press closes the popup; with no popup, it leaves the
 current mode (selection, dragging) or goes up one level (e.g. clearing a panel filter) — what "up one level" means, the
 app may decide for itself. **One layer per press**, and **`Esc` never leaves the app** — at the top it does nothing.
@@ -719,7 +720,7 @@ The family's popups come in these eight classes only, each with fixed key meanin
 | **input** | enter or pick one value, written back once confirmed; one value per popup. On the typing row it is the input state (K8); other parts follow K1 | rename, address bar, select, datetime picker, reorder |
 | **form** | one value per row; `Tab` switches between the field area and the action area, hjkl move item by item within that area (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing a button), a button submits or does its action ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Sign in and Add bookmark |
 | **note** | read-only, scrollable (K12); no list of options to run with `Enter` | key reference, YAML viewer, App Log, error popup |
-| **toast** | a short message popping up from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it | "Copied", an operation failed |
+| **toast** | a short message popping up from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it. The inspect toast is there while the cursor is on its item, and every key passes through it ([components/dialog/toast](../components/dialog/toast.md)) | "Copied", an operation failed, where a link goes (webu's Focus mode) |
 | **terminal** | a subprocess running in the box; every key is its, only the exit key and the chords the app keeps (in an interactive terminal also `Alt-v` and `PgUp`) are the app's (K10) | kbu's Alterm, filu's shell |
 | **an app's own popup** | content the seven classes cannot hold: how the content is drawn and the keys on it, the app may decide for itself; the box and the layers work as a popup; with values to submit it works like a form (see below) | kamonu's popup for drawing cells |
 
@@ -746,7 +747,7 @@ The family's popups come in these eight classes only, each with fixed key meanin
   no search is a menu, except reorder: it has no search either, but it moves items and writes the whole order back
   once confirmed, so it is an input ([components/input/reorder](../components/input/reorder.md)).
 - **A toast is not a layer**: it triggers no dimming (F8) and does not count toward the layer colours' levels; but `Esc`
-  closes it first (K4).
+  closes it first (K4), except the inspect toast, which takes no keys.
 - **Each step of a multi-step flow is its own popup**: e.g. sorting by picking a column, then a direction, is two stacked
   popups (F4 keeps the source), not one box changing its content — each step has its own UX, and its own size fixed at
   opening (F7).
@@ -798,6 +799,8 @@ takes no other keys either.
 
 - With focus in a PTY, `Esc` belongs to the subprocess (K10); a terminal is left with the exit key. A toast can then only
   wait for its timer to go.
+- The inspect toast takes no `Esc`: it does what it does underneath, and the toast goes with the cursor
+  ([components/dialog/toast](../components/dialog/toast.md)).
 - In a textarea's writing state, `Esc` leaves the writing state for the moving state (K8).
 - While a popup is in a mode (e.g. a viewer's selection mode, a reorder's Drag mode), `Esc` leaves the mode first (K11);
   the next press closes the popup.
@@ -904,7 +907,7 @@ P6).
   themselves. The calculation is in [components/color](../components/color.md).
 - **The drawn screen is dimmed once**: an unfocused panel is already dimmed (T2), and under a popup it gets a little
   darker again — so it shows where the focus was before the popup opened.
-- **A toast does not trigger dimming**: it takes no key but `Esc` (F1) and is not a layer.
+- **A toast does not trigger dimming**: it takes no key but `Esc`, the inspect toast none (F1), and is not a layer.
 - **Borders are dimmed too, but keep their layer colour**: the borders of the popups below are drawn in a dimmed version
   of their own layer colour (components/color), not one common dim colour — dark, yet still showing which layer each is.
 

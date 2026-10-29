@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.1.1. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.1.2. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -1072,6 +1072,11 @@ The items of tdp v1.1.1. What each column means and what an item applies to: [RE
 | toast-18 | toast.2 | Done, or still usable, but with something worth noticing uses Warning (e.g. `3 files skipped`) | toast | Run an action that skips part of its work: the toast is a Warning |
 | toast-19 | toast.2 | A failed action is always an Error, never a Warning | toast | Make an action fail: the toast is an Error (or an error popup comes up) |
 | toast-20 | toast.2 | Each row of a toast starts with a capital letter, the rest as it is; a row starting with a name or a path keeps the name unchanged | toast | Bring up a few toasts (one starting with a file name) and look at the first letter of each row |
+| toast-21 | toast.4 | The inspect toast is there only while the cursor is on its item: it comes when the cursor lands there, goes when it leaves, and has no timer | inspect toast | Move the cursor onto an item that has one and wait: it stays; move off: it goes |
+| toast-22 | toast.4 | Every key passes through the inspect toast, `Esc` included: `Esc` does what it does underneath (e.g. leaves the mode), and the toast goes with the cursor | inspect toast | With it up, press `j`: the cursor moves; press `Esc`: what is underneath acts at once |
+| toast-23 | toast.4 | The inspect toast is titled `nf-md-eye` (U+F0208) `INSPECT`, its text in Text, with no hint on its bottom border | inspect toast | Look at its title, its text and its bottom border |
+| toast-24 | toast.4 | An ordinary toast replaces the inspect toast; once that one is gone, the inspect toast comes back if the cursor is still on the item | inspect toast | With it up, run an action that shows a toast (e.g. copy) and wait: the inspect toast comes back |
+| toast-25 | toast.4 | The inspect toast never covers the item the cursor is on: the view scrolls so that the item shows above it | inspect toast | Move the cursor to an item near the bottom: it stays in sight above the toast |
 
 ## input/README
 

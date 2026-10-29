@@ -36,7 +36,7 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
   | menu | `nf-fa-bars` (U+F0C9) |
   | key reference | `nf-fa-question_circle` (U+F059) |
   | confirm | `nf-md-shield_alert` (U+F0ECC) |
-  | toast | by kind, see [`dialog/toast`](../dialog/toast.md) |
+  | toast | by kind, and the inspect toast's own, see [`dialog/toast`](../dialog/toast.md) |
   | terminal | `nf-md-console` (U+F018D) |
   | compare | `nf-md-compare` (U+F018A) |
   | input, form, note, an app's own popup | the app may decide for itself: the thing it edits or shows (e.g. a pen for Rename); avoid outline glyphs that are too thin |

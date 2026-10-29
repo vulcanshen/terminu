@@ -132,7 +132,7 @@ cursor 換，在清單上按 `Enter`，最直觀的事常常就是進去改它�
 
 ### K4 `Esc` 一次關一層，永不離開 app
 
-`Esc` 取消當前操作或關閉最上層：有 popup 關 popup（包括 toast，F3）；popup 裡正在模式中時，先離開模式（K11），
+`Esc` 取消當前操作或關閉最上層：有 popup 關 popup（包括 toast，F3；inspect toast 不收鍵，不算）；popup 裡正在模式中時，先離開模式（K11），
 再按一次才關 popup；沒有 popup 就退出當前模式（選取、拖曳）或往上一層（例：清掉 panel filter）——
 「上一層」是什麼，app 可以自行決定。**一次一層**，而且 **`Esc` 永遠不會離開 app**，到了最上層就什麼都不做。
 
@@ -592,7 +592,7 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 | **input** | 輸入或選出一個值，確定後寫回去；一個 popup 一個值。打字列上是輸入態（K8），其他部分照 K1 | 重新命名、網址列、select、datetime picker、reorder |
 | **form** | 一列一個值；`Tab` 在欄位區與動作區之間切換、hjkl 在那一區裡一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕送出或做它的動作（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Sign in 與 Add bookmark |
 | **note** | 唯讀，可以捲動（K12）；沒有可用 `Enter` 執行的選項清單 | key reference、YAML 檢視、App Log、error popup |
-| **toast** | 從下方彈出的短訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它 | 「已複製」、操作失敗 |
+| **toast** | 從下方彈出的短訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它。inspect toast 在游標停在它那一項時存在，所有鍵都穿過它（[components/dialog/toast](../components/dialog/toast-zh_TW.md)） | 「已複製」、操作失敗、連結會去哪（webu 的 Focus mode） |
 | **terminal** | 跑在框裡的子程序，按鍵都給它，只有出口鍵與 app 保留的組合鍵（互動 terminal 還有 `Alt-v`、`PgUp`）屬於 app（K10） | kbu 的 Alterm、filu 的 shell |
 | **app 自己的 popup** | 七類裝不下的內容：內容怎麼畫、內容上的按鍵 app 可以自行決定，框與層照 popup；有要送出的值時照表單（見下面） | kamonu 畫格子的 popup |
 
@@ -611,7 +611,7 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 - **清單加搜尋就是 finder**：一般的 finder、select、checkbox popup、file-picker 都是 finder 的一種 —— 打字列是輸入態，清單是選；
   打字列的按鍵見 [components/input/finder](../components/input/finder-zh_TW.md)。它們仍是 input，不是同時兩類。沒有搜尋的清單是 menu，
   只有 reorder 例外：它也沒有搜尋，但做的是搬動項目、確定後把整個順序寫回去，是 input（[components/input/reorder](../components/input/reorder-zh_TW.md)）。
-- **toast 不是一層**：不觸發淡化（F8）、不算層色的層數；但 `Esc` 先收掉它（K4）。
+- **toast 不是一層**：不觸發淡化（F8）、不算層色的層數；但 `Esc` 先收掉它（K4），inspect toast 除外，它不收鍵。
 - **多步驟的流程，每一步是自己的 popup**：例如排序先選欄位、再選方向，是兩個疊起來的 popup（F4 保留 source），不在同一個框裡
   換內容 —— 每一步有自己的 UX，也有自己打開時定好的大小（F7）。
 - **app 自己的 popup 只給七類裝不下的內容**（例：kamonu 畫 25×19 格子的 popup）。七類裝得下的 —— 清單、確認、一個值、一列
@@ -652,6 +652,7 @@ popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中�
 **例外**：
 
 - focus 在 PTY 裡時，`Esc` 屬於子程序（K10）；terminal 用出口鍵離開。這時 toast 只能等時間到收掉。
+- inspect toast 不收 `Esc`：`Esc` 照底下的意思做，toast 跟著游標消失（[components/dialog/toast](../components/dialog/toast-zh_TW.md)）。
 - textarea 在寫入狀態時，`Esc` 是離開寫入狀態、進入移動狀態（K8）。
 - popup 裡正在模式中時（例：viewer 的選取模式、reorder 的 Drag mode），`Esc` 先離開模式（K11），再按一次才關。
 - 內容改過的表單、textarea、reorder 與照表單的 app 自己的 popup（F1），`Esc` 先開 confirm 問要不要放棄（[components/dialog/form](../components/dialog/form-zh_TW.md)）。
@@ -729,7 +730,7 @@ App Log（`!`，[components/dialog/note](../components/dialog/note-zh_TW.md)）�
   背景、不可以把所有前景換成同一個淡色：那會拆掉靠背景畫出來的元素（powerline 膠囊的本體、cursor bar、選取反白）。
   層色、警示色、串流內容照同一個淡化，自然成為各自顏色的淡化版本。計算方式見 [components/color](../components/color-zh_TW.md)。
 - **對畫好的畫面淡化一次**：失焦的 panel 已經淡過（T2），在 popup 底下會再暗一點 —— 看得出 popup 打開前 focus 在哪。
-- **toast 不觸發淡化**：除了 `Esc` 它不收鍵（F1），不是一層。
+- **toast 不觸發淡化**：除了 `Esc` 它不收鍵，inspect toast 連 `Esc` 都不收（F1），不是一層。
 - **邊框也一起淡化，但保留層色**：底下那幾層 popup 的邊框畫成它自己層色（components/color）的淡化版本，不是統一的淡色 ——
   暗了，但仍看得出它是第幾層。
 

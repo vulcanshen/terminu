@@ -6,7 +6,8 @@
 
 A short message popping up from the bottom, gone on `Esc` or when its time is up; every key but `Esc` passes through it
 (Rules F1, F3): "Copied", a failed operation. A failure tied to a popup's action that the user needs to read before
-deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast.
+deciding what to do uses an error popup ([`dialog/note`](note.md)), not a toast. The inspect toast (toast.4) is the
+exception: it says what the item under the cursor is, and is there only while the cursor is on it.
 
 ## toast.2 Look
 
@@ -73,3 +74,36 @@ cannot have two meanings (Principle P4).
   to what is underneath. With the focus in a PTY, `Esc` belongs to the subprocess, and the toast can only wait for its
   time to run out.
 - **Hint**: `Esc:close`.
+
+## toast.4 The inspect toast
+
+A toast saying what the item under the cursor is, there for as long as the cursor is on it (the user, 2026-10-29,
+from webu): e.g. in webu's Focus mode, the address a link goes to. Which items have one and what it says, the app may
+decide for itself; an item with nothing to show has none.
+
+```
+┏━󰈈 INSPECT━━━━━━━━━━━━┓
+┃                         ┃
+┃ go.dev/doc/effective_go ┃
+┃                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+- **Look**: as any toast (toast.2: the position, the frame, the width, the text), titled `nf-md-eye` (U+F0208)
+  `INSPECT`, its text in Text. **No hint**: no key closes it.
+- **When it is there**: from when the cursor lands on an item that has one until the cursor leaves that item; moving
+  to another item that has one shows that item's at once. **No timer.**
+- **Keys**: every key passes through it, `Esc` included (the exception to toast.3, Rules K4 and F3): `Esc` does what it
+  does underneath (e.g. leaves webu's Focus mode), and the toast goes with the cursor.
+- **Another toast**: an ordinary toast replaces it, as toast.2 says; once that one is gone, if the cursor is still on
+  the item, the inspect toast comes back.
+- **The item under it**: when the inspect toast would cover the item the cursor is on, the view scrolls so that the
+  item shows above it.
+
+**Why** (the user, 2026-10-29): where a link goes is wanted only while on the link, so it takes no row or slot of its
+own — the right of a panel's bottom border stays the scroll position ([`layout/panel`](../layout/panel.md)). A note
+popup would take the keys, and `j|k` could no longer move the cursor; a toast already lets every key but `Esc` through.
+`Esc` goes through too: the toast leaves by itself when the cursor does, so stopping `Esc` on it would only make
+leaving take two presses on every link, and the next link would bring it back anyway. An eye, not a magnifier: in the
+family a magnifier means searching (webu's and filu's search boxes), and one look cannot have two meanings (Principle
+P4). A title of its own, not Info's: an Info leaves by itself after a while, and the inspect toast does not.

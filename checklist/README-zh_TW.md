@@ -74,6 +74,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 表單 | 有表單 |
 | viewer | 有 viewer |
 | toast | 有 toast |
+| inspect toast | 有 inspect toast（components/dialog/toast，toast.4） |
 | error popup | 有 error popup |
 | confirm | 有 confirm |
 | input | 有任何一種 input（input popup，或表單、panel 上的欄位） |

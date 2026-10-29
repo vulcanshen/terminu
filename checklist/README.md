@@ -85,6 +85,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | form | a form |
 | viewer | a viewer |
 | toast | a toast |
+| inspect toast | an inspect toast (components/dialog/toast, toast.4) |
 | error popup | an error popup |
 | confirm | a confirm |
 | input | any kind of input (an input popup, or a field on a form or a panel) |
