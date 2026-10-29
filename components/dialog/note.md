@@ -259,15 +259,15 @@ keep arriving, as in streaming content.
   `Enter`; one that only looks without changing anything counts too (opening a viewer, switching screens: `Switched to
   Pods`). Moving the cursor, moving the focus (`Tab`, the number keys), opening the Space menu, `?` or `!` are not
   operations and go unrecorded; going into the detail with `Enter` on a list (or with its row in the menu) moves the
-  focus too (Rules K3): the detail already follows the cursor, and going in shows nothing more (DM42); what is done
+  focus too (Rules K3): the detail already follows the cursor, and going in shows nothing more (from demou); what is done
   inside a popup is not recorded on its own: the result of the operation it
   belongs to is. The panel filter ([`layout/panel`](../layout/panel.md)) goes unrecorded too: filtering only changes
-  what is in view, like moving the cursor, and a record of it means nothing (the user, 2026-10-27, G103); nor does a
-  panel's compare mode (note.8; the user, 2026-10-27, KB34), nor going into or out of any other mode (Rules K11, e.g.
+  what is in view, like moving the cursor, and a record of it means nothing (the user, 2026-10-27, from terminu-go); nor does a
+  panel's compare mode (note.8; the user, 2026-10-27, from kbu), nor going into or out of any other mode (Rules K11, e.g.
   webu's Visual and Focus, kbu's Drag): a mode only changes how you move or look, and what is done in it (copying,
   dropping, pressing a link) is recorded by its result (the user, 2026-10-29). An operation
   is done once it is accepted: cancelled with `Esc` at the confirm before it, or at the form or input popup that takes
-  its values, it was not done and has no result, and goes unrecorded (a confirm is only a door, Rules T1; SS46).
+  its values, it was not done and has no result, and goes unrecorded (a confirm is only a door, Rules T1; from sshu).
 - **Each entry**: the time `HH:MM:SS` (Overlay0), a level, and what happened, capitalised as in [`dialog/toast`](toast.md). The level
   follows the toast's kinds and colours: `INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, in a level column four cells
   wide, left-aligned.
@@ -279,7 +279,7 @@ keep arriving, as in streaming content.
 **Why**: a toast is gone in seconds, and someone who missed it never learns an error happened; the App Log keeps it.
 Errors alone do not show what was done before them, and the entries just before are often the cause — so is what was
 being looked at, so an operation that only looks is recorded too; what counts is drawn by the three kinds of operation
-of Rules P3, the same set the menus list, so every app records the same range (demou DM41); what the app does
+of Rules P3, the same set the menus list, so every app records the same range (from demou); what the app does
 in the background can only be seen here. `!`, like `?` and `Space`, works in every app of the family. Memory only: what
 matters is what happened while the app was open this time, with no further kind of thing to store and clean up.
 

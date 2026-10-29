@@ -51,7 +51,7 @@ four corners, so there is no odd one to remember; the capsule is the panel's nam
 The loading icon follows the whole capsule chain: the chain is one whole (where this is), loading is a state, and it
 does not split a row of tabs. The `h|l` that switches tabs is in the hint as the datetime picker's `h|l:month` is: it changes
 the whole page rather than moving between items, but it is a movement key, and left out, the other tabs are hard to
-find (the user, 2026-10-24, filu's FL27).
+find (the user, 2026-10-24, from filu).
 
 ### panel.2 A pointed panel
 
@@ -72,7 +72,7 @@ and whether to use it at all, the app may decide for itself.
 scanning the list tells which cell it is without reading titles, and a new cell is pointed at as soon as it
 appears, showing it is done. The focus is still on the list, so it cannot become the focus and keeps the unfocused
 line; Lavender is the colour of "where the user is now" (the location row, the statusbar), and here it says "the
-cursor points here now" (the user, 2026-10-25, sshu's SS44).
+cursor points here now" (the user, 2026-10-25, from sshu).
 
 ### panel.3 The mode name
 
@@ -176,7 +176,7 @@ With all these uses sharing one look, the user who recognises one recognises the
 Surface2: Surface2 means disabled, and unselected pages would look as if they could not be switched to.
 Unselected parts are filled with Mantle and every join is a slant: every cell of the chain has its colour written out and
 only the outside is left to the terminal, so it looks the same on any background, a transparent one or a background
-image, without depending on the terminal's background being Base (kbu's KB26: with any other background, the old seams
+image, without depending on the terminal's background being Base (from kbu: with any other background, the old seams
 showed patches of Base). Mantle is a step darker than Base, so the unselected parts stay in the back and the selected one shows
 at a glance; the slants lean the same way as the left end, so the chain reads as one band. Between two unselected parts
 both sides are Mantle and a solid slant would not show, hence the thin one. When covered, Mantle dims into Crust and the
@@ -277,9 +277,9 @@ the app's to decide; every row then keeps the mark column too, blank where there
 
 **Why**: marks use the checkbox tick: marked means "picked", the same thing as a ticked checkbox, in the same colour.
 A flag written in the content pushes the text of its group in a grouped list two cells further in than the other
-groups' (locku LK22); drawn in the mark column, the text starts where every other row's does. The column has room for
+groups' (from locku); drawn in the mark column, the text starts where every other row's does. The column has room for
 one sign: a tick and a flag in it would hide one another, so a list that can be marked keeps it for the tick (the
-user, 2026-10-27, LK22).
+user, 2026-10-27, from locku).
 
 ### panel.8 Drag mode
 

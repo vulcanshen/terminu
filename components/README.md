@@ -137,7 +137,7 @@ no longer be measured (Rules L4). Names and short text are what the user acts on
 two different names look the same (`a b.txt` and `a⇥b.txt` with a Tab in the middle); the list, the confirm and the
 rename input must all show the same thing. The app's own text carries no line breaks: the app's `\n` and a `\n` in a
 name look the same on screen; the lib once broke lines at the app's `\n`, and when it began drawing them by name the
-app's `\n`s quietly turned red, unseen by the compiler and the tests (sshu's SS43). With the app giving a row at a time,
+app's `\n`s quietly turned red, unseen by the compiler and the tests (from sshu). With the app giving a row at a time,
 a red `\n` on screen always speaks of something from outside (the user, 2026-10-24). Content for reading is different: a program's output is meant to look that
 way in a terminal, so drawing it as a terminal would is how it really looks, and red names would only hide it.
 

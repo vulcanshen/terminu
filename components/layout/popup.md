@@ -263,4 +263,4 @@ Content the seven classes cannot hold (Rules F1, e.g. kamonu's popup for drawing
 keeps fixed what can be fixed — the frame, the layers, submitting, leaving — so when users open one, everything but the
 content itself is the same as any popup in the family (the user, 2026-10-25, kamonu). The error row is left to the app:
 the content is the app's own drawing, so only the app knows where in it an error points and whether the user should
-move there to see it (the user, 2026-10-26, terminu-go's G101).
+move there to see it (the user, 2026-10-26, from terminu-go).

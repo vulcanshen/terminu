@@ -68,7 +68,7 @@ is not ticked. `Space` on `Select all` ticks all four, and it is ticked too; `Sp
 
 **Why**: ticking and unticking a whole group is something every group needs (the GUI convention); in the component it
 is the same in every app, and no app builds its own. An app's own "all" option fights the other ticks: tick it, then
-`default`, and what is written back is still all, `default` quietly lost (kbu's KB31). The row shows the group's true
+`default`, and what is written back is still all, `default` quietly lost (from kbu). The row shows the group's true
 state; while filtering, the options filtered out cannot be seen, and however it were drawn it would not be the true
 state at that moment, so it is hidden (the user, 2026-10-24).
 

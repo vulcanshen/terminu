@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.6 — 2026-10-29
+
+Settled with the user: tdp no longer cites the record numbers of the members and of terminu-go (such as  or
+), which nobody outside can look up; where a rule came from now reads "from kbu", as terminu-go's own files
+already do. No rule changes.
+
+- components README, dialog/note (note.7), input/checkbox, layout/panel, layout/popup, both languages: the numbers
+  become "from <app>"
+- CHANGELOG: the same, in every earlier entry
+- checklist: unchanged (1469 items)
+
 ## v1.1.5 — 2026-10-29
 
 Settled with the user: a viewer always wraps. terminu-go asked how a search should reach a hit cut off past a
@@ -191,7 +202,7 @@ What the harness found in the checklist of v0.11.4, settled with the user.
 
 ## v0.11.4 — 2026-10-27
 
-What the user's own testing of hostu and locku found (hostu, LK22), settled with the user.
+What the user's own testing of hostu and locku found, settled with the user.
 
 - dialog/terminal: when a password is needed to raise privileges, it is asked in a password popup (the unlock style,
   titled `PASSWORD`) and handed to the tool on its standard input (`sudo -S`), not in a terminal popup filling the
@@ -208,7 +219,7 @@ What the user's own testing of hostu and locku found (hostu, LK22), settled with
 
 ## v0.11.3 — 2026-10-27
 
-What demou met following v0.11.2 (DM42), settled with the user.
+What demou met following v0.11.2, settled with the user.
 
 - dialog/note: going into the detail with `Enter` on a list (or with its row in the menu) moves the focus (Rules K3)
   and is not recorded in the App Log — the detail already follows the cursor, and going in shows nothing more (note.7)
@@ -217,7 +228,7 @@ What demou met following v0.11.2 (DM42), settled with the user.
 
 ## v0.11.2 — 2026-10-27
 
-What sshu and kbu met following v0.11.0 (SS46, KB34), settled with the user.
+What sshu and kbu met following v0.11.0, settled with the user.
 
 - dialog/note: an operation is done once it is accepted — cancelled with `Esc` at the confirm before it, or at the
   form or input popup that takes its values, it was not done and is not recorded (a confirm is only a door, Rules T1);
@@ -227,7 +238,7 @@ What sshu and kbu met following v0.11.0 (SS46, KB34), settled with the user.
 
 ## v0.11.1 — 2026-10-27
 
-Settled with the user (from terminu-go, G103).
+Settled with the user (from terminu-go).
 
 - dialog/note: the panel filter is not recorded in the App Log — filtering only changes what is in view, like moving the
   cursor (note.7)
@@ -236,7 +247,7 @@ Settled with the user (from terminu-go, G103).
 
 ## v0.11.0 — 2026-10-27
 
-What the harness trials of hostu and demou found (hostu, DM41), settled with the user. Every app follows this round.
+What the harness trials of hostu and demou found, settled with the user. Every app follows this round.
 
 - Rules L1: the standard size is 60×32, not 80×40 — at 60 columns × 32 rows every core task can be completed with
   every panel side by side (two panels split 1:2 still have 20 | 40); a terminal split in half is often under 80
@@ -253,7 +264,7 @@ What the harness trials of hostu and demou found (hostu, DM41), settled with the
 
 ## v0.10.3 — 2026-10-26
 
-What terminu-go met checking an app's project files against the templates (G102), and what the hostu trial of the
+What terminu-go met checking an app's project files against the templates, and what the hostu trial of the
 harness found (an old `family.mk` without `make dev`), settled with the user.
 
 - project: how far a mark reaches — a `# app:` comment in `goreleaser.yaml` stays as it is and covers the value of the
@@ -267,7 +278,7 @@ harness found (an old `family.mk` without `make dev`), settled with the user.
 
 ## v0.10.2 — 2026-10-26
 
-What the members found moving to v0.10.0 (sshu, kbu, filu: KB32, KB33, FL29), settled with the user.
+What the members found moving to v0.10.0 (sshu, kbu, filu), settled with the user.
 
 - layout/panel: loading and errors get a section of their own, panel.15, holding for every kind of panel — an ordinary
   list, one value per row, details, a preview, a log, a PTY cell (e.g. `󰪞 connecting to prod-web-01…`); panel.5 and
@@ -282,7 +293,7 @@ What the members found moving to v0.10.0 (sshu, kbu, filu: KB32, KB33, FL29), se
 
 ## v0.10.1 — 2026-10-26
 
-Settled with the user (from terminu-go, G101).
+Settled with the user (from terminu-go).
 
 - layout/popup: an app's own popup with values to submit leaves to the app how an invalid value is reported — where
   the error row goes and whether it takes the focus — the error still visible (Rules F5)
@@ -328,7 +339,7 @@ tdp explicitly leaves to the app. Asked for by the terminu harness, settled with
 
 ## v0.9.16 — 2026-10-25
 
-What the user found testing sshu by hand, settled with the user (from sshu, SS44).
+What the user found testing sshu by hand, settled with the user (from sshu).
 
 - layout/panel: a pointed panel, the app's choice: when the cursor's row in a focused list stands for another panel on
   screen, that panel's frame turns Lavender ("user footprint") and stays an unfocused light line; it points only while
@@ -337,7 +348,7 @@ What the user found testing sshu by hand, settled with the user (from sshu, SS44
 
 ## v0.9.15 — 2026-10-24
 
-What the user found testing sshu by hand, settled with the user (from sshu, SS43).
+What the user found testing sshu by hand, settled with the user (from sshu).
 
 - components: the app's own text carries no line breaks. Where there are several rows (an error popup's message, a
   toast, a confirm's content), the app gives them a row at a time, each starting a row of its own, with no blank row
@@ -347,7 +358,7 @@ What the user found testing sshu by hand, settled with the user (from sshu, SS43
 
 ## v0.9.14 — 2026-10-24
 
-What the user asked for in filu, settled with the user (from filu, FL27).
+What the user asked for in filu, settled with the user (from filu).
 
 - layout/panel and layout/popup: wherever `h|l` switches tabs, the hint writes `h|l:tab`, right after `Enter`: it
   changes the whole page rather than moving between items, as the datetime picker's `h|l:month` does, and left out the
@@ -367,7 +378,7 @@ Settled with the user.
 
 ## v0.9.12 — 2026-10-24
 
-Settled with the user after terminu-go drew v0.9.11's `Select all` (KB31).
+Settled with the user after terminu-go drew v0.9.11's `Select all` (from kbu).
 
 - input/checkbox: the options sit two cells further in than `Select all`, as a panel group's items, so the row reads as
   over them; hidden by a filter, the options stay where they are. Disabled options are not flipped by it and not
@@ -377,7 +388,7 @@ Settled with the user after terminu-go drew v0.9.11's `Select all` (KB31).
 
 ## v0.9.11 — 2026-10-24
 
-What the user found testing kbu by hand, settled with the user (from kbu, KB31).
+What the user found testing kbu by hand, settled with the user (from kbu).
 
 - input/checkbox: every group of options comes with a `Select all` row of its own, first in the group: in a form or on
   a panel on the label's row, in a checkbox popup the list's first row. It is not an option and never part of the
@@ -388,7 +399,7 @@ What the user found testing kbu by hand, settled with the user (from kbu, KB31).
 
 ## v0.9.10 — 2026-10-22
 
-What the user found testing kbu by hand, settled with the user (KB30).
+What the user found testing kbu by hand, settled with the user.
 
 - layout/panel: the mode name opens a letter a frame, 32ms a frame as in a popup, instead of over a fixed 288ms: a tag
   has only as many steps as letters, and spread over 288ms each step held for about 72ms and stuttered. The length now
@@ -397,7 +408,7 @@ What the user found testing kbu by hand, settled with the user (KB30).
 
 ## v0.9.9 — 2026-10-22
 
-What the user asked for while testing kbu by hand, settled with the user (KB30).
+What the user asked for while testing kbu by hand, settled with the user.
 
 - layout/panel: the mode name opens and closes: entering a mode, the tag opens from its middle (the junctions side by
   side, moving apart, the name showing from its middle), and leaving plays it backwards, about 288ms whatever the
@@ -407,7 +418,7 @@ What the user asked for while testing kbu by hand, settled with the user (KB30).
 
 ## v0.9.8 — 2026-10-22
 
-What the user found testing kbu by hand, settled with the user (from kbu, KB29).
+What the user found testing kbu by hand, settled with the user (from kbu).
 
 - Rules K9: with a popup open, the first `q` or `Ctrl-C` never quits. A quit flow whose first step already asks stays as
   it is; one that would quit at once at that moment opens the quit confirm `Quit <app>?` instead, and `Esc` goes back to
@@ -418,7 +429,7 @@ What the user found testing kbu by hand, settled with the user (from kbu, KB29).
 
 ## v0.9.7 — 2026-10-22
 
-What the user found testing kbu by hand, settled with the user (from kbu, KB28).
+What the user found testing kbu by hand, settled with the user (from kbu).
 
 - Rules K11: "when in doubt, hit `Space`" holds inside a mode too: `Space` opens the mode's Space menu, with the item
   operations (what can be done to the item under the cursor or the selected range, run like any row) and the mode
@@ -428,7 +439,7 @@ What the user found testing kbu by hand, settled with the user (from kbu, KB28).
 
 ## v0.9.6 — 2026-10-22
 
-What the user found testing kbu by hand, settled with the user (from kbu, KB27).
+What the user found testing kbu by hand, settled with the user (from kbu).
 
 - layout/panel: a compare mode (Rules K11; the key is the app's): the compare key on a row makes it the anchor, drawn
   all in the mode colour; another row is then compared with it, and closing the comparison goes back to the mode with
@@ -453,7 +464,7 @@ Settled with the user before terminu-go drew v0.9.4's capsule chain.
 
 What the user found testing the apps by hand, settled with the user.
 
-- layout/panel: the capsule chain no longer leans on the terminal's background being Base (from kbu, KB26). Unselected
+- layout/panel: the capsule chain no longer leans on the terminal's background being Base (from kbu). Unselected
   parts are filled with Crust; every join is a slant, U+E0BC from selected to unselected, U+E0BA from unselected to
   selected, U+E0BB between two unselected parts, all on Crust; the ends keep the terminal's own background outside.
   Crust is not dimmed. The panel title, a panel's tabs, the screen chips and the tabs after a popup title all change
@@ -467,7 +478,7 @@ What the members found while moving to tdp v0.9.2 and terminu-go v0.4.3, settled
 
 - Rules E3: a settings, state or data file a new version of the app no longer uses is not deleted and gets no toast;
   while it is there, every start writes an INFO entry to the App Log with its path, and the CHANGELOG says so too
-  (from sshu, SS42). The question on the confirm for an unreadable file now ends `and start fresh?`, as no new file
+  (from sshu). The question on the confirm for an unreadable file now ends `and start fresh?`, as no new file
   may be made (from terminu-go)
 - checklist: E3-23 added, with a new applicability, "a file no longer used" (1421 items)
 
@@ -476,9 +487,9 @@ What the members found while moving to tdp v0.9.2 and terminu-go v0.4.3, settled
 What hostu's review found after moving to tdp v0.9.1, settled from what tdp already says.
 
 - Rules E3: `Enter` on the confirm for an unreadable file starts the app as on its first start — a file the first start
-  makes is made again, one it does not make appears at the first save (from hostu, HU21)
+  makes is made again, one it does not make appears at the first save (from hostu)
 - dialog/note: the App Log's examples start with a capital, as a toast does, since an entry holds the toast's own words
-  (from hostu, HU23)
+  (from hostu)
 - checklist: E3-18 and note-78 reworded (1420 items)
 
 ## v0.9.1 — 2026-10-20
@@ -488,9 +499,9 @@ What the members found while moving to tdp v0.9.0 and terminu-go v0.4.0, settled
 - Rules E3: lists the user writes for the app are data even when they hold how the app works (locku's and hostu's
   profiles, filu's Open with list, kbu's pins), and so are original values the app keeps for the user (ccdrawu's);
   config is left with the app's own single options. When the data is one record per file, an unreadable record is
-  moved to `.bak` and the rest goes on, with nothing new made (kamonu's KM18). The App Log alone does not count as
+  moved to `.bak` and the rest goes on, with nothing new made (from kamonu). The App Log alone does not count as
   using `input_tab_width`.
-- components: a list column the app marks as "a line of text" draws a Tab as spaces (webu's DevTools source, WB21).
+- components: a list column the app marks as "a line of text" draws a Tab as spaces (webu's DevTools source).
 - checklist: E3-11's applicability narrowed, E3-13 reworded, E3-22 and components-29 added (1420 items)
 
 ## v0.9.0 — 2026-10-20
@@ -504,7 +515,7 @@ What the rebuilt hostu (its judge, then its reviewer) and terminu-go's tdptest f
   the selection mode steps aside and `PgUp|PgDn` go straight in. The selection mode is entered with `Alt-v`: the
   family's `v`, with `Alt` to get out of the subprocess, not a key the app picks (Rules K10, M1 and layout/screen follow)
 - components: control characters are never sent to the terminal as they are, wherever the app's text shows (from
-  terminu-go's tdptest, G100). Content for reading (a viewer, a log on a panel, a file preview) is drawn as a terminal
+  terminu-go's tdptest). Content for reading (a viewer, a log on a panel, a file preview) is drawn as a terminal
   would: `\n` breaks the line, even inside a line the app hands over; a Tab is spaces; colour codes colour the text; a
   `\r` within a line keeps only the last state; anything else is a red name. Names and short text (values, list cells,
   menus, titles, toasts, confirms, error popups, options, empty states, the statusbar…) interpret nothing: every
@@ -513,16 +524,16 @@ What the rebuilt hostu (its judge, then its reviewer) and terminu-go's tdptest f
 - dialog/note: every app has an App Log, opened with `!` on a panel (a new core key, Rules K1, F5, M1): what the app
   has done and what went wrong — the user's actions, every toast, the app's background work — one entry per line with
   time and level, kept in memory only; layout/screen: the footer always shows `!:log`, which becomes `!:2 errors` or
-  `!:1 warning` until the App Log is opened (from hostu, HU15)
+  `!:1 warning` until the App Log is opened (from hostu)
 - Rules E3: when the app's own settings, state or data cannot be read, a confirm at start offers to move it to `.bak`
   (never overwriting an older one) and start a new one, or to quit with the reason on stderr; a cache is just rebuilt;
   things outside the app stay a panel error with details in the App Log (dialog/confirm: the one `Esc:quit`). Config
   is only the options the app runs with: lists the user writes for the app are data, the exception for hand-written
-  connection lists is gone (sshu's hosts and credentials move to the data directory) (from hostu, HU15, HU17)
+  connection lists is gone (sshu's hosts and credentials move to the data directory) (from hostu)
 - dialog/terminal: raising privileges — the app never asks for or handles a password; the system's tool asks in a
-  terminal popup (from hostu, HU18)
-- dialog/toast: Success or Info for something finished is the app's call (HU19); input/README: an error need not carry
-  the field's name when it can point at what is wrong (HU16)
+  terminal popup (from hostu)
+- dialog/toast: Success or Info for something finished is the app's call (from hostu); input/README: an error need not carry
+  the field's name when it can point at what is wrong (from hostu)
 - checklist: terminal-15–20 apply to an interactive terminal, terminal-18 reworded, panel-31 and panel-64 name the
   features they need, the features "interactive terminal", "panel without a cursor" and "raising privileges" added;
   E3-13, E3-14, K1-1, M1-1, M1-2, screen-6, screen-7, toast-16 and input-1 reworded; terminal-21–24, panel-136,
@@ -536,7 +547,7 @@ From webu, moving a web page's `prompt()` onto the library's input.
 
 - input: a single-line input popup's explanation row wraps when it is too long (several sentences from a web page's
   `prompt()`), and the popup grows by F7's height; when it still does not fit at the tallest, the last row ends with `…`
-  (webu's WB20)
+  (from webu)
 - checklist: input-78 added (1395 items)
 
 ## v0.8.2 — 2026-10-19
@@ -550,9 +561,9 @@ What the apps found while moving to terminu-go v0.2.0, settled with the user.
   every other column out, and short columns are no longer squeezed to `…`
 - input/file-picker: the preview and the metadata are read in the background; while reading, the preview frame has the
   loading icon after its title, reads `(loading…)` in grey, and the metadata values stay empty; what has been read is
-  kept by path (sshu's SS40). input/finder: a preview starting at a line draws a file that fits whole from line 1
+  kept by path (from sshu). input/finder: a preview starting at a line draws a file that fits whole from line 1
 - dialog/note: in the key reference, a long explanation in the "Each row" section wraps in the right column instead of
-  being cut; the sections of keys still cut (locku's LK18)
+  being cut; the sections of keys still cut (from locku)
 - checklist: panel-127 reworded; panel-135, file-picker-92, note-73 added (1394 items)
 
 ## v0.8.1 — 2026-10-19
@@ -560,13 +571,13 @@ What the apps found while moving to terminu-go v0.2.0, settled with the user.
 What turned up while terminu-go and the apps followed v0.8.0, settled with the user.
 
 - layout/panel: the location row stays when the list is empty; only the header and the list give way to the empty
-  state (G98)
+  state (from terminu-go)
 - dialog/note: in an unwrapped viewer the selection cursor can walk into the cut part — the view scrolls sideways just
-  enough, with `…` where lines are cut on the left, and returns to the left edge on leaving the mode (G99)
+  enough, with `…` where lines are cut on the left, and returns to the left edge on leaving the mode (from terminu-go)
 - E3: on Windows the cache is `%LOCALAPPDATA%\<app>\cache`, apart from the executable's folder, so deleting the cache
-  never deletes the program (CD52); a moved location is moved item by item — an item already at the new place keeps the
+  never deletes the program (from ccdrawu); a moved location is moved item by item — an item already at the new place keeps the
   new one when it is a cache, and leaves settings, state and data at the old place with an error popup giving both
-  paths; the emptied old directory is removed (CD54)
+  paths; the emptied old directory is removed (from ccdrawu)
 - S2: entries already released and release notes already on GitHub do not mention the splash either; version headings
   stay
 - checklist: E3-7, E3-14, S2-2 reworded; E3-16, panel-134, note-72 added (1391 items)
@@ -658,7 +669,7 @@ From the user, while working out how the harness's judge runs: a judge may not b
 
 ## v0.7.3 — 2026-10-18
 
-From the user: the checklist counts genes instead of judging a share; and G94 narrowed back to where it was asked.
+From the user: the checklist counts genes instead of judging a share; and a wrapping rule from terminu-go narrowed back to where it was asked.
 
 - checklist: each item is one terminu gene; an app has the genes of the items it meets — departures, violations and
   items not applicable count for none — written as a count tied to its tdp version (`tdp-0.7.2 860 gene`), not as a
@@ -666,14 +677,14 @@ From the user: the checklist counts genes instead of judging a share; and G94 na
   What an app does that tdp does not specify is no gene and costs nothing; it is reported as a gap
 - components "Wrapping": the space at a break goes to the next row's first cell only in a textarea and a viewer, where
   every character is drawn; text that is only shown (a confirm, a toast, an error popup, the splash) does not draw it
-  (G95). checklist: components-24 added (1302 items)
+  (from terminu-go). checklist: components-24 added (1302 items)
 
 ## v0.7.2 — 2026-10-18
 
 Three gaps left over from v0.7.1: one from terminu-go, two found while building the checklist.
 
 - components "Wrapping": when a word fills a row exactly and a space follows, the space starts the next row, so every
-  character can be drawn and a textarea's text cursor on it has a cell (G94)
+  character can be drawn and a textarea's text cursor on it has a cell (from terminu-go)
 - A panel filter that matches nothing: while typing, the footer is `Tab:list Esc:clear`; when a panel's list has no
   items, filtered to nothing or empty to begin with, its hint drops `Enter` and the hotkeys on an item, as a finder and
   a form's buttons already do; M6 names these three places where the keys must go
@@ -690,16 +701,16 @@ Breaking tdp into items turned up gaps, fixed here; most were places where a rul
   ID that never changes, its source, what to check, what it applies to and how to check, in Traditional Chinese and
   English, lined up by ID. Judged on tdp alone, not on the implementation; the verdicts are meets, departs, violates
   and not applicable. It is not a requirement itself: where it disagrees with the spec, the spec wins
-- Rules: the Core key term lists `1`–`9` (G11); P5's `Shift-Tab` covers every popup with an action area (CD6); K4, F3:
+- Rules: the Core key term lists `1`–`9` (from terminu-go); P5's `Shift-Tab` covers every popup with an action area (from ccdrawu); K4, F3:
   in a popup's mode `Esc` leaves the mode first; M1: in a PTY `?` and `Space` are not shown, the exit keys are; M3, K5,
   F1: a popup's operations are all in its `?`, the hint as each component says; K3: what moves the focus, and the three
   places `Enter` does; L3: the always-on rows are fixed; F1: a frame outside the seven kinds is a departure, the splash
-  is not; S5: 250 ms between the first three stages, the text 400 ms after the mark (G66); E5: across ssh, the app's own
+  is not; S5: 250 ms between the first three stages, the text 400 ms after the mark (from terminu-go); E5: across ssh, the app's own
   channel carries both widths to the same app, other family apps take `TERMINU__` set by the user; E6: `docs/icon.svg`
-  is the original, the copy in the code is held to it by the test (demou DM1); E7: a dev-remarks heading has no
+  is the original, the copy in the code is held to it by the test (from demou); E7: a dev-remarks heading has no
   brackets, a fix file exists only while there is something to fix
 - components: a "Wrapping" rule for all text that wraps — between words and between wide characters, a word longer than
-  a row cut by cells, a wide character never cut in half (demou DM2); the error popup's frame and title are Red; bold
+  a row cut by cells, a wide character never cut in half (from demou); the error popup's frame and title are Red; bold
   only on the selected capsule and the popup title's loading icon; the thin line between two unselected parts paints no
   background; a multi-column ordinary list always has a header, with the panel filter's typing row above it; the footer
   is per screen; a grouped list's marks sit in the two indented cells; a panel's hint puts `Enter` first; diagrams
@@ -708,11 +719,11 @@ Breaking tdp into items turned up gaps, fixed here; most were places where a rul
   key reference also closes with `?`; a viewer's title is `KIND — name`, and its syntax colours, where the content has
   no fixed format, are up to the app
 - input: a finder opens on its typing row, a file-picker on its list; with no results `Enter` does nothing and the hint
-  drops it, while a checkbox popup's `Enter` still writes back the set (G93); the colour picker's `h|l` stays among R,
+  drops it, while a checkbox popup's `Enter` still writes back the set (from terminu-go); the colour picker's `h|l` stays among R,
   G and B; the colour swatch is 3 cells; a file-picker's title is `FIELD · directory` and its icons' code points are
   written out; the datetime picker keeps `?` and `q`
 - project: `go.mod` and `go.sum` are in the tree; top-level files not in the tree are the app's choice, like
-  directories; the goreleaser template's scoop description is marked `app:` (G92)
+  directories; the goreleaser template's scoop description is marked `app:` (from terminu-go)
 
 ## v0.7.0 — 2026-10-18
 

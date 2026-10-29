@@ -203,11 +203,11 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 - **動作是哪些**：Rules P3 的 item、panel、global operation，不管是從 menu、letter hotkey 還是 `Enter` 執行的；只看不改的也算
   （例：開 viewer、切換畫面 `Switched to Pods`）。移動 cursor、換 focus（`Tab`、數字鍵）、打開 Space menu、`?`、`!` 不是動作，
   不記；在清單上用 `Enter`（或 menu 上那一列）進明細也是換 focus（Rules K3）：明細本來就跟著 cursor 換，進去沒有多看到什麼
-  （DM42）；popup 裡的操作不另外記，記的是它所屬那個動作的結果。panel filter（[`layout/panel`](../layout/panel-zh_TW.md)）
-  也不記：篩選只是換看得到的範圍，跟移動 cursor 一樣，記下來沒有意義（user 2026-10-27，G103）；panel 的比較模式
-  （note.8）也不記（user 2026-10-27，KB34），進出其他模式也不記（Rules K11，例：webu 的 Visual、Focus，kbu 的 Drag）：
+  （來自 demou）；popup 裡的操作不另外記，記的是它所屬那個動作的結果。panel filter（[`layout/panel`](../layout/panel-zh_TW.md)）
+  也不記：篩選只是換看得到的範圍，跟移動 cursor 一樣，記下來沒有意義（user 2026-10-27，來自 terminu-go）；panel 的比較模式
+  （note.8）也不記（user 2026-10-27，來自 kbu），進出其他模式也不記（Rules K11，例：webu 的 Visual、Focus，kbu 的 Drag）：
   模式只是換一種移動或看的方式，在模式裡做完的事（複製、放下、按連結）照它的結果記（user 2026-10-29）。動作確定了才算做了：
-  在動作前面的 confirm、或填值的表單與 input popup 上按 `Esc` 取消，動作沒做、沒有結果，不記（confirm 只是門，Rules T1；SS46）。
+  在動作前面的 confirm、或填值的表單與 input popup 上按 `Esc` 取消，動作沒做、沒有結果，不記（confirm 只是門，Rules T1；來自 sshu）。
 - **每一筆**：時間 `HH:MM:SS`（Overlay0）、等級、發生的事（照 [`dialog/toast`](toast-zh_TW.md) 的「開頭大寫」）。等級跟著 toast 的種類與顏色：`INFO` Text、
   `OK` Green、`WARN` Peach、`ERR` Red，等級欄四格寬、靠左。
 - **只放在記憶體**：app 關掉就清空；筆數有上限，滿了丟掉最舊的。
@@ -215,7 +215,7 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 
 **為什麼**：toast 幾秒就收掉，沒注意到的人不會知道出過錯；App Log 留著。只記錯誤看不出出錯前做了什麼，前面那幾筆往往就是原因
 —— 出錯前在看什麼也是，所以只看不改的動作也記；「動作」照 Rules P3 的三種 operation 劃，跟 menu 列的是同一批，app 之間記的
-範圍一樣（demou DM41）；app 在背景做的事，使用者也只有這裡看得到。`!` 跟 `?`、`Space` 一樣，在家族哪個 app 都按得到。只放在記憶體：要看的是這次開 app
+範圍一樣（來自 demou）；app 在背景做的事，使用者也只有這裡看得到。`!` 跟 `?`、`Space` 一樣，在家族哪個 app 都按得到。只放在記憶體：要看的是這次開 app
 發生了什麼，不多一種要存、要清的東西。
 
 ## note.8 比較
