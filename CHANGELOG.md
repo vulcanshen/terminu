@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.1 — 2026-10-29
+
+Settled with the user: inside a mode `V` does not summon the splash, as K11 already has it (only the mode's own keys
+and the core keys work there). S4 listed a popup, input state and a PTY but not a mode, and terminu-go summoned the
+splash inside one. Family members change no code: it comes with terminu-go.
+
+- S4: inside a mode `V` does not summon the splash (K11); the "Why" names a mode with the popup, the input box and
+  the PTY
+- changed in this version: S4
+- checklist: S4-3 added (1459 items); the header names v1.1.1
+
 ## v1.1.0 — 2026-10-28
 
 The stable release after three betas, settled with the user: the maintainer's personal information leaves the
