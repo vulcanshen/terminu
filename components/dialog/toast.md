@@ -93,6 +93,10 @@ decide for itself; an item with nothing to show has none.
   `INSPECT`, its text in Text. **No hint**: no key closes it.
 - **When it is there**: from when the cursor lands on an item that has one until the cursor leaves that item; moving
   to another item that has one shows that item's at once. **No timer.**
+- **A popup opened over it** (the Space menu, `?`…): the focus is then on the popup, so the inspect toast is not
+  shown; when the popup closes and the cursor is still on the item, it comes back.
+- **Not in the App Log** ([`dialog/note`](note.md), note.7): it comes and goes with the cursor, and moving the cursor
+  is not recorded.
 - **Keys**: every key passes through it, `Esc` included (the exception to toast.3, Rules K4 and F3): `Esc` does what it
   does underneath (e.g. leaves webu's Focus mode), and the toast goes with the cursor.
 - **Another toast**: an ordinary toast replaces it, as toast.2 says; once that one is gone, if the cursor is still on
@@ -106,4 +110,7 @@ popup would take the keys, and `j|k` could no longer move the cursor; a toast al
 `Esc` goes through too: the toast leaves by itself when the cursor does, so stopping `Esc` on it would only make
 leaving take two presses on every link, and the next link would bring it back anyway. An eye, not a magnifier: in the
 family a magnifier means searching (webu's and filu's search boxes), and one look cannot have two meanings (Principle
-P4). A title of its own, not Info's: an Info leaves by itself after a while, and the inspect toast does not.
+P4). A title of its own, not Info's: an Info leaves by itself after a while, and the inspect toast does not. Gone
+under a popup: it is there while the focus is on the item, and a toast is drawn above every popup, undimmed, so it
+would sit on a tall popup's last rows and its hint. Not recorded: walking along the links of a page would otherwise
+write an entry for each one, burying what the user actually did.

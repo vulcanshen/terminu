@@ -79,6 +79,9 @@
   **沒有 hint**：沒有鍵關它。
 - **什麼時候在**：游標停到有 inspect toast 的項目上就出現，離開那一項就消失；移到另一個有的項目，直接換成那一項的。
   **沒有計時。**
+- **上面開了 popup**（Space menu、`?`……）：focus 到了 popup 上，inspect toast 不顯示；popup 關掉後，游標還在那一項上
+  就回來。
+- **不記進 App Log**（[`dialog/note`](note-zh_TW.md)，note.7）：它跟著游標來去，而移動游標不記。
 - **按鍵**：所有鍵都穿過它，`Esc` 也是（toast.3、Rules K4、F3 的例外）：`Esc` 照底下的意思做（例：離開 webu 的 Focus
   mode），toast 跟著游標消失。
 - **其他 toast 來時**：一般 toast 照 toast.2 取代它；那個走了以後，游標還在那一項上，inspect toast 就回來。
@@ -88,4 +91,6 @@
 捲動位置（[`layout/panel`](../layout/panel-zh_TW.md)）。note popup 會收鍵，`j|k` 就移不了游標；toast 本來就讓 `Esc` 以外
 的鍵穿過。`Esc` 也讓它穿過：游標一走它就自己走，攔下 `Esc` 只會讓每個連結上都要按兩下才離開，而移到下一個連結它又會
 出現。用眼睛不用放大鏡：家族裡放大鏡是搜尋（webu、filu 的搜尋框），同一個樣子不能有兩個意思（Principle P4）。標題自己
-一種、不用 Info 的：Info 過一會兒自己走，inspect toast 不會。
+一種、不用 Info 的：Info 過一會兒自己走，inspect toast 不會。popup 開著時不顯示：它在的條件是 focus 在那一項上，而 toast
+畫在所有 popup 上面、不淡化，會一直蓋住高的 popup 最下面幾列和 hint。不記：不然沿著一頁的連結走，每個連結都記一筆，
+使用者真正做的事會被淹掉。

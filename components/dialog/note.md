@@ -248,7 +248,8 @@ keep arriving, as in streaming content.
 14:03:30 ERR  Namespace fetch failed: Forbidden
 ```
 
-- **What goes in**: what the user did and how it ended; every toast (the same words); what the app did on its own in
+- **What goes in**: what the user did and how it ended; every toast (the same words) but the inspect toast
+  ([`dialog/toast`](toast.md), toast.4); what the app did on its own in
   the background (e.g. a move under Rules E3, a default made at start, the details of something outside the app that
   could not be read).
 - **What the user did**: an item, panel or global operation of Rules P3, run from a menu, by a letter hotkey or by

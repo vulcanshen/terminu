@@ -196,7 +196,7 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 14:03:30 ERR  Namespace fetch failed: Forbidden
 ```
 
-- **記什麼**：使用者做的動作與結果；每一個 toast（同一句話）；app 自己在背景做的事（例：Rules E3 的搬家、啟動時建好的預設值、
+- **記什麼**：使用者做的動作與結果；每一個 toast（同一句話），inspect toast 除外（[`dialog/toast`](toast-zh_TW.md)，toast.4）；app 自己在背景做的事（例：Rules E3 的搬家、啟動時建好的預設值、
   讀不到外面的東西的細節）。
 - **動作是哪些**：Rules P3 的 item、panel、global operation，不管是從 menu、letter hotkey 還是 `Enter` 執行的；只看不改的也算
   （例：開 viewer、切換畫面 `Switched to Pods`）。移動 cursor、換 focus（`Tab`、數字鍵）、打開 Space menu、`?`、`!` 不是動作，

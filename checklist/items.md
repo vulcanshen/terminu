@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.1.2. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.1.3. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -1009,7 +1009,7 @@ The items of tdp v1.1.2. What each column means and what an item applies to: [RE
 | note-74 | note.2 | In a viewer, a line the app hands over that holds a `\n` is split in two | viewer | Hand the viewer a line holding a `\n` (e.g. an error message over several lines) and check that it shows as two lines |
 | note-75 | note.2 | In a viewer, colour codes (SGR) colour the text, a `\r` within a line keeps only the last state, and a sequence that is not a colour code is drawn by name in red | viewer | Open content with colour codes, `10%\r100%` and `\x1b[2J` |
 | note-76 | note.7 | Every app has an App Log, a viewer with the newest entry last, where new entries keep arriving while it is open | everyone | Press `!`, do a few things, and watch new entries arrive |
-| note-77 | note.7 | It records what the user did and how it ended, every toast, and what the app did in the background; what the user did is an operation of the three kinds of Rules P3, one that only looks included, not moving the cursor or the focus, nor the panel filter or compare mode, nor one cancelled at its confirm or form | everyone | Do an operation that changes something and one that only looks (open a viewer, say), get a toast, move the cursor a few times, press `!`; read the code |
+| note-77 | note.7 | It records what the user did and how it ended, every toast but the inspect toast, and what the app did in the background; what the user did is an operation of the three kinds of Rules P3, one that only looks included, not moving the cursor or the focus, nor the panel filter or compare mode, nor one cancelled at its confirm or form | everyone | Do an operation that changes something and one that only looks (open a viewer, say), get a toast, move the cursor a few times, press `!`; read the code |
 | note-78 | note.7 | Each entry: the time `HH:MM:SS` (Overlay0), the level (`INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, four cells wide, left-aligned), and what happened, capitalised like a toast | everyone | Look at the App Log's levels |
 | note-79 | note.7 | Kept in memory only, emptied when the app quits; the number of entries has a limit, and the oldest goes when it is full | everyone | Read the code; or quit and start again: the App Log is empty |
 | note-80 | note.8 | Title glyph `nf-md-compare` (U+F018A), `DIFF — <anchor> ↔ <the other>`, followed by two tabs, `UNIFIED` and `SPLIT`, switched with `h\|l` | compare mode | Open a comparison and press `h\|l`; read the code to check the code point |
@@ -1077,6 +1077,8 @@ The items of tdp v1.1.2. What each column means and what an item applies to: [RE
 | toast-23 | toast.4 | The inspect toast is titled `nf-md-eye` (U+F0208) `INSPECT`, its text in Text, with no hint on its bottom border | inspect toast | Look at its title, its text and its bottom border |
 | toast-24 | toast.4 | An ordinary toast replaces the inspect toast; once that one is gone, the inspect toast comes back if the cursor is still on the item | inspect toast | With it up, run an action that shows a toast (e.g. copy) and wait: the inspect toast comes back |
 | toast-25 | toast.4 | The inspect toast never covers the item the cursor is on: the view scrolls so that the item shows above it | inspect toast | Move the cursor to an item near the bottom: it stays in sight above the toast |
+| toast-26 | toast.4 | With a popup opened over the panel, the inspect toast is not shown; once the popup closes, it comes back if the cursor is still on the item | inspect toast | With it up, press `Space`: it goes; press `Esc`: it is back |
+| toast-27 | toast.4 | The inspect toast is not written to the App Log | inspect toast | Move the cursor over a few items that have one, then press `!`: none of them is there |
 
 ## input/README
 
