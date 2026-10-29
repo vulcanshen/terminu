@@ -2,8 +2,8 @@
 
 ## v1.1.6 — 2026-10-29
 
-Settled with the user: tdp no longer cites the record numbers of the members and of terminu-go (such as  or
-), which nobody outside can look up; where a rule came from now reads "from kbu", as terminu-go's own files
+Settled with the user: tdp no longer cites the record numbers of the members and of terminu-go (such as `KB34` or
+`G103`), which nobody outside can look up; where a rule came from now reads "from kbu", as terminu-go's own files
 already do. No rule changes.
 
 - components README, dialog/note (note.7), input/checkbox, layout/panel, layout/popup, both languages: the numbers
