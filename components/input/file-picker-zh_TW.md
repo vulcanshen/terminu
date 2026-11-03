@@ -85,6 +85,7 @@ lib 的預覽與 viewer 照這樣上色，也把同一套上色給自己畫內�
 | INI（`.gitconfig`） | 區段裡縮排的 key，第二個起 | `NameAttribute`，Blue，跟第一個一樣 |
 | Makefile | 指令：`include`、`ifeq`、`define`…… | `CommentPreproc`，Overlay0 |
 | Makefile | recipe 裡的變數：`$(GO) build` 的 `GO` | `NameVariable`，Rosewater，跟檔案別處一樣 |
+| Makefile | `define HELP` 到 `endef` 之間的行：寫成好幾行的變數值 | 跟一行的變數 `=` 後面的值一樣：照 shell 讀 |
 | Dockerfile | `LABEL` 的 key：`LABEL a.b="x"` 的 `a.b` | `NameVariable`，Rosewater，跟 `ENV` 的 key 一樣 |
 | Dockerfile | 映像名有變數時後面的 `AS build`：`FROM golang:${GO} AS build` | `AS` 是 `Keyword`，Mauve；名稱是 `LiteralString`，Green，跟沒有變數時一樣 |
 | Dockerfile | 有小數點的版本：`ARG GO=1.24` 的 `1.24` | `LiteralNumber`，Peach，整段 |

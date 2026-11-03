@@ -99,6 +99,7 @@ that colours content of its own. A gap found later is added to this list (the us
 | INI (`.gitconfig`) | an indented key after the first in a section | `NameAttribute`, Blue, as the first |
 | Makefile | a directive: `include`, `ifeq`, `define`… | `CommentPreproc`, Overlay0 |
 | Makefile | a variable in a recipe: `GO` in `$(GO) build` | `NameVariable`, Rosewater, as elsewhere in the file |
+| Makefile | the lines between `define HELP` and `endef`: a variable's value over several lines | as a one-line variable's value after `=`: read as a shell's |
 | Dockerfile | a `LABEL`'s key: `a.b` in `LABEL a.b="x"` | `NameVariable`, Rosewater, as an `ENV`'s key |
 | Dockerfile | `AS build` after an image with a variable: `FROM golang:${GO} AS build` | `AS` `Keyword`, Mauve; the name `LiteralString`, Green, as without the variable |
 | Dockerfile | a version with a dot: `1.24` in `ARG GO=1.24` | `LiteralNumber`, Peach, the whole of it |
