@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.1.9 — 2026-11-03
+
+Settled with the user: syntax colours were "foreground only", so a Markdown file's `**bold**` and `*italic*`, which
+catppuccin-mocha tells apart by bold and italic and not by colour, looked like the text around them. Syntax colours now
+take catppuccin-mocha's look as it is, its backgrounds still left out.
+
+- file-picker.3: syntax colours take catppuccin-mocha's colours, bold, italic and underline (a Markdown `**bold**`
+  bold and `*italic*` italic, a `#` heading bold, a comment italic, an operator such as `=` or `&&` bold), never its
+  backgrounds: neither its Base behind the text nor its Surface0 behind a diff's added and removed lines is painted,
+  the screen's background being the terminal's own (color.2)
+- note.2: a viewer's syntax colours the same; the selection mode's range shows no bold, italic or underline either
+- changed in this version: file-picker.3, note.2
+- checklist: file-picker-95 added, file-picker-21, note-16 and note-17 changed (1472 items); the header names v1.1.9
+
 ## v1.1.8 — 2026-11-03
 
 Settled with the user: one more row in file-picker.3's table of chroma's gaps. chroma reads the lines between a
