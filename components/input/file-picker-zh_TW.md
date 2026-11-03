@@ -63,11 +63,15 @@ cursor 那一筆的內容，照種類畫。最多讀 64 KB。
 |---|---|
 | 目錄 | 樹（見下面） |
 | 壓縮檔（zip、tar、tar.gz、tar.bz2） | 照目錄的樹列出裡面 |
-| 文字檔 | 內容，加語法顏色（chroma 的 catppuccin-mocha，只上前景色）與行號（Overlay0，靠右對齊、後面空一格）；Tab 與控制字元照 [`dialog/note`](../dialog/note-zh_TW.md) 的 viewer（Tab 畫成 `input_tab_width` 格空白、CRLF 的 `\r` 不畫、顏色碼照著上色、一行裡的 `\r` 只留最後的狀態、其他控制字元畫成 Red 的名字） |
+| 文字檔 | 內容，加語法顏色（chroma 的 catppuccin-mocha：照它的顏色、粗體、斜體與底線，不上它的背景色）與行號（Overlay0，靠右對齊、後面空一格）；Tab 與控制字元照 [`dialog/note`](../dialog/note-zh_TW.md) 的 viewer（Tab 畫成 `input_tab_width` 格空白、CRLF 的 `\r` 不畫、顏色碼照著上色、一行裡的 `\r` 只留最後的狀態、其他控制字元畫成 Red 的名字） |
 | PDF | 第一列灰字寫頁數（`12 pages`），空一列，接前 20 頁的文字（最多 128 KB）；抽不出文字時寫 `(no extractable text)` |
 | 圖片（png、jpg、gif、bmp、webp、tiff、ico、avif、heic） | 第一列灰字 `data:image/png · 12.4 KB`，空一列，接 base64 的 data URI，照預覽寬折行；超過 1 MB 時只寫 `(1.4 MB — too large to inline as a data URI)` |
 | 其他 | 十六進位，一律一列 8 bytes，後面接 ASCII（`89 50 4e 47 0d 0a 1a 0a  .PNG....`，33 格）；並排時預覽最寬只有 56 格，放不下 16 bytes |
 | 讀不到 | `(unreadable)` |
+
+**語法顏色**照 catppuccin-mocha 原本的樣子：它的顏色、粗體、斜體與底線（Markdown 的 `**粗體**` 是粗體、`*斜體*` 是斜體、
+`#` 標題粗體、註解斜體、`=`、`&&` 這類運算符號粗體）；它的背景色一律不上：畫面的底色是終端機自己的（[color](../color-zh_TW.md).2），
+文字後面的 Base 與 diff 新增、刪除行後面的 Surface0 都不塗（user 2026-11-03）。
 
 **chroma 漏掉的地方**：chroma 某個格式的 lexer 有時把一樣東西留成 Text 或上錯顏色，而同樣的東西在同一個檔別處、或在別的格式
 是另一個顏色（YAML 的 `image: "nginx"` 與 `image: nginx`）。這種缺漏全家族照下表一種補法，同一個檔在每個預覽與 viewer 裡長得一樣：

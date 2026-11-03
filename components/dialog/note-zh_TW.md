@@ -29,11 +29,11 @@
   **有 tab 的 viewer**（例：DevTools 的 Console、Network）：行號欄照看過的頁裡最寬的那一頁，只變寬、不變窄 —— 打開時照那一頁；
   切到行數更多的頁就變寬；切回行數少的頁，寬度留著不縮回。串流的頁一樣只變寬。
 - **viewer 的語法顏色**：內容有固定格式的（YAML、JSON、TOML、HTML、XML、Markdown……）照 [`input/file-picker`](../input/file-picker-zh_TW.md)
-  預覽表的文字檔上色（chroma 的 catppuccin-mocha，只上前景色，chroma 漏掉的照那裡的表補上）。
+  預覽表的文字檔上色（chroma 的 catppuccin-mocha，照它的粗體、斜體與底線，不上背景色，chroma 漏掉的照那裡的表補上）。
   語言由 app 給（YAML 檢視是 YAML；DevTools Network 的回應照
   content type）；檔案內容照檔名判斷，跟預覽一樣。沒有固定格式的（例：App Log）、判斷不出來的，上不上色，app 可以自行決定：不上色時是
   純文字 Text；app 知道自己的內容，可以依情境上色（例：log 裡 ERROR、WARN 的行）。lib 不上語法顏色，但保留 app 給的顏色。
-  行號照舊 Overlay0；選取模式的範圍照舊 Yellow 底、Base 字，語法顏色在範圍裡不顯示。
+  行號照舊 Overlay0；選取模式的範圍照舊 Yellow 底、Base 字，語法顏色與粗體、斜體、底線在範圍裡都不顯示。
 - **viewer 裡的 Tab 與控制字元**（跟 [`input/file-picker`](../input/file-picker-zh_TW.md) 的預覽一樣；全家族的規定見 [components](../README-zh_TW.md)
   的「控制字元」）：照終端機會畫的樣子。Tab 畫成 `input_tab_width` 格空白（跟 [`input/textarea`](../input/textarea-zh_TW.md) 同一個設定），
   不對齊 tab 停點；`\n` 是換行，app 一行一行交來的內容，一行裡夾著 `\n` 也拆成兩行；換行前面的 `\r`（CRLF）不畫，算換行的一部分；
