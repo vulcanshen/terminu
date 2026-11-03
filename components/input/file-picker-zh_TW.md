@@ -95,6 +95,7 @@ lib 的預覽與 viewer 照這樣上色，也把同一套上色給自己畫內�
 | Dockerfile | 有小數點的版本：`ARG GO=1.24` 的 `1.24` | `LiteralNumber`，Peach，整段 |
 | Markdown | 底下畫 `===` 或 `---` 的標題 | `GenericHeading`，Peach，跟 `#` 標題一樣 |
 | Markdown | 清單項的 `+` | `Keyword`，Mauve，跟 `-`、`*` 一樣 |
+| Markdown | 在行首的粗體與斜體：`**為什麼**：……`、`*注意* ……`，用 `__`、`_` 的也是 | `GenericStrong` 粗體、`GenericEmph` 斜體，跟在行中一樣 |
 | Markdown | 參考式連結：`[ref]: https://…`、`[text][ref]` | 第一個方括號是 `NameTag`，Mauve；第二個方括號或網址是 `NameAttribute`，Blue，跟行內連結一樣 |
 
 **目錄的樹**：最多三層。第一層不畫樹枝，第二層起用 `├─`、`└─`、`│` 連起來，樹枝 Overlay0；每一項前面的 icon、顏色、順序跟清單一樣，

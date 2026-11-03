@@ -110,6 +110,7 @@ that colours content of its own. A gap found later is added to this list (the us
 | Dockerfile | a version with a dot: `1.24` in `ARG GO=1.24` | `LiteralNumber`, Peach, the whole of it |
 | Markdown | a heading underlined with `===` or `---` | `GenericHeading`, Peach, as a `#` heading |
 | Markdown | a list item's `+` | `Keyword`, Mauve, as `-` and `*` |
+| Markdown | bold or italic at the start of a line: `**Why**: …`, `*Note* …`, with `__` or `_` too | `GenericStrong` bold, `GenericEmph` italic, as in the middle of a line |
 | Markdown | a reference link: `[ref]: https://…`, `[text][ref]` | the first brackets `NameTag`, Mauve; the second brackets or the address `NameAttribute`, Blue, as an inline link |
 
 **A directory's tree**: at most three levels. The first level has no branches; from the second on, `├─`, `└─` and `│`
