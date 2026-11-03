@@ -58,7 +58,7 @@ menu, not a note.
   takes the original characters, not the spaces or names drawn. A viewer is for reading: a program's output is meant to
   look that way in a terminal; a red `\r` on every line of a CRLF file is only noise; and Red is what tells a control
   character from the four characters `\x07` written in a file.
-- **A viewer's search** (where it has `/`): every hit is underlined, keeping its own colour; the current one is drawn as
+- **A viewer's search** (`/`, note.3): every hit is underlined, keeping its own colour; the current one is drawn as
   the cursor block (layer colour background, bold Base, the cursor in [`color`](../color.md)), saying "you are here". No
   colour is added: the mode colour Yellow is kept for the selection mode's range.
 
@@ -93,12 +93,14 @@ a file looks the same in the preview and in a viewer.
   and the typing explanation on a form close on `Enter` too; the key reference also closes on a second `?` (Rules K6).
 - **A form's typing explanation takes only `Enter` and `Esc`**: every other typeable character (`q` and `?` included)
   does nothing — no quitting, no key reference (typing on a field in [`dialog/form`](form.md)).
-- **A viewer's search** (where it has `/`; the user, 2026-10-29, as kbu's YAML viewer and webu's pages have it): `/`
-  opens an input popup asking for the text ([`input/text`](../input/text.md); its title and glyph, the app may decide
+- **A viewer's search**: every viewer (note.4) and the key reference (note.5) have `/` (the user, 2026-10-29, as kbu's
+  YAML viewer and webu's pages have it; every one, the user, 2026-11-03: someone who has used `/` in one viewer presses
+  it in the next, and a key that does nothing there looks broken). `/` opens an input popup asking for the text ([`input/text`](../input/text.md); its title and glyph, the app may decide
   for itself); the hits are drawn as note.2 says. `n|N` go to the next and the previous hit, wrapping at the ends, the
   view scrolling it into sight. With no hit, an Info toast says so ([`dialog/toast`](toast.md)). The hits go when the
   viewer closes. A panel without a cursor searches its text the same way, `Esc` clearing the hits there
-  ([`layout/panel`](../layout/panel.md), panel.14).
+  ([`layout/panel`](../layout/panel.md), panel.14). Run from the Space menu, the menu goes once the search runs, and
+  `Esc` on the input popup goes back to the menu (Rules T1).
 - **Hint**: the note's own hotkeys first, `Esc:close` last; with tabs, `h|l:tab` comes first (the hint in
   [`layout/popup`](../layout/popup.md)). E.g. `y:copy /:search v:visual Esc:close`.
 
@@ -169,7 +171,7 @@ The "what keys work here" opened with `?` (Rules K6, M4).
 ┃ 󰋘 APP-WIDE                                    ┃
 ┃  M         Manage — hosts, credentials, …     ┃
 ┃                                               ┃
-┗━ ?|Esc:close ━━━━━━━━━━━━━━━━━━━━ 1-20 of 23 ━┛
+┗━ /:search ?|Esc:close ━━━━━━━━━━━ 1-20 of 23 ━┛
 ```
 
 - **Title**: `nf-fa-question_circle` (U+F059) plus `<surface> keys`, e.g. `[2] HOSTS KEYS`, `SPACE MENU KEYS`.
@@ -203,7 +205,8 @@ The "what keys work here" opened with `?` (Rules K6, M4).
 - **On a popup** only that popup's own keys are listed (Rules K6): its hotkeys, `Enter`, `Esc`, the movement keys.
 - **Colours**: keys in Blue, not bold; descriptions in Text. A key that cannot be pressed right now has both key and
   description in Surface2 (Rules M6).
-- **Keys**: scrolling as above; `?` or `Esc` closes it, `Enter` does nothing. Hint `?|Esc:close`.
+- **Keys**: scrolling as above; `/` searches as a viewer's does (note.3); `?` or `Esc` closes it, `Enter` does
+  nothing. Hint `/:search ?|Esc:close`.
 
 **Why**: the key reference is the only place that lists every key — the hint leaves out movement and the Space menu
 lists only actions — so without the movement keys, `u|d` and `gg|G` would have nowhere to be learned (Principle P1).

@@ -596,8 +596,8 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 | **terminal** | 跑在框裡的子程序，按鍵都給它，只有出口鍵與 app 保留的組合鍵（互動 terminal 還有 `Alt-v`、`PgUp`）屬於 app（K10） | kbu 的 Alterm、filu 的 shell |
 | **app 自己的 popup** | 七類裝不下的內容：內容怎麼畫、內容上的按鍵 app 可以自行決定，框與層照 popup；有要送出的值時照表單（見下面） | kamonu 畫格子的 popup |
 
-- **note 可以有自己的熱鍵與模式**：例如 YAML 檢視的 `/` 搜尋。**每個 viewer 都有選取模式**（`v` 選取、`y` 複製；模式，K11；
-  [components/dialog/note](../components/dialog/note-zh_TW.md)）：家族裡任何 viewer 都能選一段文字複製。熱鍵揭露在
+- **note 可以有自己的熱鍵與模式**。**每個 viewer 都有選取模式**（`v` 選取、`y` 複製；模式，K11）**與搜尋**（`/`；
+  [components/dialog/note](../components/dialog/note-zh_TW.md)）：家族裡任何 viewer 都能選一段文字複製，也能找字。熱鍵揭露在
   `?`（下框 hint 照 dialog/note）；但一旦有可用 `Enter` 執行的選項清單，它就是 menu，不是 note。
 - **menu 的 `Enter` 可以打開那一列的全文**：有 cursor、本身沒有別的動作的清單（例：工作清單），`Enter` 開一個 note 顯示
   那一列的完整內容，它仍是 menu；hint 寫 `Enter:detail`（[components/dialog/menu](../components/dialog/menu-zh_TW.md)）。工作清單裡
@@ -776,9 +776,12 @@ App Log（`!`，[components/dialog/note](../components/dialog/note-zh_TW.md)）�
 | 開 shell | 清掉 | 從 session 出來時注意力已轉移，舊 menu 浮著讓人恍神 |
 | 換畫面（切到 chip 列的另一個畫面） | 清掉 | 畫面都換了 |
 | drill-down（例：進目錄、Deployment → Pods） | 清掉 | 底下的畫面已經換了，舊 menu 的對象不在了 |
+| 搜尋底下的畫面（viewer 或 panel 的 `/`） | 清掉 | 命中的字在 menu 底下的畫面上，`n\|N` 也在那裡跳；menu 留著會蓋住找到的字 |
 
 - **confirm 只是門，不是一種 target**：動作前面有 confirm 時（例：刪除前問一次），照確定之後的那個動作判；在 confirm 上取消，
   一律回到 source（F4）。
+- **搜尋的 input popup 也是門**：搜尋真的執行（`Enter`）時 menu 才收起，有沒有找到都一樣，input popup 與 menu 一起收（F2）；
+  在 input popup 上按 `Esc` 回到 menu（F4；user 2026-11-03，viewu 發現）。
 - 表上沒有的動作，清不清掉 source，app 可以自行決定，照「使用者用完 target 之後，心裡還想不想看 source」判。
 
 **為什麼**：保留是安全的預設，清掉要有理由 —— 否則使用者完成一件事就找不到回去的路。「該不該清」不能一概而論：

@@ -41,7 +41,7 @@
   `\x1b[2J` 畫成紅色的 `\x1b` 接著 `[2J`，跟 [`input/README`](../input/README-zh_TW.md) 的「貼上的控制字元」一樣）。複製照原樣，不是畫出來的
   空白或名字。viewer 是用來讀的：程式的輸出本來就是要在終端機裡長那個樣子；CRLF 每一行都掛一個紅色的 `\r` 只是雜訊；控制字元用
   Red，才分得出檔案裡本來就寫著 `\x07` 這四個字。
-- **viewer 的搜尋**（有 `/` 時）：命中的字全部加底線，保留原本的顏色；目前那一筆畫成 cursor 色塊（層色底、Base 粗體，
+- **viewer 的搜尋**（`/`，note.3）：命中的字全部加底線，保留原本的顏色；目前那一筆畫成 cursor 色塊（層色底、Base 粗體，
   [`color`](../color-zh_TW.md) 的 cursor），意思是「你在這裡」。不另外加顏色：模式的 Yellow 只留給選取模式的範圍。
 
 ```
@@ -72,10 +72,12 @@
   再按一次 `?` 也能關（Rules K6）。
 - **表單上的打字說明只收 `Enter`、`Esc`**：其他可以打的字（包括 `q`、`?`）都不作用 —— 不進離開流程、不開 key reference
   （[`dialog/form`](form-zh_TW.md) 的「在欄位上打字」）。
-- **viewer 的搜尋**（有 `/` 時；user 2026-10-29，照 kbu 的 YAML viewer 與 webu 的網頁）：`/` 開一個 input popup 問要找的字
+- **viewer 的搜尋**：每個 viewer（note.4）與按鍵說明（note.5）都有 `/`（user 2026-10-29，照 kbu 的 YAML viewer 與 webu 的網頁；
+  每一個都有，user 2026-11-03：在一個 viewer 用過 `/` 的人，到下一個也會按，按了沒反應就像壞掉）。`/` 開一個 input popup 問要找的字
   （[`input/text`](../input/text-zh_TW.md)；標題與 glyph，app 可以自行決定）；命中的字照 note.2 畫。`n|N` 跳到下一筆、上一筆，
   到頭尾繞回，畫面捲到看得見那一筆。一筆都沒有時，跳一個 Info toast 說沒有（[`dialog/toast`](toast-zh_TW.md)）。viewer 關掉，
   命中的字跟著不見。沒有 cursor 的 panel 搜自己的文字也一樣，在那裡 `Esc` 先清掉命中的字（[`layout/panel`](../layout/panel-zh_TW.md)，panel.14）。
+  從 Space menu 執行時，真的搜了 menu 才收起，在 input popup 上按 `Esc` 回到 menu（Rules T1）。
 - **hint**：note 自己的熱鍵寫在前面，`Esc:close` 放最後；有 tab 時 `h|l:tab` 寫在最前面（[`layout/popup`](../layout/popup-zh_TW.md) 的 hint）。例：`y:copy /:search v:visual Esc:close`。
 
 **為什麼**：使用者自己打開的 note，看完按 `Esc` 是最直覺的；`Space` 在 `less`、`man` 這類閱讀器裡是往下翻頁，熟的人在 note 上按
@@ -135,7 +137,7 @@
 ┃ 󰋘 APP-WIDE                                    ┃
 ┃  M         Manage — hosts, credentials, …     ┃
 ┃                                               ┃
-┗━ ?|Esc:close ━━━━━━━━━━━━━━━━━━━━ 1-20 of 23 ━┛
+┗━ /:search ?|Esc:close ━━━━━━━━━━━ 1-20 of 23 ━┛
 ```
 
 - **標題**：`nf-fa-question_circle`（U+F059）加 `<surface> keys`，例：`[2] HOSTS KEYS`、`SPACE MENU KEYS`。
@@ -158,7 +160,7 @@
   key reference 本來就能捲，長了也看得完。
 - **popup 上**只列這個 popup 自己的鍵（Rules K6）：它的熱鍵、`Enter`、`Esc`、移動鍵。
 - **顏色**：鍵 Blue、不加粗；說明 Text。現在按不了的鍵，鍵與說明都用 Surface2（Rules M6）。
-- **按鍵**：捲動照上面；`?` 或 `Esc` 關，`Enter` 不作用。hint `?|Esc:close`。
+- **按鍵**：捲動照上面；`/` 跟 viewer 一樣搜尋（note.3）；`?` 或 `Esc` 關，`Enter` 不作用。hint `/:search ?|Esc:close`。
 
 **為什麼**：key reference 是唯一列出全部按鍵的地方 —— hint 不列移動、Space menu 只列動作 —— 不列移動鍵，`u|d`、`gg|G` 就沒地方
 學（Principle P1）。label 不轉小寫：轉了會弄壞 `SSH config`、`YAML` 這種縮寫，而熱鍵已經寫在左邊的鍵欄。

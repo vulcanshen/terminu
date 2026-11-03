@@ -721,9 +721,9 @@ The family's popups come in these eight classes only, each with fixed key meanin
 | **terminal** | a subprocess running in the box; every key is its, only the exit key and the chords the app keeps (in an interactive terminal also `Alt-v` and `PgUp`) are the app's (K10) | kbu's Alterm, filu's shell |
 | **an app's own popup** | content the seven classes cannot hold: how the content is drawn and the keys on it, the app may decide for itself; the box and the layers work as a popup; with values to submit it works like a form (see below) | kamonu's popup for drawing cells |
 
-- **A note may have hotkeys and modes of its own**: e.g. the YAML viewer's `/` search. **Every viewer has a selection
-  mode** (`v` select, `y` copy; a mode, K11; [components/dialog/note](../components/dialog/note.md)): any viewer in the
-  family can select text and copy it. Its hotkeys are disclosed in `?` (the bottom-border hint as dialog/note says); but
+- **A note may have hotkeys and modes of its own**. **Every viewer has a selection mode** (`v` select, `y` copy; a
+  mode, K11) **and a search** (`/`; [components/dialog/note](../components/dialog/note.md)): any viewer in the family
+  can select text and copy it, and find a word in it. Its hotkeys are disclosed in `?` (the bottom-border hint as dialog/note says); but
   once it has a list of options to run with `Enter`, it is a menu, not a note.
 - **A menu's `Enter` may open the row in full**: in a list with a cursor and no other action of its own (e.g. a jobs
   list), `Enter` opens a note showing the row's whole content; it is still a menu; its hint reads `Enter:detail`
@@ -954,9 +954,13 @@ open and close animation); a source of several layers closes all of them togethe
 | Opening a shell | clear | coming out of the session their attention has moved on; an old menu floating there is disorienting |
 | Switching screens (to another screen on the chip row) | clear | the whole screen has changed |
 | Drill-down (e.g. into a directory, Deployment → Pods) | clear | the view underneath has changed; the old menu's target is gone |
+| Searching what is under it (a viewer's or a panel's `/`) | clear | the hits are in the view under the menu, and `n\|N` move among them there; a menu left over them hides what was found |
 
 - **A confirm is only a gate, not a kind of target**: when a confirm comes before the action (e.g. asking once before a
   delete), judge by the action done once confirmed; cancelling the confirm always goes back to the source (F4).
+- **A search's input popup is a gate too**: the menu goes once the search runs (`Enter`), found or not, the input popup
+  and the menu closing together (F2); `Esc` on the input popup goes back to the menu (F4; the user, 2026-11-03, from
+  viewu).
 - For an action not in the table, whether the source is cleared, the app may decide for itself, judging by "once done
   with the target, does the user still want to see the source?".
 

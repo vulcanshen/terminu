@@ -53,7 +53,8 @@
 - menu 是一維清單：`j|l|↓|→` 往後、`h|k|↑|←` 往前，到頭尾繞回；`u|d` 半頁（到頭尾停住）、`gg|G` 頭尾（Rules K12）。
 - `Enter` 執行 cursor 那一列，熱鍵直接執行那一列。
 - **執行之後**：menu 留不留照 Rules T1 的表，看確定之後做的事（打開來看、寫回一個值、用編輯器改那一項的保留；讓那一項不在、
-  開 shell、換畫面、drill-down 的清掉）。動作前先問的 confirm 按 `Esc` 取消時，一律回到 menu（Rules F4）。
+  開 shell、換畫面、drill-down、搜尋底下畫面的清掉，搜尋是真的搜了才清）。動作前先問的 confirm 或搜尋的 input popup
+  按 `Esc` 取消時，一律回到 menu（Rules F4）。
 - `Esc` 關掉（global operation popup 回到 Space menu，Rules F4）；Space menu 也可以再按 `Space` 關（Rules K5）。
 - **hint**：`Enter:run Esc:close`（不寫移動鍵，見 [`layout/popup`](../layout/popup-zh_TW.md) 的 hint）。工作清單的 hint 見下面。
 

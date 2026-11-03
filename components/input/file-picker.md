@@ -113,9 +113,9 @@ that colours content of its own. A gap found later is added to this list (the us
 | Markdown | a heading underlined with `===` or `---` | `GenericHeading`, Peach, as a `#` heading |
 | Markdown | a list item's `+` | `Keyword`, Mauve, as `-` and `*` |
 | Markdown | bold or italic at the start of a line: `**Why**: …`, `*Note* …`, with `__` or `_` too | `GenericStrong` bold, `GenericEmph` italic, as in the middle of a line |
-| `go.mod`, `go.work` | the whole file: chroma takes it for AMPL | a lexer of its own: a directive (`module`, `go`, `toolchain`, `require`, `replace`, `exclude`, `retract`, `use`) `Keyword`, Mauve, as Go's keywords; a version `LiteralNumber`, Peach; `=>` `Operator`; a comment `Comment` |
+| `go.mod`, `go.work` | the whole file: chroma takes it for AMPL | a lexer of its own: a directive (each one Go knows: `module`, `go`, `require`, `replace`, `tool`, …) `Keyword`, Mauve, as Go's keywords; a version `LiteralNumber`, Peach; `=>` `Operator`; a comment `Comment` |
 | SSH config (`~/.ssh/config`, `ssh_config`, `sshd_config`) | the whole file: chroma has no lexer | a keyword (`Host`, `HostName`, `User`, `IdentityFile`…) `Keyword`, Mauve; a number (`22` in `Port 22`) `LiteralNumber`, Peach; a comment `Comment` |
-| hosts (`/etc/hosts`) | the whole file: no lexer | an address (`127.0.0.1`, `::1`) `LiteralNumber`, Peach; a comment `Comment` |
+| hosts (only `/etc/hosts`: a `hosts` elsewhere, such as an Ansible inventory, is another format) | the whole file: no lexer | an address (`127.0.0.1`, `::1`) `LiteralNumber`, Peach; a comment `Comment` |
 | `.gitignore`, `.dockerignore` | the whole file: no lexer | a comment `Comment`; a leading `!` `Keyword`, Mauve |
 | `requirements.txt` (and `requirements-*.txt`) | the whole file: no lexer | a comment `Comment`; a version `LiteralNumber`, Peach; `==`, `>=`, `~=` and the like `Operator` |
 | `Jenkinsfile` | the whole file: chroma does not know the name | chroma's Groovy lexer, as a `.groovy` file |

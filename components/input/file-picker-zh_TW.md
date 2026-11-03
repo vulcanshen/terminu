@@ -97,9 +97,9 @@ lib 的預覽與 viewer 照這樣上色，也把同一套上色給自己畫內�
 | Markdown | 底下畫 `===` 或 `---` 的標題 | `GenericHeading`，Peach，跟 `#` 標題一樣 |
 | Markdown | 清單項的 `+` | `Keyword`，Mauve，跟 `-`、`*` 一樣 |
 | Markdown | 在行首的粗體與斜體：`**為什麼**：……`、`*注意* ……`，用 `__`、`_` 的也是 | `GenericStrong` 粗體、`GenericEmph` 斜體，跟在行中一樣 |
-| `go.mod`、`go.work` | 整個檔：chroma 把它認成 AMPL | 自己的 lexer：指令（`module`、`go`、`toolchain`、`require`、`replace`、`exclude`、`retract`、`use`）是 `Keyword`，Mauve，跟 Go 的關鍵字一樣；版本是 `LiteralNumber`，Peach；`=>` 是 `Operator`；註解是 `Comment` |
+| `go.mod`、`go.work` | 整個檔：chroma 把它認成 AMPL | 自己的 lexer：指令（Go 認得的每一個：`module`、`go`、`require`、`replace`、`tool`…）是 `Keyword`，Mauve，跟 Go 的關鍵字一樣；版本是 `LiteralNumber`，Peach；`=>` 是 `Operator`；註解是 `Comment` |
 | SSH 設定（`~/.ssh/config`、`ssh_config`、`sshd_config`） | 整個檔：chroma 沒有 lexer | 關鍵字（`Host`、`HostName`、`User`、`IdentityFile`……）是 `Keyword`，Mauve；數字（`Port 22` 的 `22`）是 `LiteralNumber`，Peach；註解是 `Comment` |
-| hosts（`/etc/hosts`） | 整個檔：沒有 lexer | 位址（`127.0.0.1`、`::1`）是 `LiteralNumber`，Peach；註解是 `Comment` |
+| hosts（只有 `/etc/hosts`：別處叫 `hosts` 的檔，例如 Ansible 的 inventory，是別的格式） | 整個檔：沒有 lexer | 位址（`127.0.0.1`、`::1`）是 `LiteralNumber`，Peach；註解是 `Comment` |
 | `.gitignore`、`.dockerignore` | 整個檔：沒有 lexer | 註解是 `Comment`；行首的 `!` 是 `Keyword`，Mauve |
 | `requirements.txt`（與 `requirements-*.txt`） | 整個檔：沒有 lexer | 註解是 `Comment`；版本是 `LiteralNumber`，Peach；`==`、`>=`、`~=` 這類是 `Operator` |
 | `Jenkinsfile` | 整個檔：chroma 不認得這個檔名 | 用 chroma 的 Groovy lexer，跟 `.groovy` 檔一樣 |

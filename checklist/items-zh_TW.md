@@ -304,6 +304,7 @@ tdp v1.2.0-beta.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](R
 | T1-7 | T1 | 確定之後是打開東西來看（YAML 檢視、明細、全文）時，source 保留 | 都要 | 從 menu 打開一個來看的東西，關掉後回到原 menu |
 | T1-8 | T1 | 確定之後是用編輯器改那一項（例：`kubectl edit`、`$EDITOR`）時，source 保留 | 都要 | 從 menu 用編輯器改一項，離開編輯器後回到原 menu 或 viewer |
 | T1-9 | T1 | 確定之後是讓那一項不在了（刪除、搬走）時，清掉 source | 都要 | 從 menu 刪除一項，確定後原 menu 不在 |
+| T1-10 | T1 | 搜尋 menu 底下的畫面（從 Space menu 執行 viewer 或 panel 的 `/`）：真的搜了 menu 才收起，有沒有找到都一樣，input popup 與 menu 一起收；在 input popup 上按 `Esc` 回到 menu | 都要 | 從 Space menu 執行 `/`，打一個字按 `Enter`：menu 不見、看得到命中的字；再執行一次，在 input popup 上按 `Esc`：回到 menu |
 | T2-1 | T2 | 失焦的 panel 用 F8 同一套淡化把內容（含表頭、分組標題、label、cursor）變暗，cursor 不另外換顏色 | 多 panel | `Tab` 換 panel，失焦的 panel 內容變暗、各顏色是自己的淡化版 |
 | T2-2 | T2 | 串流內容（log、即時輸出、遠端 session）失焦時不變暗 | 串流內容 | focus 移到別的 panel，串流內容那個 panel 不變暗 |
 | T2-3 | T2 | 串流 panel 失焦時內容不變暗，但下框的 hint 照樣變暗 | 串流內容 | focus 移到別的 panel，看串流 panel 的 hint 變暗 |
@@ -997,7 +998,7 @@ tdp v1.2.0-beta.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](R
 | note-58 | note.5 | 現在按得了的鍵用 Blue、不加粗（按不了的見 note-60） | 都要 | 看鍵欄的顏色 |
 | note-59 | note.5 | 說明用 Text | 都要 | 看說明的顏色 |
 | note-60 | note.5 | 現在按不了（對象存在）的鍵照樣列出，鍵與說明都用 Surface2 | 停用 | 讓某個動作停用後按 `?` |
-| note-61 | note.5 | hint 是 `?\|Esc:close` | 都要 | 看 key reference 的下框 |
+| note-61 | note.5 | hint 是 `/:search ?\|Esc:close` | 都要 | 看 key reference 的下框 |
 | note-62 | note.6 | 框、文字都是 Red | error popup | 看 error popup 的框與訊息 |
 | note-63 | note.6 | 標題膠囊填 Red、字 Base 粗體 | error popup | 看標題膠囊 |
 | note-64 | note.6 | 標題 glyph 是 `nf-md-fire`（U+F0238） | error popup | 看標題 |
@@ -1007,8 +1008,9 @@ tdp v1.2.0-beta.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](R
 | note-68 | note.6 | hint 是 `Enter\|Esc:close` | error popup | 看下框 |
 | note-69 | note.6 | 關掉 error popup 之後回到底下的 popup，focus 留在原位（表單的送出或不關表單的動作失敗時，focus 在那顆按鈕上，再按 `Enter` 就是重試），值都還在 | error popup | 關掉後看底下的 popup |
 | note-70 | note.4 | 每個 viewer 都有選取模式（`v` 選取、`y` 複製） | viewer | 在每個 viewer 上按 `v` |
-| note-71 | note.2 | viewer 的搜尋：命中的字全部加底線、保留原本的顏色；目前那一筆畫成 cursor 色塊；不用 Yellow | viewer | 在有 `/` 的 viewer 搜一個出現好幾次的字，看底線與目前那一筆（沒有搜尋的 viewer 沒有這種情況） |
-| note-86 | note.3 | viewer 的搜尋：`/` 開 input popup 問要找的字；`n\|N` 跳到下一筆、上一筆，到頭尾繞回並捲到看得見；一筆都沒有時跳 Info toast | viewer | 在有 `/` 的 viewer 搜一個出現幾次的字，按 `n` 走過最後一筆、按 `N` 走過第一筆；再搜一個沒有的字 |
+| note-71 | note.2 | viewer 的搜尋：命中的字全部加底線、保留原本的顏色；目前那一筆畫成 cursor 色塊；不用 Yellow | viewer | 在 viewer 搜一個出現好幾次的字，看底線與目前那一筆 |
+| note-86 | note.3 | viewer 的搜尋：`/` 開 input popup 問要找的字；`n\|N` 跳到下一筆、上一筆，到頭尾繞回並捲到看得見；一筆都沒有時跳 Info toast | viewer | 在 viewer 搜一個出現幾次的字，按 `n` 走過最後一筆、按 `N` 走過第一筆；再搜一個沒有的字 |
+| note-88 | note.3 | 每個 viewer（YAML 檢視、App Log、檔案內容…）與按鍵說明都有 `/` 搜尋 | 都要 | 在 app 的每個 viewer、App Log 與按鍵說明各按一次 `/`：每次都開 input popup |
 | note-73 | note.5 | 「每一列」那一節的說明太長時在右欄折行、名稱欄不動，不截斷；按鍵的各節照舊一列一個鍵、太長截 | 一列一個值的 panel | 讓一列的說明比框寬，按 `?` 看它折行 |
 | note-74 | note.2 | viewer 的內容裡，app 一行一行交來的一行夾著 `\n` 時拆成兩行 | viewer | 讓 app 交給 viewer 的一行含 `\n`（例：多行的錯誤訊息），看是兩行 |
 | note-75 | note.2 | viewer 的內容裡，顏色碼（SGR）照著上色，一行裡的 `\r` 只留最後的狀態，不是顏色碼的序列畫成紅色的名字 | viewer | 打開含顏色碼、`10%\r100%`、`\x1b[2J` 的內容 |

@@ -65,8 +65,9 @@ like another frame.
 - `Enter` runs the cursor row; a hotkey runs its row directly.
 - **After running**: whether the menu stays follows the table in Rules T1, by what happens once it is confirmed (opening
   something to look at, writing a value back, or editing that item in an editor keeps it; making the item go away,
-  opening a shell, switching screens or drilling down clears it). Cancelling the confirm asked before an action with
-  `Esc` always returns to the menu (Rules F4).
+  opening a shell, switching screens, drilling down or searching the view under it clears it, a search once it runs).
+  Cancelling with `Esc` the confirm asked before an action, or a search's input popup, always returns to the menu (Rules
+  F4).
 - `Esc` closes it (the global operation popup returns to the Space menu, Rules F4); the Space menu also closes on another
   `Space` (Rules K5).
 - **Hint**: `Enter:run Esc:close` (no movement keys, see the hint in [`layout/popup`](../layout/popup.md)). A jobs
