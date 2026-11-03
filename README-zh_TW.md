@@ -41,7 +41,6 @@ terminu design 是一套 terminal UI 的設計語言：一組跨畫面、跨 app
 | [Principle](principle/README-zh_TW.md) | 精神：要達成什麼、為什麼 |
 | [Rules](principle/rules-zh_TW.md) | 必須遵守的規則，每條附理由 |
 | [Components](components/README-zh_TW.md) | 元件規格：配色、框、dialog、每一種 input 的樣子與操作 |
-| [Project](project/README-zh_TW.md) | 專案規格：家族 app 的 repo 的目錄、Makefile、版本、CHANGELOG、發布 |
 | [Checklist](checklist/README-zh_TW.md) | 條目清單：把規定拆成可以檢查的項目，用來檢查一個 app 照 tdp 做到了沒有 |
 
 ## terminu-go

@@ -1,5 +1,33 @@
 # Changelog
 
+## v1.2.0-beta.1 — 2026-11-03
+
+Settled with the user: tdp says what should be, whatever the language. What belongs to one implementation leaves it:
+the shared lib's split of the work goes to terminu-go, and the family's repo templates (`project/`) go to
+terminu-harness, the tool that makes and releases the family's apps. Also the rest of chroma's gaps, which the user
+asked to fill all of. A minor: every family member's references to `tdp project/…` move at its next release. A beta
+first; demou tries it and runs the review again.
+
+- project/ leaves tdp: its README, `family.mk`, `gitignore`, `goreleaser.yaml`, `install.sh`, `uninstall.sh`,
+  `release.yml` and `version.go` move to terminu-harness, with the sections project.1–7 and the `project-` checklist
+  items. The rules' opening (what is a requirement, citing a template by its path), the start of chapter E, the READMEs
+  and the checklist README no longer name it
+- E6: a single static binary for each platform it is released for, no longer "built with goreleaser"; a family
+  member's repo follows the family's templates, kept in terminu-harness; the splash's copy of the icon is described
+  without Go's `go:embed`
+- E8: the table of which rules the lib covers and which stay with an app moves to terminu-go's README; tdp keeps what
+  any shared lib keeps to: an app using it does not redo the on-screen rules, the screen tests split by who draws what,
+  and the lib reports a gap in tdp instead of doing its own thing
+- file-picker.3: a file's format goes by its name, and by its directory where formats share a name (`config` in
+  `.ssh` is SSH config, in `.git` Git config); chroma taking a file for another format, or having no lexer for one the
+  family shows, is a gap too. Ten more rows: `go.mod` and `go.work` (taken for AMPL), SSH config, hosts, `.gitignore`
+  and `.dockerignore`, `requirements.txt`, `Jenkinsfile` (as Groovy), the names declared in JavaScript and TypeScript,
+  Go's type and package names, a shell function's name, Terraform's attribute keys
+- note.2: file content goes by the file name and, where formats share a name, its directory
+- changed in this version: project (moved out), E6, E8, the start of chapter E, file-picker.3, note.2
+- checklist: `project-1`–`project-39` moved to terminu-harness; file-picker-96 added; E6-1, E6-5 and note-16 changed
+  (1435 items); the header names v1.2.0-beta.1
+
 ## v1.1.10 — 2026-11-03
 
 Settled with the user: one more row in file-picker.3's table of chroma's gaps, found by terminu-go after v1.1.9 let

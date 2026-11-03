@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.1.10. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.2.0-beta.1. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -405,11 +405,11 @@ The items of tdp v1.1.10. What each column means and what an item applies to: [R
 | E5-11 | E5 | The app's L4 screen tests (its own layout with the popups it opens) run twice more: "icons take two cells, powerline symbols one" and "both take two cells" | everyone | Read the code: the tests |
 | E5-12 | E5 | The tests above measure the whole screen with each popup overlaid; an app not on the library also measures each kind of popup's bare box (with the library, the bare boxes are the library's to test, E8) | everyone | Read the code: the tests |
 | E5-13 | E5 | The edge cases of the tests above include the popup wider than the screen, taller than it and larger both ways, and sizes below L1's minimum size all the way down to 1×1 (e.g. 80×5, 1×1): no crash, and the name and the hint drawn | everyone | Read the code: the tests |
-| E6-1 | E6 | A single static binary built with goreleaser | everyone | Read the file: `.goreleaser.yaml` (`CGO_ENABLED=0`); what is released is a single executable |
+| E6-1 | E6 | A single static binary for each platform it is released for | everyone | Download a release: each platform's asset is a single executable that needs no library of its own |
 | E6-2 | E6 | There are `install.sh` and `uninstall.sh`, installing and removing with `curl \| sh`, with no sudo | everyone | Install and then remove with the README's commands: no sudo needed |
 | E6-3 | E6 | Also published to a Homebrew tap: a family member to `vulcanshen/homebrew-tap`, an app made by tdp to its own tap | has released | The tap has a formula for this app's latest version |
 | E6-4 | E6 | There are screen tests across sizes: with its own layout and the popups it opens, at several terminal sizes, every line is exactly the terminal width | everyone | Read the code: the tests |
-| E6-5 | E6 | A test keeps the program's copy for the splash (a copy of the file under `internal/`, or the cells written into the code) identical to `docs/icon.svg` | everyone | Read the code: a test compares the two |
+| E6-5 | E6 | A test keeps the program's copy for the splash (a copy of the file among the program's sources, or the cells written into the code) identical to `docs/icon.svg` | everyone | Read the code: a test compares the two |
 | E6-6 | E6 | Demo gifs are recorded with VHS, the scripts in `.local/demos/` | everyone | Read the files: `.local/demos/` has the tapes |
 | E7-1 | E7 | There are a `README.md` (English) and a `README-zh_TW.md` (Traditional Chinese) | everyone | Read the files |
 | E7-2 | E7 | The two READMEs stay in step | everyone | Read the files: compare the two section by section |
@@ -951,7 +951,7 @@ The items of tdp v1.1.10. What each column means and what an item applies to: [R
 | note-13 | note.2 | The gutter is at least three digits: where the line count is known on opening, it is max(3, the digits of the line count) and stays so | viewer | Open content of under 100 lines and of over 1000 lines; look at the gutter's width |
 | note-14 | note.2 | A streaming viewer (App Log) starts its gutter at three digits and widens it only past 999 lines | viewer | Look at the gutter before and after the stream reaches 1000 lines |
 | note-15 | note.2 | In a viewer with tabs, the gutter follows the widest of the pages seen so far, and only ever widens, never narrows (a streaming page likewise) | viewer | Switch to a page with more lines and back: the gutter does not narrow again |
-| note-16 | note.2 | A viewer whose content has a fixed format (YAML, JSON, TOML, HTML, XML, Markdown…) is coloured as a text file in the file-picker preview: chroma's catppuccin-mocha without its backgrounds; file content goes by the file name | viewer | Open a YAML view and the content of a `.json` file: the syntax colours match the preview, with no background colour |
+| note-16 | note.2 | A viewer whose content has a fixed format (YAML, JSON, TOML, HTML, XML, Markdown…) is coloured as a text file in the file-picker preview: chroma's catppuccin-mocha without its backgrounds; file content goes by the file name, and by its directory where formats share a name | viewer | Open a YAML view and the content of a `.json` file: the syntax colours match the preview, with no background colour |
 | note-87 | note.2 | A viewer fills chroma's gaps in syntax colours as the preview does (file-picker.3): a file has the same colours in both | viewer | Open a TOML file in a viewer and in a file-picker preview, and compare a table's name and the keys |
 | note-17 | note.2 | No syntax colours, bold, italic or underline inside the selection | viewer | Select a stretch of text with syntax colours and look at the characters in the selection |
 | note-18 | note.2 | A Tab in a viewer is drawn as `input_tab_width` spaces, not aligned to tab stops | viewer | Open a file with Tabs |
@@ -1519,6 +1519,7 @@ The items of tdp v1.1.10. What each column means and what an item applies to: [R
 | file-picker-20 | file-picker.3 | An archive (zip, tar, tar.gz, tar.bz2) shows its contents as a directory tree | file preview | Move the cursor onto an archive |
 | file-picker-21 | file-picker.3 | A text file shows its content, with syntax colours (chroma's catppuccin-mocha: its colours, bold, italic and underline, never its backgrounds) | file preview | Move the cursor onto a source file |
 | file-picker-95 | file-picker.3 | Syntax colours keep catppuccin-mocha's bold, italic and underline: a Markdown `**bold**` is bold and `*italic*` italic, a comment italic; no background behind the text or a diff's lines | file preview | Preview a Markdown file with bold and italic text, a source file with comments, and a diff |
+| file-picker-96 | file-picker.3 | A file's format goes by its name, and by its directory where formats share a name: `~/.ssh/config` is coloured as SSH config, a repo's `.git/config` as Git config | file preview | Preview `~/.ssh/config` and a repo's `.git/config` |
 | file-picker-94 | file-picker.3 | A text file's syntax colours fill chroma's gaps as file-picker.3 lists (e.g. TOML: a table's name Mauve, a key Blue; YAML: a value without quotes Green) | file preview | Preview a TOML file with a table and keys, and a YAML file with values without quotes |
 | file-picker-22 | file-picker.3 | A text file has line numbers: Overlay0, right-aligned, one space after | file preview | Look at the left of a text file's preview |
 | file-picker-23 | file-picker.3 | In a text file a Tab is drawn as `input_tab_width` spaces | file preview | Preview a file with Tabs in it |
@@ -1617,46 +1618,3 @@ The items of tdp v1.1.10. What each column means and what an item applies to: [R
 | reorder-18 | reorder.3 | `Esc` while holding: puts it back where it was picked up and leaves the Drag mode (the popup does not close) | reorder | While holding, move it two places, then press `Esc` |
 | reorder-19 | reorder.3 | While holding, `Space` opens the Drag mode's Space menu and other keys do nothing; `D` is not an alias for dropping | reorder | Press `Space` and `D` while holding |
 | reorder-20 | reorder.3 | While holding, the hint is `Enter:drop Esc:cancel` | reorder | Look at the hint on the bottom border while holding |
-
-## project
-
-| ID | Source | What to check | Applies to | How to check |
-|---|---|---|---|---|
-| project-1 | project.2 | `family.mk` is copied from the template as it is to `family.mk`, unchanged | everyone | Read the file: a diff against `project/family.mk` of the tdp version the app follows shows no difference |
-| project-2 | project.2 | `release.yml` is copied from the template to `.github/workflows/release.yml`; the only change is `windows-latest` added to the test matrix, with a Windows build | everyone | Read the file: a diff against the template of the same version differs only by `windows-latest` in the matrix (with a Windows build) |
-| project-3 | project.2 | `goreleaser.yaml` is copied from the template to `.goreleaser.yaml`, changing only `<app>` and the lines marked `app:`, and, with a Windows build, opening the comments marked `Windows` | everyone | Read the file: put `<app>` back in place of the app's name and diff against the template of the same version; only these places differ |
-| project-4 | project.2 | `install.sh` is copied from the template, changing only `<app>`, `WINDOWS` and the blocks marked `app's own` | everyone | Read the file: put `<app>` back in place of the app's name and diff against the template of the same version; only these places differ |
-| project-5 | project.2 | `uninstall.sh` is copied from the template, changing only `<app>` and the blocks marked `app's own` | everyone | Read the file: put `<app>` back in place of the app's name and diff against the template of the same version; only these places differ |
-| project-6 | project.2 | `version.go` is copied from the template to `internal/version/version.go`, changing only `<app>` | everyone | Read the file: put `<app>` back in place of the app's name and diff against the template of the same version; nothing else differs |
-| project-7 | project.2 | `gitignore` is copied from the template to `.gitignore`, changing only `<app>`, with the app's own lines after the last one | everyone | Read the file: put `<app>` back in place of the app's name and diff against the template of the same version; only the lines added at the end differ |
-| project-8 | project.2 | With a Windows build, `windows-latest` is added to the test matrix of `release.yml` | Windows build | Read the file: the matrix in `.github/workflows/release.yml` |
-| project-9 | project.2 | With a Windows build, the comments marked `Windows` in `.goreleaser.yaml` are all opened | Windows build | Read the file: `.goreleaser.yaml` |
-| project-10 | project.2 | With a Windows build, `WINDOWS` in `install.sh` is set to `yes` (as the template's comment says) | Windows build | Read the file: `WINDOWS` in `install.sh` |
-| project-11 | project.3 | The app's own Go code lives only in `cmd/<app>/` and `internal/`; development tools may go in a top-level `tools/` | everyone | Read the files: every `.go` file outside `tools/` is under these two directories |
-| project-12 | project.3 (diagram) | The main package is in `cmd/<app>/main.go` | everyone | Read the files |
-| project-13 | project.3 | `go install github.com/<account>/<app>/cmd/<app>@latest` installs its latest release, with `/vN` after `<app>` from v2 on (a family member's account is `vulcanshen`, an app made by tdp uses its own) | everyone | Read the files: the module in `go.mod` is `github.com/<account>/<app>`, ending in `/vN` when the latest release is vN.x.y with N ≥ 2, and `cmd/<app>` is the main package; `go list -m <module>@latest` gives the latest release |
-| project-14 | project.3 (diagram) | The README's demo gif is in `docs/` | everyone | Read the files: the gif the README refers to is under `docs/` |
-| project-15 | project.3 (diagram) | `go.mod` and `go.sum` are at the root | everyone | Read the files |
-| project-16 | project.3 (diagram) | `LICENSE` is at the root | everyone | Read the files |
-| project-18 | project.3 | The family mark's original is `docs/icon.svg`; the copy the splash uses lives in the code (a copy of the file under `internal/`, or the cells written out) | everyone | Read the files: `docs/icon.svg` exists; read the code: the splash draws the copy under `internal/` or the cells written out |
-| project-19 | project.3 | An app with a Windows build also has `install.ps1` and `uninstall.ps1` | Windows build | Read the files |
-| project-37 | project.3 | No `CLAUDE.md` and no file under `.claude/` is tracked, except `.claude/rules/terminu.md` | everyone | Run `git ls-files \| grep -E '(^\|/)CLAUDE\.md$\|^\.claude/'`: nothing but `.claude/rules/terminu.md` |
-| project-20 | project.4 | `<app> version` and the splash's version print `Display()` of `internal/version` | everyone | Read the code: both places call `Display()` |
-| project-21 | project.4 | A release's version is the tag injected without its v, and printed with the v (e.g. tag `v0.2.0` prints `v0.2.0`) | everyone | Read the files: `.goreleaser.yaml` injects the tag without its v and `internal/version` prints it with the v; for an app that has released, install a release and run `<app> version`: it prints the same as the tag |
-| project-22 | project.4 | A local `make build` or `go build` injects no version; the version is `dev` | everyone | After a local `make build`, run `./<app> version`; it prints `dev` |
-| project-23 | project.5 | `Makefile` only sets variables and does `include family.mk`; the app's own targets all go in the last section, `##@ <app> 自己的` | everyone | Read the file; run `make help`: the family's sections in family.mk's order, the app's own section last |
-| project-24 | project.5 | The variables are set before `include family.mk` | everyone | Read the file |
-| project-25 | project.5 | `BINARY` is set to the app's name, which is also the name of the directory under `cmd/` | everyone | Read the file |
-| project-26 | project.5 | The two comment lines at the start of the Makefile are the template's (`<app> — build / run / test / package（家族共用的 target 在 family.mk）` and 「跑 make（或 make help）列出所有指令。」) | everyone | Read the start of the file |
-| project-27 | project.5 | The app's own targets have names that are not family.mk's | everyone | Read the files: compare the target names on both sides |
-| project-28 | project.6 | `CHANGELOG.md` starts as in the template: `# Changelog`, then `Each release names the version of terminu design (tdp) it follows.` | everyone | Read the start of the file |
-| project-29 | project.6 | Each release's heading is the tag pushed (with its v), then ` — tdp <version>` | has released | Read the file: the heading of every release made after tdp v0.7.0 |
-| project-30 | project.6 | Changes not yet released are written in `## Unreleased` at the top | everyone | Read the file and the commits after the latest tag: every change is recorded in `## Unreleased` at the top |
-| project-31 | project.6 | Releases made before tdp v0.7.0 keep the headings they were written with | has released | Read the file: in `git log -p CHANGELOG.md`, the old releases' headings have not been rewritten |
-| project-32 | project.6 | The CHANGELOG is written in English | everyone | Read the file |
-| project-33 | project.6 | A GitHub release's notes are that release's section of the CHANGELOG | has released | Compare `gh release view <tag>` with that section of the CHANGELOG |
-| project-34 | project.7 | A release's tag is `vX.Y.Z`, a beta's `vX.Y.Z-beta.N` | has released | Run `git tag` |
-| project-35 | project.7 | `make check` passes on the repo as it is now | everyone | Run `make check` on the repo as it is now |
-| project-36 | project.7 | A release with a Windows build also pushes to the scoop bucket | Windows build | Check that the scoop bucket has this release |
-| project-38 | project.7 | A beta, once released, is a GitHub pre-release, and the Homebrew tap (and the scoop bucket) still has the latest stable release | has released | `gh release view <beta tag> --json isPrerelease`; the version in the tap's formula |
-| project-39 | project.7 | The latest release's binaries have no `+dirty` in their build information | has released | Download a binary of the latest release and run `go version -m` on it: the main module's version is the tag, `vcs.modified=false` |

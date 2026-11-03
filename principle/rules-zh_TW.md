@@ -4,7 +4,7 @@
 
 這裡的每一條都是 **必須遵守**。每條附上「為什麼」，那是它的 origin UX（[Principle P0](README-zh_TW.md#p0-規則服務-ux不是反過來)）。
 
-**什麼是規定**：rules、[components](../components/README-zh_TW.md) 與 [project](../project/README-zh_TW.md)（只綁家族成員，project.1）裡的敘述都是規定。
+**什麼是規定**：rules 與 [components](../components/README-zh_TW.md) 裡的敘述都是規定。
 不是規定的只有三種：標成「例」的例子、「為什麼」、標成「實作參考（不是規定）」的段落。圖也是規定：圖的結構（框、glyph 的位置、
 間距、對齊、旁邊標的顏色）照圖，圖裡的名稱、數值、說明文字是例；文字跟圖衝突時以文字為準（components 的
 「[圖與間距](../components/README-zh_TW.md#components2-圖與間距)」）。
@@ -18,10 +18,9 @@
 文件裡寫 `Rules K4`，指的是同一套文件裡的這一份。
 
 - rules 用規則編號（`tdp K4`）；principle 用 P 編號（`tdp P5`），術語用 `terms.` 加序號（`tdp terms.3`）。
-- components 與 project 用節編號：檔名加 `.` 加序號（`tdp panel.1`、`tdp form.6`）；`README` 用資料夾名（`tdp components.2`、
-  `tdp input.2`、`tdp project.3`）。節編號寫在每一節的標題前面。
+- components 用節編號：檔名加 `.` 加序號（`tdp panel.1`、`tdp form.6`）；`README` 用資料夾名（`tdp components.2`、
+  `tdp input.2`）。節編號寫在每一節的標題前面。
 - 一個元件整個都用到時，可以引整個檔（`tdp confirm`），等於那個檔的每一節。
-- project 的範本檔寫路徑（`tdp project/install.sh`），等於那一份範本：範本開頭的註解就是這樣寫，照原樣複製進 app。
 - 清單的條目也可以這樣引用（`tdp K9-6`、`tdp note-78`），比整條精確；它指的是那一條的出處，依據還是規範的文字。
 - 編號一旦發布就不重排：新的規則、新的節拿新號；從一節拆出去的拿新號，舊號留給原本的內容；廢除的保留編號、標記廢除。節編號
   不必照檔內的順序。每一版 tdp 的 CHANGELOG 寫出改到的編號。
@@ -904,8 +903,8 @@ app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度�
 
 **家族成員與照 tdp 做的 app**：家族成員是 vulcanshen 的 app。別人照 tdp 做的 app，綁著 vulcanshen 的幾處換成自己的：Homebrew tap
 （E6）、splash 的作者信箱（S5）；README 的 terminu family 段改成寫「照 terminu design 做」並附上連結（E7）。
-[project](../project/README-zh_TW.md) 只綁家族成員：照 tdp 做的 app，repo 怎麼放 app 可以自行決定，可以拿 project 當起點
-（project.1）。其他規定兩種 app 都一樣。
+家族成員的 repo 怎麼放、怎麼發布（目錄、Makefile、版本、CHANGELOG 與發布檔）是家族的維運，不是設計：放在 terminu-harness ——
+產生與發布家族 app 的工具 —— 裡；照 tdp 做的 app，repo 自己決定（user 2026-11-03）。這一章的規定兩種 app 都一樣。
 
 **為什麼**：照 tdp 做的 app 不在 vulcanshen 的帳號底下，也不進同一個 tap；照字面抄，寫出來的就是錯的路徑與別人的信箱。
 
@@ -1080,16 +1079,17 @@ powerline 符號分開量，是因為同一台終端機上兩者可能不同：N
 
 ### E6 發布、測試與家族資產
 
-- 單一靜態 binary，goreleaser 建置；`install.sh` / `uninstall.sh`（`curl | sh`、免 sudo），
+- 每個發布的平台一個單一靜態 binary；`install.sh` / `uninstall.sh`（`curl | sh`、免 sudo），
   另發到 Homebrew tap `vulcanshen/homebrew-tap`（照 tdp 做的 app 發到自己的 tap，E 章開頭）。
-- 家族成員的 repo 的目錄、Makefile、版本、CHANGELOG 與發布流程照 [project](../project/README-zh_TW.md)，範本檔照原樣複製；
-  照 tdp 做的 app 可以自行決定（project.1）。
+- 家族成員的 repo 的目錄、Makefile、版本、CHANGELOG 與發布檔照家族的範本，範本放在 terminu-harness；照 tdp 做的 app
+  自己決定（E 章開頭）。
 - 跨尺寸的畫面測試：多種終端機尺寸下，每一列都剛好等於終端機寬度（L4）。
 - `docs/icon.svg` 是 app 那一版的家族 mark（長相見 S5；tdp 自己的是 `principle/icon.svg`），是正本；splash（S 章）由它逐格畫出。
-  程式裡另有一份給 splash 用（`internal/` 裡的副本檔，或寫死的格子；Go 的 `go:embed` 讀不到 `docs/`），用測試守住兩份一樣。
+  程式裡另有一份給 splash 用（程式原始碼裡的副本檔，或寫死的格子，建置時讀不到 `docs/` 的時候），用測試守住兩份一樣。
 - demo gif 用 VHS 錄，腳本放在 `.local/demos/`（README 放幾張見 E7）。
 
-**為什麼**：五個 app 同一種安裝、移除與發布方式，使用者裝過一個就會裝其他的。畫面測試守住 L4；icon 與 splash 的測試
+**為什麼**：五個 app 同一種安裝、移除與發布方式，使用者裝過一個就會裝其他的。tdp 講發布什麼、怎麼安裝，不講用什麼語言或
+建置工具做：範本是照 Go 與 goreleaser 寫的，跟家族的工具放在一起（user 2026-11-03）。畫面測試守住 L4；icon 與 splash 的測試
 讓換 icon 時不會忘了 splash。
 
 ### E7 文件
@@ -1134,23 +1134,14 @@ app 都讀到；在家族 app 的 PTY 裡跑時，外層 app 會替它設好（E
 ### E8 共用 lib 與範例 app
 
 家族的共用 lib（terminu-go）把畫面的規定做成給 app 呼叫的程式，它的範例 app（展示場）把每一個元件、每一種組合展示出來、
-不發布。lib 不是 app，有些規定套不上；app 用 lib 時，哪些規定由 lib 做到、哪些還是 app 自己的事，照這張表：
+不發布。哪些規定由 lib 做到、哪些還是用它的 app 自己的事，是 lib 自己的分工，寫在 lib 的 README；tdp 只留任何這樣的 lib 都要守的：
 
-| 規定 | lib | 範例 app | 用 lib 的 app |
-|---|---|---|---|
-| 畫面的規定（K、M、L、F、X、T、S1–S4、components） | 做到 | 全部展示出來 | lib 給的，自己不另外做 |
-| E1 `version`、`help` | — | 要 | 自己做 |
-| E2 環境變數的命名 | lib 自己讀的變數掛在 app 的名字底下（例：`<APP>__ICON_WIDTH`） | 照 E2（例：`SHOWCASE__…`） | 自己的變數照 E2 |
-| E3 設定與資料的位置 | — | 不存東西，不適用 | 自己做 |
-| E4 需求 | README 寫明 | — | README 寫明 |
-| E5 icon 的實際寬度 | 做到：探測（icon 與 powerline 符號）、顯示寬度函式、替子程序設 `TERMINU__ICON_WIDTH` 與 `TERMINU__POWERLINE_WIDTH`、啟動時讀 `LC_TERMINU_ICON_WIDTH` 與 `LC_TERMINU_POWERLINE_WIDTH`；E5 的測試裡單獨量每一種 popup 的框（popup 是 lib 畫的） | — | lib 給的；有 ssh 的 app 連線時自己送 `LC_TERMINU_*`。E5 的測試只測自己的整個畫面：自己的版面加上自己會開的 popup，照 E5 的寬度與尺寸，每一列都滿寬 |
-| E6 發布 | 打 git tag（Go module），沒有 binary；L4 的畫面測試要有 | 不發布；L4 的畫面測試要有 | 照 E6（畫面測試照上一列的分工） |
-| S5 splash 畫的 icon | splash 的機制；建立 splash 時，下面的字有一列超過 50 欄就回錯誤 | tdp 的 `principle/icon.svg`（terminu 的 mark） | 自己的 `docs/icon.svg` |
-| E7 README | lib 自己的結構：安裝是 `go get`、快速開始是程式碼、寫明範例 app 怎麼跑 | 不另外寫 | 照 E7 |
-| 做不到或不好用的規定（Rules 開頭的「放行」） | **lib 不自己另做**：回報成 tdp 的缺漏，規範改了 lib 才跟著改 | — | 回報成 tdp 的缺漏 |
+- **用 lib 的 app 不另外做 lib 做到的**：畫面的規定（K、M、L、F、X、T、S1–S4、components）與 E5 的寬度由 lib 給。
+- **畫面測試照誰畫的分**：lib 畫的（每一種 popup 的框）由 lib 測一次；app 的版面與它開的 popup 疊在上面的組合只有 app 自己有，
+  由 app 自己測（E5、E6）。
+- **lib 不自己另做**：做不到或不好用的規定，lib 跟 app 一樣回報成 tdp 的缺漏（Rules 開頭的「放行」），規範改了 lib 才跟著改。
+- 用不用 lib，app 可以自行決定。
 
-- 這裡只寫「用 lib 時」的分工。用不用 lib，app 可以自行決定。
-
-**為什麼**：app 改用 lib 時要知道哪些可以刪 —— 畫面與 E5 的程式刪掉，E1、E3、E6、E7 與自己的 icon 留著 —— 不用每個 app
-各判斷一次。lib 管的是家族共用的畫面，lib 自己另做，用它的 app 全都跟著不照 tdp；所以 lib 遇到做不到的地方，一律回報成 tdp 的缺漏、
-先改規範。畫面測試照誰畫的分：popup 的框是 lib 畫的，lib 測過一次就好；app 的版面與它開 popup 的組合只有 app 自己有，要自己測。
+**為什麼**：tdp 講「應該要怎樣」，跟用什麼語言無關；某一個 lib 跟它的 app 怎麼分工（`go get`、Go module 打 tag）是那個 lib
+的事，換一個 lib 會有它自己的分法（user 2026-11-03）。上面三點對任何 lib 都成立：lib 管的是家族共用的畫面，lib 自己另做，
+用它的 app 全都跟著不照 tdp；測試歸畫那個東西的人。

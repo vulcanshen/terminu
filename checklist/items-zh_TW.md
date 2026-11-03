@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v1.1.10 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v1.2.0-beta.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -405,11 +405,11 @@ tdp v1.1.10 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | E5-11 | E5 | app 的 L4 畫面測試（自己的版面加上自己會開的 popup）另外跑兩次：「icon 佔兩格、powerline 符號一格」與「兩種都佔兩格」 | 都要 | 讀程式：測試 |
 | E5-12 | E5 | 上面的測試量疊上去的整個畫面；不用 lib 的 app 也單獨量每一種 popup 的框（用 lib 時單獨量框歸 lib，E8） | 都要 | 讀程式：測試 |
 | E5-13 | E5 | 上面的測試邊界含 popup 比畫面寬、比畫面高、兩邊都大三種情況，以及比 L1 的最低尺寸小、一直到 1×1 的尺寸（例：80×5、1×1）：不當掉，畫出名稱與提示 | 都要 | 讀程式：測試 |
-| E6-1 | E6 | 單一靜態 binary，goreleaser 建置 | 都要 | 讀檔案：`.goreleaser.yaml`（`CGO_ENABLED=0`），發布的是單一執行檔 |
+| E6-1 | E6 | 每個發布的平台一個單一靜態 binary | 都要 | 下載一次發布：每個平台的檔案是一個執行檔，不需要另外帶函式庫 |
 | E6-2 | E6 | 有 `install.sh`、`uninstall.sh`，用 `curl \| sh` 安裝與移除，免 sudo | 都要 | 照 README 的指令安裝再移除，不需要 sudo |
 | E6-3 | E6 | 另發到 Homebrew tap：家族成員發到 `vulcanshen/homebrew-tap`，照 tdp 做的 app 發到自己的 tap | 發過版 | 看 tap 有這個 app 最新版的 formula |
 | E6-4 | E6 | 有跨尺寸的畫面測試：自己的版面加上自己會開的 popup，多種終端機尺寸下每一列都剛好等於終端機寬度 | 都要 | 讀程式：測試 |
-| E6-5 | E6 | 有測試守住程式裡給 splash 用的那一份（`internal/` 裡的副本檔或寫死的格子）跟 `docs/icon.svg` 一模一樣 | 都要 | 讀程式：測試比對兩份 |
+| E6-5 | E6 | 有測試守住程式裡給 splash 用的那一份（程式原始碼裡的副本檔或寫死的格子）跟 `docs/icon.svg` 一模一樣 | 都要 | 讀程式：測試比對兩份 |
 | E6-6 | E6 | demo gif 用 VHS 錄，腳本放在 `.local/demos/` | 都要 | 讀檔案：`.local/demos/` 有 tape |
 | E7-1 | E7 | 有 `README.md`（英文）與 `README-zh_TW.md`（繁中） | 都要 | 讀檔案 |
 | E7-2 | E7 | 兩份 README 內容對齊 | 都要 | 讀檔案：兩份逐段對照 |
@@ -951,7 +951,7 @@ tdp v1.1.10 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | note-13 | note.2 | 行號欄至少三位：打開時就知道行數的取 max(3, 總行數的位數)，打開後不變 | viewer | 打開不到 100 行與超過 1000 行的內容，看行號欄寬 |
 | note-14 | note.2 | 串流的 viewer（App Log）行號欄從三位開始，超過 999 行才跳寬 | viewer | 看串流到 1000 行前後的行號欄 |
 | note-15 | note.2 | 有 tab 的 viewer，行號欄照看過的頁裡最寬的那一頁，只變寬、不變窄（串流的頁一樣） | viewer | 切到行數多的頁再切回來，看行號欄寬沒有縮回 |
-| note-16 | note.2 | 內容有固定格式的 viewer（YAML、JSON、TOML、HTML、XML、Markdown……）照 file-picker 預覽的文字檔上色：chroma 的 catppuccin-mocha、不上背景色；檔案內容照檔名判斷格式 | viewer | 打開 YAML 檢視與一個 `.json` 檔的內容，看語法顏色跟預覽一樣、沒有背景色 |
+| note-16 | note.2 | 內容有固定格式的 viewer（YAML、JSON、TOML、HTML、XML、Markdown……）照 file-picker 預覽的文字檔上色：chroma 的 catppuccin-mocha、不上背景色；檔案內容照檔名判斷格式，同名的檔再看資料夾 | viewer | 打開 YAML 檢視與一個 `.json` 檔的內容，看語法顏色跟預覽一樣、沒有背景色 |
 | note-87 | note.2 | viewer 照預覽補上 chroma 漏掉的語法顏色（file-picker.3）：同一個檔在兩邊顏色一樣 | viewer | 同一個 TOML 檔在 viewer 與 file-picker 預覽裡各開一次，比對表名與 key 的顏色 |
 | note-17 | note.2 | 選取範圍裡不顯示語法顏色與粗體、斜體、底線 | viewer | 選一段有語法顏色的文字，看範圍裡的字 |
 | note-18 | note.2 | viewer 裡的 Tab 畫成 `input_tab_width` 格空白，不對齊 tab 停點 | viewer | 打開有 Tab 的檔案 |
@@ -1519,6 +1519,7 @@ tdp v1.1.10 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | file-picker-20 | file-picker.3 | 壓縮檔（zip、tar、tar.gz、tar.bz2）照目錄的樹列出裡面 | 有檔案預覽 | cursor 移到壓縮檔上 |
 | file-picker-21 | file-picker.3 | 文字檔畫內容，加語法顏色（chroma 的 catppuccin-mocha：照它的顏色、粗體、斜體與底線，不上它的背景色） | 有檔案預覽 | cursor 移到原始碼檔上 |
 | file-picker-95 | file-picker.3 | 語法顏色照 catppuccin-mocha 的粗體、斜體與底線：Markdown 的 `**粗體**` 是粗體、`*斜體*` 是斜體，註解是斜體；文字與 diff 的行後面都沒有背景色 | 有檔案預覽 | 預覽一個有粗體、斜體的 Markdown 檔、一個有註解的原始碼檔與一個 diff |
+| file-picker-96 | file-picker.3 | 檔案的格式照檔名判斷，同名的檔再看資料夾：`~/.ssh/config` 照 SSH 設定上色，repo 的 `.git/config` 照 Git 設定 | 有檔案預覽 | 預覽 `~/.ssh/config` 與一個 repo 的 `.git/config` |
 | file-picker-94 | file-picker.3 | 文字檔的語法顏色照 file-picker.3 的表補上 chroma 漏掉的（例：TOML 表名 Mauve、key Blue；YAML 沒引號的值 Green） | 有檔案預覽 | 預覽一個有表與 key 的 TOML 檔，與一個有沒引號的值的 YAML 檔 |
 | file-picker-22 | file-picker.3 | 文字檔有行號：Overlay0，靠右對齊、後面空一格 | 有檔案預覽 | 看文字檔預覽的左邊 |
 | file-picker-23 | file-picker.3 | 文字檔的 Tab 畫成 `input_tab_width` 格空白 | 有檔案預覽 | 預覽含 Tab 的檔 |
@@ -1617,46 +1618,3 @@ tdp v1.1.10 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | reorder-18 | reorder.3 | 拿著時 `Esc`：放回拿起前的位置，離開 Drag mode（不關 popup） | reorder | 拿著搬兩格後按 `Esc` |
 | reorder-19 | reorder.3 | 拿著時 `Space` 打開 Drag mode 的 Space menu，其他鍵不作用，`D` 不是放下的別名 | reorder | 拿著按 `Space`、`D` |
 | reorder-20 | reorder.3 | 拿著時 hint 是 `Enter:drop Esc:cancel` | reorder | 拿著看下框 hint |
-
-## project
-
-| 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
-|---|---|---|---|---|
-| project-1 | project.2 | `family.mk` 照範本原樣複製到 `family.mk`，不改 | 都要 | 讀檔案：跟 app 跟的那一版 tdp 的 `project/family.mk` diff，沒有差 |
-| project-2 | project.2 | `release.yml` 照範本複製到 `.github/workflows/release.yml`，只有出 Windows 版時在測試的 matrix 加 `windows-latest` | 都要 | 讀檔案：跟同一版範本 diff，只差 matrix 的 `windows-latest`（出 Windows 版時） |
-| project-3 | project.2 | `goreleaser.yaml` 照範本複製到 `.goreleaser.yaml`，只改 `<app>`、標著 `app:` 的幾行、出 Windows 版時打開標著 `Windows` 的註解 | 都要 | 讀檔案：把 app 名換回 `<app>` 跟同一版範本 diff，只差這些地方 |
-| project-4 | project.2 | `install.sh` 照範本複製，只改 `<app>`、`WINDOWS`、標著 `app's own` 的段落 | 都要 | 讀檔案：把 app 名換回 `<app>` 跟同一版範本 diff，只差這些地方 |
-| project-5 | project.2 | `uninstall.sh` 照範本複製，只改 `<app>`、標著 `app's own` 的段落 | 都要 | 讀檔案：把 app 名換回 `<app>` 跟同一版範本 diff，只差這些地方 |
-| project-6 | project.2 | `version.go` 照範本複製到 `internal/version/version.go`，只改 `<app>` | 都要 | 讀檔案：把 app 名換回 `<app>` 跟同一版範本 diff，沒有其他差 |
-| project-7 | project.2 | `gitignore` 照範本複製到 `.gitignore`，只改 `<app>`，app 自己的行接在最後 | 都要 | 讀檔案：把 app 名換回 `<app>` 跟同一版範本 diff，只差最後加的行 |
-| project-8 | project.2 | 出 Windows 版時，`release.yml` 測試的 matrix 加了 `windows-latest` | 出 Windows 版 | 讀檔案：`.github/workflows/release.yml` 的 matrix |
-| project-9 | project.2 | 出 Windows 版時，`.goreleaser.yaml` 標著 `Windows` 的註解都打開 | 出 Windows 版 | 讀檔案：`.goreleaser.yaml` |
-| project-10 | project.2 | 出 Windows 版時，`install.sh` 的 `WINDOWS` 設成 `yes`（範本註解） | 出 Windows 版 | 讀檔案：`install.sh` 的 `WINDOWS` |
-| project-11 | project.3 | app 本身的 Go 程式只在 `cmd/<app>/` 與 `internal/`；開發用的小工具可以放頂層的 `tools/` | 都要 | 讀檔案：`tools/` 以外的 `.go` 檔都在這兩個目錄底下 |
-| project-12 | project.3（圖） | main package 在 `cmd/<app>/main.go` | 都要 | 讀檔案 |
-| project-13 | project.3 | `go install github.com/<帳號>/<app>/cmd/<app>@latest` 裝得到最新的 release，v2 起 `<app>` 後面帶 `/vN`（家族成員的帳號是 `vulcanshen`，照 tdp 做的 app 是自己的帳號） | 都要 | 讀檔案：`go.mod` 的 module 是 `github.com/<帳號>/<app>`，最新的 release 是 vN.x.y、N ≥ 2 時結尾帶 `/vN`，`cmd/<app>` 是 main package；`go list -m <module>@latest` 是最新的 release |
-| project-14 | project.3（圖） | README 的 demo gif 放在 `docs/` | 都要 | 讀檔案：README 引用的 gif 在 `docs/` 底下 |
-| project-15 | project.3（圖） | 根目錄有 `go.mod`、`go.sum` | 都要 | 讀檔案 |
-| project-16 | project.3（圖） | 根目錄有 `LICENSE` | 都要 | 讀檔案 |
-| project-18 | project.3 | 家族 mark 的正本是 `docs/icon.svg`；splash 用的那一份在程式裡（`internal/` 裡的副本檔，或寫死的格子） | 都要 | 讀檔案：有 `docs/icon.svg`；讀程式：splash 畫的是 `internal/` 裡的副本檔或寫死的格子 |
-| project-19 | project.3 | 出 Windows 版的 app 另有 `install.ps1`、`uninstall.ps1` | 出 Windows 版 | 讀檔案 |
-| project-37 | project.3 | 沒有追蹤任何 `CLAUDE.md`，`.claude/` 底下也只追蹤 `.claude/rules/terminu.md` | 都要 | 跑 `git ls-files \| grep -E '(^\|/)CLAUDE\.md$\|^\.claude/'`：除了 `.claude/rules/terminu.md` 什麼都沒有 |
-| project-20 | project.4 | `<app> version` 與 splash 的版本印的是 `internal/version` 的 `Display()` | 都要 | 讀程式：兩處都呼叫 `Display()` |
-| project-21 | project.4 | 發布版的版本是 tag 去掉 v 注入的，印出來帶 v（例：tag `v0.2.0` 印 `v0.2.0`） | 都要 | 讀檔案：`.goreleaser.yaml` 把 tag 去掉 v 注入、`internal/version` 印出時帶 v；發過版的，裝發布版跑 `<app> version`，印的跟 tag 一樣 |
-| project-22 | project.4 | 本機 `make build`、`go build` 不注入版本，版本是 `dev` | 都要 | 本機 `make build` 後跑 `./<app> version`，印 `dev` |
-| project-23 | project.5 | `Makefile` 只設變數、`include family.mk`，app 自己的 target 全寫在最後一段 `##@ <app> 自己的` | 都要 | 讀檔案；跑 `make help`，家族共用的段照 family.mk 的順序、app 自己的段在最後 |
-| project-24 | project.5 | 變數在 `include family.mk` 之前設 | 都要 | 讀檔案 |
-| project-25 | project.5 | `BINARY` 設成 app 的名字，也是 `cmd/` 底下那個目錄的名字 | 都要 | 讀檔案 |
-| project-26 | project.5 | Makefile 開頭的兩行註解照範本（`<app> — build / run / test / package（家族共用的 target 在 family.mk）`、「跑 make（或 make help）列出所有指令。」） | 都要 | 讀檔案的開頭 |
-| project-27 | project.5 | app 自己的 target 名字不跟 family.mk 的重複 | 都要 | 讀檔案：比對兩邊的 target 名 |
-| project-28 | project.6 | `CHANGELOG.md` 開頭照範本：`# Changelog`，接著 `Each release names the version of terminu design (tdp) it follows.` | 都要 | 讀檔案的開頭 |
-| project-29 | project.6 | 每一版的標題是 push 的 tag（帶 v）接 ` — tdp <版本>` | 發過版 | 讀檔案：tdp v0.7.0 之後發的每一版標題 |
-| project-30 | project.6 | 還沒發版的改動寫在最上面的 `## Unreleased` | 都要 | 讀檔案與最新 tag 之後的 commit：改動都記在最上面的 `## Unreleased` |
-| project-31 | project.6 | tdp v0.7.0 以前發的版本，標題照當時的寫法、不改 | 發過版 | 讀檔案：`git log -p CHANGELOG.md`，舊版的標題沒被改寫 |
-| project-32 | project.6 | CHANGELOG 用英文寫 | 都要 | 讀檔案 |
-| project-33 | project.6 | GitHub release 的內文就是 CHANGELOG 裡這一版的那一段 | 發過版 | `gh release view <tag>` 對照 CHANGELOG 那一段 |
-| project-34 | project.7 | 發版的 tag 是 `vX.Y.Z`，beta 是 `vX.Y.Z-beta.N` | 發過版 | `git tag` |
-| project-35 | project.7 | 現在的 repo 上 `make check` 通過 | 都要 | 在現在的 repo 跑 `make check` |
-| project-36 | project.7 | 出 Windows 版的發布時另推 scoop bucket | 出 Windows 版 | 看 scoop bucket 有這一版 |
-| project-38 | project.7 | 發過的 beta 在 GitHub 是 pre-release，Homebrew tap（與 scoop bucket）上還是最新的正式版 | 發過版 | `gh release view <beta 的 tag> --json isPrerelease`；看 tap 上 formula 的版本 |
-| project-39 | project.7 | 最新一版 release 的執行檔，build 資訊裡沒有 `+dirty` | 發過版 | 下載最新一版的執行檔跑 `go version -m`：main module 的版本就是 tag，`vcs.modified=false` |

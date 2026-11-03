@@ -5,9 +5,8 @@
 Every rule here **must hold**. Each carries a "why", which is its origin UX
 ([Principle P0](README.md#p0-rules-serve-the-ux-not-the-other-way-round)).
 
-**What is a requirement**: everything stated in the rules, in [components](../components/README.md) and in
-[project](../project/README.md) (for family members only; project.1) is a requirement. Only three kinds of text
-are not: examples (however they are introduced: "e.g.", "for example", "Example:", "such as", an "Examples"
+**What is a requirement**: everything stated in the rules and in [components](../components/README.md) is a
+requirement. Only three kinds of text are not: examples (however they are introduced: "e.g.", "for example", "Example:", "such as", an "Examples"
 column), the "why", and passages marked
 "Implementation reference (not a requirement)". Diagrams are requirements too: their structure (frames, where glyphs go,
 spacing, alignment, the colours noted beside them) is as drawn, while the names, values and descriptions in them are
@@ -27,12 +26,9 @@ do not count. tdp's own documents write `Rules K4`, meaning this document in the
 
 - The rules use the rule ID (`tdp K4`); the principle uses the P ID (`tdp P5`), and its terms `terms.` plus a number
   (`tdp terms.3`).
-- The components and the project use section IDs: the file name, a `.` and a number (`tdp panel.1`, `tdp form.6`); a
-  `README` uses its folder's name (`tdp components.2`, `tdp input.2`, `tdp project.3`). The section ID is written before
-  each section's heading.
+- The components use section IDs: the file name, a `.` and a number (`tdp panel.1`, `tdp form.6`); a `README` uses
+  its folder's name (`tdp components.2`, `tdp input.2`). The section ID is written before each section's heading.
 - When a whole component is used, the whole file may be cited (`tdp confirm`), meaning every section of it.
-- A project template file is cited by its path (`tdp project/install.sh`), meaning that template: the comment at the
-  top of each template says so, and is copied into the app as it is.
 - A checklist item may be cited the same way (`tdp K9-6`, `tdp note-78`), more precise than a whole rule; it points at
   that item's source, and the spec's text is still what counts.
 - Once published, IDs are never renumbered: a new rule or section gets a new ID; a part split out of a section gets a new
@@ -1115,8 +1111,10 @@ have installed one can install the others, and know where to find config and dat
 **Family members and apps made with tdp**: the family members are vulcanshen's apps. An app someone else makes with tdp
 replaces the few places tied to vulcanshen with its own: the Homebrew tap (E6), the author's e-mail address on the
 splash (S5); the README's terminu family section says instead that the app is "built with terminu design", with a link
-(E7). [project](../project/README.md) binds family members only: an app made with tdp may decide its repo for itself,
-and may start from project (project.1). Every other rule is the same for both.
+(E7). How a family member's repo is laid out and released (its directories, Makefile, version, CHANGELOG and release
+files) is the family's operations, not design: it is kept with terminu-harness, the tool that makes and releases the
+family's apps, and an app made with tdp decides its repo for itself (the user, 2026-11-03). Every rule here is the
+same for both.
 
 **Why**: an app made with tdp is not under vulcanshen's account and does not go into the same tap; copied word for word,
 it would carry the wrong path and someone else's e-mail address.
@@ -1335,21 +1333,21 @@ caught when the edge cases don't ask for it.
 
 ### E6 Releases, tests and family assets
 
-- A single static binary built with goreleaser; `install.sh` / `uninstall.sh` (`curl | sh`, no sudo),
+- A single static binary for each platform it is released for; `install.sh` / `uninstall.sh` (`curl | sh`, no sudo),
   also published to the Homebrew tap `vulcanshen/homebrew-tap` (an app made with tdp publishes to its own tap; start of
   chapter E).
-- A family member's repo directories, Makefile, version, CHANGELOG and release follow
-  [project](../project/README.md), its template files copied as they are; an app made with tdp may decide these for
-  itself (project.1).
+- A family member's repo directories, Makefile, version, CHANGELOG and release files follow the family's templates,
+  kept in terminu-harness; an app made with tdp decides these for itself (start of chapter E).
 - Screen tests across sizes: at several terminal sizes, every line is exactly the terminal width (L4).
 - `docs/icon.svg` is the app's version of the family mark (what it looks like: S5; tdp's own is `principle/icon.svg`),
   and it is the original; the splash (chapter S) is drawn from it cell for cell. The program keeps a second copy for the
-  splash (a copy of the file under `internal/`, or the cells written into the code; Go's `go:embed` cannot reach
-  `docs/`), with a test keeping the two identical.
+  splash (a copy of the file among the program's sources, or the cells written into the code, where the build cannot
+  reach `docs/`), with a test keeping the two identical.
 - Demo gifs are recorded with VHS, scripts in `.local/demos/` (how many go in the README: see E7).
 
 **Why**: the five apps install, uninstall and release the same way; having installed one, users can install the others.
-The screen tests guard L4; with the icon and splash test, the splash is not forgotten when the icon changes.
+tdp says what is released and how it installs, not which language or build tool makes it: the templates are written
+for Go and goreleaser, and stay with the family's tools (the user, 2026-11-03). The screen tests guard L4; with the icon and splash test, the splash is not forgotten when the icon changes.
 
 ### E7 Documents
 
@@ -1401,26 +1399,18 @@ member does not mean changing every app's README (the user, 2026-10-27).
 ### E8 The shared lib and its example app
 
 The family's shared lib (terminu-go) turns the on-screen rules into code that apps call; its example app (the showcase)
-shows every component and every combination, and is not released. A lib is not an app, and some rules do not fit it;
-when an app uses the lib, which rules the lib covers and which stay with the app is set by this table:
+shows every component and every combination, and is not released. Which rules the lib covers and which stay with an
+app using it is the lib's own split, written in the lib's README; tdp holds only what any such lib keeps to:
 
-| Rule | The lib | The example app | An app using the lib |
-|---|---|---|---|
-| The on-screen rules (K, M, L, F, X, T, S1–S4, components) | covers them | shows all of them | from the lib, not done again |
-| E1 `version`, `help` | — | yes | its own |
-| E2 naming environment variables | the variables the lib reads hang under the app's name (e.g. `<APP>__ICON_WIDTH`) | as E2 (e.g. `SHOWCASE__…`) | its own variables follow E2 |
-| E3 where config and data live | — | stores nothing, not applicable | its own |
-| E4 requirements | stated in the README | — | stated in the README |
-| E5 the actual icon width | covers it: the probe (icons and powerline symbols), the display-width functions, setting `TERMINU__ICON_WIDTH` and `TERMINU__POWERLINE_WIDTH` for subprocesses, reading `LC_TERMINU_ICON_WIDTH` and `LC_TERMINU_POWERLINE_WIDTH` at startup; in E5's tests, measuring the bare box of each kind of popup (the lib draws the popups) | — | from the lib; an app with ssh sends `LC_TERMINU_*` itself when connecting. E5's tests cover its own whole screen only: its own layout plus the popups it opens, at E5's widths and sizes, every line full width |
-| E6 releases | a git tag (a Go module), no binary; the L4 screen tests are required | not released; the L4 screen tests are required | as E6 (the screen tests split as in the row above) |
-| S5 the icon the splash draws | the splash mechanism; building a splash, it returns an error for a row of text wider than 50 columns | tdp's `principle/icon.svg` (terminu's mark) | its own `docs/icon.svg` |
-| E7 README | a structure of its own: installation is `go get`, the quick start is code, and it says how to run the example app | none of its own | as E7 |
-| A requirement that cannot be met, or works badly ("Leaving it to the app" at the start of the Rules) | **the lib does not do its own thing**: it reports a gap in tdp, and the lib changes once the spec does | — | reports a gap in tdp |
+- **An app using the lib does not redo what the lib covers**: the on-screen rules (K, M, L, F, X, T, S1–S4,
+  components) and E5's widths come from the lib.
+- **The screen tests split by who draws what**: what the lib draws (each kind of popup's box) the lib tests once; the
+  app's own layout and the popups it opens over it exist only in the app, which tests them itself (E5, E6).
+- **The lib does not do its own thing**: a rule it cannot meet, or that works badly, it reports as a gap in tdp, as an
+  app does ("Leaving it to the app" at the start of the Rules), and the lib changes once the spec does.
+- Whether to use the lib, the app may decide for itself.
 
-- This only sets the split when an app uses the lib. Whether to use the lib, the app may decide for itself.
-
-**Why**: an app moving to the lib needs to know what it can delete — the on-screen code and E5 go, while E1, E3, E6, E7
-and its own icon stay — without every app working that out again. The lib holds the screen the family shares, so if the
-lib does its own thing, every app using it stops following tdp with it; when the lib meets something it cannot do, it always reports a gap in tdp
-and the spec changes first. The screen tests split by who draws what: the popup boxes are the lib's, tested once there;
-the app's layout and the popups it opens over it exist only in the app, which tests them itself.
+**Why**: tdp says what should be, whatever the language; how one lib splits the work with its apps (`go get`, a Go
+module's tag) belongs to that lib, and another lib would split it its own way (the user, 2026-11-03). The three points
+hold for any lib: the lib holds the screen the family shares, so if it did its own thing, every app using it would stop
+following tdp with it; and a test belongs to whoever draws what it tests.

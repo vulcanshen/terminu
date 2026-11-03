@@ -9,7 +9,6 @@ tdp is the detailed specification behind [terminu design](../README.md), in four
 | **Principle** | this document | The spirit: what it aims for, and why |
 | **Rules** | [rules.md](rules.md) | Must hold, each with its reason; what is left to the app is left explicitly (P5) |
 | **Components** | [components](../components/README.md) | Component specs: the colour scheme, frames, dialogs, and how each kind of input looks and works; required, choosing only among the listed options |
-| **Project** | [project](../project/README.md) | The project spec: a family app repo's directories, Makefile, version, CHANGELOG and release; the template files are copied as they are; binds family members only |
 
 The [checklist](../checklist/README.md) breaks the requirements of these four layers into items that can each be
 checked, for checking whether an app does what tdp asks; it is not a requirement itself, and where it disagrees with the
@@ -131,8 +130,7 @@ explicitly. Doing it any other way, outside what is left to the app, is a violat
 
 - **The function logic, the app may decide for itself**: how data is handled, file formats, whether an entered value is
   valid, which external commands to call. tdp governs the screens and operation the user sees, plus the app's command
-  line, environment variables, where config and data live, the README, the repo and releases (chapter E of the Rules,
-  [project](../project/README.md)); how an invalid value is shown follows the components.
+  line, environment variables, where config and data live, the README and releases (chapter E of the Rules); how an invalid value is shown follows the components.
 - **The screen requirements cover only the TUI screens the app draws itself**: on a screen that is not part of the TUI
   (Rules K1, e.g. locku's screensaver and PIN box while locked) and on output printed for another program to show (e.g.
   ccdrawu's `statusline` printed for Claude Code's status line), the app may decide for itself.

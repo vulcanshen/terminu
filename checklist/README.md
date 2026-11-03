@@ -35,9 +35,9 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 
 - **Fixed**: when a requirement is removed its ID is retired and never reused; a new requirement goes at the end of the
   same source. Results from different versions line up by ID.
-- **Prefixes**: the rules use the rule (`K4-1`); the components and the project spec use the file name (`popup-3`,
-  `checkbox-4`), with `components-` for `components/README`, `input-` for `input/README` and `project-` for
-  `project/README`. Passages with no rule number: the rules' opening "Citing" uses `references-` (`departure-` is retired),
+- **Prefixes**: the rules use the rule (`K4-1`); the components use the file name (`popup-3`, `checkbox-4`), with
+  `components-` for `components/README` and `input-` for `input/README`. The `project-` items moved to terminu-harness
+  with the templates in v1.2.0. Passages with no rule number: the rules' opening "Citing" uses `references-` (`departure-` is retired),
   the principle's terms use `terms-`, and the opening of chapter S (the splash fills the whole screen)
   uses `S0-`. IDs are plain ASCII, the same in both languages, so that tools can read them.
 
@@ -115,8 +115,7 @@ The two languages' lists line up by ID; the Traditional Chinese list names the s
 
 Where an item gives two ways (the Homebrew tap, the splash's e-mail address, the README's terminu
 family section; the opening of chapter E in the rules), check the one for what the app is: a family member, or an app
-made by tdp. The project items (`project-`) are for family members only (project.1); every other item is the same
-for both.
+made by tdp. Every other item is the same for both.
 
 ### Screens below the minimum size
 

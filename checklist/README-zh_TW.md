@@ -28,8 +28,8 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 ## 編號
 
 - **固定不變**：規定刪掉時編號作廢、不再用；新的規定接在同一個出處的最後。不同版本的結果用編號對得起來。
-- **前綴**：rules 用規則編號（`K4-1`）；components 與 project 用檔名（`popup-3`、`checkbox-4`），`components/README` 用 `components-`、
-  `input/README` 用 `input-`、`project/README` 用 `project-`。沒有規則編號的段落：rules 開頭的「引用」用 `references-`（`departure-` 已作廢），
+- **前綴**：rules 用規則編號（`K4-1`）；components 用檔名（`popup-3`、`checkbox-4`），`components/README` 用 `components-`、
+  `input/README` 用 `input-`。`project-` 的條目在 v1.2.0 跟著範本搬到 terminu-harness。沒有規則編號的段落：rules 開頭的「引用」用 `references-`（`departure-` 已作廢），
   principle 的術語用 `terms-`，S 章開頭（splash 佔滿整個畫面）用 `S0-`。編號只用英文字母、數字與 `-`，中英文兩份一樣，
   工具也讀得了。
 
@@ -100,7 +100,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 ### 家族成員與照 tdp 做的 app
 
 條目寫了兩種寫法的（Homebrew tap、splash 的作者信箱、README 的 terminu family 段；Rules 的 E 章開頭），照 app 是家族成員
-還是照 tdp 做的 app，查那一種。project 的條目（`project-`）只查家族成員（project.1）；其他條目兩種 app 都一樣。
+還是照 tdp 做的 app，查那一種。其他條目兩種 app 都一樣。
 
 ### 比最低尺寸小的畫面
 
