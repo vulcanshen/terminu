@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.10 — 2026-11-03
+
+Settled with the user: one more row in file-picker.3's table of chroma's gaps, found by terminu-go after v1.1.9 let
+bold and italic through. chroma's Markdown lexer knows `**bold**` and `*italic*` only after a space, so at the start
+of a line, as in tdp's own `**Why**:`, they stayed plain text.
+
+- file-picker.3: bold and italic at the start of a line (`**Why**: …`, `*Note* …`, with `__` or `_` too) are
+  `GenericStrong` and `GenericEmph`, as in the middle of a line
+- changed in this version: file-picker.3
+- checklist: unchanged (1472 items; file-picker-94 covers the table); the header names v1.1.10
+
 ## v1.1.9 — 2026-11-03
 
 Settled with the user: syntax colours were "foreground only", so a Markdown file's `**bold**` and `*italic*`, which
