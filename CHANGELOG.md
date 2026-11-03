@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.1.7 — 2026-11-03
+
+Settled with the user (issue #1, from viewu): chroma's lexer sometimes leaves a thing in Text, or colours it
+otherwise, though the same thing is coloured another way elsewhere in the file or in another format. TOML's table
+names and keys came out as plain text; in YAML `image: nginx` is plain while `image: "nginx"` is green. The family
+fills each such gap one way, in the lib, so that a file looks the same in every preview and viewer; terminu-go went
+through the formats the family shows to find them.
+
+- file-picker.3: "Where chroma leaves a gap", a table of the fixes — TOML (table names, keys, numbers, dates and
+  times), YAML (values without quotes, keys in a flow mapping, numbers with a sign or a leading dot), INI
+  (`.gitconfig`'s indented keys), Makefile (directives, a recipe's variables), Dockerfile (`LABEL` keys, `AS` after an
+  image with a variable, versions), Markdown (underlined headings, `+` items, reference links); a gap found later is
+  added to it. The lib colours its preview and viewers this way and gives the same colouring to an app that colours
+  content of its own
+- note.2: a viewer's syntax colours fill the same gaps
+- changed in this version: file-picker.3, note.2
+- checklist: file-picker-94 and note-87 added (1471 items); the header names v1.1.7
+
 ## v1.1.6 — 2026-10-29
 
 Settled with the user: tdp no longer cites the record numbers of the members and of terminu-go (such as `KB34` or
