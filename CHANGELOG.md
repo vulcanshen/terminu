@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.2.0-beta.2 — 2026-11-03
+
+Settled with the user: every viewer has a search, and a search run from the Space menu clears the menu once it runs.
+The user found the second in viewu: after `/` from the Space menu, the menu stayed over the hits. A second beta: terminu-go
+follows, demou and viewu try it before v1.2.0.
+
+- T1: a new row, searching what is under the menu (a viewer's or a panel's `/`) clears it: the hits are in the view
+  under it, and `n|N` move among them there. The search's input popup is a gate, as a confirm is: the menu goes once the
+  search runs (`Enter`), found or not, the two closing together; `Esc` on the input popup goes back to the menu
+- menu.3: the same, in what happens after running a row
+- note.2, note.3: every viewer has `/` search, no longer only where it has one; the key reference too (note.5), its
+  hint now `/:search ?|Esc:close`; the rules' note row says every viewer has a search
+- file-picker.3: `go.mod`'s directives are examples (every one Go knows), no longer a closed list; hosts is only
+  `/etc/hosts`, a `hosts` elsewhere (such as an Ansible inventory) being another format
+- changed in this version: T1, the note row of the popup classes, menu.3, note.2, note.3, note.5, file-picker.3
+- checklist: T1-10 and note-88 added; note-61, note-71 and note-86 changed (1437 items); the header names v1.2.0-beta.2
+
 ## v1.2.0-beta.1 — 2026-11-03
 
 Settled with the user: tdp says what should be, whatever the language. What belongs to one implementation leaves it:
