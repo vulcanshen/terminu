@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.1.8 — 2026-11-03
+
+Settled with the user: one more row in file-picker.3's table of chroma's gaps. chroma reads the lines between a
+Makefile's `define` and `endef` as Makefile code, so a block of help text shows its lines with a colon as blue targets
+and the rest in red as errors, though those lines are a variable's value. No family Makefile has a `define` block;
+the user chose to fill the gap anyway.
+
+- file-picker.3: the lines between `define` and `endef` are coloured as a one-line variable's value after `=`, read
+  as a shell's
+- changed in this version: file-picker.3
+- checklist: unchanged (1471 items; file-picker-94 covers the table); the header names v1.1.8
+
 ## v1.1.7 — 2026-11-03
 
 Settled with the user (issue #1, from viewu): chroma's lexer sometimes leaves a thing in Text, or colours it
