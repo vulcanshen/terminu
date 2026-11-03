@@ -343,7 +343,7 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 - **The mode's Space menu** ("Inside a mode" in [components/dialog/menu](../components/dialog/menu.md)): it lists only
   what can be done in the mode, in two sections — **item operations**: what can be done now to the item under the
   cursor (or the selected range), picking one being the same as pressing its key (e.g. `[C]ompare` in the Compare mode,
-  `[y] Copy` once a selection has started); **mode operations**: the mode's own keys — the movement keys are only shown,
+  `Cop[y]` once a selection has started); **mode operations**: the mode's own keys — the movement keys are only shown,
   not run, while what really does something, such as leaving the mode, runs as usual. Panel, item and global actions are
   never listed. The mode's keys are also disclosed in the `?` key reference and in the footer / bottom-border hint (how
   the footer looks inside a mode: [components/layout/screen](../components/layout/screen.md)).

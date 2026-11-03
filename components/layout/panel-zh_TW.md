@@ -236,6 +236,7 @@ panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reord
 ### panel.10 位置列
 
 清單上面一列寫目前的位置（路徑、drill 到的層），例：filu 的目錄、sshu 的遠端路徑、kbu 從 Deployment 進到 Pods 的那一層。
+沒有清單、沒有 cursor 的 panel（閱讀用的）也可以有，放在文字上面：viewu 顯示的檔案、webu 顯示的網頁。
 **要不要有這一列，app 可以自行決定**。
 
 ```
@@ -384,7 +385,7 @@ focus 離開與回來：
 - **loading**：loading icon 放在整串膠囊（含 tab）的後面，前後各空一格，用框線色（[`popup`](popup-zh_TW.md) 的 loading）。panel
   還沒有任何內容時，中間照空狀態的樣子寫一句，例：`󰪞 loading pods…`、`󰪞 connecting to prod-web-01…`。重新載入時，舊的內容
   留著，不清空。
-- **錯誤、斷線、沒有權限**：照空狀態的樣子置中寫兩句：一句事實用 Red（例：`Forbidden: pods in kube-system`），一句提示用
+- **錯誤、斷線、沒有權限**，以及做不出內容的 tab（不合法的 JSON 的排版檢視、畫不出來的圖）：照空狀態的樣子置中寫兩句：一句事實用 Red（例：`Forbidden: pods in kube-system`），一句提示用
   Overlay0（例：`Press [R] to retry`）。舊的內容還在就留著，錯誤照 Rules F5 用 toast 報。
 
 **為什麼**：panel 在等、或讀不到東西時，使用者看的是同一個地方 —— panel 中間 —— 不管它平常放的是清單、值還是終端機；寫法一樣，

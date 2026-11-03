@@ -313,7 +313,9 @@ the mode and makes that row the anchor; then another row is picked and the two a
 ### panel.10 Location row
 
 A row above the list giving where you are now (a path, the level drilled down to), e.g. filu's directory, sshu's remote
-path, the level kbu reaches going from a Deployment into its Pods. **Whether there is one, the app may decide for itself**.
+path, the level kbu reaches going from a Deployment into its Pods. A panel without a list or a cursor (a reader) may have
+one too, above its text: the file viewu shows, the page webu shows. **Whether there is one, the app may decide for
+itself**.
 
 ```
 ┏[2] FILES━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -487,7 +489,8 @@ The same for every kind of panel: an ordinary list, one value per row, details, 
   border colour ([`popup`](popup.md)'s loading). While the panel has no content yet, one line is written in the middle in
   the empty-state look, e.g. `󰪞 loading pods…`, `󰪞 connecting to prod-web-01…`. On reload, the old content stays and is
   not cleared.
-- **Errors, lost connections, no permission**: two centred lines in the empty-state look: a fact in Red (e.g.
+- **Errors, lost connections, no permission**, and a tab whose content cannot be made (an invalid JSON's formatted
+  view, a diagram that cannot be drawn): two centred lines in the empty-state look: a fact in Red (e.g.
   `Forbidden: pods in kube-system`) and a hint in Overlay0 (e.g. `Press [R] to retry`). If the old content is still there
   it stays, and the error is reported in a toast as Rules F5 says.
 

@@ -80,7 +80,7 @@ The Space menu that `Space` opens inside a mode (Rules K11) lists only what can 
 - **Title**: where the mode lives, as usual — the focused panel's `[N] label` on a panel, that popup's title in a popup.
 - **`ITEM OPERATION`**: what can be done now to the item under the cursor (or the selected range); rows run as usual,
   picking one being the same as pressing its key (e.g. `[C]ompare` in the Compare mode, described `with <anchor>`;
-  `[v] Select` before a selection starts and `[y] Copy` after). What cannot be done now is disabled by M6 (e.g. with the
+  `[v] Select` before a selection starts and `Cop[y]` after). What cannot be done now is disabled by M6 (e.g. with the
   cursor on the anchor).
 - **`<mode name> MODE`** (e.g. `COMPARE MODE`; with layers the whole name, e.g. `VISUAL>SELECT MODE`): the mode's own keys. The movement keys are only shown — the key in the
   label's place, in Blue (as in the key reference, "a key that can be pressed now"), the description in Overlay0; the
