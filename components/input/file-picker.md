@@ -81,6 +81,31 @@ by path, so while the popup is open the cursor coming back to an entry does not 
 | anything else | hexadecimal, always 8 bytes a row, followed by ASCII (`89 50 4e 47 0d 0a 1a 0a  .PNG....`, 33 cells); a side-by-side preview is at most 56 cells wide, too narrow for 16 bytes |
 | unreadable | `(unreadable)` |
 
+**Where chroma leaves a gap**: chroma's lexer for a format sometimes leaves a thing in Text, or colours it otherwise,
+though the same thing is coloured another way elsewhere in the file or in another format (`image: "nginx"` and
+`image: nginx` in YAML). The family fills each such gap one way, as listed below, so that a file looks the same in
+every preview and viewer: the lib colours its preview and its viewers this way and gives the same colouring to an app
+that colours content of its own. A gap found later is added to this list (the user, 2026-11-03, from viewu).
+
+| Format | What | Coloured as |
+|---|---|---|
+| TOML | a table's name: `project` in `[project]`, `bin` in `[[bin]]`, each part of `[a.b]`, a quoted part too | `Keyword`, Mauve, as an INI section |
+| TOML | a key: `name` in `name = "x"`, each part of `a.b = 1`, a key in an inline table, a quoted key, a key of digits | `NameAttribute`, Blue, as an INI key |
+| TOML | a number in any form: `0xDEADBEEF`, `0o755`, `0b1010`, `5e+22`, `inf`, `nan` | `LiteralNumber`, Peach, as YAML's `0x…` and `.inf` |
+| TOML | a date or a time in any form: `1979-05-27`, `07:32:00`, `1979-05-27T07:32:00Z` | `LiteralDate`, Text, as YAML's dates |
+| YAML | a value without quotes: `Pod` in `kind: Pod`, `serve` in `- serve` | `LiteralString`, Green, as a quoted value |
+| YAML | a key after the first in a flow mapping: `tier` in `{app: nginx, tier: web}` | `NameTag`, Mauve, as any other key |
+| YAML | a number with a sign or a leading dot: `-3`, `.5` | `LiteralNumber`, Peach, as any other number |
+| INI (`.gitconfig`) | an indented key after the first in a section | `NameAttribute`, Blue, as the first |
+| Makefile | a directive: `include`, `ifeq`, `define`… | `CommentPreproc`, Overlay0 |
+| Makefile | a variable in a recipe: `GO` in `$(GO) build` | `NameVariable`, Rosewater, as elsewhere in the file |
+| Dockerfile | a `LABEL`'s key: `a.b` in `LABEL a.b="x"` | `NameVariable`, Rosewater, as an `ENV`'s key |
+| Dockerfile | `AS build` after an image with a variable: `FROM golang:${GO} AS build` | `AS` `Keyword`, Mauve; the name `LiteralString`, Green, as without the variable |
+| Dockerfile | a version with a dot: `1.24` in `ARG GO=1.24` | `LiteralNumber`, Peach, the whole of it |
+| Markdown | a heading underlined with `===` or `---` | `GenericHeading`, Peach, as a `#` heading |
+| Markdown | a list item's `+` | `Keyword`, Mauve, as `-` and `*` |
+| Markdown | a reference link: `[ref]: https://…`, `[text][ref]` | the first brackets `NameTag`, Mauve; the second brackets or the address `NameAttribute`, Blue, as an inline link |
+
 **A directory's tree**: at most three levels. The first level has no branches; from the second on, `├─`, `└─` and `│`
 join them, the branches in Overlay0; each entry's icon, colour and order are the same as in the list, and hidden files
 are not listed. The preview takes no focus and cannot scroll: it is drawn until the preview area is full, with `…` on the

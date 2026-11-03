@@ -69,6 +69,29 @@ cursor 那一筆的內容，照種類畫。最多讀 64 KB。
 | 其他 | 十六進位，一律一列 8 bytes，後面接 ASCII（`89 50 4e 47 0d 0a 1a 0a  .PNG....`，33 格）；並排時預覽最寬只有 56 格，放不下 16 bytes |
 | 讀不到 | `(unreadable)` |
 
+**chroma 漏掉的地方**：chroma 某個格式的 lexer 有時把一樣東西留成 Text 或上錯顏色，而同樣的東西在同一個檔別處、或在別的格式
+是另一個顏色（YAML 的 `image: "nginx"` 與 `image: nginx`）。這種缺漏全家族照下表一種補法，同一個檔在每個預覽與 viewer 裡長得一樣：
+lib 的預覽與 viewer 照這樣上色，也把同一套上色給自己畫內容的 app 用。之後再發現的缺漏加進這張表（user 2026-11-03，來自 viewu）。
+
+| 格式 | 什麼 | 上色成 |
+|---|---|---|
+| TOML | 表名：`[project]` 的 `project`、`[[bin]]` 的 `bin`、`[a.b]` 的每一段，有引號的那段也是 | `Keyword`，Mauve，跟 INI 的區段一樣 |
+| TOML | key：`name = "x"` 的 `name`、`a.b = 1` 的每一段、inline table 裡的 key、有引號的 key、全是數字的 key | `NameAttribute`，Blue，跟 INI 的 key 一樣 |
+| TOML | 各種寫法的數字：`0xDEADBEEF`、`0o755`、`0b1010`、`5e+22`、`inf`、`nan` | `LiteralNumber`，Peach，跟 YAML 的 `0x…`、`.inf` 一樣 |
+| TOML | 各種寫法的日期與時間：`1979-05-27`、`07:32:00`、`1979-05-27T07:32:00Z` | `LiteralDate`，Text，跟 YAML 的日期一樣 |
+| YAML | 沒有引號的值：`kind: Pod` 的 `Pod`、`- serve` 的 `serve` | `LiteralString`，Green，跟有引號的值一樣 |
+| YAML | flow mapping 第一對之後的 key：`{app: nginx, tier: web}` 的 `tier` | `NameTag`，Mauve，跟其他 key 一樣 |
+| YAML | 帶正負號或點開頭的數字：`-3`、`.5` | `LiteralNumber`，Peach，跟其他數字一樣 |
+| INI（`.gitconfig`） | 區段裡縮排的 key，第二個起 | `NameAttribute`，Blue，跟第一個一樣 |
+| Makefile | 指令：`include`、`ifeq`、`define`…… | `CommentPreproc`，Overlay0 |
+| Makefile | recipe 裡的變數：`$(GO) build` 的 `GO` | `NameVariable`，Rosewater，跟檔案別處一樣 |
+| Dockerfile | `LABEL` 的 key：`LABEL a.b="x"` 的 `a.b` | `NameVariable`，Rosewater，跟 `ENV` 的 key 一樣 |
+| Dockerfile | 映像名有變數時後面的 `AS build`：`FROM golang:${GO} AS build` | `AS` 是 `Keyword`，Mauve；名稱是 `LiteralString`，Green，跟沒有變數時一樣 |
+| Dockerfile | 有小數點的版本：`ARG GO=1.24` 的 `1.24` | `LiteralNumber`，Peach，整段 |
+| Markdown | 底下畫 `===` 或 `---` 的標題 | `GenericHeading`，Peach，跟 `#` 標題一樣 |
+| Markdown | 清單項的 `+` | `Keyword`，Mauve，跟 `-`、`*` 一樣 |
+| Markdown | 參考式連結：`[ref]: https://…`、`[text][ref]` | 第一個方括號是 `NameTag`，Mauve；第二個方括號或網址是 `NameAttribute`，Blue，跟行內連結一樣 |
+
 **目錄的樹**：最多三層。第一層不畫樹枝，第二層起用 `├─`、`└─`、`│` 連起來，樹枝 Overlay0；每一項前面的 icon、顏色、順序跟清單一樣，
 隱藏檔不列。預覽拿不到 focus、不能捲，畫到預覽區滿為止，最後一列寫 `…`。空的目錄寫 `(empty)`，讀不到寫 `(permission denied)`，
 都是灰字。

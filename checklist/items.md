@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.1.5. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.1.7. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -952,6 +952,7 @@ The items of tdp v1.1.5. What each column means and what an item applies to: [RE
 | note-14 | note.2 | A streaming viewer (App Log) starts its gutter at three digits and widens it only past 999 lines | viewer | Look at the gutter before and after the stream reaches 1000 lines |
 | note-15 | note.2 | In a viewer with tabs, the gutter follows the widest of the pages seen so far, and only ever widens, never narrows (a streaming page likewise) | viewer | Switch to a page with more lines and back: the gutter does not narrow again |
 | note-16 | note.2 | A viewer whose content has a fixed format (YAML, JSON, TOML, HTML, XML, Markdown…) is coloured as a text file in the file-picker preview: chroma's catppuccin-mocha, foreground only; file content goes by the file name | viewer | Open a YAML view and the content of a `.json` file: the syntax colours match the preview, with no background colour |
+| note-87 | note.2 | A viewer fills chroma's gaps in syntax colours as the preview does (file-picker.3): a file has the same colours in both | viewer | Open a TOML file in a viewer and in a file-picker preview, and compare a table's name and the keys |
 | note-17 | note.2 | No syntax colours inside the selection | viewer | Select a stretch of text with syntax colours and look at the characters in the selection |
 | note-18 | note.2 | A Tab in a viewer is drawn as `input_tab_width` spaces, not aligned to tab stops | viewer | Open a file with Tabs |
 | note-19 | note.2 | A `\r` before a line break (CRLF) is not drawn | viewer | Open a CRLF file |
@@ -1517,6 +1518,7 @@ The items of tdp v1.1.5. What each column means and what an item applies to: [RE
 | file-picker-19 | file-picker.3 | A directory is previewed as a tree | file preview | Move the cursor onto a directory |
 | file-picker-20 | file-picker.3 | An archive (zip, tar, tar.gz, tar.bz2) shows its contents as a directory tree | file preview | Move the cursor onto an archive |
 | file-picker-21 | file-picker.3 | A text file shows its content, with syntax colours (chroma's catppuccin-mocha, foreground only) | file preview | Move the cursor onto a source file |
+| file-picker-94 | file-picker.3 | A text file's syntax colours fill chroma's gaps as file-picker.3 lists (e.g. TOML: a table's name Mauve, a key Blue; YAML: a value without quotes Green) | file preview | Preview a TOML file with a table and keys, and a YAML file with values without quotes |
 | file-picker-22 | file-picker.3 | A text file has line numbers: Overlay0, right-aligned, one space after | file preview | Look at the left of a text file's preview |
 | file-picker-23 | file-picker.3 | In a text file a Tab is drawn as `input_tab_width` spaces | file preview | Preview a file with Tabs in it |
 | file-picker-24 | file-picker.3 | In a text file the `\r` of a CRLF is not drawn | file preview | Preview a file with CRLF line endings |

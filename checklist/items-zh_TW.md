@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v1.1.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v1.1.7 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -952,6 +952,7 @@ tdp v1.1.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-14 | note.2 | 串流的 viewer（App Log）行號欄從三位開始，超過 999 行才跳寬 | viewer | 看串流到 1000 行前後的行號欄 |
 | note-15 | note.2 | 有 tab 的 viewer，行號欄照看過的頁裡最寬的那一頁，只變寬、不變窄（串流的頁一樣） | viewer | 切到行數多的頁再切回來，看行號欄寬沒有縮回 |
 | note-16 | note.2 | 內容有固定格式的 viewer（YAML、JSON、TOML、HTML、XML、Markdown……）照 file-picker 預覽的文字檔上色：chroma 的 catppuccin-mocha、只上前景色；檔案內容照檔名判斷格式 | viewer | 打開 YAML 檢視與一個 `.json` 檔的內容，看語法顏色跟預覽一樣、沒有背景色 |
+| note-87 | note.2 | viewer 照預覽補上 chroma 漏掉的語法顏色（file-picker.3）：同一個檔在兩邊顏色一樣 | viewer | 同一個 TOML 檔在 viewer 與 file-picker 預覽裡各開一次，比對表名與 key 的顏色 |
 | note-17 | note.2 | 選取範圍裡不顯示語法顏色 | viewer | 選一段有語法顏色的文字，看範圍裡的字 |
 | note-18 | note.2 | viewer 裡的 Tab 畫成 `input_tab_width` 格空白，不對齊 tab 停點 | viewer | 打開有 Tab 的檔案 |
 | note-19 | note.2 | 換行前面的 `\r`（CRLF）不畫 | viewer | 打開 CRLF 的檔案 |
@@ -1517,6 +1518,7 @@ tdp v1.1.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | file-picker-19 | file-picker.3 | 目錄預覽成樹 | 有檔案預覽 | cursor 移到目錄上 |
 | file-picker-20 | file-picker.3 | 壓縮檔（zip、tar、tar.gz、tar.bz2）照目錄的樹列出裡面 | 有檔案預覽 | cursor 移到壓縮檔上 |
 | file-picker-21 | file-picker.3 | 文字檔畫內容，加語法顏色（chroma 的 catppuccin-mocha，只上前景色） | 有檔案預覽 | cursor 移到原始碼檔上 |
+| file-picker-94 | file-picker.3 | 文字檔的語法顏色照 file-picker.3 的表補上 chroma 漏掉的（例：TOML 表名 Mauve、key Blue；YAML 沒引號的值 Green） | 有檔案預覽 | 預覽一個有表與 key 的 TOML 檔，與一個有沒引號的值的 YAML 檔 |
 | file-picker-22 | file-picker.3 | 文字檔有行號：Overlay0，靠右對齊、後面空一格 | 有檔案預覽 | 看文字檔預覽的左邊 |
 | file-picker-23 | file-picker.3 | 文字檔的 Tab 畫成 `input_tab_width` 格空白 | 有檔案預覽 | 預覽含 Tab 的檔 |
 | file-picker-24 | file-picker.3 | 文字檔裡 CRLF 的 `\r` 不畫 | 有檔案預覽 | 預覽 CRLF 換行的檔 |

@@ -40,7 +40,8 @@ menu, not a note.
   to a page with fewer. A streaming page likewise only widens.
 - **A viewer's syntax colours**: content with a fixed format (YAML, JSON, TOML, HTML, XML, Markdown…) is coloured as a
   text file in [`input/file-picker`](../input/file-picker.md)'s preview table (chroma's catppuccin-mocha, foreground
-  only). The app gives the language (a YAML view is YAML; a DevTools Network response goes by its content type); file
+  only, with chroma's gaps filled as listed there).
+  The app gives the language (a YAML view is YAML; a DevTools Network response goes by its content type); file
   content goes by the file name, as in the preview. Whether content with no fixed format (e.g. App Log), or whose
   language cannot be told, is coloured, the app may decide for itself: uncoloured, it is plain text in Text; an app knows its content
   and may colour it as its situation needs (e.g. the ERROR and WARN lines of a log). The lib adds no syntax colours but
