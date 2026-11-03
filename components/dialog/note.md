@@ -42,7 +42,7 @@ menu, not a note.
   text file in [`input/file-picker`](../input/file-picker.md)'s preview table (chroma's catppuccin-mocha with its bold,
   italic and underline and without its backgrounds, with chroma's gaps filled as listed there).
   The app gives the language (a YAML view is YAML; a DevTools Network response goes by its content type); file
-  content goes by the file name, as in the preview. Whether content with no fixed format (e.g. App Log), or whose
+  content goes by the file name, and by its directory where formats share a name, as in the preview (file-picker.3). Whether content with no fixed format (e.g. App Log), or whose
   language cannot be told, is coloured, the app may decide for itself: uncoloured, it is plain text in Text; an app knows its content
   and may colour it as its situation needs (e.g. the ERROR and WARN lines of a log). The lib adds no syntax colours but
   keeps the colours the app gives. Line numbers stay Overlay0; the selection mode's

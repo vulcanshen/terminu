@@ -31,7 +31,7 @@
 - **viewer 的語法顏色**：內容有固定格式的（YAML、JSON、TOML、HTML、XML、Markdown……）照 [`input/file-picker`](../input/file-picker-zh_TW.md)
   預覽表的文字檔上色（chroma 的 catppuccin-mocha，照它的粗體、斜體與底線，不上背景色，chroma 漏掉的照那裡的表補上）。
   語言由 app 給（YAML 檢視是 YAML；DevTools Network 的回應照
-  content type）；檔案內容照檔名判斷，跟預覽一樣。沒有固定格式的（例：App Log）、判斷不出來的，上不上色，app 可以自行決定：不上色時是
+  content type）；檔案內容照檔名判斷，同名的檔再看它在哪個資料夾，跟預覽一樣（file-picker.3）。沒有固定格式的（例：App Log）、判斷不出來的，上不上色，app 可以自行決定：不上色時是
   純文字 Text；app 知道自己的內容，可以依情境上色（例：log 裡 ERROR、WARN 的行）。lib 不上語法顏色，但保留 app 給的顏色。
   行號照舊 Overlay0；選取模式的範圍照舊 Yellow 底、Base 字，語法顏色與粗體、斜體、底線在範圍裡都不顯示。
 - **viewer 裡的 Tab 與控制字元**（跟 [`input/file-picker`](../input/file-picker-zh_TW.md) 的預覽一樣；全家族的規定見 [components](../README-zh_TW.md)

@@ -74,7 +74,8 @@ cursor 那一筆的內容，照種類畫。最多讀 64 KB。
 文字後面的 Base 與 diff 新增、刪除行後面的 Surface0 都不塗（user 2026-11-03）。
 
 **chroma 漏掉的地方**：chroma 某個格式的 lexer 有時把一樣東西留成 Text 或上錯顏色，而同樣的東西在同一個檔別處、或在別的格式
-是另一個顏色（YAML 的 `image: "nginx"` 與 `image: nginx`）。這種缺漏全家族照下表一種補法，同一個檔在每個預覽與 viewer 裡長得一樣：
+是另一個顏色（YAML 的 `image: "nginx"` 與 `image: nginx`）；也可能把檔案認成別的格式，或家族會顯示的格式它沒有 lexer。
+檔案的格式照檔名判斷，同名的檔再看它在哪個資料夾：`.ssh` 裡的 `config` 是 SSH 設定，`.git` 裡的是 Git 設定。這種缺漏全家族照下表一種補法，同一個檔在每個預覽與 viewer 裡長得一樣：
 lib 的預覽與 viewer 照這樣上色，也把同一套上色給自己畫內容的 app 用。之後再發現的缺漏加進這張表（user 2026-11-03，來自 viewu）。
 
 | 格式 | 什麼 | 上色成 |
@@ -96,6 +97,16 @@ lib 的預覽與 viewer 照這樣上色，也把同一套上色給自己畫內�
 | Markdown | 底下畫 `===` 或 `---` 的標題 | `GenericHeading`，Peach，跟 `#` 標題一樣 |
 | Markdown | 清單項的 `+` | `Keyword`，Mauve，跟 `-`、`*` 一樣 |
 | Markdown | 在行首的粗體與斜體：`**為什麼**：……`、`*注意* ……`，用 `__`、`_` 的也是 | `GenericStrong` 粗體、`GenericEmph` 斜體，跟在行中一樣 |
+| `go.mod`、`go.work` | 整個檔：chroma 把它認成 AMPL | 自己的 lexer：指令（`module`、`go`、`toolchain`、`require`、`replace`、`exclude`、`retract`、`use`）是 `Keyword`，Mauve，跟 Go 的關鍵字一樣；版本是 `LiteralNumber`，Peach；`=>` 是 `Operator`；註解是 `Comment` |
+| SSH 設定（`~/.ssh/config`、`ssh_config`、`sshd_config`） | 整個檔：chroma 沒有 lexer | 關鍵字（`Host`、`HostName`、`User`、`IdentityFile`……）是 `Keyword`，Mauve；數字（`Port 22` 的 `22`）是 `LiteralNumber`，Peach；註解是 `Comment` |
+| hosts（`/etc/hosts`） | 整個檔：沒有 lexer | 位址（`127.0.0.1`、`::1`）是 `LiteralNumber`，Peach；註解是 `Comment` |
+| `.gitignore`、`.dockerignore` | 整個檔：沒有 lexer | 註解是 `Comment`；行首的 `!` 是 `Keyword`，Mauve |
+| `requirements.txt`（與 `requirements-*.txt`） | 整個檔：沒有 lexer | 註解是 `Comment`；版本是 `LiteralNumber`，Peach；`==`、`>=`、`~=` 這類是 `Operator` |
+| `Jenkinsfile` | 整個檔：chroma 不認得這個檔名 | 用 chroma 的 Groovy lexer，跟 `.groovy` 檔一樣 |
+| JavaScript、TypeScript | 宣告處的函式名與 class 名：`function greet()` 的 `greet`、`class Point` 的 `Point` | `NameFunction`，Blue；`NameClass`，Yellow，跟 Python、Rust 一樣 |
+| Go | 宣告處的型別名：`type Point struct` 的 `Point`；套件名：`package main` 的 `main` | `NameClass`，Yellow，跟 Rust 的 struct 一樣；`NameNamespace`，Peach，跟 proto 的 package 一樣 |
+| Bash 等 shell | 定義處的函式名：`greet() {` 的 `greet` | `NameFunction`，Blue，跟 fish 一樣 |
+| Terraform | 屬性的 key：`ami = "…"` 的 `ami` | `NameAttribute`，Blue，跟它自己的 `default` 一樣 |
 | Markdown | 參考式連結：`[ref]: https://…`、`[text][ref]` | 第一個方括號是 `NameTag`，Mauve；第二個方括號或網址是 `NameAttribute`，Blue，跟行內連結一樣 |
 
 **目錄的樹**：最多三層。第一層不畫樹枝，第二層起用 `├─`、`└─`、`│` 連起來，樹枝 Overlay0；每一項前面的 icon、顏色、順序跟清單一樣，

@@ -88,7 +88,9 @@ Base behind the text nor the Surface0 behind a diff's added and removed lines is
 
 **Where chroma leaves a gap**: chroma's lexer for a format sometimes leaves a thing in Text, or colours it otherwise,
 though the same thing is coloured another way elsewhere in the file or in another format (`image: "nginx"` and
-`image: nginx` in YAML). The family fills each such gap one way, as listed below, so that a file looks the same in
+`image: nginx` in YAML); it may also take a file for another format, or have no lexer for a format the family shows.
+A file's format goes by its name, and by its directory where formats share a name: `config` in `.ssh` is SSH config,
+in `.git` Git config. The family fills each such gap one way, as listed below, so that a file looks the same in
 every preview and viewer: the lib colours its preview and its viewers this way and gives the same colouring to an app
 that colours content of its own. A gap found later is added to this list (the user, 2026-11-03, from viewu).
 
@@ -111,6 +113,16 @@ that colours content of its own. A gap found later is added to this list (the us
 | Markdown | a heading underlined with `===` or `---` | `GenericHeading`, Peach, as a `#` heading |
 | Markdown | a list item's `+` | `Keyword`, Mauve, as `-` and `*` |
 | Markdown | bold or italic at the start of a line: `**Why**: …`, `*Note* …`, with `__` or `_` too | `GenericStrong` bold, `GenericEmph` italic, as in the middle of a line |
+| `go.mod`, `go.work` | the whole file: chroma takes it for AMPL | a lexer of its own: a directive (`module`, `go`, `toolchain`, `require`, `replace`, `exclude`, `retract`, `use`) `Keyword`, Mauve, as Go's keywords; a version `LiteralNumber`, Peach; `=>` `Operator`; a comment `Comment` |
+| SSH config (`~/.ssh/config`, `ssh_config`, `sshd_config`) | the whole file: chroma has no lexer | a keyword (`Host`, `HostName`, `User`, `IdentityFile`…) `Keyword`, Mauve; a number (`22` in `Port 22`) `LiteralNumber`, Peach; a comment `Comment` |
+| hosts (`/etc/hosts`) | the whole file: no lexer | an address (`127.0.0.1`, `::1`) `LiteralNumber`, Peach; a comment `Comment` |
+| `.gitignore`, `.dockerignore` | the whole file: no lexer | a comment `Comment`; a leading `!` `Keyword`, Mauve |
+| `requirements.txt` (and `requirements-*.txt`) | the whole file: no lexer | a comment `Comment`; a version `LiteralNumber`, Peach; `==`, `>=`, `~=` and the like `Operator` |
+| `Jenkinsfile` | the whole file: chroma does not know the name | chroma's Groovy lexer, as a `.groovy` file |
+| JavaScript, TypeScript | a function's or a class's name where it is declared: `greet` in `function greet()`, `Point` in `class Point` | `NameFunction`, Blue; `NameClass`, Yellow, as in Python and Rust |
+| Go | a type's name where it is declared: `Point` in `type Point struct`; the package's name: `main` in `package main` | `NameClass`, Yellow, as a Rust struct; `NameNamespace`, Peach, as a proto package |
+| Bash and other shells | a function's name where it is defined: `greet` in `greet() {` | `NameFunction`, Blue, as in fish |
+| Terraform | an attribute's key: `ami` in `ami = "…"` | `NameAttribute`, Blue, as its own `default` |
 | Markdown | a reference link: `[ref]: https://…`, `[text][ref]` | the first brackets `NameTag`, Mauve; the second brackets or the address `NameAttribute`, Blue, as an inline link |
 
 **A directory's tree**: at most three levels. The first level has no branches; from the second on, `├─`, `└─` and `│`
