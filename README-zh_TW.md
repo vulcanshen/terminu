@@ -67,6 +67,8 @@ go run github.com/vulcanshen/terminu-go/examples/showcase@latest
 | [kamonu](https://github.com/vulcanshen/kamonu) | 一個字一個字畫家族 mark（家紋）的 terminal 編輯器 |
 | [ccdrawu](https://github.com/vulcanshen/ccdrawu) | Claude Code 的側邊欄：用量、context、花費與 git 放在對話旁邊 |
 | [hostu](https://github.com/vulcanshen/hostu) | 在終端機裡用 profile 切換 hosts 檔 |
+| [demou](https://github.com/vulcanshen/demou) | 家族的操作教學 app：動手按，學會 terminu 家族的操作 |
+| [catu](https://github.com/vulcanshen/catu) | 終端機裡看檔案的工具：Markdown 畫成文件、mermaid 畫成圖 |
 
 ## 歷史
 

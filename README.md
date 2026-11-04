@@ -74,6 +74,8 @@ patched first, then the library follows.
 | [kamonu](https://github.com/vulcanshen/kamonu) | A terminal editor for the family's marks (kamon), drawn letter by letter |
 | [ccdrawu](https://github.com/vulcanshen/ccdrawu) | A sidebar for Claude Code: usage, context, cost and git beside the transcript |
 | [hostu](https://github.com/vulcanshen/hostu) | Switch the hosts file between profiles, in the terminal |
+| [demou](https://github.com/vulcanshen/demou) | The family's app for learning the operations, hands-on |
+| [catu](https://github.com/vulcanshen/catu) | A file viewer for the terminal: Markdown drawn as a document, mermaid as diagrams |
 
 ## History
 
