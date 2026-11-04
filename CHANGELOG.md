@@ -1,5 +1,39 @@
 # Changelog
 
+## v1.2.0 — 2026-11-04
+
+The stable release after five betas, settled with the user: tdp says what should be, whatever the language. What
+belongs to one implementation leaves it: the family's repo templates go to terminu-harness, the shared lib's split of
+the work to terminu-go. demou and catu (viewu until beta.4) ran on the betas; the other members move at their next
+release, which takes the templates from terminu-harness. Everything since v1.1.10:
+
+- project/ leaves tdp: its page (project.1–8), its checklist items and the seven templates move to terminu-harness;
+  the rules' opening, the start of chapter E, the READMEs and the checklist README no longer name it (beta.1)
+- E6: a single static binary for each platform it is released for, no longer "built with goreleaser"; a family
+  member's repo follows the family's templates, kept in terminu-harness (beta.1)
+- E8: the table of which rules the lib covers moves to terminu-go's README; tdp keeps what any shared lib keeps to
+  (beta.1)
+- E3: a file only for this run goes in the system's temporary directory and is deleted when the app quits; with no
+  screen, settings, state or data that cannot be read are handled as `Esc` handles them: no file touched, nothing
+  printed, the path and the reason on stderr, a non-zero exit status (beta.5)
+- K12, terminal.5: `PgUp|PgDn` are `u|d` too, half a page, and are not listed beside them (beta.3)
+- K11, menu.4: the selection mode's copy is `Cop[y]` (beta.3)
+- T1, menu.3: a search run from the Space menu clears the menu once it runs; its input popup is a gate (beta.2)
+- note.2, note.3, note.5: every viewer has `/` search, the key reference too (beta.2); file content goes by the file
+  name and, where formats share a name, its directory (beta.1)
+- panel.10: a reader may have a location row (beta.3); it stays while loading and on an error, as when the list is
+  empty (beta.4)
+- panel.15: a tab whose content cannot be made shows the two centred lines of an error (beta.3)
+- file-picker.3: a file's format goes by its name and, where formats share a name, its directory; chroma taking a
+  file for another format is a gap too, with ten more rows (beta.1); `go.mod`'s directives are examples, hosts is only
+  `/etc/hosts` (beta.2)
+- viewu is now catu (the user renamed it) in the examples and where rules came from (beta.4)
+- changed since v1.1.10: project (moved out), the rules' opening, the start of chapter E, E3, E6, E8, K11, K12, T1, the
+  note row of the popup classes, menu.3, menu.4, note.2, note.3, note.5, panel.10, panel.15, terminal.5, file-picker.3
+- checklist: `project-1`–`project-39` moved to terminu-harness; file-picker-96, T1-10, note-88, K12-18, E3-26 and
+  E3-27 added; E6-1, E6-5, note-16, note-61, note-71, note-86 and panel-134 changed (1440 items); the header names
+  v1.2.0
+
 ## v1.2.0-beta.5 — 2026-11-04
 
 A fifth beta, the user's choice, so that terminu-go can release alongside it: catu found that the lib could not read
