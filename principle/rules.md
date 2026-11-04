@@ -393,6 +393,9 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
   the top, and other chords starting with `g` may be hotkeys (e.g. filu's `[go]to`); a single `g` does
   nothing. When the key after `g` is not a chord, it is as if `g` had not been pressed and that key works as usual (`g`
   then `j`: down a row). `Ctrl-U|Ctrl-D` are not taken as aliases.
+- **`PgUp|PgDn` are `u|d` too**, as the arrow keys are `hjkl`: wherever `u|d` move, they move the same, half a page,
+  stopping at the first and the last item. Like the arrow keys, they are not listed beside `u|d` (the user, 2026-11-04,
+  from viewu).
 - **`Home` and `End` only on a typing row**: the cursor to the start and the end
   ([components/input/README](../components/input/README.md)). On lists, menus, viewers and a textarea's moving state they
   do nothing: those have `gg|G` and `0|$`.
@@ -418,8 +421,10 @@ boxes `Ctrl-U` means "clear this line", so the same chord would turn pages in on
 another — too high a price for a slip. Wrapping at the ends: the same key reacts the same way at the ends everywhere in
 the family, so nobody has to remember where it wraps and where it stops; a half page across the ends would land
 somewhere nobody can guess, so `u|d` stop. `Home` and `End` only on a typing row: there `g` and `0` are characters, so
-they are needed; elsewhere a key already does the job, and no second key is given. A stray `g` does not make the next
-key fail.
+they are needed; elsewhere a key already does the job, and no second key is given. `PgUp|PgDn` are another matter,
+taken as the arrow keys are: printed on the key cap, they are nothing to remember, and someone not used to vim pages
+with them first, so one doing nothing looks broken; unlike `Ctrl-D`, which in a terminal often means "end of input",
+they mean nothing else. A stray `g` does not make the next key fail.
 
 ---
 

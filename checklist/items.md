@@ -129,6 +129,7 @@ The items of tdp v1.2.0-beta.2. What each column means and what an item applies 
 | K12-15 | K12 | `u\|d` stop at the first and the last item and do not wrap | everyone | Press `d` on one of the last few rows: it stops on the last row |
 | K12-16 | K12 | What moves through space rather than along a run of items does not wrap: the days of a calendar, the month and the year, the two sides, moving within a piece of text (an input's typing-row cursor included) | everyone | Go on past the last day of a calendar, further right on the right side, or right from the last character of a typing row: it does not wrap |
 | K12-17 | K12 | Two-dimensional content (several items on a row, e.g. the links in a page's text) is read with no cursor, `j\|k`, `u\|d` and `gg\|G` scrolling; going from item to item is a mode, where `j\|k` walk item by item in reading order (left to right along a row, then the next row), wrapping at the ends, and `gg\|G` go to the first and the last item | two-dimensional content | Press `j\|k` on the content: it scrolls; enter the mode and press `j\|k` past the last item and `gg\|G` |
+| K12-18 | K12 | `PgUp\|PgDn` are `u\|d`: wherever `u\|d` move, they move the same, half a page, stopping at the first and the last item; they are not listed beside `u\|d` | everyone | On a list and a viewer longer than a page press `PgDn`, `PgUp`: the same as `d`, `u`; the key reference has `u\|d` and no `PgUp\|PgDn` |
 
 ## rules — M Menus and disclosure
 
