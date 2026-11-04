@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.2.0-beta.4. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.2.0-beta.5. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.2.0-beta.5 — 2026-11-04
+
+A fifth beta, the user's choice, so that terminu-go can release alongside it: catu found that the lib could not read
+the terminal's replies when what the app reads comes down a pipe, and terminu-go fixed it. Nothing on screen changes
+for that. In tdp: two points in E3 that catu asked about, the second settled with the user.
+
+- E3: a file only for this run (e.g. catu's copy of what came down a pipe) is none of the four kinds, since nothing is
+  kept; it goes in the system's temporary directory (`$TMPDIR`, `%TEMP%`) and is deleted when the app quits
+- E3: with no screen (a command that prints instead of opening the app), settings, state or data that cannot be read
+  are handled as `Esc` handles them: the app touches no file, prints nothing, writes the path and the reason to stderr
+  and quits with a non-zero exit status
+- changed in this version: E3
+- checklist: E3-26 and E3-27 added (1440 items); the header names v1.2.0-beta.5
+
 ## v1.2.0-beta.4 — 2026-11-04
 
 A fourth beta, the user's choice, so that terminu-go can release alongside it: the lib lets a panel's body say it has
