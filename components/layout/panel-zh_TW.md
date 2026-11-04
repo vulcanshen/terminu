@@ -236,7 +236,7 @@ panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reord
 ### panel.10 位置列
 
 清單上面一列寫目前的位置（路徑、drill 到的層），例：filu 的目錄、sshu 的遠端路徑、kbu 從 Deployment 進到 Pods 的那一層。
-沒有清單、沒有 cursor 的 panel（閱讀用的）也可以有，放在文字上面：viewu 顯示的檔案、webu 顯示的網頁。
+沒有清單、沒有 cursor 的 panel（閱讀用的）也可以有，放在文字上面：catu 顯示的檔案、webu 顯示的網頁。
 **要不要有這一列，app 可以自行決定**。
 
 ```

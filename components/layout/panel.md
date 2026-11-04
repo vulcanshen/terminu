@@ -314,7 +314,7 @@ the mode and makes that row the anchor; then another row is picked and the two a
 
 A row above the list giving where you are now (a path, the level drilled down to), e.g. filu's directory, sshu's remote
 path, the level kbu reaches going from a Deployment into its Pods. A panel without a list or a cursor (a reader) may have
-one too, above its text: the file viewu shows, the page webu shows. **Whether there is one, the app may decide for
+one too, above its text: the file catu shows, the page webu shows. **Whether there is one, the app may decide for
 itself**.
 
 ```

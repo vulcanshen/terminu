@@ -316,7 +316,7 @@ panel，使用者不預期它們有反應，多回應反而是雜訊。
   `[go]to`）；單按 `g` 不做任何事。`g` 後面接的鍵沒有登記成組合時，當作 `g` 沒按過，那個鍵照常作用（`g` 然後
   `j`：往下一列）。不收 `Ctrl-U|Ctrl-D` 當別名。
 - **`PgUp|PgDn` 也是 `u|d`**，跟方向鍵是 `hjkl` 一樣：`u|d` 能移動的地方，它們一樣移動半頁，到第一個、最後一個停住。
-  跟方向鍵一樣，不列在 `u|d` 旁邊（user 2026-11-04，從 viewu 來）。
+  跟方向鍵一樣，不列在 `u|d` 旁邊（user 2026-11-04，從 catu 來）。
 - **`Home`、`End` 只在打字列**：游標到最前面、最後面（[components/input/README](../components/input/README-zh_TW.md)）。清單、menu、
   viewer、textarea 的移動狀態都不作用：那裡有 `gg|G`、`0|$`。
 - **一步一步的移動到頭尾繞回**：在一串項目上一次走一步（`j|k`、`h|l`、方向鍵、`Tab`）—— panel 的清單、一列一個值的 panel、
@@ -785,7 +785,7 @@ App Log（`!`，[components/dialog/note](../components/dialog/note-zh_TW.md)）�
 - **confirm 只是門，不是一種 target**：動作前面有 confirm 時（例：刪除前問一次），照確定之後的那個動作判；在 confirm 上取消，
   一律回到 source（F4）。
 - **搜尋的 input popup 也是門**：搜尋真的執行（`Enter`）時 menu 才收起，有沒有找到都一樣，input popup 與 menu 一起收（F2）；
-  在 input popup 上按 `Esc` 回到 menu（F4；user 2026-11-03，viewu 發現）。
+  在 input popup 上按 `Esc` 回到 menu（F4；user 2026-11-03，catu 發現）。
 - 表上沒有的動作，清不清掉 source，app 可以自行決定，照「使用者用完 target 之後，心裡還想不想看 source」判。
 
 **為什麼**：保留是安全的預設，清掉要有理由 —— 否則使用者完成一件事就找不到回去的路。「該不該清」不能一概而論：

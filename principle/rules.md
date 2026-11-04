@@ -395,7 +395,7 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
   then `j`: down a row). `Ctrl-U|Ctrl-D` are not taken as aliases.
 - **`PgUp|PgDn` are `u|d` too**, as the arrow keys are `hjkl`: wherever `u|d` move, they move the same, half a page,
   stopping at the first and the last item. Like the arrow keys, they are not listed beside `u|d` (the user, 2026-11-04,
-  from viewu).
+  from catu).
 - **`Home` and `End` only on a typing row**: the cursor to the start and the end
   ([components/input/README](../components/input/README.md)). On lists, menus, viewers and a textarea's moving state they
   do nothing: those have `gg|G` and `0|$`.
@@ -965,7 +965,7 @@ open and close animation); a source of several layers closes all of them togethe
   delete), judge by the action done once confirmed; cancelling the confirm always goes back to the source (F4).
 - **A search's input popup is a gate too**: the menu goes once the search runs (`Enter`), found or not, the input popup
   and the menu closing together (F2); `Esc` on the input popup goes back to the menu (F4; the user, 2026-11-03, from
-  viewu).
+  catu).
 - For an action not in the table, whether the source is cleared, the app may decide for itself, judging by "once done
   with the target, does the user still want to see the source?".
 

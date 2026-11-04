@@ -92,7 +92,7 @@ though the same thing is coloured another way elsewhere in the file or in anothe
 A file's format goes by its name, and by its directory where formats share a name: `config` in `.ssh` is SSH config,
 in `.git` Git config. The family fills each such gap one way, as listed below, so that a file looks the same in
 every preview and viewer: the lib colours its preview and its viewers this way and gives the same colouring to an app
-that colours content of its own. A gap found later is added to this list (the user, 2026-11-03, from viewu).
+that colours content of its own. A gap found later is added to this list (the user, 2026-11-03, from catu).
 
 | Format | What | Coloured as |
 |---|---|---|
