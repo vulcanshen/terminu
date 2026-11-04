@@ -266,8 +266,11 @@ keep arriving, as in streaming content.
   focus too (Rules K3): the detail already follows the cursor, and going in shows nothing more (from demou); what is done
   inside a popup is not recorded on its own: the result of the operation it
   belongs to is. The panel filter ([`layout/panel`](../layout/panel.md)) goes unrecorded too: filtering only changes
-  what is in view, like moving the cursor, and a record of it means nothing (the user, 2026-10-27, from terminu-go); nor does a
-  panel's compare mode (note.8; the user, 2026-10-27, from kbu), nor going into or out of any other mode (Rules K11, e.g.
+  what is in view, like moving the cursor, and a record of it means nothing (the user, 2026-10-27, from terminu-go); nor
+  does a `/` search, in a viewer or in a panel without a cursor (note.3, panel.14): finding text only moves what is in
+  view, as filtering changes it, and a search with no hit is recorded only by its Info toast, as every toast is (the
+  user, 2026-11-04, from catu); nor does a panel's compare mode (note.8; the user, 2026-10-27, from kbu), nor going
+  into or out of any other mode (Rules K11, e.g.
   webu's Visual and Focus, kbu's Drag): a mode only changes how you move or look, and what is done in it (copying,
   dropping, pressing a link) is recorded by its result (the user, 2026-10-29). An operation
   is done once it is accepted: cancelled with `Esc` at the confirm before it, or at the form or input popup that takes

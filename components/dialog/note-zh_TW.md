@@ -207,7 +207,9 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
   （例：開 viewer、切換畫面 `Switched to Pods`）。移動 cursor、換 focus（`Tab`、數字鍵）、打開 Space menu、`?`、`!` 不是動作，
   不記；在清單上用 `Enter`（或 menu 上那一列）進明細也是換 focus（Rules K3）：明細本來就跟著 cursor 換，進去沒有多看到什麼
   （來自 demou）；popup 裡的操作不另外記，記的是它所屬那個動作的結果。panel filter（[`layout/panel`](../layout/panel-zh_TW.md)）
-  也不記：篩選只是換看得到的範圍，跟移動 cursor 一樣，記下來沒有意義（user 2026-10-27，來自 terminu-go）；panel 的比較模式
+  也不記：篩選只是換看得到的範圍，跟移動 cursor 一樣，記下來沒有意義（user 2026-10-27，來自 terminu-go）；viewer 與沒有
+  cursor 的 panel 的 `/` 搜尋（note.3、panel.14）也不記：找字只是換看到的地方，跟篩選換範圍一樣，找不到時只記它的 Info toast，
+  跟每一個 toast 一樣（user 2026-11-04，來自 catu）；panel 的比較模式
   （note.8）也不記（user 2026-10-27，來自 kbu），進出其他模式也不記（Rules K11，例：webu 的 Visual、Focus，kbu 的 Drag）：
   模式只是換一種移動或看的方式，在模式裡做完的事（複製、放下、按連結）照它的結果記（user 2026-10-29）。動作確定了才算做了：
   在動作前面的 confirm、或填值的表單與 input popup 上按 `Esc` 取消，動作沒做、沒有結果，不記（confirm 只是門，Rules T1；來自 sshu）。
