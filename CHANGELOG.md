@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.2.0-beta.3 — 2026-11-04
+
+Settled with the user: `PgUp|PgDn` page as `u|d` do, as the arrow keys are `hjkl`. viewu asked: terminu-go already
+paged with them, and tdp did not say. Also three answers to viewu found in the current text and written down. A third
+beta (the user's choice): no app has to change its code for it.
+
+- K12: `PgUp|PgDn` are `u|d` too: wherever `u|d` move, they move the same, half a page, stopping at the first and the
+  last item; like the arrow keys, they are not listed beside `u|d`. `Home|End` stay on the typing row only
+- terminal.5: the history mode's disclosure does not list `PgUp|PgDn` beside `u|d` either; the way in is the live
+  screen's `PgUp:history`
+- K11, menu.4: the selection mode's copy is `Cop[y]`, as M5 marks a letter in the name (was `[y] Copy`)
+- panel.10: a panel without a list or a cursor (a reader) may have a location row too, above its text (the file viewu
+  shows, the page webu shows)
+- panel.15: a tab whose content cannot be made (an invalid JSON's formatted view, a diagram that cannot be drawn) shows
+  the two centred lines of an error
+- changed in this version: K11, K12, menu.4, panel.10, panel.15, terminal.5
+- checklist: K12-18 added (1438 items); the header names v1.2.0-beta.3
+
 ## v1.2.0-beta.2 — 2026-11-03
 
 Settled with the user: every viewer has a search, and a search run from the Space menu clears the menu once it runs.
