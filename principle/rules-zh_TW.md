@@ -973,6 +973,8 @@ app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度�
   運作的選項（例：sshu 的 hosts 與 credentials、hostu 與 locku 的 profiles、filu 的 Open with 清單、kbu 的釘選）；app 替使用者記下的原值
   也是（例：ccdrawu 換掉 Claude Code 的 theme 之前記下的原值）。設定只剩 app 自己一個一個的選項。
 - **快取**：刪了 app 會自己重建或重抓的（例：下載的瀏覽器、索引）。
+- **只給這一次執行用的檔案**（例：catu 把從 pipe 讀進來的內容存成的檔案）：不屬於上面四種，因為什麼都不留；放在系統的
+  暫存目錄（macOS、Linux 是 `$TMPDIR`，Windows 是 `%TEMP%`），app 結束時刪掉。
 
 **換了位置時**：app 改版把東西換到新位置，第一次啟動時逐項搬，跳一個 toast 說從哪裡搬到哪裡：
 
@@ -1013,12 +1015,15 @@ confirm（[components/dialog/confirm](../components/dialog/confirm-zh_TW.md)）�
   `.bak` 已經有了就用 `.bak.1`、`.bak.2`……，一律不蓋掉；問句寫實際會用的名字。資料是一筆一個檔時（例：kamonu 一個家紋一個檔），
   讀不了的那一筆改名成 `.bak` 就好，不另外建，其他照常讀；問句寫 `Move it to <檔名>.bak and go on without it?`。
 - **`Esc`**（`quit`）：離開 app，不是回到 app；路徑與原因寫到 stderr，回到 shell 還看得到要修哪裡。
+- **沒有畫面時**（不打開 app、直接印出來的指令，例：catu 輸出到 pipe）：確認框開不了，照 `Esc` 做：不動任何檔案，路徑與原因
+  寫到 stderr，以非 0 的 exit status 結束，什麼都不印（user 2026-11-04，從 catu 來）。
 - **快取**讀不了：不問，丟掉重建。
 - **app 外面的東西**讀不到（叢集、網路、遠端）：不是 app 自己有問題，app 照常開著，照 [components/layout/panel](../components/layout/panel-zh_TW.md)
   的「loading 與錯誤」寫，細節記進 App Log（F5）。
 
 讀不了的時候還照常操作，接下來存檔就可能把使用者的東西蓋掉；改名成 `.bak` 一個鍵就能重新開始，原本的東西一點都沒丟。不想讓 app 動它
-的人按 `Esc` 離開，自己處理。
+的人按 `Esc` 離開，自己處理。沒有畫面時沒有人可以問，所以不搬檔案；用預設值照樣印，script 拿到的結果就跟設定說的不一樣，
+而且沒人發現；停下來才看得到要修哪裡，就像 `~/.gitconfig` 壞了，git 每個指令都停下來。
 
 **家族共用的設定 key**：同一件事在每個 app 的設定檔裡用同一個名字，有用到的 app 才有。
 

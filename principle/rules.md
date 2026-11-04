@@ -1192,6 +1192,9 @@ out as on macOS and Linux, not in `%APPDATA%`.
   for the user (e.g. what ccdrawu notes before replacing Claude Code's theme). Config is left with the app's own
   single options.
 - **Cache**: deleting it makes the app rebuild or fetch it again (e.g. a downloaded browser, an index).
+- **A file only for this run** (e.g. catu's copy of what came down a pipe): none of the four, since nothing is kept;
+  it goes in the system's temporary directory (`$TMPDIR` on macOS and Linux, `%TEMP%` on Windows) and is deleted
+  when the app quits.
 
 **When a location changes**: when a new version of the app moves something to a new location, the first start moves it
 item by item and shows a toast saying from where to where:
@@ -1242,6 +1245,9 @@ permission… whatever the cause), the app does not go on working in that state:
   usual; the question reads `Move it to <name>.bak and go on without it?`.
 - **`Esc`** (`quit`): quits the app, rather than going back to it; the path and the reason are written to stderr, so the
   shell still shows what to fix.
+- **With no screen** (a command that prints instead of opening the app, e.g. catu writing into a pipe): no confirm can
+  open, so the app does as `Esc` does: it touches no file, writes the path and the reason to stderr and quits with a
+  non-zero exit status, printing nothing (the user, 2026-11-04, from catu).
 - **A cache** that cannot be read: no question; it is thrown away and rebuilt.
 - **Something outside the app** that cannot be read (a cluster, the network, a remote host): the app itself is fine and
   stays open; the panel shows it as "Loading and errors" in [components/layout/panel](../components/layout/panel.md)
@@ -1249,7 +1255,9 @@ permission… whatever the cause), the app does not go on working in that state:
 
 Working on as usual while a file cannot be read could overwrite the user's things at the next save; renaming it to
 `.bak` starts again with one key and loses nothing. Whoever does not want the app to touch it presses `Esc`, quits and
-deals with it themselves.
+deals with it themselves. With no screen there is nobody to ask, so the file is not moved; and printing with the
+defaults would give a script output other than what the settings say, unnoticed, while stopping shows what to fix, as
+git stops every command on a damaged `~/.gitconfig`.
 
 **Config keys shared by the family**: the same setting has the same name in every app's config file, in the apps that use
 it.

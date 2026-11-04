@@ -391,6 +391,8 @@ tdp v1.2.0-beta.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](R
 | E3-23 | E3 | app 不再用的設定、狀態、資料檔不刪、不跳 toast；檔案還在時每次啟動在 App Log 記一筆 INFO，寫出路徑 | 不再用的檔 | 放一個 app 不再用的舊檔後啟動，看 App Log 與磁碟；重開再看一次 App Log |
 | E3-24 | E3 | 設定檔裡 app 不再讀的 key 留著，app 重寫那個檔時也留著，不跳 toast；每次啟動在 App Log 記一筆 INFO，寫出 key 與檔案 | 不再用的設定 key | 在設定檔放一個 app 不再讀的 key 後啟動，改一個設定，看檔案與 App Log；重開再看一次 App Log |
 | E3-25 | E3 | app 不再用的快取在第一次啟動時刪掉，App Log 記一筆 INFO，寫出在哪裡、多大 | 不再用的快取 | 放舊的快取後啟動，看磁碟與 App Log |
+| E3-26 | E3 | 只給這一次執行用的檔案（例：從 pipe 讀進來的內容）放在系統的暫存目錄，不在 config、data、cache 的位置，app 結束後就不在了 | 有只給這一次執行用的檔案 | 執行、找到那個檔案、結束：它在 `$TMPDIR` 裡，結束後不在了 |
+| E3-27 | E3 | 沒有畫面時（不打開 app、直接印出來的指令），設定、狀態或資料讀不了：不動任何檔案、什麼都不印，路徑與原因寫到 stderr，以非 0 的 exit status 結束 | 沒有畫面也能印、又存設定或資料 | 把設定檔弄壞，把印出來的指令接到 pipe：什麼都沒出來，stderr 寫出檔案與原因，`echo $?` 不是 0，也沒有出現 `.bak` |
 | E4-1 | E4 | 程式碼裡的 PUA glyph 寫成 code point | 都要 | 讀程式：掃原始碼找不到 PUA 字元 |
 | E4-2 | E4 | README 的需求段寫明需要 Nerd Font | 都要 | 讀兩份 README 的前置需求 |
 | E4-3 | E4 | README 的需求段跟 Nerd Font 並列寫明需要 truecolor terminal（24-bit 色） | 都要 | 讀兩份 README 的前置需求 |
