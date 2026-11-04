@@ -331,8 +331,10 @@ itself**.
   unfocused (Rules T2).
 - **Too long**: cut at the front with `…`, keeping the end (the level you are on is the last part).
 - **Shown only**: it cannot be acted on; the cursor never stops on it, and the scroll position does not count it.
-- **Stays when the list is empty**: the empty state replaces the header and the list, not the location row — it says
-  where you are, not what the list holds, and an empty directory needs saying which one it is all the more.
+- **Stays when the list is empty, while loading and on an error**: the empty state, the loading line and an error's two
+  lines ("Loading and errors") replace the header and the list (a reader's text), not the location row — it says where
+  you are, not what the list holds, and an empty directory, or one that cannot be read, needs saying which one it is all
+  the more.
 
 **Why**: "where am I now" written in the label makes the label longer and longer, until the capsule's truncation eats
 it; written in a row of its own inside the panel, the whole path fits, and the label stays the panel's name. Lavender:
