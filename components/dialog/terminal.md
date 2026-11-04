@@ -92,6 +92,8 @@ history is a mode (Rules K11), and only there do the family's movement keys work
 - **Any other key**: leaves the mode first, back to the live screen, then goes to the subprocess as usual — typing
   right after reading the history puts the characters in the shell.
 - **Disclosure**: as in K11, the keys of the mode are written in the bottom border's hint and in the `?` key reference.
+  `PgUp|PgDn` are not listed beside `u|d`, as anywhere else (Rules K12); the way in is the live screen's
+  `PgUp:history`.
 
 **Why**: going to the top and the bottom is `gg|G` throughout the family, a PTY's history included; but on the live
 screen every letter must reach the subprocess, so the family's movement keys can only work inside a mode. `PgUp` is the
