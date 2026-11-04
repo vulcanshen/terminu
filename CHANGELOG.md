@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.2.0-beta.4 — 2026-11-04
+
+A fourth beta, the user's choice, so that terminu-go can release alongside it: the lib lets a panel's body say it has
+failed while it draws, which catu needs (a diagram can be drawn or not depending on the panel's width). Nothing on
+screen changes for that. In tdp: one point written down from panel.10's reason, found by terminu-go, and viewu's new
+name.
+
+- panel.10: the location row stays while loading and on an error too, as when the list is empty: the loading line and
+  an error's two lines (panel.15) replace the header and the list (a reader's text), not the location row
+- viewu is now catu (the user renamed it): panel.10's example and where K12, T1 and file-picker.3 came from say catu
+- changed in this version: panel.10 (and the mentions of viewu in K12, T1, file-picker.3)
+- checklist: panel-134 changed (1438 items); the header names v1.2.0-beta.4
+
 ## v1.2.0-beta.3 — 2026-11-04
 
 Settled with the user: `PgUp|PgDn` page as `u|d` do, as the arrow keys are `hjkl`. viewu asked: terminu-go already
