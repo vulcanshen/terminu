@@ -340,12 +340,18 @@ itself**.
   lines ("Loading and errors") replace the header and the list (a reader's text), not the location row — it says where
   you are, not what the list holds, and an empty directory, or one that cannot be read, needs saying which one it is all
   the more.
+- **Items that hold items** (filu's directories, webu's bookmark folders): walked one level at a time, as filu walks its
+  directories, never drawn as a tree that folds open. `Enter` on one goes in, the location row naming the path down to
+  it; the list, its panel filter and its `N of M` hold only the level you are on. `Esc` goes up one level (Rules K4),
+  the cursor back on the one you came out of; at the top it does nothing (the user, 2026-11-09, from webu).
 
 **Why**: "where am I now" written in the label makes the label longer and longer, until the capsule's truncation eats
 it; written in a row of its own inside the panel, the whole path fits, and the label stays the panel's name. Lavender:
 it is the footprint the user left on the way here, the same meaning as the "where you are now" values on the statusbar.
 Not every app has a "where" to show, so the row is optional. A glyph only helps the eye and says nothing the text
 does not, so it is the app's to add; it is kept when the row is cut, since it tells what kind of place the rest is.
+Items in items are walked as the family walks directories, so going in and coming out is the same everywhere and
+needs no second kind of list; the cursor going back to the one you came out of saves finding it again.
 
 ### panel.11 Groups
 
