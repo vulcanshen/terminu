@@ -15,7 +15,7 @@
   `YAML — pod/nginx`）。glyph app 可以自行決定；key reference 與 error popup 的 glyph 見下面。
 - **捲動位置**：放不下時，下框右邊寫看得到的行 `N-M of T`；viewer 的選取模式裡寫游標所在的行 `N of M`（見下面的「選取模式」）。
   viewer 折行時，N 是最上面那一列所屬的行，M 是最下面那一列所屬的行，T 是總行數（例：最上面是第 6 行折下來的那一列、最下面是
-  第 10 行，寫 `6-10 of 42`）。
+  第 10 行，寫 `6-10 of 42`）。搜尋有命中時，搜尋的狀態在它左邊（note.3）。
 - **寬度**：內容打開時就確定的（key reference、error popup、說明）照內容；viewer 的內容寬度不確定，用 Rules F7 的上限。
 - **太長時折行**：error popup、表單的打字說明這種一段話的 note，放不下時照 [components 的「折行」](../README-zh_TW.md) 折行，不截斷。
   key reference 的說明例外，見下面。
@@ -75,7 +75,10 @@
 - **viewer 的搜尋**：每個 viewer（note.4）與按鍵說明（note.5）都有 `/`（user 2026-10-29，照 kbu 的 YAML viewer 與 webu 的網頁；
   每一個都有，user 2026-11-03：在一個 viewer 用過 `/` 的人，到下一個也會按，按了沒反應就像壞掉）。`/` 開一個 input popup 問要找的字
   （[`input/text`](../input/text-zh_TW.md)；標題與 glyph，app 可以自行決定）；命中的字照 note.2 畫。`n|N` 跳到下一筆、上一筆，
-  到頭尾繞回，畫面捲到看得見那一筆。一筆都沒有時，跳一個 Info toast 說沒有（[`dialog/toast`](toast-zh_TW.md)）。viewer 關掉，
+  到頭尾繞回，畫面捲到看得見那一筆。一筆都沒有時，跳一個 Info toast 說沒有（[`dialog/toast`](toast-zh_TW.md)）。有命中時，
+  下框右邊、捲動位置的左邊寫搜尋的狀態：`/`、要找的字，再來是目前在第幾筆、共幾筆（例：`/goroutine 2 of 5 ━ 6-10 of 42 ━┛`），
+  顏色跟捲動位置一樣；字太長時從尾端截、加 `…`，數字留著；命中的字不見，狀態也跟著不見。跟 vim 顯示 `[2/5]` 一樣，看得出
+  總共幾筆，也看得出 `n` 已經繞回第一筆（user 2026-11-09，來自 webu）。viewer 關掉，
   命中的字跟著不見。沒有 cursor 的 panel 搜自己的文字也一樣，在那裡 `Esc` 先清掉命中的字（[`layout/panel`](../layout/panel-zh_TW.md)，panel.14）。
   從 Space menu 執行時，真的搜了 menu 才收起，在 input popup 上按 `Esc` 回到 menu（Rules T1）。
 - **hint**：note 自己的熱鍵寫在前面，`Esc:close` 放最後；有 tab 時 `h|l:tab` 寫在最前面（[`layout/popup`](../layout/popup-zh_TW.md) 的 hint）。例：`y:copy /:search v:visual Esc:close`。

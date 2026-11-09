@@ -18,7 +18,8 @@ menu, not a note.
 - **Scroll position**: when the content does not fit, the right end of the bottom border shows the visible lines,
   `N-M of T`; in a viewer's selection mode, the cursor's line `N of M` (see "Selection mode" below). When a viewer
   wraps, N is the line of the top row, M the line of the bottom row and T the number of lines (e.g. the top row is a
-  wrapped row of line 6 and the bottom row is line 10: `6-10 of 42`).
+  wrapped row of line 6 and the bottom row is line 10: `6-10 of 42`). While a search has hits, its status is just left
+  of it (note.3).
 - **Width**: notes whose content is known when they open (the key reference, the error popup, explanations) follow the
   content; a viewer's content width is not known, so it takes the Rules F7 cap.
 - **Wrapping when too long**: a note that is a piece of prose, such as the error popup or a form's typing explanation,
@@ -97,8 +98,12 @@ a file looks the same in the preview and in a viewer.
   YAML viewer and webu's pages have it; every one, the user, 2026-11-03: someone who has used `/` in one viewer presses
   it in the next, and a key that does nothing there looks broken). `/` opens an input popup asking for the text ([`input/text`](../input/text.md); its title and glyph, the app may decide
   for itself); the hits are drawn as note.2 says. `n|N` go to the next and the previous hit, wrapping at the ends, the
-  view scrolling it into sight. With no hit, an Info toast says so ([`dialog/toast`](toast.md)). The hits go when the
-  viewer closes. A panel without a cursor searches its text the same way, `Esc` clearing the hits there
+  view scrolling it into sight. With no hit, an Info toast says so ([`dialog/toast`](toast.md)). While there are hits,
+  the bottom border shows the search's status just left of the scroll position: `/`, the text, then which hit is the
+  current one and how many there are (e.g. `/goroutine 2 of 5 ━ 6-10 of 42 ━┛`), in the scroll position's colour; a
+  long text is cut at the end with `…`, the numbers kept, and the status goes with the hits. As vim shows `[2/5]`, it
+  says how many there are and when `n` has wrapped back to the first (the user, 2026-11-09, from webu). The hits go
+  when the viewer closes. A panel without a cursor searches its text the same way, `Esc` clearing the hits there
   ([`layout/panel`](../layout/panel.md), panel.14). Run from the Space menu, the menu goes once the search runs, and
   `Esc` on the input popup goes back to the menu (Rules T1).
 - **Hint**: the note's own hotkeys first, `Esc:close` last; with tabs, `h|l:tab` comes first (the hint in

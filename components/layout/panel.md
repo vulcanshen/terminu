@@ -20,7 +20,7 @@ in [`screen`](screen.md).
 - **Left of the bottom border: the hint**, which every panel must have — the exceptions are while the focus is on a
   panel filter's typing row and while it is in a PTY in the panel: no hint then, and it comes back on the list or on
   leaving the PTY; nor when no key on the panel does anything (see the hint below). Right of the bottom border: the
-  scroll position
+  scroll position, and while a search has hits, its status left of it ([`dialog/note`](../dialog/note.md), note.3)
   (see "Ordinary lists" below).
 - **Text on the frame always keeps one line segment away from the corner**; only the `[N] label` capsule sits right after
   the top-left corner: the hint is `┗━ Enter:logs`, the scroll position `3 of 40 ━┛`, the mode name `┫Drag┣━┓`.
@@ -39,7 +39,8 @@ with), `Enter` and the hotkeys on an item are dropped, and only those on the who
 form's buttons, the hint shows only keys that do something ([`input/finder`](../input/finder.md),
 [`dialog/form`](../dialog/form.md)). When no key is left after that (e.g. a read-only panel, or an empty list with no
 key on the whole panel), the left of the bottom border has no hint, only the line. When focused, keys Blue and descriptions Overlay0; unfocused, it stays and is dimmed with
-the panel. When it does not fit, whole pairs are dropped from the end, and the scroll position stays.
+the panel. When it does not fit, whole pairs are dropped from the end, and the scroll position stays, with a search's
+status (note.3).
 
 **Why**: the hint on a panel's bottom border tells the user "what pressing what does on this panel", while the footer
 covers only the keys common to the whole screen; each covers one level, and with every panel having one, the user's eyes
@@ -330,6 +331,10 @@ itself**.
 - **Colour**: Lavender (the user footprint and breadcrumb in [`color`](../color.md)); dimmed with the panel when it is
   unfocused (Rules T2).
 - **Too long**: cut at the front with `…`, keeping the end (the level you are on is the last part).
+- **A glyph before it**: the row may start with one glyph for the kind of place it shows (e.g. webu's `󰖟` before a
+  page's address), then one space; in the row's colour, dimmed with it. When the row is too long only the text is cut:
+  the glyph stays and the `…` follows it. **Whether there is one, and which, the app may decide for itself** (the user,
+  2026-11-09, from webu).
 - **Shown only**: it cannot be acted on; the cursor never stops on it, and the scroll position does not count it.
 - **Stays when the list is empty, while loading and on an error**: the empty state, the loading line and an error's two
   lines ("Loading and errors") replace the header and the list (a reader's text), not the location row — it says where
@@ -339,7 +344,8 @@ itself**.
 **Why**: "where am I now" written in the label makes the label longer and longer, until the capsule's truncation eats
 it; written in a row of its own inside the panel, the whole path fits, and the label stays the panel's name. Lavender:
 it is the footprint the user left on the way here, the same meaning as the "where you are now" values on the statusbar.
-Not every app has a "where" to show, so the row is optional.
+Not every app has a "where" to show, so the row is optional. A glyph only helps the eye and says nothing the text
+does not, so it is the app's to add; it is kept when the row is cut, since it tells what kind of place the rest is.
 
 ### panel.11 Groups
 
