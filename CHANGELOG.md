@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.2.2 — 2026-11-09
+
+A patch, the user's choice: no member has to change now. webu goes first, and the others align when they next work on
+a feature. Settled with the user: the two points webu's review found tdp did not cover (issues #2 and #3).
+
+- components.5: a document drawn from markup (a web page in a reader, a Markdown file drawn as a document) is drawn as
+  a browser shows it: in running text a Tab and a `\n` are white space; in a code block a Tab is `input_tab_width`
+  spaces and a `\n` a line break; any other control character, a colour code's ESC included, is drawn by name in red,
+  with no colour from the document (from webu)
+- panel.10: items that hold items (filu's directories, webu's bookmark folders) are walked one level at a time, as filu
+  walks its directories, never drawn as a tree that folds open: `Enter` goes in, the location row naming the path; the
+  list, its panel filter and its `N of M` hold that level only; `Esc` goes up one level with the cursor on the one you
+  came out of, and does nothing at the top (from webu)
+- changed in this version: components.5, panel.10
+- checklist: components-33 and panel-158 added (1444 items); the header names v1.2.2
+
 ## v1.2.1 — 2026-11-09
 
 A patch, the user's choice: no member has to change now. webu goes first, and the others align when they next work on
