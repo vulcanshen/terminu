@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.2.1 — 2026-11-09
+
+A patch, the user's choice: no member has to change now. webu goes first, and the others align when they next work on
+a feature. Settled with the user: three points from catu's question and webu's two requests for the lib.
+
+- note.7: a `/` search, in a viewer or in a panel without a cursor, is not recorded, as the panel filter is not:
+  finding text only moves what is in view; a search with no hit is recorded only by its Info toast (from catu)
+- panel.10: a location row may start with a glyph for the kind of place it shows, then one space, in the row's colour;
+  when the row is too long only the text is cut, the glyph staying and the `…` following it. Whether there is one, and
+  which, the app may decide for itself (from webu)
+- note.3: while a `/` search has hits, the bottom border shows its status just left of the scroll position: `/`, the
+  text, the current hit and how many (e.g. `/goroutine 2 of 5`), in the scroll position's colour; a long text is cut
+  with `…`, the numbers kept; it goes with the hits. note.2's scroll position and panel.1's bottom border name it, and
+  when the hint does not fit, the scroll position and the search's status stay (from webu)
+- changed in this version: note.2, note.3, note.7, panel.1, panel.10
+- checklist: panel-157 and note-89 added, note-77 changed (1442 items); the header names v1.2.1
+
 ## v1.2.0 — 2026-11-04
 
 The stable release after five betas, settled with the user: tdp says what should be, whatever the language. What
