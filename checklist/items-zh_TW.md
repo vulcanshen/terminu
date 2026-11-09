@@ -476,6 +476,7 @@ tdp v1.2.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | components-30 | components.5 | app 自己寫的名字與短字裡沒有換行字元：用一般資料（沒有刁鑽值）走過時，畫面上沒有紅色的 `\n` | 都要 | 用一般資料走過每個會跳訊息的地方（error popup、toast、confirm）；或讀程式：app 的字串裡沒有 `\n` |
 | components-31 | components.5 | error popup 的訊息、toast、confirm 的內容有好幾列時，每一列另起一列、太長折行，列跟列之間不空列 | 都要 | 讓一個訊息有兩列，看畫面 |
 | components-32 | components.5 | 外面來的好幾行字不整段放進短字：放說原因的那一行，全文寫進 App Log | 都要 | 讓外面的程式失敗、吐出好幾行錯誤，看 toast 或 error popup 與 App Log |
+| components-33 | components.5 | 從標記語言畫出來的文件（閱讀器裡的網頁、畫成文件的 Markdown 檔）：一般文字裡的 Tab 與 `\n` 是空白；程式碼區塊裡 Tab 是 `input_tab_width` 格空白、`\n` 是換行；其他控制字元，包括顏色碼的 ESC，畫成紅色的名字，顏色不從文件來 | 從標記語言畫出來的文件 | 開一個網頁或 Markdown 檔：段落裡有 Tab 與換行、程式碼區塊用 Tab 縮排、文字裡有 `\x1b[31m`：段落接成一段、中間是空白，程式碼保留縮排，`\x1b` 是紅字，後面的字沒有變紅 |
 
 ## color
 

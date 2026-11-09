@@ -117,6 +117,14 @@ depends on the group it is in:
     state.
   - Any other control character, and any sequence that is not a colour code (e.g. `\x1b[2J`, which clears the screen),
     is drawn by name in red.
+- **A document drawn from markup** (a web page in a reader, a Markdown file drawn as a document): content for reading
+  too, but drawn as its own medium shows it, which is a browser's way, not a terminal's (the user, 2026-11-09, from
+  webu) —
+  - In running text a Tab and a `\n` are white space, as a space is (a Markdown soft line break included).
+  - In a code block (a page's `<pre>`, a Markdown code block), a Tab is drawn as `input_tab_width` spaces and a `\n`
+    is a line break.
+  - Any other control character, the ESC of a colour code included, is drawn by name in red: no colour comes from
+    the document.
 - **Names and short text** (values on forms and panels, list cells, menu labels and descriptions, popup titles,
   toasts, confirms, error popups, options, explanation rows, empty states, the statusbar, tab names, finder items): as
   a value on a form, with nothing interpreted — every control character, a Tab, a `\n` and the ESC of a colour code
@@ -139,7 +147,9 @@ rename input must all show the same thing. The app's own text carries no line br
 name look the same on screen; the lib once broke lines at the app's `\n`, and when it began drawing them by name the
 app's `\n`s quietly turned red, unseen by the compiler and the tests (from sshu). With the app giving a row at a time,
 a red `\n` on screen always speaks of something from outside (the user, 2026-10-24). Content for reading is different: a program's output is meant to look that
-way in a terminal, so drawing it as a terminal would is how it really looks, and red names would only hide it.
+way in a terminal, so drawing it as a terminal would is how it really looks, and red names would only hide it. A document drawn from
+markup is meant for a browser, so it is drawn as a browser would: white space as the markup lays it out, and no
+colour from a colour code, which a browser does not interpret and which would change the app's colours.
 
 ## components.6 Choosing among the options
 

@@ -476,6 +476,7 @@ The items of tdp v1.2.1. What each column means and what an item applies to: [RE
 | components-30 | components.5 | The app's own names and short text carry no line breaks: walked with ordinary data (no tricky values), the screen shows no red `\n` | everyone | Walk every place that shows a message (error popup, toast, confirm) with ordinary data; or read the code: no `\n` in the app's strings |
 | components-31 | components.5 | An error popup's message, a toast or a confirm's content with several rows: each starts a row of its own and wraps, with no blank row between them | everyone | Give a message two rows and look at the screen |
 | components-32 | components.5 | Several lines from outside are not put whole into short text: the line saying why goes there, the whole into the App Log | everyone | Make an outside program fail with several lines of error; look at the toast or error popup and the App Log |
+| components-33 | components.5 | A document drawn from markup (a web page in a reader, a Markdown file drawn as a document): a Tab or a `\n` in running text is a space; in a code block a Tab is `input_tab_width` spaces and a `\n` a line break; any other control character, a colour code's ESC included, is drawn by name in red, with no colour from the document | document from markup | Open a page or a Markdown file with a Tab and a line break in a paragraph, a Tab-indented code block and a `\x1b[31m` in the text: the paragraph runs on with spaces, the code keeps its indent, `\x1b` shows in red and nothing turns red after it |
 
 ## color
 
