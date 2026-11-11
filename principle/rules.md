@@ -376,8 +376,8 @@ and one would only be noise.
 
 ### K12 Navigation letters are kept for movement; hjkl are the arrow keys
 
-Where you are not typing (outside the input state, K8), `j k u d g G h l` are kept for movement, and no action takes them. `h|j|k|l` are
-`←|↓|↑|→`, meaning what the layout makes them mean:
+Where you are not typing (outside the input state, K8), `j k u d g G h l` are kept for movement, and no action takes them
+(a mode's key with nothing to move excepted, below). `h|j|k|l` are `←|↓|↑|→`, meaning what the layout makes them mean:
 
 - **With a left-right structure** (tabs within one surface, two sides, a grid): up, down, left and right. `j|k` move up
   and down a list, `h|l` go left and right — switching tabs, crossing to the other side, the day before or after in a
@@ -411,6 +411,12 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
   previous word start, word end) and `0|$` (line start, line end), as in vim. A viewer has no cursor by default, and
   `h|l` switch tabs as above; in its selection mode `h|l` move the cursor and tabs do not switch (the selection mode
   in [components/dialog/note](../components/dialog/note.md)).
+- **A key with nothing to move, in a mode** (K11): where a movement key has no movement to make in a mode (e.g. tetru's
+  Play mode, where a piece never goes up, so `k` and `↑` have nothing to do), the mode may give it an action of its own
+  (tetru: `k` turns the piece). The key and the arrow key or `PgUp|PgDn` that is the same key do the same thing. It is
+  disclosed as the mode's other keys are: in the mode's Space menu, its `?` key reference and the footer or
+  bottom-border hint. Outside a mode, and for a key that does move in the mode, nothing changes (the user, 2026-11-11,
+  from tetru).
 
 **Why**: in the family hjkl are the arrow keys — forms, panels and lists all move with them; an app binding one to an
 action has users trigger an action while they think they are moving. With a left-right structure, left and right are
@@ -424,7 +430,10 @@ somewhere nobody can guess, so `u|d` stop. `Home` and `End` only on a typing row
 they are needed; elsewhere a key already does the job, and no second key is given. `PgUp|PgDn` are another matter,
 taken as the arrow keys are: printed on the key cap, they are nothing to remember, and someone not used to vim pages
 with them first, so one doing nothing looks broken; unlike `Ctrl-D`, which in a terminal often means "end of input",
-they mean nothing else. A stray `g` does not make the next key fail.
+they mean nothing else. A stray `g` does not make the next key fail. A key with nothing to move is another matter: where
+nothing can go up, nobody pressing `k` means to move up, so what keeping the letters guards against is not there, and
+falling-block games have long turned a piece with `↑`. Only in a mode, which shows that it is one: lists, menus and
+forms keep every key as it is.
 
 ---
 
