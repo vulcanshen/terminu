@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.2.3 — 2026-11-11
+
+A patch, the user's choice: no member has to change now; the others align when they next work on a feature. Released
+as one batch with terminu-go, rather than a patch a round (the user). Settled with the user: two points tetru, the
+family's falling-block game, found tdp did not cover (issues #4 and #5).
+
+- K12: in a mode, a movement key with no movement to make (e.g. `k` and `↑` where a piece never goes up) may do an action
+  of the mode's own, the arrow key or `PgUp|PgDn` that is the same key doing the same; it is disclosed as the mode's
+  other keys are. Outside a mode, and for a key that does move, nothing changes (from tetru)
+- K11: whether the user may set a mode's own keys, which keys and how, the app may decide for itself; a key that already
+  does something in that mode (another of its keys, a core key) is refused with a Warning naming what has it, and is
+  not set; the mode's Space menu, `?` and hint show the keys in force; core keys and panel keys are not the user's to
+  change (from tetru)
+- changed in this version: K11, K12
+- checklist: K11-14 and K12-19 added, K12-1 changed (1446 items); the header names v1.2.3
+
 ## v1.2.2 — 2026-11-09
 
 A patch, the user's choice: no member has to change now. webu goes first, and the others align when they next work on
