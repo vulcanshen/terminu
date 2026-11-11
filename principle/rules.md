@@ -361,6 +361,12 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 - **A mode on a PTY** (e.g. a terminal's history mode or selection mode): the focus is still in the PTY, so any key other
   than the mode's own keys, `Space`, `?` and `Esc` first leaves the mode, then goes to the child process by K10 — `q` and `Ctrl-C`
   too; they do not start the quit flow ([components/dialog/terminal](../components/dialog/terminal.md)).
+- **Keys the user sets** (e.g. tetru lets the player change the Play mode's keys): whether the user may change a mode's
+  own keys, which keys can be picked and how they are set, **the app may decide for itself**. What holds: a key the
+  user picks must not be one that already does something in that mode (another of the mode's keys, or a core key
+  above); picking one shows a Warning ([components/dialog/toast](../components/dialog/toast.md)) naming what has it,
+  and the key is not set. The mode's Space menu, `?` and hint show the keys in force. Core keys and the keys of
+  panels are not the user's to change (the user, 2026-11-11, from tetru).
 
 **Why**: "when in doubt, hit `Space`" holds inside a mode too — the family's idea is zero learning cost, so when the
 user in a mode does not know what to do, `Space` must answer (the user, 2026-10-22). A mode's keys are mostly movement
@@ -372,7 +378,9 @@ switches screens in the middle of a drag would leave the drag in a state nobody 
 needs to list the mode's keys; to do something else, `Esc` first — the same idea as a PTY. The digit keys switch panels,
 like `Tab`, so users expect a response and a suspended one must respond; other letters stay silent, so random presses do
 not pop up a string of toasts. In a popup, `Tab` and the digits never switch panels anyway, so users expect no response,
-and one would only be noise.
+and one would only be noise. A mode's keys are pressed by feel and in runs, as a game's are, and hands differ; they act
+only inside the mode, so a user changing them moves nothing anywhere else in the family. A key that already does
+something there would do two things at once, so it is refused, saying why.
 
 ### K12 Navigation letters are kept for movement; hjkl are the arrow keys
 
