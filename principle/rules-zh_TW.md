@@ -273,26 +273,17 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 | `Space` | 打開這個模式的 Space menu（見下面） |
 | `!` | 不作用（App Log 在模式外打開） |
 | `?` | 這個模式的 key reference（唯讀，K6）：模式裡能按什麼鍵、做什麼 |
-| `Esc` | 離開模式（K4），回到進入前的狀態；模式有好幾層時一次退一層（例：`Visual>select` 退回 `Visual`）；離開 app 自己的模式時可以跳出 popup（見下面） |
+| `Enter` | 在模式裡做最直覺的事（K3）：tdp 規定的模式照那裡寫的（例：Drag 放下拿著的那一列）；app 自己的模式由 app 決定（見下面） |
+| `Esc` | 離開模式（K4），回到進入前的狀態（app 自己的模式離開後留下什麼見下面）；模式有好幾層時一次退一層（例：`Visual>select` 退回 `Visual`）；離開 app 自己的模式時可以跳出 popup（見下面） |
 | `q`、`Ctrl-C` | 照 K9 進入離開流程 |
-| `Tab`、`1`–`9` | 模式在 panel 上時：模式可以暫停 `Tab` 與數字鍵，但按了要有回應，說明先 `Esc` 離開模式（例：toast）；toast 還在時，第一個 `Esc` 先收掉它（K4）。模式在 popup 裡時見下面 |
+| `Tab`、`1`–`9` | 模式在 panel 上時：模式可以暫停 `Tab` 與數字鍵，但按了要有回應，說明先 `Esc` 離開模式（例：toast）；toast 還在時，第一個 `Esc` 先收掉它（K4）。在模式外也不會做事的鍵（例：只有一個 panel 的畫面上的 `Tab`、`2`，或已經 focus 的那個 panel 的數字，K1），在模式裡也不作用，不出聲。模式在 popup 裡時見下面 |
 
 - **模式裡只有模式自己的鍵與上表的 core key 作用**：panel 的熱鍵與 global 熱鍵都不作用，按了不出聲。
-- **模式的 Space menu**（[components/dialog/menu](../components/dialog/menu-zh_TW.md) 的「模式裡」；app 自己的模式見下一點）：只列模式裡能做的事，分兩區 ——
+- **模式的 Space menu**（[components/dialog/menu](../components/dialog/menu-zh_TW.md) 的「模式裡」；app 自己的模式見下面）：只列模式裡能做的事，分兩區 ——
   **項目操作**：現在對 cursor 上那一項（或選起來的範圍）能做的事，選了就等於按那個鍵（例：Compare 模式的 `[C]ompare`、選取模式
   開始選之後的 `Cop[y]`）；**模式操作**：這個模式本身的鍵 —— 移動鍵只顯示、不能執行，離開模式這種真的做事的照樣能執行。
   panel、item、global 的動作一律不列。模式的鍵也揭露在 `?` 的 key reference 與 footer / 下框 hint（footer 在模式裡的樣子見
   [components/layout/screen](../components/layout/screen-zh_TW.md)）。
-- **app 自己的模式的 Space menu**（tdp 的元件沒有規定的模式；元件裡的 compare、Drag、選取、歷史模式照上面列）：
-  列什麼、怎麼分區，**app 可以自行決定**。要守的：`Space` 照樣
-  打開它，至少有一列；標題與樣子跟其他模式的 Space menu 一樣（[components/dialog/menu](../components/dialog/menu-zh_TW.md)）；
-  模式的每個鍵照樣列在模式的 `?`，列出全部的鍵就在那裡；footer 或提示照上面（user 2026-11-11，來自 tetru）。
-- **離開 app 自己的模式**：按 `Esc` 離開時，要不要跳出一個 popup 說離開後的狀態（例：暫停，用 confirm 問要不要繼續），
-  **app 可以自行決定**。跳出來的話：只能一個；模式已經離開（模式名與外框顏色都恢復）；在它上面按 `Esc` 是關掉它、留在模式外面，
-  不會回到模式；要回到模式，是 popup 可以提供的動作（例：`Enter`）（user 2026-11-12，來自 tetru）。
-- **app 自己的模式的 footer**：在 `Space:menu ?:help` 與最後的 `Esc:<離開的動詞>` 中間寫哪些鍵，**app 可以自行決定**：
-  模式裡能按的鍵都可以，core key 也可以（例：`q:quit`），每個鍵做的事照它在模式裡的作用（上面的表；`q` 進入離開流程，K9）
-  （[components/layout/screen](../components/layout/screen-zh_TW.md) 的 screen.2；user 2026-11-12，來自 tetru）。
 - **模式要標示自己**：模式名顯示在模式所在的框（panel 或 popup）的上框右側，外框換成模式色；離開模式就恢復。模式名開關時有一小段
   動畫，不會讓模式等它：模式與外框顏色都立刻換。模式名是字，
   不只靠顏色：模式裡 focus 的 panel 照樣看得出是 focus（L5）。模式有好幾層時，模式名把層接在後面、用 `>` 隔開（例：viewer 的
@@ -306,6 +297,32 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
   **app 可以自行決定**。要守的：使用者選的鍵不能是這個模式裡已經有作用的鍵（模式的其他鍵、上表的 core key）；選到時跳
   Warning（[components/dialog/toast](../components/dialog/toast-zh_TW.md)）寫出被誰用了，這個鍵不設定。模式的 Space menu、
   `?` 與提示寫的是目前作用的鍵。core key 與 panel 的鍵都不給使用者改（user 2026-11-11，來自 tetru）。
+- **app 自己的模式**（tdp 的元件和規則都沒有規定的模式；元件的 compare、Drag、選取、歷史模式與 K12 的逐項模式是 tdp 的），
+  tdp 給元件裝不下的東西開的口（Principle P5）：
+  - **什麼時候能做**：只限 tdp 的元件和規則都沒有的事，例：玩遊戲、畫圖（[components/layout/panel](../components/layout/panel-zh_TW.md)
+    的 panel.16）。使用者一個一個挑出來操作的東西，不管排成格子、卡片還是看板，都是清單，用清單和清單的模式做。做的事跟元件的
+    模式一樣（選字複製、重排、比較），在元件的內容上就是那個模式；在元件裝不下的內容上，app 可以自己做，名稱和鍵沿用家族的（例：
+    `Visual`、`v`、`y`、`Esc:cancel`）。元件的內容需要一個元件沒有的模式（例：平移圖片），是回報給 tdp 的缺口，不是 app 自己的模式。
+  - **怎麼進去**：只能由使用者的動作進入，照一般的方式揭露（Space menu 與 `?`，M3），不會自己進入（啟動時、背景發生事情時都不會，K3）。
+  - **裡面 app 可以自行決定**：模式的鍵和鍵做什麼（包括 `Enter`）；內容怎麼畫、怎麼變；Space menu 列什麼、怎麼分區；footer 在
+    `Space:menu ?:help` 與最後的 `Esc:<離開的動詞>` 中間寫哪些鍵（core key 也可以，例：`q:quit`，做的事照上面的表；
+    [components/layout/screen](../components/layout/screen-zh_TW.md) 的 screen.2）；除了 `Esc` 還能怎麼結束（用模式的鍵，或做完了
+    自己結束，例：game over），以及離開前要顯示什麼；離開後留下什麼（例：遊戲暫停、畫好的筆畫），上面蓋著 popup 時內容要不要
+    繼續跑；離開時要不要跳出 popup（見下面）。
+  - **裡面照樣要守的**：上面表裡的 core key，`Space` 打開它的 Space menu，至少有一列，標題與樣子跟其他模式的 Space menu 一樣
+    （[components/dialog/menu](../components/dialog/menu-zh_TW.md)）；移動照 K12；只有模式的鍵與 core key 作用。**模式自己的鍵和它的
+    Space menu 最多只能離開模式；離開之後由 tdp 接手**：其他 panel、其他畫面、global 動作、離開 app，都照 tdp，用上面表裡的 core key
+    （列出來的 core key，例：`[q]uit`、`q:quit`，做的事照上面的表），也沒有 `Global operation` 那一列（user 2026-11-12）；它打開的 app
+    自己的 popup 可以照 F1 執行 app 的動作，執行時先離開模式。模式的每個鍵
+    都列在它的 `?`；除了 core key 和照 K12 移動的移動鍵，每個鍵也要出現在它的 Space menu，或 60 欄時畫出來的 footer 裡（L1；
+    Principle P2）。模式要標示自己（見上面）。它開出來的每個 popup 都是 F1 的一類，照那個元件。同一個 panel 或 popup 上，一次只在一個
+    app 自己的模式裡：要換到另一個，就是先離開再進入，或用 `>` 加一層。
+  - **離開**：不管怎麼離開（按 `Esc`、用模式的鍵，或 app 讓它結束），模式名與外框顏色都恢復，它的 Space menu 與 `?` 一起關掉，
+    panel 回到 tdp；在那之前都還在模式裡（例：game over 和 app 為它顯示的東西）。離開時要不要跳出一個 popup 說離開後的狀態（例：
+    暫停，用 confirm 問要不要繼續），app 可以自行決定；只能一個，在它上面按 `Esc` 是關掉它、留在模式外面，要回到模式是 popup 可以
+    提供的動作（例：`Enter`）。離開會丟掉使用者在模式裡做出來、要留下的東西時（例：還沒存的筆畫），由那個 popup 來問，回答之前
+    那些東西都留著；遊戲玩到哪裡不算，app 讓模式結束時（例：game over）結束前顯示什麼也是 app 的事
+    （user 2026-11-11、2026-11-12，來自 tetru）。
 
 **為什麼**：「不知道怎麼辦就按 `Space`」在模式裡也要成立 —— 家族的想法是零學習成本，使用者進了模式、不知道能做什麼時，`Space`
 一定要有回應（user 2026-10-22）。模式裡的鍵多半是移動、選取這類直接、連續按的鍵，所以 menu 分兩區：對眼前這一項能做的事照樣
@@ -314,11 +331,14 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 換 panel，使用者預期有反應，所以暫停時要回應；其他字母不出聲，免得亂按跳出一堆 toast。popup 裡的 `Tab` 與數字本來就不換
 panel，使用者不預期它們有反應，多回應反而是雜訊。模式的鍵靠手感、連著按，像遊戲一樣，每個人的手不一樣；它們只在模式裡
 作用，使用者改了也不會動到家族其他地方。已經有作用的鍵再給別的動作，一個鍵就做兩件事，所以擋下來，並說出原因。
-app 自己做的模式跟它的鍵一樣是 app 自己的：使用者在那裡按 `Space` 要找什麼，app 最清楚；`?` 照樣列出每個鍵，能按的鍵沒有一個沒揭露。
-離開這種模式時，可能留下使用者要知道、要接著做的事（例：做到一半暫停），popup 就是說這種事的地方；在它上面按 `Esc` 只是關掉，
-一直按 `Esc` 照樣一次一層退回 panel（K4）。
-footer 寫的是現在能按的鍵，core key 在任何模式裡都能按；寫上去只是把本來就成立的事說出來，模式裡使用者會找哪些鍵，
-跟 Space menu 一樣是 app 最清楚。
+app 自己的模式照 app 自己的 popup（F1）的方式放行：能固定的固定住（怎麼進、怎麼出、core key、揭露、popup），只放開 app 自己的
+東西，也就是遊戲或畫圖的鍵與內容；使用者在那裡按 `Space`、看 footer、離開時要找什麼，app 最清楚。門只開給元件做不到的事：在清單
+或 viewer 上開模式，同一個元件的鍵在一個 app 裡就多了一個意思；排成格子的東西照樣是一個一個挑，跟清單一樣。模式只能作用在自己的
+內容上、碰不到 app 的其他地方，對 app 也有代價，所以把整個 app 包進一個模式沒有好處。
+app 在模式裡最多只能離開模式，之後由 tdp 接手，使用者一出模式，在其他 app 學到的就照樣成立。`?` 列出每個鍵，menu 或 footer 也看得到
+每一個，能按的鍵沒有一個沒揭露。遊戲或畫圖怎麼收尾是它自己的一部分，所以在 app 離開模式之前都還在模式裡；離開時
+可能留下要告知、要接著做的事（例：做到一半暫停），在那個 popup 上按 `Esc` 只是關掉，一直按 `Esc` 照樣一次一層退回 panel
+（K4）。在模式外也不會做事的鍵不用提醒：跳 toast 叫使用者先離開模式，等於答應一件不存在的事。
 
 ### K12 導覽字母保留給移動，hjkl 是方向鍵
 
@@ -369,7 +389,7 @@ footer 寫的是現在能按的鍵，core key 在任何模式裡都能按；寫�
 
 ### M1 入口要被看得到
 
-非輸入態的每一個畫面都必須**常駐顯示** `?`，以及 `Space`、`!`（模式裡 `Space`、`!` 不作用，不必顯示，K11），讓第一次打開
+非輸入態的每一個畫面都必須**常駐顯示** `?`，以及 `Space`、`!`（模式裡 `!` 不作用，不必顯示；`Space` 打開模式的 Space menu，K11），讓第一次打開
 app、沒讀過任何文件的使用者看得到。樣子見 [components/layout/screen](../components/layout/screen-zh_TW.md) 的 footer。
 
 focus 在 PTY 裡時，這些鍵都屬於子程序（K10），不顯示；常駐揭露的是出口鍵、互動 terminal 的 `Alt-v` 與 `PgUp`、app 保留的鍵（K10；樣子見
@@ -403,6 +423,7 @@ Space menu 列出**當前 panel 能做的所有事**，依作用對象（Princip
 
 - 每個 panel 的每個 item operation 與 panel operation，都在該 panel 的 Space menu 裡。
 - 每個 global operation 都在 global operation popup 裡（從 Space menu 的 global 列打開）。
+- 模式裡，模式的鍵照 K11 列在它的 `?`，以及它的 Space menu 或 footer / 提示。
 - popup 自己的操作，都在該 popup 的 `?` key reference 裡（K6）；下框 hint 寫哪些，照
   [components/layout/popup](../components/layout/popup-zh_TW.md) 的 hint 與各元件寫的 hint。
 - **只有打字列的 popup**（text、password、number）：`?` 在那裡是字元（K8），所以它的 hint 要列出全部操作，而且 60 欄放得下（L1）
@@ -652,6 +673,12 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
     [components/dialog/form](../components/dialog/form-zh_TW.md)）。
   - 內容怎麼畫、內容上的按鍵，app 可以自行決定；範圍內要守的：core key 的意義不變（K1，`Space` 見 K5）、移動照 K12、熱鍵
     揭露在 `?`（K6、M5）。
+  - **作用超出這個 popup 的鍵**（超出它的內容和它疊在自己上面開的 popup，例：碰到 panel、其他 panel 或畫面、global 動作、離開 app）
+    **只能關掉它**（有要送出的值時就是送出），**或執行 app 在 tdp 裡已經有位置的動作**：項目或 panel 的操作、global 操作、離開 app
+    （例：`[q]uit`）。這種動作照它在 menu 裡的樣子執行，confirm 與流程都一樣（離開照 K9：有 popup 開著時
+    先問），而且照樣列在那個 menu 裡（M3）。app 自己的模式，模式自己的鍵不能這樣：它們最多只能離開模式（K11）。從這種模式裡
+    打開的 popup 照樣是 app 自己的 popup，可以這樣：執行這種動作時先離開模式，跟任何離開一樣（K11），之後由 tdp 接手
+    （user 2026-11-12）。
 - splash 不是 popup（S 章），不屬於這八類。
 - **panel 內容自己畫的框是內容，不是 popup**（例：webu 顯示的網頁上，表格畫出的格子）。它不是一層：怎麼畫（包括底下的內容要不要
   淡化），app 可以自行決定；按鍵照它所在的 panel —— `Space` 是那個 panel 的 Space menu，`?` 是那個 panel 的 key reference，
@@ -659,7 +686,9 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 
 **為什麼**：類別就是使用者對「這個框裡按鍵會怎樣」的預期。家族只有八類、每類意義固定，換一個 app
 也不用重學；同一時間混兩類的 popup，會讓同一組鍵在框裡有兩種可能。七類裝不下的內容硬塞進其中一類，反而讓那一類的按鍵
-說謊；app 自己的 popup 把能固定的（框、層、送出）照舊固定，只放開內容本身。
+說謊；app 自己的 popup 把能固定的（框、層、送出）照舊固定，只放開內容本身；
+內容以外，它只能關掉，或照 tdp 的方式執行 app 的動作。popup 跟 menu 一樣是開在 panel 上面的，從它執行 app 的動作
+就是 menu 在做的事；模式是把 panel 自己的鍵換掉意思，所以最多只能離開。
 
 ### F2 開關都有動畫
 

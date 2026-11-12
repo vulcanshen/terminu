@@ -63,6 +63,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 模式 | 有模式（Rules K11） |
 | 模式（在 panel 上） | 有開在 panel 上的模式（例：panel 的 Drag） |
 | 模式（在 popup 裡） | 有開在 popup 裡的模式（例：viewer 的選取模式、reorder 的 Drag） |
+| app 自己的模式 | 有 tdp 的元件和規則都沒有規定的模式（例：玩遊戲） |
 | 停用 | 有暫時不能執行的動作、停用的項目或欄位 |
 | 長時間工作 | 有長時間的工作（畫面 chip 列下的進度，或單畫面 app 工作那一列的進度） |
 | 工作清單 | 有工作清單：列出 app 正在跑或跑過的工作的 menu（例：sshu 的 Jobs） |
@@ -86,6 +87,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 比較模式 | 有 panel 的比較模式（先挑 anchor、再挑另一列來比） |
 | 被指到的 panel | 清單的一列代表畫面上另一個 panel，cursor 會指出那個 panel（例：sshu 的 sessions 清單與網格） |
 | app 自己的 popup | 有七類裝不下、內容由 app 自己畫的 popup（例：kamonu 畫格子的 popup） |
+| app 自己的內容 | 有放元件裝不下的東西、由 app 自己畫的 panel（例：遊戲、圖） |
 | 二維內容 | panel 的內容一列有好幾個項目（例：webu 網頁裡的連結） |
 | panel 內容的框 | panel 的內容自己會畫出框（例：webu 顯示的網頁上，表格畫出的格子） |
 | 不再用的檔 | 改版後有不再用的設定、狀態或資料檔（例：sshu 的 errors.yaml、kbu 的 theme.yaml） |

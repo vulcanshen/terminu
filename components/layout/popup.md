@@ -257,7 +257,10 @@ Content the seven classes cannot hold (Rules F1, e.g. kamonu's popup for drawing
     it to the next value (Rules K5);
   - movement follows Rules K12 (hjkl are the arrow keys);
   - hotkeys on the content are disclosed in this popup's `?` (Rules K6, M5), and the hint follows "hint" above;
-  - where the focus is stays visible (Rules L5).
+  - where the focus is stays visible (Rules L5);
+  - a key whose effect reaches past the popup (past its content and the popups it opens over itself) either closes it
+    (submitting it, where it has values to submit) or runs one of the app's actions tdp has a place for (an item's or a
+    panel's operation, a global operation, quitting), as it runs from its menu (Rules F1).
 
 **Why**: content the seven classes cannot hold, forced into one of them, makes that class's keys lie. An app's own popup
 keeps fixed what can be fixed — the frame, the layers, submitting, leaving — so when users open one, everything but the

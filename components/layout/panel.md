@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](panel-zh_TW.md)
 
-A panel's frame, ordinary lists (the location row and groups included), panels with one value per row, details, and the panel filter. How the whole screen is laid out is
+A panel's frame, ordinary lists (the location row and groups included), panels with one value per row, details, the panel filter, and an app's own content. How the whole screen is laid out is
 in [`screen`](screen.md).
 
 ## panel.1 Frame
@@ -513,3 +513,21 @@ The same for every kind of panel: an ordinary list, one value per row, details, 
 holds a list, values or a terminal; written the same way, "still coming" and "cannot come" read the same in every kind of
 panel. These two points used to sit under the ordinary lists, but the empty state in screen and the loading icon on the
 frame both speak of every panel, so they got a section of their own (reported by sshu, 2026-10-26).
+
+## panel.16 An app's own content
+
+What neither a component nor a rule of tdp holds or does (e.g. a game being played, a drawing; Rules K11, "An app's
+own mode") is drawn by the app as a panel's content. Things the user picks out one by one to act on are a list however
+they are laid out (a grid, cards, a board), and are drawn as a list (panel.5).
+
+- **The same as any panel**: the frame, the `[N] label` and tabs, the hint, the mode name, the scroll position where it
+  scrolls, focus and dimming (panel.1, Rules T2), loading and errors (panel.15).
+- **How the content is drawn, the app may decide for itself** (its symbols and colours, Principle P5); a box drawn in
+  it is content, not a popup (Rules F1).
+- **Its keys**: outside a mode they are the panel's hotkeys (Principle P5: in the Space menu, marked with `[]`, no core
+  key, no movement letter); `Enter` does the most intuitive thing to the whole panel (Rules K3); where the content
+  moves, movement follows Rules K12. Inside an app's own mode, Rules K11.
+
+**Why**: as with an app's own popup ([`popup`](popup.md), popup.8), content no component holds keeps everything else
+fixed, so a panel holding a game or a drawing is framed, focused and dimmed as any panel in the family; only the
+drawing is the app's (the user, 2026-11-12, from tetru).

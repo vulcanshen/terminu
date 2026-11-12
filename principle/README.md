@@ -149,6 +149,10 @@ explicitly. Doing it any other way, outside what is left to the app, is a violat
   explicitly marked hotkeys); the family requires a Nerd Font (Rules E4). The glyphs of the components (radio, checkbox,
   the loading icon, borders, the titles of each class of popup) and the colour scheme are part of the component spec,
   not left to the app.
+- **An app's own mode, the app may decide for itself**: for what neither a component nor a rule of tdp does (e.g.
+  playing a game, drawing), the app may make a mode of its own; inside it, the mode's keys, what they do and how its
+  content is drawn are the app's. The way in, `Esc`, the mode name and frame colour restored on leaving, and the frame (the core keys, the
+  disclosure, the popups) stay tdp's (Rules K11, "An app's own mode").
 
 **Why**: only what is written counts, so an app and whoever checks it look in one place only: a requirement to follow, or
 the sentence "the app may decide for itself". Letting every app write exceptions of its own, with enough of them
@@ -156,6 +160,9 @@ the family stops being one way of working; what does not fit goes back to tdp, w
 gains from too. Hotkeys and domain symbols are bound to the concrete domain (in kbu `S` is shell, in filu `S` is sort)
 and are not on the no-prior-learning path — everything the user looks for is in `Space` and `?` — so they are left to the
 app; the function logic is the app itself, unseen by the user, and not tdp's to govern (the user, 2026-10-25).
+A game or a drawing holds nothing a component could, and its keys are its domain as hotkeys are, so its mode is opened
+as an app's own popup is (Rules F1): the way in and out and the frame fixed, the inside the app's (the user,
+2026-11-12, from tetru).
 
 ## P6 What is lit is what has the focus
 
@@ -239,7 +246,8 @@ A temporary state inside a panel or popup: once in it, some keys take on the mod
 E.g. webu's visual mode (selecting text), kbu's drag mode (reordering pins), sshu's `Alt-v` selection mode, the selection
 in filu's yank viewport. A mode is not input state — keys do not become characters. Switching the layout (e.g. zoom,
 which fills the screen with one panel) is not a mode either: no key changes meaning, `Esc` need not leave it, and its own
-key restores it. See Rules K11.
+key restores it. A mode neither a component nor a rule of tdp specifies is an app's own mode (Principle P5).
+See Rules K11.
 
 ### terms.9 Core key
 

@@ -74,6 +74,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | mode | a mode (Rules K11) |
 | mode (on a panel) | a mode opened on a panel (e.g. a panel's Drag) |
 | mode (in a popup) | a mode opened in a popup (e.g. a viewer's selection mode, a reorder's Drag) |
+| an app's own mode | a mode neither a component nor a rule of tdp specifies (e.g. playing a game) |
 | disabled | actions that cannot run for now, or disabled items or fields |
 | long task | a long task (the progress under the screen chip row, or in the task's row in a single-screen app) |
 | jobs list | a jobs list: a menu listing the work the app is running or has run (e.g. sshu's Jobs) |
@@ -97,6 +98,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | compare mode | a panel's compare mode (an anchor first, then another row to compare with) |
 | pointed panel | a list row stands for another panel on screen, and the cursor points that panel out (e.g. sshu's session list and grid) |
 | an app's own popup | a popup whose content the seven classes cannot hold, drawn by the app itself (e.g. kamonu's popup for drawing cells) |
+| an app's own content | a panel holding what no component holds, drawn by the app itself (e.g. a game, a drawing) |
 | two-dimensional content | a panel whose content has several items to a row (e.g. the links in webu's pages) |
 | panel content box | a panel's content draws boxes of its own (e.g. the grid of a table on a page webu shows) |
 | a file no longer used | a new version stopped using a settings, state or data file (e.g. sshu's errors.yaml, kbu's theme.yaml) |

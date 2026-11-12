@@ -335,34 +335,21 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 | `Space` | opens the mode's Space menu (below) |
 | `!` | does nothing (the App Log opens outside a mode) |
 | `?` | the mode's key reference (read-only, K6): which keys work in the mode and what they do |
-| `Esc` | leaves the mode (K4), back to the state before it was entered; in a mode with layers, back one layer at a time (e.g. `Visual>select` back to `Visual`); leaving an app's own mode may open a popup (below) |
+| `Enter` | does the most intuitive thing in the mode (K3): in a mode tdp specifies, as written there (e.g. Drag drops the row held); in an app's own mode, the app's (below) |
+| `Esc` | leaves the mode (K4), back to the state before it was entered (what an app's own mode leaves behind: below); in a mode with layers, back one layer at a time (e.g. `Visual>select` back to `Visual`); leaving an app's own mode may open a popup (below) |
 | `q`, `Ctrl-C` | run the quit flow, as K9 |
-| `Tab`, `1`–`9` | with the mode on a panel: a mode may suspend `Tab` and the digit keys, but pressing them must respond, saying to leave the mode with `Esc` first (e.g. a toast); while the toast is up, the first `Esc` closes it (K4). With the mode in a popup, see below |
+| `Tab`, `1`–`9` | with the mode on a panel: a mode may suspend `Tab` and the digit keys, but pressing them must respond, saying to leave the mode with `Esc` first (e.g. a toast); while the toast is up, the first `Esc` closes it (K4). A key that does nothing outside the mode either (e.g. `Tab` or `2` on a screen with one panel, or the digit of the panel already focused, K1) does nothing in the mode too, silently. With the mode in a popup, see below |
 
 - **Inside a mode only the mode's own keys and the core keys above work**: panel hotkeys and global hotkeys do nothing,
   silently.
 - **The mode's Space menu** ("Inside a mode" in [components/dialog/menu](../components/dialog/menu.md); an app's own
-  mode, see the next point): it lists only
+  mode: below): it lists only
   what can be done in the mode, in two sections — **item operations**: what can be done now to the item under the
   cursor (or the selected range), picking one being the same as pressing its key (e.g. `[C]ompare` in the Compare mode,
   `Cop[y]` once a selection has started); **mode operations**: the mode's own keys — the movement keys are only shown,
   not run, while what really does something, such as leaving the mode, runs as usual. Panel, item and global actions are
   never listed. The mode's keys are also disclosed in the `?` key reference and in the footer / bottom-border hint (how
   the footer looks inside a mode: [components/layout/screen](../components/layout/screen.md)).
-- **The Space menu of an app's own mode** (a mode no component of tdp specifies; the components' compare, Drag,
-  selection and history modes list as above): what it lists and how it is grouped, **the app may decide for itself**.
-  What holds: `Space` still opens it, with at least one row; its title and look are those of any
-  mode's Space menu ([components/dialog/menu](../components/dialog/menu.md)); every key of the mode is still in the
-  mode's `?`, the one place listing them all; the footer or hint is as above (the user, 2026-11-11, from tetru).
-- **Leaving an app's own mode**: when `Esc` leaves it, whether a popup opens to tell the state the mode was left in
-  (e.g. paused, with a confirm offering to go on), **the app may decide for itself**. Where one opens: one popup only;
-  the mode is already left (its name and frame colour gone); `Esc` on it closes it and stays outside the mode, never
-  going back in; going back into the mode is an action the popup may offer (e.g. `Enter`) (the user, 2026-11-12, from
-  tetru).
-- **The footer of an app's own mode**: which keys it writes between `Space:menu ?:help` and the last `Esc:<verb>`,
-  **the app may decide for itself**: any key that works in the mode, a core key included (e.g. `q:quit`), each doing
-  what it does in the mode (the table above; `q` runs the quit flow, K9)
-  ([components/layout/screen](../components/layout/screen.md), screen.2) (the user, 2026-11-12, from tetru).
 - **A mode shows itself**: the mode name appears at the right of the top border of the frame the mode lives in (panel or
   popup), and the frame turns the mode colour; leaving the mode restores both. The mode name opens and closes with a
   short animation that never holds the mode up: the mode and the frame colour change at once. The mode name is a word,
@@ -383,6 +370,45 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   above); picking one shows a Warning ([components/dialog/toast](../components/dialog/toast.md)) naming what has it,
   and the key is not set. The mode's Space menu, `?` and hint show the keys in force. Core keys and the keys of
   panels are not the user's to change (the user, 2026-11-11, from tetru).
+- **An app's own mode** (a mode neither a component nor a rule of tdp specifies; the components' compare, Drag,
+  selection and history modes and K12's item-to-item mode are tdp's), tdp's opening for what no component holds
+  (Principle P5):
+  - **When an app may make one**: only for what neither a component nor a rule of tdp does, e.g. playing a game or
+    drawing ([components/layout/panel](../components/layout/panel.md), panel.16). Things the user picks out one by one
+    to act on are a list however they are laid out (a grid, cards, a board), and are done with a list and its modes. A
+    mode doing what a component's mode does (selecting text to copy, reordering, comparing) is that mode on the
+    component's content; on content no component holds the app may make it, keeping the family's names and keys (e.g.
+    `Visual`, `v`, `y`, `Esc:cancel`). Where a component's content needs a mode the component lacks (e.g. panning a
+    picture), it is a gap reported to tdp, not an app's own mode.
+  - **The way in**: only by the user's action, disclosed as any other (the Space menu and `?`, M3), never on its own
+    (not at start-up, not when something happens in the background, K3).
+  - **Inside it, the app may decide for itself**: the mode's keys and what they do (`Enter` included); how its content
+    is drawn and changes; what its Space menu lists and how it is grouped; which keys the footer writes between
+    `Space:menu ?:help` and the last `Esc:<verb>` (a core key such as `q:quit` included, doing what the table above
+    says; [components/layout/screen](../components/layout/screen.md), screen.2); how it ends besides `Esc` (by one of
+    its keys, or on its own once what it was for is done, e.g. a game over) and what it shows before it is left;
+    what stays once it is left (e.g. a game paused, the strokes
+    drawn); whether its content keeps running while a popup is over it; whether leaving opens a popup
+    (below).
+  - **What holds in it**: the core keys as the table above, `Space` opening its Space menu with at least one row, its
+    title and look those of any mode's Space menu ([components/dialog/menu](../components/dialog/menu.md)); movement as
+    K12; only the mode's keys and the core keys work. **The furthest the mode's own keys and its Space menu reach is
+    leaving the mode; past that, tdp takes over**: other panels, other screens, global actions and quitting the app go
+    the way tdp has them, by the core keys as the table above (a core key it lists, e.g. `[q]uit` or `q:quit`, does what
+    the table says), and there is no `Global operation` row (the user, 2026-11-12); an app's own popup it opens may
+    run the app's actions as F1 has it, leaving the mode first. Every key of the mode is in its
+    `?`, and every key but the core keys and the movement keys moving as K12 has them is also in its Space menu or in
+    its footer as drawn at 60 columns (L1; Principle P2). The mode shows itself (above). Every popup it opens is one of
+    the classes in F1 and follows its component. On one panel or popup, one app's own mode at a time: going into
+    another is leaving one and entering the next, or a layer after `>`.
+  - **Leaving**: however it is left (by `Esc`, by one of its keys, or when the app ends it), the mode name and the frame
+    colour are restored, its Space menu and `?` close with it, and the panel is back under tdp; until then everything
+    is inside the mode (e.g. a game over and what the app shows about it). Whether a popup opens on leaving to tell the
+    state it was left in (e.g. paused, with a confirm offering to go on), the app may decide for itself; one popup only,
+    `Esc` on it closes it and stays outside the mode, going back in being an action the popup may offer (e.g. `Enter`).
+    Where leaving would throw away something the user made in it to keep (e.g. strokes not yet saved), that popup asks,
+    the work kept until it is answered; how far a game had got is not such a thing, and when the app ends the mode
+    (e.g. a game over), what it shows before is its own (the user, 2026-11-11 and 2026-11-12, from tetru).
 
 **Why**: "when in doubt, hit `Space`" holds inside a mode too — the family's idea is zero learning cost, so when the
 user in a mode does not know what to do, `Space` must answer (the user, 2026-10-22). A mode's keys are mostly movement
@@ -396,13 +422,21 @@ like `Tab`, so users expect a response and a suspended one must respond; other l
 not pop up a string of toasts. In a popup, `Tab` and the digits never switch panels anyway, so users expect no response,
 and one would only be noise. A mode's keys are pressed by feel and in runs, as a game's are, and hands differ; they act
 only inside the mode, so a user changing them moves nothing anywhere else in the family. A key that already does
-something there would do two things at once, so it is refused, saying why. A mode the app makes is the app's own,
-as its keys are: what the user looks for on pressing `Space` in it is the app's to know, and `?` still lists every key, so no key
-that can be pressed goes undisclosed. Leaving such a mode may leave something the user needs to know or pick up again
-(e.g. something paused halfway), and a popup is where that is told; `Esc` on it only closes it, so pressing `Esc`
-again and again still comes back to the panel, one layer a press (K4). The footer shows keys that can be pressed now,
-and a core key works in any mode; writing one there only tells what is already true, and which keys the user of a
-mode looks for is the app's to know, as with its Space menu.
+something there would do two things at once, so it is refused, saying why.
+An app's own mode is opened as an app's own popup is (F1): what can be fixed stays fixed (the way in, the way out, the
+core keys, the disclosure, the popups) and only what is the app's own is open, a game's or a drawing's keys and
+content; what the user looks for there, on `Space`, in the footer or on leaving, the app knows best. The door keeps it
+to what no component does: a mode over a list or a viewer would give that component's keys a second meaning in one
+app, and things laid out as a grid are still picked one by one, as from a list. A mode that acts only on its own
+content and cannot reach the rest of the app costs the app something, so wrapping a whole app in one buys nothing.
+The furthest the app reaches in it is leaving it; past that tdp takes over, so what the user knows from every other app
+holds again the moment they are out.
+`?` lists every key and the menu or the footer shows each one, so nothing that can be pressed goes undisclosed. How a
+game or a drawing comes to an end is part of it, so it stays inside the mode until the app leaves it. Leaving
+it may leave something to tell or pick up again (e.g. something paused halfway), and `Esc` on that popup only
+closes it, so pressing `Esc` again and again still comes back to the panel, one layer a press (K4). A key that does
+nothing outside the mode either needs no reminder: a toast saying to leave the mode first would promise something
+that is not there.
 
 ### K12 Navigation letters are kept for movement; hjkl are the arrow keys
 
@@ -470,8 +504,9 @@ forms keep every key as it is.
 
 ### M1 The entry points are visible
 
-Every screen outside the input state must **permanently show** `?`, and `Space` and `!` (inside a mode `Space` and `!`
-do nothing and need not be shown, K11), so a first-time user who has read no documentation can see them. How it looks: the footer in
+Every screen outside the input state must **permanently show** `?`, and `Space` and `!` (inside a mode `!` does
+nothing and need not be shown, while `Space` opens the mode's Space menu, K11), so a first-time user who has read no
+documentation can see them. How it looks: the footer in
 [components/layout/screen](../components/layout/screen.md).
 
 With focus in a PTY, these keys belong to the subprocess (K10) and are not shown; what is disclosed permanently is the
@@ -510,6 +545,7 @@ has a Space menu of the same shape.
 
 - Every item operation and panel operation of every panel is in that panel's Space menu.
 - Every global operation is in the global operation popup (opened from the Space menu's global row).
+- Inside a mode, the mode's keys are in its `?` and in its Space menu or footer / hint, as K11 has it.
 - A popup's own operations are all in that popup's `?` key reference (K6); which of them its bottom-border hint shows
   follows the hint in [components/layout/popup](../components/layout/popup.md) and the hint each component specifies.
 - **A popup with only a typing row** (text, password, number): `?` is a character there (K8), so its hint lists every
@@ -801,6 +837,14 @@ The family's popups come in these eight classes only, each with fixed key meanin
     [components/dialog/form](../components/dialog/form.md)).
   - How the content is drawn and the keys on it, the app may decide for itself; inside that scope, the core keys keep
     their meaning (K1; `Space` see K5), movement follows K12, and hotkeys are disclosed in `?` (K6, M5).
+  - **A key whose effect reaches past the popup** (past its content and the popups it opens over itself, e.g. to the
+    panel, other panels or screens, global actions, quitting) **either closes it** (submitting it, where it has values
+    to submit) **or runs one of the app's actions tdp already has a place for**: an item's or a panel's operation, a
+    global operation, quitting the app (e.g. `[q]uit`). Such an action runs as it does from its menu, its confirm and
+    flow included (quitting as K9: with a popup open, it asks first), and is still in that menu (M3). The own keys of an
+    app's own mode may not do this: they reach no further than leaving the mode (K11). A popup opened from inside such
+    a mode is an app's own popup all the same and may: running such an action leaves the mode first, as any leaving does
+    (K11), and tdp takes over from there (the user, 2026-11-12).
 - The splash is not a popup (chapter S): it is not in these eight.
 - **A box drawn by a panel's own content is content, not a popup** (e.g. the grid of a table on a page webu shows).
   It is not a layer: how it is drawn (whether the content under it is dimmed included), the app may decide for itself;
@@ -810,7 +854,10 @@ The family's popups come in these eight classes only, each with fixed key meanin
 **Why**: the class is the user's expectation of "what keys do inside this box". With only eight classes in the family,
 each of fixed meaning, nothing is relearned from one app to the next; a popup mixing two classes at once gives the same
 keys two possible meanings inside one box. Content the seven cannot hold, forced into one of them, makes that class's keys
-lie; an app's own popup keeps fixed what can be fixed (the box, the layers, submitting) and opens up only the content.
+lie; an app's own popup keeps fixed what can be fixed (the box, the layers, submitting) and opens up only the content;
+beyond the content it only closes, or runs an action of the app as tdp has it. A popup is opened over a panel as a menu
+is, so running the app's actions from it is what a menu does; a mode changes what the panel's own keys mean, so the
+furthest it goes is leaving.
 
 ### F2 Opening and closing are both animated
 

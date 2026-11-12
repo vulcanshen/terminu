@@ -2,7 +2,7 @@
 
 **Language**: [English](panel.md) · 繁體中文
 
-panel 的框、一般清單（含位置列、分組）、一列一個值的 panel、明細、panel filter。整個畫面的排法見 [`screen`](screen-zh_TW.md)。
+panel 的框、一般清單（含位置列、分組）、一列一個值的 panel、明細、panel filter、app 自己的內容。整個畫面的排法見 [`screen`](screen-zh_TW.md)。
 
 ## panel.1 框
 
@@ -400,3 +400,17 @@ focus 離開與回來：
 **為什麼**：panel 在等、或讀不到東西時，使用者看的是同一個地方 —— panel 中間 —— 不管它平常放的是清單、值還是終端機；寫法一樣，
 在哪一種 panel 都認得出「還在來」與「來不了」。這兩條本來寫在一般清單底下，但 screen 的空狀態與框上的 loading icon 講的都是
 每一個 panel，所以拆成自己的一節（sshu 2026-10-26 回報）。
+
+## panel.16 app 自己的內容
+
+tdp 的元件和規則都裝不下、做不到的東西（例：玩到一半的遊戲、一張圖；Rules K11 的「app 自己的模式」），由 app 畫成 panel 的
+內容。使用者一個一個挑出來操作的東西，不管排成格子、卡片還是看板，都是清單，照清單畫（panel.5）。
+
+- **跟其他 panel 一樣**：框、`[N] label` 與 tab、hint、模式名、會捲動時的捲動位置、focus 與淡化（panel.1、Rules T2）、
+  載入與錯誤（panel.15）。
+- **內容怎麼畫，app 可以自行決定**（它的符號與顏色，Principle P5）；畫在裡面的框是內容，不是 popup（Rules F1）。
+- **上面的鍵**：模式外是 panel 的熱鍵（Principle P5：列在 Space menu、用 `[]` 標出、不佔 core key、不佔移動的字母）；`Enter`
+  對整個 panel 做最直覺的事（Rules K3）；內容會移動的地方，移動照 Rules K12。在 app 自己的模式裡照 Rules K11。
+
+**為什麼**：跟 app 自己的 popup（[`popup`](popup-zh_TW.md) 的 popup.8）一樣，元件裝不下的內容只放開內容本身，其他都固定，
+所以放遊戲或圖的 panel，框、focus、淡化都跟家族其他 panel 一樣，只有畫的東西是 app 的（user 2026-11-12，來自 tetru）。
