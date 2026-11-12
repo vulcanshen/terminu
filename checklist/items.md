@@ -106,7 +106,6 @@ The items of tdp v1.2.4. What each column means and what an item applies to: [RE
 | K11-5 | K11 | When a mode on a panel suspends `Tab` or the digit keys, pressing them must respond, saying to leave the mode with `Esc` first | mode (on a panel) | Enter a mode and press `Tab`, `2`: an explanation appears (e.g. a toast) |
 | K11-6 | K11 | Inside a mode only the mode's own keys and the core keys in the K11 table work: panel hotkeys and global hotkeys do nothing | mode | Enter a mode and press panel hotkeys and global hotkeys: none does anything |
 | K11-7 | K11 | Inside a mode, a hotkey that does nothing does so silently | mode | As above: no toast or any other notice |
-| K11-8 | K11 | Inside a mode there is no list of keys to run | mode | Enter a mode: there is no list of keys to pick from and run |
 | K11-9 | K11 | The mode's own keys are disclosed in the footer or the bottom-border hint | mode | Enter a mode and look at the footer (a mode on a panel) or the bottom-border hint (a mode in a popup) |
 | K11-10 | K11 | Leaving the mode restores the mode name and the frame colour | mode | Press `Esc` to leave and look at that frame |
 | K11-11 | K11 | With the mode in a popup, `Tab` and the digit keys do whatever they do in that popup (never switching panels), with no extra response; the footer stays as it is while a popup is open, not changing to the mode's words | mode (in a popup) | Enter a mode in a popup, press `Tab`, `2`, and look at the footer |
