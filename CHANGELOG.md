@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.2.5 — 2026-11-12
+
+A patch, the user's choice: no member has to change; an app takes these when it wants them. Released with
+terminu-go once tetru had finished its round and its review (the user). Settled with the user: points from tetru's
+first review (issues #9, #12 and #13).
+
+- K11, K4: when `Esc` leaves an app's own mode, whether a popup opens to tell the state the mode was left in (e.g.
+  paused, with a confirm offering to go on), the app may decide for itself. Where one opens: one popup only; the mode
+  is already left; `Esc` on it closes it and stays outside the mode, going back in being an action the popup may
+  offer (from tetru)
+- K11, screen.2: in an app's own mode, which keys the footer writes between `Space:menu ?:help` and the last
+  `Esc:<verb>`, the app may decide for itself: any key that works in the mode, a core key such as `q:quit` included,
+  each doing what it does in the mode (from tetru)
+- checklist: K11-8 (no list of keys to run inside a mode) removed: it was left from before a mode had a Space menu,
+  and menu-24 and menu-25 say what runs in it (from tetru)
+- changed in this version: K4, K11, screen.2
+- checklist: K11-16 and screen-36 added; K11-3 and screen-8 changed; K11-8 removed (1449 items); the header names
+  v1.2.5
+
 ## v1.2.4 — 2026-11-12
 
 A patch, the user's choice: no member has to change; an app takes these when it wants them. Released with
