@@ -348,10 +348,9 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   not run, while what really does something, such as leaving the mode, runs as usual. Panel, item and global actions are
   never listed. The mode's keys are also disclosed in the `?` key reference and in the footer / bottom-border hint (how
   the footer looks inside a mode: [components/layout/screen](../components/layout/screen.md)).
-- **The Space menu of an app's own mode** (a mode no component of tdp specifies, e.g. tetru's Play mode; the
-  components' compare, Drag, selection and history modes list as above): what it lists and how it is grouped, **the
-  app may decide for itself** (e.g. tetru's Play mode lists only Restart and Save, the keys for playing being written
-  beside the game). What holds: `Space` still opens it, with at least one row; its title and look are those of any
+- **The Space menu of an app's own mode** (a mode no component of tdp specifies; the components' compare, Drag,
+  selection and history modes list as above): what it lists and how it is grouped, **the app may decide for itself**.
+  What holds: `Space` still opens it, with at least one row; its title and look are those of any
   mode's Space menu ([components/dialog/menu](../components/dialog/menu.md)); every key of the mode is still in the
   mode's `?`, the one place listing them all; the footer or hint is as above (the user, 2026-11-11, from tetru).
 - **A mode shows itself**: the mode name appears at the right of the top border of the frame the mode lives in (panel or
@@ -368,7 +367,7 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 - **A mode on a PTY** (e.g. a terminal's history mode or selection mode): the focus is still in the PTY, so any key other
   than the mode's own keys, `Space`, `?` and `Esc` first leaves the mode, then goes to the child process by K10 — `q` and `Ctrl-C`
   too; they do not start the quit flow ([components/dialog/terminal](../components/dialog/terminal.md)).
-- **Keys the user sets** (e.g. tetru lets the player change the Play mode's keys): whether the user may change a mode's
+- **Keys the user sets**: whether the user may change a mode's
   own keys, which keys can be picked and how they are set, **the app may decide for itself**. What holds: a key the
   user picks must not be one that already does something in that mode (another of the mode's keys, or a core key
   above); picking one shows a Warning ([components/dialog/toast](../components/dialog/toast.md)) naming what has it,
@@ -388,9 +387,8 @@ not pop up a string of toasts. In a popup, `Tab` and the digits never switch pan
 and one would only be noise. A mode's keys are pressed by feel and in runs, as a game's are, and hands differ; they act
 only inside the mode, so a user changing them moves nothing anywhere else in the family. A key that already does
 something there would do two things at once, so it is refused, saying why. A mode the app makes is the app's own,
-as its keys are: what the user looks for on pressing `Space` in it is the app's to know (a player pausing a game looks
-for restarting and saving, not for the keys already written beside the board), and `?` still lists every key, so
-no key that can be pressed goes undisclosed.
+as its keys are: what the user looks for on pressing `Space` in it is the app's to know, and `?` still lists every key, so no key
+that can be pressed goes undisclosed.
 
 ### K12 Navigation letters are kept for movement; hjkl are the arrow keys
 
@@ -429,11 +427,10 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
   previous word start, word end) and `0|$` (line start, line end), as in vim. A viewer has no cursor by default, and
   `h|l` switch tabs as above; in its selection mode `h|l` move the cursor and tabs do not switch (the selection mode
   in [components/dialog/note](../components/dialog/note.md)).
-- **A key with nothing to move, in a mode** (K11): where a movement key has no movement to make in a mode (e.g. tetru's
-  Play mode, where a piece never goes up, so `k` and `↑` have nothing to do), the mode may give it an action of its own
-  (tetru: `k` turns the piece). The key and the arrow key or `PgUp|PgDn` that is the same key do the same thing. It is
-  disclosed as the mode's other keys are: in the mode's Space menu, its `?` key reference and the footer or
-  bottom-border hint. Outside a mode, and for a key that does move in the mode, nothing changes (the user, 2026-11-11,
+- **A key with nothing to move, in a mode** (K11): where a movement key has no movement to make in a mode (e.g. a mode
+  where nothing ever moves up, so `k` and `↑` have nothing to do), the mode may give it an action of its own. The key and the arrow key or `PgUp|PgDn` that is the same key do the same thing. It is
+  disclosed as the mode's other keys are: in its `?` key reference and the footer or bottom-border hint, and in the
+  mode's Space menu as K11 has it. Outside a mode, and for a key that does move in the mode, nothing changes (the user, 2026-11-11,
   from tetru).
 
 **Why**: in the family hjkl are the arrow keys — forms, panels and lists all move with them; an app binding one to an

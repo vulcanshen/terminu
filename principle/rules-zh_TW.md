@@ -283,8 +283,8 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
   開始選之後的 `Cop[y]`）；**模式操作**：這個模式本身的鍵 —— 移動鍵只顯示、不能執行，離開模式這種真的做事的照樣能執行。
   panel、item、global 的動作一律不列。模式的鍵也揭露在 `?` 的 key reference 與 footer / 下框 hint（footer 在模式裡的樣子見
   [components/layout/screen](../components/layout/screen-zh_TW.md)）。
-- **app 自己的模式的 Space menu**（tdp 的元件沒有規定的模式，例：tetru 的 Play 模式；元件裡的 compare、Drag、選取、歷史模式照上面列）：
-  列什麼、怎麼分區，**app 可以自行決定**（例：tetru 的 Play 模式只列重新開始與存檔，玩的鍵寫在遊戲旁邊）。要守的：`Space` 照樣
+- **app 自己的模式的 Space menu**（tdp 的元件沒有規定的模式；元件裡的 compare、Drag、選取、歷史模式照上面列）：
+  列什麼、怎麼分區，**app 可以自行決定**。要守的：`Space` 照樣
   打開它，至少有一列；標題與樣子跟其他模式的 Space menu 一樣（[components/dialog/menu](../components/dialog/menu-zh_TW.md)）；
   模式的每個鍵照樣列在模式的 `?`，列出全部的鍵就在那裡；footer 或提示照上面（user 2026-11-11，來自 tetru）。
 - **模式要標示自己**：模式名顯示在模式所在的框（panel 或 popup）的上框右側，外框換成模式色；離開模式就恢復。模式名開關時有一小段
@@ -296,7 +296,7 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
   （[components/layout/screen](../components/layout/screen-zh_TW.md) 的 footer）。
 - **模式在 PTY 上時**（例：terminal 的歷史模式、選取模式）：focus 還在 PTY 裡，模式自己的鍵、`Space`、`?`、`Esc` 以外的鍵，先離開模式、再照 K10
   送給子程序 —— `q` 與 `Ctrl-C` 也一樣，不進離開流程（[components/dialog/terminal](../components/dialog/terminal-zh_TW.md)）。
-- **使用者自己設定的鍵**（例：tetru 讓玩家改 Play 模式的鍵）：要不要讓使用者改模式自己的鍵、能選哪些鍵、怎麼設定，
+- **使用者自己設定的鍵**：要不要讓使用者改模式自己的鍵、能選哪些鍵、怎麼設定，
   **app 可以自行決定**。要守的：使用者選的鍵不能是這個模式裡已經有作用的鍵（模式的其他鍵、上表的 core key）；選到時跳
   Warning（[components/dialog/toast](../components/dialog/toast-zh_TW.md)）寫出被誰用了，這個鍵不設定。模式的 Space menu、
   `?` 與提示寫的是目前作用的鍵。core key 與 panel 的鍵都不給使用者改（user 2026-11-11，來自 tetru）。
@@ -308,8 +308,7 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 換 panel，使用者預期有反應，所以暫停時要回應；其他字母不出聲，免得亂按跳出一堆 toast。popup 裡的 `Tab` 與數字本來就不換
 panel，使用者不預期它們有反應，多回應反而是雜訊。模式的鍵靠手感、連著按，像遊戲一樣，每個人的手不一樣；它們只在模式裡
 作用，使用者改了也不會動到家族其他地方。已經有作用的鍵再給別的動作，一個鍵就做兩件事，所以擋下來，並說出原因。
-app 自己做的模式跟它的鍵一樣是 app 自己的：使用者在那裡按 `Space` 要找什麼，app 最清楚（玩到一半暫停，要找的是重新開始、存檔，
-不是旁邊已經寫著的玩的鍵）；`?` 照樣列出每個鍵，能按的鍵沒有一個沒揭露。
+app 自己做的模式跟它的鍵一樣是 app 自己的：使用者在那裡按 `Space` 要找什麼，app 最清楚；`?` 照樣列出每個鍵，能按的鍵沒有一個沒揭露。
 
 ### K12 導覽字母保留給移動，hjkl 是方向鍵
 
@@ -339,9 +338,9 @@ app 自己做的模式跟它的鍵一樣是 app 自己的：使用者在那裡�
 - **在一段文字裡移動**（viewer 的選取模式、textarea 的移動狀態）：再加上 `w|b|e`（下一個字頭、上一個字頭、字尾）與
   `0|$`（行首、行尾），照 vim。viewer 平常沒有游標，`h|l` 照上面給 tab；選取模式裡 `h|l` 移動游標，模式裡不切 tab
   （[components/dialog/note](../components/dialog/note-zh_TW.md) 的選取模式）。
-- **模式裡沒有移動可做的鍵**（K11）：某個移動鍵在模式裡沒有移動可做時（例：tetru 的 Play 模式，方塊不會往上，`k`、`↑`
-  沒事可做），模式可以拿它做自己的動作（tetru：`k` 旋轉方塊）。這個鍵跟同一個鍵的方向鍵或 `PgUp|PgDn` 做一樣的事。
-  照模式其他的鍵一樣揭露：寫在模式的 Space menu、`?` 的 key reference 與 footer 或下框的提示。模式外面、在模式裡
+- **模式裡沒有移動可做的鍵**（K11）：某個移動鍵在模式裡沒有移動可做時（例：一個東西永遠不會往上移的模式，`k`、`↑`
+  沒事可做），模式可以拿它做自己的動作。這個鍵跟同一個鍵的方向鍵或 `PgUp|PgDn` 做一樣的事。
+  照模式其他的鍵一樣揭露：寫在 `?` 的 key reference 與 footer 或下框的提示，模式的 Space menu 照 K11。模式外面、在模式裡
   有移動可做的鍵，都照舊（user 2026-11-11，來自 tetru）。
 
 **為什麼**：hjkl 在家族裡是方向鍵，表單、panel、清單都靠它移動；一個 app 把其中一個綁成動作，使用者以為在移動，卻觸發

@@ -36,7 +36,7 @@ app 可以自行決定；這裡管的是 tdp 定的介面元素（Principle P4�
 | 錯誤 | 錯誤列、出錯的 label、error popup、Error toast 的字、畫成名字的控制字元（`\n`、`\x1b`……，[components](README-zh_TW.md) 的「控制字元」；游標停在上面時是它的底，字 Base）；比較裡刪掉的行 | Red `#f38ba8` |
 | 暗字 | menu 的說明與區塊標題；一列一個值的 panel 的表頭；hint、footer 的冒號與說明，以及隔開幾個鍵的 `\|`（`j\|k`）；說明列；灰字提議；空值的說明；沒有 focus 的打字列；空狀態；畫面比最低尺寸小時名稱下面的提示；分隔線（popup 裡的、畫面 chip 列下面的） | Overlay0 `#6c7086` |
 | 一般文字 | 表單與 panel 上的值；menu 的 label；key reference 的說明 | Text `#cdd6f4` |
-| panel 的 cursor | panel 上 cursor 所在那一列的底，字是 Base 粗體 | Subtext1 `#bac2de` |
+| panel 的 cursor | panel 上 cursor 所在那一列的底，字是 Base 粗體（自己有顏色的列見下面） | Subtext1 `#bac2de` |
 | 按鈕 | 沒有 focus 的按鈕的底，字是 Text | Surface1 `#45475a` |
 
 - **cursor 色塊**：popup 裡是層色底、panel 上是 Subtext1 底，字都是 Base 粗體；沒有 focus 的那一塊上的 cursor，是有 focus 時的
@@ -46,6 +46,11 @@ app 可以自行決定；這裡管的是 tdp 定的介面元素（Principle P4�
 - 字要放在 cursor 色塊上時，一律換成 Base；原本的顏色不保留。**例外是色塊**：內容本身就是顏色的格子（表單、panel 上顏色值的
   `███`，kamonu 畫 mark 的格子）保留自己的顏色，同一塊上的其他字照樣換成 Base。顏色就是那一格的值，正要改它的時候最需要
   看到它。
+- **自己有顏色的列**（內容的顏色，Principle P5；例：排行的名次色）：cursor 停在這一列時，app 可以讓 panel 的 cursor 色塊用那個
+  顏色當底，字照樣是 Base 粗體，右邊的箭頭也用那個顏色，跟控制字元用 Red 當底一樣。只能用那一列自己的顏色，不另外挑；
+  沒有 focus 時跟其他 cursor 一樣淡化；panel 在模式裡時色塊回到 Subtext1，因為模式的 Yellow 標的是選取的範圍與拿著的那一列
+  （Rules K11）。這幾列靠顏色分辨，cursor 一停上去顏色就不見，正好在最需要看的時候；整個清單只有 cursor 那一列有底色，
+  cursor 在哪照樣一看就知道（user 2026-11-12，來自 tetru）。
 - **畫面不塗底色**：沒有指定背景的格子留給終端機自己的底色。終端機的底不是 Base 時，淡化照樣往固定的 `#0c0c13` 靠，
   不是往終端機的底；家族配色照深色底設計，深色終端機上差很小。
 

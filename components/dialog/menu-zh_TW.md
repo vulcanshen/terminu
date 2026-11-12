@@ -60,8 +60,8 @@
 
 ## menu.4 模式裡
 
-模式裡按 `Space`（Rules K11）打開的 Space menu，照下面只列模式裡能做的事。app 自己的模式（tdp 的元件沒有規定的模式，例：
-tetru 的 Play 模式）列什麼、怎麼分區，app 可以自行決定（Rules K11）；標題，還有列出來的每一列怎麼畫、怎麼執行，照下面：
+模式裡按 `Space`（Rules K11）打開的 Space menu，照下面只列模式裡能做的事。app 自己的模式（tdp 的元件沒有規定的
+模式）列什麼、怎麼分區，app 可以自行決定（Rules K11）；標題，還有列出來的每一列怎麼畫、怎麼執行，照下面：
 
 - **標題**：跟平常一樣寫模式所在的地方 —— panel 上寫 focus panel 的 `[N] label`，popup 裡寫那個 popup 的標題。
 - **`ITEM OPERATION`**：現在對 cursor 上那一項（或選起來的範圍）能做的事，跟平常的列一樣能執行，選了就等於按那個鍵（例：Compare

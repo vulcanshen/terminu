@@ -43,7 +43,7 @@ syntax highlighting), the app may decide for itself; this file governs the inter
 | Error | the error row, a label in error, the error popup, the text of an Error toast, control characters drawn by name (`\n`, `\x1b`…, "Control characters" in [components](README.md); their background, with Base text, while the cursor rests on one); removed lines in a comparison | Red `#f38ba8` |
 | Dim text | descriptions and section titles in a menu; the header row of a one-value-per-row panel; the colon and description in hints and the footer, and the `\|` between keys (`j\|k`); description rows; grey suggestions; the description of an empty value; an unfocused typing row; empty states; the hint under the name on a screen smaller than the minimum size; separators (inside popups, below the screen chip row) | Overlay0 `#6c7086` |
 | Normal text | values in forms and panels; menu labels; descriptions in the key reference | Text `#cdd6f4` |
-| Panel cursor | the background of the cursor row in a panel, its text Base bold | Subtext1 `#bac2de` |
+| Panel cursor | the background of the cursor row in a panel, its text Base bold (a row with a colour of its own: below) | Subtext1 `#bac2de` |
 | Button | the background of an unfocused button, its text in Text | Surface1 `#45475a` |
 
 - **The cursor block**: the layer colour as its background in a popup, Subtext1 in a panel, the text Base bold in both;
@@ -55,6 +55,13 @@ syntax highlighting), the app may decide for itself; this file governs the inter
   cells whose content is a colour (the `███` of a colour value in a form or on a panel, the cells kamonu draws a mark
   in) keep their own colour, while the other text on the block still turns Base. The colour is that cell's value, and
   it matters most just when it is about to be changed.
+- **A row with a colour of its own** (the content's colour, Principle P5; e.g. the places in a ranking): while the
+  cursor rests on it, the app may give the panel's cursor block that colour as its background, the text still Base
+  bold and the arrow on the right in the same colour, as control characters already take Red. Only the row's own
+  colour, never another; without the focus it is dimmed as any cursor is; while the panel is in a mode the block is
+  Subtext1 again, the mode's Yellow marking its range and held row (Rules K11). The colour is what tells those rows
+  apart, and it would vanish just where the cursor rests; only the cursor row has a block, so where the cursor is
+  stays plain (the user, 2026-11-12, from tetru).
 - **The screen's background is not painted**: cells with no background of their own are left to the terminal's own
   background. When the terminal's background is not Base, dimming still leans towards the fixed `#0c0c13`, not
   towards the terminal's background; the family colours are designed for a dark background, so on a dark terminal the

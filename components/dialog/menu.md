@@ -76,7 +76,7 @@ like another frame.
 ## menu.4 Inside a mode
 
 The Space menu that `Space` opens inside a mode (Rules K11) lists only what can be done in the mode, as follows. In an
-app's own mode (one no component of tdp specifies, e.g. tetru's Play mode), what it lists and how it is grouped, the
+app's own mode (one no component of tdp specifies), what it lists and how it is grouped, the
 app may decide for itself (Rules K11); the title, and how each row it lists is drawn and runs, stay as follows:
 
 - **Title**: where the mode lives, as usual — the focused panel's `[N] label` on a panel, that popup's title in a popup.

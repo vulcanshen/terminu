@@ -159,7 +159,8 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 - **cursor**：Subtext1 底、Base 粗體，佔滿整個內寬；cursor 那一列整列都是 Base 字，各欄原本的顏色不保留。右邊的留白
   畫 U+E0B0（`nf-pl-left_hard_divider`），Subtext1，像一個箭頭指著這一列。留白跟箭頭一樣寬（Rules E5 的 powerline 符號寬度：
   多半是一格；佔兩格的終端機上，每一列右邊都留兩格），箭頭剛好放得進去，字不位移。panel 失焦時
-  整塊淡化（Rules T2），cursor 跟著淡化，不另外換顏色。
+  整塊淡化（Rules T2），cursor 跟著淡化，不另外換顏色。自己有顏色的列，Subtext1 可以換成那個顏色，箭頭也一樣
+  （[`color`](../color-zh_TW.md) 的 color.2）。
 - **表頭**：多欄的清單一定有表頭，單欄的要不要有，app 可以自行決定。Blue、不加粗、大寫，固定在最上面不捲。每一欄是數字或文字：數字靠右、
   照數值排（`9` 在 `10` 前面），文字靠左、照文字排。
   欄與欄之間兩格（[components](../README-zh_TW.md) 的「圖與間距」）。排序見下面的「排序」。

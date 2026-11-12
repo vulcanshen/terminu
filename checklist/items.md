@@ -132,7 +132,7 @@ The items of tdp v1.2.3. What each column means and what an item applies to: [RE
 | K12-16 | K12 | What moves through space rather than along a run of items does not wrap: the days of a calendar, the month and the year, the two sides, moving within a piece of text (an input's typing-row cursor included) | everyone | Go on past the last day of a calendar, further right on the right side, or right from the last character of a typing row: it does not wrap |
 | K12-17 | K12 | Two-dimensional content (several items on a row, e.g. the links in a page's text) is read with no cursor, `j\|k`, `u\|d` and `gg\|G` scrolling; going from item to item is a mode, where `j\|k` walk item by item in reading order (left to right along a row, then the next row), wrapping at the ends, and `gg\|G` go to the first and the last item | two-dimensional content | Press `j\|k` on the content: it scrolls; enter the mode and press `j\|k` past the last item and `gg\|G` |
 | K12-18 | K12 | `PgUp\|PgDn` are `u\|d`: wherever `u\|d` move, they move the same, half a page, stopping at the first and the last item; they are not listed beside `u\|d` | everyone | On a list and a viewer longer than a page press `PgDn`, `PgUp`: the same as `d`, `u`; the key reference has `u\|d` and no `PgUp\|PgDn` |
-| K12-19 | K12 | In a mode, a movement key with no movement to make may do the mode's own action, the arrow key or `PgUp\|PgDn` that is the same key doing the same; it is listed in the mode's Space menu, `?` and hint; outside a mode, and for a key that does move, nothing changes | mode with a key with nothing to move | In such a mode press the key and its arrow key: the same action; open `Space` and `?`: it is listed; outside the mode the key still moves |
+| K12-19 | K12 | In a mode, a movement key with no movement to make may do the mode's own action, the arrow key or `PgUp\|PgDn` that is the same key doing the same; it is listed in the mode's `?` and hint, and in its Space menu as K11 has it; outside a mode, and for a key that does move, nothing changes | mode with a key with nothing to move | In such a mode press the key and its arrow key: the same action; open `?`: it is listed; outside the mode the key still moves |
 
 ## rules — M Menus and disclosure
 
@@ -511,6 +511,7 @@ The items of tdp v1.2.3. What each column means and what an item applies to: [RE
 | color-24 | color.4 | Dimmed output is always 24-bit (`38;2;…` / `48;2;…`) | everyone | Capture the output when a popup opens and look at the dimmed colour codes |
 | color-25 | color.4 | Text with no foreground of its own gets `dim(Text #cdd6f4)` when dimmed | everyone | Capture the output and look at the dimmed colour code of text that had no foreground colour |
 | color-26 | color.4 | Dimming leaves bold, reverse, cursor movement, the text and the layout untouched | everyone | Compare the text, positions and bold of the screen beneath before and after opening a popup |
+| color-27 | color.2 | Where the app gives a panel's cursor block on a row the colour the row's content has, it is that row's own colour and no other, the text Base bold and the arrow on the right in the same colour; while the panel is in a mode the block is Subtext1 | everyone | Move the cursor onto a row with a colour of its own: the block is that colour, the text Base bold, the arrow the same colour; with a mode on that panel, the block is Subtext1 |
 
 ## layout/screen
 
@@ -619,10 +620,10 @@ The items of tdp v1.2.3. What each column means and what an item applies to: [RE
 | panel-44 | panel.4 | If it still does not fit, unselected ones are folded away from the end and a `…` is drawn instead | several screens or panel tab | Narrow it further and look at the end of the chain |
 | panel-45 | panel.4 | When it does not fit, the selected one always stays | several screens or panel tab | Narrow it as far as it goes; check that the selected part is still there |
 | panel-46 | panel.4 | The capsule chain never stretches the frame wider | everyone | Narrow the terminal; check that the frame does not go past the terminal's width |
-| panel-47 | panel.5 | The cursor is a Subtext1 background, Base bold | everyone | Look at the cursor row on a list panel |
+| panel-47 | panel.5 | The cursor is a Subtext1 background, Base bold (a row with a colour of its own may take that colour, color-27) | everyone | Look at the cursor row on a list panel |
 | panel-48 | panel.5 | The cursor spans the whole inner width, from frame to frame | everyone | Look at the left and right ends of the cursor block |
 | panel-49 | panel.5 | The whole cursor row is Base text; the columns' own colours are not kept | everyone | Move the cursor to a row with coloured columns |
-| panel-50 | panel.5 | The cursor's right padding holds U+E0B0 in Subtext1 | everyone | Look at the far right of the cursor row |
+| panel-50 | panel.5 | The cursor's right padding holds U+E0B0 in the cursor's colour (Subtext1, or the row's own colour, color-27) | everyone | Look at the far right of the cursor row |
 | panel-51 | panel.5 | Every row's right padding is as wide as the arrow (two cells when a powerline symbol takes two), so the arrow fits and the text does not move | everyone | Start the app with `TERMINU__POWERLINE_WIDTH=2` and look at the right padding and the arrow on every row |
 | panel-52 | panel.5 | An ordinary list with several columns always has a header (when the list is empty the header goes with it into the empty state, panel-132) | everyone | Check that every list panel with several columns has a header row at the top |
 | panel-53 | panel.5 | An ordinary list's header is Blue | header | Look at the list's header |

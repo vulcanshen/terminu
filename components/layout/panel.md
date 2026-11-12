@@ -210,7 +210,8 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   pointing at the row. The padding is as wide as the arrow (the powerline symbol width of Rules E5: one cell as a rule;
   on a terminal where it takes two, every row keeps two on the right), so the arrow fits and the text does not move.
   When the panel is unfocused it is dimmed as a whole (Rules T2), the cursor with it,
-  not given another colour.
+  not given another colour. A row with a colour of its own may swap Subtext1 for that colour, the arrow too
+  ([`color`](../color.md), color.2).
 - **Header**: a list with several columns always has one; for a single-column list, the app may decide for itself. Blue, not bold,
   uppercase, fixed at the top and never scrolled. Each column holds numbers or text: numbers align right
   and sort by value (`9` before `10`), text aligns left and sorts as text. Two cells between columns
