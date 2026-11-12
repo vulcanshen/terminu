@@ -99,7 +99,7 @@ tdp v1.2.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K10-4 | K10 | 按 `Alt-Esc` 會讓 focus 離開 PTY 或結束子程序時，一律先跳 confirm：`Enter` 離開、`Esc` 回到 PTY | PTY | 在 PTY 裡按 `Alt-Esc` 出現 confirm；按 `Esc` 回到 PTY，再按一次 `Alt-Esc` 後按 `Enter` 離開 |
 | K10-5 | K10 | 子程序還沒準備好收鍵時，`Ctrl-C` 照樣轉送給子程序 | PTY | 子程序啟動或連線中按 `Ctrl-C`；讀程式：有轉送 |
 | K10-6 | K10 | 子程序還沒準備好收鍵時，出口鍵照樣有效、照樣揭露 | PTY | 子程序啟動或連線中看 footer、按出口鍵 |
-| K11-1 | K11 | 模式裡 `Space` 打開模式的 Space menu，只列模式裡能做的事 | 模式 | 進模式按 `Space` |
+| K11-1 | K11 | 模式裡 `Space` 打開模式的 Space menu；tdp 元件規定的模式只列模式裡能做的事（app 自己的模式見 K11-15） | 模式 | 進模式按 `Space` |
 | K11-2 | K11 | 模式裡 `?` 打開這個模式的 key reference：模式裡能按什麼鍵、做什麼 | 模式 | 進模式按 `?` |
 | K11-3 | K11 | 模式裡 `Esc` 離開模式，回到進入前的狀態；模式有好幾層時一次退一層（`Visual>select` 退回 `Visual`） | 模式 | 進模式做點事後按 `Esc`，狀態回到進入前 |
 | K11-4 | K11 | panel 與 popup 裡的模式，`q`、`Ctrl-C` 照 K9 進入離開流程 | 模式 | 進模式按 `q`、`Ctrl-C` |
@@ -113,6 +113,7 @@ tdp v1.2.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K11-12 | K11 | 模式在 PTY 上時（terminal 的歷史模式、選取模式），模式自己的鍵、`?`、`Esc` 以外的鍵先離開模式，再送給子程序；`q`、`Ctrl-C` 也一樣，不進離開流程 | PTY | 在 PTY 上進歷史模式，打一個字、按 `q`、`Ctrl-C`，看模式先離開、鍵落在子程序裡 |
 | K11-13 | K11 | 模式裡 `!` 不作用 | 模式 | 進模式按 `!` |
 | K11-14 | K11 | 可以讓使用者設定模式的鍵時，選到這個模式裡已經有作用的鍵（模式的其他鍵、core key）就跳 Warning 寫出被誰用了，不設定；模式的 Space menu、`?` 與提示寫目前作用的鍵 | 模式的鍵可以讓使用者設定 | 把模式的一個鍵設成模式的另一個鍵，再設成 `Space`：每次都跳 Warning，鍵沒變；設成沒人用的鍵：menu、`?`、提示都寫新的鍵 |
+| K11-15 | K11 | app 自己的模式（tdp 的元件沒有規定的模式），`Space` 打開它的 Space menu，至少有一列，標題跟其他模式的一樣；列什麼由 app 決定 | 模式 | 進模式按 `Space`：menu 至少有一列，標題寫模式所在的地方 |
 | K12-1 | K12 | 不在打字的地方，`j` `k` `u` `d` `g` `G` `h` `l` 不被任何動作佔用（`g` 開頭的兩鍵組合除外；模式裡沒有移動可做的鍵也除外，K12-19） | 都要 | 讀程式或看所有 menu、key reference：除了 K12-19 放行的，這幾個字母沒有登記成動作 |
 | K12-2 | K12 | `h\|j\|k\|l` 就是 `←\|↓\|↑\|→`：方向鍵做一樣的事 | 都要 | 在清單、menu、表單上分別按 hjkl 與方向鍵，效果一樣 |
 | K12-3 | K12 | 有左右結構時（同一個 surface 裡的 tab、左右兩側、格子），`j\|k` 上下、`h\|l` 左右（切 tab、跨到另一側） | 都要 | 在有 tab 的 panel 按 `h\|l` 切 tab |
@@ -919,10 +920,10 @@ tdp v1.2.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | menu-20 | menu.3 | 工作清單上沒有動作可做的列，`Enter` 打開那一列的全文，hint 寫 `Enter:detail Esc:close` | 工作清單 | cursor 移到沒有動作可做的列，看下框 |
 | menu-21 | menu.5 | 工作清單上可以對那一列做事的（例：進行中的傳輸可以取消），`Enter` 打開帶那一列全文的 confirm，hint 寫那個動作（例 `Enter:cancel Esc:close`） | 工作清單 | cursor 移到可以做事的列，看 hint 後按 `Enter` |
 | menu-22 | menu.5 | 工作清單開著時，列跟著工作更新（進度、狀態一變那一列就變），不用關掉重開 | 工作清單 | 工作進行中打開工作清單，看列的進度在變 |
-| menu-23 | menu.4 | 模式的 Space menu 分兩區：`ITEM OPERATION` 與 `<模式名> MODE`；panel、item、global 的動作不列 | 模式 | 進模式按 `Space` |
+| menu-23 | menu.4 | tdp 元件規定的模式，Space menu 分兩區：`ITEM OPERATION` 與 `<模式名> MODE`；panel、item、global 的動作不列 | 模式 | 進模式按 `Space` |
 | menu-24 | menu.4 | 項目操作跟平常的列一樣能執行，選了等於按那個鍵；現在不能做的停用 | 模式 | 從 menu 執行一項；cursor 停在不能做的地方再開 menu |
 | menu-25 | menu.4 | 移動鍵只顯示：鍵 Blue、說明 Overlay0，cursor 跳過，`Enter` 不作用 | 模式 | 在 menu 裡移 cursor |
-| menu-26 | menu.4 | 離開模式（字用模式 hint 裡 `Esc` 的動詞，例：`[Esc] Leave`）能從 menu 執行；menu 裡按 `Esc` 只關 menu、回到模式 | 模式 | 選 Leave；另外開一次 menu 按 `Esc` |
+| menu-26 | menu.4 | 離開模式（字用模式 hint 裡 `Esc` 的動詞，例：`[Esc] Leave`）能從 menu 執行，app 自己的模式則是 app 有列的時候；menu 裡按 `Esc` 只關 menu、回到模式 | 模式 | 選 Leave；另外開一次 menu 按 `Esc` |
 | menu-27 | menu.4 | 標題寫模式所在的地方：panel 的 `[N] label`，或 popup 的標題 | 模式 | 在 panel 上與 popup 裡的模式各開一次 |
 
 ## dialog/confirm

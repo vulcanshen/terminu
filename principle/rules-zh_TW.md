@@ -278,11 +278,15 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 | `Tab`、`1`–`9` | 模式在 panel 上時：模式可以暫停 `Tab` 與數字鍵，但按了要有回應，說明先 `Esc` 離開模式（例：toast）；toast 還在時，第一個 `Esc` 先收掉它（K4）。模式在 popup 裡時見下面 |
 
 - **模式裡只有模式自己的鍵與上表的 core key 作用**：panel 的熱鍵與 global 熱鍵都不作用，按了不出聲。
-- **模式的 Space menu**（[components/dialog/menu](../components/dialog/menu-zh_TW.md) 的「模式裡」）：只列模式裡能做的事，分兩區 ——
+- **模式的 Space menu**（[components/dialog/menu](../components/dialog/menu-zh_TW.md) 的「模式裡」；app 自己的模式見下一點）：只列模式裡能做的事，分兩區 ——
   **項目操作**：現在對 cursor 上那一項（或選起來的範圍）能做的事，選了就等於按那個鍵（例：Compare 模式的 `[C]ompare`、選取模式
   開始選之後的 `Cop[y]`）；**模式操作**：這個模式本身的鍵 —— 移動鍵只顯示、不能執行，離開模式這種真的做事的照樣能執行。
   panel、item、global 的動作一律不列。模式的鍵也揭露在 `?` 的 key reference 與 footer / 下框 hint（footer 在模式裡的樣子見
   [components/layout/screen](../components/layout/screen-zh_TW.md)）。
+- **app 自己的模式的 Space menu**（tdp 的元件沒有規定的模式，例：tetru 的 Play 模式；元件裡的 compare、Drag、選取、歷史模式照上面列）：
+  列什麼、怎麼分區，**app 可以自行決定**（例：tetru 的 Play 模式只列重新開始與存檔，玩的鍵寫在遊戲旁邊）。要守的：`Space` 照樣
+  打開它，至少有一列；標題與樣子跟其他模式的 Space menu 一樣（[components/dialog/menu](../components/dialog/menu-zh_TW.md)）；
+  模式的每個鍵照樣列在模式的 `?`，列出全部的鍵就在那裡；footer 或提示照上面（user 2026-11-11，來自 tetru）。
 - **模式要標示自己**：模式名顯示在模式所在的框（panel 或 popup）的上框右側，外框換成模式色；離開模式就恢復。模式名開關時有一小段
   動畫，不會讓模式等它：模式與外框顏色都立刻換。模式名是字，
   不只靠顏色：模式裡 focus 的 panel 照樣看得出是 focus（L5）。模式有好幾層時，模式名把層接在後面、用 `>` 隔開（例：viewer 的
@@ -304,6 +308,8 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 換 panel，使用者預期有反應，所以暫停時要回應；其他字母不出聲，免得亂按跳出一堆 toast。popup 裡的 `Tab` 與數字本來就不換
 panel，使用者不預期它們有反應，多回應反而是雜訊。模式的鍵靠手感、連著按，像遊戲一樣，每個人的手不一樣；它們只在模式裡
 作用，使用者改了也不會動到家族其他地方。已經有作用的鍵再給別的動作，一個鍵就做兩件事，所以擋下來，並說出原因。
+app 自己做的模式跟它的鍵一樣是 app 自己的：使用者在那裡按 `Space` 要找什麼，app 最清楚（玩到一半暫停，要找的是重新開始、存檔，
+不是旁邊已經寫著的玩的鍵）；`?` 照樣列出每個鍵，能按的鍵沒有一個沒揭露。
 
 ### K12 導覽字母保留給移動，hjkl 是方向鍵
 

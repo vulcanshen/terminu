@@ -340,13 +340,20 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 
 - **Inside a mode only the mode's own keys and the core keys above work**: panel hotkeys and global hotkeys do nothing,
   silently.
-- **The mode's Space menu** ("Inside a mode" in [components/dialog/menu](../components/dialog/menu.md)): it lists only
+- **The mode's Space menu** ("Inside a mode" in [components/dialog/menu](../components/dialog/menu.md); an app's own
+  mode, see the next point): it lists only
   what can be done in the mode, in two sections — **item operations**: what can be done now to the item under the
   cursor (or the selected range), picking one being the same as pressing its key (e.g. `[C]ompare` in the Compare mode,
   `Cop[y]` once a selection has started); **mode operations**: the mode's own keys — the movement keys are only shown,
   not run, while what really does something, such as leaving the mode, runs as usual. Panel, item and global actions are
   never listed. The mode's keys are also disclosed in the `?` key reference and in the footer / bottom-border hint (how
   the footer looks inside a mode: [components/layout/screen](../components/layout/screen.md)).
+- **The Space menu of an app's own mode** (a mode no component of tdp specifies, e.g. tetru's Play mode; the
+  components' compare, Drag, selection and history modes list as above): what it lists and how it is grouped, **the
+  app may decide for itself** (e.g. tetru's Play mode lists only Restart and Save, the keys for playing being written
+  beside the game). What holds: `Space` still opens it, with at least one row; its title and look are those of any
+  mode's Space menu ([components/dialog/menu](../components/dialog/menu.md)); every key of the mode is still in the
+  mode's `?`, the one place listing them all; the footer or hint is as above (the user, 2026-11-11, from tetru).
 - **A mode shows itself**: the mode name appears at the right of the top border of the frame the mode lives in (panel or
   popup), and the frame turns the mode colour; leaving the mode restores both. The mode name opens and closes with a
   short animation that never holds the mode up: the mode and the frame colour change at once. The mode name is a word,
@@ -380,7 +387,10 @@ like `Tab`, so users expect a response and a suspended one must respond; other l
 not pop up a string of toasts. In a popup, `Tab` and the digits never switch panels anyway, so users expect no response,
 and one would only be noise. A mode's keys are pressed by feel and in runs, as a game's are, and hands differ; they act
 only inside the mode, so a user changing them moves nothing anywhere else in the family. A key that already does
-something there would do two things at once, so it is refused, saying why.
+something there would do two things at once, so it is refused, saying why. A mode the app makes is the app's own,
+as its keys are: what the user looks for on pressing `Space` in it is the app's to know (a player pausing a game looks
+for restarting and saving, not for the keys already written beside the board), and `?` still lists every key, so
+no key that can be pressed goes undisclosed.
 
 ### K12 Navigation letters are kept for movement; hjkl are the arrow keys
 
