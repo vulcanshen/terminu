@@ -359,6 +359,10 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   the mode is already left (its name and frame colour gone); `Esc` on it closes it and stays outside the mode, never
   going back in; going back into the mode is an action the popup may offer (e.g. `Enter`) (the user, 2026-11-12, from
   tetru).
+- **The footer of an app's own mode**: which keys it writes between `Space:menu ?:help` and the last `Esc:<verb>`,
+  **the app may decide for itself**: any key that works in the mode, a core key included (e.g. `q:quit`), each doing
+  what it does in the mode (the table above; `q` runs the quit flow, K9)
+  ([components/layout/screen](../components/layout/screen.md), screen.2) (the user, 2026-11-12, from tetru).
 - **A mode shows itself**: the mode name appears at the right of the top border of the frame the mode lives in (panel or
   popup), and the frame turns the mode colour; leaving the mode restores both. The mode name opens and closes with a
   short animation that never holds the mode up: the mode and the frame colour change at once. The mode name is a word,
@@ -396,7 +400,9 @@ something there would do two things at once, so it is refused, saying why. A mod
 as its keys are: what the user looks for on pressing `Space` in it is the app's to know, and `?` still lists every key, so no key
 that can be pressed goes undisclosed. Leaving such a mode may leave something the user needs to know or pick up again
 (e.g. something paused halfway), and a popup is where that is told; `Esc` on it only closes it, so pressing `Esc`
-again and again still comes back to the panel, one layer a press (K4).
+again and again still comes back to the panel, one layer a press (K4). The footer shows keys that can be pressed now,
+and a core key works in any mode; writing one there only tells what is already true, and which keys the user of a
+mode looks for is the app's to know, as with its Space menu.
 
 ### K12 Navigation letters are kept for movement; hjkl are the arrow keys
 

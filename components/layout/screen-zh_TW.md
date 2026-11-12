@@ -19,7 +19,7 @@
 |---|---|
 | 一般 | `Space:menu ?:help !:log Tab\|1–N:panels q:quit` |
 | 只有一個 panel 的畫面 | `Space:menu ?:help !:log q:quit` |
-| 在模式裡（Rules K11） | `Space:menu ?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>`。例：`Space:menu ?:help Enter:drop Esc:cancel` |
+| 在模式裡（Rules K11） | `Space:menu ?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>`；app 自己的模式，中間寫哪些鍵由 app 自行決定，`q:quit` 這種 core key 也可以（Rules K11）。例：`Space:menu ?:help Enter:drop Esc:cancel` |
 | panel filter 打字中（輸入態） | `Enter\|Tab:list Esc:clear` |
 | panel filter 打字中，沒有結果 | `Tab:list Esc:clear`（`Enter` 不作用，照 [`input/finder`](../input/finder-zh_TW.md) 的 hint） |
 | focus 在 panel 裡的 PTY | 出口鍵，再加 app 保留的鍵（Rules K10）；互動 terminal 再接 `Alt-v:select`、`PgUp:history`（dialog/terminal）。例：`Alt-Esc:leave Alt-z:zoom Alt-v:select PgUp:history` |

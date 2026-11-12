@@ -524,7 +524,8 @@ tdp v1.2.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | screen-5 | screen.2 | footer 寬度不夠時從尾端整組捨棄 | 都要 | 把終端機縮窄，看 footer 從尾端少掉整組 `鍵:說明` |
 | screen-6 | screen.2 | 畫面有好幾個 panel 時，footer 是 `Space:menu ?:help !:log Tab\|1–N:panels q:quit` | 多 panel | 在有好幾個 panel 的畫面看 footer |
 | screen-7 | screen.2 | 只有一個 panel 的畫面，footer 是 `Space:menu ?:help !:log q:quit` | 都要 | 在只有一個 panel 的畫面看 footer（多畫面的 app 每個畫面各看一次） |
-| screen-8 | screen.2 | 模式在 panel 上時，footer 是 `Space:menu ?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>` | 模式（在 panel 上） | 進入模式，看 footer |
+| screen-8 | screen.2 | 模式在 panel 上時，footer 是 `Space:menu ?:help`、模式自己的鍵、最後 `Esc:<離開的動詞>`（app 自己的模式，中間寫哪些鍵由 app 決定，screen-36） | 模式（在 panel 上） | 進入模式，看 footer |
+| screen-36 | screen.2 | app 自己的模式的 footer，在 `Space:menu ?:help` 與最後的 `Esc:<離開的動詞>` 中間寫的每個鍵，在模式裡都能按、做的事跟寫的一樣；寫上去的 core key（例：`q:quit`）做的事跟在任何模式裡一樣（`q` 進入離開流程，K9） | 模式（在 panel 上） | 進模式看 footer：開頭是 `Space:menu ?:help`、最後是 `Esc:…`；按中間的每個鍵：做的事跟寫的一樣 |
 | screen-9 | screen.2 | panel filter 打字中，footer 是 `Enter\|Tab:list Esc:clear` | panel filter | 按 `/` 打字時看 footer |
 | screen-10 | screen.2 | focus 在 panel 裡的 PTY 時，footer 寫出口鍵，再加 app 保留的鍵（互動 terminal 還有 `Alt-v`、`PgUp`）；不寫 `?` 與 `Space` | PTY | 進 PTY，看 footer 第一組是出口鍵 |
 | screen-11 | screen.2 | popup 開著時 footer 照底下畫面的寫，不換字（terminal popup 例外：footer 不畫，terminal-13） | 都要 | 開 popup 前後比對 footer 的字 |
