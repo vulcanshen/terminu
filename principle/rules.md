@@ -168,8 +168,9 @@ lands somewhere else.
 `Esc` cancels the current operation or closes the top layer: a popup if there is one (toasts included, F3, but for the
 inspect toast, which takes no keys); while the
 popup is in a mode, it leaves the mode first (K11), and the next press closes the popup; with no popup, it leaves the
-current mode (selection, dragging) or goes up one level (e.g. clearing a panel filter) — what "up one level" means, the
-app may decide for itself. **One layer per press**, and **`Esc` never leaves the app** — at the top it does nothing.
+current mode (selection, dragging; leaving an app's own mode may open a popup, K11) or goes up one level (e.g.
+clearing a panel filter) — what "up one level" means, the app may decide for itself. **One layer per press**,
+and **`Esc` never leaves the app** — at the top it does nothing.
 
 When a popup opens another (e.g. Space menu → global operation popup → confirm), `Esc` **closes only the topmost one**;
 the popups underneath stay and are shown exactly as they were; the next press closes the next layer (F4).
@@ -334,7 +335,7 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 | `Space` | opens the mode's Space menu (below) |
 | `!` | does nothing (the App Log opens outside a mode) |
 | `?` | the mode's key reference (read-only, K6): which keys work in the mode and what they do |
-| `Esc` | leaves the mode (K4), back to the state before it was entered; in a mode with layers, back one layer at a time (e.g. `Visual>select` back to `Visual`) |
+| `Esc` | leaves the mode (K4), back to the state before it was entered; in a mode with layers, back one layer at a time (e.g. `Visual>select` back to `Visual`); leaving an app's own mode may open a popup (below) |
 | `q`, `Ctrl-C` | run the quit flow, as K9 |
 | `Tab`, `1`–`9` | with the mode on a panel: a mode may suspend `Tab` and the digit keys, but pressing them must respond, saying to leave the mode with `Esc` first (e.g. a toast); while the toast is up, the first `Esc` closes it (K4). With the mode in a popup, see below |
 
@@ -353,6 +354,11 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   What holds: `Space` still opens it, with at least one row; its title and look are those of any
   mode's Space menu ([components/dialog/menu](../components/dialog/menu.md)); every key of the mode is still in the
   mode's `?`, the one place listing them all; the footer or hint is as above (the user, 2026-11-11, from tetru).
+- **Leaving an app's own mode**: when `Esc` leaves it, whether a popup opens to tell the state the mode was left in
+  (e.g. paused, with a confirm offering to go on), **the app may decide for itself**. Where one opens: one popup only;
+  the mode is already left (its name and frame colour gone); `Esc` on it closes it and stays outside the mode, never
+  going back in; going back into the mode is an action the popup may offer (e.g. `Enter`) (the user, 2026-11-12, from
+  tetru).
 - **A mode shows itself**: the mode name appears at the right of the top border of the frame the mode lives in (panel or
   popup), and the frame turns the mode colour; leaving the mode restores both. The mode name opens and closes with a
   short animation that never holds the mode up: the mode and the frame colour change at once. The mode name is a word,
@@ -388,7 +394,9 @@ and one would only be noise. A mode's keys are pressed by feel and in runs, as a
 only inside the mode, so a user changing them moves nothing anywhere else in the family. A key that already does
 something there would do two things at once, so it is refused, saying why. A mode the app makes is the app's own,
 as its keys are: what the user looks for on pressing `Space` in it is the app's to know, and `?` still lists every key, so no key
-that can be pressed goes undisclosed.
+that can be pressed goes undisclosed. Leaving such a mode may leave something the user needs to know or pick up again
+(e.g. something paused halfway), and a popup is where that is told; `Esc` on it only closes it, so pressing `Esc`
+again and again still comes back to the panel, one layer a press (K4).
 
 ### K12 Navigation letters are kept for movement; hjkl are the arrow keys
 
