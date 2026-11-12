@@ -1,5 +1,37 @@
 # Changelog
 
+## v1.2.6 — 2026-11-12
+
+A patch, the user's choice: no member has to change now. After tetru's first rounds, where most of what tdp did not
+say ended as "the app may decide" one point at a time, the user asked whether that was the right way; the answer is
+one opening in the principle, shaped like an app's own popup: a door, an inside that is the app's, and a frame that
+stays tdp's (the user, from tetru).
+
+- P5, terms.8, K11: **an app's own mode** (one neither a component nor a rule of tdp specifies) is one of the larger
+  openings. The door: only for what no component or rule does (e.g. playing a game, drawing); things picked out one by
+  one are a list however they are laid out; a mode doing what a component's mode does keeps the family's names and
+  keys; it is entered only by the user's action. Inside, the app's: the mode's keys and what they do, how its content
+  is drawn, what its Space menu lists, which keys the footer writes between its head and tail, how it ends and what it
+  shows before, what stays once it is left, whether a popup opens on leaving. The frame, tdp's: the core keys (K11's
+  table gains an `Enter` row), movement as K12; the furthest the mode's own keys and Space menu reach is leaving the
+  mode, and past that tdp takes over (the user's words); every key is in `?`, and every key but the core keys and the
+  moving keys also in its Space menu or its footer at 60 columns; one such mode per panel or popup; however it is
+  left, the mode name and frame colour come back and its Space menu and `?` close; where leaving would throw away
+  what the user made to keep, the popup on leaving asks. The point rules of v1.2.4 and v1.2.5 (Space menu, the popup
+  on leaving, the footer) are folded in
+- F1, popup.8: a key whose effect reaches past an app's own popup either closes it or runs one of the app's actions
+  tdp has a place for (an item's or a panel's operation, a global operation, quitting), as from its menu; from a
+  popup opened inside an app's own mode, running one leaves the mode first (the user)
+- panel.16 (new): an app's own content, the panel twin of an app's own popup
+- K11: a key that does nothing outside the mode either (`Tab` or a digit on a screen with one panel, the focused
+  panel's digit) does nothing in the mode too, silently, with no toast
+- M1: inside a mode `Space` opens the mode's Space menu ("does nothing" was left from before v0.9.7); M3: a mode's
+  keys are found as K11 has them; menu.4: an app's own mode lists nothing from outside the mode
+- changed in this version: P5, terms.8, K11, M1, M3, F1, menu.4, popup.8, panel.16 (new)
+- checklist: K11-17 to K11-24, panel-159, panel-160 and popup-74 added; K11-1, K11-3, K11-5, K11-15, K11-16 and
+  menu-23 changed; the features "an app's own mode" and "an app's own content" added (1460 items); the header names
+  v1.2.6
+
 ## v1.2.5 — 2026-11-12
 
 A patch, the user's choice: no member has to change; an app takes these when it wants them. Released with
