@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.2.4 — 2026-11-12
+
+A patch, the user's choice: no member has to change; an app takes these when it wants them. Released with
+terminu-go once tetru, the member that raised them, had finished developing and confirmed (the user). Settled with
+the user: two points from tetru (issues #7 and #8).
+
+- K11, menu.4: in an app's own mode (one no component of tdp specifies), what its Space menu lists and how it is
+  grouped, the app may decide for itself. `Space` still opens it, with at least one row; its title and look are those
+  of any mode's Space menu; every key of the mode is still in its `?`; the footer or hint is unchanged. The
+  components' compare, Drag, selection and history modes list as before (from tetru)
+- color.2, panel.5: a row with a colour of its own (e.g. the places in a ranking) may give the panel's cursor block
+  that colour, the text still Base bold and the arrow on the right the same colour. Only the row's own colour; dimmed
+  without the focus as any cursor is; Subtext1 again while the panel is in a mode (from tetru)
+- K12: a mode's own key is disclosed in its `?` and hint, and in its Space menu as K11 has it; tdp's examples name no
+  app's own mode, the rules stay generic (the user)
+- changed in this version: K11, K12, menu.4, color.2, panel.5
+- checklist: K11-15 and color-27 added; K11-1, K12-19, menu-23, menu-26, panel-47 and panel-50 changed (1448
+  items); the header names v1.2.4
+
 ## v1.2.3 — 2026-11-11
 
 A patch, the user's choice: no member has to change now; the others align when they next work on a feature. Released
