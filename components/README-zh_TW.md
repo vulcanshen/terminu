@@ -56,7 +56,8 @@ very/long/path/abc
 
 ## components.4 大寫
 
-- **要大寫的**：panel 的膠囊（`[N] label` 與 tab）、畫面 chip、popup 的標題、表頭、清單的分組標題、一列一個值的 panel 的 label、
+- **要大寫的**：panel 的膠囊（`[N] label` 與 tab）、畫面 chip、popup 的標題、表頭、分組標題（清單的、一列一個值的 panel 的）、
+  一列一個值的 panel 的 label、
   menu 與 key reference 的區塊標題。
 - **不改的**：值、menu 的 label 與說明、hint 與 footer 的說明、按鍵名、模式名、app 自己的內容（statusbar、清單裡的資料）。
 - **熱鍵標記裡的字母照原樣**：括號裡印的就是要按的鍵，大小寫算數（Rules M5）—— `[M]anage` 寫成 `[M]ANAGE`，`[m]anage` 寫成

@@ -34,7 +34,7 @@ app 可以自行決定；這裡管的是 tdp 定的介面元素（Principle P4�
 | 模式 | 模式的外框與模式名、模式裡選起來的範圍、Drag 拿著的那一列（Rules K11） | Yellow `#f9e2af` |
 | 警告：值得注意、但沒壞 | confirm 裡警告的那一句；Warning toast 的字 | Peach `#fab387` |
 | 錯誤 | 錯誤列、出錯的 label、error popup、Error toast 的字、畫成名字的控制字元（`\n`、`\x1b`……，[components](README-zh_TW.md) 的「控制字元」；游標停在上面時是它的底，字 Base）；比較裡刪掉的行 | Red `#f38ba8` |
-| 暗字 | menu 的說明與區塊標題；一列一個值的 panel 的表頭；hint、footer 的冒號與說明，以及隔開幾個鍵的 `\|`（`j\|k`）；說明列；灰字提議；空值的說明；沒有 focus 的打字列；空狀態；畫面比最低尺寸小時名稱下面的提示；分隔線（popup 裡的、畫面 chip 列下面的） | Overlay0 `#6c7086` |
+| 暗字 | menu 的說明與區塊標題；一列一個值的 panel 的表頭與分組標題；hint、footer 的冒號與說明，以及隔開幾個鍵的 `\|`（`j\|k`）；說明列；灰字提議；空值的說明；沒有 focus 的打字列；空狀態；畫面比最低尺寸小時名稱下面的提示；分隔線（popup 裡的、畫面 chip 列下面的） | Overlay0 `#6c7086` |
 | 一般文字 | 表單與 panel 上的值；menu 的 label；key reference 的說明 | Text `#cdd6f4` |
 | panel 的 cursor | panel 上 cursor 所在那一列的底，字是 Base 粗體（自己有顏色的列見下面） | Subtext1 `#bac2de` |
 | 按鈕 | 沒有 focus 的按鈕的底，字是 Text | Surface1 `#45475a` |

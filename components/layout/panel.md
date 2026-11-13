@@ -375,6 +375,8 @@ When a list's items fall into groups (kbu's resource kinds, locku's sidebar), ea
 - **Items**: two cells further in than the group title. When the list has a mark column ("Marked rows" above: a tick or a
   flag), the sign goes in those two extra cells: the sign one cell from the frame, a space, the text three cells from the frame; a group
   title row keeps no mark column.
+- **Every item is in a group**: no item comes before the first group title; an item that fits no group gets a group
+  of its own (e.g. `OTHER`).
 - **The cursor skips group titles** and stops only on items: `j|k` step over them; `gg|G` go to the first and last item;
   the `N of M` scroll position counts items only. When scrolling puts the cursor on a group's first item, that group's
   title stays on screen too.
@@ -386,7 +388,8 @@ When a list's items fall into groups (kbu's resource kinds, locku's sidebar), ea
 uppercase, not bold); with the items two cells further in, which group a row belongs to shows at a glance, with no
 separator to draw. The mark goes in the two extra cells: the text stays three cells from the frame, as without marks and
 as in an ordinary list with marks, and shifts nothing. The cursor stops only on rows that do something, as with a menu's
-section titles. A group title left over an empty group looks as if it were still loading.
+section titles. A group title left over an empty group looks as if it were still loading. An item outside every group
+would have no title saying what it is and no title to stand two cells in from; a group of its own says it plainly.
 
 ## panel.12 One value per row
 
@@ -399,6 +402,19 @@ A panel with one value per row, like a settings screen (locku's preference, webu
 ┃ PROFILE             clock                     ┃
 ┃ SHOW_STATUS         on                        ┃
 ┃ PIN_PROMPT_TIMEOUT  30                        ┃
+┗━ Enter:edit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+With groups ("Groups" below):
+
+```
+┏[2] PREFERENCE━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ LOCK                                          ┃  ← group title: Overlay0, uppercase, not bold; the focus skips it
+┃   PIN                 not set                 ┃
+┃   PIN_PROMPT_TIMEOUT  30                      ┃
+┃ DISPLAY                                       ┃
+┃   PROFILE             clock                   ┃
+┃   SHOW_STATUS         on                      ┃
 ┗━ Enter:edit ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
@@ -416,14 +432,24 @@ A panel with one value per row, like a settings screen (locku's preference, webu
   dimmed with the panel when it is unfocused (T2). The label column is as wide as the longest of the labels and the
   header's first column name (e.g. a 7-cell `SETTING` header over a longest label `DRAWER` of 6 cells gives 7), with two
   cells between it and the values; the header's second column name lines up with the values.
-- **Header** (`PROPERTY  VALUE` in the example): whether there is one, the app may decide for itself. If there is, it takes Overlay0
-  (dim text in [`color`](../color.md)); otherwise as an ordinary list's header (uppercase, not bold, fixed at the top
-  and never scrolled).
+- **Header** (`PROPERTY  VALUE` in the example): whether there is one, the app may decide for itself; a panel with
+  groups has none (below). If there is, it takes Overlay0 (dim text in [`color`](../color.md)); otherwise as an ordinary
+  list's header (uppercase, not bold, fixed at the top and never scrolled).
+- **Groups**: the rows may fall into groups, each holding one kind of setting. They are drawn as an ordinary list's
+  groups (panel.11): every row in a group (one that fits none in a group of its own); a group title row before each
+  group, uppercase, not bold, no glyph, one cell from the frame; the rows two cells further in; no blank row and no
+  separator between groups; the focus skips the titles, and when scrolling puts the focus on a group's first field, its
+  title stays on screen too; a group with no fields has no title; they are dimmed with the panel when it is unfocused
+  (T2). What differs: the group title takes Overlay0, as the header does, not Blue. A panel with groups has no header:
+  each group's title says what its rows are. The label column is measured over all the groups together, so the values
+  start in one column down the whole panel (the user, 2026-11-13, from tetru).
 - **Scroll position**: as in a form, counted in fields — in `N of M`, N is the field the focus is on and M the number of
-  fields; a radio's options count as one field (["When the content does not fit"](popup.md) in popup).
-- **The "each row" section of `?`** (whether there is one, the app may decide for itself): the key reference may open with a section
-  saying what each row is — the setting's name on the left (in normal text), its description on the right; the key
-  sections follow it (the key reference in [`dialog/note`](../dialog/note.md)).
+  fields (group titles are not fields); a radio's options count as one field
+  (["When the content does not fit"](popup.md) in popup).
+- **The "each row" section of `?`** (whether there is one, the app may decide for itself): the key reference may open
+  with a section saying what each row is — the setting's name on the left (in normal text), its description on the
+  right, in the panel's order (with groups, still one section, with no group titles in it); the key sections follow it
+  (the key reference in [`dialog/note`](../dialog/note.md)).
 
 **Why**: a settings screen and a form are the same thing — one value per row, changed one by one — except that a change
 takes effect at once. With one set of rules, what the user learns in a form works on a settings screen too. Labels are
@@ -435,6 +461,11 @@ each row's label already says what the row is. The label column is measured with
 alone, a wider header would push its second column out of line with the values. The scroll position counts fields, as in
 a form: the user counts settings, not rows of text. When a label of a word or two cannot say what a row governs, the
 "each row" section at the top of `?` fills it in; an app with few settings whose names say enough needs no such section.
+Groups are drawn as an ordinary list's groups, so rows that belong together look the same on every panel; their title
+takes Overlay0 for the reason the header does, the labels under it being Blue. A panel with groups has no header: its
+groups hold settings of different kinds, which one pair of column names cannot fit, and each group's title already says
+what its rows are, the header's job (panel.11). The label column spans the groups so that the values line up down the
+panel.
 
 ## panel.13 Details
 

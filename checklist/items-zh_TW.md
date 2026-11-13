@@ -678,6 +678,7 @@ tdp v1.2.8 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-91 | panel.11 | 捲動時 cursor 停在一組的第一個項目，這組的標題也留在畫面裡 | 分組清單 | 把終端機拉矮再捲到某組的第一個項目 |
 | panel-92 | panel.11 | 組與組之間不空列、不畫分隔線 | 分組清單 | 看兩組之間 |
 | panel-93 | panel.11 | 沒有項目的組不畫標題 | 分組清單 | 用 panel filter 篩到某組一項都不剩，看它的標題消失 |
+| panel-170 | panel.11 | 分組清單的每個項目都在某一組裡：第一個分組標題前面沒有項目 | 分組清單 | 看清單最上面：第一列是分組標題 |
 | panel-94 | panel.12 | `Enter` 打開那個值的 input popup | 一列一個值的 panel | 在一個值上按 `Enter` |
 | panel-95 | panel.12 | 值在 input popup 確定的那一刻就生效、就存 | 一列一個值的 panel | 改一個值確定後立刻離開 app 再開，看值還在 |
 | panel-96 | panel.12 | 開關與 radio 在原地選的那一刻就生效、就存 | 一列一個值的 panel | 切一個開關後立刻離開 app 再開，看值還在 |
@@ -691,6 +692,16 @@ tdp v1.2.8 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-104 | panel.12 | label 欄寬取 label 與表頭第一欄名裡最長的那一個 | 一列一個值的 panel | 看值欄的起點是最長的 label（表頭第一欄名比較長時是它）加兩格 |
 | panel-105 | panel.12 | 一列一個值的 panel 有表頭時，表頭用 Overlay0 | 一列一個值的 panel | 看表頭的顏色 |
 | panel-106 | panel.12（圖） | 一列一個值的 panel 有表頭時，表頭的欄名跟下面的 label 欄、值欄對齊 | 一列一個值的 panel | 看表頭兩個欄名的起點 |
+| panel-161 | panel.12 | 一列一個值的 panel 每組前面一列分組標題：大寫、不加粗、沒有 glyph，離框一格 | 分組的值 | 看分組標題 |
+| panel-162 | panel.12 | 一列一個值的 panel 的分組標題用 Overlay0，不用 Blue | 分組的值 | 比較分組標題與 label 的顏色 |
+| panel-163 | panel.12 | 有分組的一列一個值 panel，列比它的分組標題多縮兩格，每組的值從同一欄開始 | 分組的值 | 比較兩組的標題、label、值從哪裡開始 |
+| panel-164 | panel.12 | 一列一個值的 panel 組與組之間不空列、不畫分隔線 | 分組的值 | 看兩組之間 |
+| panel-165 | panel.12 | 一列一個值的 panel，focus 跳過分組標題（`j\|k` 越過它），`N of M` 只算欄位 | 分組的值 | 按 `j\|k` 越過分組標題；看 `N of M` 的總數等於欄位數 |
+| panel-166 | panel.12 | 捲動時 focus 停在一組的第一個欄位，這組的標題也留在畫面裡 | 分組的值 | 把終端機縮矮，捲到一組的第一個欄位 |
+| panel-167 | panel.12 | 沒有欄位的組不畫標題 | 分組的值 | app 能讓一組變空的話，讓它變空：標題不見 |
+| panel-168 | panel.12 | 有分組的一列一個值 panel 不畫表頭 | 分組的值 | 看 panel 最上面 |
+| panel-169 | panel.12 | 有分組時，key reference 的「每一列」一節還是一節，照 panel 的順序，裡面不寫分組標題 | 分組的值 | 在有這一節的 panel 上按 `?` |
+| panel-171 | panel.12 | 有分組的一列一個值 panel，每一列都在某一組裡：第一個分組標題前面沒有列 | 分組的值 | 看 panel 最上面：第一列是分組標題 |
 | panel-107 | panel.13 | 另一個 panel 的 cursor 一移動，明細立刻換成新的那一筆，不用按 `Enter` | 明細 panel | 在清單上按 `j\|k`，看明細 |
 | panel-108 | panel.13 | 明細的 label 寫那一筆的名字時，label 一起換 | 明細 panel | 同上，看明細的膠囊 |
 | panel-109 | panel.13 | cursor 移動時 focus 留在原本的 panel | 明細 panel | 同上，看 focus 的框 |

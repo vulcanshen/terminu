@@ -58,6 +58,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | panel tab | a panel with tabs |
 | one value per row | a one-value-per-row panel |
 | grouped list | a grouped list on a panel |
+| grouped values | a one-value-per-row panel whose rows are in groups |
 | detail panel | a detail that follows another panel's cursor |
 | header | a list with a header (a multi-column ordinary list always has one) |
 | location row | a panel's location row (layout/panel) |

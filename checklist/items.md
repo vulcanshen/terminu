@@ -678,6 +678,7 @@ The items of tdp v1.2.8. What each column means and what an item applies to: [RE
 | panel-91 | panel.11 | When scrolling puts the cursor on a group's first item, that group's title stays on screen too | grouped list | Make the terminal shorter and scroll to the first item of a group |
 | panel-92 | panel.11 | No blank row and no separator between groups | grouped list | Look between two groups |
 | panel-93 | panel.11 | A group with no items has no title | grouped list | Filter with the panel filter until a group has no items left; check that its title disappears |
+| panel-170 | panel.11 | Every item of a grouped list is in a group: no item comes before the first group title | grouped list | Look at the top of the list: it starts with a group title |
 | panel-94 | panel.12 | `Enter` opens the value's input popup | one value per row | Press `Enter` on a value |
 | panel-95 | panel.12 | A value takes effect and is saved the moment it is confirmed in the input popup | one value per row | Change a value and confirm it, quit the app right away and reopen it; check that the value is still there |
 | panel-96 | panel.12 | A switch or radio option takes effect and is saved the moment it is chosen in place | one value per row | Flip a switch, quit the app right away and reopen it; check that the value is still there |
@@ -691,6 +692,16 @@ The items of tdp v1.2.8. What each column means and what an item applies to: [RE
 | panel-104 | panel.12 | The label column is as wide as the longest of the labels and the header's first column name | one value per row | Check that the value column starts two cells after the longest label (or the header's first column name, when that is longer) |
 | panel-105 | panel.12 | When a one-value-per-row panel has a header, it takes Overlay0 | one value per row | Look at the header's colour |
 | panel-106 | panel.12 (diagram) | When a one-value-per-row panel has a header, its column names line up with the label and value columns below | one value per row | Look at where the header's two column names start |
+| panel-161 | panel.12 | Each group of a one-value-per-row panel starts with a group title row: uppercase, not bold, no glyph, one cell from the frame | grouped values | Look at the group titles |
+| panel-162 | panel.12 | The group titles of a one-value-per-row panel are Overlay0, not Blue | grouped values | Look at the group titles' colour next to the labels' |
+| panel-163 | panel.12 | In a one-value-per-row panel with groups, the rows are two cells further in than their group title, and the values start in one column in every group | grouped values | Compare where the titles, the labels and the values start in two groups |
+| panel-164 | panel.12 | No blank row and no separator between the groups of a one-value-per-row panel | grouped values | Look between two groups |
+| panel-165 | panel.12 | The focus skips the group titles of a one-value-per-row panel (`j\|k` step over them), and `N of M` counts fields only | grouped values | Press `j\|k` past a group title; check that the total in `N of M` equals the number of fields |
+| panel-166 | panel.12 | When scrolling puts the focus on a group's first field, that group's title stays on screen too | grouped values | Make the terminal shorter and scroll to the first field of a group |
+| panel-167 | panel.12 | A group with no fields has no title | grouped values | Where the app can leave a group empty, empty it: its title is gone |
+| panel-168 | panel.12 | A one-value-per-row panel with groups has no header | grouped values | Look at the top of the panel |
+| panel-169 | panel.12 | With groups, the key reference's "what each row is" section stays one section, its rows in the panel's order, with no group titles in it | grouped values | Press `?` where the panel has this section |
+| panel-171 | panel.12 | Every row of a one-value-per-row panel with groups is in a group: no row comes before the first group title | grouped values | Look at the top of the panel: it starts with a group title |
 | panel-107 | panel.13 | When the other panel's cursor moves, the details switch to the new item straight away, with no `Enter` | detail panel | Press `j\|k` on the list and look at the details |
 | panel-108 | panel.13 | When the details' label names the item, the label switches too | detail panel | As above, look at the details' capsule |
 | panel-109 | panel.13 | As the cursor moves, the focus remains on the panel it was on | detail panel | As above, look at which frame has the focus |

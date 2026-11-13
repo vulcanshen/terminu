@@ -47,6 +47,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | panel tab | 有 panel 有 tab |
 | 一列一個值的 panel | 有一列一個值的 panel |
 | 分組清單 | panel 上有分組的清單 |
+| 分組的值 | 一列一個值的 panel 裡分了組 |
 | 明細 panel | 有跟著另一個 panel 的 cursor 換內容的明細 |
 | 表頭 | 有清單有表頭（多欄的一般清單一定有） |
 | 位置列 | 有 panel 的位置列（layout/panel） |
