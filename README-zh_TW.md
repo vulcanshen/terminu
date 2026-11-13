@@ -69,6 +69,7 @@ go run github.com/vulcanshen/terminu-go/examples/showcase@latest
 | [hostu](https://github.com/vulcanshen/hostu) | 在終端機裡用 profile 切換 hosts 檔 |
 | [demou](https://github.com/vulcanshen/demou) | 家族的操作教學 app：動手按，學會 terminu 家族的操作 |
 | [catu](https://github.com/vulcanshen/catu) | 終端機裡看檔案的工具：Markdown 畫成文件、mermaid 畫成圖 |
+| [tetru](https://github.com/vulcanshen/tetru) | 在終端機裡玩的落塊消行遊戲 |
 
 ## 歷史
 

@@ -76,6 +76,7 @@ patched first, then the library follows.
 | [hostu](https://github.com/vulcanshen/hostu) | Switch the hosts file between profiles, in the terminal |
 | [demou](https://github.com/vulcanshen/demou) | The family's app for learning the operations, hands-on |
 | [catu](https://github.com/vulcanshen/catu) | A file viewer for the terminal: Markdown drawn as a document, mermaid as diagrams |
+| [tetru](https://github.com/vulcanshen/tetru) | A falling-block game for the terminal |
 
 ## History
 
