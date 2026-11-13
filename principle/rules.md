@@ -375,8 +375,11 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   movement key; a K12 letter left with nothing to move in the mode may take another action, as K12 has it, a single
   `g` only where no two-key chord starting with `g` works in the mode (K12). The arrow keys and `PgUp|PgDn`, which the
   user does not pick, keep what the mode gives them by default (with moving left set to `a`, `←` still moves left;
-  an `↑` given one of the mode's actions by default keeps it). `Space`, `?`, `!`, `Esc`, `q`, `Ctrl-C`, `Tab` and the
-  digits stay as the table has them (the user, 2026-11-13, from tetru).
+  an `↑` given one of the mode's actions by default keeps it). Once their letter does something else, they are listed
+  in the mode's `?` on the row of what they do, joined to the user's key with `|` (e.g. `a|←`, `Enter|PgDn`; one the
+  mode gives nothing by default has nothing to list); that action being in the Space menu or the footer under the
+  user's key, they need not be there too. `Space`, `?`, `!`,
+  `Esc`, `q`, `Ctrl-C`, `Tab` and the digits stay as the table has them (the user, 2026-11-13, from tetru).
 - **An app's own mode** (a mode neither a component nor a rule of tdp specifies; the components' compare, Drag,
   selection and history modes and K12's item-to-item mode are tdp's), tdp's opening for what no component holds
   (Principle P5):
@@ -434,7 +437,9 @@ something there would do two things at once, so it is refused, saying why. In an
 movement keys are the user's to set too: what the frame must keep there is the way out and what tells what can be
 pressed (the other core keys of the table); `Enter` there already does what the app decides, and K12 guards
 against an app turning a moving key into an action behind the user's back, which a key the user picked cannot do.
-The arrow keys, which nobody picks, keep their default, so they still move as anywhere in the family.
+The arrow keys, which nobody picks, keep their default, so they still move as anywhere in the family. They go unlisted
+only for being the same key as a listed letter; once the letter does something else, they are keys of their own and
+are listed with what they do.
 An app's own mode is opened as an app's own popup is (F1): what can be fixed stays fixed (the way in, the way out, the
 core keys, the disclosure, the popups) and only what is the app's own is open, a game's or a drawing's keys and
 content; what the user looks for there, on `Space`, in the footer or on leaving, the app knows best. The door keeps it
@@ -490,8 +495,8 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
 - **A key with nothing to move, in a mode** (K11): where a movement key has no movement to make in a mode (e.g. a mode
   where nothing ever moves up, so `k` and `↑` have nothing to do), the mode may give it an action of its own. The key
   and the arrow key or `PgUp|PgDn` that is the same key do the same thing (where the user changed what the letter does,
-  moving it elsewhere or putting an action on it, the arrow key or `PgUp|PgDn` keeps what the mode gives it by default,
-  K11). It is
+  moving it elsewhere or putting an action on it, the arrow key or `PgUp|PgDn` keeps what the mode gives it by default
+  and is listed in `?` with the key now doing that, K11). It is
   disclosed as the mode's other keys are: in its `?` key reference and the footer or bottom-border hint, and in the
   mode's Space menu as K11 has it. Outside a mode, and for a key that does move in the mode, nothing changes (the user, 2026-11-11,
   from tetru). In an app's own mode that lets the user set its keys, the user may move its movement to other keys; a
@@ -644,9 +649,11 @@ README). Marking inside a label:
 - Modifiers are joined with `-`: `Alt-t`, `Ctrl-C`, `Shift-Tab`, `Alt-Esc`.
 - `|` joins two kinds of keys: **several keys doing one thing** (`h|k`, both going back on a one-dimensional list;
   `Enter|Esc:close`; `Enter|Tab`), and **a pair of keys in opposite directions told with one verb** (`j|k:move`, `u|d`,
-  `gg|G`, `Tab|Shift-Tab`). The `|` takes the description colour (dim text in [components/color](../components/color.md)),
-  not the key colour. A range uses `–`: `1–9`. Not `/`: `/` is itself a key (back to the typing row from a finder's
-  list, the panel filter), and `Tab//:filter` cannot be read.
+  `gg|G`, `Tab|Shift-Tab`). One item uses `|` one way only: where a pair's item would also join a key doing the same
+  thing (e.g. an arrow key kept on its default, K11), the pair is written as two items. The `|` takes the description
+  colour (dim text in [components/color](../components/color.md)), not the key colour. A range uses `–`: `1–9`. Not
+  `/`: `/` is itself a key (back to the typing row from a finder's list, the panel filter), and `Tab//:filter` cannot be
+  read.
 
 **By place**:
 
