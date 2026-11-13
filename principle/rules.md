@@ -369,7 +369,14 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   user picks must not be one that already does something in that mode (another of the mode's keys, or a core key
   above); picking one shows a Warning ([components/dialog/toast](../components/dialog/toast.md)) naming what has it,
   and the key is not set. The mode's Space menu, `?` and hint show the keys in force. Core keys and the keys of
-  panels are not the user's to change (the user, 2026-11-11, from tetru).
+  panels are not the user's to change (the user, 2026-11-11, from tetru). In an app's own mode (below) `Enter` and the
+  movement keys (K12) may be set too: what tdp gives them is the default (`Enter` the most natural thing, K3; hjkl
+  moving), and the user's choice replaces it. A movement moved to another key still moves, and that key counts as a
+  movement key; a K12 letter left with nothing to move in the mode may take another action, as K12 has it, a single
+  `g` only where no two-key chord starting with `g` works in the mode (K12). The arrow keys and `PgUp|PgDn`, which the
+  user does not pick, keep what the mode gives them by default (with moving left set to `a`, `←` still moves left;
+  an `↑` given one of the mode's actions by default keeps it). `Space`, `?`, `!`, `Esc`, `q`, `Ctrl-C`, `Tab` and the
+  digits stay as the table has them (the user, 2026-11-13, from tetru).
 - **An app's own mode** (a mode neither a component nor a rule of tdp specifies; the components' compare, Drag,
   selection and history modes and K12's item-to-item mode are tdp's), tdp's opening for what no component holds
   (Principle P5):
@@ -397,7 +404,8 @@ With focus inside a mode (the term "mode"), the core keys act like this:
     the way tdp has them, by the core keys as the table above (a core key it lists, e.g. `[q]uit` or `q:quit`, does what
     the table says), and there is no `Global operation` row (the user, 2026-11-12); an app's own popup it opens may
     run the app's actions as F1 has it, leaving the mode first. Every key of the mode is in its
-    `?`, and every key but the core keys and the movement keys moving as K12 has them is also in its Space menu or in
+    `?`, and every key but the core keys and the movement keys moving as K12 has them (a key the user moved a movement
+    to included, above; `Enter` is a core key whatever the mode or the user puts on it) is also in its Space menu or in
     its footer as drawn at 60 columns (L1; Principle P2). The mode shows itself (above). Every popup it opens is one of
     the classes in F1 and follows its component. On one panel or popup, one app's own mode at a time: going into
     another is leaving one and entering the next, or a layer after `>`.
@@ -422,7 +430,11 @@ like `Tab`, so users expect a response and a suspended one must respond; other l
 not pop up a string of toasts. In a popup, `Tab` and the digits never switch panels anyway, so users expect no response,
 and one would only be noise. A mode's keys are pressed by feel and in runs, as a game's are, and hands differ; they act
 only inside the mode, so a user changing them moves nothing anywhere else in the family. A key that already does
-something there would do two things at once, so it is refused, saying why.
+something there would do two things at once, so it is refused, saying why. In an app's own mode `Enter` and the
+movement keys are the user's to set too: what the frame must keep there is the way out and what tells what can be
+pressed (the other core keys of the table); `Enter` there already does what the app decides, and K12 guards
+against an app turning a moving key into an action behind the user's back, which a key the user picked cannot do.
+The arrow keys, which nobody picks, keep their default, so they still move as anywhere in the family.
 An app's own mode is opened as an app's own popup is (F1): what can be fixed stays fixed (the way in, the way out, the
 core keys, the disclosure, the popups) and only what is the app's own is open, a game's or a drawing's keys and
 content; what the user looks for there, on `Space`, in the footer or on leaving, the app knows best. The door keeps it
@@ -476,10 +488,14 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
   `h|l` switch tabs as above; in its selection mode `h|l` move the cursor and tabs do not switch (the selection mode
   in [components/dialog/note](../components/dialog/note.md)).
 - **A key with nothing to move, in a mode** (K11): where a movement key has no movement to make in a mode (e.g. a mode
-  where nothing ever moves up, so `k` and `↑` have nothing to do), the mode may give it an action of its own. The key and the arrow key or `PgUp|PgDn` that is the same key do the same thing. It is
+  where nothing ever moves up, so `k` and `↑` have nothing to do), the mode may give it an action of its own. The key
+  and the arrow key or `PgUp|PgDn` that is the same key do the same thing (where the user changed what the letter does,
+  moving it elsewhere or putting an action on it, the arrow key or `PgUp|PgDn` keeps what the mode gives it by default,
+  K11). It is
   disclosed as the mode's other keys are: in its `?` key reference and the footer or bottom-border hint, and in the
   mode's Space menu as K11 has it. Outside a mode, and for a key that does move in the mode, nothing changes (the user, 2026-11-11,
-  from tetru).
+  from tetru). In an app's own mode that lets the user set its keys, the user may move its movement to other keys; a
+  letter so left has nothing to move (K11, the user, 2026-11-13).
 
 **Why**: in the family hjkl are the arrow keys — forms, panels and lists all move with them; an app binding one to an
 action has users trigger an action while they think they are moving. With a left-right structure, left and right are
