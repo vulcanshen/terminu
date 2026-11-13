@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.2.9 — 2026-11-13
+
+A patch, the user's choice: only an app that puts a one-value-per-row panel in groups has to change (issue #15, from
+tetru). The user: a panel is either a list, plain or grouped (panel.11), or key-value settings (panel.12), and the
+settings may be split into groups too, drawn as the grouped list, not as a popup's sections.
+
+- panel.12: the rows of a one-value-per-row panel may fall into groups, each holding one kind of setting, drawn as an
+  ordinary list's groups (panel.11); what differs: the group title takes Overlay0, as the header does, the labels
+  under it being Blue (the user). A panel with groups has no header; its label column is measured over all the
+  groups, so the values start in one column; group titles are not fields in `N of M`; the "each row" section of `?`
+  stays one section, in the panel's order, with no group titles
+- panel.11, panel.12: with groups every item or row is in a group, and one that fits no group gets a group of its own
+  (kbu, locku and sshu already do so)
+- color.2, components.4: the group titles of a one-value-per-row panel are dim text, and uppercase
+- changed in this version: color.2, components.4, panel.11, panel.12
+- checklist: panel-161 to panel-171 added, with the feature `grouped values` (1473 items); the header names v1.2.9
+
 ## v1.2.8 — 2026-11-13
 
 A patch, the user's choice, finishing issue #14: v1.2.7 kept the arrow keys and `PgUp|PgDn` on the mode's default
