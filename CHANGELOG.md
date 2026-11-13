@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.2.10 — 2026-11-13
+
+A patch, the user's choice: no member has to change (from tetru's review). In an app's own mode, a confirm opened
+from the mode's Space menu went straight back to the game on `Esc`, where F4 and confirm.3 send it back to the menu;
+the user: a popup opened inside an app's own mode belongs to the inside, so where it goes back to is the app's.
+
+- K11: in an app's own mode, where a popup it opens goes back to when it is cancelled or closed (the mode, or the
+  Space menu it was opened from) and whether that menu stays under it, the app may decide for itself; the popup itself
+  is still one of the F1 classes and follows its component, so a confirm reads and answers as anywhere (the user)
+- F4, T1, confirm.3, menu.4: "cancelling goes back to the menu" holds outside an app's own mode; inside one, as the
+  app decides (K11)
+- changed in this version: K11, F4, T1, confirm.3, menu.4
+- checklist: K11-26 added; F4-2 and T1-2 changed (1474 items); the header names v1.2.10
+
 ## v1.2.9 — 2026-11-13
 
 A patch, the user's choice: only an app that puts a one-value-per-row panel in groups has to change (issue #15, from
