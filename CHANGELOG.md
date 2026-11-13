@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.2.7 — 2026-11-13
+
+A patch, the user's choice: only an app whose own mode lets the user set its keys is touched. v1.2.6 put `Enter` in
+K11's table of core keys, and the keys the user sets never take a core key, so an app that let the user move the
+action on `Enter` no longer met tdp, though v1.2.6 said no member had to change; nor did tdp say whether the user may
+move the movement keys of such a mode (issue #14, from tetru).
+
+- K11, K12: in an app's own mode that lets the user set its keys, `Enter` and the movement keys (K12) may be set too:
+  what tdp gives them is the default, and the user's choice replaces it. A movement moved to another key still moves,
+  and that key counts as a movement key; a K12 letter so left has nothing to move in the mode and may take another
+  action, a single `g` only where no chord starting with `g` works in the mode. The arrow keys and `PgUp|PgDn`, which
+  the user does not pick, keep what the mode gives them by default, whatever the user changed on the letter. `Space`,
+  `?`, `!`, `Esc`, `q`, `Ctrl-C`, `Tab` and the digits stay as K11's table has them (the user)
+- K11: in an app's own mode `Enter` is a core key for what must be in the Space menu or the footer, whatever is put
+  on it
+- changed in this version: K11, K12
+- checklist: K11-25 added; K11-14, K11-20 and K12-19 changed (1461 items); the header names v1.2.7
+
 ## v1.2.6 — 2026-11-12
 
 A patch, the user's choice: no member has to change now. After tetru's first rounds, where most of what tdp did not
