@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.2.8 — 2026-11-13
+
+A patch, the user's choice, finishing issue #14: v1.2.7 kept the arrow keys and `PgUp|PgDn` on the mode's default
+when the user changes what their letter does, but said nowhere where such a key is disclosed (from tetru's review).
+
+- K11, K12: once the user changed what a letter does, an arrow key or `PgUp|PgDn` kept on the mode's default is
+  listed in the mode's `?` on the row of what it does, joined with `|` to the user's key (e.g. `a|←`, `Enter|PgDn`);
+  the action being in the Space menu or the footer under the user's key, it need not be there too; one the mode
+  gives nothing by default has nothing to list (the user)
+- M5: one item uses `|` one way only, a pair or several keys doing one thing: where a pair's item would also join a
+  key doing the same thing, the pair is written as two items (e.g. `Enter|PgDn` and `k` rather than `Enter|PgDn|k`)
+- changed in this version: K11, K12, M5
+- checklist: M5-31 added; K11-20, K11-25 and K12-19 changed (1462 items); the header names v1.2.8
+
 ## v1.2.7 — 2026-11-13
 
 A patch, the user's choice: only an app whose own mode lets the user set its keys is touched. v1.2.6 put `Enter` in
