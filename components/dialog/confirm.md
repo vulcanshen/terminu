@@ -44,5 +44,6 @@ nothing has gone wrong yet.
   `Space` does nothing (Rules K5).
 - **Hint**: `Enter:<verb> Esc:cancel`, the verb saying what accepting does (e.g. `Enter:delete Esc:cancel`). The one exception is "When it cannot be
   read" in Rules E3: `Esc` quits the app, written `Esc:quit`.
-- **Opened from a menu**: `Esc` cancels and always returns to the menu (Rules F4); after `Enter`, whether the menu
+- **Opened from a menu**: `Esc` cancels and always returns to the menu (Rules F4; in an app's own mode, where the app
+  decides, Rules K11); after `Enter`, whether the menu
   stays follows the table in Rules T1, by what accepting does — a confirm is only a gate, not a kind of target.

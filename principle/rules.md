@@ -398,8 +398,10 @@ With focus inside a mode (the term "mode"), the core keys act like this:
     says; [components/layout/screen](../components/layout/screen.md), screen.2); how it ends besides `Esc` (by one of
     its keys, or on its own once what it was for is done, e.g. a game over) and what it shows before it is left;
     what stays once it is left (e.g. a game paused, the strokes
-    drawn); whether its content keeps running while a popup is over it; whether leaving opens a popup
-    (below).
+    drawn); whether its content keeps running while a popup is over it; where a popup it opens goes back to when it
+    is cancelled or closed, and whether the Space menu it was opened from stays under it (e.g. `Esc` on a confirm
+    opened from that menu going straight back to the game; the user, 2026-11-13, from tetru); whether leaving opens
+    a popup (below).
   - **What holds in it**: the core keys as the table above, `Space` opening its Space menu with at least one row, its
     title and look those of any mode's Space menu ([components/dialog/menu](../components/dialog/menu.md)); movement as
     K12; only the mode's keys and the core keys work. **The furthest the mode's own keys and its Space menu reach is
@@ -410,8 +412,8 @@ With focus inside a mode (the term "mode"), the core keys act like this:
     `?`, and every key but the core keys and the movement keys moving as K12 has them (a key the user moved a movement
     to included, above; `Enter` is a core key whatever the mode or the user puts on it) is also in its Space menu or in
     its footer as drawn at 60 columns (L1; Principle P2). The mode shows itself (above). Every popup it opens is one of
-    the classes in F1 and follows its component. On one panel or popup, one app's own mode at a time: going into
-    another is leaving one and entering the next, or a layer after `>`.
+    the classes in F1 and follows its component, save where it goes back to (above). On one panel or popup, one app's
+    own mode at a time: going into another is leaving one and entering the next, or a layer after `>`.
   - **Leaving**: however it is left (by `Esc`, by one of its keys, or when the app ends it), the mode name and the frame
     colour are restored, its Space menu and `?` close with it, and the panel is back under tdp; until then everything
     is inside the mode (e.g. a game over and what the app shows about it). Whether a popup opens on leaving to tell the
@@ -441,13 +443,16 @@ The arrow keys, which nobody picks, keep their default, so they still move as an
 only for being the same key as a listed letter; once the letter does something else, they are keys of their own and
 are listed with what they do.
 An app's own mode is opened as an app's own popup is (F1): what can be fixed stays fixed (the way in, the way out, the
-core keys, the disclosure, the popups) and only what is the app's own is open, a game's or a drawing's keys and
-content; what the user looks for there, on `Space`, in the footer or on leaving, the app knows best. The door keeps it
+core keys, the disclosure, what a popup is and how it answers) and only what is the app's own is open, a game's or a
+drawing's keys and content, and where a popup opened in it goes back to; what the user looks for there, on `Space`, in
+the footer or on leaving, the app knows best. The door keeps it
 to what no component does: a mode over a list or a viewer would give that component's keys a second meaning in one
 app, and things laid out as a grid are still picked one by one, as from a list. A mode that acts only on its own
 content and cannot reach the rest of the app costs the app something, so wrapping a whole app in one buys nothing.
 The furthest the app reaches in it is leaving it; past that tdp takes over, so what the user knows from every other app
-holds again the moment they are out.
+holds again the moment they are out. Where a popup opened in the mode goes back to is part of the inside: after
+cancelling a restart, going straight back to the game is what a player expects (the user, 2026-11-13); the popup
+itself stays its component, so a confirm reads and answers as anywhere in the family.
 `?` lists every key and the menu or the footer shows each one, so nothing that can be pressed goes undisclosed. How a
 game or a drawing comes to an end is part of it, so it stays inside the mode until the app leaves it. Leaving
 it may leave something to tell or pick up again (e.g. something paused halfway), and `Esc` on that popup only
@@ -925,7 +930,8 @@ away in one go costs a lot, so it asks once more.
 ### F4 The source stays by default
 
 When popup A opens popup B, A stays underneath by default; cancelling B returns to A. The same holds at any depth: `Esc`
-closes only the topmost, and the stack underneath is shown as it was (K4).
+closes only the topmost, and the stack underneath is shown as it was (K4). In an app's own mode, where a popup it
+opens goes back to, the app may decide for itself (K11; the user, 2026-11-13, from tetru).
 
 **Why**: the user did not dismiss A, they just did one interaction in B. If cancelling B also removes A, they have to
 walk the whole way again. (Whether A stays after B completes is T1.)
@@ -1070,7 +1076,8 @@ open and close animation); a source of several layers closes all of them togethe
 | Searching what is under it (a viewer's or a panel's `/`) | clear | the hits are in the view under the menu, and `n\|N` move among them there; a menu left over them hides what was found |
 
 - **A confirm is only a gate, not a kind of target**: when a confirm comes before the action (e.g. asking once before a
-  delete), judge by the action done once confirmed; cancelling the confirm always goes back to the source (F4).
+  delete), judge by the action done once confirmed; cancelling the confirm always goes back to the source (F4; in an
+  app's own mode, where the app decides, K11).
 - **A search's input popup is a gate too**: the menu goes once the search runs (`Enter`), found or not, the input popup
   and the menu closing together (F2); `Esc` on the input popup goes back to the menu (F4; the user, 2026-11-03, from
   catu).

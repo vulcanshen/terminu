@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v1.2.9 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v1.2.10 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -123,6 +123,7 @@ tdp v1.2.9 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K11-23 | K11 | 離開 app 自己的模式會丟掉使用者在裡面做出來、要留下的東西時（例：還沒存的筆畫；遊戲玩到哪裡不算），由離開時的 popup 來問，回答之前那些東西都留著 | app 自己的模式 | 在模式裡做點事後離開：跳出 popup 問；回答回到模式：東西都還在 |
 | K11-24 | K11 | 在元件裝不下的內容上，做元件模式的事（選取複製、重排、比較）的模式，沿用家族的名稱與鍵 | app 自己的模式 | 跟 viewer 的選取模式、Drag 對照名稱與鍵 |
 | K11-25 | K11 | app 自己的模式讓使用者改鍵時，`Enter` 與移動鍵（K12）也可以改：移動改到別的鍵照樣移動，空出來的字母可以做別的動作（單獨的 `g` 只在模式裡沒有 `g` 開頭的組合作用時）；方向鍵與 `PgUp\|PgDn` 照這個模式給它們的預設，對應的字母改做別的事之後，寫在 `?` 裡那個動作的那一列、用 `\|` 接在使用者選的鍵後面（不用進 Space menu 或 footer）；`Space`、`?`、`!`、`Esc`、`q`、`Ctrl-C`、`Tab` 與數字鍵照樣拒絕 | 模式的鍵可以讓使用者設定 | 把 `Enter` 上的動作改到沒人用的字母，再把另一個動作放到 `Enter`：都設得上；左移改成 `a`：`a` 往左，`←` 照樣往左，`?` 那一列寫 `a\|←`，`h` 可以給別的動作；app 的選項裡有 `Esc` 的話，把一個鍵設成它：跳 Warning，鍵沒變；模式裡沒有 `g` 開頭的組合作用時，把一個動作放到 `g`：按一下就執行 |
+| K11-26 | K11 | app 自己的模式開出來的 popup（用模式的鍵或從它的 Space menu）是 F1 的一類，照那個元件畫、照那個元件答（confirm：`Enter` 接受、`Esc` 取消）；只有回到模式還是回到開它的 menu，是 app 的事 | app 自己的模式 | 用模式的鍵與從 Space menu 各開一次模式的每個 popup：每個都照它的元件長、照它的元件答 |
 | K12-1 | K12 | 不在打字的地方，`j` `k` `u` `d` `g` `G` `h` `l` 不被任何動作佔用（`g` 開頭的兩鍵組合除外；模式裡沒有移動可做的鍵也除外，K12-19） | 都要 | 讀程式或看所有 menu、key reference：除了 K12-19 放行的，這幾個字母沒有登記成動作 |
 | K12-2 | K12 | `h\|j\|k\|l` 就是 `←\|↓\|↑\|→`：方向鍵做一樣的事 | 都要 | 在清單、menu、表單上分別按 hjkl 與方向鍵，效果一樣 |
 | K12-3 | K12 | 有左右結構時（同一個 surface 裡的 tab、左右兩側、格子），`j\|k` 上下、`h\|l` 左右（切 tab、跨到另一側） | 都要 | 在有 tab 的 panel 按 `h\|l` 切 tab |
@@ -266,7 +267,7 @@ tdp v1.2.9 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | F3-7 | F3 | 搬過順序的 reorder 按 `Esc`，先開 confirm 問要不要放棄 | reorder | 搬一個項目後按 `Esc`，疊出放棄的 confirm |
 | F3-8 | F3 | 內容改過的 app 自己的 popup（有要送出的值）按 `Esc`，先開 confirm 問要不要放棄 | app 自己的 popup | 改過內容後按 `Esc`，疊出放棄的 confirm |
 | F4-1 | F4 | 從 popup A 開出 popup B 時，A 留在底下 | 都要 | 從 Space menu 開 global operation popup，再從 Space menu 執行 app 自己會開出另一個 popup 的動作，底下照樣看得到（淡化的）Space menu |
-| F4-2 | F4 | 取消 B 回到 A | 都要 | 在 global operation popup 與 app 自己的動作開出的 popup 上各按 `Esc`，都回到 Space menu |
+| F4-2 | F4 | 取消 B 回到 A（app 自己的模式裡照 app 決定的，K11） | 都要 | 在 global operation popup 與 app 自己的動作開出的 popup 上各按 `Esc`，都回到 Space menu |
 | F5-1 | F5 | 錯誤立刻出現（toast 或 popup） | 都要 | 觸發一個錯誤（例：斷網、沒有權限），馬上看到 toast 或 popup |
 | F5-2 | F5 | 錯誤不阻塞 app | 都要 | 錯誤出現後 app 照常運作，使用者能接著處理錯誤本身 |
 | F5-3 | F5 | 錯誤也記進 App Log，toast 收掉之後照樣查得到 | 都要 | 觸發一個錯誤，等 toast 收掉後按 `!` |
@@ -310,7 +311,7 @@ tdp v1.2.9 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
 | T1-1 | T1 | 從 popup 開出另一個 popup 的動作，確定之後 source 留不留照 T1 的表（看確定之後的動作）；表上沒有的動作，被清掉的 source 都是使用者用完 target 之後已經不想看的 | 都要 | 走過 app 每個從 menu 執行、會再開 popup 的動作，對照 T1 的表 |
-| T1-2 | T1 | 動作前面的 confirm 只是門：在 confirm 上取消，一律回到 source（menu） | confirm | 從 menu 執行一個要先確認的動作，在 confirm 上按 `Esc`，回到原 menu |
+| T1-2 | T1 | 動作前面的 confirm 只是門：在 confirm 上取消，一律回到 source（menu；app 自己的模式裡照 app 決定的，K11） | confirm | 從 menu 執行一個要先確認的動作，在 confirm 上按 `Esc`，回到原 menu |
 | T1-3 | T1 | 確定之後是選一個值寫回去（input popup、select 寫回表單或 picker）時，source 保留 | 表單、input | 在表單選完一欄的值，回到表單 |
 | T1-4 | T1 | 確定之後是開 shell 時，清掉 source | PTY | 從 menu 開 shell，離開後原 menu 不在 |
 | T1-5 | T1 | 確定之後是換畫面（切到 chip 列的另一個畫面）或 drill-down（例：進目錄、Deployment → Pods）時，清掉 source | 都要 | 從 menu 換畫面或 drill-down，原 menu 不在 |

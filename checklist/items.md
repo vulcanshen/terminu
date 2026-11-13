@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.2.9. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.2.10. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -123,6 +123,7 @@ The items of tdp v1.2.9. What each column means and what an item applies to: [RE
 | K11-23 | K11 | Where leaving an app's own mode would throw away something the user made in it to keep (e.g. strokes not yet saved; not how far a game had got), the popup on leaving asks, the work kept until it is answered | an app's own mode | Do something in the mode and leave it: a popup asks; answer to go back in: the work is still there |
 | K11-24 | K11 | On content no component holds, a mode doing what a component's mode does (selecting to copy, reordering, comparing) keeps the family's names and keys | an app's own mode | Compare its name and keys with a viewer's selection mode and Drag |
 | K11-25 | K11 | In an app's own mode that lets the user set its keys, `Enter` and the movement keys (K12) may be set too: a movement moved to another key still moves, and the letter it left may take another action (a single `g` only where no chord starting with `g` works in the mode); the arrow keys and `PgUp\|PgDn` keep what the mode gives them by default, and once their letter does something else are listed in `?` on that action's row, joined with `\|` to the user's key (not needed in the Space menu or the footer); `Space`, `?`, `!`, `Esc`, `q`, `Ctrl-C`, `Tab` and the digits are still refused | mode with keys the user sets | Move the action on `Enter` to a free letter and put another action on `Enter`: both take; move moving left to `a`: `a` moves left, `←` still moves left, `?` writes `a\|←` on that row, and `h` can be given another action; where the app offers `Esc` as a choice, set a key to it: a Warning, the key unchanged; where no chord starting with `g` works in the mode, put an action on `g`: one press runs it |
+| K11-26 | K11 | A popup an app's own mode opens (by its keys or from its Space menu) is one of the F1 classes, drawn and answered as its component (a confirm: `Enter` accepts, `Esc` cancels); only where it goes back to, the mode or the menu it was opened from, is the app's | an app's own mode | Open each popup of the mode, by its key and from its Space menu: each looks and answers as its component |
 | K12-1 | K12 | Where you are not typing, no action takes `j` `k` `u` `d` `g` `G` `h` `l` (two-key chords starting with `g` excepted, and in a mode a key with nothing to move, K12-19) | everyone | Read the code, or look at every menu and key reference: none of these letters is registered to an action, but as K12-19 allows |
 | K12-2 | K12 | `h\|j\|k\|l` are `←\|↓\|↑\|→`: the arrow keys do the same | everyone | On a list, a menu and a form press hjkl and the arrow keys in turn: the same effect |
 | K12-3 | K12 | With a left-right structure (tabs within one surface, two sides, a grid), `j\|k` go up and down and `h\|l` left and right (switching tabs, crossing to the other side) | everyone | On a panel with tabs press `h\|l` to switch tabs |
@@ -266,7 +267,7 @@ The items of tdp v1.2.9. What each column means and what an item applies to: [RE
 | F3-7 | F3 | In a reorder whose order changed, `Esc` first opens a confirm asking whether to discard it | reorder | Move an item and press `Esc`: a discard confirm stacks up |
 | F3-8 | F3 | In an app's own popup with values to submit whose content changed, `Esc` first opens a confirm asking whether to discard it | an app's own popup | Change something and press `Esc`: a discard confirm stacks up |
 | F4-1 | F4 | When popup A opens popup B, A stays underneath | everyone | Open the global operation popup from the Space menu, then run one of the app's own actions from the Space menu that opens another popup: the (dimmed) Space menu is still visible underneath |
-| F4-2 | F4 | Cancelling B returns to A | everyone | Press `Esc` on the global operation popup and on a popup opened by one of the app's own actions: back to the Space menu each time |
+| F4-2 | F4 | Cancelling B returns to A (in an app's own mode, as the app decides, K11) | everyone | Press `Esc` on the global operation popup and on a popup opened by one of the app's own actions: back to the Space menu each time |
 | F5-1 | F5 | Errors appear immediately (a toast or a popup) | everyone | Trigger an error (e.g. no network, no permission): a toast or a popup shows at once |
 | F5-2 | F5 | Errors do not block the app | everyone | After an error appears, the app works as usual, and the user can go on to deal with the error itself |
 | F5-3 | F5 | Errors also go into the App Log, to be looked up after the toast has gone | everyone | Cause an error, wait for the toast to go, press `!` |
@@ -310,7 +311,7 @@ The items of tdp v1.2.9. What each column means and what an item applies to: [RE
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
 | T1-1 | T1 | For an action that opens one popup from another, whether the source stays after confirming follows the T1 table (by what happens once confirmed); for an action not in the table, a cleared source is one the user no longer wants once done with the target | everyone | Go through each of the app's actions run from a menu that opens another popup, and compare with the T1 table |
-| T1-2 | T1 | A confirm before an action is only a gate: cancelling on the confirm always returns to the source (the menu) | confirm | Run an action that asks first from a menu, press `Esc` on the confirm: back on the menu |
+| T1-2 | T1 | A confirm before an action is only a gate: cancelling on the confirm always returns to the source (the menu; in an app's own mode, as the app decides, K11) | confirm | Run an action that asks first from a menu, press `Esc` on the confirm: back on the menu |
 | T1-3 | T1 | When what happens once confirmed is a value picked and written back (an input popup, a select writing back to a form or a picker), the source stays | form or input | Pick a field's value on a form: back on the form |
 | T1-4 | T1 | When what happens once confirmed is opening a shell, the source is cleared | PTY | Open a shell from a menu; after leaving it, the menu is gone |
 | T1-5 | T1 | When what happens once confirmed is a screen change (to another screen of the chip row) or a drill-down (e.g. into a directory, Deployment → Pods), the source is cleared | everyone | Change screen or drill down from a menu: the menu is gone |
