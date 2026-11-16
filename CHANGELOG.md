@@ -1,5 +1,21 @@
 # Changelog
 
+## v1.2.11 — 2026-11-16
+
+A patch, the user's choice: no member has to change (from tetru). A player wants `Space` for one of the game's
+actions, as falling-block games often have it, while K11 kept `Space` for the mode's Space menu; the user: in an
+app's own mode the user may put an action on `Space` themselves, the default unchanged.
+
+- K11: in an app's own mode the user may put one of the mode's actions on `Space`, by their own choice only: by
+  default `Space` opens the mode's Space menu, and the app may not make an action its default. With an action on
+  `Space`, `Space` does it and the mode has no Space menu; the keys only that menu had go in the footer as drawn at
+  60 columns (an app whose footer cannot hold them does not offer `Space`); the footer writes `Space:<action>` first,
+  where `Space:menu` was; `?` lists every key, `Esc` still leaves, and after it `Space` opens the panel's Space menu.
+  Picking `Space` shows a Warning saying what `Space` now does and that for a menu `Esc` comes first (the user)
+- K5, menu.4, screen.2: the same exception (no Space menu; the footer's first pair)
+- changed in this version: K5, K11, menu.4, screen.2
+- checklist: K11-27 added; K11-1, K11-14, K11-15, K11-20 and K11-25 changed (1475 items); the header names v1.2.11
+
 ## v1.2.10 — 2026-11-13
 
 A patch, the user's choice: no member has to change (from tetru's review). In an app's own mode, a confirm opened
