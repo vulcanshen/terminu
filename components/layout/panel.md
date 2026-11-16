@@ -22,6 +22,17 @@ in [`screen`](screen.md).
   leaving the PTY; nor when no key on the panel does anything (see the hint below). Right of the bottom border: the
   scroll position, and while a search has hits, its status left of it ([`dialog/note`](../dialog/note.md), note.3)
   (see "Ordinary lists" below).
+- **An app's own status**: a panel may show one lasting status of the app's own on its frame, a glyph and a short
+  text (e.g. `󰓦 17:43:42`, a file being watched and when it was last read); whether to have one, what it says and
+  which corner it goes in, the app may decide for itself. In its corner it goes on the inner side of what is already
+  there, a space either side and one line segment between them: top left after the capsule chain and the loading icon
+  (`┏[2] README.md━ 󰓦 17:43:42 ━━━┓`), top right left of the mode name (`━ 󰓦 17:43:42 ━┫Select┣━┓`), bottom left after
+  the hint (`┗━ o:open ━ 󰓦 17:43:42 ━━━┛`), bottom right left of a search's status and the scroll position
+  (`━ 󰓦 17:43:42 ━ /needle 2 of 5 ━ 1-2 of 9 ━┛`); alone in its corner, one line segment from the corner like all
+  text on the frame. In the border colour, like the scroll position; when what it tells has gone wrong, Peach (worth
+  noticing) or Red (an error), and no other colour ([`color`](../color.md)); unfocused, dimmed with the panel, a
+  streaming one too, as it is on the frame like the hint (Rules T2). When the border is too narrow, it is the first to
+  go, whole, before the hint's pairs, in every corner, and it comes back when there is room.
 - **Text on the frame always keeps one line segment away from the corner**; only the `[N] label` capsule sits right after
   the top-left corner: the hint is `┗━ Enter:logs`, the scroll position `3 of 40 ━┛`, the mode name `┫Drag┣━┓`.
 
@@ -39,8 +50,8 @@ with), `Enter` and the hotkeys on an item are dropped, and only those on the who
 form's buttons, the hint shows only keys that do something ([`input/finder`](../input/finder.md),
 [`dialog/form`](../dialog/form.md)). When no key is left after that (e.g. a read-only panel, or an empty list with no
 key on the whole panel), the left of the bottom border has no hint, only the line. When focused, keys Blue and descriptions Overlay0; unfocused, it stays and is dimmed with
-the panel. When it does not fit, whole pairs are dropped from the end, and the scroll position stays, with a search's
-status (note.3).
+the panel. When it does not fit, whole pairs are dropped from the end (an app's own status on the bottom border goes
+before them, above), and the scroll position stays, with a search's status (note.3).
 
 **Why**: the hint on a panel's bottom border tells the user "what pressing what does on this panel", while the footer
 covers only the keys common to the whole screen; each covers one level, and with every panel having one, the user's eyes
@@ -53,6 +64,13 @@ The loading icon follows the whole capsule chain: the chain is one whole (where 
 does not split a row of tabs. The `h|l` that switches tabs is in the hint as the datetime picker's `h|l:month` is: it changes
 the whole page rather than moving between items, but it is a movement key, and left out, the other tabs are hard to
 find (the user, 2026-10-24, from filu).
+
+An app's own status has a place on the frame because some states of what a panel shows last, and nothing on screen
+holds them: a toast is gone in seconds (the user, 2026-11-16, from catu). Which corner, the app decides (the user).
+What a corner already holds stays where every app has it, so the status goes on its inner side; it is the app's
+addition, so on a narrow border it gives way first, and the hint, the scroll position and the mode name work as in
+every other app (the user). The border colour keeps it as quiet as the scroll position; a state gone wrong can last,
+so it may turn Peach or Red, the colours that say so (the user).
 
 ### panel.2 A pointed panel
 

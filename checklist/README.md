@@ -68,6 +68,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | Drag | a Drag mode |
 | panel filter | a panel filter |
 | statusbar | a statusbar |
+| panel status | an app's own status on a panel's frame (layout/panel, panel.1) |
 | zoom | zooming a panel (layout/screen) |
 | streaming content | content that keeps coming in (e.g. a log) |
 | panel without a cursor | a panel without a cursor (a preview, a log) |

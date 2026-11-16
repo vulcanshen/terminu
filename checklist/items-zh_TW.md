@@ -593,6 +593,10 @@ tdp v1.2.11 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | panel-21 | panel.1 | 有 focus 時 hint 的鍵 Blue、說明 Overlay0 | 都要 | 看有 focus 的 panel 的 hint |
 | panel-22 | panel.1 | 失焦時 hint 照樣留著，跟著 panel 一起淡化 | 多 panel | 按 `Tab` 換走，看原本 panel 的 hint 還在、變暗 |
 | panel-23 | panel.1 | hint 放不下時從尾端整組捨，捲動位置留著 | 都要 | 把終端機縮窄，看 hint 從尾端少掉整組、`N of M` 還在 |
+| panel-172 | panel.1 | panel 框上最多一個 app 自己的狀態，一個 glyph 加一段短字，放在 app 選的角 | panel 狀態 | 看每個有狀態的 panel 的框 |
+| panel-173 | panel.1 | 狀態在它的角裡放在原有的東西靠中間的一側，前後各空一格、隔一段線：左上在膠囊串和 loading icon 後面、右上在模式名左邊、左下在 hint 後面、右下在搜尋的狀態和捲動位置左邊；角裡只有它時離角一段線 | panel 狀態 | 讓那個角的其他字出現（loading、模式、hint、有命中的搜尋、放不下的內容），看狀態在哪裡 |
+| panel-174 | panel.1 | 狀態用框線的顏色；只有它講的事出了問題時用 Peach 或 Red（值得注意、錯誤），不用別的顏色；失焦時跟著 panel 一起淡化，串流內容的 panel 也是 | panel 狀態 | 有 focus、失焦、它講的事出問題時各看一次 |
+| panel-175 | panel.1 | 框放不下時狀態最先拿掉、整個拿掉，比 hint 的組還早，四個角都一樣；有位置了再回來 | panel 狀態 | 把終端機一步步縮窄看框，再拉寬 |
 | panel-24 | panel.1（圖） | panel 的內容左邊離框一格（PTY 例外：貼著框） | 都要 | 看各 panel 第一個字與左框之間 |
 | panel-25 | panel.1（圖） | panel 的內容上下不留空白列，第一列緊接上框 | 都要 | 看各 panel 上框下面那一列就是內容 |
 | panel-26 | panel.4 | 膠囊串的兩端是斜角：左 U+E0BA、右 U+E0B0 | 都要 | 看 panel 標題膠囊的兩端；讀程式核對 code point |
