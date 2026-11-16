@@ -60,7 +60,8 @@
 
 ## menu.4 模式裡
 
-模式裡按 `Space`（Rules K11）打開的 Space menu，照下面只列模式裡能做的事。app 自己的模式（tdp 的元件和規則
+模式裡按 `Space`（Rules K11）打開的 Space menu，照下面只列模式裡能做的事（使用者把動作放到 `Space` 的 app 自己的模式
+沒有這個 menu，Rules K11）。app 自己的模式（tdp 的元件和規則
 都沒有規定的模式）列模式的哪些動作與鍵、怎麼分區，app 可以自行決定（Rules K11）；標題、列出來的每一列怎麼畫、怎麼執行
 （列開出的 popup 回到哪裡除外，Rules K11），以及模式外的東西一律不列，照下面：
 

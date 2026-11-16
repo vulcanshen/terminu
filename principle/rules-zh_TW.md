@@ -147,7 +147,9 @@ popup 開出 popup 時（例：Space menu → global operation popup → confirm
 - focus 在 panel 上時，`Space` 打開 Space menu（M2）；Space menu 開著時，再按 `Space` 關掉它。
   `Esc` 也能關。
 - **`Space` 只關它自己開的 Space menu。** 其他 popup（由 `Enter` 或熱鍵打開的 confirm、input、
-  note……）上按 `Space` **不作用**，它們由 `Esc` 或自己的流程關閉。例外：模式裡（K11，包括在 popup 裡的模式），`Space` 打開那個模式的 Space menu；checkbox 的選項上（checkbox popup 的清單、
+  note……）上按 `Space` **不作用**，它們由 `Esc` 或自己的流程關閉。例外：模式裡（K11，包括在 popup 裡的模式），
+  `Space` 打開那個模式的 Space menu（app 自己的模式裡，使用者把動作放到 `Space` 時做那個動作，K11）；checkbox 的選項上
+  （checkbox popup 的清單、
   表單上直接畫出來的 checkbox），`Space` 是勾或取消勾
   （[components/input/checkbox](../components/input/checkbox-zh_TW.md)、[components/dialog/form](../components/dialog/form-zh_TW.md)）；app 自己的 popup 裡，focus 的那一格有好幾個值
   可以輪流換時（例：kamonu 畫格子的一格），`Space` 換到下一個值（F1）。
@@ -270,7 +272,7 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 
 | 鍵 | 模式裡 |
 |---|---|
-| `Space` | 打開這個模式的 Space menu（見下面） |
+| `Space` | 打開這個模式的 Space menu（見下面）；app 自己的模式裡，使用者把模式的一個動作放到 `Space` 時，做那個動作（見下面） |
 | `!` | 不作用（App Log 在模式外打開） |
 | `?` | 這個模式的 key reference（唯讀，K6）：模式裡能按什麼鍵、做什麼 |
 | `Enter` | 在模式裡做最直覺的事（K3）：tdp 規定的模式照那裡寫的（例：Drag 放下拿著的那一列）；app 自己的模式由 app 決定（見下面） |
@@ -303,7 +305,12 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
   改成 `a`，`←` 照樣往左；預設做模式某個動作的 `↑` 照樣做那個動作）。對應的字母改做別的事之後，它們寫在模式 `?` 裡那個動作
   的那一列，用 `|` 接在使用者選的鍵後面（例：`a|←`、`Enter|PgDn`；模式預設沒給它動作的，沒有東西要寫）；那個動作已經用
   使用者選的鍵寫在 Space menu 或 footer 裡，
-  它們不用再寫進去。`Space`、`?`、`!`、`Esc`、`q`、`Ctrl-C`、`Tab` 與數字鍵照上表，不能改（user 2026-11-13，來自 tetru）。
+  它們不用再寫進去。`?`、`!`、`Esc`、`q`、`Ctrl-C`、`Tab` 與數字鍵照上表，不能改（user 2026-11-13，來自 tetru）。app 自己的
+  模式裡，使用者也可以把模式的一個動作放到 `Space` 上，只能由使用者自己選：預設 `Space` 打開模式的 Space menu，app 不能把
+  動作設成預設。`Space` 放了動作之後，按 `Space` 做那個動作，這個模式沒有 Space menu：原本只會在那個 menu 裡的鍵，都要
+  出現在 60 欄時畫出來的 footer 裡（footer 放不下的 app 不提供 `Space`），footer 不寫 `Space:menu`，在它的位置、最前面
+  寫 `Space:<動作>`；`?` 照樣列每個鍵，`Esc` 照樣離開模式，離開後 `Space` 打開 panel 的 Space menu（K5）。使用者選了
+  `Space` 時跳 Warning，說出 `Space` 在模式裡改做什麼、要 menu 先按 `Esc`（user 2026-11-16，來自 tetru）。
 - **app 自己的模式**（tdp 的元件和規則都沒有規定的模式；元件的 compare、Drag、選取、歷史模式與 K12 的逐項模式是 tdp 的），
   tdp 給元件裝不下的東西開的口（Principle P5）：
   - **什麼時候能做**：只限 tdp 的元件和規則都沒有的事，例：玩遊戲、畫圖（[components/layout/panel](../components/layout/panel-zh_TW.md)
@@ -317,7 +324,8 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
     自己結束，例：game over），以及離開前要顯示什麼；離開後留下什麼（例：遊戲暫停、畫好的筆畫），上面蓋著 popup 時內容要不要
     繼續跑；它開出來的 popup 取消或關掉後回到哪裡、開它的 Space menu 要不要留在底下（例：從那個 menu 開的 confirm 按
     `Esc` 直接回到遊戲；user 2026-11-13，來自 tetru）；離開時要不要跳出 popup（見下面）。
-  - **裡面照樣要守的**：上面表裡的 core key，`Space` 打開它的 Space menu，至少有一列，標題與樣子跟其他模式的 Space menu 一樣
+  - **裡面照樣要守的**：上面表裡的 core key，`Space` 打開它的 Space menu，至少有一列（使用者把動作放到
+    `Space` 時沒有，見上面），標題與樣子跟其他模式的 Space menu 一樣
     （[components/dialog/menu](../components/dialog/menu-zh_TW.md)）；移動照 K12；只有模式的鍵與 core key 作用。**模式自己的鍵和它的
     Space menu 最多只能離開模式；離開之後由 tdp 接手**：其他 panel、其他畫面、global 動作、離開 app，都照 tdp，用上面表裡的 core key
     （列出來的 core key，例：`[q]uit`、`q:quit`，做的事照上面的表），也沒有 `Global operation` 那一列（user 2026-11-12）；它打開的 app
@@ -344,6 +352,10 @@ app 自己的模式裡 `Enter` 與移動鍵也可以讓使用者改：框在那�
 看得到能按什麼（上表其他的 core key）；`Enter` 在那裡本來就做 app 決定的事，K12 防的是 app 把移動鍵偷偷
 綁成動作，使用者自己選的鍵不會這樣。方向鍵沒有人選，照預設，所以照樣像家族其他地方一樣移動。
 它們不另外列，只是因為跟列出來的字母是同一個鍵；字母改做別的事之後，它們就是自己的鍵，跟它們做的事寫在一起。
+使用者也可以把動作放到 `Space`，理由一樣：「不知道就按 `Space`」是給還不認識這個模式的人，預設照舊，他們按 `Space`
+照樣有 menu；自己去設定把 `Space` 換掉的人知道它做什麼，`?`、footer 與 `Esc` 也都還在，一出模式 `Space` 又照樣回應 ——
+跟 PTY 一樣，`Space` 屬於子程序，出口鍵一直看得到（K10）。app 不能把它設成預設：新來的使用者想按 `Space` 找說明，
+卻觸發了動作（user 2026-11-16）。
 app 自己的模式照 app 自己的 popup（F1）的方式放行：能固定的固定住（怎麼進、怎麼出、core key、揭露、popup 是什麼元件、怎麼回答），
 只放開 app 自己的東西，也就是遊戲或畫圖的鍵與內容，以及在裡面開的 popup 回到哪裡；使用者在那裡按 `Space`、看 footer、
 離開時要找什麼，app 最清楚。門只開給元件做不到的事：在清單

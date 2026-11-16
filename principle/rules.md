@@ -185,7 +185,9 @@ its own key (K9).
   `Esc` closes it too.
 - **`Space` closes only the Space menu it opened itself.** On any other popup (a confirm, input,
   note… opened by `Enter` or a hotkey), `Space` **does nothing**; those are closed by `Esc` or by their own flow. The
-  exceptions: inside a mode (K11, a mode in a popup included), `Space` opens that mode's Space menu; on checkbox options (a checkbox popup's list, the checkboxes drawn on a form), `Space` checks or unchecks
+  exceptions: inside a mode (K11, a mode in a popup included), `Space` opens that mode's Space menu (in an app's own
+  mode, the action the user put on `Space`, K11); on checkbox options (a checkbox popup's list, the checkboxes drawn
+  on a form), `Space` checks or unchecks
   ([components/input/checkbox](../components/input/checkbox.md), [components/dialog/form](../components/dialog/form.md));
   in an app's own popup, when the focused cell has several values to cycle through (e.g. a cell in kamonu's popup for
   drawing cells), `Space` moves it to the next value (F1).
@@ -332,7 +334,7 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 
 | Key | Inside a mode |
 |---|---|
-| `Space` | opens the mode's Space menu (below) |
+| `Space` | opens the mode's Space menu (below); in an app's own mode where the user has put one of its actions on `Space`, does that action (below) |
 | `!` | does nothing (the App Log opens outside a mode) |
 | `?` | the mode's key reference (read-only, K6): which keys work in the mode and what they do |
 | `Enter` | does the most intuitive thing in the mode (K3): in a mode tdp specifies, as written there (e.g. Drag drops the row held); in an app's own mode, the app's (below) |
@@ -378,8 +380,15 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   an `↑` given one of the mode's actions by default keeps it). Once their letter does something else, they are listed
   in the mode's `?` on the row of what they do, joined to the user's key with `|` (e.g. `a|←`, `Enter|PgDn`; one the
   mode gives nothing by default has nothing to list); that action being in the Space menu or the footer under the
-  user's key, they need not be there too. `Space`, `?`, `!`,
-  `Esc`, `q`, `Ctrl-C`, `Tab` and the digits stay as the table has them (the user, 2026-11-13, from tetru).
+  user's key, they need not be there too. `?`, `!`, `Esc`, `q`, `Ctrl-C`, `Tab` and the digits stay as the table
+  has them (the user, 2026-11-13, from tetru). In an app's own mode the user may also put one of the mode's actions
+  on `Space`, by their own choice only: by default `Space` opens the mode's Space menu, and the app may not make an
+  action its default. With an action on `Space`, `Space` does it and the mode has no Space menu: every key that would
+  be only in that menu is in the footer as drawn at 60 columns (an app whose footer cannot hold them does not offer
+  `Space`), and the footer writes `Space:<action>` first, where `Space:menu` was; `?` lists every key as before, and
+  `Esc` still leaves the mode, after which `Space` opens the panel's Space menu (K5). Picking `Space` shows a Warning
+  saying what `Space` now does in the mode and that for a menu, `Esc` comes first (the user, 2026-11-16, from
+  tetru).
 - **An app's own mode** (a mode neither a component nor a rule of tdp specifies; the components' compare, Drag,
   selection and history modes and K12's item-to-item mode are tdp's), tdp's opening for what no component holds
   (Principle P5):
@@ -402,7 +411,8 @@ With focus inside a mode (the term "mode"), the core keys act like this:
     is cancelled or closed, and whether the Space menu it was opened from stays under it (e.g. `Esc` on a confirm
     opened from that menu going straight back to the game; the user, 2026-11-13, from tetru); whether leaving opens
     a popup (below).
-  - **What holds in it**: the core keys as the table above, `Space` opening its Space menu with at least one row, its
+  - **What holds in it**: the core keys as the table above, `Space` opening its Space menu with at least one row (none
+    where the user has put an action on `Space`, above), its
     title and look those of any mode's Space menu ([components/dialog/menu](../components/dialog/menu.md)); movement as
     K12; only the mode's keys and the core keys work. **The furthest the mode's own keys and its Space menu reach is
     leaving the mode; past that, tdp takes over**: other panels, other screens, global actions and quitting the app go
@@ -442,6 +452,11 @@ against an app turning a moving key into an action behind the user's back, which
 The arrow keys, which nobody picks, keep their default, so they still move as anywhere in the family. They go unlisted
 only for being the same key as a listed letter; once the letter does something else, they are keys of their own and
 are listed with what they do.
+The user may put an action on `Space` for the same reason. "When in doubt, hit `Space`" is for someone who does not
+know the mode yet, and the default keeps it for them; someone who set `Space` themselves knows what it does, `?`, the
+footer and `Esc` are still there, and once out of the mode `Space` answers again, as with a PTY, where `Space`
+belongs to the child and a key out is always shown (K10). The app may not make it the default: a newcomer pressing
+`Space` to find out what to do would set off an action instead (the user, 2026-11-16).
 An app's own mode is opened as an app's own popup is (F1): what can be fixed stays fixed (the way in, the way out, the
 core keys, the disclosure, what a popup is and how it answers) and only what is the app's own is open, a game's or a
 drawing's keys and content, and where a popup opened in it goes back to; what the user looks for there, on `Space`, in

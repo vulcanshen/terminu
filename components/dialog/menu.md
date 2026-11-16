@@ -75,7 +75,8 @@ like another frame.
 
 ## menu.4 Inside a mode
 
-The Space menu that `Space` opens inside a mode (Rules K11) lists only what can be done in the mode, as follows. In an
+The Space menu that `Space` opens inside a mode (Rules K11) lists only what can be done in the mode, as follows (an
+app's own mode where the user has put one of its actions on `Space` has none, Rules K11). In an
 app's own mode (one neither a component nor a rule of tdp specifies), which of the mode's actions and keys it lists
 and how they are grouped, the app may decide for itself (Rules K11); the title, how each row it lists is drawn and
 runs (save where a popup a row opens goes back to, Rules K11), and that nothing from outside the mode is listed
