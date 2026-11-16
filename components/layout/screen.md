@@ -22,7 +22,7 @@ narrow, whole pairs are dropped from the end (the hint in [`popup`](popup.md)). 
 |---|---|
 | Normal | `Space:menu ?:help !:log Tab\|1–N:panels q:quit` |
 | A screen with only one panel | `Space:menu ?:help !:log q:quit` |
-| In a mode (Rules K11) | `Space:menu ?:help`, the mode's own keys, and last `Esc:<verb for leaving>`; in an app's own mode, which keys stand between those is the app's call, a core key such as `q:quit` included (Rules K11); where the user has put one of its actions on `Space`, no `Space:menu`, and that action written `Space:<action>` first, where `Space:menu` was (Rules K11). E.g. `Space:menu ?:help Enter:drop Esc:cancel` |
+| In a mode (Rules K11) | `Space:menu ?:help`, the mode's own keys, and last `Esc:<verb for leaving>`; in an app's own mode, which keys stand between those is the app's call, a core key such as `q:quit` included (Rules K11); where the user has put one of its actions on `Space`, no `Space:menu`, and that action written `Space:<action>` first, where `Space:menu` was (half of a pair under one verb, the pair as Rules M5 writes it: `j|Space:move`; Rules K11). E.g. `Space:menu ?:help Enter:drop Esc:cancel` |
 | Typing in a panel filter (input state) | `Enter\|Tab:list Esc:clear` |
 | Typing in a panel filter, no results | `Tab:list Esc:clear` (`Enter` does nothing, as in the hint of [`input/finder`](../input/finder.md)) |
 | Focus on a PTY in a panel | the exit key, plus the keys the app keeps (Rules K10); in an interactive terminal, then `Alt-v:select` and `PgUp:history` (dialog/terminal). E.g. `Alt-Esc:leave Alt-z:zoom Alt-v:select PgUp:history` |

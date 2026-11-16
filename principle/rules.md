@@ -385,8 +385,9 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   on `Space`, by their own choice only: by default `Space` opens the mode's Space menu, and the app may not make an
   action its default. With an action on `Space`, `Space` does it and the mode has no Space menu: every key that would
   be only in that menu is in the footer as drawn at 60 columns (an app whose footer cannot hold them does not offer
-  `Space`), and the footer writes `Space:<action>` first, where `Space:menu` was; `?` lists every key as before, and
-  `Esc` still leaves the mode, after which `Space` opens the panel's Space menu (K5). Picking `Space` shows a Warning
+  `Space`), and the footer writes `Space:<action>` first, where `Space:menu` was (with `Space` one half of a pair
+  under one verb, the pair, as M5 writes it, e.g. `j|Space:move`); `?` lists every key as before, and `Esc` still
+  leaves the mode, after which `Space` opens the panel's Space menu (K5). Picking `Space` shows a Warning
   saying what `Space` now does in the mode and that for a menu, `Esc` comes first (the user, 2026-11-16, from
   tetru).
 - **An app's own mode** (a mode neither a component nor a rule of tdp specifies; the components' compare, Drag,

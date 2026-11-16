@@ -309,8 +309,9 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
   模式裡，使用者也可以把模式的一個動作放到 `Space` 上，只能由使用者自己選：預設 `Space` 打開模式的 Space menu，app 不能把
   動作設成預設。`Space` 放了動作之後，按 `Space` 做那個動作，這個模式沒有 Space menu：原本只會在那個 menu 裡的鍵，都要
   出現在 60 欄時畫出來的 footer 裡（footer 放不下的 app 不提供 `Space`），footer 不寫 `Space:menu`，在它的位置、最前面
-  寫 `Space:<動作>`；`?` 照樣列每個鍵，`Esc` 照樣離開模式，離開後 `Space` 打開 panel 的 Space menu（K5）。使用者選了
-  `Space` 時跳 Warning，說出 `Space` 在模式裡改做什麼、要 menu 先按 `Esc`（user 2026-11-16，來自 tetru）。
+  寫 `Space:<動作>`（`Space` 是用一個動詞講的一對的一半時，照 M5 寫那一對，例：`j|Space:move`）；`?` 照樣列每個鍵，
+  `Esc` 照樣離開模式，離開後 `Space` 打開 panel 的 Space menu（K5）。使用者選了 `Space` 時跳 Warning，說出 `Space` 在
+  模式裡改做什麼、要 menu 先按 `Esc`（user 2026-11-16，來自 tetru）。
 - **app 自己的模式**（tdp 的元件和規則都沒有規定的模式；元件的 compare、Drag、選取、歷史模式與 K12 的逐項模式是 tdp 的），
   tdp 給元件裝不下的東西開的口（Principle P5）：
   - **什麼時候能做**：只限 tdp 的元件和規則都沒有的事，例：玩遊戲、畫圖（[components/layout/panel](../components/layout/panel-zh_TW.md)
