@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.2.12 — 2026-11-16
+
+A patch, the user's choice: no member has to change. A panel may show a lasting status of the app's own on its
+frame (from catu: a file being watched, and when it was last read), and K11 says how a `Space` action that is half
+of a pair is written (from tetru).
+
+- panel.1: a panel may show one lasting status of the app's own on its frame, a glyph and a short text; whether to
+  have one, what it says and which corner it goes in, the app decides (the user). In its corner it goes on the inner
+  side of what is there, a space either side and a line segment between: after the capsule chain and the loading
+  icon, left of the mode name, after the hint, or left of a search's status and the scroll position. In the border
+  colour; Peach or Red when what it tells has gone wrong; unfocused, dimmed with the panel, a streaming one too. On a
+  border too narrow it is the first to go, whole, before the hint's pairs, and comes back when there is room (the
+  user)
+- color.2: Peach and Red also name a status gone wrong (worth noticing, an error)
+- K11, screen.2: with `Space` one half of a pair under one verb, the footer writes that pair first, as M5 writes it
+  (`j|Space:move`), where `Space:menu` was (the user, from tetru)
+- changed in this version: K11, panel.1, color.2, screen.2
+- checklist: panel-172 to panel-175 added, with the feature "panel status"; K11-27 changed (1479 items); the header
+  names v1.2.12
+
 ## v1.2.11 — 2026-11-16
 
 A patch, the user's choice: no member has to change (from tetru). A player wants `Space` for one of the game's
