@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.2.13 — 2026-11-17
+
+A patch, the user's choice: no member has to change. tdp had not thought of content that is read again while it is
+open (the user, from catu, whose file is read again when it changes on disk): note.9 says what a view does when its
+content changes while open.
+
+- note.9 (new): content that changes while open, in a viewer or a panel without a cursor; whether to read content
+  again, and when, the app decides
+  - following the end: a view whose last line is in sight follows the lines added at the end; one scrolled up stays;
+    in the selection mode it never follows; content cut shorter moves the view to the new end (the user)
+  - read again, it is as if just opened (the user): the gutter only widens while open; a search is found again (the
+    current hit the first at or after where it was, else the first of all; none left: a search that found nothing);
+    an open Space menu or key reference is not changed; in the selection mode only the positions are kept: the start
+    gone, back to `Visual`, the cursor gone, the mode left, each with a Warning toast; content that cannot be read,
+    the mode left with the Error toast only
+  - not streaming content (T2): read again, not streamed in, so dimmed when unfocused, a log file too (the user)
+- note.2: the gutter of content known on opening widens when it is read again; note.4: points to note.9
+- T2: streaming content is what keeps coming in from a running program or a connection, not content read again
+- changed in this version: note.2, note.4, note.9 (new), T2
+- checklist: note-90 to note-98 and T2-4 added, with the feature "content read again"; note-13 changed (1489
+  items); the header names v1.2.13
+
 ## v1.2.12 — 2026-11-16
 
 A patch, the user's choice: no member has to change. A panel may show a lasting status of the app's own on its
