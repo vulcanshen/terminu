@@ -337,8 +337,9 @@ Whether to read content again, and when, the app may decide for itself.
   - The gutter (note.2) only widens while the content is open, as a streaming one does; another file, or opening it
     again, sets it anew.
   - A search (note.3) is found again in the new text: its hits and status follow it, the current hit being the first
-    at or after where it was, and the view is not moved for it; with no hit left, it is a search that found nothing
-    (the Info toast; the hits and the status go). An open Space menu or key reference is not changed for it.
+    at or after where it was (with none after it, the first of all, as `n` wraps), and the view is not moved for it;
+    with no hit left, it is a search that found nothing (the Info toast; the hits and the status go). An open Space
+    menu or key reference is not changed for it.
   - In the selection mode (note.4) only the positions of the cursor and of the selection's start are kept, never the
     text; a position is there when its line, and that column in it, still are. Both there: nothing changes, what
     they cover is the new text, and `y` copies that. The cursor there but not the start: the selection goes and it
