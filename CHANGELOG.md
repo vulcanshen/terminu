@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.2.14 — 2026-11-17
+
+A patch, the user's choice: no member has to change. From catu's review at v1.2.13: what an open Space menu or key
+reference does when a re-read takes the selection away under it.
+
+- note.9: with the selection mode's Space menu or key reference open when a re-read takes the selection away (its
+  start or the cursor gone), a note laid over them says so instead of the Warning toast: the error popup's look in
+  Peach, with the Warning toast's glyph; content that cannot be read with them open, a Red error popup in place of
+  the Error toast. `Enter` and `Esc` close it and the menu or key reference under it together, back to the view
+  (the user)
+- changed in this version: note.9
+- checklist: note-99 and note-100 added (1491 items); the header names v1.2.14
+
 ## v1.2.13 — 2026-11-17
 
 A patch, the user's choice: no member has to change. tdp had not thought of content that is read again while it is
