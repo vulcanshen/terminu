@@ -346,7 +346,14 @@ Whether to read content again, and when, the app may decide for itself.
     is back to `Visual`, as one `Esc` does, the cursor kept. The cursor not there: the mode is left, as `Esc` to the
     bottom does. Either way a Warning toast says so. When the content cannot be read at all (e.g. the file is gone),
     the mode is left, and the Error toast saying it cannot be read is the only toast
-    ([`layout/panel`](../layout/panel.md), panel.15).
+    ([`layout/panel`](../layout/panel.md), panel.15; with a menu open, below).
+  - With the mode's Space menu or the key reference open when the selection goes (its start or the cursor gone), a
+    note says so instead of the toast, laid over them: the error popup's look (note.6) in Peach, worth noticing and
+    not an error, with the Warning toast's glyph ([`dialog/toast`](toast.md)); it says that the content was read
+    again and the selection is gone (the words, the app's). `Enter` and `Esc` both close it and the menu or key
+    reference under it together, back to the view (hint `Enter|Esc:close`), not to the popup under it as note.6
+    does: what that menu listed is gone. Content that cannot be read with them open is the same, as an error popup
+    (note.6, Red) saying it cannot be read and the selection is gone, in place of the Error toast.
   - It is not streaming content (Rules T2): it is read again, not streamed in, so it is dimmed when unfocused,
     whatever it holds, a log file too.
 
@@ -358,4 +365,5 @@ as one `Esc` or `Esc` to the bottom would take it, with a toast, since the user 
 gutter only widens, as with streaming and tabs, so a file saved back and forth around 999 lines, or a log cleared
 and written again, does not make the text jump sideways (the user). Not streaming content: a file is shown by what
 it is, and a log file is a format like any other; streaming is what keeps coming in from a running program or a
-connection (the user).
+connection (the user). With a menu open, a toast below it is easily missed and the menu would go on listing what
+the selection could do; a note over it is seen, and closing both lands on the view as it now is (the user).

@@ -261,7 +261,14 @@ panel.14），開著的時候可能會變：一直有新的行進來（串流內
   - 選取模式（note.4）只保留 cursor 與選取起點的位置，不保留字；那一行、那一行裡的那一欄都還在，位置才算還在。兩個都在：
     什麼都不變，選到的是新的字，`y` 複製新的字。cursor 在、起點不在：拿掉選取，回到 `Visual`，跟按一次 `Esc` 一樣，
     cursor 留著。cursor 不在：離開模式，跟 `Esc` 退到底一樣。這兩種都跳 Warning toast 說明。內容整個讀不到時（例：檔案
-    被刪了），離開模式，只跳那個讀不到的 Error toast（[`layout/panel`](../layout/panel-zh_TW.md)，panel.15）。
+    被刪了），離開模式，只跳那個讀不到的 Error toast（[`layout/panel`](../layout/panel-zh_TW.md)，panel.15；menu 開著時見
+    下面）。
+  - 選取失效時（起點或 cursor 不見了）如果模式的 Space menu 或 key reference 開著，改用一個 note 疊在上面說明，不跳
+    toast：樣子跟 error popup（note.6）一樣但用 Peach，是值得注意、不是錯誤，圖示跟 Warning toast 一樣
+    （[`dialog/toast`](toast-zh_TW.md)）；說明內容已重新讀進來、原本的選取失效了（字句由 app 寫）。`Enter` 和 `Esc` 都會
+    連同底下的 menu 或 key reference 一起關掉，回到畫面（hint `Enter|Esc:close`），不像 note.6 回到底下的 popup：那個
+    menu 列的東西已經不在了。它們開著時內容讀不到也一樣，改用 error popup（note.6，Red）說明讀不到、原本的選取失效了，
+    不跳 Error toast。
   - 不算串流內容（Rules T2）：它是重新讀進來，不是串流進來，所以失焦時變暗，不管內容是什麼，log 檔也一樣。
 
 **為什麼**：跟著結尾是 `tail -f` 和看 log 的工具的做法，往上捲過的畫面是使用者自己捲上去的；選取模式裡 cursor 是使用者
@@ -269,4 +276,5 @@ panel.14），開著的時候可能會變：一直有新的行進來（串流內
 使用者沒有要做新的事，所以手上進行中的在新內容上照常繼續；在新內容裡沒有位置的就拿掉，跟按一次 `Esc` 或 `Esc` 退到底拿掉
 的一樣，因為不是使用者自己按的，所以跳 toast（user）。行號欄只變寬，跟串流和 tab 一樣，檔案在 999 行上下來回存檔、log
 被清空重寫時，字才不會左右跳（user）。不算串流內容：檔案照它是什麼來顯示，log 檔跟其他格式一樣是一種格式；串流是從執行中
-的程式或連線一直送進來的東西（user）。
+的程式或連線一直送進來的東西（user）。menu 開著時，下面的 toast 容易沒看到，menu 也還列著選取能做的事；疊一個 note 一定
+看得到，連 menu 一起關掉，回到現在的畫面（user）。
