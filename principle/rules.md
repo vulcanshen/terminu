@@ -173,7 +173,9 @@ clearing a panel filter) — what "up one level" means, the app may decide for i
 and **`Esc` never leaves the app** — at the top it does nothing.
 
 When a popup opens another (e.g. Space menu → global operation popup → confirm), `Esc` **closes only the topmost one**;
-the popups underneath stay and are shown exactly as they were; the next press closes the next layer (F4).
+the popups underneath stay and are shown exactly as they were; the next press closes the next layer (F4). The one
+exception is the note laid over a selection mode's Space menu or key reference when a re-read takes the selection
+away: it closes with them, since what they listed is gone (components/dialog/note, note.9).
 
 **Why**: a lost user presses `Esc` repeatedly to get back somewhere safe. If the end of that sequence is the app closing,
 `Esc` becomes a dangerous key, users stop pressing it, and the safe way out that "cancel" provides is gone. Quitting has
@@ -946,7 +948,8 @@ away in one go costs a lot, so it asks once more.
 ### F4 The source stays by default
 
 When popup A opens popup B, A stays underneath by default; cancelling B returns to A. The same holds at any depth: `Esc`
-closes only the topmost, and the stack underneath is shown as it was (K4). In an app's own mode, where a popup it
+closes only the topmost, and the stack underneath is shown as it was (K4; the note over a selection mode's menu after
+a re-read excepted, components/dialog/note, note.9). In an app's own mode, where a popup it
 opens goes back to, the app may decide for itself (K11; the user, 2026-11-13, from tetru).
 
 **Why**: the user did not dismiss A, they just did one interaction in B. If cancelling B also removes A, they have to
