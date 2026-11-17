@@ -324,6 +324,7 @@ The items of tdp v1.2.12. What each column means and what an item applies to: [R
 | T2-1 | T2 | An unfocused panel has its content (header, group titles, labels, cursor included) dimmed with the same fade as F8, and the cursor does not change to another colour | several panels | Press `Tab` to switch panels: the unfocused panel's content is dimmed, each colour a dimmed version of itself |
 | T2-2 | T2 | Streaming content (logs, live output, remote sessions) is not dimmed on blur | streaming content | Move focus to another panel: the panel with streaming content does not dim |
 | T2-3 | T2 | A streaming panel's content is not dimmed on blur, but the hint on its bottom border still is | streaming content | Move focus to another panel; the streaming panel's hint dims |
+| T2-4 | T2 | Content read again when where it comes from changes (e.g. a log file being watched) is not streaming content: it is dimmed on blur | content read again | Watch a growing log file, then move the focus to another panel |
 
 ## rules — S Splash
 
@@ -990,7 +991,7 @@ The items of tdp v1.2.12. What each column means and what an item applies to: [R
 | note-10 | note.2 | Line numbers are in Overlay0 | viewer | Look at the line numbers' colour |
 | note-11 | note.2 | In the selection mode, the cursor's line has its number in Text | viewer | Press `v` and look at the number of the cursor's line |
 | note-12 | note.2 | Copying leaves the numbers out | viewer | Select a stretch, copy it, and paste it to look |
-| note-13 | note.2 | The gutter is at least three digits: where the line count is known on opening, it is max(3, the digits of the line count) and stays so | viewer | Open content of under 100 lines and of over 1000 lines; look at the gutter's width |
+| note-13 | note.2 | The gutter is at least three digits: where the line count is known on opening, it is max(3, the digits of the line count) and stays so, only widening when the content is read again (note.9) | viewer | Open content of under 100 lines and of over 1000 lines; look at the gutter's width |
 | note-14 | note.2 | A streaming viewer (App Log) starts its gutter at three digits and widens it only past 999 lines | viewer | Look at the gutter before and after the stream reaches 1000 lines |
 | note-15 | note.2 | In a viewer with tabs, the gutter follows the widest of the pages seen so far, and only ever widens, never narrows (a streaming page likewise) | viewer | Switch to a page with more lines and back: the gutter does not narrow again |
 | note-16 | note.2 | A viewer whose content has a fixed format (YAML, JSON, TOML, HTML, XML, Markdown…) is coloured as a text file in the file-picker preview: chroma's catppuccin-mocha without its backgrounds; file content goes by the file name, and by its directory where formats share a name | viewer | Open a YAML view and the content of a `.json` file: the syntax colours match the preview, with no background colour |
@@ -1066,6 +1067,15 @@ The items of tdp v1.2.12. What each column means and what an item applies to: [R
 | note-83 | note.8 | SPLIT: the anchor on the left, the other on the right, each with its line numbers; removed in Red on the left, added in Green on the right, a blank row where there is no counterpart; each side wraps within its half, the two lines of a row taking as many rows as the longer, the shorter filled with blank rows | compare mode | Look at SPLIT with a line longer than its half |
 | note-84 | note.8 | The last chosen tab is remembered (state) | compare mode | Switch to SPLIT, quit, start again, compare again |
 | note-85 | note.8 | Narrower than 96 it is always UNIFIED and `SPLIT` is disabled | compare mode | Shrink the terminal below 96 and compare |
+| note-90 | note.9 | A view whose last line is in sight follows the lines added at the end; one scrolled up stays on the lines it shows | everyone | Open the App Log at its end and make an entry come in; scroll up and make another come in |
+| note-91 | note.9 | In the selection mode the view never follows lines added at the end | everyone | In the App Log at its end press `v`, then make an entry come in |
+| note-92 | note.9 | Content read again shorter than the view moves the view to the new end | content read again | Scroll to the end, then cut the content shorter than the view |
+| note-93 | note.9 | Content read again: the gutter only widens while it is open; another file, or opening it again, sets it anew | content read again | Grow the content past 999 lines, then cut it to 50: the gutter stays four digits; open it again: three |
+| note-94 | note.9 | Content read again: a search's hits and status follow the new text, the current hit the first at or after where it was, the view not moved; with no hit left, the Info toast, and the hits and the status go | content read again | Search, then change the content so the hits move, and then so none is left |
+| note-95 | note.9 | Content read again: an open Space menu or key reference does not change for it | content read again | Open the Space menu while a search has hits, then make the content lose them |
+| note-96 | note.9 | In the selection mode, read again with the cursor and the selection's start both still there (their line, and that column in it): nothing changes, and `y` copies the new text | content read again | Select from line 10 to 12, change those lines, press `y` and paste |
+| note-97 | note.9 | In the selection mode, read again with the cursor there but not the start: the selection goes, back to `Visual`, the cursor kept, and a Warning toast says so | content read again | Select upwards from line 20 to line 10, then cut the content to 15 lines |
+| note-98 | note.9 | In the selection mode, read again with the cursor not there: the mode is left with a Warning toast; content that cannot be read: the mode is left, the Error toast the only toast | content read again | Select from line 10 to line 20 and cut the content to 15 lines; then make it unreadable (e.g. remove the file) |
 
 ## dialog/terminal
 

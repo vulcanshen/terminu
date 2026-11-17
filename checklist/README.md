@@ -71,6 +71,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | panel status | an app's own status on a panel's frame (layout/panel, panel.1) |
 | zoom | zooming a panel (layout/screen) |
 | streaming content | content that keeps coming in (e.g. a log) |
+| content read again | content a viewer or a panel reads again when where it comes from changes (e.g. a file being watched; dialog/note, note.9) |
 | panel without a cursor | a panel without a cursor (a preview, a log) |
 | loading | a panel or popup that waits for its content |
 | mode | a mode (Rules K11) |

@@ -1110,9 +1110,11 @@ after it.
 ### T2 Unfocused panels are dimmed, streaming content excepted
 
 An unfocused panel **has its content dimmed with the same fade as F8** (its border being components/color's unfocused
-border); **streaming content (logs, live output, remote sessions) is not dimmed on blur**; the hint on a streaming
-panel's bottom border is still dimmed — the hint is not streaming content. The exception is a popup on top: attention is
-on the popup then, and everything below is dimmed as F8 says.
+border); **streaming content (logs, live output, remote sessions) is not dimmed on blur**: what keeps coming in from a
+running program or a connection, not content read again when where it comes from changes (e.g. a log file being
+watched, components/dialog/note, note.9); the hint on a streaming panel's bottom border is still dimmed — the hint is
+not streaming content. The exception is a popup on top: attention is on the popup then, and everything below is
+dimmed as F8 says.
 
 **Why**: dimming says "focus is elsewhere, look later" — what is bright is what has focus (Principle P6). Streaming
 content has no later — information is passing by, and dimming it cuts off the glance from the corner of the eye; the hint

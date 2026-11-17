@@ -34,8 +34,8 @@ menu, not a note.
   [`input/textarea`](../input/textarea.md): the first row of each line carries its number, right-aligned, with a space
   after it; a wrapped row leaves the gutter blank. Numbers are Overlay0; in the selection mode the cursor's line has its
   number in Text. Copying leaves the numbers out. The gutter is **at least three digits**: where the line count is known
-  on opening (YAML view, file content) it is max(3, the digits of the line count) and stays so; a streaming App Log
-  starts at three digits and widens only past 999 lines.
+  on opening (YAML view, file content) it is max(3, the digits of the line count) and stays so, only widening when the
+  content is read again (note.9); a streaming App Log starts at three digits and widens only past 999 lines.
   **A viewer with tabs** (e.g. DevTools' Console and Network): the gutter follows the widest of the pages seen so far,
   and only ever widens — set by the page it opens on; wider on a page with more lines; kept, not narrowed, on going back
   to a page with fewer. A streaming page likewise only widens.
@@ -140,6 +140,7 @@ it; the key reference, the error popup and a form's typing explanation have no s
   keeping the layer colour; an empty line inside the selection shows one cell.
 - **Scroll position**: in the selection mode, the cursor's line `N of M` (counted in lines, the same numbers as the
   gutter); back to `N-M of T` after it.
+- **When the content changes** while in the mode (read again, or lines coming in): note.9.
 
 **Why**: move to the start first, then select — where the cursor appears is not always where the selection should
 start, and with selection starting on the first `v`, the start would always be the first visible line. With no cursor
@@ -320,3 +321,40 @@ diff`'s default). Green for added and Red for removed is the common diff convent
 reading as an error. The two layouts are tabs: no extra key, and the title shows which one is on; side by side needs 96,
 the same threshold as the finder. Identical ones only get a toast: the result fits in one sentence, with no extra `Esc`
 to press.
+
+## note.9 Content that changes while open
+
+What a viewer holds, or a panel without a cursor showing text in lines (a preview, a log;
+[`layout/panel`](../layout/panel.md), panel.14), can change while it is open: lines keep coming in (streaming
+content, the App Log), or the content is read again when where it comes from changes (e.g. a file being watched).
+Whether to read content again, and when, the app may decide for itself.
+
+- **Following the end**: a view whose last line is in sight follows the lines added at the end, as `tail -f` does;
+  one scrolled up stays on the lines it shows. In the selection mode (note.4) it never follows, so the cursor stays
+  in sight. Content cut shorter than the view moves the view to the new end.
+- **Read again, it is as if just opened**: what is shown is the new text, and nothing of the old one is kept beyond
+  what follows.
+  - The gutter (note.2) only widens while the content is open, as a streaming one does; another file, or opening it
+    again, sets it anew.
+  - A search (note.3) is found again in the new text: its hits and status follow it, the current hit being the first
+    at or after where it was, and the view is not moved for it; with no hit left, it is a search that found nothing
+    (the Info toast; the hits and the status go). An open Space menu or key reference is not changed for it.
+  - In the selection mode (note.4) only the positions of the cursor and of the selection's start are kept, never the
+    text; a position is there when its line, and that column in it, still are. Both there: nothing changes, what
+    they cover is the new text, and `y` copies that. The cursor there but not the start: the selection goes and it
+    is back to `Visual`, as one `Esc` does, the cursor kept. The cursor not there: the mode is left, as `Esc` to the
+    bottom does. Either way a Warning toast says so. When the content cannot be read at all (e.g. the file is gone),
+    the mode is left, and the Error toast saying it cannot be read is the only toast
+    ([`layout/panel`](../layout/panel.md), panel.15).
+  - It is not streaming content (Rules T2): it is read again, not streamed in, so it is dimmed when unfocused,
+    whatever it holds, a log file too.
+
+**Why**: following the end is what `tail -f` and log viewers do, and a view scrolled up was moved there on purpose;
+in the selection mode the cursor is the user's work, and a view running on would take it out of sight (the user,
+2026-11-17, from catu). Reading again is opening again, as if the search were typed again (the user): the user asked
+for nothing new, so what they had going carries on over the new text, and what no longer has a place in it goes,
+as one `Esc` or `Esc` to the bottom would take it, with a toast, since the user did not press it (the user). The
+gutter only widens, as with streaming and tabs, so a file saved back and forth around 999 lines, or a log cleared
+and written again, does not make the text jump sideways (the user). Not streaming content: a file is shown by what
+it is, and a log file is a format like any other; streaming is what keeps coming in from a running program or a
+connection (the user).

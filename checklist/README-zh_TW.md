@@ -60,6 +60,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | panel 狀態 | 有 panel 框上 app 自己的狀態（layout/panel，panel.1） |
 | zoom | 有放大 panel 的功能（layout/screen） |
 | 串流內容 | 有一直進來的內容（例：log） |
+| 重新讀進來的內容 | 有 viewer 或 panel 在來源變了時重新讀進來的內容（例：被監看的檔案；dialog/note，note.9） |
 | 沒有 cursor 的 panel | 有沒有 cursor 的 panel（預覽、log） |
 | loading | 有 panel 或 popup 要等內容載入 |
 | 模式 | 有模式（Rules K11） |
