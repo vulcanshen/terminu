@@ -30,7 +30,11 @@ exception: it says what the item under the cursor is, and is there only while th
 - **Text**: centred. It may have several rows, given by the app a row at a time ("Control characters" in
   [components](../README.md)), each starting a row of its own. When too long it wraps (as in [the components' "Wrapping"](../README.md)), every row centred. How
   many rows at most, the app may decide for itself; the spec sets no limit. When the app sets one and a message goes past it, the last
-  row ends with `…`, and the full message goes to an error popup or the app's log.
+  row ends with `…`, and the full message goes to an error popup or the app's log. A success report the user needs to
+  read whole (e.g. which files were written where) that does not fit opens instead a read-only viewer
+  ([`dialog/note`](note.md)) holding the whole report, titled with what was done, in the layer colour; it pops up by
+  itself, so `Enter` closes it as well as `Esc`; the report goes to the App Log too, as a Success. A toast goes before
+  a long report is read, and the App Log has to be looked for (the user, 2026-11-18, from locku).
 - **Capitalised**: each row starts with a capital letter, the rest as it is (`Copied`, `Can't save filu: permission
   denied`). A row starting with a name or a path keeps the name's case (`kbu.yaml saved`; "Uppercase" in the
   [components](../README.md): a name is content). Each App Log entry follows this too (the App Log in

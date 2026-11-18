@@ -409,6 +409,10 @@ The items of tdp v1.2.14. What each column means and what an item applies to: [R
 | E3-25 | E3 | A cache the app no longer uses is deleted at the first start, and an INFO entry in the App Log says where it was and how large | a cache no longer used | Put the old cache in place, start, look at the disk and the App Log |
 | E3-26 | E3 | A file only for this run (e.g. what came down a pipe) is in the system's temporary directory, not under the config, data or cache locations, and is gone after the app quits | has a file only for this run | Run it, find the file, quit: it was in `$TMPDIR` and is gone |
 | E3-27 | E3 | With no screen (a command that prints instead of opening the app), settings, state or data that cannot be read: the app touches no file, prints nothing, writes the path and the reason to stderr and quits with a non-zero exit status | prints with no screen and stores settings or data | Damage the settings file and run the printing command into a pipe: nothing comes out, stderr names the file and the reason, `echo $?` is not 0, and no `.bak` appears |
+| E3-28 | E3 | A file that can be read but holds a value the app cannot use, or a data entry that does not fit (a blank or repeated name), is not "cannot be read": the app goes on, with no MOVE ASIDE confirm | stores settings or data | Write a colour not in `#rrggbb` into config.yaml and start the app |
+| E3-29 | E3 | At start such a file is copied to `<name>.bak` (`.bak.1`… when one is there), then written again with the default for each such value and without each such entry | stores settings or data | As above; compare the `.bak` with the file |
+| E3-30 | E3 | A Warning toast names the file and the copy; each value or entry is a WARN entry in the App Log naming the key, what was there and what is used now | stores settings or data | As above; read the toast, then the App Log |
+| E3-31 | E3 | With no screen, a value that does not fit is handled the same (the `.bak` copy, the file written again with defaults, the output printed), the toast's sentence going to stderr | prints with no screen and stores settings or data | Write such a value and run the printing command into a pipe: the output comes, stderr has the sentence, the `.bak` is there |
 | E4-1 | E4 | PUA glyphs are written as code points in the source | everyone | Read the code: a scan of the source finds no PUA characters |
 | E4-2 | E4 | The README's requirements say a Nerd Font is required | everyone | Read the prerequisites in both READMEs |
 | E4-3 | E4 | The README's requirements say, next to the Nerd Font, that a truecolor terminal (24-bit colour) is required | everyone | Read the prerequisites in both READMEs |
@@ -1118,6 +1122,7 @@ The items of tdp v1.2.14. What each column means and what an item applies to: [R
 | toast-4 | toast.2 | The text is centred | toast | Look at where the message sits |
 | toast-5 | toast.2 | When too long it wraps, every row centred | toast | Bring up a long toast |
 | toast-6 | toast.2 | How many rows at most, the app may decide for itself; when the app sets a limit and a message runs past it, the last row ends with `…` | toast | Bring up a very long toast and look at the rows and the end |
+| toast-28 | toast.2 | A success report the user needs to read whole that does not fit the toast opens a read-only viewer with the whole report instead, titled with what was done, in the layer colour; `Enter` and `Esc` close it; the report is in the App Log as a Success | toast | Do something whose success report is long (e.g. long paths), read the viewer, close it with `Enter`, then open the App Log |
 | toast-7 | toast.2 | When the app sets a row limit, the full text of a message that would be cut goes to an error popup or the app's log | toast | Read the code: a long message's full text is also written to an error popup or the log |
 | toast-8 | toast.2 | Info: title `nf-fa-flag` (U+F024) `INFO`, text in Text | toast | Bring up an Info toast |
 | toast-9 | toast.2 | Warning: title `nf-md-alarm_light` (U+F078F) `WARNING`, text in Peach | toast | Bring up a Warning toast |
@@ -1292,6 +1297,7 @@ The items of tdp v1.2.14. What each column means and what an item applies to: [R
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
 | radio-1 | radio.1 | one of five options or fewer is drawn straight in the form or the panel (radio) | radio or select | find the single-choice fields with five options or fewer |
+| radio-10 | radio.1 | A single choice among options that are the user's own data, their number changing with use (e.g. profiles the user makes), is always a select, even with five or fewer | radio or select | Keep one or two of them (e.g. profiles) and look at the field: it opens a select |
 | radio-2 | radio.1 | one of more than five options uses a select | radio or select | find the single-choice fields with more than five options |
 | radio-3 | radio.2 | chosen `nf-md-radiobox_marked` (U+F043E), not chosen `nf-md-radiobox_blank` (U+F043D) | radio | look at the glyph before each option |
 | radio-4 | radio.2 | the chosen one's text is Green, the others Text | radio | look at the options' colours |
@@ -1306,6 +1312,7 @@ The items of tdp v1.2.14. What each column means and what an item applies to: [R
 | ID | Source | What to check | Applies to | How to check |
 |---|---|---|---|---|
 | checkbox-1 | checkbox.1 | a switch and a group of five or fewer are drawn straight in the form or the panel and flip in place | checkbox | find the switches and the multi-choice fields with five options or fewer |
+| checkbox-34 | checkbox.1 | A multiple choice among options that are the user's own data, their number changing with use, always opens a checkbox popup, even with five or fewer | checkbox | Keep one or two of them and look at the field: it opens a checkbox popup |
 | checkbox-2 | checkbox.1 | more than five to tick open a checkbox popup | checkbox | find the multi-choice fields with more than five options |
 | checkbox-3 | checkbox.2 | ticked `nf-md-checkbox_marked` (U+F0132), not ticked `nf-md-checkbox_blank_outline` (U+F0131); the same in a form, on a panel and on every row of a checkbox popup | checkbox | look at the glyph before each option |
 | checkbox-4 | checkbox.2 | a ticked one's text is Green | checkbox | look at the colour of ticked options |

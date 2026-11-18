@@ -5,8 +5,10 @@
 ## checkbox.1 Purpose
 
 A switch, or ticking several from a group. A switch and a group of five or fewer are drawn straight in the form or the
-panel and flip in place; more than five open a checkbox popup (e.g. kbu's namespace picker). The checkbox popup is a
-kind of finder ([`input/finder`](finder.md)): only what differs is written here.
+panel and flip in place; more than five open a checkbox popup (e.g. kbu's namespace picker). A group that is the
+user's own data, its number changing with use, always opens a checkbox popup, however many there are now (radio.1;
+the user, 2026-11-18). The checkbox popup is a kind of finder ([`input/finder`](finder.md)): only what differs is
+written here.
 
 A group of options always comes with a `Select all` row of its own, not an option (see "Select all" below); a switch
 has none.

@@ -6,7 +6,8 @@
 
 Choosing **one** value from a list: a `<select>` on a webu page, kbu's context picker, a form field with more options
 than fit; a slider's list of numbers and a color picker's 00–FF are selects too. For five options or fewer drawn in a
-form, use [`radio`](radio.md); for several values, the popup of [`checkbox`](checkbox.md).
+form, use [`radio`](radio.md); for several values, the popup of [`checkbox`](checkbox.md). Options that are the user's
+own data, their number changing with use, are always a select (radio.1).
 
 A select is a kind of finder ([`input/finder`](finder.md)): only what differs from the finder is written here.
 

@@ -6,6 +6,7 @@
 
 從清單選**一個**值：webu 頁面的 `<select>`、kbu 的 context picker、表單裡選項多到放不下的欄位；slider 的數字清單、color picker 的
 00–FF 也是它。選項五個以內、畫在表單上的用 [`radio`](radio-zh_TW.md)；選好幾個的用 [`checkbox`](checkbox-zh_TW.md) 的 popup。
+選項是使用者自己的資料、數量會隨使用改變時，一律用 select（radio.1）。
 
 select 是 finder 的一種（[`input/finder`](finder-zh_TW.md)）：這裡只寫跟 finder 不同的地方。
 

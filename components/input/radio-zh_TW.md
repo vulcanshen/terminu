@@ -5,12 +5,15 @@
 ## radio.1 用途
 
 幾個選一個，選項五個以內：直接畫在表單或 panel 上（[`dialog/form`](../dialog/form-zh_TW.md) 的「選項畫在表單上」）。超過五個用
-[`select`](select-zh_TW.md)。
+[`select`](select-zh_TW.md)。選項是使用者自己的資料、數量會隨使用改變時（例：使用者自己建的 profile），不管現在有幾個，一律用
+select：直接畫在表單上的，只給 app 自己定的固定選項（user 2026-11-18，來自 locku）。
 
 **一個開關也可以畫成 radio**：`off`、`on` 兩個選項，跟 [`checkbox`](checkbox-zh_TW.md) 二選一，app 可以自行決定（例：ccdrawu 的 Drawer，
 跟同一頁 `off`、`on`、`on when narrow` 的設定排法一樣）。
 
 **為什麼**：`off`、`on` 兩個狀態都寫出來，比一個勾直觀；同一頁有多個選項的同類設定時，開關跟著畫成 radio，排法也一致。
+選項來自使用者的資料時一律開 select，多建一個時那一列的樣子才不會變，不會哪天加了第六個就從一排選項變成 select；kbu 的 context
+與 namespace picker 也都是 popup（user）。
 
 ## radio.2 長相
 

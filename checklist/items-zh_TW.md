@@ -409,6 +409,10 @@ tdp v1.2.14 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | E3-25 | E3 | app 不再用的快取在第一次啟動時刪掉，App Log 記一筆 INFO，寫出在哪裡、多大 | 不再用的快取 | 放舊的快取後啟動，看磁碟與 App Log |
 | E3-26 | E3 | 只給這一次執行用的檔案（例：從 pipe 讀進來的內容）放在系統的暫存目錄，不在 config、data、cache 的位置，app 結束後就不在了 | 有只給這一次執行用的檔案 | 執行、找到那個檔案、結束：它在 `$TMPDIR` 裡，結束後不在了 |
 | E3-27 | E3 | 沒有畫面時（不打開 app、直接印出來的指令），設定、狀態或資料讀不了：不動任何檔案、什麼都不印，路徑與原因寫到 stderr，以非 0 的 exit status 結束 | 沒有畫面也能印、又存設定或資料 | 把設定檔弄壞，把印出來的指令接到 pipe：什麼都沒出來，stderr 寫出檔案與原因，`echo $?` 不是 0，也沒有出現 `.bak` |
+| E3-28 | E3 | 讀得進來、只有 app 用不了的值，或資料裡有不合規則的一筆（名字空白或重複）的檔案，不算「讀不了」：app 繼續，不開 MOVE ASIDE | 存設定或資料 | 在 config.yaml 寫一個不是 `#rrggbb` 的顏色，啟動 app |
+| E3-29 | E3 | 啟動時先把這種檔案複製成 `<名字>.bak`（已經有了就用 `.bak.1`……），再重寫檔案：那些值換成預設值，那些筆拿掉 | 存設定或資料 | 同上，比對 `.bak` 與檔案 |
+| E3-30 | E3 | 跳一個 Warning toast 寫出檔案與備份；每個值或每一筆以 WARN 記進 App Log，寫出 key、原本寫的與現在用的 | 存設定或資料 | 同上，看 toast，再看 App Log |
+| E3-31 | E3 | 沒有畫面時遇到不合規則的值也一樣處理（備份成 `.bak`、重寫成預設值、照樣印出結果），toast 那句改寫到 stderr | 沒有畫面也能印、又存設定或資料 | 寫一個這種值，把印出來的指令接到 pipe：結果照樣出來，stderr 有那句，`.bak` 在 |
 | E4-1 | E4 | 程式碼裡的 PUA glyph 寫成 code point | 都要 | 讀程式：掃原始碼找不到 PUA 字元 |
 | E4-2 | E4 | README 的需求段寫明需要 Nerd Font | 都要 | 讀兩份 README 的前置需求 |
 | E4-3 | E4 | README 的需求段跟 Nerd Font 並列寫明需要 truecolor terminal（24-bit 色） | 都要 | 讀兩份 README 的前置需求 |
@@ -1118,6 +1122,7 @@ tdp v1.2.14 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | toast-4 | toast.2 | 文字置中 | toast | 看訊息的位置 |
 | toast-5 | toast.2 | 太長時折行，每一列都置中 | toast | 跳一個長的 toast |
 | toast-6 | toast.2 | 最多幾列，app 可以自行決定；app 設了上限、訊息超過時，最後一列結尾加 `…` | toast | 跳一個很長的 toast，看列數與結尾 |
+| toast-28 | toast.2 | 使用者需要讀完的成功報告放不進 toast 時，改開唯讀的 viewer 放完整的報告，標題寫做了什麼，用層級顏色；`Enter` 和 `Esc` 都能關；報告也以 Success 記進 App Log | toast | 做一件成功報告很長的事（例：路徑很長），看 viewer，按 `Enter` 關掉，再打開 App Log |
 | toast-7 | toast.2 | app 設了列數上限時，會被截掉的訊息，完整內容走 error popup 或 app 的 log | toast | 讀程式：長訊息的完整內容另外寫進 error popup 或 log |
 | toast-8 | toast.2 | Info：標題 `nf-fa-flag`（U+F024）`INFO`，文字 Text | toast | 跳一個 Info toast |
 | toast-9 | toast.2 | Warning：標題 `nf-md-alarm_light`（U+F078F）`WARNING`，文字 Peach | toast | 跳一個 Warning toast |
@@ -1292,6 +1297,7 @@ tdp v1.2.14 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
 | radio-1 | radio.1 | 選項五個以內的單選，直接畫在表單或 panel 上（radio） | radio、select | 找出五個以內的單選欄位 |
+| radio-10 | radio.1 | 選項是使用者自己的資料、數量會隨使用改變的單選（例：使用者建的 profile），五個以內也一律用 select | radio、select | 只留一兩個（例：profile），看那一列：開的是 select |
 | radio-2 | radio.1 | 選項超過五個的單選用 select | radio、select | 找出超過五個的單選欄位 |
 | radio-3 | radio.2 | 選中 `nf-md-radiobox_marked`（U+F043E）、沒選 `nf-md-radiobox_blank`（U+F043D） | radio | 看選項前面的 glyph |
 | radio-4 | radio.2 | 選中那一個的字是 Green，其他是 Text | radio | 看選項的顏色 |
@@ -1306,6 +1312,7 @@ tdp v1.2.14 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | 編號 | 出處 | 檢查什麼 | 適用 | 怎麼驗 |
 |---|---|---|---|---|
 | checkbox-1 | checkbox.1 | 開關與五個以內的一組，直接畫在表單或 panel 上，在原地翻 | checkbox | 找出開關與五個以內的多選欄位 |
+| checkbox-34 | checkbox.1 | 選項是使用者自己的資料、數量會隨使用改變的多選，五個以內也一律開 checkbox popup | checkbox | 只留一兩個，看那一列：開的是 checkbox popup |
 | checkbox-2 | checkbox.1 | 超過五個的多選開 checkbox popup | checkbox | 找出超過五個的多選欄位 |
 | checkbox-3 | checkbox.2 | 勾了 `nf-md-checkbox_marked`（U+F0132），沒勾 `nf-md-checkbox_blank_outline`（U+F0131）；表單、panel 上與 checkbox popup 的每一列都是 | checkbox | 看選項前面的 glyph |
 | checkbox-4 | checkbox.2 | 勾了的字是 Green | checkbox | 看勾了的選項顏色 |

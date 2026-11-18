@@ -4,7 +4,8 @@
 
 ## note.1 用途
 
-唯讀的內容，可以捲動，可以有自己的熱鍵與模式（Rules F1）：key reference、viewer（YAML 檢視、App Log、檔案內容）、error popup、
+唯讀的內容，可以捲動，可以有自己的熱鍵與模式（Rules F1）：key reference、viewer（YAML 檢視、App Log、檔案內容、toast
+放不下的成功報告，[`dialog/toast`](toast-zh_TW.md)）、error popup、
 表單上的打字說明（[`dialog/form`](form-zh_TW.md)）。viewer 一定有選取模式（見下面的「選取模式」）。有可以用 `Enter` 執行的選項清單時，
 它是 menu，不是 note。
 
@@ -68,8 +69,8 @@
 - **viewer 折行時以畫面上的一列為單位捲**（像 `less`）：`j|k` 一次一列，`u|d` 半頁照列算。比框還高的一行（例：壓縮過的 JSON）
   也看得完；跟 [`input/textarea`](../input/textarea-zh_TW.md) 的 `↑|↓` 照畫出來的列一致。
 - **只用 `Esc` 關**。`Enter` 不關；`Space` 也不關（Rules K5）。
-- **例外**：error popup（不管是自己跳出來的，還是從表單錯誤列按 `Enter` 打開的）與表單上的打字說明，`Enter` 也能關；key reference
-  再按一次 `?` 也能關（Rules K6）。
+- **例外**：error popup（不管是自己跳出來的，還是從表單錯誤列按 `Enter` 打開的）、表單上的打字說明、toast 放不下而改開的成功報告
+  （[`dialog/toast`](toast-zh_TW.md)），`Enter` 也能關；key reference 再按一次 `?` 也能關（Rules K6）。
 - **表單上的打字說明只收 `Enter`、`Esc`**：其他可以打的字（包括 `q`、`?`）都不作用 —— 不進離開流程、不開 key reference
   （[`dialog/form`](form-zh_TW.md) 的「在欄位上打字」）。
 - **viewer 的搜尋**：每個 viewer（note.4）與按鍵說明（note.5）都有 `/`（user 2026-10-29，照 kbu 的 YAML viewer 與 webu 的網頁；

@@ -5,9 +5,9 @@
 ## note.1 Purpose
 
 Read-only content that scrolls and may have hotkeys and modes of its own (Rules F1): the key reference, viewers (a YAML
-view, the App Log, a file's content), the error popup, the typing explanation on a form ([`dialog/form`](form.md)). A
-viewer always has a selection mode (see "Selection mode" below). With a list of options to run with `Enter`, it is a
-menu, not a note.
+view, the App Log, a file's content, a success report too long for a toast, [`dialog/toast`](toast.md)), the error
+popup, the typing explanation on a form ([`dialog/form`](form.md)). A viewer always has a selection mode (see
+"Selection mode" below). With a list of options to run with `Enter`, it is a menu, not a note.
 
 ## note.2 Look
 
@@ -90,8 +90,9 @@ a file looks the same in the preview and in a viewer.
   in rows. A line taller than the frame (e.g. minified JSON) can be read to its end; this matches
   [`input/textarea`](../input/textarea.md)'s `↑|↓`, which follow the rows as drawn.
 - **Closed with `Esc` only**. `Enter` does not close it; nor does `Space` (Rules K5).
-- **The exceptions**: the error popup (whether it popped up by itself or was opened with `Enter` on a form's error row)
-  and the typing explanation on a form close on `Enter` too; the key reference also closes on a second `?` (Rules K6).
+- **The exceptions**: the error popup (whether it popped up by itself or was opened with `Enter` on a form's error row),
+  the typing explanation on a form and a success report too long for a toast ([`dialog/toast`](toast.md)) close on
+  `Enter` too; the key reference also closes on a second `?` (Rules K6).
 - **A form's typing explanation takes only `Enter` and `Esc`**: every other typeable character (`q` and `?` included)
   does nothing — no quitting, no key reference (typing on a field in [`dialog/form`](form.md)).
 - **A viewer's search**: every viewer (note.4) and the key reference (note.5) have `/` (the user, 2026-10-29, as kbu's

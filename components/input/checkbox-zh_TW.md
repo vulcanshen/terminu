@@ -5,7 +5,8 @@
 ## checkbox.1 用途
 
 一個開關，或從一組裡勾好幾個。開關與五個以內的一組，直接畫在表單或 panel 上、在原地翻；超過五個，開 checkbox popup
-（例：kbu 的 namespace picker）。checkbox popup 是 finder 的一種（[`input/finder`](finder-zh_TW.md)）：這裡只寫不同的地方。
+（例：kbu 的 namespace picker）。選項是使用者自己的資料、數量會隨使用改變時，不管現在有幾個，一律開 checkbox popup（radio.1；
+user 2026-11-18）。checkbox popup 是 finder 的一種（[`input/finder`](finder-zh_TW.md)）：這裡只寫不同的地方。
 
 一組選項一定帶一列全選 `Select all`，是元件自己的一列，不是選項（見下面的「全選」）；一個開關沒有。
 
