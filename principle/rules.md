@@ -1403,7 +1403,10 @@ of each such value and without each such entry. A Warning toast names the file a
 config.yaml did not fit: defaults used, yours kept in config.yaml.bak`), and each value or entry goes into the App Log
 as a WARN entry naming the key, what was there and what is used now (the user, 2026-11-18, from locku). With no
 screen it is the same, the toast's sentence going to stderr instead, seen in the terminal and kept out of what is
-printed (the user).
+printed (the user). When the copy cannot be made (a read-only folder, a full disk), the file is not written again:
+the defaults hold for this run only, an Error toast says so (e.g. `config.yaml.bak could not be made: <why>;
+config.yaml left as it was`), each value or entry still a WARN entry in the App Log, and the next start finds them
+again (the user).
 
 One wrong value does not cost the rest of the file, the user learns at once what was wrong, and what they wrote is
 kept whole in the copy rather than lost at the next save. Nothing is asked on screen, so with no screen it goes on

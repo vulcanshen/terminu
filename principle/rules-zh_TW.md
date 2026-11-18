@@ -1121,7 +1121,9 @@ confirm（[components/dialog/confirm](../components/dialog/confirm-zh_TW.md)）�
 `.bak.2`……，同上），再重寫檔案：那些值換成預設值，那些筆拿掉。跳一個 Warning toast 寫出檔案與備份（例：`3 values in
 config.yaml did not fit: defaults used, yours kept in config.yaml.bak`），每個值或每一筆以 WARN 記進 App Log，寫出 key、原本
 寫的與現在用的（user 2026-11-18，來自 locku）。沒有畫面時也一樣，只是 toast 那句改寫到 stderr：終端機上看得到，也不會混進
-印出來的結果（user）。
+印出來的結果（user）。備份做不出來時（唯讀的資料夾、磁碟滿了），不重寫檔案：預設值只用在這一次，跳 Error toast 說明（例：
+`config.yaml.bak could not be made: <why>; config.yaml left as it was`），每個值或每一筆照樣以 WARN 記進 App Log，下次
+啟動會再遇到一次（user）。
 
 打錯一個值不會連累整個檔，使用者當下就知道哪裡錯，原本寫的完整留在備份裡，不會在下次存檔時不見。畫面上不用問，所以沒有
 畫面時也照樣繼續，打錯一個值不會讓 pipe 停擺。

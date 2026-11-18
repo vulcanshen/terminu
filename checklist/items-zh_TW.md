@@ -413,6 +413,7 @@ tdp v1.2.14 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | E3-29 | E3 | 啟動時先把這種檔案複製成 `<名字>.bak`（已經有了就用 `.bak.1`……），再重寫檔案：那些值換成預設值，那些筆拿掉 | 存設定或資料 | 同上，比對 `.bak` 與檔案 |
 | E3-30 | E3 | 跳一個 Warning toast 寫出檔案與備份；每個值或每一筆以 WARN 記進 App Log，寫出 key、原本寫的與現在用的 | 存設定或資料 | 同上，看 toast，再看 App Log |
 | E3-31 | E3 | 沒有畫面時遇到不合規則的值也一樣處理（備份成 `.bak`、重寫成預設值、照樣印出結果），toast 那句改寫到 stderr | 沒有畫面也能印、又存設定或資料 | 寫一個這種值，把印出來的指令接到 pipe：結果照樣出來，stderr 有那句，`.bak` 在 |
+| E3-32 | E3 | 值不合規則、`.bak` 備份又做不出來時，不重寫檔案：預設值只用在這一次，跳 Error toast 說備份做不出來、檔案維持原樣，WARN 照樣記 | 存設定或資料 | 寫一個這種值，把資料夾設成唯讀再啟動 app：沒有 `.bak`，檔案沒變，跳 Error toast |
 | E4-1 | E4 | 程式碼裡的 PUA glyph 寫成 code point | 都要 | 讀程式：掃原始碼找不到 PUA 字元 |
 | E4-2 | E4 | README 的需求段寫明需要 Nerd Font | 都要 | 讀兩份 README 的前置需求 |
 | E4-3 | E4 | README 的需求段跟 Nerd Font 並列寫明需要 truecolor terminal（24-bit 色） | 都要 | 讀兩份 README 的前置需求 |
