@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.2.15 — 2026-11-18
+
+A patch, the user's choice: no member has to change now. Three gaps locku met (tdp #16, #17, #18), and K4 and F4
+pointing to note.9's exception (from catu's review).
+
+- radio.1, select.1, checkbox.1 (#16): options that are the user's own data, their number changing with use (e.g.
+  the profiles the user makes), always open the popup, a select or a checkbox popup, however many there are now;
+  drawing in place, five or fewer, is for a fixed set the app defines (the user)
+- toast.2, note.1, note.3 (#17): a success report the user needs to read whole that does not fit the toast opens a
+  read-only viewer with the whole report, titled with what was done; `Enter` closes it as well as `Esc`; the report
+  goes to the App Log as a Success (the user)
+- E3 (#18): a value the app cannot use, or a data entry that does not fit, is not "cannot be read": at start the
+  file is copied to `<name>.bak` and written again with defaults and without such entries; one Warning toast names
+  the file and the copy, and each one is a WARN in the App Log; with no screen the same, the sentence on stderr;
+  when the copy cannot be made, the file is left as it was, the defaults hold for this run only, and an Error toast
+  says so (the user)
+- K4, F4: point to note.9's exception, the note over a selection mode's menu that closes with it
+- changed in this version: checkbox.1, E3, F4, K4, note.1, note.3, radio.1, select.1, toast.2
+- checklist: radio-10, checkbox-34, toast-28 and E3-28 to E3-32 added (1499 items); the header names v1.2.15
+
 ## v1.2.14 — 2026-11-17
 
 A patch, the user's choice: no member has to change. From catu's review at v1.2.13: what an open Space menu or key
