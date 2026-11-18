@@ -1429,6 +1429,16 @@ The value itself is not wrong: what is missing is somewhere else, perhaps only f
 back). Written again, the user's choice would be lost for good even after the entry came back, and whatever entry took
 its place would be one the user never chose.
 
+**Several at one start**: when one start brings more than one of the toasts this rule gives (a location moved, values
+that do not fit in one file or several, a `.bak` copy that could not be made, a value naming an entry that is not
+there), they come as one toast, a row each ([components/dialog/toast](../components/dialog/toast.md), toast.2), in the
+order they happened; its kind is the strongest of theirs (Error, then Warning, then the rest). With no screen, each
+row is a line of its own on stderr (the user, 2026-11-18, from terminu-go).
+
+A second toast replaces the first at once (toast.2), so the user would see only the last one, while the one replaced
+may be the one saying a file was written again and theirs is in the `.bak`: what this rule wants the user to learn at
+once.
+
 **Config keys shared by the family**: the same setting has the same name in every app's config file, in the apps that use
 it.
 

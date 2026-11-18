@@ -1140,6 +1140,14 @@ config.yaml did not fit: defaults used, yours kept in config.yaml.bak`），每�
 值本身沒寫錯，少的是別的地方的東西，也可能只是暫時不在（檔案移到 `.bak` 後又放回來）。重寫的話，就算那一筆回來了，使用者原本的選
 擇也已經沒了；換上去的不管是哪一筆，都不是使用者選的。
 
+**同一次啟動有好幾件**：同一次啟動遇到這條規則裡不只一個 toast（位置搬了、一個或好幾個檔有值不合規則、`.bak` 備份做不出來、值指
+到不在的一筆）時，放進同一個 toast，一件一行（[components/dialog/toast](../components/dialog/toast-zh_TW.md)，toast.2），照發生
+的順序；種類取其中最重的（Error 最重，再來 Warning，再來其他）。沒有畫面時，每一行各自寫一行到 stderr（user 2026-11-18，來自
+terminu-go）。
+
+新 toast 一來就取代舊的（toast.2），使用者只會看到最後一個；被蓋掉的可能正是「檔案被重寫了，你原本的在 `.bak`」，也就是這條規則
+要使用者當下就知道的事。
+
 **家族共用的設定 key**：同一件事在每個 app 的設定檔裡用同一個名字，有用到的 app 才有。
 
 | key | 意思 | 預設 |
