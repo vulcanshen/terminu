@@ -1384,6 +1384,10 @@ permission… whatever the cause), the app does not go on working in that state:
 - **With no screen** (a command that prints instead of opening the app, e.g. catu writing into a pipe): no confirm can
   open, so the app does as `Esc` does: it touches no file, writes the path and the reason to stderr and quits with a
   non-zero exit status, printing nothing (the user, 2026-11-04, from catu).
+- **On a screen that is not part of the TUI** (K1): no confirm can open there either. How the app goes on, the app
+  may decide for itself (P5); inside that scope it touches no file (nothing moved to `.bak`, nothing written again)
+  and shows the user which file cannot be read and why. The next time the TUI opens, the confirm above asks as usual
+  (the user, 2026-11-18, from locku).
 - **A cache** that cannot be read: no question; it is thrown away and rebuilt.
 - **Something outside the app** that cannot be read (a cluster, the network, a remote host): the app itself is fine and
   stays open; the panel shows it as "Loading and errors" in [components/layout/panel](../components/layout/panel.md)
@@ -1411,6 +1415,19 @@ again (the user).
 One wrong value does not cost the rest of the file, the user learns at once what was wrong, and what they wrote is
 kept whole in the copy rather than lost at the next save. Nothing is asked on screen, so with no screen it goes on
 the same way, and a typo does not stop a pipe.
+
+**A value naming an entry that is not there**: a value that names an entry of the user's own data (e.g. a setting
+naming one of the profiles the user made) whose entry is not there (deleted or renamed by hand, or its file moved
+aside) is not a value that does not fit, which is for the names the app itself defines: the file is left as it is, the
+value kept. The app uses its built-in default for this run, a Warning toast says so at start (e.g. `profile "work" in
+config.yaml is not in profiles.yaml: using the default`), and a WARN entry goes into the App Log; with no screen the
+sentence goes to stderr, as above. Where the value is shown, it is shown as written, its label Red
+([components/layout/panel](../components/layout/panel.md)). Once the entry is there again, the value works again;
+choosing another entry changes it (the user, 2026-11-18, from locku).
+
+The value itself is not wrong: what is missing is somewhere else, perhaps only for a while (a file moved aside and put
+back). Written again, the user's choice would be lost for good even after the entry came back, and whatever entry took
+its place would be one the user never chose.
 
 **Config keys shared by the family**: the same setting has the same name in every app's config file, in the apps that use
 it.

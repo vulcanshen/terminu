@@ -1108,6 +1108,8 @@ confirm（[components/dialog/confirm](../components/dialog/confirm-zh_TW.md)）�
 - **`Esc`**（`quit`）：離開 app，不是回到 app；路徑與原因寫到 stderr，回到 shell 還看得到要修哪裡。
 - **沒有畫面時**（不打開 app、直接印出來的指令，例：catu 輸出到 pipe）：確認框開不了，照 `Esc` 做：不動任何檔案，路徑與原因
   寫到 stderr，以非 0 的 exit status 結束，什麼都不印（user 2026-11-04，從 catu 來）。
+- **不在 TUI 裡的畫面**（K1）：一樣開不了確認框。怎麼繼續，app 可以自行決定（P5）；範圍內不動任何檔案（不移到 `.bak`、
+  不重寫），並讓使用者看到哪個檔讀不了、為什麼。下次打開 TUI 時，照上面一樣開確認框（user 2026-11-18，來自 locku）。
 - **快取**讀不了：不問，丟掉重建。
 - **app 外面的東西**讀不到（叢集、網路、遠端）：不是 app 自己有問題，app 照常開著，照 [components/layout/panel](../components/layout/panel-zh_TW.md)
   的「loading 與錯誤」寫，細節記進 App Log（F5）。
@@ -1127,6 +1129,16 @@ config.yaml did not fit: defaults used, yours kept in config.yaml.bak`），每�
 
 打錯一個值不會連累整個檔，使用者當下就知道哪裡錯，原本寫的完整留在備份裡，不會在下次存檔時不見。畫面上不用問，所以沒有
 畫面時也照樣繼續，打錯一個值不會讓 pipe 停擺。
+
+**指到不在的一筆**：值指的是使用者自己資料裡的一筆（例：某個設定指向使用者自己建的某個 profile），那一筆卻不在（被手動刪掉、改名，
+或它的檔案被移到 `.bak`），不算「值不合規則」，那是給 app 自己定的名字用的：檔案不動、值留著。這一次 app 先用內建的預設值，啟動
+時跳 Warning toast 說明（例：`profile "work" in config.yaml is not in profiles.yaml: using the default`），並以 WARN 記進 App Log；
+沒有畫面時，那句同上改寫到 stderr。畫面上顯示這個值的地方，照原本寫的顯示，label 畫 Red
+（[components/layout/panel](../components/layout/panel-zh_TW.md)）。那一筆回來了，這個值就又能用；使用者選了別的一筆，才會改掉它
+（user 2026-11-18，來自 locku）。
+
+值本身沒寫錯，少的是別的地方的東西，也可能只是暫時不在（檔案移到 `.bak` 後又放回來）。重寫的話，就算那一筆回來了，使用者原本的選
+擇也已經沒了；換上去的不管是哪一筆，都不是使用者選的。
 
 **家族共用的設定 key**：同一件事在每個 app 的設定檔裡用同一個名字，有用到的 app 才有。
 
