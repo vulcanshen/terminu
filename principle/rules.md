@@ -1419,7 +1419,7 @@ the same way, and a typo does not stop a pipe.
 **A value naming an entry that is not there**: a value that names an entry of the user's own data (e.g. a setting
 naming one of the profiles the user made) whose entry is not there (deleted or renamed by hand, or its file moved
 aside) is not a value that does not fit, which is for the names the app itself defines: the file is left as it is, the
-value kept. The app uses its built-in default for this run, a Warning toast says so at start (e.g. `profile "work" in
+value kept. The app uses its built-in default for this run, a Warning toast says so at start (e.g. `Profile "work" in
 config.yaml is not in profiles.yaml: using the default`), and a WARN entry goes into the App Log; with no screen the
 sentence goes to stderr, as above. Where the value is shown, it is shown as written, its label Red
 ([components/layout/panel](../components/layout/panel.md)). Once the entry is there again, the value works again;

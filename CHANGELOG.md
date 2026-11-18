@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.2.16 — 2026-11-18
+
+A patch, the user's choice: one release once locku was fully aligned with it, not a patch per gap. Gaps locku met
+(tdp #19, its review's task 6) and one terminu-go found while building them.
+
+- E3 (#19): a value naming an entry of the user's own data that is not there (e.g. a setting naming a profile the
+  user deleted) is not a value that does not fit: the file is left as it is, the value kept, the built-in default
+  used for this run, with a Warning toast at start and a WARN entry (stderr with no screen); the value is shown as
+  written, its label Red, and works again once the entry is back (the user)
+- E3: on a screen that is not part of the TUI, a file of the app's own that cannot be read: how the app goes on, it
+  may decide for itself; it touches no file and shows which file and why; the next TUI start asks the confirm as
+  usual (the user)
+- E3: when one start brings more than one of E3's toasts (a location moved, values that do not fit, a copy that
+  could not be made, a value naming an entry that is not there), they come as one toast, a row each in the order
+  they happened, its kind the strongest; in the App Log each row is an entry of its own at its own kind; with no
+  screen a line each on stderr (the user, from terminu-go)
+- changed in this version: E3
+- checklist: E3-33 to E3-37 added (1504 items); the header names v1.2.16
+
 ## v1.2.15 — 2026-11-18
 
 A patch, the user's choice: no member has to change now. Three gaps locku met (tdp #16, #17, #18), and K4 and F4

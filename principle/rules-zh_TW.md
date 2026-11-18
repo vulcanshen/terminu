@@ -1132,7 +1132,7 @@ config.yaml did not fit: defaults used, yours kept in config.yaml.bak`），每�
 
 **指到不在的一筆**：值指的是使用者自己資料裡的一筆（例：某個設定指向使用者自己建的某個 profile），那一筆卻不在（被手動刪掉、改名，
 或它的檔案被移到 `.bak`），不算「值不合規則」，那是給 app 自己定的名字用的：檔案不動、值留著。這一次 app 先用內建的預設值，啟動
-時跳 Warning toast 說明（例：`profile "work" in config.yaml is not in profiles.yaml: using the default`），並以 WARN 記進 App Log；
+時跳 Warning toast 說明（例：`Profile "work" in config.yaml is not in profiles.yaml: using the default`），並以 WARN 記進 App Log；
 沒有畫面時，那句同上改寫到 stderr。畫面上顯示這個值的地方，照原本寫的顯示，label 畫 Red
 （[components/layout/panel](../components/layout/panel-zh_TW.md)）。那一筆回來了，這個值就又能用；使用者選了別的一筆，才會改掉它
 （user 2026-11-18，來自 locku）。
