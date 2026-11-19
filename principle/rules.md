@@ -1385,13 +1385,15 @@ permission… whatever the cause), the app does not go on working in that state:
   usual; the question reads `Move it to <name>.bak and go on without it?`.
 - **`Esc`** (`quit`): quits the app, rather than going back to it; the path and the reason are written to stderr, so the
   shell still shows what to fix.
-- **With no screen** (a command that prints instead of opening the app, e.g. catu writing into a pipe): no confirm can
-  open, so the app does as `Esc` does: it touches no file, writes the path and the reason to stderr and quits with a
-  non-zero exit status, printing nothing (the user, 2026-11-04, from catu).
-- **On a screen that is not part of the TUI** (K1): no confirm can open there either. How the app goes on, the app
-  may decide for itself (P5); inside that scope it touches no file (nothing moved to `.bak`, nothing written again)
-  and shows the user which file cannot be read and why. The next time the TUI opens, the confirm above asks as usual
-  (the user, 2026-11-18, from locku).
+- **With no screen** (a command that prints instead of opening the app, e.g. catu writing into a pipe; output printed
+  for another program to show is "Outside the TUI" below): no confirm can open, so the app does as `Esc` does: it
+  touches no file, writes the path and the reason to stderr and quits with a non-zero exit status, printing nothing
+  (the user, 2026-11-04, from catu).
+- **Outside the TUI** (a screen that is not part of the TUI, K1, or output printed for another program to show, P5):
+  no confirm can open there either. How the app goes on, the app may decide for itself (P5); inside that scope it
+  touches no file (nothing moved to `.bak`, nothing written again) and shows the user there which file cannot be read
+  and why, as "Outside the TUI" below says. The next time the TUI opens, the confirm above asks as usual (the user,
+  2026-11-18, from locku; 2026-11-19, from ccdrawu).
 - **A cache** that cannot be read: no question; it is thrown away and rebuilt.
 - **Something outside the app** that cannot be read (a cluster, the network, a remote host): the app itself is fine and
   stays open; the panel shows it as "Loading and errors" in [components/layout/panel](../components/layout/panel.md)
@@ -1443,6 +1445,19 @@ each row is an entry of its own, at its own kind. With no screen, each row is a 
 A second toast replaces the first at once (toast.2), so the user would see only the last one, while the one replaced
 may be the one saying a file was written again and theirs is in the `.bak`: what this rule wants the user to learn at
 once.
+
+**Outside the TUI**: on a screen that is not part of the TUI (K1, e.g. a sidebar a plug-in draws) and in output
+printed for another program to show (P5, e.g. a status line), nobody reads stderr, and several may run at once. There
+every case of this rule (a file that cannot be read, a value that does not fit, a value naming an entry that is not
+there) goes the same way: the app touches no file (nothing moved to `.bak`, nothing written again), uses the defaults
+for this run, and shows the user there which file has what wrong; how, the app may decide for itself (e.g. a mark at
+the end of the status line, a line on the sidebar). Output printed for another program to show is read by the user, so
+a mark in it is not mixed into what a script reads. The next time the TUI opens, it goes as this rule says: the
+confirm, the `.bak` and the file written again, the toast (the user, 2026-11-19, from ccdrawu).
+
+Several running at once would each make a `.bak` and write the file again, and a sentence on stderr there reaches
+nobody: the file would change unseen. Shown where the user is looking, it is found; the TUI, which the user opens, is
+what changes the file.
 
 **Config keys shared by the family**: the same setting has the same name in every app's config file, in the apps that use
 it.
