@@ -46,7 +46,7 @@
   |---|---|---|
   | Success | 一個動作成功做完（Green：成功完成的） | `Copied 3 paths`、`Connected to web-01` |
   | Info | 中性的告知，沒有好壞 | `Switched to context prod`、`Nothing to paste` |
-  | Warning | 做完了或還能用，但有值得注意的地方（Peach：值得注意、但沒壞） | `3 files skipped`、`Unknown key in config.yaml` |
+  | Warning | 做完了或還能用，但有值得注意的地方（Peach：值得注意、但沒壞） | `3 files skipped` |
   | Error | 動作失敗（Red：錯誤） | `Can't connect to cluster` |
 
   做完的事用 Success 還是 Info，app 可以自行決定：Success 本來就是告知的一種，要不要特別標成成功，看 app。失敗一律用 Error，不用 Warning；跟某個 popup 的動作有關、要使用者看完再決定的失敗，照「用途」用 error popup。

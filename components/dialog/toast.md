@@ -54,7 +54,7 @@ exception: it says what the item under the cursor is, and is there only while th
   |---|---|---|
   | Success | an action finished successfully (Green: completed successfully) | `Copied 3 paths`, `Connected to web-01` |
   | Info | a neutral notice, neither good nor bad | `Switched to context prod`, `Nothing to paste` |
-  | Warning | done, or still usable, but with something worth noticing (Peach: worth noticing, not broken) | `3 files skipped`, `Unknown key in config.yaml` |
+  | Warning | done, or still usable, but with something worth noticing (Peach: worth noticing, not broken) | `3 files skipped` |
   | Error | an action failed (Red: an error) | `Can't connect to cluster` |
 
   Whether something finished is told with Success or Info, the app may decide for itself: a Success is itself a kind of notice, and
