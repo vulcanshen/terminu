@@ -246,6 +246,16 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   to set, e.g. 12 cells); only then do whole columns go. The app gives each column an order in which it goes, and the
   most important one (the name) never goes; the least important column is taken away whole (its header with it) until
   they fit. When the terminal grows, the columns come back in the same order and the columns cut short grow back.
+- **An item of several rows**: an item may take more rows than its first, as many as the app needs and on the items it
+  needs them for (e.g. a commit's branches and tags on a row under it; every item the same height, or only some taller);
+  what the rows below hold and where they start, the app may decide for itself. The first row holds the columns, the
+  header names them, and a marked row's tick sits on it (the user, 2026-11-19, from gittu; sshu's hosts once had their
+  tags on a second row).
+  - The cursor is drawn on the first row only, as above. The item's other rows are lit with it: Surface1 across the
+    whole inner width, their text keeping its own colours, with no arrow.
+  - Everything counts items, not rows: `j|k` move one item and every movement lands on an item's first row, `N of M`
+    counts items, and the item under the cursor is always in view whole, all its rows.
+  - The panel filter matches an item by the text of any of its rows (e.g. a branch's name finds its commit).
 - **Scroll position**: when the content does not fit, the right of the bottom border reads `N of M` (which entry the
   cursor is on, how many in all), in the border colour; nothing when everything fits. A panel without a cursor (a
   preview, a log) shows the visible lines, `N-M of T`.
