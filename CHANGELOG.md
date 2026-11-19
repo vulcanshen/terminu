@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.2.17 — 2026-11-19
+
+A patch, the user's choice: ccdrawu was fully aligned and goes out now; gitreu, just started, aligns on this
+release. Gaps ccdrawu met (tdp #21, #22, #23) and gitreu met (tdp #20).
+
+- E3 (#21): a key the app never read (a typo) is kept as one it no longer reads: also when the app writes the file
+  again, no toast, an INFO entry at every start, `Not read` unless the app knows it used to read it (the user)
+- E3 (#22, #23): outside the TUI (a screen that is not part of it, output printed for another program to show),
+  every case of E3 touches no file, uses the defaults for this run (how to go on with a file that cannot be read
+  stays the app's) and is shown to the user there, a mark in a status line included; the TUI does the rest next
+  time; "With no screen" is a command run in a terminal or a pipe (the user)
+- toast.2: the Warning example `Unknown key in config.yaml` goes, as E3 gives such a key no toast
+- panel.9 (#20): comparing two rows that hold many (directories, namespaces, commits) goes in to a list of the
+  items that differ, marked `+` Green, `-` Red, `~` Peach (a rename one `~` `<old> → <new>`); `Enter` opens an
+  item's comparison or goes in again, `Esc` goes back a level at a time; the location row and every title name the
+  two sides as the app names them (the user)
+- note.8: an action showing two versions of one item opens the same comparison, not a viewer of a patch, the older
+  as the anchor; one item's change that holds many lists the items that differ as panel.9 does (the user); every
+  comparison opens on UNIFIED and the tab chosen is not remembered (the user)
+- changed in this version: E3, note.8, panel.9, toast.2
+- checklist: E3-38, E3-39, panel-176 to panel-179, note-101 and note-102 added, E3-36, note-84, note-85 and
+  panel-176 reworded (1512 items); the header names v1.2.17
+
 ## v1.2.16 — 2026-11-18
 
 A patch, the user's choice: one release once locku was fully aligned with it, not a patch per gap. Gaps locku met
