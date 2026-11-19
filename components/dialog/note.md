@@ -282,6 +282,12 @@ keep arriving, as in streaming content.
   dropping, pressing a link) is recorded by its result (the user, 2026-10-29). An operation
   is done once it is accepted: cancelled with `Esc` at the confirm before it, or at the form or input popup that takes
   its values, it was not done and has no result, and goes unrecorded (a confirm is only a door, Rules T1; from sshu).
+- **Content the app reads again on its own** (on a timer, or when what it watches changes; note.9): a read that finds
+  nothing new goes unrecorded; one that finds something changed is one INFO entry saying what changed
+  (e.g. `Changed outside the app: branch feat deleted`), as a change made outside is often what the next error comes
+  from (checking out that branch then fails). Updates that keep coming in by themselves (streaming content, Rules T2,
+  or a list a connection keeps up to date, e.g. kbu's pods) are not recorded one by one: they would bury the rest (the
+  user, 2026-11-19, from gittu).
 - **Each entry**: the time `HH:MM:SS` (Overlay0), a level, and what happened, capitalised as in [`dialog/toast`](toast.md). The level
   follows the toast's kinds and colours: `INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, in a level column four cells
   wide, left-aligned.

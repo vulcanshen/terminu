@@ -218,6 +218,10 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
   （note.8）也不記（user 2026-10-27，來自 kbu），進出其他模式也不記（Rules K11，例：webu 的 Visual、Focus，kbu 的 Drag）：
   模式只是換一種移動或看的方式，在模式裡做完的事（複製、放下、按連結）照它的結果記（user 2026-10-29）。動作確定了才算做了：
   在動作前面的 confirm、或填值的表單與 input popup 上按 `Esc` 取消，動作沒做、沒有結果，不記（confirm 只是門，Rules T1；來自 sshu）。
+- **app 自己重讀的內容**（定時重讀，或看著的東西變了才讀；note.9）：讀到沒變不記；讀到變了，記一筆 INFO，寫出改了什麼（例：
+  `Changed outside the app: branch feat deleted`）：外面改了東西，常常就是下一個錯誤的原因（接著 checkout 那個分支就失敗）。
+  自己一直進來的更新（Rules T2 的串流內容，或連線一直保持最新的清單，例：kbu 的 pod）不一筆一筆記：會把其他紀錄淹掉（user
+  2026-11-19，來自 gittu）。
 - **每一筆**：時間 `HH:MM:SS`（Overlay0）、等級、發生的事（照 [`dialog/toast`](toast-zh_TW.md) 的「開頭大寫」）。等級跟著 toast 的種類與顏色：`INFO` Text、
   `OK` Green、`WARN` Peach、`ERR` Red，等級欄四格寬、靠左。
 - **只放在記憶體**：app 關掉就清空；筆數有上限，滿了丟掉最舊的。
