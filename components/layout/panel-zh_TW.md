@@ -255,7 +255,7 @@ panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reord
   由 app 給（例：`DIFF — ui.go @ 1a2b3c4 ↔ ui.go @ 5d6e7f8`，不管從哪裡打開都一樣；UNIFIED 與 SPLIT，照
   [`dialog/note`](../dialog/note-zh_TW.md)；只有一邊有的，另一邊是空的），它自己也裝著許多項目時照樣再進一層；不是文字的項目沒有
   比較，同上。`Esc` 一層一層退回，最後回到模式、anchor 留著。兩邊沒有差異時不打開，跳上面那個 Info toast（user 2026-11-19，來自
-  gitreu）。
+  gittu）。
 
 ### panel.10 位置列
 

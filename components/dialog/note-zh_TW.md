@@ -247,11 +247,11 @@ panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）�
 **同一項的兩個版本**：除了比較模式，app 自己的動作要看同一項的兩個版本時（例：一個 commit 裡的檔案對它的上一個 commit、正在改的
 檔案對最後一次 commit），也打開這個比較，不用顯示 patch 的 viewer：舊的那個當 anchor，標題 `DIFF — <舊的> ↔ <新的>`，名字由 app
 給。改到的東西裝著許多項目時（例：一個 commit 對它的上一個），進去後照 panel.9 列出有差異的項目，標記、`Enter`、`Esc` 都一樣
-（[`layout/panel`](../layout/panel-zh_TW.md)）（user 2026-11-19，來自 gitreu）。
+（[`layout/panel`](../layout/panel-zh_TW.md)）（user 2026-11-19，來自 gittu）。
 
 **在 panel 裡**：顯示差異的 panel（例：跟著游標、顯示游標所在檔案改了什麼的詳細 panel）照上面的 UNIFIED 畫：只有差異的段落、前後
 3 行、分隔線、兩欄行號、`-` Red、`+` Green；不放工具自己的輸出（例：`git diff` 的標頭與 `@@` 行）。在上面按 `Enter` 打開這個比較，
-兩個 tab 都有（user 2026-11-19，來自 gitreu）。
+兩個 tab 都有（user 2026-11-19，來自 gittu）。
 
 整個 app 看差異只有一種樣子：不管是挑了兩列，還是看一項改了什麼，都是同樣的標記、同樣的 UNIFIED 與 SPLIT。
 

@@ -341,7 +341,7 @@ the mode and makes that row the anchor; then another row is picked and the two a
   5d6e7f8`, the same title however it is reached; UNIFIED and SPLIT, as in [`dialog/note`](../dialog/note.md); one
   side empty for an item only one side has), or goes in again the same way when it holds many itself; an item that is
   not text has no comparison, as above. `Esc` goes back up a level at a time, the last back to the mode with the
-  anchor kept. When nothing differs, nothing opens: the Info toast above (the user, 2026-11-19, from gitreu).
+  anchor kept. When nothing differs, nothing opens: the Info toast above (the user, 2026-11-19, from gittu).
 
 ### panel.10 Location row
 
