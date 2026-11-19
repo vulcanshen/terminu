@@ -574,7 +574,8 @@ The same for every kind of panel: an ordinary list, one value per row, details, 
 - **Errors, lost connections, no permission**, and a tab whose content cannot be made (an invalid JSON's formatted
   view, a diagram that cannot be drawn): two centred lines in the empty-state look: a fact in Red (e.g.
   `Forbidden: pods in kube-system`) and a hint in Overlay0 (e.g. `Press [R] to retry`). If the old content is still there
-  it stays, and the error is reported in a toast as Rules F5 says.
+  it stays, and the error is reported in a toast as Rules F5 says; a read the app repeats on its own that keeps
+  failing toasts the first time only ([`dialog/note`](../dialog/note.md), note.7).
 
 **Why**: while a panel waits, or cannot read anything, users look at the same place — its middle — whether it usually
 holds a list, values or a terminal; written the same way, "still coming" and "cannot come" read the same in every kind of

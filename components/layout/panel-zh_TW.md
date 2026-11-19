@@ -446,7 +446,8 @@ panel 帶到那一項；進到一項裡面，panel.10），不管篩選有沒有
   還沒有任何內容時，中間照空狀態的樣子寫一句，例：`󰪞 loading pods…`、`󰪞 connecting to prod-web-01…`。重新載入時，舊的內容
   留著，不清空。
 - **錯誤、斷線、沒有權限**，以及做不出內容的 tab（不合法的 JSON 的排版檢視、畫不出來的圖）：照空狀態的樣子置中寫兩句：一句事實用 Red（例：`Forbidden: pods in kube-system`），一句提示用
-  Overlay0（例：`Press [R] to retry`）。舊的內容還在就留著，錯誤照 Rules F5 用 toast 報。
+  Overlay0（例：`Press [R] to retry`）。舊的內容還在就留著，錯誤照 Rules F5 用 toast 報；app 自己重讀一直失敗時，toast
+  只跳第一次（[`dialog/note`](../dialog/note-zh_TW.md)，note.7）。
 
 **為什麼**：panel 在等、或讀不到東西時，使用者看的是同一個地方 —— panel 中間 —— 不管它平常放的是清單、值還是終端機；寫法一樣，
 在哪一種 panel 都認得出「還在來」與「來不了」。這兩條本來寫在一般清單底下，但 screen 的空狀態與框上的 loading icon 講的都是

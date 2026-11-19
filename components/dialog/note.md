@@ -288,6 +288,11 @@ keep arriving, as in streaming content.
   from (checking out that branch then fails). Updates that keep coming in by themselves (streaming content, Rules T2,
   or a list a connection keeps up to date, e.g. kbu's pods) are not recorded one by one: they would bury the rest (the
   user, 2026-11-19, from gittu).
+- **When such a read fails**: the first failure is an Error toast and an ERR entry (Rules F5), and a panel shows it as
+  [`layout/panel`](../layout/panel.md) panel.15 says. The same failure again (the same words), read after read, shows
+  and records nothing more; a different one is a toast and an entry again; a read that works again is one INFO entry
+  saying so (e.g. `The repository can be read again`), with no toast. Until the App Log is opened, the footer's `!`
+  still marks the error as not seen (the user, 2026-11-19, from gittu).
 - **Each entry**: the time `HH:MM:SS` (Overlay0), a level, and what happened, capitalised as in [`dialog/toast`](toast.md). The level
   follows the toast's kinds and colours: `INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, in a level column four cells
   wide, left-aligned.

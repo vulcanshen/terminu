@@ -222,6 +222,10 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
   `Changed outside the app: branch feat deleted`）：外面改了東西，常常就是下一個錯誤的原因（接著 checkout 那個分支就失敗）。
   自己一直進來的更新（Rules T2 的串流內容，或連線一直保持最新的清單，例：kbu 的 pod）不一筆一筆記：會把其他紀錄淹掉（user
   2026-11-19，來自 gittu）。
+- **這種重讀失敗時**：第一次失敗跳 Error toast、記一筆 ERR（Rules F5），panel 照 [`layout/panel`](../layout/panel-zh_TW.md)
+  panel.15 顯示。之後一次次重讀都是同一個失敗（同一句話），不再跳、不再記；換了一個失敗，再跳一次 toast、記一筆；
+  又讀得到時記一筆 INFO 說讀得到了（例：`The repository can be read again`），不跳 toast。App Log 打開之前，
+  footer 的 `!` 照樣標著這個錯誤沒看過（user 2026-11-19，來自 gittu）。
 - **每一筆**：時間 `HH:MM:SS`（Overlay0）、等級、發生的事（照 [`dialog/toast`](toast-zh_TW.md) 的「開頭大寫」）。等級跟著 toast 的種類與顏色：`INFO` Text、
   `OK` Green、`WARN` Peach、`ERR` Red，等級欄四格寬、靠左。
 - **只放在記憶體**：app 關掉就清空；筆數有上限，滿了丟掉最舊的。
