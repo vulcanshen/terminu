@@ -1352,8 +1352,12 @@ to the App Log giving its path and saying the app no longer uses it (e.g. `No lo
 it if you don't need it`); the CHANGELOG says so too. **A key in a settings file** that the app no longer reads is
 treated the same way (the user, 2026-10-29): kept, also when the app writes the file again, no toast, and an INFO
 entry at every start naming the key and the file (e.g. `No longer used: measure in ~/.config/webu/config.yaml; delete
-it if you don't need it`). **A cache no longer used** is deleted at the first start (the user, 2026-10-29, e.g. the
-Chromium an older webu downloaded), and an INFO entry in the App Log says where it was and how large.
+it if you don't need it`). **A key the app never read** (e.g. a typo, `refesh` for `refresh`) is treated the same,
+since the app cannot tell it from an old one (the user, 2026-11-19, from ccdrawu): kept, also when the app writes the
+file again, no toast, an INFO entry at every start; the entry says `No longer used` only for a key the app knows it
+used to read, and otherwise `Not read` (e.g. `Not read: refesh in ~/.config/ccdrawu/config.yaml; delete it if you
+don't need it`). **A cache no longer used** is deleted at the first start (the user, 2026-10-29, e.g. the Chromium an
+older webu downloaded), and an INFO entry in the App Log says where it was and how large.
 
 The App Log is kept in memory only and starts empty every time, so the entry is written at every start, for whoever
 opens it.

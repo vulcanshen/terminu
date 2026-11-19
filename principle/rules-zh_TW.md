@@ -1082,7 +1082,10 @@ app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度�
 App Log 記一筆 INFO，寫出路徑、說 app 不再用它（例：`No longer used: ~/.sshu/errors.yaml; delete it if you don't need it`）；
 CHANGELOG 也寫一句。**設定檔裡 app 不再讀的 key** 一樣處理（user 2026-10-29）：留著，app 重寫那個檔時也留著，不跳 toast，
 每次啟動在 App Log 記一筆 INFO，寫出 key 與檔案（例：`No longer used: measure in ~/.config/webu/config.yaml; delete it if
-you don't need it`）。**不再用的快取**在第一次啟動時刪掉（user 2026-10-29，例：舊版 webu 下載的 Chromium），App Log 記一筆
+you don't need it`）。**app 從來不讀的 key**（例：打錯字，`refresh` 寫成 `refesh`）也一樣處理，因為 app 分不出它跟舊的 key
+（user 2026-11-19，來自 ccdrawu）：留著，app 重寫那個檔時也留著，不跳 toast，每次啟動記一筆 INFO；只有 app 知道自己以前讀過的
+key 寫 `No longer used`，其他的寫 `Not read`（例：`Not read: refesh in ~/.config/ccdrawu/config.yaml; delete it if you
+don't need it`）。**不再用的快取**在第一次啟動時刪掉（user 2026-10-29，例：舊版 webu 下載的 Chromium），App Log 記一筆
 INFO，寫出在哪裡、多大。
 
 App Log 只放在記憶體，每次打開都是空的，所以每次啟動都記，打開 App Log 的人才看得到。
