@@ -1462,6 +1462,14 @@ order they happened; its kind is the strongest of theirs (Error, then Warning, t
 each row is an entry of its own, at its own kind. With no screen, each row is a line of its own on stderr (the user,
 2026-11-18, from terminu-go).
 
+**With no screen**, all of it is printed (E1): every toast this rule gives, each WARN and INFO entry it puts in the
+App Log, and what an error popup it opens says (e.g. the two paths of a location that could not be moved) go to
+stderr, a line each, starting with `<app>: `, in the TUI's words. A file that cannot be read may have one more line
+saying what to do (e.g. `Open catu to move it aside and start fresh`). Where the TUI goes on (a location that could
+not be moved, values that did not fit), so does the command, and its exit status is that of its own work (E1). On
+stderr none of it gets into what is printed: `catu notes.md | less` gives less the file only (the user, 2026-11-19,
+tdp #24).
+
 A second toast replaces the first at once (toast.2), so the user would see only the last one, while the one replaced
 may be the one saying a file was written again and theirs is in the `.bak`: what this rule wants the user to learn at
 once.

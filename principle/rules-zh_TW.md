@@ -1167,6 +1167,12 @@ config.yaml did not fit: defaults used, yours kept in config.yaml.bak`），每�
 的順序；種類取其中最重的（Error 最重，再來 Warning，再來其他），App Log 裡則是一件一筆，用它自己的種類。沒有畫面時，每一行各自寫
 一行到 stderr（user 2026-11-18，來自 terminu-go）。
 
+**沒有畫面時**，全部都印出來（E1）：這條規則給的每個 toast、記進 App Log 的每一筆 WARN 與 INFO、開的 error popup 說的話（例：
+搬不動時的兩個路徑），都寫到 stderr，一件一行，開頭 `<app>: `，跟 TUI 同一句話。讀不了的檔可以多一行說怎麼辦（例：
+`Open catu to move it aside and start fresh`）。TUI 會繼續的地方（搬不動、值不合規則），指令也繼續，exit status 看指令
+自己的事有沒有做完（E1）。寫在 stderr，就不會混進印出來的東西：`catu notes.md | less` 給 less 的只有檔案內容
+（user 2026-11-19，tdp #24）。
+
 新 toast 一來就取代舊的（toast.2），使用者只會看到最後一個；被蓋掉的可能正是「檔案被重寫了，你原本的在 `.bak`」，也就是這條規則
 要使用者當下就知道的事。
 

@@ -427,6 +427,7 @@ tdp v1.2.17 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | E3-37 | E3 | 同一次啟動有不只一個 E3 的 toast（位置搬了、值不合規則、備份做不出來、值指到不在的一筆）時，合成一個 toast，照發生的順序一件一行，種類取其中最重的，App Log 裡一件一筆、用它自己的種類；沒有畫面時，各自一行寫到 stderr | 存設定或資料 | 寫一個不是 `#rrggbb` 的顏色，再讓某個設定指到不在的一筆，啟動：一個 toast，兩行都在；App Log 一件一筆 |
 | E3-38 | E3 | 設定檔裡 app 從來不讀的 key（例：打錯字）跟不再讀的 key 一樣留著，app 重寫那個檔時也留著，不跳 toast；每次啟動在 App Log 記一筆 INFO，寫出 key 與檔案，除非 app 知道自己以前讀過，否則寫 `Not read` | 存設定或資料 | 在設定檔寫一個打錯的 key（例：`refesh: 5`），啟動，改一個設定：檔案裡 key 還在，App Log 有那筆 INFO |
 | E3-39 | E3 | TUI 以外（不在 TUI 裡的畫面，或印給別的程式顯示的輸出）遇到值不合規則或指到不在的一筆：沒有 `.bak`，檔案不動，這一次用預設值，在那裡讓使用者看到哪個檔有什麼問題（不是只寫 stderr）；下次打開 TUI 時照 E3 備份、重寫、跳 toast | 有不在 TUI 裡的畫面或印給別的程式顯示、又存設定或資料 | 寫一個不是 `#rrggbb` 的顏色，打開那個畫面或跑那個指令：檔案沒變，沒有 `.bak`，那裡看得到問題；再打開 TUI：有 `.bak`、檔案重寫、跳 toast |
+| E3-40 | E3 | 沒有畫面時，E3 的每個 toast、每一筆 WARN 與 INFO、error popup 都寫到 stderr，一件一行，開頭 `<app>: `，跟 TUI 同一句話；讀不了的檔可以多一行說怎麼辦；TUI 會繼續的地方，指令也繼續 | 都要 | 讓一個印到 pipe 的指令遇到不合規則的值、沒在讀的 key、搬不動的舊位置：每一件都是 stderr 上的一行，pipe 只收到輸出 |
 | E4-1 | E4 | 程式碼裡的 PUA glyph 寫成 code point | 都要 | 讀程式：掃原始碼找不到 PUA 字元 |
 | E4-2 | E4 | README 的需求段寫明需要 Nerd Font | 都要 | 讀兩份 README 的前置需求 |
 | E4-3 | E4 | README 的需求段跟 Nerd Font 並列寫明需要 truecolor terminal（24-bit 色） | 都要 | 讀兩份 README 的前置需求 |
