@@ -1096,6 +1096,7 @@ The items of tdp v1.2.17. What each column means and what an item applies to: [R
 | note-100 | note.9 | With the mode's Space menu or key reference open when the content cannot be read, an error popup says it cannot be read and the selection is gone, in place of the Error toast; `Enter` and `Esc` both close it and the menu or key reference together, back to the view | content read again | In the selection mode open the Space menu, then make the content unreadable (e.g. remove the file); press `Enter`; again with `Esc` |
 | note-101 | note.8 | An action showing two versions of one item opens the same comparison (UNIFIED and SPLIT), the older as the anchor, titled `DIFF — <older> ↔ <newer>`, not a viewer of a patch | shows two versions of one item | Open the change of one file (e.g. in a commit); look at the title and the tabs |
 | note-102 | note.8 | When one item's change holds many (e.g. a commit against the one before it), going into it lists the items that differ as panel.9 does: the `+ - ~` marks, `Enter` opening an item's comparison, `Esc` back a level at a time | shows two versions of one item | Go into one commit's change; check the marks, `Enter` and `Esc` |
+| note-103 | note.8 | A panel showing a difference draws it as UNIFIED (only the parts that differ, 3 lines around, two line-number columns, `-` Red, `+` Green), not a tool's own output; `Enter` on it opens the comparison | shows two versions of one item | Look at a panel that shows what changed; no `diff --git` or `@@` lines; press `Enter` |
 
 ## dialog/terminal
 

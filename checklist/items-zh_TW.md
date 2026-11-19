@@ -1096,6 +1096,7 @@ tdp v1.2.17 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | note-100 | note.9 | 選取模式的 Space menu 或 key reference 開著時內容讀不到：不跳 Error toast，改疊 error popup 說明讀不到、原本的選取失效了；`Enter` 和 `Esc` 都連同 menu 或 key reference 一起關掉，回到畫面 | 重新讀進來的內容 | 選取模式裡打開 Space menu，再讓內容讀不到（例：刪掉檔案）；按 `Enter`；再用 `Esc` 試一次 |
 | note-101 | note.8 | 看同一項兩個版本的動作打開同一種比較（UNIFIED 與 SPLIT），舊的當 anchor，標題 `DIFF — <舊的> ↔ <新的>`，不是顯示 patch 的 viewer | 看同一項的兩個版本 | 打開一個檔案的改動（例：commit 裡的），看標題與 tab |
 | note-102 | note.8 | 一項的改動裝著許多項目時（例：一個 commit 對它的上一個），進去後照 panel.9 列出有差異的項目：`+ - ~` 標記、`Enter` 打開一項的比較、`Esc` 一層一層退回 | 看同一項的兩個版本 | 進到一個 commit 的改動，看標記、`Enter`、`Esc` |
+| note-103 | note.8 | 顯示差異的 panel 照 UNIFIED 畫（只有差異的段落、前後 3 行、兩欄行號、`-` Red、`+` Green），不放工具自己的輸出；在上面按 `Enter` 打開比較 | 看同一項的兩個版本 | 看顯示改動的 panel：沒有 `diff --git`、`@@` 行；按 `Enter` |
 
 ## dialog/terminal
 

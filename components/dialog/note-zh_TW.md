@@ -249,6 +249,10 @@ panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）�
 給。改到的東西裝著許多項目時（例：一個 commit 對它的上一個），進去後照 panel.9 列出有差異的項目，標記、`Enter`、`Esc` 都一樣
 （[`layout/panel`](../layout/panel-zh_TW.md)）（user 2026-11-19，來自 gitreu）。
 
+**在 panel 裡**：顯示差異的 panel（例：跟著游標、顯示游標所在檔案改了什麼的詳細 panel）照上面的 UNIFIED 畫：只有差異的段落、前後
+3 行、分隔線、兩欄行號、`-` Red、`+` Green；不放工具自己的輸出（例：`git diff` 的標頭與 `@@` 行）。在上面按 `Enter` 打開這個比較，
+兩個 tab 都有（user 2026-11-19，來自 gitreu）。
+
 整個 app 看差異只有一種樣子：不管是挑了兩列，還是看一項改了什麼，都是同樣的標記、同樣的 UNIFIED 與 SPLIT。
 
 **為什麼**：只比文字：二進位、圖片沒有一行一行的差異可看。只顯示有差異的段落：長的內容只改一兩處時一眼找到，前後 3 行看得出

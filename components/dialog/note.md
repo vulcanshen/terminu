@@ -324,6 +324,11 @@ by the app. When what changed holds many (e.g. a commit against the one before i
 differ as panel.9 does, with its marks, `Enter` and `Esc` ([`layout/panel`](../layout/panel.md)) (the user,
 2026-11-19, from gitreu).
 
+**In a panel**: a panel that shows a difference (e.g. a details panel following the cursor, showing what changed in
+the file under it) draws it as UNIFIED does above: only the parts that differ, 3 lines around, the separators, the two
+line-number columns, `-` in Red and `+` in Green; not a tool's own output (e.g. `git diff`'s headers and `@@` lines).
+`Enter` on it opens this comparison, with both tabs (the user, 2026-11-19, from gitreu).
+
 One look for a difference in the whole app: whether two rows were picked or one item's change is shown, the same marks
 and the same UNIFIED and SPLIT.
 
