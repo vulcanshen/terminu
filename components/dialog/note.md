@@ -317,6 +317,16 @@ two tabs follow it, `UNIFIED` and `SPLIT`, switched with `h|l` (Rules K12).
 - **The choice is remembered** (state, Rules E3). On a terminal narrower than 96 it is always UNIFIED and `SPLIT` is
   disabled (Rules M6), whichever was remembered.
 
+**Two versions of one item**: besides the compare mode, an action of the app's own that shows two versions of one item
+(e.g. a file in a commit against the commit before it, a file being edited against its last commit) opens this
+comparison too, not a viewer of a patch: the older one as the anchor, the title `DIFF — <older> ↔ <newer>`, each named
+by the app. When what changed holds many (e.g. a commit against the one before it), going into it lists the items that
+differ as panel.9 does, with its marks, `Enter` and `Esc` ([`layout/panel`](../layout/panel.md)) (the user,
+2026-11-19, from gitreu).
+
+One look for a difference in the whole app: whether two rows were picked or one item's change is shown, the same marks
+and the same UNIFIED and SPLIT.
+
 **Why**: text only, because a binary or an image has no line-by-line difference to look at. Only the parts that differ,
 so a long content changed in one or two places shows them at once, with 3 lines around to tell where they are (`git
 diff`'s default). Green for added and Red for removed is the common diff convention, and `+` and `-` keep it from
