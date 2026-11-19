@@ -293,6 +293,7 @@ The items of tdp v1.2.17. What each column means and what an item applies to: [R
 | F7-14 | F7 | A terminal popup is `terminal width − 2` wide, with no 120-column cap | terminal popup | Open it in a 200-column terminal: the width is 198 |
 | F7-15 | F7 | A terminal popup runs down to the last row of the screen, covering the footer | terminal popup | Open a terminal popup: its bottom border is on the last row, and the footer is gone |
 | F7-16 | F7 | A terminal popup has no padding on any side inside its frame | terminal popup | The subprocess's content sits right against the frame lines on all four sides |
+| F7-17 | F7 | The comparison (note.8) is `terminal width − 2` wide, with no 120-column cap | compare mode | Open a comparison in a 200-column terminal: the width is 198 |
 | F8-1 | F8 | While a popup is open, everything but the topmost popup (the popups beneath it and the whole base screen) is dimmed; only the topmost is bright | everyone | Open the global operation popup from the Space menu: the Space menu and the base screen underneath are both dim |
 | F8-2 | F8 | Streaming content underneath (logs, remote sessions) and warning colours are dimmed too | streaming content | Open a popup over streaming content or warning colours: they dim too |
 | F8-3 | F8 | Dimming fades the foreground and the background alike toward the base, without dropping backgrounds | everyone | Open a popup and look underneath: the bodies of powerline capsules, the cursor bar and selection highlights are still there, only darker |

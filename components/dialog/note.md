@@ -313,7 +313,8 @@ matters is what happened while the app was open this time, with no further kind 
 The popup the compare mode of a panel opens, directly or from the list of the items that differ it goes into
 ([`layout/panel`](../layout/panel.md), panel.9): a viewer (the viewer's rules and its selection mode above apply).
 The title glyph is `nf-md-compare` (U+F018A), the title `DIFF`; two tabs follow it, `UNIFIED` and `SPLIT`, switched
-with `h|l` (Rules K12).
+with `h|l` (Rules K12). It is `terminal width − 2` wide, with no 120-column cap (Rules F7; the user, 2026-11-19, from
+gittu).
 
 - **The first row names the two sides**: `<anchor> ↔ <the other>`, as the app names them, in Lavender as a location row
   is ([`layout/panel`](../layout/panel.md), panel.10), fixed at the top and never scrolled. When it does not fit it is

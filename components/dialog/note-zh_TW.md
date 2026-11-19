@@ -240,7 +240,8 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 
 panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）直接打開、或從它進去的差異項目清單打開的 popup：
 一個 viewer（上面 viewer 的規定與選取模式照樣適用）。
-標題 glyph `nf-md-compare`（U+F018A），寫 `DIFF`；後面接兩個 tab：`UNIFIED`、`SPLIT`，`h|l` 切（Rules K12）。
+標題 glyph `nf-md-compare`（U+F018A），寫 `DIFF`；後面接兩個 tab：`UNIFIED`、`SPLIT`，`h|l` 切（Rules K12）。寬度是
+`terminal 寬 − 2`，不受 120 欄上限（Rules F7；user 2026-11-19，來自 gittu）。
 
 - **第一列寫兩邊的名字**：`<anchor> ↔ <另一個>`，名字由 app 給，跟位置列一樣用 Lavender
   （[`layout/panel`](../layout/panel-zh_TW.md)，panel.10），固定在最上面、不跟著捲動。放不下時折行，不切：先在 `↔` 前面折成兩列，

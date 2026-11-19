@@ -809,6 +809,9 @@ App Log（`!`，[components/dialog/note](../components/dialog/note-zh_TW.md)）�
 - **terminal 類例外**：寬度 `terminal 寬 − 2`，不受 120 欄上限；上面留著 statusbar 或畫面 chip 列（含它下面的分隔線），下面一直到
   畫面最後一列、蓋掉 footer；框裡上下左右都不留白 —— 子程序需要空間，而在 PTY 裡不需要外面的 footer
   （[components/dialog/terminal](../components/dialog/terminal-zh_TW.md)）。
+- **比較視窗是寬度的另一個例外**：`terminal 寬 − 2`，不受 120 欄上限；高度照這條規則其他的寫法
+  （[components/dialog/note](../components/dialog/note-zh_TW.md)，note.8）：程式碼一行很長，SPLIT 又要兩邊並排，需要空間；120 欄的
+  上限是為了讓 menu 的名稱與說明不要離太遠（user 2026-11-19，來自 gittu）。
 
 **為什麼**：每個 popup 依內容隨時伸縮，打開前無法預期它長什麼樣，內容一變框就跳（L2）。寬度只有兩種算法、打開時定好，
 框的樣子永遠可以預期；內容確定的不必撐到全寬，寬螢幕上不空、窄螢幕上不擠；120 欄的上限讓寬螢幕上的 menu 名稱與說明

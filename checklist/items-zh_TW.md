@@ -293,6 +293,7 @@ tdp v1.2.17 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | F7-14 | F7 | terminal popup 寬度是 `terminal 寬 − 2`，不受 120 欄上限 | terminal popup | 在 200 欄的終端機打開，寬度是 198 |
 | F7-15 | F7 | terminal popup 下面一直到畫面最後一列，蓋掉 footer | terminal popup | 打開 terminal popup，下框在最後一列，footer 不見 |
 | F7-16 | F7 | terminal popup 框裡上下左右都不留白 | terminal popup | 看子程序的內容緊貼四邊的框線 |
+| F7-17 | F7 | 比較視窗（note.8）寬 `terminal 寬 − 2`，不受 120 欄上限 | 比較模式 | 在 200 欄的終端機打開比較：寬 198 |
 | F8-1 | F8 | 有 popup 開著時，最上層 popup 以外的一切（底下的 popup 與整個 base 畫面）都淡化，只有最上層是亮的 | 都要 | Space menu 開 global operation popup，底下的 Space menu 與 base 畫面都暗 |
 | F8-2 | F8 | 底下的串流內容（log、遠端 session）與警示色也一起淡化 | 串流內容 | 在串流內容或警示色上面開 popup，它們也變暗 |
 | F8-3 | F8 | 淡化把前景與背景都往底色淡化，不丟掉背景 | 都要 | 開 popup 後看底下的 powerline 膠囊本體、cursor bar、選取反白仍在，只是變暗 |

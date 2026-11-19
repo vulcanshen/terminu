@@ -1019,6 +1019,10 @@ best, and no rule such as "reversible means no need to ask" can judge it.
   screen, covering the footer; inside the frame there is no padding on any side — the subprocess needs the room, and
   inside a PTY the outside footer is not needed
   ([components/dialog/terminal](../components/dialog/terminal.md)).
+- **The comparison is the other exception to the width**: `terminal width − 2`, with no 120-column cap; its height
+  follows the rest of this rule ([components/dialog/note](../components/dialog/note.md), note.8): long lines of code,
+  and SPLIT's two sides next to each other, need the room, while the cap is for keeping a menu's names near their
+  descriptions (the user, 2026-11-19, from gittu).
 
 **Why**: when every popup keeps sizing itself by its content, nobody can tell what it will look like before it opens,
 and the box jumps whenever the content changes (L2). With only two ways to work out the width, both fixed at opening,
