@@ -1081,8 +1081,8 @@ The items of tdp v1.2.16. What each column means and what an item applies to: [R
 | note-81 | note.8 | Only the parts that differ, with 3 unchanged lines before and after, an Overlay0 separator between parts | compare mode | Compare two long items that differ in two places |
 | note-82 | note.8 | UNIFIED: removed lines `-` in Red, added lines `+` in Green, unchanged in Text; the anchor is the removed side; two line-number columns in Overlay0 | compare mode | Look at UNIFIED |
 | note-83 | note.8 | SPLIT: the anchor on the left, the other on the right, each with its line numbers; removed in Red on the left, added in Green on the right, a blank row where there is no counterpart; each side wraps within its half, the two lines of a row taking as many rows as the longer, the shorter filled with blank rows | compare mode | Look at SPLIT with a line longer than its half |
-| note-84 | note.8 | The last chosen tab is remembered (state) | compare mode | Switch to SPLIT, quit, start again, compare again |
-| note-85 | note.8 | Narrower than 96 it is always UNIFIED and `SPLIT` is disabled | compare mode | Shrink the terminal below 96 and compare |
+| note-84 | note.8 | Every comparison opens on UNIFIED; the tab chosen last time is not kept | compare mode | Switch to SPLIT, close it and compare again, also after a restart: it opens on UNIFIED |
+| note-85 | note.8 | Narrower than 96 `SPLIT` is disabled | compare mode | Shrink the terminal below 96 and compare |
 | note-90 | note.9 | A view whose last line is in sight follows the lines added at the end; one scrolled up stays on the lines it shows | everyone | Open the App Log at its end and make an entry come in; scroll up and make another come in |
 | note-91 | note.9 | In the selection mode the view never follows lines added at the end | everyone | In the App Log at its end press `v`, then make an entry come in |
 | note-92 | note.9 | Content read again shorter than the view moves the view to the new end | content read again | Scroll to the end, then cut the content shorter than the view |

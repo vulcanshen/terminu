@@ -314,8 +314,8 @@ two tabs follow it, `UNIFIED` and `SPLIT`, switched with `h|l` (Rules K12).
   the left in Red, added lines on the right in Green, a blank row where the other side has no counterpart. Each side
   wraps within its half (note.2), and the two lines of a row take as many rows as the longer of them, the shorter side
   filled with blank rows, so the two always start on the same row (the user, 2026-10-29).
-- **The choice is remembered** (state, Rules E3). On a terminal narrower than 96 it is always UNIFIED and `SPLIT` is
-  disabled (Rules M6), whichever was remembered.
+- **It opens on UNIFIED**, the first tab, every time: the two are tabs one key apart, so the choice is not kept (the
+  user, 2026-11-19). On a terminal narrower than 96 `SPLIT` is disabled (Rules M6).
 
 **Two versions of one item**: besides the compare mode, an action of the app's own that shows two versions of one item
 (e.g. a file in a commit against the commit before it, a file being edited against its last commit) opens this
