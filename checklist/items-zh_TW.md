@@ -742,6 +742,7 @@ tdp v1.2.17 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | panel-121 | panel.14 | 清單上的 `/` 回到打字列，接著舊的字打 | panel filter | 篩選後在清單按 `/` |
 | panel-122 | panel.14 | focus 離開 panel 時篩選留著，往哪個方向離開都一樣 | panel filter | 篩選後用 `Tab` 與數字鍵離開再回來 |
 | panel-123 | panel.14 | focus 回到有篩選的 panel 時，直接在打字列上 | panel filter | 篩選後離開再回來，看 focus 在打字列 |
+| panel-180 | panel.14 | app 自己的動作要換掉 panel 列的東西，或把它的 cursor 放到某一項上時，先清掉那個 panel 的篩選，不管有沒有藏住那一項；只是 focus 離開不清 | panel filter + 會移動它 cursor 的動作 | 篩選一個清單，讓某一項被藏住；執行（或在別的 panel 移動 cursor）會把這個 panel 帶到那一項的動作：篩選清掉，cursor 在那一項上 |
 | panel-156 | panel.14 | 沒有 cursor 的 panel 搜自己的文字時，照 viewer 的搜尋（`/`、`n\|N`、Info toast），`Esc` 清掉命中的字 | 沒有 cursor 的 panel | 在有 `/`、沒有 cursor 的 panel 上搜一個字、按 `n`，再按 `Esc`，底線不見 |
 | panel-124 | panel.1 | 清單一項都沒有時（panel filter 篩到空，或本來就是空的），hint 拿掉 `Enter` 與對項目的熱鍵，只留對整個 panel 的 | 都要 | 讓清單篩到空或清空，看下框 hint 沒有 `Enter` 與項目的熱鍵 |
 | panel-125 | panel.4 | 選中的那一段自己就太長時，字從尾端截、加 `…`；兩端的斜角照畫，跟框角之間照樣留一段線 | 都要 | 把終端機縮到很窄，看 label 很長的 panel 的膠囊 |

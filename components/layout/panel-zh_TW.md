@@ -430,6 +430,10 @@ focus 離開與回來：
 - **focus 回到有篩選的 panel 時，直接在打字列上**，不用再按 `/`；要操作篩選過的清單，按 `Enter` 或 `Tab` 到清單。
   所以有篩選的 panel 用 `Tab` 經過時會停兩下：打字列一下、清單一下。
 
+**app 自己的動作先清掉篩選**：app 要換掉 panel 列的東西，或把它的 cursor 放到某一項上時（例：在別的 panel 移動 cursor，把這個
+panel 帶到那一項；進到一項裡面，panel.10），不管篩選有沒有藏住那一項，都先像 `Esc` 一樣清掉，再換清單或移 cursor。
+只是 focus 離開不會清，照上面（user 2026-11-19，來自 gittu；kbu 就是這樣做）。
+
 **為什麼**：panel filter 跟 finder 做的事不一樣 —— finder 是「到某一項」，選了就關掉；panel filter 是「把清單縮小、留著繼續用」
 （kbu 留下名字有 api 的 pod 看它們的狀態、sshu 打 `prod` 把整群 host 列出來一台一台連）。兩者的打字列用同一套鍵，
 只有跟層級有關的 `Tab`、`Esc` 不同。

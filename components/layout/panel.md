@@ -552,6 +552,11 @@ The focus leaving and returning:
   to work on the filtered list, `Enter` or `Tab` to the list. So `Tab` stops twice on a panel with a filter: once on the
   typing row, once on the list.
 
+**An action of the app's own clears the filter first**: when the app changes what the panel lists, or puts its cursor
+on a particular item (e.g. the cursor moving in another panel takes this one to that item; going into an item,
+panel.10), the filter is cleared as `Esc` clears it, whether or not it hides that item, and then the list changes or
+the cursor moves. The focus leaving alone does not clear it, as above (the user, 2026-11-19, from gittu; kbu does so).
+
 **Why**: a panel filter and a finder do different jobs — a finder is "go to one item", and closes once one is chosen; a
 panel filter is "narrow the list and keep using it" (in kbu, keeping the pods whose names contain api to watch their
 status; in sshu, typing `prod` to list a whole group of hosts and connect to them one by one). Their typing rows share
