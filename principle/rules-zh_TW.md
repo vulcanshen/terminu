@@ -1006,17 +1006,35 @@ app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度�
 
 **為什麼**：照 tdp 做的 app 不在 vulcanshen 的帳號底下，也不進同一個 tap；照字面抄，寫出來的就是錯的路徑與別人的信箱。
 
-### E1 命令列：`version` 與 `help`
+### E1 命令列
 
 每個 app 都要有：
 
 - **`<app> version`**：印出版號。`--version`、`-v` 可以當別名。
 - **`<app> help`**：印出命令列的用法（跟 app 裡 `?` 的 key reference 無關）。`-h`、`--help` 可以當別名。
 
-其他指令（例：`filu iconwidth`、`locku lock`、`webu <網址>`），app 可以自行決定。
+有 **`<app> iconwidth`** 的 app，用它印出 E5 量到的結果：兩行，一個 icon 占幾格、一個 powerline 符號占幾格，後面各寫數字從哪來：
+`probe`（剛剛量的）、`default`（量不到）或指定它的環境變數名稱（user 2026-11-19，tdp #24）。
+
+```
+icon 2 (probe)
+powerline 1 (TERMINU__POWERLINE_WIDTH)
+```
+
+其他指令（例：`filu shell`、`locku lock`、`webu <網址>`、`ccdrawu doctor`），app 可以自行決定。不管哪個指令，印出來的東西每個 app
+都照同一種格式（user 2026-11-19，tdp #24）：
+
+| 什麼 | 怎麼印 |
+|---|---|
+| 錯誤、警告 | 寫到 stderr，一件一行，開頭 `<app>: `（`catu: notes.md: no such file or directory`） |
+| 結果、進度 | 寫到 stdout（`iconwidth` 的兩行、`Updating ccdrawu 1.2.1 to 1.3.0...`） |
+| 用錯（不認得的指令、少了參數） | 寫到 stderr：`<app>: ` 接哪裡錯（`Unknown command "x"`），空一行，再接用法；exit status 2 |
+| exit status | 0 做完；1 沒做完（檔案讀不了或寫不進去、連線失敗）；2 用錯 |
+| 句子 | 照 toast 一列的寫法：開頭大寫，名字或路徑開頭時照它自己的大小寫；同一件事跟它的 toast、App Log 用同一句話（[components/dialog/toast](../components/dialog/toast-zh_TW.md)） |
 
 **為什麼**：使用者遇到一個命令列工具，第一個會試的就是 `help` 與 `version`。五個 app 都用同一組，問一個 app 問得到，
-問每一個都問得到。
+問每一個都問得到。印出來的東西照同一種格式：每個 app 都能用 `<app> … > 檔案` 把結果存進檔案、錯誤留在終端機上，
+腳本用同一種方式讀 exit status，TUI 在 toast 說的話，在終端機上讀起來也一樣。
 
 ### E2 環境變數的命名
 
@@ -1110,7 +1128,7 @@ confirm（[components/dialog/confirm](../components/dialog/confirm-zh_TW.md)）�
   讀不了的那一筆改名成 `.bak` 就好，不另外建，其他照常讀；問句寫 `Move it to <檔名>.bak and go on without it?`。
 - **`Esc`**（`quit`）：離開 app，不是回到 app；路徑與原因寫到 stderr，回到 shell 還看得到要修哪裡。
 - **沒有畫面時**（不打開 app、直接印出來的指令，例：catu 輸出到 pipe；印給別的程式顯示的輸出見下面的「TUI 以外」）：確認框開
-  不了，照 `Esc` 做：不動任何檔案，路徑與原因寫到 stderr，以非 0 的 exit status 結束，什麼都不印（user 2026-11-04，從 catu 來）。
+  不了，照 `Esc` 做：不動任何檔案，路徑與原因寫到 stderr，以 exit status 1 結束（E1），什麼都不印（user 2026-11-04，從 catu 來）。
 - **TUI 以外**（不在 TUI 裡的畫面，K1；印給別的程式顯示的輸出，P5）：一樣開不了確認框。怎麼繼續，app 可以自行決定（P5）；
   範圍內不動任何檔案（不移到 `.bak`、不重寫），並照下面的「TUI 以外」在那裡讓使用者看到哪個檔讀不了、為什麼。下次打開 TUI
   時，照上面一樣開確認框（user 2026-11-18，來自 locku；2026-11-19，來自 ccdrawu）。

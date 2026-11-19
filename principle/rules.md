@@ -1264,7 +1264,7 @@ same for both.
 **Why**: an app made with tdp is not under vulcanshen's account and does not go into the same tap; copied word for word,
 it would carry the wrong path and someone else's e-mail address.
 
-### E1 Command line: `version` and `help`
+### E1 Command line
 
 Every app has:
 
@@ -1272,10 +1272,30 @@ Every app has:
 - **`<app> help`**: prints the command-line usage (unrelated to the `?` key reference inside the app). `-h` and `--help`
   may be aliases.
 
-Other commands (e.g. `filu iconwidth`, `locku lock`, `webu <url>`), the app may decide for itself.
+An app that has **`<app> iconwidth`** prints with it what E5 measured: two lines, the cells an icon takes and the
+cells a powerline symbol takes, each followed by where it came from: `probe` (measured just now), `default` (nothing
+could be measured) or the name of the variable that set it (the user, 2026-11-19, tdp #24).
+
+```
+icon 2 (probe)
+powerline 1 (TERMINU__POWERLINE_WIDTH)
+```
+
+Other commands (e.g. `filu shell`, `locku lock`, `webu <url>`, `ccdrawu doctor`), the app may decide for itself. What
+any command prints takes one form in every app (the user, 2026-11-19, tdp #24):
+
+| What | How |
+|---|---|
+| Errors and warnings | to stderr, one a line, each starting with `<app>: ` (`catu: notes.md: no such file or directory`) |
+| Results and progress | to stdout (the two lines of `iconwidth`, `Updating ccdrawu 1.2.1 to 1.3.0...`) |
+| A wrong use (an unknown command, a missing argument) | to stderr: `<app>: ` and what is wrong (`Unknown command "x"`), a blank line, then the usage; exit status 2 |
+| Exit status | 0 done; 1 not done (a file that cannot be read or written, a connection that fails); 2 a wrong use |
+| Sentences | written as a toast's row is: a capital first, a name or a path keeping its own case; the same thing in the same words as its toast and its App Log entry ([components/dialog/toast](../components/dialog/toast.md)) |
 
 **Why**: `help` and `version` are the first things anyone tries on a command-line tool. With the five apps using the
-same pair, what can be asked of one app can be asked of every one.
+same pair, what can be asked of one app can be asked of every one. With what is printed in one form, `<app> … > file`
+keeps the results in the file and the errors on the terminal in every app, a script reads the exit status the same
+way, and what the TUI says in a toast reads the same in a terminal.
 
 ### E2 Environment variable names
 
@@ -1387,7 +1407,7 @@ permission… whatever the cause), the app does not go on working in that state:
   shell still shows what to fix.
 - **With no screen** (a command that prints instead of opening the app, e.g. catu writing into a pipe; output printed
   for another program to show is "Outside the TUI" below): no confirm can open, so the app does as `Esc` does: it
-  touches no file, writes the path and the reason to stderr and quits with a non-zero exit status, printing nothing
+  touches no file, writes the path and the reason to stderr and quits with exit status 1 (E1), printing nothing
   (the user, 2026-11-04, from catu).
 - **Outside the TUI** (a screen that is not part of the TUI, K1, or output printed for another program to show, P5):
   no confirm can open there either. How the app goes on, the app may decide for itself (P5); inside that scope it

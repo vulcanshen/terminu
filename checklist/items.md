@@ -378,6 +378,12 @@ The items of tdp v1.2.17. What each column means and what an item applies to: [R
 |---|---|---|---|---|
 | E1-1 | E1 | `<app> version` prints the version | everyone | Run `<app> version` |
 | E1-2 | E1 | `<app> help` prints the command-line usage (not the key reference) | everyone | Run `<app> help` |
+| E1-3 | E1 | `<app> iconwidth`, where the app has it, prints two lines, `icon N (from)` and `powerline N (from)`, from being `probe`, `default` or the name of the variable that set it | has `iconwidth` | Run `<app> iconwidth`, then again with `<APP>__ICON_WIDTH=2` set |
+| E1-4 | E1 | A command's errors and warnings go to stderr, one a line, each starting with `<app>: ` | everyone | Run a command that fails (e.g. on a file that is not there), once with `2>/dev/null` (nothing shows) and once without (`<app>: …`) |
+| E1-5 | E1 | A command's results and progress go to stdout | everyone | Run `<app> version > f`: the version is in `f`, nothing shows |
+| E1-6 | E1 | A wrong use (an unknown command, a missing argument) writes `<app>: ` and what is wrong, a blank line and the usage to stderr, with exit status 2 | everyone | Run the app with a command it does not know, then `echo $?` |
+| E1-7 | E1 | Exit status: 0 done, 1 not done, 2 a wrong use | everyone | Run a command that works, one that fails and a wrong one, `echo $?` after each |
+| E1-8 | E1 | A command's sentences are written as a toast's row is (a capital first, a name or a path keeping its case), in the same words as its toast and App Log entry | everyone | Read the command's messages next to the TUI's toasts for the same things |
 | E2-1 | E2 | Every environment variable the app itself reads (including ones for tests and ones passed to its own subprocesses) is named `<APP IN CAPITALS>__<NAME>`: two underscores, the variable name in capitals with single underscores between words | everyone | Read the code: find every environment variable name read or written; all but those meant for another program follow this form |
 | E2-2 | E2 | `<APP>__CONFIG` names the config directory (the config file lives in it), not the config file | stores settings or data | Start with `<APP>__CONFIG` set to a directory: the app reads the config file in that directory |
 | E2-3 | E2 | Renamed environment variables do not keep their old names | everyone | Read the code: the old name is no longer read |
