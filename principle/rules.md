@@ -1450,10 +1450,11 @@ once.
 printed for another program to show (P5, e.g. a status line), nobody reads stderr, and several may run at once. There
 every case of this rule (a file that cannot be read, a value that does not fit, a value naming an entry that is not
 there) goes the same way: the app touches no file (nothing moved to `.bak`, nothing written again), uses the defaults
-for this run, and shows the user there which file has what wrong; how, the app may decide for itself (e.g. a mark at
-the end of the status line, a line on the sidebar). Output printed for another program to show is read by the user, so
-a mark in it is not mixed into what a script reads. The next time the TUI opens, it goes as this rule says: the
-confirm, the `.bak` and the file written again, the toast (the user, 2026-11-19, from ccdrawu).
+for this run (with a file that cannot be read, how it goes on is the app's, as above), and shows the user there which
+file has what wrong; how, the app may decide for itself (e.g. a mark at the end of the status line, a line on the
+sidebar). Output printed for another program to show is read by the user, so a mark in it is not mixed into what a
+script reads. The next time the TUI opens, it goes as this rule says: the confirm, the `.bak` and the file written
+again, the toast (the user, 2026-11-19, from ccdrawu).
 
 Several running at once would each make a `.bak` and write the file again, and a sentence on stderr there reaches
 nobody: the file would change unseen. Shown where the user is looking, it is found; the TUI, which the user opens, is
