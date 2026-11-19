@@ -249,10 +249,11 @@ panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reord
 - **anchor 不在了**（被刪掉、搬走）：離開模式，跳 Warning toast 說明。
 - **裝著許多項目的列**（例：兩個資料夾、兩個 namespace、兩個 commit）：比這種兩列時不直接打開比較，而是照 panel.10 進到一層「兩
   邊有差異的項目」清單，位置列最後寫 `<anchor> ↔ <另一個>`。每一項前面一個標記，以 anchor 為基準（同比較）：只有另一個有的 `+`
-  （Green），只有 anchor 有的 `-`（Red），兩邊都有但不一樣的 `~`（Peach）；兩邊一樣的不列。在一項上按 `Enter` 打開它的比較
-  （UNIFIED 與 SPLIT，照 [`dialog/note`](../dialog/note-zh_TW.md)；只有一邊有的，另一邊是空的），它自己也裝著許多項目時照樣再進一
-  層；不是文字的項目沒有比較，同上。`Esc` 一層一層退回，最後回到模式、anchor 留著。兩邊沒有差異時不打開，跳上面那個 Info toast
-  （user 2026-11-19，來自 gitreu）。
+  （Green），只有 anchor 有的 `-`（Red），兩邊都有但不一樣的 `~`（Peach）；兩邊一樣的不列。項目怎麼命名照 app（例：路徑
+  `internal/ui/ui.go`）；app 知道改了名或搬了位置的項目（例：git 回報的 rename）算兩邊都有：`~`，名字寫 `<舊> → <新>`，比較的是
+  舊的對新的。在一項上按 `Enter` 打開它的比較（UNIFIED 與 SPLIT，照 [`dialog/note`](../dialog/note-zh_TW.md)；只有一邊有的，另一
+  邊是空的），它自己也裝著許多項目時照樣再進一層；不是文字的項目沒有比較，同上。`Esc` 一層一層退回，最後回到模式、anchor 留著。
+  兩邊沒有差異時不打開，跳上面那個 Info toast（user 2026-11-19，來自 gitreu）。
 
 ### panel.10 位置列
 
