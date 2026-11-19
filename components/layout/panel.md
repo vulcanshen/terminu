@@ -337,8 +337,8 @@ the mode and makes that row the anchor; then another row is picked and the two a
   has, `~` in Peach for one both have, changed; what is the same on both sides is not listed. The items are named as
   the app names them (e.g. paths, `internal/ui/ui.go`); an item the app knows was renamed or moved (e.g. a rename git
   reports) is one both have: `~`, named `<old> → <new>`, its comparison the old against the new. `Enter` on an item
-  opens its comparison, titled with its two sides as the app names them (e.g. `DIFF — ui.go @ 1a2b3c4 ↔ ui.go @
-  5d6e7f8`, the same title however it is reached; UNIFIED and SPLIT, as in [`dialog/note`](../dialog/note.md); one
+  opens its comparison, its first row naming its two sides as the app names them (e.g. `ui.go @ 1a2b3c4 ↔ ui.go @
+  5d6e7f8`, the same however it is reached; UNIFIED and SPLIT, as in [`dialog/note`](../dialog/note.md); one
   side empty for an item only one side has), or goes in again the same way when it holds many itself; an item that is
   not text has no comparison, as above. `Esc` goes back up a level at a time, the last back to the mode with the
   anchor kept. When nothing differs, nothing opens: the Info toast above (the user, 2026-11-19, from gittu).

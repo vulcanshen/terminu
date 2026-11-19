@@ -312,9 +312,14 @@ matters is what happened while the app was open this time, with no further kind 
 
 The popup the compare mode of a panel opens, directly or from the list of the items that differ it goes into
 ([`layout/panel`](../layout/panel.md), panel.9): a viewer (the viewer's rules and its selection mode above apply).
-The title glyph is `nf-md-compare` (U+F018A), the title `DIFF — <anchor> ↔ <the other>`;
-two tabs follow it, `UNIFIED` and `SPLIT`, switched with `h|l` (Rules K12).
+The title glyph is `nf-md-compare` (U+F018A), the title `DIFF`; two tabs follow it, `UNIFIED` and `SPLIT`, switched
+with `h|l` (Rules K12).
 
+- **The first row names the two sides**: `<anchor> ↔ <the other>`, as the app names them, in Lavender as a location row
+  is ([`layout/panel`](../layout/panel.md), panel.10), fixed at the top and never scrolled. When it does not fit it is
+  folded, never cut: before `↔` into two rows, the second starting with `↔`, and a side still too wide goes on into the
+  next row, folded after a `/` where it can be. How many rows it takes is known when the popup opens (Rules F7). So the
+  title stays short and the tabs always show, and the names have the whole width (the user, 2026-11-19, from gittu).
 - **Only the parts that differ**, each with 3 unchanged lines before and after; a separator between parts (Overlay0, as
   the separators in a popup).
 - **The anchor is the base**: the anchor is the removed side, the other the added side.
@@ -330,7 +335,7 @@ two tabs follow it, `UNIFIED` and `SPLIT`, switched with `h|l` (Rules K12).
 
 **Two versions of one item**: besides the compare mode, an action of the app's own that shows two versions of one item
 (e.g. a file in a commit against the commit before it, a file being edited against its last commit) opens this
-comparison too, not a viewer of a patch: the older one as the anchor, the title `DIFF — <older> ↔ <newer>`, each named
+comparison too, not a viewer of a patch: the older one as the anchor, the first row `<older> ↔ <newer>`, each named
 by the app. When what changed holds many (e.g. a commit against the one before it), going into it lists the items that
 differ as panel.9 does, with its marks, `Enter` and `Esc` ([`layout/panel`](../layout/panel.md)) (the user,
 2026-11-19, from gittu).

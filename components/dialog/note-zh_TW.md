@@ -240,8 +240,12 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 
 panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）直接打開、或從它進去的差異項目清單打開的 popup：
 一個 viewer（上面 viewer 的規定與選取模式照樣適用）。
-標題 glyph `nf-md-compare`（U+F018A），寫 `DIFF — <anchor> ↔ <另一個>`；後面接兩個 tab：`UNIFIED`、`SPLIT`，`h|l` 切（Rules K12）。
+標題 glyph `nf-md-compare`（U+F018A），寫 `DIFF`；後面接兩個 tab：`UNIFIED`、`SPLIT`，`h|l` 切（Rules K12）。
 
+- **第一列寫兩邊的名字**：`<anchor> ↔ <另一個>`，名字由 app 給，跟位置列一樣用 Lavender
+  （[`layout/panel`](../layout/panel-zh_TW.md)，panel.10），固定在最上面、不跟著捲動。放不下時折行，不切：先在 `↔` 前面折成兩列，
+  第二列以 `↔` 開頭；一邊還是太寬就接著往下一列折，能折在 `/` 後面就折在那裡。占幾列在打開時就知道（Rules F7）。這樣標題夠短，
+  tab 一定看得到，名字也有整個寬度可用（user 2026-11-19，來自 gittu）。
 - **只顯示有差異的段落**：前後各留 3 行沒變的；段落之間一條分隔線（Overlay0，跟 popup 裡的分隔線一樣）。
 - **以 anchor 為基準**：anchor 是刪掉的那一邊，另一個是加上的那一邊。
 - **UNIFIED**：刪掉的行前面 `-`、Red；加上的行前面 `+`、Green；沒變的行前面空一格、Text。行號兩欄：anchor 的、另一個的，
@@ -253,7 +257,7 @@ panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）�
   `SPLIT` 停用（Rules M6）。
 
 **同一項的兩個版本**：除了比較模式，app 自己的動作要看同一項的兩個版本時（例：一個 commit 裡的檔案對它的上一個 commit、正在改的
-檔案對最後一次 commit），也打開這個比較，不用顯示 patch 的 viewer：舊的那個當 anchor，標題 `DIFF — <舊的> ↔ <新的>`，名字由 app
+檔案對最後一次 commit），也打開這個比較，不用顯示 patch 的 viewer：舊的那個當 anchor，第一列寫 `<舊的> ↔ <新的>`，名字由 app
 給。改到的東西裝著許多項目時（例：一個 commit 對它的上一個），進去後照 panel.9 列出有差異的項目，標記、`Enter`、`Esc` 都一樣
 （[`layout/panel`](../layout/panel-zh_TW.md)）（user 2026-11-19，來自 gittu）。
 

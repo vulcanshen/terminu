@@ -640,7 +640,7 @@ tdp v1.2.17 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | panel-143 | panel.9 | 兩邊一模一樣時不打開，跳 Info toast，留在模式裡 | 比較模式 | 比兩個一樣的項目 |
 | panel-144 | panel.9 | `Esc` 離開模式、拿掉 anchor；`Tab` 與數字鍵暫停 | 比較模式 | 模式裡按 `Tab`、`Esc` |
 | panel-145 | panel.9 | anchor 不在了時離開模式，跳 Warning toast | 比較模式 | 在模式裡讓 anchor 那一項被刪掉 |
-| panel-176 | panel.9 | 比兩個裝著許多項目的列（例：資料夾、namespace、commit）時不直接打開比較，而是進到一層有差異的項目清單，位置列換成 app 給的 `<anchor> ↔ <另一個>`，每一項的比較標題寫 app 給的兩邊名字 | 比較模式 | 比兩個這種列，看清單與位置列 |
+| panel-176 | panel.9 | 比兩個裝著許多項目的列（例：資料夾、namespace、commit）時不直接打開比較，而是進到一層有差異的項目清單，位置列換成 app 給的 `<anchor> ↔ <另一個>`，每一項的比較第一列寫 app 給的兩邊名字 | 比較模式 | 比兩個這種列，看清單與位置列 |
 | panel-177 | panel.9 | 清單每一項前面是 `+`（Green，只有另一個有）、`-`（Red，只有 anchor 有）或 `~`（Peach，兩邊都有但不一樣）；兩邊一樣的不列 | 比較模式 | 同上，對照兩邊檢查標記 |
 | panel-178 | panel.9 | 在一項上按 `Enter` 打開它的比較（UNIFIED 與 SPLIT；只有一邊有的，另一邊是空的），裝著許多項目的再進一層 | 比較模式 | 同上，在改了、加了、還有下一層的項目上各按 `Enter` |
 | panel-179 | panel.9 | `Esc` 一層一層退回，最後回到比較模式、anchor 留著 | 比較模式 | 同上，一直按 `Esc` 到回到模式 |
@@ -1087,7 +1087,8 @@ tdp v1.2.17 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | note-105 | note.7 | app 自己重讀失敗時：第一次跳 Error toast、記一筆 ERR；同一個失敗再發生不跳、不記；換了一個失敗再跳、再記；又讀得到時記一筆 INFO，不跳 toast | 會自己重讀內容 | 讓它讀的東西讀不到、等它重讀幾次，再換一種讀不到的方式，最後讓它讀得到：每一種失敗一個 toast、一筆紀錄，最後一筆 INFO |
 | note-78 | note.7 | 每一筆：時間 `HH:MM:SS`（Overlay0）、等級（`INFO` Text、`OK` Green、`WARN` Peach、`ERR` Red，四格寬靠左）、發生的事（跟 toast 一樣大寫開頭） | 都要 | 看 App Log 的各種等級 |
 | note-79 | note.7 | 只放在記憶體，app 關掉就清空；筆數有上限，滿了丟掉最舊的 | 都要 | 讀程式；或關掉再開，App Log 是空的 |
-| note-80 | note.8 | 標題 glyph `nf-md-compare`（U+F018A），`DIFF — <anchor> ↔ <另一個>`，後面接 `UNIFIED`、`SPLIT` 兩個 tab，`h\|l` 切 | 比較模式 | 打開比較，按 `h\|l`；讀程式核對 code point |
+| note-80 | note.8 | 標題 glyph `nf-md-compare`（U+F018A），`DIFF`，後面接 `UNIFIED`、`SPLIT` 兩個 tab，`h\|l` 切 | 比較模式 | 打開比較，按 `h\|l`；讀程式核對 code point |
+| note-107 | note.8 | 第一列寫兩邊的名字 `<anchor> ↔ <另一個>`，Lavender，固定在最上面；太長時先在 `↔` 前面折，再折在 `/` 後面，不用 `…` 切；標題只有 `DIFF`，tab 一定看得到 | 比較模式 | 在窄終端機比兩個路徑很長的項目再捲動：名字折行、沒被切，第一列不動，兩個 tab 都看得到 |
 | note-81 | note.8 | 只顯示有差異的段落，前後各 3 行沒變的，段落之間一條 Overlay0 的分隔線 | 比較模式 | 比兩個長內容、只差兩處的項目 |
 | note-82 | note.8 | UNIFIED：刪掉的行 `-` Red、加上的行 `+` Green、沒變的 Text；anchor 是刪掉的那一邊；行號兩欄、Overlay0 | 比較模式 | 看 UNIFIED |
 | note-83 | note.8 | SPLIT：左 anchor、右另一個，各自標行號；刪 Red 在左、加 Green 在右，對應不到的留空列；兩邊各自在半邊折行，左右對應的兩行照長的那邊佔一樣多列，短的補空白列 | 比較模式 | 看有一行比半邊長的 SPLIT |
@@ -1104,7 +1105,7 @@ tdp v1.2.17 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | note-98 | note.9 | 選取模式裡重新讀進來，cursor 不在：離開模式，跳 Warning toast；內容讀不到：離開模式，只跳那個 Error toast | 重新讀進來的內容 | 從第 10 行選到第 20 行，把內容剪到 15 行；再讓它讀不到（例：刪掉檔案） |
 | note-99 | note.9 | 選取模式的 Space menu 或 key reference 開著時，重新讀進來讓選取失效（起點或 cursor 不見了）：不跳 toast，改疊一個 Peach、樣子跟 error popup 一樣、Warning 圖示的 note 說明；`Enter` 和 `Esc` 都連同 menu 或 key reference 一起關掉，回到畫面 | 重新讀進來的內容 | 選取模式裡往上選，打開 Space menu，再剪掉內容讓起點不見；按 `Enter`；再用 `Esc` 試一次，也用開著的 `?` 試 |
 | note-100 | note.9 | 選取模式的 Space menu 或 key reference 開著時內容讀不到：不跳 Error toast，改疊 error popup 說明讀不到、原本的選取失效了；`Enter` 和 `Esc` 都連同 menu 或 key reference 一起關掉，回到畫面 | 重新讀進來的內容 | 選取模式裡打開 Space menu，再讓內容讀不到（例：刪掉檔案）；按 `Enter`；再用 `Esc` 試一次 |
-| note-101 | note.8 | 看同一項兩個版本的動作打開同一種比較（UNIFIED 與 SPLIT），舊的當 anchor，標題 `DIFF — <舊的> ↔ <新的>`，不是顯示 patch 的 viewer | 看同一項的兩個版本 | 打開一個檔案的改動（例：commit 裡的），看標題與 tab |
+| note-101 | note.8 | 看同一項兩個版本的動作打開同一種比較（UNIFIED 與 SPLIT），舊的當 anchor，第一列寫 `<舊的> ↔ <新的>`，不是顯示 patch 的 viewer | 看同一項的兩個版本 | 打開一個檔案的改動（例：commit 裡的），看第一列與 tab |
 | note-102 | note.8 | 一項的改動裝著許多項目時（例：一個 commit 對它的上一個），進去後照 panel.9 列出有差異的項目：`+ - ~` 標記、`Enter` 打開一項的比較、`Esc` 一層一層退回 | 看同一項的兩個版本 | 進到一個 commit 的改動，看標記、`Enter`、`Esc` |
 | note-103 | note.8 | 顯示差異的 panel 照 UNIFIED 畫（只有差異的段落、前後 3 行、兩欄行號、`-` Red、`+` Green），不放工具自己的輸出；在上面按 `Enter` 打開比較 | 看同一項的兩個版本 | 看顯示改動的 panel：沒有 `diff --git`、`@@` 行；按 `Enter` |
 | note-106 | note.8 | 顯示改動的 panel 遇到裝著許多項目的東西（例：新的資料夾），照 panel.9 列出有差異的項目、帶標記（新資料夾的檔案全部是 Green 的 `+`），不只寫名字；在上面按 `Enter` 進到這份清單 | 看同一項的兩個版本 | 把 cursor 放在還沒被追蹤的新資料夾上，看顯示它改動的 panel；按 `Enter` |
