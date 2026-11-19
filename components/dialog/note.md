@@ -338,7 +338,10 @@ differ as panel.9 does, with its marks, `Enter` and `Esc` ([`layout/panel`](../l
 **In a panel**: a panel that shows a difference (e.g. a details panel following the cursor, showing what changed in
 the file under it) draws it as UNIFIED does above: only the parts that differ, 3 lines around, the separators, the two
 line-number columns, `-` in Red and `+` in Green; not a tool's own output (e.g. `git diff`'s headers and `@@` lines).
-`Enter` on it opens this comparison, with both tabs (the user, 2026-11-19, from gittu).
+`Enter` on it opens this comparison, with both tabs (the user, 2026-11-19, from gittu). When what it shows holds many
+(e.g. a folder that is new, a commit), it lists the items that differ as panel.9 does, each with its mark (a new
+folder's files all `+` in Green), not their bare names, and `Enter` goes in to that list as "Two versions of one item"
+says (the user, 2026-11-19, from gittu).
 
 One look for a difference in the whole app: whether two rows were picked or one item's change is shown, the same marks
 and the same UNIFIED and SPLIT.

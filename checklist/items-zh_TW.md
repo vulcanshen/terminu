@@ -1100,6 +1100,7 @@ tdp v1.2.17 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | note-101 | note.8 | 看同一項兩個版本的動作打開同一種比較（UNIFIED 與 SPLIT），舊的當 anchor，標題 `DIFF — <舊的> ↔ <新的>`，不是顯示 patch 的 viewer | 看同一項的兩個版本 | 打開一個檔案的改動（例：commit 裡的），看標題與 tab |
 | note-102 | note.8 | 一項的改動裝著許多項目時（例：一個 commit 對它的上一個），進去後照 panel.9 列出有差異的項目：`+ - ~` 標記、`Enter` 打開一項的比較、`Esc` 一層一層退回 | 看同一項的兩個版本 | 進到一個 commit 的改動，看標記、`Enter`、`Esc` |
 | note-103 | note.8 | 顯示差異的 panel 照 UNIFIED 畫（只有差異的段落、前後 3 行、兩欄行號、`-` Red、`+` Green），不放工具自己的輸出；在上面按 `Enter` 打開比較 | 看同一項的兩個版本 | 看顯示改動的 panel：沒有 `diff --git`、`@@` 行；按 `Enter` |
+| note-106 | note.8 | 顯示改動的 panel 遇到裝著許多項目的東西（例：新的資料夾），照 panel.9 列出有差異的項目、帶標記（新資料夾的檔案全部是 Green 的 `+`），不只寫名字；在上面按 `Enter` 進到這份清單 | 看同一項的兩個版本 | 把 cursor 放在還沒被追蹤的新資料夾上，看顯示它改動的 panel；按 `Enter` |
 
 ## dialog/terminal
 

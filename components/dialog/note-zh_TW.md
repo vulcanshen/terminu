@@ -259,7 +259,9 @@ panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）�
 
 **在 panel 裡**：顯示差異的 panel（例：跟著游標、顯示游標所在檔案改了什麼的詳細 panel）照上面的 UNIFIED 畫：只有差異的段落、前後
 3 行、分隔線、兩欄行號、`-` Red、`+` Green；不放工具自己的輸出（例：`git diff` 的標頭與 `@@` 行）。在上面按 `Enter` 打開這個比較，
-兩個 tab 都有（user 2026-11-19，來自 gittu）。
+兩個 tab 都有（user 2026-11-19，來自 gittu）。顯示的東西裝著許多項目時（例：新的資料夾、一個 commit），照 panel.9 列出有差異的
+項目，每一項帶標記（新資料夾的檔案全部是 Green 的 `+`），不只寫名字；在上面按 `Enter` 照「同一項的兩個版本」進到這份清單（user
+2026-11-19，來自 gittu）。
 
 整個 app 看差異只有一種樣子：不管是挑了兩列，還是看一項改了什麼，都是同樣的標記、同樣的 UNIFIED 與 SPLIT。
 
