@@ -316,10 +316,10 @@ A list with a compare mode (Rules K11; the compare key, the app may decide for i
 the mode and makes that row the anchor; then another row is picked and the two are compared ("Compare" in
 [`dialog/note`](../dialog/note.md)).
 
-- **Text only**: text, or content shown as text (e.g. a kbu resource's YAML, a text file in filu). A file goes by the
-  kind of its preview in [`input/file-picker`](../input/file-picker.md); anything but `text` (image, PDF, archive,
-  binary…) cannot be compared: the item has no compare action (Rules M2), and in the mode the compare key is
-  disabled while the cursor rests on it (M6).
+- **Text only, or rows that hold many** (below): text, or content shown as text (e.g. a kbu resource's YAML, a text
+  file in filu). A file goes by the kind of its preview in [`input/file-picker`](../input/file-picker.md); anything
+  but `text` (image, PDF, archive, binary…) cannot be compared: the item has no compare action (Rules M2), and in the
+  mode the compare key is disabled while the cursor rests on it (M6).
 - **The anchor row**: the whole row in the mode colour — a Yellow background, Base text, not bold, no arrow on the
   right ("the range selected in a mode" in [`color`](../color.md)); the cursor is drawn as usual, and on the anchor
   the cursor is what is drawn.
@@ -329,6 +329,15 @@ the mode and makes that row the anchor; then another row is picked and the two a
   differences between <a> and <b>`) and the mode stays. `Esc` leaves the mode and drops the anchor; `Tab` and the
   number keys are paused (K11).
 - **When the anchor is gone** (deleted, moved away): the mode is left, with a Warning toast saying why.
+- **Rows that hold many** (e.g. two directories, two namespaces, two commits): comparing two of them does not open the
+  comparison but goes in one level, as panel.10 goes into an item, to a list of the items that differ between them;
+  the location row ends in `<anchor> ↔ <the other>`. Each item starts with a mark, the anchor being the base as in the
+  comparison: `+` in Green for one only the other has, `-` in Red for one only the anchor has, `~` in Peach for one
+  both have, changed; what is the same on both sides is not listed. `Enter` on an item opens its comparison (UNIFIED
+  and SPLIT, as in [`dialog/note`](../dialog/note.md); one side empty for an item only one side has), or goes in again
+  the same way when it holds many itself; an item that is not text has no comparison, as above. `Esc` goes back up a
+  level at a time, the last back to the mode with the anchor kept. When nothing differs, nothing opens: the Info toast
+  above (the user, 2026-11-19, from gitreu).
 
 ### panel.10 Location row
 

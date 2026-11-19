@@ -230,7 +230,8 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 
 ## note.8 比較
 
-panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)）打開的 popup：一個 viewer（上面 viewer 的規定與選取模式照樣適用）。
+panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）直接打開、或從它進去的差異項目清單打開的 popup：
+一個 viewer（上面 viewer 的規定與選取模式照樣適用）。
 標題 glyph `nf-md-compare`（U+F018A），寫 `DIFF — <anchor> ↔ <另一個>`；後面接兩個 tab：`UNIFIED`、`SPLIT`，`h|l` 切（Rules K12）。
 
 - **只顯示有差異的段落**：前後各留 3 行沒變的；段落之間一條分隔線（Overlay0，跟 popup 裡的分隔線一樣）。

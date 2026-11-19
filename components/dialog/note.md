@@ -299,8 +299,9 @@ matters is what happened while the app was open this time, with no further kind 
 
 ## note.8 Compare
 
-The popup the compare mode of a panel opens ([`layout/panel`](../layout/panel.md)): a viewer (the viewer's rules and its
-selection mode above apply). The title glyph is `nf-md-compare` (U+F018A), the title `DIFF — <anchor> ↔ <the other>`;
+The popup the compare mode of a panel opens, directly or from the list of the items that differ it goes into
+([`layout/panel`](../layout/panel.md), panel.9): a viewer (the viewer's rules and its selection mode above apply).
+The title glyph is `nf-md-compare` (U+F018A), the title `DIFF — <anchor> ↔ <the other>`;
 two tabs follow it, `UNIFIED` and `SPLIT`, switched with `h|l` (Rules K12).
 
 - **Only the parts that differ**, each with 3 unchanged lines before and after; a separator between parts (Overlay0, as
