@@ -283,7 +283,7 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 
 - **模式裡只有模式自己的鍵與上表的 core key 作用**：panel 的熱鍵與 global 熱鍵都不作用，按了不出聲。
 - **模式的 Space menu**（[components/dialog/menu](../components/dialog/menu-zh_TW.md) 的「模式裡」；app 自己的模式見下面）：只列模式裡能做的事，分兩區 ——
-  **項目操作**：現在對 cursor 上那一項（或選起來的範圍）能做的事，選了就等於按那個鍵（例：Diff 模式的 `[C] Diff`、選取模式
+  **項目操作**：現在對 cursor 上那一項（或選起來的範圍）能做的事，選了就等於按那個鍵（例：Diff 模式的 `[D]iff`、選取模式
   開始選之後的 `Cop[y]`）；**模式操作**：這個模式本身的鍵 —— 移動鍵只顯示、不能執行，離開模式這種真的做事的照樣能執行。
   panel、item、global 的動作一律不列。模式的鍵也揭露在 `?` 的 key reference 與 footer / 下框 hint（footer 在模式裡的樣子見
   [components/layout/screen](../components/layout/screen-zh_TW.md)）。
@@ -416,6 +416,18 @@ app 在模式裡最多只能離開模式，之後由 tdp 接手，使用者一�
 意思。誤按一下 `g` 不讓下一個鍵失靈。沒有移動可做的鍵不一樣：方塊不會往上的地方，按 `k` 的人不是要往上移，保留字母要防的事
 不存在；落塊遊戲也一直用 `↑` 旋轉。只限模式，模式會標出自己是模式：清單、menu、表單的鍵都照舊。
 
+### K13 `D` 是 Diff；`x`、`X` 是刪除
+
+整個家族只給一個意思的兩個字母，按下去在每個 app 都做同一件事（user 2026-11-20，來自 kbu）：
+
+- **`D`**：Diff 模式的鍵（[`components/layout/panel`](../components/layout/panel-zh_TW.md)，panel.9），寫成 `[D]iff`。同一個
+  panel 已經把 `D` 給了自己的另一個動作、又不是刪除（例：Drag）時，app 可以把其中一個換成別的鍵。
+- **`x`**：刪掉 cursor 上那一項，`[x] Delete`；**`X`**：一次刪很多（標記的那些、整批），例：`[X] Delete marked`。會永久拿掉東西
+  的都算（刪除、丟掉改動、drop），不用其他字母：不用 `D`，也不用會移動的 `d`（K12）。
+
+**為什麼**：同一個鍵在這個 app 是刪除、在那個 app 是比較，遲早會按錯；刪除一律在 `x`，`D` 才能在每個 app 都是 Diff。
+按 Shift 的鍵影響的範圍比較大，跟大的刪除一樣。
+
 ---
 
 ## M Menu 與揭露
@@ -510,7 +522,7 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 
 | 情境 | 寫法 |
 |---|---|
-| 單一字母，出現在 label 裡（不分大小寫） | 原地包，包第一次出現的那個字母：`[r]ename`、`[n]ew`、`[D]elete`、`D[e]lete`、`UR[L]`、`Ex[P]ort` |
+| 單一字母，出現在 label 裡（不分大小寫） | 原地包，包第一次出現的那個字母：`[r]ename`、`[n]ew`、`[D]iff`、`UR[L]`、`Ex[P]ort` |
 | 單一字母，不在 label 裡 | 放前面：`[x] Reset`、`[x] Delete` |
 | 含 modifier | `[Alt-t]erm` |
 | 多字元 | `[go]to` |

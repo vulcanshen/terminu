@@ -332,7 +332,7 @@ comes back once it is dropped. A panel with a Drag keeps the mark column on ever
 
 ### panel.9 Diff mode
 
-A list with a diff mode (Rules K11; the diff key, the app may decide for itself, e.g. `C` in kbu): the diff key on a row enters
+A list with a diff mode (Rules K11; the diff key is `D`, Rules K13): the diff key on a row enters
 the mode and makes that row the anchor; then another row is picked and the two are compared ("Diff" in
 [`dialog/note`](../dialog/note.md)).
 

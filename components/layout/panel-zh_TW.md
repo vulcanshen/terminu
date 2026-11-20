@@ -248,7 +248,7 @@ panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reord
 
 ### panel.9 Diff 模式
 
-有 Diff 模式的清單（Rules K11；Diff 鍵 app 可以自行決定，例：kbu 的 `C`）：在一列上按 Diff 鍵，進入模式，那一列成為 anchor；接著挑另一列，
+有 Diff 模式的清單（Rules K11；Diff 鍵是 `D`，Rules K13）：在一列上按 Diff 鍵，進入模式，那一列成為 anchor；接著挑另一列，
 打開兩個的 Diff（[`dialog/note`](../dialog/note-zh_TW.md) 的「Diff」）。
 
 - **只比文字，或裝著許多項目的列**（見下）：文字，或用文字呈現的內容（例：kbu 資源的 YAML、filu 的文字檔）。檔案照

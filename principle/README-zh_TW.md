@@ -227,7 +227,7 @@ tdp 規定意義、在所有 surface 意義不變的鍵：`Tab`、`Enter`、`Esc
 
 ### terms.10 Letter hotkey
 
-app 自己指定、用來直接執行 menu 裡某一列的鍵。例：filu 的 `[r]ename`、kbu 的 `[C] Diff`、
+app 自己指定、用來直接執行 menu 裡某一列的鍵。例：filu 的 `[r]ename`、kbu 的 `[D]iff`、
 sshu 的 `[t]ransfer` 與 `[T]ransfer all`。它是捷徑，不是額外的功能（Rules M3）。
 
 ### terms.11 Source 與 target

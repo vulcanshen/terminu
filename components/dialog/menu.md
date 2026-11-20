@@ -84,7 +84,7 @@ stay as follows:
 
 - **Title**: where the mode lives, as usual — the focused panel's `[N] label` on a panel, that popup's title in a popup.
 - **`ITEM OPERATION`**: what can be done now to the item under the cursor (or the selected range); rows run as usual,
-  picking one being the same as pressing its key (e.g. `[C] Diff` in the Diff mode, described `with <anchor>`;
+  picking one being the same as pressing its key (e.g. `[D]iff` in the Diff mode, described `with <anchor>`;
   `[v] Select` before a selection starts and `Cop[y]` after). What cannot be done now is disabled by M6 (e.g. with the
   cursor on the anchor).
 - **`<mode name> MODE`** (e.g. `DIFF MODE`; with layers the whole name, e.g. `VISUAL>SELECT MODE`): the mode's own keys. The movement keys are only shown — the key in the

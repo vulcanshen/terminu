@@ -349,7 +349,7 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 - **The mode's Space menu** ("Inside a mode" in [components/dialog/menu](../components/dialog/menu.md); an app's own
   mode: below): it lists only
   what can be done in the mode, in two sections — **item operations**: what can be done now to the item under the
-  cursor (or the selected range), picking one being the same as pressing its key (e.g. `[C] Diff` in the Diff mode,
+  cursor (or the selected range), picking one being the same as pressing its key (e.g. `[D]iff` in the Diff mode,
   `Cop[y]` once a selection has started); **mode operations**: the mode's own keys — the movement keys are only shown,
   not run, while what really does something, such as leaving the mode, runs as usual. Panel, item and global actions are
   never listed. The mode's keys are also disclosed in the `?` key reference and in the footer / bottom-border hint (how
@@ -542,6 +542,21 @@ nothing can go up, nobody pressing `k` means to move up, so what keeping the let
 falling-block games have long turned a piece with `↑`. Only in a mode, which shows that it is one: lists, menus and
 forms keep every key as it is.
 
+### K13 `D` is Diff; `x` and `X` delete
+
+Two letters the whole family gives one meaning, so that one press does the same thing in every app (the user,
+2026-11-20, from kbu):
+
+- **`D`**: the Diff mode's key ([`components/layout/panel`](../components/layout/panel.md), panel.9), written `[D]iff`.
+  Where the same panel already uses `D` for an action of its own that is not a delete (e.g. a Drag), the app may give
+  one of them another key.
+- **`x`**: deletes the item under the cursor, `[x] Delete`; **`X`** deletes many at once (the marked ones, a whole
+  batch), e.g. `[X] Delete marked`. Anything that removes for good counts (deleting, discarding changes, dropping), and
+  it takes no other letter: not `D`, and not `d`, which moves (K12).
+
+**Why**: a key that deletes in one app and compares in another is a slip waiting to happen; with delete on `x`
+everywhere, `D` is free to mean Diff everywhere. The shifted key reaches further, as the bigger delete does.
+
 ---
 
 ## M Menus and disclosure
@@ -646,7 +661,7 @@ README). Marking inside a label:
 
 | Case | Form |
 |---|---|
-| A single letter that appears in the label (either case) | wrapped in place, at its first appearance: `[r]ename`, `[n]ew`, `[D]elete`, `D[e]lete`, `UR[L]`, `Ex[P]ort` |
+| A single letter that appears in the label (either case) | wrapped in place, at its first appearance: `[r]ename`, `[n]ew`, `[D]iff`, `UR[L]`, `Ex[P]ort` |
 | A single letter not in the label | in front: `[x] Reset`, `[x] Delete` |
 | With a modifier | `[Alt-t]erm` |
 | Several characters | `[go]to` |
