@@ -59,7 +59,8 @@ note（K9）。不在 TUI 裡的畫面不是 surface，不照這張表，app 可
 core key 一旦指定，同樣在所有 surface 意義不變。**letter hotkey 不能佔用表上的鍵。**
 
 **數字鍵 `1`–`9`**：在 panel 上（沒有 popup 開著時）保留給跳 panel，app 不能在 panel 上把數字登記成熱鍵。**只在目前的畫面裡**：
-每個畫面的 panel 各自從 `[1]` 編號，換了畫面，`1`–`9` 就是那個畫面的 panel；畫面上沒有那個號碼的 panel 時不作用。popup 裡
+每個畫面拿得到 focus 的 panel 各自從 `[1]` 編號（拿不到 focus 的說明牌沒有號碼：components/layout/panel，panel.17），
+換了畫面，`1`–`9` 就是那個畫面的 panel；畫面上沒有那個號碼的 panel 時不作用。popup 裡
 數字是自由的（例：menu 的 `[3] Favorites`、select 選項的數字熱鍵）；用數字的 global 熱鍵只能在 global operation popup 裡按（M4）。
 模式裡照 K11；key reference 寫在 core keys 區，寫成 `1–N`（[components/dialog/note](../components/dialog/note-zh_TW.md)）。
 
@@ -71,7 +72,8 @@ popup 裡的數字都還在。
 
 ### K2 `Tab` 在同層物件之間切換 focus
 
-`Tab` 把 focus 移到**當前 surface 裡同一層的下一個物件**，最後一個之後回到第一個：
+`Tab` 把 focus 移到**當前 surface 裡同一層的下一個物件**，最後一個之後回到第一個；拿不到 focus 的說明牌直接跳過
+（components/layout/panel，panel.17）：
 
 | focus 所在 | `Tab` 在什麼之間切換 |
 |---|---|

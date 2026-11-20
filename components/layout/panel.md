@@ -639,3 +639,32 @@ they are laid out (a grid, cards, a board), and are drawn as a list (panel.5).
 **Why**: as with an app's own popup ([`popup`](popup.md), popup.8), content no component holds keeps everything else
 fixed, so a panel holding a game or a drawing is framed, focused and dimmed as any panel in the family; only the
 drawing is the app's (the user, 2026-11-12, from tetru).
+
+## panel.17 A sign
+
+A panel that only tells (e.g. a game's NEXT, INFO and KEYS beside its playground, a legend): it sits in the screen's
+layout with the other panels and resizes with them, looks like any unfocused panel, and never takes the focus (the
+user, 2026-11-20, from tetru).
+
+```
+┌INFO──────────────┐
+│ Level   3        │
+│ Lines   24       │
+└──────────────────┘
+```
+
+- **Frame**: as an unfocused panel's (panel.1, the light line in Surface2), the label alone with no `[N]`: the digit
+  keys number only the panels that can take the focus (Rules K1), so a sign's frame promises no key. No tabs, no hint,
+  no scroll position, no mode.
+- **Never the focus**: `Tab` and the digit keys pass it by (Rules K2, K1), the mouse does nothing on it (Rules X2); it
+  has no Space menu and no actions.
+- **Lit or dim**: the app picks one for each sign and it stays so: always lit, as streaming content is (Rules T2), or
+  always dim, as an unfocused panel is. Under a popup it dims with everything else (Rules F8).
+- **No scrolling**: what it shows fits it. The app makes its content fit the size the sign has on the smallest screen
+  (Rules L1, 60 × 32); should it still not fit (e.g. a text longer than planned), it is cut at the bottom, the last row
+  shown ending in `…`.
+- What it shows, the app may decide for itself (panel.16); loading and errors as panel.15.
+
+**Why**: some things on a screen are only to be read, like a sign on a wall. As a panel it takes its place in the
+layout and resizes with the rest; never taking the focus, it adds no stop to `Tab` and no number to the frames; with
+nothing to scroll, it never hides what it says behind a key nobody can press there.

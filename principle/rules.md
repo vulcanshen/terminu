@@ -73,7 +73,8 @@ in this table.**
 
 **The digit keys `1`–`9`**: on a panel (with no popup open) they are kept for jumping between panels, and an app may not
 register a digit as a hotkey on a panel. **They work within the current screen only**: each screen numbers its own
-panels from `[1]`, so after switching screens `1`–`9` are that screen's panels; a digit with no such panel on the screen
+panels that can take the focus from `[1]` (a sign, which cannot, has no number: components/layout/panel, panel.17),
+so after switching screens `1`–`9` are that screen's panels; a digit with no such panel on the screen
 does nothing. Inside a popup the digits are free (e.g. a menu's `[3] Favorites`, digit hotkeys on a select's options); a
 global hotkey that is a digit can only be pressed inside the global operation popup (M4). Inside a mode, K11 applies; the
 key reference lists them in the core keys section as `1–N` ([components/dialog/note](../components/dialog/note.md)).
@@ -87,7 +88,7 @@ must always be reliable; the app loses only the digits on a panel, keeping the l
 ### K2 `Tab` switches focus between objects on the same level
 
 `Tab` moves focus to **the next object on the same level within the current surface**, wrapping from the last to the
-first:
+first; a sign, which never takes the focus, is passed by (components/layout/panel, panel.17):
 
 | Focus is on | `Tab` switches between |
 |---|---|
