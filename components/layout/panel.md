@@ -246,6 +246,16 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   to set, e.g. 12 cells); only then do whole columns go. The app gives each column an order in which it goes, and the
   most important one (the name) never goes; the least important column is taken away whole (its header with it) until
   they fit. When the terminal grows, the columns come back in the same order and the columns cut short grow back.
+- **When there is room left over** (every column shown at its widest value, none taken away), where the rest of the
+  width goes, the app picks one of four ways for each list; the header, the rows and an item's rows below follow the
+  same widths (the user, 2026-11-20, from gittu, after looking at all four):
+  - **At the end** (the default): the columns keep their widths and the rest of the row stays blank.
+  - **One column fills**: one column the app marks, a long one (e.g. a commit's description), takes all of it; the
+    columns after it sit at the right edge.
+  - **Even**: the narrowest columns widen first, until the columns are as even as the room allows; a column already
+    wider keeps its width, numbers stay aligned right.
+  - **Gaps**: every gap between columns widens alike, from 2 cells up to 6; what is still left goes to the column that
+    fills, or with none marked to the row's end.
 - **An item of several rows**: an item may take more rows than its first, as many as the app needs and on the items it
   needs them for (e.g. a commit's branches and tags on a row under it; every item the same height, or only some taller);
   what the rows below hold and where they start, the app may decide for itself. The first row holds the columns, the
