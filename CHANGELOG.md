@@ -1,5 +1,37 @@
 # Changelog
 
+## v1.3.0 — 2026-11-20
+
+A minor, the user's choice: a component goes (the inspect toast), every app gains a command (`update`), and every
+toast behaves differently. Released with terminu-go and harness once webu and hostu were fully aligned on it.
+
+- E1: every app has `<app> update`, bringing it to its latest release (never a beta) the way it was installed:
+  Homebrew upgrades with the E6 tap, an install-script or downloaded copy is replaced, Scoop prints the command;
+  built from source or with no right to write, it says why and exits 1, never asking for more rights; on a version
+  newer than the latest it says so; `doctor` stays the app's own (the user)
+- toast.2, toast.3: toasts stack, a new one at the bottom pushing the others up, at most three, the oldest pushed
+  out; `Esc` closes the oldest first; the same words make one toast with a count in its title (`INFO ×3`); one way
+  for every toast, so E3's one-toast merge and late join go (the user, from kbu)
+- toast.4, the inspect toast, goes; panel.18, an item's note, takes its place: a head (`nf-md-information_outline`
+  and `i`, Blue) under the item while the cursor is on it, `i` opening a viewer anchored under the item with the
+  focus in it, `Esc` back to the head, upward when there is no room below (the user)
+- panel.17, new: a sign, a panel that only tells: an unfocused look with no `[N]`, never the focus (`Tab` and the
+  digits pass it), always lit or always dim, no scrolling (the user, from tetru)
+- K13: `i` opens a note; an app with no Diff mode may give `D` to something that is not a delete; `x` and `X` mean
+  only removing for good, closing what reopens takes another letter (the user, from webu)
+- M5: the app may pick which appearance of the key's letter to bracket, the first by default (`Stage [a]ll`) (the
+  user, from gittu)
+- E3: a value naming something outside the app is used at once by its name; an entry the answer shows gone is
+  warned once and left out at the next write; what cannot be used until found holds the default; the user's own
+  data stays as before (the user, from kbu)
+- note.7, components.5: the App Log draws its entries as names and short text, control characters by name in Red,
+  colour codes never applied (the user, from hostu)
+- changed in this version: E1, E3, F1, F3, F7, F8, K1, K2, K4, K13, M5, components.5, note.7, panel.17, panel.18,
+  popup.1, toast.1 to toast.4
+- checklist: E1-9, E1-10, K13-4, K13-5, note-108, panel-188 to panel-195, toast-29 added; toast-21 to toast-27 and
+  E3-43 removed; E1-10, E3-37, E3-41, E3-42, K13-1, M5-1, toast-13, toast-14 reworded (1546 items); the header names
+  v1.3.0
+
 ## v1.2.20 — 2026-11-20
 
 A patch, the user's choice, released once kbu was fully aligned (from terminu-go v1.1.0 to v1.2.21). Gaps kbu and
