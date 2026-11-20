@@ -5,8 +5,8 @@
 ## toast.1 用途
 
 從下方彈出的短訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它（Rules F1、F3）：「已複製」、操作失敗。跟某個 popup
-的動作有關、需要使用者看完再決定的失敗，用 error popup（[`dialog/note`](note-zh_TW.md)），不用 toast。inspect toast
-（toast.4）是例外：它說游標那一項是什麼，只在游標停在那一項時存在。
+的動作有關、需要使用者看完再決定的失敗，用 error popup（[`dialog/note`](note-zh_TW.md)），不用 toast。游標那一項是什麼，
+放在那一項的附註（[`layout/panel`](../layout/panel-zh_TW.md)，panel.18），不用 toast。
 
 ## toast.2 長相
 
@@ -51,7 +51,10 @@
 
   做完的事用 Success 還是 Info，app 可以自行決定：Success 本來就是告知的一種，要不要特別標成成功，看 app。失敗一律用 Error，不用 Warning；跟某個 popup 的動作有關、要使用者看完再決定的失敗，照「用途」用 error popup。
 - **時間**：Success、Info 2200ms；Warning、Error 4400ms。
-- **第二個 toast 來時**：直接取代第一個，重新計時。
+- **不只一個時**：toast 往上疊。新的出現在最下面（上面說的位置），把正在顯示的往上推；每個各算各的時間，時間到就走，其他的往下補
+  位。最多顯示三個：第四個來時，最舊的那個先離開（它說的話在 App Log 裡）。跟正在顯示的某個 toast 一模一樣的話不會多一個：那個重
+  新計時，標題寫出來了幾次（`INFO ×3`）。不管是誰發的，toast 都照這一種方式（user 2026-11-20，來自 kbu：新 toast 取代舊的，會把
+  使用者還沒讀到的拿走）。
 
 **為什麼**：toast 是順便告訴你一聲，不該擋住任何東西 —— 所以在下方、不收鍵、時間到自己走；它也不該蓋掉 panel 的下框與 footer，
 那裡是使用者接下來要按什麼的地方。terminal popup 開著時，toast 在 PTY 裡按 `Esc` 關不掉（Rules K10、F3）；蓋住提示列的話，有幾秒
@@ -61,39 +64,6 @@
 
 ## toast.3 按鍵
 
-- `Esc` 立刻收掉它（Rules F3），在關掉其他 popup 之前先收它（Rules K4）；其他鍵都穿過它，送到底下。focus 在 PTY 裡時，`Esc`
-  屬於子程序，toast 只能等時間到收掉。
-- **hint**：`Esc:close`。
-
-## toast.4 inspect toast
-
-說游標那一項是什麼的 toast，游標在那一項上它就在（user 2026-10-29，來自 webu）：例：webu 的 Focus mode 裡，連結會去的
-網址。哪些項目有、寫什麼，app 可以自行決定；沒有東西可看的項目就沒有。
-
-```
-┏━󰈈 INSPECT━━━━━━━━━━━━┓
-┃                         ┃
-┃ go.dev/doc/effective_go ┃
-┃                         ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━┛
-```
-
-- **長相**：跟一般 toast 一樣（toast.2 的位置、框、寬度、文字），標題 `nf-md-eye`（U+F0208）`INSPECT`，文字 Text。
-  **沒有 hint**：沒有鍵關它。
-- **什麼時候在**：游標停到有 inspect toast 的項目上就出現，離開那一項就消失；移到另一個有的項目，直接換成那一項的。
-  **沒有計時。**
-- **上面開了 popup**（Space menu、`?`……）：focus 到了 popup 上，inspect toast 不顯示；popup 關掉後，游標還在那一項上
-  就回來。
-- **不記進 App Log**（[`dialog/note`](note-zh_TW.md)，note.7）：它跟著游標來去，而移動游標不記。
-- **按鍵**：所有鍵都穿過它，`Esc` 也是（toast.3、Rules K4、F3 的例外）：`Esc` 照底下的意思做（例：離開 webu 的 Focus
-  mode），toast 跟著游標消失。
-- **其他 toast 來時**：一般 toast 照 toast.2 取代它；那個走了以後，游標還在那一項上，inspect toast 就回來。
-- **底下那一項**：inspect toast 會蓋到游標那一項時，畫面捲動，讓那一項露在它上面。
-
-**為什麼**（user 2026-10-29）：連結會去哪，只有停在連結上時才要看，所以不佔自己的一列或一格 —— panel 下框右邊照樣是
-捲動位置（[`layout/panel`](../layout/panel-zh_TW.md)）。note popup 會收鍵，`j|k` 就移不了游標；toast 本來就讓 `Esc` 以外
-的鍵穿過。`Esc` 也讓它穿過：游標一走它就自己走，攔下 `Esc` 只會讓每個連結上都要按兩下才離開，而移到下一個連結它又會
-出現。用眼睛不用放大鏡：家族裡放大鏡是搜尋（webu、filu 的搜尋框），同一個樣子不能有兩個意思（Principle P4）。標題自己
-一種、不用 Info 的：Info 過一會兒自己走，inspect toast 不會。popup 開著時不顯示：它在的條件是 focus 在那一項上，而 toast
-畫在所有 popup 上面、不淡化，會一直蓋住高的 popup 最下面幾列和 hint。不記：不然沿著一頁的連結走，每個連結都記一筆，
-使用者真正做的事會被淹掉。
+- `Esc` 立刻收掉一個 toast，從最舊的開始，一次一個（Rules F3），在關掉其他 popup 之前先收（Rules K4）；其他鍵都穿過它，送到底下。
+  focus 在 PTY 裡時，`Esc` 屬於子程序，toast 只能等時間到收掉。
+- **hint**：`Esc:close`，只畫在最舊的那個上面，也就是下一個會被 `Esc` 收掉的。

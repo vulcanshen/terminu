@@ -32,7 +32,8 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   | menu | `nf-fa-bars`（U+F0C9） |
   | key reference | `nf-fa-question_circle`（U+F059） |
   | confirm | `nf-md-shield_alert`（U+F0ECC） |
-  | toast | 依種類，inspect toast 有自己的，見 [`dialog/toast`](../dialog/toast-zh_TW.md) |
+  | toast | 依種類，見 [`dialog/toast`](../dialog/toast-zh_TW.md) |
+  | 項目的附註 | `nf-md-information_outline`（U+F02FD），見 [`panel`](panel-zh_TW.md)，panel.18 |
   | terminal | `nf-md-console`（U+F018D） |
   | Diff | `nf-md-compare`（U+F018A） |
   | input、表單、note、app 自己的 popup | app 可以自行決定：它編輯或顯示的東西（例：Rename 用一支筆）；避開太細的 outline glyph |

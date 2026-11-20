@@ -166,8 +166,8 @@ lands somewhere else.
 
 ### K4 `Esc` closes one layer at a time and never leaves the app
 
-`Esc` cancels the current operation or closes the top layer: a popup if there is one (toasts included, F3, but for the
-inspect toast, which takes no keys); while the
+`Esc` cancels the current operation or closes the top layer: a popup if there is one (toasts included, the oldest
+first, F3); while the
 popup is in a mode, it leaves the mode first (K11), and the next press closes the popup; with no popup, it leaves the
 current mode (selection, dragging; leaving an app's own mode may open a popup, K11) or goes up one level (e.g.
 clearing a panel filter) — what "up one level" means, the app may decide for itself. **One layer per press**,
@@ -545,9 +545,9 @@ nothing can go up, nobody pressing `k` means to move up, so what keeping the let
 falling-block games have long turned a piece with `↑`. Only in a mode, which shows that it is one: lists, menus and
 forms keep every key as it is.
 
-### K13 `D` is Diff; `x` and `X` delete
+### K13 `D` is Diff; `x` and `X` delete; `i` opens a note
 
-Two letters the whole family gives one meaning, so that one press does the same thing in every app (the user,
+Letters the whole family gives one meaning, so that one press does the same thing in every app (the user,
 2026-11-20, from kbu):
 
 - **`D`**: the Diff mode's key ([`components/layout/panel`](../components/layout/panel.md), panel.9), written `[D]iff`.
@@ -556,6 +556,8 @@ Two letters the whole family gives one meaning, so that one press does the same 
 - **`x`**: deletes the item under the cursor, `[x] Delete`; **`X`** deletes many at once (the marked ones, a whole
   batch), e.g. `[X] Delete marked`. Anything that removes for good counts (deleting, discarding changes, dropping), and
   it takes no other letter: not `D`, and not `d`, which moves (K12).
+- **`i`**: opens the note of the item under the cursor ([`components/layout/panel`](../components/layout/panel.md),
+  panel.18); no other action takes `i` (the user, 2026-11-20).
 
 **Why**: a key that deletes in one app and compares in another is a slip waiting to happen; with delete on `x`
 everywhere, `D` is free to mean Diff everywhere. The shifted key reaches further, as the bigger delete does.
@@ -863,8 +865,8 @@ The family's popups come in these eight classes only, each with fixed key meanin
 | **confirm** | read a reminder or warning; `Enter` accepts, `Esc` cancels (F6); what to read first sits above, the question last | confirm before delete, the quit confirm, "Connect to X?" carrying the details |
 | **input** | enter or pick one value, written back once confirmed; one value per popup. On the typing row it is the input state (K8); other parts follow K1 | rename, address bar, select, datetime picker, reorder |
 | **form** | one value per row; `Tab` switches between the field area and the action area, hjkl move item by item within that area (K12), `Enter` acts on the focused item (opening that field's input popup, choosing a radio option, flipping a checkbox, pressing a button), a button submits or does its action ([components/dialog/form](../components/dialog/form.md)) | sshu's Host form, webu's Add bookmark |
-| **note** | read-only, scrollable (K12); no list of options to run with `Enter` | key reference, YAML viewer, App Log, error popup |
-| **toast** | a short message popping up from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it. The inspect toast is there while the cursor is on its item, and every key passes through it ([components/dialog/toast](../components/dialog/toast.md)) | "Copied", an operation failed, where a link goes (webu's Focus mode) |
+| **note** | read-only, scrollable (K12); no list of options to run with `Enter` | key reference, YAML viewer, App Log, error popup, an item's note |
+| **toast** | a short message popping up from the bottom, gone on `Esc` or on its timer; every key but `Esc` passes through it; several stack ([components/dialog/toast](../components/dialog/toast.md)) | "Copied", an operation failed |
 | **terminal** | a subprocess running in the box; every key is its, only the exit key and the chords the app keeps (in an interactive terminal also `Alt-v` and `PgUp`) are the app's (K10) | kbu's Alterm, filu's shell |
 | **an app's own popup** | content the seven classes cannot hold: how the content is drawn and the keys on it, the app may decide for itself; the box and the layers work as a popup; with values to submit it works like a form (see below) | kamonu's popup for drawing cells |
 
@@ -891,7 +893,7 @@ The family's popups come in these eight classes only, each with fixed key meanin
   no search is a menu, except reorder: it has no search either, but it moves items and writes the whole order back
   once confirmed, so it is an input ([components/input/reorder](../components/input/reorder.md)).
 - **A toast is not a layer**: it triggers no dimming (F8) and does not count toward the layer colours' levels; but `Esc`
-  closes it first (K4), except the inspect toast, which takes no keys.
+  closes it first (K4), the oldest first.
 - **Each step of a multi-step flow is its own popup**: e.g. sorting by picking a column, then a direction, is two stacked
   popups (F4 keeps the source), not one box changing its content — each step has its own UX, and its own size fixed at
   opening (F7).
@@ -954,8 +956,6 @@ takes no other keys either.
 
 - With focus in a PTY, `Esc` belongs to the subprocess (K10); a terminal is left with the exit key. A toast can then only
   wait for its timer to go.
-- The inspect toast takes no `Esc`: it does what it does underneath, and the toast goes with the cursor
-  ([components/dialog/toast](../components/dialog/toast.md)).
 - In a textarea's writing state, `Esc` leaves the writing state for the moving state (K8).
 - While a popup is in a mode (e.g. a viewer's selection mode, a reorder's Drag mode), `Esc` leaves the mode first (K11);
   the next press closes the popup.
@@ -1030,7 +1030,8 @@ best, and no rule such as "reversible means no need to ask" can judge it.
   that item that is loading, not the popup — how to disclose it, the app may decide for itself.
 - **Position**: centred vertically. The toast is the exception: centred at the bottom of the screen, its bottom border on
   the third row from the bottom, so the two bottom rows always stay visible
-  ([components/dialog/toast](../components/dialog/toast.md)).
+  ([components/dialog/toast](../components/dialog/toast.md)). An item's note opens right under its item, or above it
+  when there is no room below ([components/layout/panel](../components/layout/panel.md), panel.18).
 - **A popup whose value can be invalid reserves an error row** (an input popup, a form): it opens with one error row in
   its height, blank while there is no error; an invalid value has its error written in this row (K3), and the box keeps
   its height. One whose value cannot be invalid (e.g. a multi-line editor) need not reserve one. When the action itself
@@ -1068,7 +1069,7 @@ P6).
   themselves. The calculation is in [components/color](../components/color.md).
 - **The drawn screen is dimmed once**: an unfocused panel is already dimmed (T2), and under a popup it gets a little
   darker again — so it shows where the focus was before the popup opened.
-- **A toast does not trigger dimming**: it takes no key but `Esc`, the inspect toast none (F1), and is not a layer.
+- **A toast does not trigger dimming**: it takes no key but `Esc`, and is not a layer.
 - **Borders are dimmed too, but keep their layer colour**: the borders of the popups below are drawn in a dimmed version
   of their own layer colour (components/color), not one common dim colour — dark, yet still showing which layer each is.
 
@@ -1503,27 +1504,10 @@ start would only be noise. What the app cannot use until it has found it (e.g. a
 start) holds the default until the finding is done; the warning comes only if it is still not there then (the user,
 2026-11-20, from kbu).
 
-**Several at one start**: when one start brings more than one of the toasts this rule gives (a location moved, values
-that do not fit in one file or several, a `.bak` copy that could not be made, a value naming an entry that is not
-there), they come as one toast, a row each ([components/dialog/toast](../components/dialog/toast.md), toast.2), in the
-order they happened; its kind is the strongest of theirs (Error, then Warning, then the rest), while in the App Log
-each row is an entry of its own, at its own kind. With no screen, each row is a line of its own on stderr (the user,
-2026-11-18, from terminu-go). **Coming later**: one that comes after the start (e.g. a namespace or a kind the app could
-only ask a cluster about once its screen was open) joins that toast while it still shows, one row more, its kind the
-strongest again and its time starting over; once that toast is gone, it comes as a toast of its own. Either way no toast
-of this rule replaces another before it was read (the user, 2026-11-20, from kbu).
-
-**With no screen**, all of it is printed (E1): every toast this rule gives, each WARN and INFO entry it puts in the
-App Log, and what an error popup it opens says (e.g. the two paths of a location that could not be moved) go to
-stderr, a line each, starting with `<app>: `, in the TUI's words. A file that cannot be read may have one more line
-saying what to do (e.g. `Open catu to move it aside and start fresh`). Where the TUI goes on (a location that could
-not be moved, values that did not fit), so does the command, and its exit status is that of its own work (E1). On
-stderr none of it gets into what is printed: `catu notes.md | less` gives less the file only (the user, 2026-11-19,
-tdp #24).
-
-A second toast replaces the first at once (toast.2), so the user would see only the last one, while the one replaced
-may be the one saying a file was written again and theirs is in the `.bak`: what this rule wants the user to learn at
-once.
+**Several at one start**: each is a toast of its own, stacked as every toast is
+([components/dialog/toast](../components/dialog/toast.md), toast.2), in the order they happened, and an entry of its
+own in the App Log; with no screen, each is a line of its own on stderr (the user, 2026-11-20: one way for every
+toast).
 
 **Outside the TUI**: on a screen that is not part of the TUI (K1, e.g. a sidebar a plug-in draws) and in output
 printed for another program to show (P5, e.g. a status line), nobody reads stderr, and several may run at once. There

@@ -147,6 +147,7 @@ tdp v1.2.20 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | K13-1 | K13 | Diff 模式的鍵是 `D`（`[D]iff`），除非同一個 panel 已經把 `D` 給了另一個不是刪除的動作 | Diff 模式 | 打開那個 panel 的 Space menu：Diff 那一列寫 `[D]iff` |
 | K13-2 | K13 | `x` 刪掉 cursor 上那一項（`[x] Delete`）；`X` 一次刪很多（標記的那些、整批） | 會刪除 | 找出所有會永久拿掉東西的動作（刪除、丟掉改動、drop）：一項的在 `x`，很多的在 `X` |
 | K13-3 | K13 | 會永久拿掉東西的動作不在 `D` 或 `d` 上 | 會刪除 | 看 Space menu 與程式：刪除、丟掉改動、drop 都不在 `D`、`d` 上 |
+| K13-4 | K13 | `i` 打開 cursor 上那一項的附註；其他動作都不用 `i` | 都要 | 在 Space menu 裡找用 `i` 的動作 |
 
 ## rules — M Menu 與揭露
 
@@ -431,13 +432,12 @@ tdp v1.2.20 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | E3-34 | E3 | 這種值照原本寫的顯示，label 畫 Red；那一筆回來了，這個值就又能用 | 存設定或資料 | 同上，看那個設定；把那一筆放回去再啟動：用的是它，label 不是 Red |
 | E3-35 | E3 | 沒有畫面時，值指到不在的一筆也一樣處理（檔案不動、用預設值、照樣印出結果），toast 那句改寫到 stderr | 沒有畫面也能印、又存設定或資料 | 刪掉這樣的一筆，把印出來的指令接到 pipe：結果照樣出來，stderr 有那句，沒有 `.bak` |
 | E3-36 | E3 | TUI 以外（不在 TUI 裡的畫面，或印給別的程式顯示的輸出）讀不了設定、狀態或資料時，不移到 `.bak`、不重寫，在那裡讓使用者看到哪個檔、為什麼；怎麼繼續由 app 決定 | 有不在 TUI 裡的畫面或印給別的程式顯示、又存設定或資料 | 弄壞設定檔，打開那個畫面或跑那個指令：檔案沒變，沒有 `.bak`，那裡看得到檔名與原因 |
-| E3-37 | E3 | 同一次啟動有不只一個 E3 的 toast（位置搬了、值不合規則、備份做不出來、值指到不在的一筆）時，合成一個 toast，照發生的順序一件一行，種類取其中最重的，App Log 裡一件一筆、用它自己的種類；沒有畫面時，各自一行寫到 stderr | 存設定或資料 | 寫一個不是 `#rrggbb` 的顏色，再讓某個設定指到不在的一筆，啟動：一個 toast，兩行都在；App Log 一件一筆 |
+| E3-37 | E3 | 同一次啟動的好幾個 E3 toast 各是一個、照發生順序往上疊，App Log 一件一筆；沒有畫面時各寫一行到 stderr | 都要 | 帶著搬過的檔與不合規則的值啟動：兩個 toast 疊起來 |
 | E3-38 | E3 | 設定檔裡 app 從來不讀的 key（例：打錯字）跟不再讀的 key 一樣留著，app 重寫那個檔時也留著，不跳 toast；每次啟動在 App Log 記一筆 INFO，寫出 key 與檔案，除非 app 知道自己以前讀過，否則寫 `Not read` | 存設定或資料 | 在設定檔寫一個打錯的 key（例：`refesh: 5`），啟動，改一個設定：檔案裡 key 還在，App Log 有那筆 INFO |
 | E3-39 | E3 | TUI 以外（不在 TUI 裡的畫面，或印給別的程式顯示的輸出）遇到值不合規則或指到不在的一筆：沒有 `.bak`，檔案不動，這一次用預設值，在那裡讓使用者看到哪個檔有什麼問題（不是只寫 stderr）；下次打開 TUI 時照 E3 備份、重寫、跳 toast | 有不在 TUI 裡的畫面或印給別的程式顯示、又存設定或資料 | 寫一個不是 `#rrggbb` 的顏色，打開那個畫面或跑那個指令：檔案沒變，沒有 `.bak`，那裡看得到問題；再打開 TUI：有 `.bak`、檔案重寫、跳 toast |
 | E3-40 | E3 | 沒有畫面時，E3 的每個 toast、每一筆 WARN 與 INFO、error popup 都寫到 stderr，一件一行，開頭 `<app>: `，跟 TUI 同一句話；讀不了的檔可以多一行說怎麼辦；TUI 會繼續的地方，指令也繼續 | 都要 | 讓一個印到 pipe 的指令遇到不合規則的值、沒在讀的 key、搬不動的舊位置：每一件都是 stderr 上的一行，pipe 只收到輸出 |
 | E3-41 | E3 | 值指到 app 外面的東西（例：狀態裡記著的 namespace），拿名字就能用的直接用；回答說其中一筆不在了，就少了它繼續、警告一次，下次寫檔時拿掉 | 會讀 app 外面的東西 | 記一組選擇，在 app 外面拿掉其中一筆，啟動：其他的馬上顯示，Warning 寫出不在的那一筆；離開再啟動：不再警告，檔案裡也沒有它了 |
 | E3-42 | E3 | 找到之前用不了的東西（例：之後才查到的種類），找完之前先用預設值，找完還是沒有才警告 | 啟動後才找東西 | 記這樣的一筆再啟動：找完之前不跳警告；那一筆在的話，完全不跳 |
-| E3-43 | E3 | 啟動之後才來的 E3 toast，啟動的 toast 還在時併進去（多一列、種類取最重、時間重算），已經收掉了才另外跳 | 啟動後才找東西 | 帶著搬過的檔與一筆之後才知道的記錄啟動：晚到的那一列併進啟動的 toast；再啟動一次、等 toast 收掉：它另外跳 |
 | E4-1 | E4 | 程式碼裡的 PUA glyph 寫成 code point | 都要 | 讀程式：掃原始碼找不到 PUA 字元 |
 | E4-2 | E4 | README 的需求段寫明需要 Nerd Font | 都要 | 讀兩份 README 的前置需求 |
 | E4-3 | E4 | README 的需求段跟 Nerd Font 並列寫明需要 truecolor terminal（24-bit 色） | 都要 | 讀兩份 README 的前置需求 |
@@ -784,6 +784,10 @@ tdp v1.2.20 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | panel-189 | panel.17 | 說明牌永遠拿不到 focus：`Tab` 與數字鍵都跳過它，滑鼠點它沒作用，沒有 Space menu | 說明牌 | 在畫面上一直按 `Tab`、每個數字鍵；點說明牌 |
 | panel-190 | panel.17 | 說明牌照 app 挑的常亮或常暗，開 popup 時跟大家一起變暗 | 說明牌 | 把 focus 移來移去、開個 popup，看說明牌 |
 | panel-191 | panel.17 | 說明牌的內容在最小畫面（60 × 32）時就放得下；還是放不下的從底部切掉，最後一列結尾加 `…` | 說明牌 | 把終端機縮到 60 × 32 看說明牌；讓它的文字比預期長 |
+| panel-192 | panel.18 | cursor 停在有附註的項目上，附註的頭（`nf-md-information_outline` U+F02FD 與 `i`）出現在那一項正下方、蓋在下一列上，不收鍵；cursor 離開就消失 | 項目附註 | 把 cursor 移到有附註的項目上再移開 |
+| panel-193 | panel.18 | 按 `i` 在那一項下方打開標題 `NOTE` 的 viewer，focus 進去：可以捲動、有選取模式與 `/`，底下變暗；最高到 panel 的一半 | 項目附註 | 在附註很長的項目上按 `i`；捲動、搜尋、複製 |
+| panel-194 | panel.18 | `Esc` 把附註收回成頭，focus 回到清單、cursor 不動 | 項目附註 | 打開附註，按 `Esc` |
+| panel-195 | panel.18 | 那一項下面沒空間時，附註往上開，頭在最下面、貼著那一項 | 項目附註 | 在 panel 最底下的項目上按 `i` |
 | panel-135 | panel.5 | 可以截短的欄（名稱、網址、一行文字）分剩下的寬度、照自己的截法截；其他短欄照自己最寬的值，不縮 | 表頭 | 讓清單裡有一個很長的名稱，看其他欄照樣完整、名稱被截短 |
 | panel-136 | panel.5 | 格子裡的值（檔名、名字這種從檔案或別的程式來的）有控制字元時，照打字列寫成紅色的轉義（`\n`、`\t`、`\x1b`），不丟、不換成空白、不原樣送給終端機 | 都要 | 讓清單裡有一個名字含換行或 `\x1b` 的項目（例：檔名），看那一格；或讀程式 |
 | panel-181 | panel.5 | 一個項目可以占好幾列，幾列、給哪些項目看 app 需要；第一列放欄位與勾；cursor 只畫在第一列，其他列整個內寬 Surface1 底、字保留自己的顏色、沒有箭頭 | 占好幾列的項目 | 把 cursor 放在占好幾列的項目上，再放在只有一列的項目上 |
@@ -1177,21 +1181,15 @@ tdp v1.2.20 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | toast-10 | toast.2 | Error：標題 `nf-md-fire`（U+F0238）`ERROR`，文字 Red | toast | 跳一個 Error toast |
 | toast-11 | toast.2 | Success、Info 顯示 2200ms | toast | 量 Success、Info toast 停留的時間 |
 | toast-12 | toast.2 | Warning、Error 顯示 4400ms | toast | 量 Warning、Error toast 停留的時間 |
-| toast-13 | toast.2 | 第二個 toast 來時直接取代第一個，重新計時 | toast | 連續跳兩個 toast |
-| toast-14 | toast.3 | hint 是 `Esc:close` | toast | 看 toast 的下框 |
+| toast-13 | toast.2 | toast 往上疊：新的出現在最下面、把正在顯示的往上推，各算各的時間；最多三個，第四個來時最舊的先走 | toast | 連續跳出四個 toast |
+| toast-14 | toast.3 | `Esc` 一次收一個 toast，從最舊的開始；`Esc:close` 只畫在最舊的那個上 | toast | 跳出三個 toast，按三次 `Esc` |
+| toast-29 | toast.2 | 跟正在顯示的 toast 一模一樣的話不會多一個：那個重新計時，標題寫出次數（`INFO ×3`） | toast | 連續複製三次 |
 | toast-15 | toast.2 | Success：標題 `nf-md-check_circle`（U+F05E0）`SUCCESS`，文字 Green | toast | 跳一個 Success toast |
 | toast-16 | toast.2 | 做完的事用 Success 還是 Info，app 可以自行決定；失敗一律 Error | toast | 完成一個動作，看跳的是 Success 或 Info；讓一個動作失敗，看是 Error |
 | toast-17 | toast.1 | 跟某個 popup 的動作有關、需要使用者看完再決定的失敗，用 error popup，不用 toast | toast | 讓 popup 裡的動作失敗，看跳的是 error popup |
 | toast-18 | toast.2 | 做完了或還能用、但有值得注意的地方用 Warning（例：`3 files skipped`） | toast | 做一個部分略過的動作，看跳的是 Warning |
 | toast-19 | toast.2 | 動作失敗一律用 Error，不用 Warning | toast | 讓一個動作失敗，看跳的是 Error（或 error popup） |
 | toast-20 | toast.2 | toast 每一列的第一個字母大寫，其他照原樣；一列從名稱或路徑開始時，名稱照原樣不改大小寫 | toast | 讓 app 跳幾個 toast（含開頭是檔名的），看每一列的第一個字 |
-| toast-21 | toast.4 | inspect toast 只在游標停在它那一項時存在：停上去就出現、離開就消失，沒有計時 | inspect toast | 把游標移到有的項目上等一下，它一直在；移開，它消失 |
-| toast-22 | toast.4 | 所有鍵都穿過 inspect toast，`Esc` 也是：`Esc` 照底下的意思做（例：離開模式），toast 跟著游標消失 | inspect toast | 它在的時候按 `j`，游標移動；按 `Esc`，底下立刻照做 |
-| toast-23 | toast.4 | inspect toast 的標題是 `nf-md-eye`（U+F0208）`INSPECT`，文字 Text，下框沒有 hint | inspect toast | 看它的標題、文字與下框 |
-| toast-24 | toast.4 | 一般 toast 取代 inspect toast；那個走了以後，游標還在那一項上，inspect toast 就回來 | inspect toast | 它在的時候做一個會跳 toast 的動作（例：複製），等一下，inspect toast 回來 |
-| toast-25 | toast.4 | inspect toast 不蓋住游標那一項：畫面捲動，讓那一項露在它上面 | inspect toast | 把游標移到靠下面的項目，那一項一直在 toast 上面看得到 |
-| toast-26 | toast.4 | panel 上面開了 popup 時 inspect toast 不顯示；popup 關掉後，游標還在那一項上就回來 | inspect toast | 它在的時候按 `Space`，它不見；按 `Esc`，它回來 |
-| toast-27 | toast.4 | inspect toast 不記進 App Log | inspect toast | 把游標移過幾個有的項目，按 `!`，裡面一筆都沒有 |
 
 ## input/README
 

@@ -668,3 +668,35 @@ user, 2026-11-20, from tetru).
 **Why**: some things on a screen are only to be read, like a sign on a wall. As a panel it takes its place in the
 layout and resizes with the rest; never taking the focus, it adds no stop to `Tab` and no number to the frames; with
 nothing to scroll, it never hides what it says behind a key nobody can press there.
+
+## panel.18 An item's note
+
+An item may carry a note the app gives it, about the item but with no room in a column or wanted only now and then
+(e.g. where a link goes, a remark); which items have one and what it says, the app may decide for itself (the user,
+2026-11-20; it replaces the inspect toast).
+
+```
+┃▓▓▓effective_go▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃   ← the cursor on an item with a note
+┃   ┌ 󰋽 i ┐                              ┃   ← its head, over the row below
+┃   next item                             ┃
+
+┃▓▓▓effective_go▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃
+┃   ┏━󰋽 NOTE━━━━━━━━━━━━━━━━━━┓         ┃   ← i: the note opens under the item, the focus in it
+┃   ┃ go.dev/doc/effective_go  ┃         ┃
+┃   ┗━ Esc:close ━━━━━━━━━━━━━━┛         ┃
+```
+
+- **The head**: while the cursor rests on an item with a note, the note's head shows right under the item, a small box
+  holding `nf-md-information_outline` (U+F02FD) and the key `i`, lying over the row below; it takes no key and no focus,
+  and the cursor moving away takes it.
+- **`i` opens it**: the box opens downward from its head into a viewer ([`dialog/note`](../dialog/note.md)) anchored
+  under the item, titled `nf-md-information_outline` `NOTE`, and the focus goes into it: it scrolls, has the viewer's
+  selection mode and `/` search, and what is under it dims (Rules F8). It is at most half the panel's height, its long
+  lines wrapped; beyond that it scrolls.
+- **`Esc`** closes it back to its head; the focus returns to the list, the cursor where it was (Rules K4).
+- **No room below** (the item near the panel's bottom): it opens upward, its head at the bottom against the item.
+- `i` is the family's key for it (Rules K13).
+
+**Why**: a toast is a word in passing, and what an item is belongs with the item. Shown only when asked for, the note
+covers nothing until wanted, and its head says one is there; opened right under the item, it is plainly about that
+item; as a viewer, its words can be read whole, searched and copied (e.g. a link's address).

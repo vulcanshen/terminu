@@ -133,7 +133,7 @@ cursor 換，在清單上按 `Enter`，最直觀的事常常就是進去改它�
 
 ### K4 `Esc` 一次關一層，永不離開 app
 
-`Esc` 取消當前操作或關閉最上層：有 popup 關 popup（包括 toast，F3；inspect toast 不收鍵，不算）；popup 裡正在模式中時，先離開模式（K11），
+`Esc` 取消當前操作或關閉最上層：有 popup 關 popup（包括 toast，從最舊的開始，F3）；popup 裡正在模式中時，先離開模式（K11），
 再按一次才關 popup；沒有 popup 就退出當前模式（選取、拖曳；離開 app 自己的模式時可以跳出 popup，K11）或往上一層（例：清掉 panel filter）——
 「上一層」是什麼，app 可以自行決定。**一次一層**，而且 **`Esc` 永遠不會離開 app**，到了最上層就什麼都不做。
 
@@ -420,14 +420,16 @@ app 在模式裡最多只能離開模式，之後由 tdp 接手，使用者一�
 意思。誤按一下 `g` 不讓下一個鍵失靈。沒有移動可做的鍵不一樣：方塊不會往上的地方，按 `k` 的人不是要往上移，保留字母要防的事
 不存在；落塊遊戲也一直用 `↑` 旋轉。只限模式，模式會標出自己是模式：清單、menu、表單的鍵都照舊。
 
-### K13 `D` 是 Diff；`x`、`X` 是刪除
+### K13 `D` 是 Diff；`x`、`X` 是刪除；`i` 打開附註
 
-整個家族只給一個意思的兩個字母，按下去在每個 app 都做同一件事（user 2026-11-20，來自 kbu）：
+整個家族只給一個意思的幾個字母，按下去在每個 app 都做同一件事（user 2026-11-20，來自 kbu）：
 
 - **`D`**：Diff 模式的鍵（[`components/layout/panel`](../components/layout/panel-zh_TW.md)，panel.9），寫成 `[D]iff`。同一個
   panel 已經把 `D` 給了自己的另一個動作、又不是刪除（例：Drag）時，app 可以把其中一個換成別的鍵。
 - **`x`**：刪掉 cursor 上那一項，`[x] Delete`；**`X`**：一次刪很多（標記的那些、整批），例：`[X] Delete marked`。會永久拿掉東西
   的都算（刪除、丟掉改動、drop），不用其他字母：不用 `D`，也不用會移動的 `d`（K12）。
+- **`i`**：打開 cursor 上那一項的附註（[`components/layout/panel`](../components/layout/panel-zh_TW.md)，panel.18）；其他動作都
+  不用 `i`（user 2026-11-20）。
 
 **為什麼**：同一個鍵在這個 app 是刪除、在那個 app 是比較，遲早會按錯；刪除一律在 `x`，`D` 才能在每個 app 都是 Diff。
 按 Shift 的鍵影響的範圍比較大，跟大的刪除一樣。
@@ -695,8 +697,8 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 | **confirm** | 讀一段提醒或警告，`Enter` 接受、`Esc` 取消（F6）；要先看的內容在上、問句最後 | 刪除前的確認、離開的確認、帶著明細的「連線到 X？」 |
 | **input** | 輸入或選出一個值，確定後寫回去；一個 popup 一個值。打字列上是輸入態（K8），其他部分照 K1 | 重新命名、網址列、select、datetime picker、reorder |
 | **form** | 一列一個值；`Tab` 在欄位區與動作區之間切換、hjkl 在那一區裡一個一個項目移（K12），`Enter` 對 focus 的項目做事（打開那一欄的 input popup、選 radio、翻 checkbox、按按鈕），按鈕送出或做它的動作（[components/dialog/form](../components/dialog/form-zh_TW.md)） | sshu 的 Host 表單、webu 的 Add bookmark |
-| **note** | 唯讀，可以捲動（K12）；沒有可用 `Enter` 執行的選項清單 | key reference、YAML 檢視、App Log、error popup |
-| **toast** | 從下方彈出的短訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它。inspect toast 在游標停在它那一項時存在，所有鍵都穿過它（[components/dialog/toast](../components/dialog/toast-zh_TW.md)） | 「已複製」、操作失敗、連結會去哪（webu 的 Focus mode） |
+| **note** | 唯讀，可以捲動（K12）；沒有可用 `Enter` 執行的選項清單 | key reference、YAML 檢視、App Log、error popup、項目的附註 |
+| **toast** | 從下方彈出的短訊息，`Esc` 或時間到就收掉；除了 `Esc`，按鍵都穿過它；好幾個時往上疊（[components/dialog/toast](../components/dialog/toast-zh_TW.md)） | 「已複製」、操作失敗 |
 | **terminal** | 跑在框裡的子程序，按鍵都給它，只有出口鍵與 app 保留的組合鍵（互動 terminal 還有 `Alt-v`、`PgUp`）屬於 app（K10） | kbu 的 Alterm、filu 的 shell |
 | **app 自己的 popup** | 七類裝不下的內容：內容怎麼畫、內容上的按鍵 app 可以自行決定，框與層照 popup；有要送出的值時照表單（見下面） | kamonu 畫格子的 popup |
 
@@ -715,7 +717,7 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 - **清單加搜尋就是 finder**：一般的 finder、select、checkbox popup、file-picker 都是 finder 的一種 —— 打字列是輸入態，清單是選；
   打字列的按鍵見 [components/input/finder](../components/input/finder-zh_TW.md)。它們仍是 input，不是同時兩類。沒有搜尋的清單是 menu，
   只有 reorder 例外：它也沒有搜尋，但做的是搬動項目、確定後把整個順序寫回去，是 input（[components/input/reorder](../components/input/reorder-zh_TW.md)）。
-- **toast 不是一層**：不觸發淡化（F8）、不算層色的層數；但 `Esc` 先收掉它（K4），inspect toast 除外，它不收鍵。
+- **toast 不是一層**：不觸發淡化（F8）、不算層色的層數；但 `Esc` 先收掉它（K4），從最舊的開始。
 - **多步驟的流程，每一步是自己的 popup**：例如排序先選欄位、再選方向，是兩個疊起來的 popup（F4 保留 source），不在同一個框裡
   換內容 —— 每一步有自己的 UX，也有自己打開時定好的大小（F7）。
 - **app 自己的 popup 只給七類裝不下的內容**（例：kamonu 畫 25×19 格子的 popup）。七類裝得下的 —— 清單、確認、一個值、一列
@@ -764,7 +766,6 @@ popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中�
 **例外**：
 
 - focus 在 PTY 裡時，`Esc` 屬於子程序（K10）；terminal 用出口鍵離開。這時 toast 只能等時間到收掉。
-- inspect toast 不收 `Esc`：`Esc` 照底下的意思做，toast 跟著游標消失（[components/dialog/toast](../components/dialog/toast-zh_TW.md)）。
 - textarea 在寫入狀態時，`Esc` 是離開寫入狀態、進入移動狀態（K8）。
 - popup 裡正在模式中時（例：viewer 的選取模式、reorder 的 Drag mode），`Esc` 先離開模式（K11），再按一次才關。
 - 內容改過的表單、textarea、reorder 與照表單的 app 自己的 popup（F1），`Esc` 先開 confirm 問要不要放棄（[components/dialog/form](../components/dialog/form-zh_TW.md)）。
@@ -821,7 +822,9 @@ App Log（`!`，[components/dialog/note](../components/dialog/note-zh_TW.md)）�
   loading 結束 icon 就消失。這裡的 loading 指的是**整個 popup** 的內容還沒到（例：清單的項目還沒載完）；表單的按鈕在跑時也放
   同一個 icon，見 components/layout/popup 的 loading。若只是**某一個
   項目**本身是持續進來的資料流（例：一筆一直有資料的連線），loading 的是那個項目，不是 popup —— 那個項目怎麼揭露，app 可以自行決定。
-- **位置**：垂直置中。toast 例外：在畫面下方置中，下框在畫面倒數第三列，最下面兩列一直看得到（[components/dialog/toast](../components/dialog/toast-zh_TW.md)）。
+- **位置**：垂直置中。toast 例外：在畫面下方置中，下框在畫面倒數第三列，最下面兩列一直看得到
+  （[components/dialog/toast](../components/dialog/toast-zh_TW.md)）。項目的附註在那一項正下方打開，下面沒空間時開在上面
+  （[components/layout/panel](../components/layout/panel-zh_TW.md)，panel.18）。
 - **值可能不合格的 popup 預留一列錯誤列**（input popup、表單）：打開時高度就含一列錯誤列，沒有錯誤時空白；值不合格時錯誤
   寫在這一列（K3），框的高度不變。不會不合格的（例：多行編輯器）不必預留。動作本身失敗（寫檔失敗、遠端拒絕）不寫錯誤列，
   開 error popup（[components/layout/popup](../components/layout/popup-zh_TW.md)）。
@@ -846,7 +849,7 @@ App Log（`!`，[components/dialog/note](../components/dialog/note-zh_TW.md)）�
   背景、不可以把所有前景換成同一個淡色：那會拆掉靠背景畫出來的元素（powerline 膠囊的本體、cursor bar、選取反白）。
   層色、警示色、串流內容照同一個淡化，自然成為各自顏色的淡化版本。計算方式見 [components/color](../components/color-zh_TW.md)。
 - **對畫好的畫面淡化一次**：失焦的 panel 已經淡過（T2），在 popup 底下會再暗一點 —— 看得出 popup 打開前 focus 在哪。
-- **toast 不觸發淡化**：除了 `Esc` 它不收鍵，inspect toast 連 `Esc` 都不收（F1），不是一層。
+- **toast 不觸發淡化**：除了 `Esc` 它不收鍵，不是一層。
 - **邊框也一起淡化，但保留層色**：底下那幾層 popup 的邊框畫成它自己層色（components/color）的淡化版本，不是統一的淡色 ——
   暗了，但仍看得出它是第幾層。
 
@@ -1199,22 +1202,9 @@ app 就少了那一筆繼續，跳 Warning toast、記一筆 WARN，下次寫這
 警告只是雜訊。找到之前根本用不了的（例：啟動後才查到的種類），找完之前先用預設值，找完還是沒有才跳警告（user 2026-11-20，
 來自 kbu）。
 
-**同一次啟動有好幾件**：同一次啟動遇到這條規則裡不只一個 toast（位置搬了、一個或好幾個檔有值不合規則、`.bak` 備份做不出來、值指
-到不在的一筆）時，放進同一個 toast，一件一行（[components/dialog/toast](../components/dialog/toast-zh_TW.md)，toast.2），照發生
-的順序；種類取其中最重的（Error 最重，再來 Warning，再來其他），App Log 裡則是一件一筆，用它自己的種類。沒有畫面時，每一行各自寫
-一行到 stderr（user 2026-11-18，來自 terminu-go）。
-**晚到的**：啟動之後才來的（例：畫面開了之後才問得到叢集的 namespace、種類），那個 toast 還在畫面上時就併進去，多一列，
-種類重新取最重的、時間重新算；那個 toast 已經收掉了，才另外跳一個。不管哪一種，這條規則的 toast 都不會在被讀到之前被
-另一個蓋掉（user 2026-11-20，來自 kbu）。
-
-**沒有畫面時**，全部都印出來（E1）：這條規則給的每個 toast、記進 App Log 的每一筆 WARN 與 INFO、開的 error popup 說的話（例：
-搬不動時的兩個路徑），都寫到 stderr，一件一行，開頭 `<app>: `，跟 TUI 同一句話。讀不了的檔可以多一行說怎麼辦（例：
-`Open catu to move it aside and start fresh`）。TUI 會繼續的地方（搬不動、值不合規則），指令也繼續，exit status 看指令
-自己的事有沒有做完（E1）。寫在 stderr，就不會混進印出來的東西：`catu notes.md | less` 給 less 的只有檔案內容
-（user 2026-11-19，tdp #24）。
-
-新 toast 一來就取代舊的（toast.2），使用者只會看到最後一個；被蓋掉的可能正是「檔案被重寫了，你原本的在 `.bak`」，也就是這條規則
-要使用者當下就知道的事。
+**同一次啟動有好幾件**：每一件各是一個 toast，跟所有 toast 一樣往上疊
+（[components/dialog/toast](../components/dialog/toast-zh_TW.md)，toast.2），照發生的順序，App Log 裡也一件一筆；沒有畫面時，每一
+件各寫一行到 stderr（user 2026-11-20：所有 toast 一種方式）。
 
 **TUI 以外**：不在 TUI 裡的畫面（K1，例：外掛畫的側邊欄）與印給別的程式顯示的輸出（P5，例：狀態列），stderr 沒人看，還常常好幾個
 同時在跑。在這些地方，這條規則的每一種情況（讀不了、值不合規則、指到不在的一筆）都一樣：不動任何檔案（不移到 `.bak`、不重寫），
