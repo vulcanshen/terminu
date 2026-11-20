@@ -654,6 +654,7 @@ tdp v1.2.19 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | panel-179 | panel.9 | `Esc` 一層一層退回，最後回到 Diff 模式、anchor 留著 | Diff 模式 | 同上，一直按 `Esc` 到回到模式 |
 | panel-185 | panel.9 | Diff 模式放在明細 panel 的清單：兩個框都是模式顏色、都寫 `Diff`，粗線在有 focus 的那個；明細跟著 cursor 顯示 anchor 與 cursor 的差異（UNIFIED，或差異項目），在 anchor 或一樣的列上顯示空狀態，不跳 toast | Diff 模式在明細 panel | 進入模式，把 cursor 移過幾列、再移到 anchor 上；看兩個框與明細 |
 | panel-186 | panel.9 | 在清單上按 Diff 鍵或 `Enter`，focus 移到明細；`Esc` 一層一層退：視窗 → 明細 → 清單（模式還在、anchor 留著）→ 離開模式；`Tab` 與數字鍵在兩者之間移動 | Diff 模式在明細 panel | 進到明細、打開一項的差異，再一直按 `Esc` 到離開模式；在模式裡試 `Tab` 與數字鍵 |
+| panel-187 | panel.9 | Diff 模式放在明細時：不能跟 anchor 比的列，明細顯示空狀態說明；有一邊讀不到，明細顯示 panel.15 的錯誤狀態（Red 的事實，哪一邊、為什麼），不開錯誤視窗 | Diff 模式在明細 panel | 把 cursor 移到跟 anchor 不同種類的列、再移到讀不到的列 |
 | panel-146 | panel.3 | 進入模式時模式名從中間打開：兩個接頭並排出現、往兩邊撐開，名字從中間露出來；離開時倒著播；第一幀是兩個接頭，之後每 32ms 一幀多露出一個字 | 模式 | 進入再離開模式，看上框右邊 |
 | panel-147 | panel.3 | 模式名開或關到一半時又切換，從當下的位置轉向，不從頭播 | 模式 | 快速進出模式幾次（例：`D` `Esc` `D`） |
 | panel-148 | panel.3 | 模式立刻生效、外框立刻變色；模式名播動畫時照樣收鍵 | 模式 | 進入模式後馬上按模式的鍵；看外框顏色 |

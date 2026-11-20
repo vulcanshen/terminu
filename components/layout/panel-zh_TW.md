@@ -276,6 +276,9 @@ panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reord
     （[`dialog/note`](../dialog/note-zh_TW.md)，note.8 的「在 panel 裡」：文字是 UNIFIED，裝著許多項目的列是帶標記的差異項目，
     位置列寫 `<anchor> ↔ <另一個>`）。cursor 在 anchor 上、或在跟 anchor 一樣的列上時，明細顯示空狀態說明（例：`Move to another
     commit to diff with 1a2b3c4`、`No differences between a and b`），不跳 toast。
+    cursor 在不能跟 anchor 比的列上（不是文字，或一邊裝著許多項目、另一邊沒有），明細顯示空狀態說明
+    （例：`Can't diff photo.png with 1a2b3c4`）；有一邊讀不到時，明細顯示 panel.15 的錯誤狀態，Red 的事實寫出哪一邊、為什麼，
+    不開錯誤視窗，不然 cursor 每經過那一列就開一次（user 2026-11-20，來自 terminu-go）。
   - 在清單上按 Diff 鍵或 `Enter`，focus 移到明細；在明細上按 `Enter` 打開一項的差異或再進一層，同上。
   - `Esc` 照使用者來的路一層一層退回（Rules K4）：從差異視窗回到明細，從明細回到清單，模式還在、anchor 留著；在清單上按 `Esc`
     才離開模式，明細回到跟著 cursor 所在那一列。

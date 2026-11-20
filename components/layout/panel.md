@@ -371,7 +371,11 @@ the mode and makes that row the anchor; then another row is picked and the two a
     as a panel draws one ([`dialog/note`](../dialog/note.md), note.8 "In a panel": UNIFIED for text, the items that
     differ with their marks and the location row `<anchor> ↔ <the other>` for rows that hold many). With the cursor on
     the anchor, or on a row the same as the anchor, the details show an empty state saying so (e.g. `Move to another
-    commit to diff with 1a2b3c4`, `No differences between a and b`), with no toast.
+    commit to diff with 1a2b3c4`, `No differences between a and b`), with no toast. On a row that cannot be diffed with
+    the anchor (not text, or one holds many and the other does not), the details show an empty state saying so (e.g.
+    `Can't diff photo.png with 1a2b3c4`); when a side cannot be read, they show the error state of panel.15, a Red fact
+    naming the side and why, with no error popup, which would open each time the cursor passed the row (the user,
+    2026-11-20, from terminu-go).
   - The diff key or `Enter` on the list sends the focus to the details; there `Enter` opens an item's diff or goes in,
     as above.
   - `Esc` goes back the way the user came, one layer at a time (Rules K4): from a diff popup to the details, from the
