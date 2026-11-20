@@ -11,7 +11,8 @@ popup, the typing explanation on a form ([`dialog/form`](form.md)). A viewer alw
 
 ## note.2 Look
 
-- The frame follows [`layout/popup`](../layout/popup.md): the padding above and below is always there, in a viewer too.
+- The frame follows [`layout/popup`](../layout/popup.md): the padding above and below is always there, in a viewer too;
+  a location row takes the top padding's place (note.8).
 - **Title**: a glyph plus what is shown, drawn as the title capsule: the kind in uppercase; to say which one is shown,
   ` — ` and then the name, the name as it is (e.g. `YAML — pod/nginx`). The glyph, the app may decide for itself; the glyphs of
   the key reference and the error popup are below.
@@ -317,7 +318,8 @@ with `h|l` (Rules K12). It is `terminal width − 2` wide, with no 120-column ca
 gittu).
 
 - **The first row names the two sides**: `<anchor> ↔ <the other>`, as the app names them, in Lavender as a location row
-  is ([`layout/panel`](../layout/panel.md), panel.10), fixed at the top and never scrolled. When it does not fit it is
+  is ([`layout/panel`](../layout/panel.md), panel.10), right under the top border in the top padding's place
+  ([`layout/popup`](../layout/popup.md), popup.1), fixed and never scrolled. When it does not fit it is
   folded, never cut: before `↔` into two rows, the second starting with `↔`, and a side still too wide goes on into the
   next row, folded after a `/` where it can be. How many rows it takes is known when the popup opens (Rules F7). So the
   title stays short and the tabs always show, and the names have the whole width (the user, 2026-11-19, from gittu).

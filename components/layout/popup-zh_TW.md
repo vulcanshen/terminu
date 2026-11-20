@@ -51,7 +51,8 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   panel 的膠囊緊接著角，[`panel`](panel-zh_TW.md)）。
 - **留白**：內容上下各留一列空白，左右離框一格（有整列 cursor 的，右邊的留白跟箭頭一樣寬，見下一條）。每一種 popup 都有，
   viewer 也一樣；只有 terminal 例外：上下左右都不留白
-  （[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
+  （[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。位置列（例：比較的兩邊，[`dialog/note`](../dialog/note-zh_TW.md)，note.8）
+  占掉上方留白的位置，跟 panel 一樣緊貼上框（[`panel`](panel-zh_TW.md)，panel.10）；下方留白照舊（user 2026-11-20，來自 gittu）。
 - **cursor 色塊蓋住留白**：清單的 cursor 從框貼到框，蓋住左右的留白，色塊上的字照樣離框一格（[`dialog/menu`](../dialog/menu-zh_TW.md)、
   [`input/finder`](../input/finder-zh_TW.md)）；表單的 focus 色塊從值開始、一直到框，蓋住右邊的留白（[`dialog/form`](../dialog/form-zh_TW.md)）。
   右邊的留白畫 U+E0B0（`nf-pl-left_hard_divider`），色塊的顏色，像一個箭頭指著這一列（[`panel`](panel-zh_TW.md)

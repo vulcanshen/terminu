@@ -11,7 +11,7 @@
 
 ## note.2 長相
 
-- 框照 [`layout/popup`](../layout/popup-zh_TW.md)：上下留白一律有，viewer 也一樣。
+- 框照 [`layout/popup`](../layout/popup-zh_TW.md)：上下留白一律有，viewer 也一樣；位置列占掉上方留白的位置（note.8）。
 - **標題**：glyph 加上顯示的東西，畫成標題膠囊：種類大寫；要寫顯示的是哪一個時，接 ` — ` 再接名稱，名稱照原樣（例：
   `YAML — pod/nginx`）。glyph app 可以自行決定；key reference 與 error popup 的 glyph 見下面。
 - **捲動位置**：放不下時，下框右邊寫看得到的行 `N-M of T`；viewer 的選取模式裡寫游標所在的行 `N of M`（見下面的「選取模式」）。
@@ -244,7 +244,8 @@ panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）�
 `terminal 寬 − 2`，不受 120 欄上限（Rules F7；user 2026-11-19，來自 gittu）。
 
 - **第一列寫兩邊的名字**：`<anchor> ↔ <另一個>`，名字由 app 給，跟位置列一樣用 Lavender
-  （[`layout/panel`](../layout/panel-zh_TW.md)，panel.10），固定在最上面、不跟著捲動。放不下時折行，不切：先在 `↔` 前面折成兩列，
+  （[`layout/panel`](../layout/panel-zh_TW.md)，panel.10），緊貼上框、占掉上方留白的位置
+  （[`layout/popup`](../layout/popup-zh_TW.md)，popup.1），固定、不跟著捲動。放不下時折行，不切：先在 `↔` 前面折成兩列，
   第二列以 `↔` 開頭；一邊還是太寬就接著往下一列折，能折在 `/` 後面就折在那裡。占幾列在打開時就知道（Rules F7）。這樣標題夠短，
   tab 一定看得到，名字也有整個寬度可用（user 2026-11-19，來自 gittu）。
 - **只顯示有差異的段落**：前後各留 3 行沒變的；段落之間一條分隔線（Overlay0，跟 popup 裡的分隔線一樣）。

@@ -793,7 +793,7 @@ tdp v1.2.17 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | popup-12 | popup.1 | 框到了最寬還放不下時，hint 從 `Esc` 前面的那一組開始往前整組捨棄，不截在項目中間；最後的 `Esc` 一定留著 | 都要 | 把終端機縮到很窄，打開寬度到頂的 popup，看下框留著 `Esc` |
 | popup-13 | popup.1 | hint 捨棄時，下框右邊的捲動位置留著 | 都要 | 同上，讓內容也放不下，看右下 |
 | popup-14 | popup.1 | 框上的字與角之間隔一段線：`┏━TITLE`、`┗━ Enter:run`、`4 of 12 ━┛` | 都要 | 看 popup 的四個角 |
-| popup-15 | popup.1 | 內容上下各留一列空白（viewer 也一樣） | 都要 | 看各種 popup 上框下面、下框上面那一列 |
+| popup-15 | popup.1 | 內容上下各留一列空白（viewer 也一樣）；位置列占掉上方那一列，緊貼上框 | 都要 | 看各種 popup 上框下面、下框上面那一列 |
 | popup-16 | popup.1 | 內容左右離框一格 | 都要 | 看內容與左右框之間 |
 | popup-17 | popup.1 | 清單的 cursor 從框貼到框，蓋住左右的留白 | 都要 | 按 `Space` 看 cursor 色塊的兩端 |
 | popup-18 | popup.1 | cursor 色塊上的字照樣離框一格 | 都要 | 同上，看色塊上的字與左框之間 |
@@ -1092,7 +1092,7 @@ tdp v1.2.17 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | note-78 | note.7 | 每一筆：時間 `HH:MM:SS`（Overlay0）、等級（`INFO` Text、`OK` Green、`WARN` Peach、`ERR` Red，四格寬靠左）、發生的事（跟 toast 一樣大寫開頭） | 都要 | 看 App Log 的各種等級 |
 | note-79 | note.7 | 只放在記憶體，app 關掉就清空；筆數有上限，滿了丟掉最舊的 | 都要 | 讀程式；或關掉再開，App Log 是空的 |
 | note-80 | note.8 | 標題 glyph `nf-md-compare`（U+F018A），`DIFF`，後面接 `UNIFIED`、`SPLIT` 兩個 tab，`h\|l` 切 | 比較模式 | 打開比較，按 `h\|l`；讀程式核對 code point |
-| note-107 | note.8 | 第一列寫兩邊的名字 `<anchor> ↔ <另一個>`，Lavender，固定在最上面；太長時先在 `↔` 前面折，再折在 `/` 後面，不用 `…` 切；標題只有 `DIFF`，tab 一定看得到 | 比較模式 | 在窄終端機比兩個路徑很長的項目再捲動：名字折行、沒被切，第一列不動，兩個 tab 都看得到 |
+| note-107 | note.8 | 第一列寫兩邊的名字 `<anchor> ↔ <另一個>`，Lavender，緊貼上框、上面沒有空白列，固定；太長時先在 `↔` 前面折，再折在 `/` 後面，不用 `…` 切；標題只有 `DIFF`，tab 一定看得到 | 比較模式 | 在窄終端機比兩個路徑很長的項目再捲動：名字折行、沒被切，第一列不動，兩個 tab 都看得到 |
 | note-81 | note.8 | 只顯示有差異的段落，前後各 3 行沒變的，段落之間一條 Overlay0 的分隔線 | 比較模式 | 比兩個長內容、只差兩處的項目 |
 | note-82 | note.8 | UNIFIED：刪掉的行 `-` Red、加上的行 `+` Green、沒變的 Text；anchor 是刪掉的那一邊；行號兩欄、Overlay0 | 比較模式 | 看 UNIFIED |
 | note-83 | note.8 | SPLIT：左 anchor、右另一個，各自標行號；刪 Red 在左、加 Green 在右，對應不到的留空列；兩邊各自在半邊折行，左右對應的兩行照長的那邊佔一樣多列，短的補空白列 | 比較模式 | 看有一行比半邊長的 SPLIT |

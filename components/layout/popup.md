@@ -64,7 +64,9 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
 - **Padding**: one blank row above and below the content, one cell from the border on the left and right (with a cursor
   across a whole row, the right padding is as wide as the arrow, see the next item). Every kind of popup has it, viewers
   too; only the terminal is the exception: no padding on any side
-  ([`dialog/terminal`](../dialog/terminal.md)).
+  ([`dialog/terminal`](../dialog/terminal.md)). A location row (e.g. the two sides of a comparison,
+  [`dialog/note`](../dialog/note.md), note.8) takes the top padding's place, right under the top border as in a panel
+  ([`panel`](panel.md), panel.10); the bottom padding stays (the user, 2026-11-20, from gittu).
 - **A cursor block covers the padding**: a list's cursor runs from frame to frame, covering the left and right padding,
   and the text on it stays one cell from the frame ([`dialog/menu`](../dialog/menu.md), [`input/finder`](../input/finder.md));
   a form's focus block runs from the value all the way to the frame, covering the right padding
