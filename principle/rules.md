@@ -1296,6 +1296,17 @@ Every app has:
 - **`<app> version`**: prints the version. `--version` and `-v` may be aliases.
 - **`<app> help`**: prints the command-line usage (unrelated to the `?` key reference inside the app). `-h` and `--help`
   may be aliases.
+- **`<app> update`**: brings the app to its latest release (never a beta), the way it was installed (the user,
+  2026-11-20, as ccdrawu's does):
+  - Already the latest: says so (`<app> 1.2.0 is the latest release.`), exit status 0.
+  - Installed with Homebrew: runs `brew upgrade <tap>/<app>`, the tap of E6 (`vulcanshen/tap` in the family).
+  - Installed by the install script or from a release download: downloads the release for this system and puts it in
+    place of the running file.
+  - Installed with Scoop (Windows, where a running file cannot be replaced): prints the `scoop update <app>` to run.
+  - Built from source: says to update it there, exit status 1.
+  - No right to write where the file is: says so and what to do (e.g. run the install script again), never asking for
+    more rights itself (no `sudo`), exit status 1.
+  - What the app does after updating (e.g. ccdrawu updating its plugin in Claude Code), the app may decide for itself.
 
 An app that has **`<app> iconwidth`** prints with it what E5 measured: two lines, the cells an icon takes and the
 cells a powerline symbol takes, each followed by where it came from: `probe` (measured just now), `default` (nothing
