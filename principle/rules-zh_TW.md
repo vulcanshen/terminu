@@ -425,9 +425,11 @@ app 在模式裡最多只能離開模式，之後由 tdp 接手，使用者一�
 整個家族只給一個意思的幾個字母，按下去在每個 app 都做同一件事（user 2026-11-20，來自 kbu）：
 
 - **`D`**：Diff 模式的鍵（[`components/layout/panel`](../components/layout/panel-zh_TW.md)，panel.9），寫成 `[D]iff`。同一個
-  panel 已經把 `D` 給了自己的另一個動作、又不是刪除（例：Drag）時，app 可以把其中一個換成別的鍵。
+  panel 已經把 `D` 給了自己的另一個動作、又不是刪除（例：Drag）時，app 可以把其中一個換成別的鍵；沒有 Diff 模式的 app，
+  可以把 `D` 給其他不是刪除的事（例：webu 的 `[D]ownloads` 畫面）（user 2026-11-20，來自 webu）。
 - **`x`**：刪掉 cursor 上那一項，`[x] Delete`；**`X`**：一次刪很多（標記的那些、整批），例：`[X] Delete marked`。會永久拿掉東西
-  的都算（刪除、丟掉改動、drop），不用其他字母：不用 `D`，也不用會移動的 `d`（K12）。
+  的都算（刪除、丟掉改動、drop），不用其他字母：不用 `D`，也不用會移動的 `d`（K12）。`x`、`X` 也只用在這裡：還能再打開
+  的（例：關分頁，關了還能重開）不算永久拿掉，用別的字母（user 2026-11-20，來自 webu）。
 - **`i`**：打開 cursor 上那一項的附註（[`components/layout/panel`](../components/layout/panel-zh_TW.md)，panel.18）；其他動作都
   不用 `i`（user 2026-11-20）。
 

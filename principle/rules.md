@@ -552,10 +552,13 @@ Letters the whole family gives one meaning, so that one press does the same thin
 
 - **`D`**: the Diff mode's key ([`components/layout/panel`](../components/layout/panel.md), panel.9), written `[D]iff`.
   Where the same panel already uses `D` for an action of its own that is not a delete (e.g. a Drag), the app may give
-  one of them another key.
+  one of them another key; an app with no Diff mode may give `D` to something that is not a delete (e.g. webu's
+  `[D]ownloads` screen) (the user, 2026-11-20, from webu).
 - **`x`**: deletes the item under the cursor, `[x] Delete`; **`X`** deletes many at once (the marked ones, a whole
   batch), e.g. `[X] Delete marked`. Anything that removes for good counts (deleting, discarding changes, dropping), and
-  it takes no other letter: not `D`, and not `d`, which moves (K12).
+  it takes no other letter: not `D`, and not `d`, which moves (K12). `x` and `X` mean only that: what can be opened
+  again (e.g. closing a tab, which reopens) is not removing for good and takes another letter (the user, 2026-11-20,
+  from webu).
 - **`i`**: opens the note of the item under the cursor ([`components/layout/panel`](../components/layout/panel.md),
   panel.18); no other action takes `i` (the user, 2026-11-20).
 
