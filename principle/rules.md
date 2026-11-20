@@ -1490,7 +1490,10 @@ that do not fit in one file or several, a `.bak` copy that could not be made, a 
 there), they come as one toast, a row each ([components/dialog/toast](../components/dialog/toast.md), toast.2), in the
 order they happened; its kind is the strongest of theirs (Error, then Warning, then the rest), while in the App Log
 each row is an entry of its own, at its own kind. With no screen, each row is a line of its own on stderr (the user,
-2026-11-18, from terminu-go).
+2026-11-18, from terminu-go). **Coming later**: one that comes after the start (e.g. a namespace or a kind the app could
+only ask a cluster about once its screen was open) joins that toast while it still shows, one row more, its kind the
+strongest again and its time starting over; once that toast is gone, it comes as a toast of its own. Either way no toast
+of this rule replaces another before it was read (the user, 2026-11-20, from kbu).
 
 **With no screen**, all of it is printed (E1): every toast this rule gives, each WARN and INFO entry it puts in the
 App Log, and what an error popup it opens says (e.g. the two paths of a location that could not be moved) go to
