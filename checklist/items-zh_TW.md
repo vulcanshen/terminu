@@ -176,7 +176,7 @@ tdp v1.2.20 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | M4-2 | M4 | 沒有 popup 開著時，global operation popup 裡的熱鍵在 panel 上也能直接按 | 都要 | 在 panel 上直接按 global 熱鍵 |
 | M4-3 | M4 | global 熱鍵跟 panel 自己的熱鍵撞鍵時，panel 的優先 | 都要 | 在那個 panel 上按撞的鍵，執行的是 panel 的動作 |
 | M4-4 | M4 | 撞鍵的那個 panel 的 key reference 不列被蓋掉的 global 鍵 | 都要 | 在那個 panel 上按 `?` |
-| M5-1 | M5 | 熱鍵字母出現在 label 裡（不分大小寫）時，原地包第一次出現的那個字母（`[r]ename`、`[n]ew`、`D[e]lete`、`UR[L]`、`Ex[P]ort`） | 都要 | 看 menu 的列、statusbar chip、panel 標題 |
+| M5-1 | M5 | 熱鍵字母出現在 label 裡（不分大小寫）時，原地包一個：預設是第一次出現的，app 也可以挑別的，例：鍵代表的那個字的開頭（`[r]ename`、`[n]ew`、`[D]iff`、`UR[L]`、`Ex[P]ort`、`Stage [a]ll`） | 都要 | 看 menu 的列、statusbar chip、panel 標題 |
 | M5-3 | M5 | 熱鍵字母不在 label 裡時，放前面（`[x] Reset`） | 都要 | 同上 |
 | M5-4 | M5 | 含 modifier 的熱鍵整個放進括號（`[Alt-t]erm`） | 都要 | 同上 |
 | M5-5 | M5 | 多字元的熱鍵整個放進括號（`[go]to`） | 都要 | 同上 |

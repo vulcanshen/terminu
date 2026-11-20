@@ -176,7 +176,7 @@ The items of tdp v1.2.20. What each column means and what an item applies to: [R
 | M4-2 | M4 | With no popup open, the hotkeys in the global operation popup can also be pressed directly on a panel | everyone | Press a global hotkey directly on a panel |
 | M4-3 | M4 | When a global hotkey clashes with a panel's own hotkey, the panel's wins | everyone | On that panel press the clashing key: the panel's action runs |
 | M4-4 | M4 | The key reference of the panel with the clash does not list the global key it overrides | everyone | Press `?` on that panel |
-| M5-1 | M5 | A hotkey letter that appears in the label (in either case) is bracketed in place, at its first occurrence (`[r]ename`, `[n]ew`, `D[e]lete`, `UR[L]`, `Ex[P]ort`) | everyone | Look at menu rows, statusbar chips and panel titles |
+| M5-1 | M5 | A hotkey letter that appears in the label (in either case) is bracketed in place, once: at its first occurrence unless the app picks another, e.g. the start of the word the key stands for (`[r]ename`, `[n]ew`, `[D]iff`, `UR[L]`, `Ex[P]ort`, `Stage [a]ll`) | everyone | Look at menu rows, statusbar chips and panel titles |
 | M5-3 | M5 | A hotkey letter not in the label goes in front (`[x] Reset`) | everyone | As above |
 | M5-4 | M5 | A hotkey with a modifier goes whole into the brackets (`[Alt-t]erm`) | everyone | As above |
 | M5-5 | M5 | A hotkey of several characters goes whole into the brackets (`[go]to`) | everyone | As above |

@@ -530,7 +530,7 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 
 | 情境 | 寫法 |
 |---|---|
-| 單一字母，出現在 label 裡（不分大小寫） | 原地包，包第一次出現的那個字母：`[r]ename`、`[n]ew`、`[D]iff`、`UR[L]`、`Ex[P]ort` |
+| 單一字母，出現在 label 裡（不分大小寫） | 原地包，只包一個：預設包第一次出現的那個，app 也可以挑別的，例：鍵代表的那個字的開頭（user 2026-11-20，來自 gittu）：`[r]ename`、`[n]ew`、`[D]iff`、`UR[L]`、`Ex[P]ort`、`Stage [a]ll`、`Mark [r]esolved` |
 | 單一字母，不在 label 裡 | 放前面：`[x] Reset`、`[x] Delete` |
 | 含 modifier | `[Alt-t]erm` |
 | 多字元 | `[go]to` |

@@ -669,7 +669,7 @@ README). Marking inside a label:
 
 | Case | Form |
 |---|---|
-| A single letter that appears in the label (either case) | wrapped in place, at its first appearance: `[r]ename`, `[n]ew`, `[D]iff`, `UR[L]`, `Ex[P]ort` |
+| A single letter that appears in the label (either case) | wrapped in place, once: at its first appearance unless the app picks another, e.g. the start of the word the key stands for (the user, 2026-11-20, from gittu): `[r]ename`, `[n]ew`, `[D]iff`, `UR[L]`, `Ex[P]ort`, `Stage [a]ll`, `Mark [r]esolved` |
 | A single letter not in the label | in front: `[x] Reset`, `[x] Delete` |
 | With a modifier | `[Alt-t]erm` |
 | Several characters | `[go]to` |
