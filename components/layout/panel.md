@@ -362,6 +362,22 @@ the mode and makes that row the anchor; then another row is picked and the two a
   side empty for an item only one side has), or goes in again the same way when it holds many itself; an item that is
   not text has no diff, as above. `Esc` goes back up a level at a time, the last back to the mode with the
   anchor kept. When nothing differs, nothing opens: the Info toast above (the user, 2026-11-19, from gittu).
+- **With a details panel** (panel.13): a list whose details panel follows its cursor may show the diff there instead of
+  opening it or going into the list; which of the two, the app may decide for itself. The mode then spans the list and
+  its details (the user, 2026-11-20, from gittu):
+  - Both frames are in the mode, each in the mode colour with `Diff` on it; the heavy line tells which has the focus
+    (Rules L5). Entering the mode leaves the focus on the list.
+  - The details follow the cursor at once, with no key: the diff between the anchor and the row under the cursor, drawn
+    as a panel draws one ([`dialog/note`](../dialog/note.md), note.8 "In a panel": UNIFIED for text, the items that
+    differ with their marks and the location row `<anchor> ↔ <the other>` for rows that hold many). With the cursor on
+    the anchor, or on a row the same as the anchor, the details show an empty state saying so (e.g. `Move to another
+    commit to diff with 1a2b3c4`, `No differences between a and b`), with no toast.
+  - The diff key or `Enter` on the list sends the focus to the details; there `Enter` opens an item's diff or goes in,
+    as above.
+  - `Esc` goes back the way the user came, one layer at a time (Rules K4): from a diff popup to the details, from the
+    details to the list, still in the mode with the anchor kept; `Esc` on the list leaves the mode, and the details
+    follow the cursor's own row again.
+  - `Tab` and the number keys move between the list and its details; the other panels stay paused (Rules K11).
 
 ### panel.10 Location row
 

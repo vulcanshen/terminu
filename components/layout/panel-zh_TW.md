@@ -269,6 +269,17 @@ panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reord
   [`dialog/note`](../dialog/note-zh_TW.md)；只有一邊有的，另一邊是空的），它自己也裝著許多項目時照樣再進一層；不是文字的項目沒有
   Diff，同上。`Esc` 一層一層退回，最後回到模式、anchor 留著。兩邊沒有差異時不打開，跳上面那個 Info toast（user 2026-11-19，來自
   gittu）。
+- **有明細 panel 時**（panel.13）：清單有跟著 cursor 的明細 panel 時，可以把差異放在明細裡，不打開視窗、也不進到清單裡；用哪一種，
+  app 可以自行決定。這時模式同時涵蓋清單與它的明細（user 2026-11-20，來自 gittu）：
+  - 兩個框都在模式裡，都是模式顏色、都寫 `Diff`；粗線表示 focus 在哪一個（Rules L5）。進入模式時 focus 留在清單上。
+  - 明細馬上跟著 cursor，不用按鍵：顯示 anchor 跟 cursor 所在那一列的差異，照 panel 顯示差異的方式畫
+    （[`dialog/note`](../dialog/note-zh_TW.md)，note.8 的「在 panel 裡」：文字是 UNIFIED，裝著許多項目的列是帶標記的差異項目，
+    位置列寫 `<anchor> ↔ <另一個>`）。cursor 在 anchor 上、或在跟 anchor 一樣的列上時，明細顯示空狀態說明（例：`Move to another
+    commit to diff with 1a2b3c4`、`No differences between a and b`），不跳 toast。
+  - 在清單上按 Diff 鍵或 `Enter`，focus 移到明細；在明細上按 `Enter` 打開一項的差異或再進一層，同上。
+  - `Esc` 照使用者來的路一層一層退回（Rules K4）：從差異視窗回到明細，從明細回到清單，模式還在、anchor 留著；在清單上按 `Esc`
+    才離開模式，明細回到跟著 cursor 所在那一列。
+  - `Tab` 與數字鍵在清單與明細之間移動；其他 panel 照樣暫停（Rules K11）。
 
 ### panel.10 位置列
 

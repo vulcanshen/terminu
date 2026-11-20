@@ -287,7 +287,9 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
   開始選之後的 `Cop[y]`）；**模式操作**：這個模式本身的鍵 —— 移動鍵只顯示、不能執行，離開模式這種真的做事的照樣能執行。
   panel、item、global 的動作一律不列。模式的鍵也揭露在 `?` 的 key reference 與 footer / 下框 hint（footer 在模式裡的樣子見
   [components/layout/screen](../components/layout/screen-zh_TW.md)）。
-- **模式要標示自己**：模式名顯示在模式所在的框（panel 或 popup）的上框右側，外框換成模式色；離開模式就恢復。模式名開關時有一小段
+- **模式要標示自己**：模式名顯示在模式所在的框（panel 或 popup）的上框右側，外框換成模式色；離開模式就恢復。同時涵蓋清單與明細 panel
+  的模式（Diff 模式，[components/layout/panel](../components/layout/panel-zh_TW.md)，panel.9）兩個框都標示，粗線表示 focus 在哪一個
+  （L5）。模式名開關時有一小段
   動畫，不會讓模式等它：模式與外框顏色都立刻換。模式名是字，
   不只靠顏色：模式裡 focus 的 panel 照樣看得出是 focus（L5）。模式有好幾層時，模式名把層接在後面、用 `>` 隔開（例：viewer 的
   選取模式開始選之後是 `Visual>select`），`Esc` 一次退一層。樣子見 [components/layout/panel](../components/layout/panel-zh_TW.md)。

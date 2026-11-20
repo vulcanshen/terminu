@@ -355,7 +355,9 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   never listed. The mode's keys are also disclosed in the `?` key reference and in the footer / bottom-border hint (how
   the footer looks inside a mode: [components/layout/screen](../components/layout/screen.md)).
 - **A mode shows itself**: the mode name appears at the right of the top border of the frame the mode lives in (panel or
-  popup), and the frame turns the mode colour; leaving the mode restores both. The mode name opens and closes with a
+  popup), and the frame turns the mode colour; leaving the mode restores both. A mode spanning a list and its details
+  panel (the Diff mode, [components/layout/panel](../components/layout/panel.md), panel.9) shows itself on both frames,
+  the heavy line telling which has the focus (L5). The mode name opens and closes with a
   short animation that never holds the mode up: the mode and the frame colour change at once. The mode name is a word,
   not colour alone: a focused panel in a mode still shows that it has focus (L5). A mode with layers adds each layer to its
   name after a `>` (e.g. a viewer's selection mode, once selecting, is `Visual>select`), and `Esc` goes back one layer
