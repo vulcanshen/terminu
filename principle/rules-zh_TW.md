@@ -1035,10 +1035,12 @@ app 在畫面以外的事：命令列、環境變數、需求、icon 的寬度�
 - **`<app> version`**：印出版號。`--version`、`-v` 可以當別名。
 - **`<app> help`**：印出命令列的用法（跟 app 裡 `?` 的 key reference 無關）。`-h`、`--help` 可以當別名。
 - **`<app> update`**：照當初安裝的方式，把 app 更新到最新的正式版（不更新到 beta）（user 2026-11-20，照 ccdrawu 的做法）：
-  - 已經是最新版：說一聲（`<app> 1.2.0 is the latest release.`），exit status 0。
+  - 已經是最新版：說一聲（`<app> 1.2.0 is the latest release.`），exit status 0；比最新的正式版還新（例：beta）時改說這件事
+    （`<app> 1.3.0-beta.1 is newer than the latest release, 1.2.0.`），exit status 0。
   - 用 Homebrew 裝的：執行 `brew upgrade <tap>/<app>`，tap 照 E6（家族是 `vulcanshen/tap`）。
   - 用 install script 裝的、或從 release 下載的：下載這個系統的新版，換掉正在執行的那個檔。
-  - 用 Scoop 裝的（Windows，正在執行的檔換不掉）：印出要執行的 `scoop update <app>`。
+  - 用 Scoop 裝的（Windows，正在執行的檔換不掉）：印出要執行的 `scoop update <app>`，exit status 0（user 2026-11-20，來自
+    terminu-go）。
   - 從原始碼編的：說明請在原始碼那邊更新，exit status 1。
   - 沒有權限寫入執行檔所在的地方：說明原因與怎麼做（例：再跑一次 install script），不自己要更多權限（不用 `sudo`），exit status 1。
   - 更新完之後要做的事（例：ccdrawu 順便更新 Claude Code 裡的外掛），app 可以自行決定。

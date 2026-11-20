@@ -1299,11 +1299,13 @@ Every app has:
   may be aliases.
 - **`<app> update`**: brings the app to its latest release (never a beta), the way it was installed (the user,
   2026-11-20, as ccdrawu's does):
-  - Already the latest: says so (`<app> 1.2.0 is the latest release.`), exit status 0.
+  - Already the latest: says so (`<app> 1.2.0 is the latest release.`), exit status 0; newer than the latest release
+    (e.g. a beta): says that instead (`<app> 1.3.0-beta.1 is newer than the latest release, 1.2.0.`), exit status 0.
   - Installed with Homebrew: runs `brew upgrade <tap>/<app>`, the tap of E6 (`vulcanshen/tap` in the family).
   - Installed by the install script or from a release download: downloads the release for this system and puts it in
     place of the running file.
-  - Installed with Scoop (Windows, where a running file cannot be replaced): prints the `scoop update <app>` to run.
+  - Installed with Scoop (Windows, where a running file cannot be replaced): prints the `scoop update <app>` to run,
+    exit status 0 (the user, 2026-11-20, from terminu-go).
   - Built from source: says to update it there, exit status 1.
   - No right to write where the file is: says so and what to do (e.g. run the install script again), never asking for
     more rights itself (no `sudo`), exit status 1.
