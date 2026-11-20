@@ -256,7 +256,7 @@ A key whose meaning is specified by tdp and never changes on any surface: `Tab`,
 
 ### terms.10 Letter hotkey
 
-A key the app assigns to run a row of a menu directly. E.g. filu's `[r]ename`, kbu's `[C]ompare`, sshu's `[t]ransfer`
+A key the app assigns to run a row of a menu directly. E.g. filu's `[r]ename`, kbu's `[C] Diff`, sshu's `[t]ransfer`
 and `[T]ransfer all`. It is a shortcut, not an extra feature (Rules M3).
 
 ### terms.11 Source and target
