@@ -1509,6 +1509,14 @@ start) holds the default until the finding is done; the warning comes only if it
 own in the App Log; with no screen, each is a line of its own on stderr (the user, 2026-11-20: one way for every
 toast).
 
+**With no screen**, all of it is printed (E1): every toast this rule gives, each WARN and INFO entry it puts in the
+App Log, and what an error popup it opens says (e.g. the two paths of a location that could not be moved) go to
+stderr, a line each, starting with `<app>: `, in the TUI's words. A file that cannot be read may have one more line
+saying what to do (e.g. `Open catu to move it aside and start fresh`). Where the TUI goes on (a location that could
+not be moved, values that did not fit), so does the command, and its exit status is that of its own work (E1). On
+stderr none of it gets into what is printed: `catu notes.md | less` gives less the file only (the user, 2026-11-19,
+tdp #24).
+
 **Outside the TUI**: on a screen that is not part of the TUI (K1, e.g. a sidebar a plug-in draws) and in output
 printed for another program to show (P5, e.g. a status line), nobody reads stderr, and several may run at once. There
 every case of this rule (a file that cannot be read, a value that does not fit, a value naming an entry that is not

@@ -1206,6 +1206,12 @@ app 就少了那一筆繼續，跳 Warning toast、記一筆 WARN，下次寫這
 （[components/dialog/toast](../components/dialog/toast-zh_TW.md)，toast.2），照發生的順序，App Log 裡也一件一筆；沒有畫面時，每一
 件各寫一行到 stderr（user 2026-11-20：所有 toast 一種方式）。
 
+**沒有畫面時**，全部都印出來（E1）：這條規則給的每個 toast、記進 App Log 的每一筆 WARN 與 INFO、開的 error popup 說的話（例：
+搬不動時的兩個路徑），都寫到 stderr，一件一行，開頭 `<app>: `，跟 TUI 同一句話。讀不了的檔可以多一行說怎麼辦（例：
+`Open catu to move it aside and start fresh`）。TUI 會繼續的地方（搬不動、值不合規則），指令也繼續，exit status 看指令
+自己的事有沒有做完（E1）。寫在 stderr，就不會混進印出來的東西：`catu notes.md | less` 給 less 的只有檔案內容
+（user 2026-11-19，tdp #24）。
+
 **TUI 以外**：不在 TUI 裡的畫面（K1，例：外掛畫的側邊欄）與印給別的程式顯示的輸出（P5，例：狀態列），stderr 沒人看，還常常好幾個
 同時在跑。在這些地方，這條規則的每一種情況（讀不了、值不合規則、指到不在的一筆）都一樣：不動任何檔案（不移到 `.bak`、不重寫），
 這一次用預設值（讀不了時怎麼繼續由 app 決定，同上），並在那裡讓使用者看到哪個檔有什麼問題；怎麼呈現，app 可以自行決定（例：狀態
