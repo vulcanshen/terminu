@@ -261,8 +261,11 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
   what the rows below hold and where they start, the app may decide for itself. The first row holds the columns, the
   header names them, and a marked row's tick sits on it (the user, 2026-11-19, from gittu; sshu's hosts once had their
   tags on a second row).
-  - The cursor is drawn on the first row only, as above. The item's other rows are lit with it: Surface1 across the
-    whole inner width, their text keeping its own colours, with no arrow.
+  - The cursor is drawn on the first row only, as above, its arrow there. The item's other rows keep their background
+    and their text's colours: a bar in the cursor's colour (Subtext1, `▌` U+258C) hangs down the inner width's first
+    cell beside them, and the item's last row is underlined across the whole inner width in the same colour (where a
+    terminal cannot colour an underline, it takes each cell's text colour), so bar and underline close the item like a
+    bracket. No block on them, so no row ends square beside the arrow (the user, 2026-11-21, from gittu).
   - Everything counts items, not rows: `j|k` move one item and every movement lands on an item's first row, `N of M`
     counts items, and the item under the cursor is always in view whole, all its rows.
   - The panel filter matches an item by the text of any of its rows (e.g. a branch's name finds its commit).
@@ -343,6 +346,10 @@ the mode and makes that row the anchor; then another row is picked and the two a
 - **The anchor row**: the whole row in the mode colour — a Yellow background, Base text, not bold, no arrow on the
   right ("the range selected in a mode" in [`color`](../color.md)); the cursor is drawn as usual, and on the anchor
   the cursor is what is drawn.
+- **An anchor of several rows** (panel.5): its first row as above; its other rows marked as the cursor's are, in the
+  mode colour: a Yellow bar down the left edge and the last row underlined in Yellow, their text keeping its colours.
+  With the cursor on the anchor, the first row is the cursor and the other rows keep the Yellow marks (the user,
+  2026-11-21, from gittu).
 - **The mode's keys**: `j|k`, `u|d`, `gg|G` move; the diff key or `Enter` opens the diff with the anchor,
   and closing it goes back to the mode with the anchor kept, ready for the next row; both keys are disabled while
   the cursor rests on the anchor (M6). When the two are identical nothing opens: an Info toast says so (`No

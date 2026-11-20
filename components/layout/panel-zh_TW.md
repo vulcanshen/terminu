@@ -195,7 +195,9 @@ kbu 的資源清單、filu 的檔案清單這種一列一筆的 panel。
 - **占好幾列的項目**：一個項目可以在第一列下面再多幾列，要幾列、給哪些項目，看 app 需要（例：commit 的分支與 tag 放在它下面一列；
   每一項一樣高，或只有某幾項比較高）；下面幾列放什麼、從哪一欄開始，app 可以自行決定。第一列放欄位，表頭說的是它，標記的勾也在它
   上面（user 2026-11-19，來自 gittu；sshu 的 host 以前把 tags 放在第二列）。
-  - cursor 只畫在第一列，照上面。這個項目的其他列跟著亮：整個內寬是 Surface1 底，字保留自己的顏色，沒有箭頭。
+  - cursor 只畫在第一列，照上面，箭頭在那一列。這個項目的其他列保留自己的底色與字的顏色：一條 cursor 顏色（Subtext1，`▌` U+258C）
+    的邊從內寬的第一格垂下來、畫在它們旁邊，項目的最後一列整個內寬畫底線，同一個顏色（終端機不能指定底線顏色時，跟著每一格字的
+    顏色），邊和底線像括號一樣把整個項目包起來。其他列不填色塊，所以不會在箭頭旁邊多出方的結尾（user 2026-11-21，來自 gittu）。
   - 一律算項目，不算列：`j|k` 一次移一項，每一種移動都停在某一項的第一列，`N of M` 數的是項目，cursor 所在的項目一定整個看得到，
     每一列都在。
   - panel filter 比對一個項目時，它每一列的字都算（例：打分支的名字，找得到它的 commit）。
@@ -256,6 +258,8 @@ panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reord
   有 Diff 的動作（Rules M2），模式裡 cursor 停在上面時 Diff 鍵停用（M6）。
 - **anchor 那一列**：整列模式色 —— Yellow 底、Base 字、不加粗、沒有右邊的箭頭（[`color`](../color-zh_TW.md) 的「模式裡選起來的
   範圍」）；cursor 照舊，停在 anchor 上時畫 cursor。
+- **占好幾列的 anchor**（panel.5）：第一列照上面；其他列照 cursor 其他列的畫法，換成模式色：左邊垂一條 Yellow 的邊、最後一列畫
+  Yellow 底線，字保留自己的顏色。cursor 停在 anchor 上時，第一列畫 cursor，其他列留著 Yellow 的標示（user 2026-11-21，來自 gittu）。
 - **模式的鍵**：`j|k`、`u|d`、`gg|G` 移動；Diff 鍵或 `Enter` 打開跟 anchor 的 Diff，關掉後回到模式、anchor 留著，可以再挑下一列；
   cursor 在 anchor 上時這兩個鍵停用（M6）。兩邊一模一樣時不打開，跳 Info toast（`No differences between <a> and <b>`），留在
   模式裡。`Esc` 離開模式、拿掉 anchor；`Tab` 與數字鍵暫停（K11）。
