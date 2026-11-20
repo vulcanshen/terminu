@@ -1482,22 +1482,26 @@ kept whole in the copy rather than lost at the next save. Nothing is asked on sc
 the same way, and a typo does not stop a pipe.
 
 **A value naming an entry that is not there**: a value that names an entry of the user's own data (e.g. a setting
-naming one of the profiles the user made), or something outside the app that it reads (e.g. namespaces of a cluster
-recorded in the state), whose entry is not there (deleted or renamed by hand, or its file moved aside) is not a value
-that does not fit, which is for the names the app itself defines: the file is left as it is, the value kept. The app
-uses its built-in default for this run, a Warning toast says so at start (e.g. `Profile "work" in config.yaml is not
-in profiles.yaml: using the default`), and a WARN entry goes into the App Log; with no screen the sentence goes to
-stderr, as above. Where the value is shown, it is shown as written, its label Red
+naming one of the profiles the user made) whose entry is not there (deleted or renamed by hand, or its file moved
+aside) is not a value that does not fit, which is for the names the app itself defines: the file is left as it is, the
+value kept. The app uses its built-in default for this run, a Warning toast says so at start (e.g. `Profile "work" in
+config.yaml is not in profiles.yaml: using the default`), and a WARN entry goes into the App Log; with no screen the
+sentence goes to stderr, as above. Where the value is shown, it is shown as written, its label Red
 ([components/layout/panel](../components/layout/panel.md)). Once the entry is there again, the value works again;
-choosing another entry changes it (the user, 2026-11-18, from locku). The value stays also when the app writes the
-file again (e.g. the state at quitting); a value holding several entries uses those that are there, and the default
-only when none is. Something the app can find only after it starts (e.g. a kind a discovery turns up later) is not
-missing until the finding is done: the default holds meanwhile, and the warning comes only if it is still not there
-then (the user, 2026-11-20, from kbu).
+choosing another entry changes it (the user, 2026-11-18, from locku). A value holding several entries uses those that
+are there, and the default only when none is.
 
 The value itself is not wrong: what is missing is somewhere else, perhaps only for a while (a file moved aside and put
 back). Written again, the user's choice would be lost for good even after the entry came back, and whatever entry took
 its place would be one the user never chose.
+
+**A value naming something outside the app** (e.g. namespaces of a cluster recorded in the state): what the app can
+use by its name is used at once, with no waiting; when the answer from outside shows an entry is not there, the app
+goes on without it, a Warning toast and a WARN entry say so, and the next time the app writes the file it leaves that
+entry out, so the next start does not say it again: things outside come and go by other hands, and a warning at every
+start would only be noise. What the app cannot use until it has found it (e.g. a kind a discovery turns up after
+start) holds the default until the finding is done; the warning comes only if it is still not there then (the user,
+2026-11-20, from kbu).
 
 **Several at one start**: when one start brings more than one of the toasts this rule gives (a location moved, values
 that do not fit in one file or several, a `.bak` copy that could not be made, a value naming an entry that is not
