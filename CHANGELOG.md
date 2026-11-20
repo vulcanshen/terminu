@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.2.20 — 2026-11-20
+
+A patch, the user's choice, released once kbu was fully aligned (from terminu-go v1.1.0 to v1.2.21). Gaps kbu and
+gittu met; members meet them at their next release.
+
+- K13, new: `D` is the Diff mode's key (`[D]iff`); `x` deletes the item under the cursor, `X` many at once (the
+  marked ones, a whole batch); nothing that removes for good (delete, discard, drop) is on `D` or `d`; the examples
+  read `[D]iff` (the user, from kbu)
+- E3: a value naming something outside the app that is not there (e.g. a namespace gone from a cluster) is kept as
+  one naming the user's own data is, also when the file is written again; a value of several entries uses those
+  that are there; something found only after start warns only once the finding is done (the user, from kbu)
+- E3: a toast of E3 coming after the start joins the start's toast while it still shows, one row more, the kind
+  the strongest, the time starting over; once that toast is gone, it comes on its own (the user, from kbu)
+- panel.9, K11: a list whose details panel follows its cursor may show the Diff there, the app's choice: both
+  frames in the mode, the focus by line weight, the details following the cursor (an empty state on the anchor, an
+  identical row or one that cannot be diffed, the panel.15 error state for a side that cannot be read), `Esc` back
+  the way the user came (the user, from gittu and terminu-go)
+- changed in this version: E3, K11, K13, M5 (the example only), menu.6 (the example only), panel.9
+- checklist: K13-1 to K13-3, E3-41 to E3-43, panel-185 to panel-187 added (1540 items); the header names v1.2.20
+
 ## v1.2.19 — 2026-11-20
 
 A patch, the user's choice, released so kbu can update to it.
