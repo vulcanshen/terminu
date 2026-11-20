@@ -1,5 +1,19 @@
 # Changelog
 
+## v1.2.19 — 2026-11-20
+
+A patch, the user's choice, released so kbu can update to it.
+
+- The Compare mode is the Diff mode, everywhere: panel.9 "Diff mode", note.8 "Diff", the popup it opens is the
+  Diff; the examples read `[C] Diff` and `DIFF MODE`, panel.3's animation example is `Select`; verbs of comparing
+  and the glyph name `nf-md-compare` stay (the user)
+- panel.5: with room left over (every column at its widest, none taken away), the app picks one of four ways for
+  the rest: at the end (the default), one column fills, even, gaps (2 to 6 cells); the header and every row follow
+  the same widths (the user, from gittu, after looking at all four)
+- changed in this version: K11, menu.6, note.8, panel.3, panel.5, panel.9, popup.1, color.2, F7 (the name only)
+- checklist: panel-184 added; the applies-to column reads "diff mode" and the rows naming the popup read "the
+  diff" (1531 items); the header names v1.2.19
+
 ## v1.2.18 — 2026-11-20
 
 A patch, the user's choice: gittu (gitreu, renamed by the user) is still being built and goes on aligning on main;
