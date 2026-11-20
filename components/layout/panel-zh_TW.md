@@ -534,13 +534,15 @@ app 可以給項目一則附註：跟那一項有關、但欄位放不下，或�
 ┃   ┗━ Esc:close ━━━━━━━━━━━━━━┛         ┃
 ```
 
-- **頭**：cursor 停在有附註的項目上時，附註的頭出現在那一項正下方：一個小框，裡面是 `nf-md-information_outline`（U+F02FD）與鍵
-  `i`，暫時蓋在下一列上；它不收鍵、不拿 focus，cursor 一移開就跟著消失。
+- **頭**：cursor 停在有附註的項目上時，附註的頭出現在那一項正下方：一個小框，裡面是 Text 色的 `nf-md-information_outline`
+  （U+F02FD）與鍵 `i`，框和 `i` 用 Blue，表示現在按得了的鍵（[`color`](../color-zh_TW.md)），暫時蓋在下一列上；它不收鍵、
+  不拿 focus，cursor 一移開就跟著消失。
 - **按 `i` 打開**：框從頭往下展開成一個貼在那一項下方的 viewer（[`dialog/note`](../dialog/note-zh_TW.md)），標題
   `nf-md-information_outline` `NOTE`，focus 移進去：可以捲動，有 viewer 的選取模式與 `/` 搜尋，底下的東西變暗（Rules F8）。最高
   到 panel 高度的一半，長的行自動換行；再多就在裡面捲動。
 - **`Esc`** 把它收回成頭；focus 回到清單，cursor 還在原位（Rules K4）。
-- **下面沒空間時**（那一項靠近 panel 底部）：往上開，頭在最下面、貼著那一項。
+- **下面沒空間時**（那一項靠近 panel 底部）：頭出現在那一項正上方（`└ 󰋽 i ┘`），附註從那裡往上開，照 viewer 平常的樣子
+  （標題在上、hint 在下），下框貼著那一項（user 2026-11-20，來自 terminu-go）。
 - `i` 是全家族打開附註的鍵（Rules K13）。
 
 **為什麼**：toast 是順便說一聲，一項是什麼應該跟著那一項。要的時候才打開，平常什麼都不蓋，頭會告訴你這裡有；在那一項正下方打開，
