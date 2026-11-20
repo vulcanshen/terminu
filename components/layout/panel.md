@@ -695,6 +695,8 @@ An item may carry a note the app gives it, about the item but with no room in a 
   selection mode and `/` search, and what is under it dims (Rules F8). It is at most half the panel's height, its long
   lines wrapped; beyond that it scrolls.
 - **`Esc`** closes it back to its head; the focus returns to the list, the cursor where it was (Rules K4).
+- **The App Log**: opening a note is an operation that only looks, recorded as opening a viewer is
+  ([`dialog/note`](../dialog/note.md), note.7); its head coming and going with the cursor is not.
 - **No room below** (the item near the panel's bottom): the head shows right above the item (`└ 󰋽 i ┘`), and the note
   opens upward from it, keeping a viewer's usual look (the title on top, the hint at the bottom), its bottom border
   against the item (the user, 2026-11-20, from terminu-go).

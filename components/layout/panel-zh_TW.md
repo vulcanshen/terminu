@@ -541,6 +541,8 @@ app 可以給項目一則附註：跟那一項有關、但欄位放不下，或�
   `nf-md-information_outline` `NOTE`，focus 移進去：可以捲動，有 viewer 的選取模式與 `/` 搜尋，底下的東西變暗（Rules F8）。最高
   到 panel 高度的一半，長的行自動換行；再多就在裡面捲動。
 - **`Esc`** 把它收回成頭；focus 回到清單，cursor 還在原位（Rules K4）。
+- **App Log**：打開附註是只看不改的動作，跟開 viewer 一樣記（[`dialog/note`](../dialog/note-zh_TW.md)，note.7）；頭跟著
+  cursor 出現、消失不記。
 - **下面沒空間時**（那一項靠近 panel 底部）：頭出現在那一項正上方（`└ 󰋽 i ┘`），附註從那裡往上開，照 viewer 平常的樣子
   （標題在上、hint 在下），下框貼著那一項（user 2026-11-20，來自 terminu-go）。
 - `i` 是全家族打開附註的鍵（Rules K13）。

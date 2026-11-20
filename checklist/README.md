@@ -89,7 +89,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | form | a form |
 | viewer | a viewer |
 | toast | a toast |
-| inspect toast | an inspect toast (components/dialog/toast, toast.4) |
+| item note | an item's note, opened with `i` (components/layout/panel, panel.18) |
 | error popup | an error popup |
 | confirm | a confirm |
 | input | any kind of input (an input popup, or a field on a form or a panel) |
@@ -98,7 +98,27 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | finder with a preview | a finder with a preview: an ordinary finder, a file-picker (a select and a checkbox popup have none) |
 | file preview | a popup previewing files and directories: a file-picker, or a finder previewing files |
 | stores settings or data | settings, data, state or a cache written to disk |
-| compare mode | a panel's compare mode (an anchor first, then another row to compare with) |
+| diff mode | a panel's Diff mode (an anchor first, then another row to diff with) |
+| diff mode in a details panel | a Diff mode shown in a list's details panel (layout/panel, panel.9) |
+| shows two versions of one item | an action showing two versions of one item (dialog/note, note.8) |
+| items in items | items that hold items, walked a level at a time (layout/panel, panel.10) |
+| items of several rows | list items taking more than one row (layout/panel, panel.5) |
+| list with columns | a list with several columns (layout/panel, panel.5) |
+| location row with a glyph | a location row with its optional glyph (layout/panel, panel.10) |
+| sign | a sign, a panel that only tells (layout/panel, panel.17) |
+| deletes | actions that remove for good: delete, discard, drop (Rules K13) |
+| a command in text | a sentence asking the user to type a command (Rules M5) |
+| has `iconwidth` | an `<app> iconwidth` command (Rules E1) |
+| prints with no screen | a command that prints instead of opening the TUI (Rules E3) |
+| screen outside the TUI | a screen that is not part of the TUI, or output printed for another program to show (Rules E3) |
+| has a file only for this run | a file kept only for this run, in the temporary directory (Rules E3) |
+| reads content again on its own | content the app reads again on its own, on a timer or a watch (dialog/note, note.7) |
+| reads things outside the app | values naming things outside the app, e.g. a cluster's namespaces (Rules E3) |
+| finds things after start | things the app can only find after it starts, e.g. a kind a discovery turns up (Rules E3) |
+| mode with keys the user sets | a mode whose keys the user may set (Rules K11) |
+| mode with a key with nothing to move | a mode where a movement key has nothing to move (Rules K12) |
+| document from markup | a document drawn from markup, e.g. a web page in a reader (components.5) |
+| an action that moves its cursor | an action of the app's own that moves a panel's cursor or changes what it lists (layout/panel, panel.14) |
 | pointed panel | a list row stands for another panel on screen, and the cursor points that panel out (e.g. sshu's session list and grid) |
 | an app's own popup | a popup whose content the seven classes cannot hold, drawn by the app itself (e.g. kamonu's popup for drawing cells) |
 | an app's own content | a panel holding what no component holds, drawn by the app itself (e.g. a game, a drawing) |

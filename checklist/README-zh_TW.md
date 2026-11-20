@@ -78,7 +78,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 表單 | 有表單 |
 | viewer | 有 viewer |
 | toast | 有 toast |
-| inspect toast | 有 inspect toast（components/dialog/toast，toast.4） |
+| 項目附註 | 有項目的附註，用 `i` 打開（components/layout/panel，panel.18） |
 | error popup | 有 error popup |
 | confirm | 有 confirm |
 | input | 有任何一種 input（input popup，或表單、panel 上的欄位） |
@@ -87,7 +87,27 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 有預覽的 finder | 有帶預覽的 finder：一般的 finder、file-picker（select、checkbox popup 沒有預覽） |
 | 有檔案預覽 | 有預覽檔案、目錄的 popup：file-picker，或預覽檔案的 finder |
 | 存設定或資料 | 有設定、資料、狀態或快取寫到磁碟 |
-| 比較模式 | 有 panel 的比較模式（先挑 anchor、再挑另一列來比） |
+| Diff 模式 | 有 panel 的 Diff 模式（先挑 anchor、再挑另一列來比） |
+| Diff 模式在明細 panel | 清單的 Diff 模式顯示在它的明細 panel 裡（layout/panel，panel.9） |
+| 看同一項的兩個版本 | 有看同一項兩個版本的動作（dialog/note，note.8） |
+| 項目裡還有項目 | 項目裡還有項目，一層一層進（layout/panel，panel.10） |
+| 占好幾列的項目 | 清單的項目占不只一列（layout/panel，panel.5） |
+| 有多欄的清單 | 有好幾欄的清單（layout/panel，panel.5） |
+| 有 icon 的位置列 | 位置列帶著可選的 icon（layout/panel，panel.10） |
+| 說明牌 | 有說明牌，只用來說明的 panel（layout/panel，panel.17） |
+| 會刪除 | 有會永久拿掉東西的動作：刪除、丟掉改動、drop（Rules K13） |
+| 文字裡有指令 | 有句子要使用者打某個指令（Rules M5） |
+| 有 `iconwidth` | 有 `<app> iconwidth` 指令（Rules E1） |
+| 沒有畫面也能印 | 有不打開 TUI、直接印出來的指令（Rules E3） |
+| TUI 以外的畫面 | 有不在 TUI 裡的畫面，或印給別的程式顯示的輸出（Rules E3） |
+| 有只給這一次執行用的檔案 | 有只給這一次執行用、放在暫存目錄的檔案（Rules E3） |
+| 會自己重讀內容 | app 會自己重讀內容，定時或看著東西變了（dialog/note，note.7） |
+| 會讀 app 外面的東西 | 有值指到 app 外面的東西，例：叢集的 namespace（Rules E3） |
+| 啟動後才找東西 | 有東西要啟動後才找得到，例：之後才查到的種類（Rules E3） |
+| 模式的鍵可以讓使用者設定 | 模式的鍵可以讓使用者設定（Rules K11） |
+| 模式裡有沒有移動可做的鍵 | 模式裡某個移動鍵沒有可移動的（Rules K12） |
+| 從標記語言畫出來的文件 | 有從標記語言畫出來的文件，例：閱讀器裡的網頁（components.5） |
+| 會移動它 cursor 的動作 | app 自己的動作會移動 panel 的 cursor 或換掉它列的東西（layout/panel，panel.14） |
 | 被指到的 panel | 清單的一列代表畫面上另一個 panel，cursor 會指出那個 panel（例：sshu 的 sessions 清單與網格） |
 | app 自己的 popup | 有七類裝不下、內容由 app 自己畫的 popup（例：kamonu 畫格子的 popup） |
 | app 自己的內容 | 有放元件裝不下的東西、由 app 自己畫的 panel（例：遊戲、圖） |
