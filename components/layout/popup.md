@@ -38,7 +38,7 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
   | confirm | `nf-md-shield_alert` (U+F0ECC) |
   | toast | by kind, and the inspect toast's own, see [`dialog/toast`](../dialog/toast.md) |
   | terminal | `nf-md-console` (U+F018D) |
-  | compare | `nf-md-compare` (U+F018A) |
+  | diff | `nf-md-compare` (U+F018A) |
   | input, form, note, an app's own popup | the app may decide for itself: the thing it edits or shows (e.g. a pen for Rename); avoid outline glyphs that are too thin |
 
 - **Hint**: after `┗━ ` on the bottom border, written as Rules M5 says.
@@ -47,7 +47,7 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
   - **Keys that move between items are left out** (`j|k`, `↑|↓`); only actions and leaving are written: users find
     movement out by using it. A key that switches parts is not movement and is written (e.g. a finder's `Tab:list`, a
     form's `Tab:actions`). The `h|l` that switches tabs is written too, as `h|l:tab`: there `h|l` changes the whole page,
-    not the item (e.g. the comparison's `UNIFIED` and `SPLIT`, a viewer with several pages); not when there is only one
+    not the item (e.g. the diff's `UNIFIED` and `SPLIT`, a viewer with several pages); not when there is only one
     tab, or while `h|l` does not switch tabs (e.g. in the selection mode).
   - **When it still does not fit at the widest frame, whole pairs are dropped from the end, but the last `Esc` always
     stays**: starting from the pair before `Esc`, pairs are dropped one by one towards the front, never cut mid-pair; the
@@ -64,7 +64,7 @@ The popup's classes, size and dimming when stacked are in Rules F1–F8.
 - **Padding**: one blank row above and below the content, one cell from the border on the left and right (with a cursor
   across a whole row, the right padding is as wide as the arrow, see the next item). Every kind of popup has it, viewers
   too; only the terminal is the exception: no padding on any side
-  ([`dialog/terminal`](../dialog/terminal.md)). A location row (e.g. the two sides of a comparison,
+  ([`dialog/terminal`](../dialog/terminal.md)). A location row (e.g. the two sides of a diff,
   [`dialog/note`](../dialog/note.md), note.8) takes the top padding's place, right under the top border as in a panel
   ([`panel`](panel.md), panel.10); the bottom padding stays (the user, 2026-11-20, from gittu).
 - **A cursor block covers the padding**: a list's cursor runs from frame to frame, covering the left and right padding,

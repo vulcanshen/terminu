@@ -273,7 +273,7 @@ input box is a trap with no exit.
   inside that scope the next two points hold (with a popup open it always asks first; `Ctrl-C` again quits at once).
   E.g. sshu asks whether to close open sessions first; filu lets the user choose whether to switch the shell to the last
   directory.
-- **With a popup open, the quit flow asks first**: with any popup open (a menu, a viewer, a picker, the comparison…; a
+- **With a popup open, the quit flow asks first**: with any popup open (a menu, a viewer, a picker, the diff…; a
   toast is not a popup), the first `q` or `Ctrl-C` never quits. A flow whose first step already asks stays as it is
   (filu's choice of where the shell goes, sshu's question about open sessions); a flow that would quit at once at that
   moment opens the quit confirm instead (`Quit <app>?`, `Enter:quit Esc:cancel`,
@@ -289,7 +289,7 @@ means users can never be trapped by their own confirm box. `q` on a form is the 
 type, and a user who thinks they are typing, hits `q` and leaves the app pays too high a price. The typing note is the
 next step of the same case: it pops up while the user is still typing, and the next characters keep coming; a `q` there
 would open the quit confirm, and a habitual `Enter` would quit. An open popup is the other place where a stray `q` costs
-too much: the user is in the middle of something (reading a viewer, picking from a menu, looking at a comparison) and
+too much: the user is in the middle of something (reading a viewer, picking from a menu, looking at a diff) and
 pressing keys in runs, and quitting at once would throw away what is open and where they were (the user, 2026-10-22).
 
 ### K10 PTY: keys belong to the subprocess, with at least one exit key
@@ -349,7 +349,7 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 - **The mode's Space menu** ("Inside a mode" in [components/dialog/menu](../components/dialog/menu.md); an app's own
   mode: below): it lists only
   what can be done in the mode, in two sections — **item operations**: what can be done now to the item under the
-  cursor (or the selected range), picking one being the same as pressing its key (e.g. `[C]ompare` in the Compare mode,
+  cursor (or the selected range), picking one being the same as pressing its key (e.g. `[C] Diff` in the Diff mode,
   `Cop[y]` once a selection has started); **mode operations**: the mode's own keys — the movement keys are only shown,
   not run, while what really does something, such as leaving the mode, runs as usual. Panel, item and global actions are
   never listed. The mode's keys are also disclosed in the `?` key reference and in the footer / bottom-border hint (how
@@ -392,7 +392,7 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   leaves the mode, after which `Space` opens the panel's Space menu (K5). Picking `Space` shows a Warning
   saying what `Space` now does in the mode and that for a menu, `Esc` comes first (the user, 2026-11-16, from
   tetru).
-- **An app's own mode** (a mode neither a component nor a rule of tdp specifies; the components' compare, Drag,
+- **An app's own mode** (a mode neither a component nor a rule of tdp specifies; the components' Diff, Drag,
   selection and history modes and K12's item-to-item mode are tdp's), tdp's opening for what no component holds
   (Principle P5):
   - **When an app may make one**: only for what neither a component nor a rule of tdp does, e.g. playing a game or
@@ -1023,7 +1023,7 @@ best, and no rule such as "reversible means no need to ask" can judge it.
   screen, covering the footer; inside the frame there is no padding on any side — the subprocess needs the room, and
   inside a PTY the outside footer is not needed
   ([components/dialog/terminal](../components/dialog/terminal.md)).
-- **The comparison is the other exception to the width**: `terminal width − 2`, with no 120-column cap; its height
+- **The diff is the other exception to the width**: `terminal width − 2`, with no 120-column cap; its height
   follows the rest of this rule ([components/dialog/note](../components/dialog/note.md), note.8): long lines of code,
   and SPLIT's two sides next to each other, need the room, while the cap is for keeping a menu's names near their
   descriptions (the user, 2026-11-19, from gittu).

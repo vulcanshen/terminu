@@ -81,7 +81,7 @@ panel）用 `┤` `├`；模式名用模式色加粗，大小寫照原樣。
 
 - **開與關**：進入模式時，標籤從中間打開：兩個接頭先在那裡並排出現，再往兩邊撐開，名字從中間露出來；離開時倒著播，
   直到只剩框線。第一幀是兩個接頭，之後每一幀多露出一個字，一幀 32ms 跟 popup 一樣（Rules F2）：每一幀都有變化，
-  所以長短跟著名字走（`Drag` 5 幀約 160ms、`Compare` 8 幀約 256ms），進度照時鐘算。名字長度是奇數時，中間會偏半格，
+  所以長短跟著名字走（`Drag` 5 幀約 160ms、`Select` 7 幀約 224ms），進度照時鐘算。名字長度是奇數時，中間會偏半格，
   偏哪一邊都可以。標籤還在的時候，標題一直留著整個標籤的位置，不會一幀一幀跟著移動。
 
   ```
@@ -240,28 +240,28 @@ Yellow 底、Base 粗體，右邊的箭頭也是 Yellow；標記欄畫 `nf-md-sw
 panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reorder-zh_TW.md) 拿著一項時一樣：`j|k` 搬（到頭尾繞回，Rules K12）、
 `Enter` 放下、`Esc` 放回。
 
-### panel.9 比較模式
+### panel.9 Diff 模式
 
-有比較模式的清單（Rules K11；比較鍵 app 可以自行決定，例：kbu 的 `C`）：在一列上按比較鍵，進入模式，那一列成為 anchor；接著挑另一列，
-打開兩個的比較（[`dialog/note`](../dialog/note-zh_TW.md) 的「比較」）。
+有 Diff 模式的清單（Rules K11；Diff 鍵 app 可以自行決定，例：kbu 的 `C`）：在一列上按 Diff 鍵，進入模式，那一列成為 anchor；接著挑另一列，
+打開兩個的 Diff（[`dialog/note`](../dialog/note-zh_TW.md) 的「Diff」）。
 
 - **只比文字，或裝著許多項目的列**（見下）：文字，或用文字呈現的內容（例：kbu 資源的 YAML、filu 的文字檔）。檔案照
   [`input/file-picker`](../input/file-picker-zh_TW.md) 預覽的種類判，`text` 以外（image、PDF、archive、binary……）不能比：那一項沒
-  有比較的動作（Rules M2），模式裡 cursor 停在上面時比較鍵停用（M6）。
+  有 Diff 的動作（Rules M2），模式裡 cursor 停在上面時 Diff 鍵停用（M6）。
 - **anchor 那一列**：整列模式色 —— Yellow 底、Base 字、不加粗、沒有右邊的箭頭（[`color`](../color-zh_TW.md) 的「模式裡選起來的
   範圍」）；cursor 照舊，停在 anchor 上時畫 cursor。
-- **模式的鍵**：`j|k`、`u|d`、`gg|G` 移動；比較鍵或 `Enter` 打開跟 anchor 的比較，關掉後回到模式、anchor 留著，可以再挑下一列；
+- **模式的鍵**：`j|k`、`u|d`、`gg|G` 移動；Diff 鍵或 `Enter` 打開跟 anchor 的 Diff，關掉後回到模式、anchor 留著，可以再挑下一列；
   cursor 在 anchor 上時這兩個鍵停用（M6）。兩邊一模一樣時不打開，跳 Info toast（`No differences between <a> and <b>`），留在
   模式裡。`Esc` 離開模式、拿掉 anchor；`Tab` 與數字鍵暫停（K11）。
 - **anchor 不在了**（被刪掉、搬走）：離開模式，跳 Warning toast 說明。
-- **裝著許多項目的列**（例：兩個資料夾、兩個 namespace、兩個 commit）：比這種兩列時不直接打開比較，而是照 panel.10 進到一層「兩
+- **裝著許多項目的列**（例：兩個資料夾、兩個 namespace、兩個 commit）：比這種兩列時不直接打開 Diff，而是照 panel.10 進到一層「兩
   邊有差異的項目」清單，位置列換成 `<anchor> ↔ <另一個>`，兩個名字由 app 給，要寫得出在哪裡（例：`a/src ↔ b/src`），再往下一層也
-  一樣。每一項前面一個標記，以 anchor 為基準（同比較）：只有另一個有的 `+`（Green），只有 anchor 有的 `-`（Red），兩邊都有但不一
+  一樣。每一項前面一個標記，以 anchor 為基準（同 Diff）：只有另一個有的 `+`（Green），只有 anchor 有的 `-`（Red），兩邊都有但不一
   樣的 `~`（Peach）；兩邊一樣的不列。項目怎麼命名照 app（例：路徑 `internal/ui/ui.go`）；app 知道改了名或搬了位置的項目（例：git
-  回報的 rename）算兩邊都有：`~`，名字寫 `<舊> → <新>`，比較的是舊的對新的。在一項上按 `Enter` 打開它的比較，第一列寫它兩邊的名字，
+  回報的 rename）算兩邊都有：`~`，名字寫 `<舊> → <新>`，比的是舊的對新的。在一項上按 `Enter` 打開它的 Diff，第一列寫它兩邊的名字，
   由 app 給（例：`ui.go @ 1a2b3c4 ↔ ui.go @ 5d6e7f8`，不管從哪裡打開都一樣；UNIFIED 與 SPLIT，照
   [`dialog/note`](../dialog/note-zh_TW.md)；只有一邊有的，另一邊是空的），它自己也裝著許多項目時照樣再進一層；不是文字的項目沒有
-  比較，同上。`Esc` 一層一層退回，最後回到模式、anchor 留著。兩邊沒有差異時不打開，跳上面那個 Info toast（user 2026-11-19，來自
+  Diff，同上。`Esc` 一層一層退回，最後回到模式、anchor 留著。兩邊沒有差異時不打開，跳上面那個 Info toast（user 2026-11-19，來自
   gittu）。
 
 ### panel.10 位置列

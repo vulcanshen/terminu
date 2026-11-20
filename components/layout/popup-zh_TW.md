@@ -34,14 +34,14 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   | confirm | `nf-md-shield_alert`（U+F0ECC） |
   | toast | 依種類，inspect toast 有自己的，見 [`dialog/toast`](../dialog/toast-zh_TW.md) |
   | terminal | `nf-md-console`（U+F018D） |
-  | 比較 | `nf-md-compare`（U+F018A） |
+  | Diff | `nf-md-compare`（U+F018A） |
   | input、表單、note、app 自己的 popup | app 可以自行決定：它編輯或顯示的東西（例：Rename 用一支筆）；避開太細的 outline glyph |
 
 - **hint**：放在下框 `┗━ ` 後面，寫法照 Rules M5。
   - **順序**：`Enter` 第一 → 切 tab 的 `h|l:tab` → 這個 popup 自己的鍵 → 換塊的 `Tab:…` → `Esc` 最後。terminal 例外：出口鍵第一（[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。
   - **不寫在項目之間移動的鍵**（`j|k`、`↑|↓`），只寫動作與離開：使用者操作一下就知道。切換塊的鍵不算移動，
     照寫（例：finder 的 `Tab:list`、表單的 `Tab:actions`）。切 tab 的 `h|l` 也照寫成 `h|l:tab`：`h|l` 在這裡換的是整頁內容，
-    不是在項目之間走（例：比較的 `UNIFIED`／`SPLIT`、有好幾頁的 viewer）；只有一個 tab、或 `h|l` 現在不切 tab（例：選取模式裡）時不寫。
+    不是在項目之間走（例：Diff 的 `UNIFIED`／`SPLIT`、有好幾頁的 viewer）；只有一個 tab、或 `h|l` 現在不切 tab（例：選取模式裡）時不寫。
   - **框到了最寬還放不下時，從尾端整組捨棄，但最後的 `Esc` 一定留著**：從 `Esc` 前面的那一組開始，一組一組往前捨，不截在
     項目中間；下框右邊的捲動位置留著。框的寬度本來就算進 hint 與捲動位置（見下面的「寬度」），只有 terminal 太窄時才會捨棄。
     例：`Enter:install Tab:actions Esc:cancel` 放不下時是 `Enter:install Esc:cancel`，再放不下是 `Esc:cancel`。
@@ -51,7 +51,7 @@ popup 是浮在畫面上的框。這個檔只定框本身，不定框裡放什�
   panel 的膠囊緊接著角，[`panel`](panel-zh_TW.md)）。
 - **留白**：內容上下各留一列空白，左右離框一格（有整列 cursor 的，右邊的留白跟箭頭一樣寬，見下一條）。每一種 popup 都有，
   viewer 也一樣；只有 terminal 例外：上下左右都不留白
-  （[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。位置列（例：比較的兩邊，[`dialog/note`](../dialog/note-zh_TW.md)，note.8）
+  （[`dialog/terminal`](../dialog/terminal-zh_TW.md)）。位置列（例：Diff 的兩邊，[`dialog/note`](../dialog/note-zh_TW.md)，note.8）
   占掉上方留白的位置，跟 panel 一樣緊貼上框（[`panel`](panel-zh_TW.md)，panel.10）；下方留白照舊（user 2026-11-20，來自 gittu）。
 - **cursor 色塊蓋住留白**：清單的 cursor 從框貼到框，蓋住左右的留白，色塊上的字照樣離框一格（[`dialog/menu`](../dialog/menu-zh_TW.md)、
   [`input/finder`](../input/finder-zh_TW.md)）；表單的 focus 色塊從值開始、一直到框，蓋住右邊的留白（[`dialog/form`](../dialog/form-zh_TW.md)）。

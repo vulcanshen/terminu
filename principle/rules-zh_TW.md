@@ -223,7 +223,7 @@ select 的打字列、panel filter。select 與 picker 的清單、textarea 的�
 - **離開流程 app 可以自行決定**：直接離開、先確認，或讓使用者選擇離開的方式；範圍內要守的是下面兩點（有 popup 開著時一定先問、
   再按一次 `Ctrl-C` 立刻離開）。
   例：sshu 有 session 開著時先問要不要關掉；filu 讓使用者選要不要把 shell 切到最後的目錄。
-- **有 popup 開著時，離開流程一定先問**：有任何 popup 開著（menu、viewer、picker、比較……；toast 不是 popup）時，第一下 `q`
+- **有 popup 開著時，離開流程一定先問**：有任何 popup 開著（menu、viewer、picker、Diff……；toast 不是 popup）時，第一下 `q`
   或 `Ctrl-C` 一定不會直接離開。流程第一步本來就會問的照舊（filu 問 shell 要停在哪個目錄、sshu 問要不要關掉開著的 session）；
   當下會直接離開的流程，改開離開的 confirm（`Quit <app>?`，`Enter:quit Esc:cancel`，
   [components/dialog/confirm](../components/dialog/confirm-zh_TW.md)）。在跳出來的東西上按 `Esc` 回到 popup。在 panel 上
@@ -235,7 +235,7 @@ select 的打字列、panel filter。select 與 picker 的清單、textarea 的�
 使用者就得記哪個會問、哪個不會。連按兩次 `Ctrl-C` 強制離開，讓使用者不會被自己的確認框困住。表單上的 `q` 是例外：
 表單看起來像可以打字的地方，使用者以為在打字、打到 `q` 卻離開了 app，這個代價太高。打字說明 note 是同一個情況的下一步：
 它跳出來時使用者還在打字，後面的字照樣接著打進來；`q` 在那裡開了離開的 confirm，習慣性再按 `Enter` 就離開了。
-有 popup 開著是另一個誤按 `q` 代價太高的地方：使用者正做到一半（看 viewer、在 menu 裡挑、看比較），手還在連續按鍵，直接離開會
+有 popup 開著是另一個誤按 `q` 代價太高的地方：使用者正做到一半（看 viewer、在 menu 裡挑、看 Diff），手還在連續按鍵，直接離開會
 把開著的東西和看到的位置都丟掉（user 2026-10-22）。
 
 ### K10 PTY：按鍵屬於子程序，至少留一個出口鍵
@@ -283,7 +283,7 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 
 - **模式裡只有模式自己的鍵與上表的 core key 作用**：panel 的熱鍵與 global 熱鍵都不作用，按了不出聲。
 - **模式的 Space menu**（[components/dialog/menu](../components/dialog/menu-zh_TW.md) 的「模式裡」；app 自己的模式見下面）：只列模式裡能做的事，分兩區 ——
-  **項目操作**：現在對 cursor 上那一項（或選起來的範圍）能做的事，選了就等於按那個鍵（例：Compare 模式的 `[C]ompare`、選取模式
+  **項目操作**：現在對 cursor 上那一項（或選起來的範圍）能做的事，選了就等於按那個鍵（例：Diff 模式的 `[C] Diff`、選取模式
   開始選之後的 `Cop[y]`）；**模式操作**：這個模式本身的鍵 —— 移動鍵只顯示、不能執行，離開模式這種真的做事的照樣能執行。
   panel、item、global 的動作一律不列。模式的鍵也揭露在 `?` 的 key reference 與 footer / 下框 hint（footer 在模式裡的樣子見
   [components/layout/screen](../components/layout/screen-zh_TW.md)）。
@@ -313,7 +313,7 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
   寫 `Space:<動作>`（`Space` 是用一個動詞講的一對的一半時，照 M5 寫那一對，例：`j|Space:move`）；`?` 照樣列每個鍵，
   `Esc` 照樣離開模式，離開後 `Space` 打開 panel 的 Space menu（K5）。使用者選了 `Space` 時跳 Warning，說出 `Space` 在
   模式裡改做什麼、要 menu 先按 `Esc`（user 2026-11-16，來自 tetru）。
-- **app 自己的模式**（tdp 的元件和規則都沒有規定的模式；元件的 compare、Drag、選取、歷史模式與 K12 的逐項模式是 tdp 的），
+- **app 自己的模式**（tdp 的元件和規則都沒有規定的模式；元件的 Diff、Drag、選取、歷史模式與 K12 的逐項模式是 tdp 的），
   tdp 給元件裝不下的東西開的口（Principle P5）：
   - **什麼時候能做**：只限 tdp 的元件和規則都沒有的事，例：玩遊戲、畫圖（[components/layout/panel](../components/layout/panel-zh_TW.md)
     的 panel.16）。使用者一個一個挑出來操作的東西，不管排成格子、卡片還是看板，都是清單，用清單和清單的模式做。做的事跟元件的
@@ -812,7 +812,7 @@ App Log（`!`，[components/dialog/note](../components/dialog/note-zh_TW.md)）�
 - **terminal 類例外**：寬度 `terminal 寬 − 2`，不受 120 欄上限；上面留著 statusbar 或畫面 chip 列（含它下面的分隔線），下面一直到
   畫面最後一列、蓋掉 footer；框裡上下左右都不留白 —— 子程序需要空間，而在 PTY 裡不需要外面的 footer
   （[components/dialog/terminal](../components/dialog/terminal-zh_TW.md)）。
-- **比較視窗是寬度的另一個例外**：`terminal 寬 − 2`，不受 120 欄上限；高度照這條規則其他的寫法
+- **Diff 視窗是寬度的另一個例外**：`terminal 寬 − 2`，不受 120 欄上限；高度照這條規則其他的寫法
   （[components/dialog/note](../components/dialog/note-zh_TW.md)，note.8）：程式碼一行很長，SPLIT 又要兩邊並排，需要空間；120 欄的
   上限是為了讓 menu 的名稱與說明不要離太遠（user 2026-11-19，來自 gittu）。
 

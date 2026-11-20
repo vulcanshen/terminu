@@ -294,7 +294,7 @@ tdp v1.2.18 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | F7-14 | F7 | terminal popup 寬度是 `terminal 寬 − 2`，不受 120 欄上限 | terminal popup | 在 200 欄的終端機打開，寬度是 198 |
 | F7-15 | F7 | terminal popup 下面一直到畫面最後一列，蓋掉 footer | terminal popup | 打開 terminal popup，下框在最後一列，footer 不見 |
 | F7-16 | F7 | terminal popup 框裡上下左右都不留白 | terminal popup | 看子程序的內容緊貼四邊的框線 |
-| F7-17 | F7 | 比較視窗（note.8）寬 `terminal 寬 − 2`，不受 120 欄上限 | 比較模式 | 在 200 欄的終端機打開比較：寬 198 |
+| F7-17 | F7 | Diff 視窗（note.8）寬 `terminal 寬 − 2`，不受 120 欄上限 | Diff 模式 | 在 200 欄的終端機打開 Diff：寬 198 |
 | F8-1 | F8 | 有 popup 開著時，最上層 popup 以外的一切（底下的 popup 與整個 base 畫面）都淡化，只有最上層是亮的 | 都要 | Space menu 開 global operation popup，底下的 Space menu 與 base 畫面都暗 |
 | F8-2 | F8 | 底下的串流內容（log、遠端 session）與警示色也一起淡化 | 串流內容 | 在串流內容或警示色上面開 popup，它們也變暗 |
 | F8-3 | F8 | 淡化把前景與背景都往底色淡化，不丟掉背景 | 都要 | 開 popup 後看底下的 powerline 膠囊本體、cursor bar、選取反白仍在，只是變暗 |
@@ -634,18 +634,18 @@ tdp v1.2.18 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | panel-36 | panel.4 | 兩端的前景是旁邊那一段的底：旁邊是選中的段時是這串的顏色，是沒選中的段時是 Mantle；外側不塗背景 | 都要 | 看膠囊串頭尾，再換 tab 讓尾端變成沒選中的段；把終端機底色換成不是 Base 也不是 Mantle 的顏色，兩端外側沒有色塊 |
 | panel-37 | panel.4 | 斜角與接縫各佔一個 powerline 符號的寬度，換選中的段時字不位移 | 多畫面、panel tab | 換 tab，看各段的字位置不動 |
 | panel-137 | panel.4 | 失焦時沒選中的段照樣是 Mantle（串的顏色換成失焦的框線色）；被蓋住時跟整個畫面一起淡化，Mantle 變成 Crust `#11111b` | 多畫面、panel tab、popup tab | 按 `Tab` 換 panel，看失焦的 panel 上沒選中的段底色不變；開一個 popup，量底下沒選中的段的底色 |
-| panel-138 | panel.9 | 在一列上按比較鍵進入 K11 的模式，那一列成為 anchor；框與模式名 Yellow | 比較模式 | 按比較鍵，看框與模式名 |
-| panel-139 | panel.9 | 只比文字或用文字呈現的內容；`text` 以外的項目沒有比較的動作 | 比較模式 | 在不是文字的項目上開 Space menu，看沒有比較 |
-| panel-140 | panel.9 | 模式裡 cursor 停在 anchor 或不能比的項目上時，比較鍵與 `Enter` 停用 | 比較模式 | 停在 anchor 上按 `?`，比較鍵是停用色；按了不作用 |
-| panel-141 | panel.9 | anchor 那一列整列 Yellow 底、Base 字、不加粗、沒有右邊的箭頭；cursor 停在上面時畫 cursor | 比較模式 | 進入後移開 cursor 看 anchor，再移回去 |
-| panel-142 | panel.9 | 比較鍵或 `Enter` 打開跟 anchor 的比較；關掉後回到模式，anchor 留著 | 比較模式 | 比一次、關掉，看還在模式裡、anchor 還在 |
-| panel-143 | panel.9 | 兩邊一模一樣時不打開，跳 Info toast，留在模式裡 | 比較模式 | 比兩個一樣的項目 |
-| panel-144 | panel.9 | `Esc` 離開模式、拿掉 anchor；`Tab` 與數字鍵暫停 | 比較模式 | 模式裡按 `Tab`、`Esc` |
-| panel-145 | panel.9 | anchor 不在了時離開模式，跳 Warning toast | 比較模式 | 在模式裡讓 anchor 那一項被刪掉 |
-| panel-176 | panel.9 | 比兩個裝著許多項目的列（例：資料夾、namespace、commit）時不直接打開比較，而是進到一層有差異的項目清單，位置列換成 app 給的 `<anchor> ↔ <另一個>`，每一項的比較第一列寫 app 給的兩邊名字 | 比較模式 | 比兩個這種列，看清單與位置列 |
-| panel-177 | panel.9 | 清單每一項前面是 `+`（Green，只有另一個有）、`-`（Red，只有 anchor 有）或 `~`（Peach，兩邊都有但不一樣）；兩邊一樣的不列 | 比較模式 | 同上，對照兩邊檢查標記 |
-| panel-178 | panel.9 | 在一項上按 `Enter` 打開它的比較（UNIFIED 與 SPLIT；只有一邊有的，另一邊是空的），裝著許多項目的再進一層 | 比較模式 | 同上，在改了、加了、還有下一層的項目上各按 `Enter` |
-| panel-179 | panel.9 | `Esc` 一層一層退回，最後回到比較模式、anchor 留著 | 比較模式 | 同上，一直按 `Esc` 到回到模式 |
+| panel-138 | panel.9 | 在一列上按 Diff 鍵進入 K11 的模式，那一列成為 anchor；框與模式名 Yellow | Diff 模式 | 按 Diff 鍵，看框與模式名 |
+| panel-139 | panel.9 | 只比文字或用文字呈現的內容；`text` 以外的項目沒有 Diff 的動作 | Diff 模式 | 在不是文字的項目上開 Space menu，看沒有 Diff |
+| panel-140 | panel.9 | 模式裡 cursor 停在 anchor 或不能比的項目上時，Diff 鍵與 `Enter` 停用 | Diff 模式 | 停在 anchor 上按 `?`，Diff 鍵是停用色；按了不作用 |
+| panel-141 | panel.9 | anchor 那一列整列 Yellow 底、Base 字、不加粗、沒有右邊的箭頭；cursor 停在上面時畫 cursor | Diff 模式 | 進入後移開 cursor 看 anchor，再移回去 |
+| panel-142 | panel.9 | Diff 鍵或 `Enter` 打開跟 anchor 的 Diff；關掉後回到模式，anchor 留著 | Diff 模式 | 比一次、關掉，看還在模式裡、anchor 還在 |
+| panel-143 | panel.9 | 兩邊一模一樣時不打開，跳 Info toast，留在模式裡 | Diff 模式 | 比兩個一樣的項目 |
+| panel-144 | panel.9 | `Esc` 離開模式、拿掉 anchor；`Tab` 與數字鍵暫停 | Diff 模式 | 模式裡按 `Tab`、`Esc` |
+| panel-145 | panel.9 | anchor 不在了時離開模式，跳 Warning toast | Diff 模式 | 在模式裡讓 anchor 那一項被刪掉 |
+| panel-176 | panel.9 | 比兩個裝著許多項目的列（例：資料夾、namespace、commit）時不直接打開 Diff，而是進到一層有差異的項目清單，位置列換成 app 給的 `<anchor> ↔ <另一個>`，每一項的 Diff 第一列寫 app 給的兩邊名字 | Diff 模式 | 比兩個這種列，看清單與位置列 |
+| panel-177 | panel.9 | 清單每一項前面是 `+`（Green，只有另一個有）、`-`（Red，只有 anchor 有）或 `~`（Peach，兩邊都有但不一樣）；兩邊一樣的不列 | Diff 模式 | 同上，對照兩邊檢查標記 |
+| panel-178 | panel.9 | 在一項上按 `Enter` 打開它的 Diff（UNIFIED 與 SPLIT；只有一邊有的，另一邊是空的），裝著許多項目的再進一層 | Diff 模式 | 同上，在改了、加了、還有下一層的項目上各按 `Enter` |
+| panel-179 | panel.9 | `Esc` 一層一層退回，最後回到 Diff 模式、anchor 留著 | Diff 模式 | 同上，一直按 `Esc` 到回到模式 |
 | panel-146 | panel.3 | 進入模式時模式名從中間打開：兩個接頭並排出現、往兩邊撐開，名字從中間露出來；離開時倒著播；第一幀是兩個接頭，之後每 32ms 一幀多露出一個字 | 模式 | 進入再離開模式，看上框右邊 |
 | panel-147 | panel.3 | 模式名開或關到一半時又切換，從當下的位置轉向，不從頭播 | 模式 | 快速進出模式幾次（例：`D` `Esc` `D`） |
 | panel-148 | panel.3 | 模式立刻生效、外框立刻變色；模式名播動畫時照樣收鍵 | 模式 | 進入模式後馬上按模式的鍵；看外框顏色 |
@@ -790,7 +790,7 @@ tdp v1.2.18 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | popup-8 | popup.1 | 標題後面接 tab 時，tab 照膠囊串畫 | popup tab | 打開有 tab 的 popup，看標題後面 |
 | popup-9 | popup.1 | tab 跟圓角的標題之間隔一段線（`┏━TITLE━CONSOLE…`） | popup tab | 看標題膠囊與第一個 tab 之間 |
 | popup-10 | popup.1 | hint 的順序：`Enter` 第一 → 切 tab 的 `h\|l:tab` → 這個 popup 自己的鍵 → 換塊的 `Tab:…` → `Esc` 最後 | 都要 | 打開各種 popup，看 hint 的順序 |
-| popup-11 | popup.1 | hint 不寫在項目之間移動的鍵（`j\|k`、`↑\|↓`）；有兩個以上的 tab、`h\|l` 切 tab 時寫 `h\|l:tab` | 都要 | 看各種 popup 的 hint；打開比較的 viewer 看有 `h\|l:tab` |
+| popup-11 | popup.1 | hint 不寫在項目之間移動的鍵（`j\|k`、`↑\|↓`）；有兩個以上的 tab、`h\|l` 切 tab 時寫 `h\|l:tab` | 都要 | 看各種 popup 的 hint；打開 Diff 的 viewer 看有 `h\|l:tab` |
 | popup-12 | popup.1 | 框到了最寬還放不下時，hint 從 `Esc` 前面的那一組開始往前整組捨棄，不截在項目中間；最後的 `Esc` 一定留著 | 都要 | 把終端機縮到很窄，打開寬度到頂的 popup，看下框留著 `Esc` |
 | popup-13 | popup.1 | hint 捨棄時，下框右邊的捲動位置留著 | 都要 | 同上，讓內容也放不下，看右下 |
 | popup-14 | popup.1 | 框上的字與角之間隔一段線：`┏━TITLE`、`┗━ Enter:run`、`4 of 12 ━┛` | 都要 | 看 popup 的四個角 |
@@ -1087,18 +1087,18 @@ tdp v1.2.18 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | note-74 | note.2 | viewer 的內容裡，app 一行一行交來的一行夾著 `\n` 時拆成兩行 | viewer | 讓 app 交給 viewer 的一行含 `\n`（例：多行的錯誤訊息），看是兩行 |
 | note-75 | note.2 | viewer 的內容裡，顏色碼（SGR）照著上色，一行裡的 `\r` 只留最後的狀態，不是顏色碼的序列畫成紅色的名字 | viewer | 打開含顏色碼、`10%\r100%`、`\x1b[2J` 的內容 |
 | note-76 | note.7 | 每個 app 都有 App Log，是 viewer，最新的在最下面，開著時新的一筆照樣進來 | 都要 | 按 `!`，做幾件事，看新的一筆進來 |
-| note-77 | note.7 | 記使用者的動作與結果、每一個 toast（inspect toast 除外）、app 在背景做的事；動作是 Rules P3 的三種 operation，只看不改的也記，移動 cursor、換 focus、panel filter、`/` 搜尋、比較模式、進出其他模式、在 confirm 或表單上取消的不記 | 都要 | 做一個改東西的動作、一個只看的動作（例：開 viewer）、跳一個 toast，移動幾次 cursor，按 `!`；讀程式 |
+| note-77 | note.7 | 記使用者的動作與結果、每一個 toast（inspect toast 除外）、app 在背景做的事；動作是 Rules P3 的三種 operation，只看不改的也記，移動 cursor、換 focus、panel filter、`/` 搜尋、Diff 模式、進出其他模式、在 confirm 或表單上取消的不記 | 都要 | 做一個改東西的動作、一個只看的動作（例：開 viewer）、跳一個 toast，移動幾次 cursor，按 `!`；讀程式 |
 | note-104 | note.7 | app 自己重讀的內容，只有讀到變了才記：一筆 INFO，寫出改了什麼；讀到沒變不記，自己一直進來的更新不一筆一筆記 | 會自己重讀內容 | 開著 app 等它重讀幾次：沒有紀錄；在 app 外面改它讀的東西：一筆 INFO，寫出改了什麼 |
 | note-105 | note.7 | app 自己重讀失敗時：第一次跳 Error toast、記一筆 ERR；同一個失敗再發生不跳、不記；換了一個失敗再跳、再記；又讀得到時記一筆 INFO，不跳 toast | 會自己重讀內容 | 讓它讀的東西讀不到、等它重讀幾次，再換一種讀不到的方式，最後讓它讀得到：每一種失敗一個 toast、一筆紀錄，最後一筆 INFO |
 | note-78 | note.7 | 每一筆：時間 `HH:MM:SS`（Overlay0）、等級（`INFO` Text、`OK` Green、`WARN` Peach、`ERR` Red，四格寬靠左）、發生的事（跟 toast 一樣大寫開頭） | 都要 | 看 App Log 的各種等級 |
 | note-79 | note.7 | 只放在記憶體，app 關掉就清空；筆數有上限，滿了丟掉最舊的 | 都要 | 讀程式；或關掉再開，App Log 是空的 |
-| note-80 | note.8 | 標題 glyph `nf-md-compare`（U+F018A），`DIFF`，後面接 `UNIFIED`、`SPLIT` 兩個 tab，`h\|l` 切 | 比較模式 | 打開比較，按 `h\|l`；讀程式核對 code point |
-| note-107 | note.8 | 第一列寫兩邊的名字 `<anchor> ↔ <另一個>`，Lavender，緊貼上框、上面沒有空白列，固定；太長時先在 `↔` 前面折，再折在 `/` 後面，不用 `…` 切；標題只有 `DIFF`，tab 一定看得到 | 比較模式 | 在窄終端機比兩個路徑很長的項目再捲動：名字折行、沒被切，第一列不動，兩個 tab 都看得到 |
-| note-81 | note.8 | 只顯示有差異的段落，前後各 3 行沒變的，段落之間一條 Overlay0 的分隔線 | 比較模式 | 比兩個長內容、只差兩處的項目 |
-| note-82 | note.8 | UNIFIED：刪掉的行 `-` Red、加上的行 `+` Green、沒變的 Text；anchor 是刪掉的那一邊；行號兩欄、Overlay0 | 比較模式 | 看 UNIFIED |
-| note-83 | note.8 | SPLIT：左 anchor、右另一個，各自標行號；刪 Red 在左、加 Green 在右，對應不到的留空列；兩邊各自在半邊折行，左右對應的兩行照長的那邊佔一樣多列，短的補空白列 | 比較模式 | 看有一行比半邊長的 SPLIT |
-| note-84 | note.8 | 每次比較都從 UNIFIED 開始，上次選的 tab 不記 | 比較模式 | 換成 SPLIT 後關掉再比一次，重開 app 後也比一次：都是 UNIFIED |
-| note-85 | note.8 | 終端機寬不到 96 時 `SPLIT` 停用 | 比較模式 | 把終端機縮到 96 以下再比 |
+| note-80 | note.8 | 標題 glyph `nf-md-compare`（U+F018A），`DIFF`，後面接 `UNIFIED`、`SPLIT` 兩個 tab，`h\|l` 切 | Diff 模式 | 打開 Diff，按 `h\|l`；讀程式核對 code point |
+| note-107 | note.8 | 第一列寫兩邊的名字 `<anchor> ↔ <另一個>`，Lavender，緊貼上框、上面沒有空白列，固定；太長時先在 `↔` 前面折，再折在 `/` 後面，不用 `…` 切；標題只有 `DIFF`，tab 一定看得到 | Diff 模式 | 在窄終端機比兩個路徑很長的項目再捲動：名字折行、沒被切，第一列不動，兩個 tab 都看得到 |
+| note-81 | note.8 | 只顯示有差異的段落，前後各 3 行沒變的，段落之間一條 Overlay0 的分隔線 | Diff 模式 | 比兩個長內容、只差兩處的項目 |
+| note-82 | note.8 | UNIFIED：刪掉的行 `-` Red、加上的行 `+` Green、沒變的 Text；anchor 是刪掉的那一邊；行號兩欄、Overlay0 | Diff 模式 | 看 UNIFIED |
+| note-83 | note.8 | SPLIT：左 anchor、右另一個，各自標行號；刪 Red 在左、加 Green 在右，對應不到的留空列；兩邊各自在半邊折行，左右對應的兩行照長的那邊佔一樣多列，短的補空白列 | Diff 模式 | 看有一行比半邊長的 SPLIT |
+| note-84 | note.8 | 每次 Diff 都從 UNIFIED 開始，上次選的 tab 不記 | Diff 模式 | 換成 SPLIT 後關掉再比一次，重開 app 後也比一次：都是 UNIFIED |
+| note-85 | note.8 | 終端機寬不到 96 時 `SPLIT` 停用 | Diff 模式 | 把終端機縮到 96 以下再比 |
 | note-90 | note.9 | 最後一行在畫面裡時，結尾有新的行進來就跟著往下；往上捲過的畫面停在原本那幾行 | 都要 | App Log 開在結尾，讓一筆紀錄進來；往上捲，再讓一筆進來 |
 | note-91 | note.9 | 選取模式裡，結尾有新的行進來時畫面一律不跟 | 都要 | App Log 開在結尾按 `v`，再讓一筆紀錄進來 |
 | note-92 | note.9 | 重新讀進來的內容比畫面短時，畫面移到新的結尾 | 重新讀進來的內容 | 捲到結尾，再讓內容變得比畫面短 |
@@ -1110,9 +1110,9 @@ tdp v1.2.18 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | note-98 | note.9 | 選取模式裡重新讀進來，cursor 不在：離開模式，跳 Warning toast；內容讀不到：離開模式，只跳那個 Error toast | 重新讀進來的內容 | 從第 10 行選到第 20 行，把內容剪到 15 行；再讓它讀不到（例：刪掉檔案） |
 | note-99 | note.9 | 選取模式的 Space menu 或 key reference 開著時，重新讀進來讓選取失效（起點或 cursor 不見了）：不跳 toast，改疊一個 Peach、樣子跟 error popup 一樣、Warning 圖示的 note 說明；`Enter` 和 `Esc` 都連同 menu 或 key reference 一起關掉，回到畫面 | 重新讀進來的內容 | 選取模式裡往上選，打開 Space menu，再剪掉內容讓起點不見；按 `Enter`；再用 `Esc` 試一次，也用開著的 `?` 試 |
 | note-100 | note.9 | 選取模式的 Space menu 或 key reference 開著時內容讀不到：不跳 Error toast，改疊 error popup 說明讀不到、原本的選取失效了；`Enter` 和 `Esc` 都連同 menu 或 key reference 一起關掉，回到畫面 | 重新讀進來的內容 | 選取模式裡打開 Space menu，再讓內容讀不到（例：刪掉檔案）；按 `Enter`；再用 `Esc` 試一次 |
-| note-101 | note.8 | 看同一項兩個版本的動作打開同一種比較（UNIFIED 與 SPLIT），舊的當 anchor，第一列寫 `<舊的> ↔ <新的>`，不是顯示 patch 的 viewer | 看同一項的兩個版本 | 打開一個檔案的改動（例：commit 裡的），看第一列與 tab |
-| note-102 | note.8 | 一項的改動裝著許多項目時（例：一個 commit 對它的上一個），進去後照 panel.9 列出有差異的項目：`+ - ~` 標記、`Enter` 打開一項的比較、`Esc` 一層一層退回 | 看同一項的兩個版本 | 進到一個 commit 的改動，看標記、`Enter`、`Esc` |
-| note-103 | note.8 | 顯示差異的 panel 照 UNIFIED 畫（只有差異的段落、前後 3 行、兩欄行號、`-` Red、`+` Green），不放工具自己的輸出；在上面按 `Enter` 打開比較 | 看同一項的兩個版本 | 看顯示改動的 panel：沒有 `diff --git`、`@@` 行；按 `Enter` |
+| note-101 | note.8 | 看同一項兩個版本的動作打開同一種 Diff（UNIFIED 與 SPLIT），舊的當 anchor，第一列寫 `<舊的> ↔ <新的>`，不是顯示 patch 的 viewer | 看同一項的兩個版本 | 打開一個檔案的改動（例：commit 裡的），看第一列與 tab |
+| note-102 | note.8 | 一項的改動裝著許多項目時（例：一個 commit 對它的上一個），進去後照 panel.9 列出有差異的項目：`+ - ~` 標記、`Enter` 打開一項的 Diff、`Esc` 一層一層退回 | 看同一項的兩個版本 | 進到一個 commit 的改動，看標記、`Enter`、`Esc` |
+| note-103 | note.8 | 顯示差異的 panel 照 UNIFIED 畫（只有差異的段落、前後 3 行、兩欄行號、`-` Red、`+` Green），不放工具自己的輸出；在上面按 `Enter` 打開 Diff | 看同一項的兩個版本 | 看顯示改動的 panel：沒有 `diff --git`、`@@` 行；按 `Enter` |
 | note-106 | note.8 | 顯示改動的 panel 遇到裝著許多項目的東西（例：新的資料夾），照 panel.9 列出有差異的項目、帶標記（新資料夾的檔案全部是 Green 的 `+`），不只寫名字；在上面按 `Enter` 進到這份清單 | 看同一項的兩個版本 | 把 cursor 放在還沒被追蹤的新資料夾上，看顯示它改動的 panel；按 `Enter` |
 
 ## dialog/terminal

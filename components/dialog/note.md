@@ -277,7 +277,7 @@ keep arriving, as in streaming content.
   what is in view, like moving the cursor, and a record of it means nothing (the user, 2026-10-27, from terminu-go); nor
   does a `/` search, in a viewer or in a panel without a cursor (note.3, panel.14): finding text only moves what is in
   view, as filtering changes it, and a search with no hit is recorded only by its Info toast, as every toast is (the
-  user, 2026-11-04, from catu); nor does a panel's compare mode (note.8; the user, 2026-10-27, from kbu), nor going
+  user, 2026-11-04, from catu); nor does a panel's diff mode (note.8; the user, 2026-10-27, from kbu), nor going
   into or out of any other mode (Rules K11, e.g.
   webu's Visual and Focus, kbu's Drag): a mode only changes how you move or look, and what is done in it (copying,
   dropping, pressing a link) is recorded by its result (the user, 2026-10-29). An operation
@@ -309,9 +309,9 @@ of Rules P3, the same set the menus list, so every app records the same range (f
 in the background can only be seen here. `!`, like `?` and `Space`, works in every app of the family. Memory only: what
 matters is what happened while the app was open this time, with no further kind of thing to store and clean up.
 
-## note.8 Compare
+## note.8 Diff
 
-The popup the compare mode of a panel opens, directly or from the list of the items that differ it goes into
+The popup the diff mode of a panel opens, directly or from the list of the items that differ it goes into
 ([`layout/panel`](../layout/panel.md), panel.9): a viewer (the viewer's rules and its selection mode above apply).
 The title glyph is `nf-md-compare` (U+F018A), the title `DIFF`; two tabs follow it, `UNIFIED` and `SPLIT`, switched
 with `h|l` (Rules K12). It is `terminal width − 2` wide, with no 120-column cap (Rules F7; the user, 2026-11-19, from
@@ -336,9 +336,9 @@ gittu).
 - **It opens on UNIFIED**, the first tab, every time: the two are tabs one key apart, so the choice is not kept (the
   user, 2026-11-19). On a terminal narrower than 96 `SPLIT` is disabled (Rules M6).
 
-**Two versions of one item**: besides the compare mode, an action of the app's own that shows two versions of one item
+**Two versions of one item**: besides the diff mode, an action of the app's own that shows two versions of one item
 (e.g. a file in a commit against the commit before it, a file being edited against its last commit) opens this
-comparison too, not a viewer of a patch: the older one as the anchor, the first row `<older> ↔ <newer>`, each named
+diff too, not a viewer of a patch: the older one as the anchor, the first row `<older> ↔ <newer>`, each named
 by the app. When what changed holds many (e.g. a commit against the one before it), going into it lists the items that
 differ as panel.9 does, with its marks, `Enter` and `Esc` ([`layout/panel`](../layout/panel.md)) (the user,
 2026-11-19, from gittu).
@@ -346,7 +346,7 @@ differ as panel.9 does, with its marks, `Enter` and `Esc` ([`layout/panel`](../l
 **In a panel**: a panel that shows a difference (e.g. a details panel following the cursor, showing what changed in
 the file under it) draws it as UNIFIED does above: only the parts that differ, 3 lines around, the separators, the two
 line-number columns, `-` in Red and `+` in Green; not a tool's own output (e.g. `git diff`'s headers and `@@` lines).
-`Enter` on it opens this comparison, with both tabs (the user, 2026-11-19, from gittu). When what it shows holds many
+`Enter` on it opens this diff, with both tabs (the user, 2026-11-19, from gittu). When what it shows holds many
 (e.g. a folder that is new, a commit), it lists the items that differ as panel.9 does, each with its mark (a new
 folder's files all `+` in Green), not their bare names, and `Enter` goes in to that list as "Two versions of one item"
 says (the user, 2026-11-19, from gittu).

@@ -214,7 +214,7 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
   （來自 demou）；popup 裡的操作不另外記，記的是它所屬那個動作的結果。panel filter（[`layout/panel`](../layout/panel-zh_TW.md)）
   也不記：篩選只是換看得到的範圍，跟移動 cursor 一樣，記下來沒有意義（user 2026-10-27，來自 terminu-go）；viewer 與沒有
   cursor 的 panel 的 `/` 搜尋（note.3、panel.14）也不記：找字只是換看到的地方，跟篩選換範圍一樣，找不到時只記它的 Info toast，
-  跟每一個 toast 一樣（user 2026-11-04，來自 catu）；panel 的比較模式
+  跟每一個 toast 一樣（user 2026-11-04，來自 catu）；panel 的 Diff 模式
   （note.8）也不記（user 2026-10-27，來自 kbu），進出其他模式也不記（Rules K11，例：webu 的 Visual、Focus，kbu 的 Drag）：
   模式只是換一種移動或看的方式，在模式裡做完的事（複製、放下、按連結）照它的結果記（user 2026-10-29）。動作確定了才算做了：
   在動作前面的 confirm、或填值的表單與 input popup 上按 `Esc` 取消，動作沒做、沒有結果，不記（confirm 只是門，Rules T1；來自 sshu）。
@@ -236,9 +236,9 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 範圍一樣（來自 demou）；app 在背景做的事，使用者也只有這裡看得到。`!` 跟 `?`、`Space` 一樣，在家族哪個 app 都按得到。只放在記憶體：要看的是這次開 app
 發生了什麼，不多一種要存、要清的東西。
 
-## note.8 比較
+## note.8 Diff
 
-panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）直接打開、或從它進去的差異項目清單打開的 popup：
+panel 的 Diff 模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）直接打開、或從它進去的差異項目清單打開的 popup：
 一個 viewer（上面 viewer 的規定與選取模式照樣適用）。
 標題 glyph `nf-md-compare`（U+F018A），寫 `DIFF`；後面接兩個 tab：`UNIFIED`、`SPLIT`，`h|l` 切（Rules K12）。寬度是
 `terminal 寬 − 2`，不受 120 欄上限（Rules F7；user 2026-11-19，來自 gittu）。
@@ -258,13 +258,13 @@ panel 的比較模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）�
 - **每次都從 UNIFIED 開始**（第一個 tab）：兩種只是隔一個鍵的 tab，選了哪一種不記（user 2026-11-19）。終端機寬不到 96 時
   `SPLIT` 停用（Rules M6）。
 
-**同一項的兩個版本**：除了比較模式，app 自己的動作要看同一項的兩個版本時（例：一個 commit 裡的檔案對它的上一個 commit、正在改的
-檔案對最後一次 commit），也打開這個比較，不用顯示 patch 的 viewer：舊的那個當 anchor，第一列寫 `<舊的> ↔ <新的>`，名字由 app
+**同一項的兩個版本**：除了 Diff 模式，app 自己的動作要看同一項的兩個版本時（例：一個 commit 裡的檔案對它的上一個 commit、正在改的
+檔案對最後一次 commit），也打開這個 Diff，不用顯示 patch 的 viewer：舊的那個當 anchor，第一列寫 `<舊的> ↔ <新的>`，名字由 app
 給。改到的東西裝著許多項目時（例：一個 commit 對它的上一個），進去後照 panel.9 列出有差異的項目，標記、`Enter`、`Esc` 都一樣
 （[`layout/panel`](../layout/panel-zh_TW.md)）（user 2026-11-19，來自 gittu）。
 
 **在 panel 裡**：顯示差異的 panel（例：跟著游標、顯示游標所在檔案改了什麼的詳細 panel）照上面的 UNIFIED 畫：只有差異的段落、前後
-3 行、分隔線、兩欄行號、`-` Red、`+` Green；不放工具自己的輸出（例：`git diff` 的標頭與 `@@` 行）。在上面按 `Enter` 打開這個比較，
+3 行、分隔線、兩欄行號、`-` Red、`+` Green；不放工具自己的輸出（例：`git diff` 的標頭與 `@@` 行）。在上面按 `Enter` 打開這個 Diff，
 兩個 tab 都有（user 2026-11-19，來自 gittu）。顯示的東西裝著許多項目時（例：新的資料夾、一個 commit），照 panel.9 列出有差異的
 項目，每一項帶標記（新資料夾的檔案全部是 Green 的 `+`），不只寫名字；在上面按 `Enter` 照「同一項的兩個版本」進到這份清單（user
 2026-11-19，來自 gittu）。

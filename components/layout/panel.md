@@ -109,8 +109,8 @@ layer at a time (Rules K11).
 - **It opens and closes**: entering the mode, the tag opens from its middle: the two junctions start side by side
   there and move apart, the name showing from its middle; leaving plays it backwards, down to the plain line. The
   junctions take the first frame and every frame after shows one more letter, 32ms a frame as in a popup (Rules F2):
-  every frame changes something, so the length follows the name (`Drag` 5 frames, about 160ms; `Compare` 8, about
-  256ms), the progress taken from the clock. An odd length leaves the middle half a cell off, either side will do. The title keeps room for the whole tag for as long
+  every frame changes something, so the length follows the name (`Drag` 5 frames, about 160ms; `Select` 7, about
+  224ms), the progress taken from the clock. An odd length leaves the middle half a cell off, either side will do. The title keeps room for the whole tag for as long
   as the tag is there, so it never shifts frame by frame.
 
   ```
@@ -320,37 +320,37 @@ comes back once it is dropped. A panel with a Drag keeps the mark column on ever
 [`input/reorder`](../input/reorder.md) while holding an item: `j|k` move it (wrapping at the ends, Rules K12),
 `Enter` drops it, `Esc` puts it back.
 
-### panel.9 Compare mode
+### panel.9 Diff mode
 
-A list with a compare mode (Rules K11; the compare key, the app may decide for itself, e.g. `C` in kbu): the compare key on a row enters
-the mode and makes that row the anchor; then another row is picked and the two are compared ("Compare" in
+A list with a diff mode (Rules K11; the diff key, the app may decide for itself, e.g. `C` in kbu): the diff key on a row enters
+the mode and makes that row the anchor; then another row is picked and the two are compared ("Diff" in
 [`dialog/note`](../dialog/note.md)).
 
 - **Text only, or rows that hold many** (below): text, or content shown as text (e.g. a kbu resource's YAML, a text
   file in filu). A file goes by the kind of its preview in [`input/file-picker`](../input/file-picker.md); anything
-  but `text` (image, PDF, archive, binary…) cannot be compared: the item has no compare action (Rules M2), and in the
-  mode the compare key is disabled while the cursor rests on it (M6).
+  but `text` (image, PDF, archive, binary…) cannot be compared: the item has no diff action (Rules M2), and in the
+  mode the diff key is disabled while the cursor rests on it (M6).
 - **The anchor row**: the whole row in the mode colour — a Yellow background, Base text, not bold, no arrow on the
   right ("the range selected in a mode" in [`color`](../color.md)); the cursor is drawn as usual, and on the anchor
   the cursor is what is drawn.
-- **The mode's keys**: `j|k`, `u|d`, `gg|G` move; the compare key or `Enter` opens the comparison with the anchor,
+- **The mode's keys**: `j|k`, `u|d`, `gg|G` move; the diff key or `Enter` opens the diff with the anchor,
   and closing it goes back to the mode with the anchor kept, ready for the next row; both keys are disabled while
   the cursor rests on the anchor (M6). When the two are identical nothing opens: an Info toast says so (`No
   differences between <a> and <b>`) and the mode stays. `Esc` leaves the mode and drops the anchor; `Tab` and the
   number keys are paused (K11).
 - **When the anchor is gone** (deleted, moved away): the mode is left, with a Warning toast saying why.
 - **Rows that hold many** (e.g. two directories, two namespaces, two commits): comparing two of them does not open the
-  comparison but goes in one level, as panel.10 goes into an item, to a list of the items that differ between them;
+  diff but goes in one level, as panel.10 goes into an item, to a list of the items that differ between them;
   the location row reads `<anchor> ↔ <the other>` in place of the panel's own, the two named by the app so that they
   say where (e.g. `a/src ↔ b/src`), and so does each level gone into further. Each item starts with a mark, the anchor
-  being the base as in the comparison: `+` in Green for one only the other has, `-` in Red for one only the anchor
+  being the base as in the diff: `+` in Green for one only the other has, `-` in Red for one only the anchor
   has, `~` in Peach for one both have, changed; what is the same on both sides is not listed. The items are named as
   the app names them (e.g. paths, `internal/ui/ui.go`); an item the app knows was renamed or moved (e.g. a rename git
-  reports) is one both have: `~`, named `<old> → <new>`, its comparison the old against the new. `Enter` on an item
-  opens its comparison, its first row naming its two sides as the app names them (e.g. `ui.go @ 1a2b3c4 ↔ ui.go @
+  reports) is one both have: `~`, named `<old> → <new>`, its diff the old against the new. `Enter` on an item
+  opens its diff, its first row naming its two sides as the app names them (e.g. `ui.go @ 1a2b3c4 ↔ ui.go @
   5d6e7f8`, the same however it is reached; UNIFIED and SPLIT, as in [`dialog/note`](../dialog/note.md); one
   side empty for an item only one side has), or goes in again the same way when it holds many itself; an item that is
-  not text has no comparison, as above. `Esc` goes back up a level at a time, the last back to the mode with the
+  not text has no diff, as above. `Esc` goes back up a level at a time, the last back to the mode with the
   anchor kept. When nothing differs, nothing opens: the Info toast above (the user, 2026-11-19, from gittu).
 
 ### panel.10 Location row
