@@ -201,6 +201,7 @@ The items of tdp v1.2.17. What each column means and what an item applies to: [R
 | M5-29 | M5 | In the README, modifiers are joined with `-` (`Alt-t`, `Shift-Tab`, `Alt-Esc`) | everyone | Read the files: the README |
 | M5-30 | M5 | In the README, `\|` joins several keys doing one thing and a pair of opposite keys (`gg\|G`), never `/` | everyone | Read the files: the README |
 | M5-31 | M5 | One item uses `\|` one way only: where a pair's item would also join a key doing the same thing (e.g. an arrow key kept on its default once its letter changed, K11), the pair is written as two items | everyone | Look at the footer, hints and the key reference: no item mixes a pair with a key doing the same thing (e.g. `Enter\|PgDn\|k`) |
+| M5-32 | M5 | A command the user is to type, in a sentence (a toast, an empty state, a status line, stderr, the App Log), is in backticks, its text in the colour around it | a command in text | Find each place the app tells the user to run a command (with colour and without): it reads ``run `<command>` `` |
 | M6-1 | M6 | An action with no target: its row is not shown | everyone | Make the target go away (e.g. empty the list) and look at the menu |
 | M6-2 | M6 | An action with a target that can't run right now: its row is still shown, in the disabled colour | disabled | Make an action unable to run for now and look at the menu |
 | M6-3 | M6 | A disabled row keeps its usual description, with no reason added | disabled | As above, comparing the description before and after it is disabled |

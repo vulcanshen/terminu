@@ -694,6 +694,10 @@ README). Marking inside a label:
   notation as above. A label quoted from the screen is written as on screen (`[A]dd`).
 - **Another tool's own keys** (e.g. tmux's `prefix l`, `C-a x`) are written the way that tool writes them: the user types
   them into that tool's config or reads them in its docs.
+- **A command to type, in a sentence** (a shell command or an app's command the user is to run, anywhere: a toast, an
+  empty state, a status line, stderr, the App Log): in backticks, as in ``run `ccdrawu doctor` ``, its text in the
+  colour around it; which command to write, the app may decide for itself. Like a key in square brackets, it reads apart
+  from the words around it in every place, with colour or without (the user, 2026-11-20, tdp #25).
 
 **Why**: the name answers "what action is this", the description answers "what does it do to what" — the same verb can
 mean different things on different panels (delete the file, or remove the bookmark?). A description that won't fit on
