@@ -227,7 +227,10 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
   又讀得到時記一筆 INFO 說讀得到了（例：`The repository can be read again`），不跳 toast。App Log 打開之前，
   footer 的 `!` 照樣標著這個錯誤沒看過（user 2026-11-19，來自 gittu）。
 - **每一筆**：時間 `HH:MM:SS`（Overlay0）、等級、發生的事（照 [`dialog/toast`](toast-zh_TW.md) 的「開頭大寫」）。等級跟著 toast 的種類與顏色：`INFO` Text、
-  `OK` Green、`WARN` Peach、`ERR` Red，等級欄四格寬、靠左。
+  `OK` Green、`WARN` Peach、`ERR` Red，等級欄四格寬、靠左。發生的事照名字與短字畫（[components](../README-zh_TW.md) 的
+  「控制字元」），一列照 toast 的一列：每個控制字元，連顏色碼的 ESC，都用 Red 寫出名字，不執行，不管這一筆是誰寫的（toast、app、
+  其他程式的輸出）。App Log 是當時有什麼的紀錄，不是終端機：名字裡夾了顏色碼，就照 toast 一樣把碼寫出來（user 2026-11-20，
+  來自 hostu）。
 - **只放在記憶體**：app 關掉就清空；筆數有上限，滿了丟掉最舊的。
 - **沒看過的錯誤與警告**：寫在 footer 的 `!`（[`layout/screen`](../layout/screen-zh_TW.md) 的 footer）；打開 App Log 就算看過。
 

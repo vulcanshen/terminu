@@ -295,7 +295,11 @@ keep arriving, as in streaming content.
   still marks the error as not seen (the user, 2026-11-19, from gittu).
 - **Each entry**: the time `HH:MM:SS` (Overlay0), a level, and what happened, capitalised as in [`dialog/toast`](toast.md). The level
   follows the toast's kinds and colours: `INFO` Text, `OK` Green, `WARN` Peach, `ERR` Red, in a level column four cells
-  wide, left-aligned.
+  wide, left-aligned. What happened is drawn as names and short text are ("Control characters" in
+  [components](../README.md)), a row as a toast's: every control character, the ESC of a colour code included, by name
+  in Red, never applied, whatever wrote the entry (a toast, the app, another program's output). The App Log is a
+  record of what was there, not a terminal: a name holding a colour code shows the code, as its toast did (the user,
+  2026-11-20, from hostu).
 - **Kept in memory only**: it is emptied when the app quits; the number of entries has a limit, and when it is full the
   oldest goes.
 - **Errors and warnings not seen yet**: shown on the footer's `!` (the footer in [`layout/screen`](../layout/screen.md));

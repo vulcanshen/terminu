@@ -77,7 +77,8 @@ app 交給畫面的字常常來自外面（檔名、網頁標題、設定檔、�
 哪一群畫：
 
 - **打字的地方**（輸入框、textarea）：照 [`input`](input/README-zh_TW.md) 的「貼上的控制字元」與 [`input/textarea`](input/textarea-zh_TW.md)。
-- **拿來讀的內容**（viewer、panel 上的 log、檔案預覽）：照終端機會畫的樣子（細節見 [`dialog/note`](dialog/note-zh_TW.md) 的 viewer）——
+- **拿來讀的內容**（viewer、panel 上的 log、檔案預覽；App Log 不是，見下面）：照終端機會畫的樣子（細節見
+  [`dialog/note`](dialog/note-zh_TW.md) 的 viewer）——
   - `\n` 是換行：app 一行一行交來的內容，一行裡夾著 `\n` 也拆成兩行；換行前面的 `\r`（CRLF）不畫。
   - Tab 畫成 `input_tab_width` 格空白（Rules E3）。
   - 顏色碼（SGR，例：`\x1b[32m`）照著上色；一行裡的 `\r`（進度列）只留最後的狀態。
@@ -87,9 +88,9 @@ app 交給畫面的字常常來自外面（檔名、網頁標題、設定檔、�
   - 一般文字裡的 Tab 與 `\n` 是空白，跟空格一樣（Markdown 的軟換行也是）。
   - 程式碼區塊裡（網頁的 `<pre>`、Markdown 的程式碼區塊），Tab 畫成 `input_tab_width` 格空白，`\n` 是換行。
   - 其他控制字元，包括顏色碼的 ESC，畫成紅色的名字：顏色不從文件來。
-- **名字與短字**（表單與 panel 上的值、清單的格子、menu 的 label 與說明、popup 的標題、toast、confirm、error popup、選項、說明列、
-  空狀態、statusbar、tab 的名稱、finder 的項目）：照表單上的值，什麼都不解讀 —— 每個控制字元，連 Tab、`\n`、顏色碼的 ESC，都畫成
-  紅色的名字（`\t`、`\n`、`\x1b`，寫法照 input 的「貼上的控制字元」），不丟、不換成空白。
+- **名字與短字**（表單與 panel 上的值、清單的格子、menu 的 label 與說明、popup 的標題、toast 與 App Log 的每一筆、confirm、error
+  popup、選項、說明列、空狀態、statusbar、tab 的名稱、finder 的項目）：照表單上的值，什麼都不解讀 —— 每個控制字元，連 Tab、`\n`、
+  顏色碼的 ESC，都畫成紅色的名字（`\t`、`\n`、`\x1b`，寫法照 input 的「貼上的控制字元」），不丟、不換成空白。
   - 例外：app 把清單的一欄標成「一行文字」（例：原始碼的一行、log 的一行）時，那一欄的 Tab 畫成 `input_tab_width` 格空白，其他控制字元
     照舊。那樣的一欄是拿來讀的，Tab 是排版，不是名字裡的怪東西。
   - **app 自己寫的字不帶換行字元**：要好幾列的地方（error popup 的訊息、toast、confirm 的內容），app 一列一列給，每一列另起

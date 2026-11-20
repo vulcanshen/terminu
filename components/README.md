@@ -109,8 +109,8 @@ depends on the group it is in:
 
 - **Where the user types** (input, textarea): as in "Pasted control characters" in [`input`](input/README.md) and in
   [`input/textarea`](input/textarea.md).
-- **Content for reading** (a viewer, a log on a panel, a file preview): as a terminal would draw it (details in the
-  viewer of [`dialog/note`](dialog/note.md)) —
+- **Content for reading** (a viewer, a log on a panel, a file preview; not the App Log, below): as a terminal would draw
+  it (details in the viewer of [`dialog/note`](dialog/note.md)) —
   - `\n` is a line break: in content the app hands over line by line, a `\n` inside one line splits it in two too; a
     `\r` before a line break (CRLF) is not drawn.
   - A Tab is drawn as `input_tab_width` spaces (Rules E3).
@@ -126,11 +126,11 @@ depends on the group it is in:
     is a line break.
   - Any other control character, the ESC of a colour code included, is drawn by name in red: no colour comes from
     the document.
-- **Names and short text** (values on forms and panels, list cells, menu labels and descriptions, popup titles,
-  toasts, confirms, error popups, options, explanation rows, empty states, the statusbar, tab names, finder items): as
-  a value on a form, with nothing interpreted — every control character, a Tab, a `\n` and the ESC of a colour code
-  included, is drawn by name in red (`\t`, `\n`, `\x1b`, spelt as in "Pasted control characters" in input), never
-  dropped or turned into spaces.
+- **Names and short text** (values on forms and panels, list cells, menu labels and descriptions, popup titles, toasts
+  and the App Log's entries, confirms, error popups, options, explanation rows, empty states, the statusbar, tab names,
+  finder items): as a value on a form, with nothing interpreted — every control character, a Tab, a `\n` and the ESC of
+  a colour code included, is drawn by name in red (`\t`, `\n`, `\x1b`, spelt as in "Pasted control characters" in
+  input), never dropped or turned into spaces.
   - The exception: when the app marks a list column as "a line of text" (e.g. a line of source code, a line of a log),
     a Tab in that column is drawn as `input_tab_width` spaces, and other control characters stay as they are. Such a
     column is for reading: a Tab there is layout, not something odd in a name.

@@ -1112,6 +1112,7 @@ tdp v1.2.20 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-
 | note-104 | note.7 | app 自己重讀的內容，只有讀到變了才記：一筆 INFO，寫出改了什麼；讀到沒變不記，自己一直進來的更新不一筆一筆記 | 會自己重讀內容 | 開著 app 等它重讀幾次：沒有紀錄；在 app 外面改它讀的東西：一筆 INFO，寫出改了什麼 |
 | note-105 | note.7 | app 自己重讀失敗時：第一次跳 Error toast、記一筆 ERR；同一個失敗再發生不跳、不記；換了一個失敗再跳、再記；又讀得到時記一筆 INFO，不跳 toast | 會自己重讀內容 | 讓它讀的東西讀不到、等它重讀幾次，再換一種讀不到的方式，最後讓它讀得到：每一種失敗一個 toast、一筆紀錄，最後一筆 INFO |
 | note-78 | note.7 | 每一筆：時間 `HH:MM:SS`（Overlay0）、等級（`INFO` Text、`OK` Green、`WARN` Peach、`ERR` Red，四格寬靠左）、發生的事（跟 toast 一樣大寫開頭） | 都要 | 看 App Log 的各種等級 |
+| note-108 | note.7 | App Log 每一筆照名字與短字畫：每個控制字元，連顏色碼的 ESC，都用 Red 寫出名字、不執行，不管是誰寫的 | 都要 | 讓 app 記一個夾著 `\x1b[31m` 的名字（例：資料裡手改的名稱）：toast 與 App Log 都用 Red 顯示 `\x1b[31m`，後面的字沒有變紅 |
 | note-79 | note.7 | 只放在記憶體，app 關掉就清空；筆數有上限，滿了丟掉最舊的 | 都要 | 讀程式；或關掉再開，App Log 是空的 |
 | note-80 | note.8 | 標題 glyph `nf-md-compare`（U+F018A），`DIFF`，後面接 `UNIFIED`、`SPLIT` 兩個 tab，`h\|l` 切 | Diff 模式 | 打開 Diff，按 `h\|l`；讀程式核對 code point |
 | note-107 | note.8 | 第一列寫兩邊的名字 `<anchor> ↔ <另一個>`，Lavender，緊貼上框、上面沒有空白列，固定；太長時先在 `↔` 前面折，再折在 `/` 後面，不用 `…` 切；標題只有 `DIFF`，tab 一定看得到 | Diff 模式 | 在窄終端機比兩個路徑很長的項目再捲動：名字折行、沒被切，第一列不動，兩個 tab 都看得到 |
