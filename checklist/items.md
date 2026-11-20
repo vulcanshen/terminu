@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.2.17. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.2.18. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -416,7 +416,7 @@ The items of tdp v1.2.17. What each column means and what an item applies to: [R
 | E3-24 | E3 | A key in a settings file that the app no longer reads is kept, also when the app writes the file again, with no toast; every start writes an INFO entry naming the key and the file | a settings key no longer used | Put a key the app no longer reads in its settings file, start, change a setting, look at the file and the App Log; restart and look at the App Log again |
 | E3-25 | E3 | A cache the app no longer uses is deleted at the first start, and an INFO entry in the App Log says where it was and how large | a cache no longer used | Put the old cache in place, start, look at the disk and the App Log |
 | E3-26 | E3 | A file only for this run (e.g. what came down a pipe) is in the system's temporary directory, not under the config, data or cache locations, and is gone after the app quits | has a file only for this run | Run it, find the file, quit: it was in `$TMPDIR` and is gone |
-| E3-27 | E3 | With no screen (a command that prints instead of opening the app), settings, state or data that cannot be read: the app touches no file, prints nothing, writes the path and the reason to stderr and quits with a non-zero exit status | prints with no screen and stores settings or data | Damage the settings file and run the printing command into a pipe: nothing comes out, stderr names the file and the reason, `echo $?` is not 0, and no `.bak` appears |
+| E3-27 | E3 | With no screen (a command that prints instead of opening the app), settings, state or data that cannot be read: the app touches no file, prints nothing, writes the path and the reason to stderr and quits with exit status 1 | prints with no screen and stores settings or data | Damage the settings file and run the printing command into a pipe: nothing comes out, stderr names the file and the reason, `echo $?` is 1, and no `.bak` appears |
 | E3-28 | E3 | A file that can be read but holds a value the app cannot use, or a data entry that does not fit (a blank or repeated name), is not "cannot be read": the app goes on, with no MOVE ASIDE confirm | stores settings or data | Write a colour not in `#rrggbb` into config.yaml and start the app |
 | E3-29 | E3 | At start such a file is copied to `<name>.bak` (`.bak.1`… when one is there), then written again with the default for each such value and without each such entry | stores settings or data | As above; compare the `.bak` with the file |
 | E3-30 | E3 | A Warning toast names the file and the copy; each value or entry is a WARN entry in the App Log naming the key, what was there and what is used now | stores settings or data | As above; read the toast, then the App Log |

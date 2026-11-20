@@ -1,5 +1,40 @@
 # Changelog
 
+## v1.2.18 — 2026-11-20
+
+A patch, the user's choice: gittu (gitreu, renamed by the user) is still being built and goes on aligning on main;
+this release does not wait for it. Gaps gittu met, and ccdrawu's tdp #24 and #25; members meet them at their next
+release.
+
+- panel.14: an action of the app's own that changes what a panel lists or puts its cursor on an item clears the
+  panel filter first, whether or not it hides that item; the focus leaving alone keeps it (the user, from gittu)
+- note.7: content the app reads again on its own is recorded only when a read finds something changed, one INFO
+  entry saying what; updates that keep coming in are not recorded one by one. When such a read fails, the first
+  failure is an Error toast and an ERR entry, the same failure again nothing, a different one again, working again
+  one INFO entry with no toast; panel.15 points there (the user, from gittu)
+- note.8: a panel showing a difference draws it as UNIFIED, not a tool's own output, `Enter` opening the comparison;
+  one holding many (a new folder, a commit) lists the items that differ with panel.9's marks. The comparison's title
+  is `DIFF` with its tabs, and its first row names the two sides, Lavender, folded and never cut when too long; it
+  is `terminal width − 2` wide, with no 120-column cap (F7) (the user, from gittu)
+- popup.1: a location row takes the top padding's place, right under the top border as in a panel (the user, from
+  gittu)
+- panel.5: an item may take several rows, as many as the app needs, on the items it needs them for; the cursor on
+  its first row, the rest lit Surface1; movement, `N of M` and scrolling count items; the filter matches any of its
+  rows (the user, from gittu)
+- E1 (#24): now "Command line": `version` and `help` in every app, other commands the app's own; `iconwidth`, where
+  an app has it, prints two lines with where each width came from; what any command prints takes one form: errors
+  and warnings on stderr starting with `<app>: `, results on stdout, a wrong use with the usage and exit status 2,
+  exit status 0 done, 1 not done, 2 a wrong use, sentences as a toast's (the user)
+- E3 (#24): with no screen, every toast, WARN and INFO entry and error popup of E3 goes to stderr in the TUI's
+  words; a file that cannot be read may say what to do; where the TUI goes on, the command goes on; a file that
+  cannot be read exits with status 1 (the user)
+- M5 (#25): a command the user is to type, in a sentence, is in backticks everywhere, in the colour around it
+  (the user)
+- panel.9, note.8: gitreu is gittu in the text; earlier entries here keep gitreu
+- changed in this version: E1, E3, F7, M5, note.2, note.7, note.8, panel.5, panel.9, panel.14, panel.15, popup.1
+- checklist: E1-3 to E1-8, E3-40, F7-17, M5-32, note-103 to note-107, panel-180 to panel-183 added; E3-27, note-80,
+  note-101, panel-176 and popup-15 reworded (1530 items); the header names v1.2.18
+
 ## v1.2.17 — 2026-11-19
 
 A patch, the user's choice: ccdrawu was fully aligned and goes out now; gitreu, just started, aligns on this
