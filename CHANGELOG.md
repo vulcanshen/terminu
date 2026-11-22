@@ -1,5 +1,26 @@
 # Changelog
 
+## v1.3.1 — 2026-11-22
+
+A patch, the user's choice: no app has to change now (following panels are the app's to use, the lib draws the fade
+and records the note opening); members meet it at their next release. Released with terminu-go v1.3.1 while gittu,
+which brought most of it, is still developing.
+
+- L5: the one exception, panels that follow a leading panel: an app may tie some panels to which leading panel last
+  had the focus, the same every time for the same one, nothing changing as the focus moves into them; numbers go by
+  place, a hidden panel keeps its `[N]` and its digit does nothing (the user, from gittu)
+- panel.5, panel.9: an item's other rows no longer take Surface1; they keep their text's colours over a background
+  that fades out across the inner width, from the first row's block colour dimmed twice (`#2f313c` for the cursor,
+  `#3c3733` for an anchor) into the terminal's own background at the right edge, nothing showing where the painting
+  ends; dimmed, only the start dims (the user, from gittu, after a bar and underline tried on main looked wrong on the
+  screen)
+- color.2, color.4: the terminal's background is asked with OSC 11 at startup together with the palette, Base when
+  there is no answer; the fade above is the one thing that uses it
+- panel.18: opening a note is recorded in the App Log as opening a viewer (from webu)
+- changed in this version: L5, color.2, color.4, panel.5, panel.9, panel.18
+- checklist: L5-4, panel-196 added; panel-181, note-77 and the Applies to names reworded (1548 items); the header
+  names v1.3.1
+
 ## v1.3.0 — 2026-11-20
 
 A minor, the user's choice: a component goes (the inspect toast), every app gains a command (`update`), and every
