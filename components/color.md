@@ -63,9 +63,11 @@ syntax highlighting), the app may decide for itself; this file governs the inter
   apart, and it would vanish just where the cursor rests; only the cursor row has a block, so where the cursor is
   stays plain (the user, 2026-11-12, from tetru).
 - **The screen's background is not painted**: cells with no background of their own are left to the terminal's own
-  background. When the terminal's background is not Base, dimming still leans towards the fixed `#0c0c13`, not
-  towards the terminal's background; the family colours are designed for a dark background, so on a dark terminal the
-  difference is small.
+  background. When the terminal's background is not Base, dimming still leans towards the fixed `#0c0c13`, not towards
+  the terminal's background; the family colours are designed for a dark background, so on a dark terminal the difference
+  is small. The one thing that needs the terminal's background is the fade of an item's other rows (panel.5 in
+  [`layout/panel`](layout/panel.md)), which ends in it so nothing shows where the painting stops: it is asked with
+  OSC 11 at startup, with the palette (color.4), and is Base when there is no answer.
 
 **Why**: the user's terminal theme, transparency and background image stay; none of the family apps paints the
 background today, so moving to the shared lib does not change the screen.
@@ -127,3 +129,5 @@ exactly into Crust, so a covered layer's whole chain falls back; leaning towards
 > still unanswered when the DA1 reply arrives is not available — a terminal without OSC 4 still answers DA1, so there is
 > no timeout to wait for. If DA1 is not answered either, after an overall timeout (e.g. 200ms) all of them take the xterm
 > values.
+> The terminal's background (panel.5's fade, color.2): `ESC ] 11 ; ? ESC \` goes with them, before the DA1, answered
+> with `ESC ] 11 ; rgb:RRRR/GGGG/BBBB`.
