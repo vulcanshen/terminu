@@ -850,6 +850,13 @@ The focused surface must be recognisable at a glance, and moving focus **must no
 - **Focus is not told by colour alone**: something besides colour must differ (e.g. the line style). A mode turns its
   frame the mode colour (K11); with colour alone, focus vanishes the moment a mode starts. How it looks:
   [components/layout/panel](../components/layout/panel.md).
+- **Panels that follow a leading panel**: the one exception, fixed by the app. An app may tie some panels to which of a
+  few leading panels last had the focus (e.g. a git client whose right side shows a commit list while the branches have
+  the focus, and a file's diff and history while the changed files do): moving the focus to another leading panel may
+  change what those panels show, hide one and widen its neighbour, the same way every time for the same leading panel;
+  moving the focus into the following panels changes nothing. Numbers go by place: a panel's place keeps its `[N]`
+  whatever it shows, and the digit of a hidden one does nothing while it is hidden (K1). Seen once, it is no jump the
+  user did not expect (the user, 2026-11-22, from gittu).
 
 **Why**: users need to know where their keys will go; and if the screen jumps every time focus moves, the eye has to find
 its place again.

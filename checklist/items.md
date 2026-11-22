@@ -237,6 +237,7 @@ The items of tdp v1.3.0. What each column means and what an item applies to: [RE
 | L5-1 | L5 | The focused surface is recognisable at a glance (in a mode too) | everyone | On every screen, one glance tells which panel or popup has focus |
 | L5-2 | L5 | Moving focus shifts no content | several panels | Press `Tab` to switch panels and compare the screen before and after: text and frames stay in place |
 | L5-3 | L5 | Focus is not told by colour alone: something besides colour differs (e.g. the line style) | several panels | Compare the frames of the focused and unfocused panels: something besides colour differs; in a mode it still shows which panel has focus |
+| L5-4 | L5 | Panels that follow a leading panel change the same way every time that leading panel gets the focus, and not at all when the focus moves into them; a place keeps its `[N]`, and a hidden panel's digit does nothing | panels that follow | Tab between the leading panels and into the following ones; press each digit while one is hidden |
 
 ## rules — F Popups
 

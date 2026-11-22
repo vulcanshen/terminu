@@ -237,6 +237,7 @@ tdp v1.3.0 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | L5-1 | L5 | focus 所在的 surface 一眼可辨（進模式時也一樣） | 都要 | 在每個畫面看一眼就說得出 focus 在哪個 panel 或 popup |
 | L5-2 | L5 | 切換 focus 不讓任何內容位移 | 多 panel | 按 `Tab` 換 panel，前後比對畫面，字與框的位置不動 |
 | L5-3 | L5 | focus 不只靠顏色分辨，有顏色以外的差別（例：線型） | 多 panel | 比較 focus 與失焦 panel 的外框，除了顏色還有別的差別；進模式後照樣分得出 focus 在哪 |
+| L5-4 | L5 | 跟著帶頭 panel 換的 panel，每次同一塊帶頭的拿到 focus 都換成一樣，focus 移進它們時不換；位置的 `[N]` 不變，收起的那塊數字鍵不作用 | 跟著換的 panel | 在帶頭的 panel 之間、再到跟著換的 panel 按 `Tab`；收起一塊時按每個數字鍵 |
 
 ## rules — F Popup
 

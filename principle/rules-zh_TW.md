@@ -682,6 +682,11 @@ focus 所在的 surface 必須一眼可辨，而切換 focus **不能讓任何�
 
 - **focus 不能只靠顏色分辨**：要有顏色以外的差別（例：線型）。模式會把外框換成模式色（K11），只靠顏色的話，一進模式
   就看不出 focus 在哪。樣子見 [components/layout/panel](../components/layout/panel-zh_TW.md)。
+- **跟著帶頭 panel 換的 panel**：唯一的例外，由 app 固定。app 可以讓幾塊 panel 跟著「幾塊帶頭的 panel 裡，最後拿到 focus 的是哪
+  一塊」（例：git 工具的右邊，focus 在分支時是 commit 清單，在改動的檔案時是那個檔的 diff 與 history）：focus 換到另一塊帶頭的
+  panel 時，那幾塊可以換內容、收起一塊、讓旁邊的變寬，同一塊帶頭的 panel 每次都一樣；focus 移進跟著換的那幾塊時，什麼都不換。
+  號碼照位置：一個位置的 `[N]` 不管顯示什麼都不變，收起的那塊收著時它的數字鍵不作用（K1）。用過一次就知道，不是使用者料不到的跳動
+  （user 2026-11-22，來自 gittu）。
 
 **為什麼**：使用者要知道按鍵會送到哪裡；而 focus 一換畫面就跳，眼睛就得重新定位。
 

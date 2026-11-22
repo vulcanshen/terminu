@@ -88,6 +88,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 有檔案預覽 | 有預覽檔案、目錄的 popup：file-picker，或預覽檔案的 finder |
 | 存設定或資料 | 有設定、資料、狀態或快取寫到磁碟 |
 | Diff 模式 | 有 panel 的 Diff 模式（先挑 anchor、再挑另一列來比） |
+| 跟著換的 panel | 有 panel 的內容跟著最後拿到 focus 的帶頭 panel 換（Rules L5） |
 | Diff 模式在明細 panel | 清單的 Diff 模式顯示在它的明細 panel 裡（layout/panel，panel.9） |
 | 看同一項的兩個版本 | 有看同一項兩個版本的動作（dialog/note，note.8） |
 | 項目裡還有項目 | 項目裡還有項目，一層一層進（layout/panel，panel.10） |

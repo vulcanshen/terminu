@@ -99,6 +99,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | file preview | a popup previewing files and directories: a file-picker, or a finder previewing files |
 | stores settings or data | settings, data, state or a cache written to disk |
 | diff mode | a panel's Diff mode (an anchor first, then another row to diff with) |
+| panels that follow | panels whose content follows which leading panel last had the focus (Rules L5) |
 | diff mode in a details panel | a Diff mode shown in a list's details panel (layout/panel, panel.9) |
 | shows two versions of one item | an action showing two versions of one item (dialog/note, note.8) |
 | items in items | items that hold items, walked a level at a time (layout/panel, panel.10) |
