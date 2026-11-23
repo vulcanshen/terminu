@@ -555,15 +555,20 @@ Letters the whole family gives one meaning, so that one press does the same thin
   one of them another key; an app with no Diff mode may give `D` to something that is not a delete (e.g. webu's
   `[D]ownloads` screen) (the user, 2026-11-20, from webu).
 - **`x`**: deletes the item under the cursor, `[x] Delete`; **`X`** deletes many at once (the marked ones, a whole
-  batch), e.g. `[X] Delete marked`. Anything that removes for good counts (deleting, discarding changes, dropping),
-  and it takes no other letter: not `D`, and not `d`, which moves (K12); it may also take none at all (M3). `x` and
-  `X` mean only that: what can be opened again (e.g. closing a tab, which reopens) is not removing for good and takes
-  another letter (the user, 2026-11-20, from webu).
+  batch), e.g. `[X] Delete marked`. Anything whose point is removing for good counts (deleting, discarding changes,
+  dropping), and it takes no other letter: not `D`, and not `d`, which moves (K12); it may also take none at all (M3).
+  An action whose point is something else, losing something only on the way, does not count: it takes the letter of
+  what it does, and asks first when this run would lose something (F6) (e.g. abandoning a merge, which loses the
+  conflicts resolved so far, can be `[A]bort`; the user, 2026-11-23, from gittu). `x` and `X` mean only that: what can
+  be opened again (e.g. closing a tab, which reopens) is not removing for good and takes another letter (the user,
+  2026-11-20, from webu).
 - **`i`**: opens the note of the item under the cursor ([`components/layout/panel`](../components/layout/panel.md),
   panel.18); no other action takes `i` (the user, 2026-11-20).
 
 **Why**: a key that deletes in one app and compares in another is a slip waiting to happen; with delete on `x`
 everywhere, `D` is free to mean Diff everywhere. The shifted key reaches further, as the bigger delete does.
+Someone looking for a way to abandon a merge thinks "abort", not "delete": sent to `x`, they would not find
+it; what it costs is better said by the confirm that comes when this run would cost something.
 
 ---
 

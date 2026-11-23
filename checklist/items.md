@@ -149,6 +149,7 @@ The items of tdp v1.3.1. What each column means and what an item applies to: [RE
 | K13-3 | K13 | Nothing that removes for good is on `D` or `d` | deletes | Read the Space menus and the code: no delete, discard or drop on `D` or `d` |
 | K13-4 | K13 | `i` opens the note of the item under the cursor; no other action takes `i` | everyone | Look for actions on `i` in the Space menus |
 | K13-5 | K13 | `x` and `X` are used only for removing for good; what can be opened again (e.g. closing a tab) takes another letter | deletes | Read the Space menus: nothing on `x` or `X` that can be undone by reopening |
+| K13-6 | K13 | An action whose point is something else and that loses something only on the way (e.g. abandoning a merge) is not held to `x`: it may take the letter of what it does | deletes | Find actions that lose something on the way: one on its own letter (e.g. `[A]bort`) is fine; it asks first when the run would lose something (F6-6) |
 
 ## rules — M Menus and disclosure
 
