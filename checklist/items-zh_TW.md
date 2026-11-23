@@ -709,6 +709,7 @@ tdp v1.3.4 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-71 | panel.8 | 放下後回到那一列原本的標記 | Drag | 先標記一列再拿起、放下，看標記回來 |
 | panel-72 | panel.8 | 有 Drag 的 panel，每一列都保留標記欄 | Drag | 看有 Drag 的 panel 各列前面空著一格 |
 | panel-73 | panel.8 | 拿著時 `Enter` 放下 | Drag | 拿起、搬動後按 `Enter` |
+| panel-199 | panel.8 | 在篩選後的清單拿起一項時，拿著的時候篩選先收起來（打字列收起、清單全部列出、那一項在真正的位置）；放下或放回後，篩選照原樣回來，cursor 停在那一項上 | Drag＋panel filter | 篩選一個清單後拿起一項：清單全部列出來；搬動後放下：篩選回來，cursor 停在那一項；再拿起一次按 `Esc`：一樣 |
 | panel-74 | panel.5 | 太長時截斷、加 `…`：預設從尾端截；路徑、檔名這類尾端比較重要的從前面截；兩端都有意義的（例：pod 的名稱）從中間截（`demo-app…66-gm72n`）；每一欄從哪裡截，app 可以自行決定 | 都要 | 看長名字的欄位 |
 | panel-75 | panel.15 | panel 還沒有任何內容時，中間照空狀態的樣子寫一句 loading 的話 | loading | 讓 panel 第一次載入，看中間 |
 | panel-76 | panel.15 | 重新載入時舊的內容留著，不清空 | loading | 重新載入，看舊內容還在 |

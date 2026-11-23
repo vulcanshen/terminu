@@ -339,6 +339,11 @@ comes back once it is dropped. A panel with a Drag keeps the mark column on ever
 [`input/reorder`](../input/reorder.md) while holding an item: `j|k` move it (wrapping at the ends, Rules K12),
 `Enter` drops it, `Esc` puts it back.
 
+**Picking up an item of a filtered list** (panel.14): while it is held the filter is set aside, the typing row folded
+away and the whole list shown, the item where it really is: only among all the items can a move say what it swaps
+with (the same reason [`input/reorder`](../input/reorder.md) has no search). Once it is dropped or put back, the
+filter comes back as it was, the cursor on that item (the user, 2026-11-23, from kbu).
+
 ### panel.9 Diff mode
 
 A list with a diff mode (Rules K11; the diff key is `D`, Rules K13): the diff key on a row enters
@@ -623,7 +628,8 @@ the cursor moves. The focus leaving alone does not clear it, as above (the user,
 (e.g. staging a file moves it to another group, deleting removes it), the filter stays, and which item of the filtered
 list the cursor lands on, the app may decide for itself (e.g. the next one in the same group, so the same key can go
 down the list one item at a time). The cursor stays among the items the filter shows, so nothing is hidden from the
-user (the user, 2026-11-23, from gittu).
+user (the user, 2026-11-23, from gittu). A Drag sets the filter aside only while the item is held, and brings it back
+once the item is dropped or put back (panel.8; the user, 2026-11-23, from kbu).
 
 **Why**: a panel filter and a finder do different jobs — a finder is "go to one item", and closes once one is chosen; a
 panel filter is "narrow the list and keep using it" (in kbu, keeping the pods whose names contain api to watch their

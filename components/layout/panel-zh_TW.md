@@ -252,6 +252,10 @@ Yellow 底、Base 粗體，右邊的箭頭也是 Yellow；標記欄畫 `nf-md-sw
 panel，每一列也保留標記欄。按鍵跟 [`input/reorder`](../input/reorder-zh_TW.md) 拿著一項時一樣：`j|k` 搬（到頭尾繞回，Rules K12）、
 `Enter` 放下、`Esc` 放回。
 
+**在篩選後的清單拿起一項**（panel.14）：拿著的時候篩選先收起來，打字列收起、清單全部列出來，拿著的那一項在它真正的位置：
+只有在全部的項目裡，搬的時候才說得清跟誰交換（跟 [`input/reorder`](../input/reorder-zh_TW.md) 沒有搜尋同一個理由）。
+放下或放回後，篩選照原樣回來，cursor 停在那一項上（user 2026-11-23，來自 kbu）。
+
 ### panel.9 Diff 模式
 
 有 Diff 模式的清單（Rules K11；Diff 鍵是 `D`，Rules K13）：在一列上按 Diff 鍵，進入模式，那一列成為 anchor；接著挑另一列，
@@ -479,7 +483,8 @@ panel 帶到那一項；進到一項裡面，panel.10），不管篩選有沒有
 
 **使用者對篩選後的某一項做的動作不清篩選**：動作讓那一項移走或消失時（例：stage 一個檔，它移到另一組；刪掉它），篩選留著，
 cursor 落在篩選後清單的哪一項，app 可以自行決定（例：同一組的下一項，同一個鍵就能一項一項往下做）。cursor 還在篩選看得到的
-項目裡，沒有東西被藏住（user 2026-11-23，來自 gittu）。
+項目裡，沒有東西被藏住（user 2026-11-23，來自 gittu）。Drag 只在拿著的時候把篩選收起來，放下或放回後就回來
+（panel.8；user 2026-11-23，來自 kbu）。
 
 **為什麼**：panel filter 跟 finder 做的事不一樣 —— finder 是「到某一項」，選了就關掉；panel filter 是「把清單縮小、留著繼續用」
 （kbu 留下名字有 api 的 pod 看它們的狀態、sshu 打 `prod` 把整群 host 列出來一台一台連）。兩者的打字列用同一套鍵，
