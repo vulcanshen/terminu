@@ -1,5 +1,22 @@
 # Changelog
 
+## v1.3.5 — 2026-11-23
+
+A patch, the user's choice: no app has to change now (the lib holds the Drag, draws the fade and asks the terminal);
+members meet it at their next release. Released with terminu-go v1.3.5.
+
+- panel.8, panel.14: picking up an item of a filtered list sets the filter aside while it is held, the typing row
+  folded away and the whole list shown, the item where it really is (only among all the items can a move say what it
+  swaps with); once it is dropped or put back, the filter comes back as it was, the cursor on that item (the user,
+  from kbu)
+- color.2, panel.5: with no answer to OSC 11 there is no fade: an item's other rows take the fade's start colour flat
+  across the whole inner width, since a fade into a guessed colour that is not the terminal's own stops halfway with a
+  cut (the user, from gittu)
+- color.4: the OSC 11 query goes first, ahead of the OSC 4s and the DA1: a multiplexer holding the answers behind an
+  OSC 4 left unanswered (tmux waits about 500ms) would make it miss the timeout (from gittu)
+- changed in this version: color.2, color.4, panel.5, panel.8, panel.14
+- checklist: panel-199, panel-200 added (1557 items); the header names v1.3.5
+
 ## v1.3.4 — 2026-11-23
 
 A patch, the user's choice: no app has to change now (it loosens how a fixed-width slot may be padded); members meet
