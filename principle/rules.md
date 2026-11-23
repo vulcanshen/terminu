@@ -129,8 +129,12 @@ panel showing that item's details (whether to, and on which items, the app may d
 **Something happening in the background never moves the focus or switches screens** (e.g. a load finishing, a job
 ending, a change arriving from a remote): the user pressed nothing and could not expect it.
 **After adding an item, the cursor moves to the new item**, scrolled into view (e.g. once New, Copy or Import is
-confirmed): right after adding it, the user usually wants to see it or act on it; in a sorted list the new item may land
-far away, and leaving the cursor where it was means hunting for it.
+confirmed): right after adding it, the user usually wants to see it or act on it; in a sorted list the new item may
+land far away, and leaving the cursor where it was means hunting for it. This holds for an action whose point is
+adding the item. Where an action whose point is something else makes items on the way (e.g. a merge making a commit, a
+pull bringing several, switching to a remote branch making a local one), whether a cursor goes to them, the app may
+decide for itself: the user's eye is on what the action was for, and with several new items there is no one to go to
+(the user, 2026-11-23, from gittu).
 
 **In an input popup**, `Enter` acts on the area that has focus:
 

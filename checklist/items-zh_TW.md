@@ -60,7 +60,7 @@ tdp v1.3.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K3-12 | K3 | input popup 的其他部分（例：datetime picker 的月份、color picker 的 R），`Enter` 做最直觀的那件事 | input | 在那些部分按 `Enter`，判斷是不是最直觀的事 |
 | K3-13 | K3 | 按送出按鈕時檢查所有欄位；有不合格的就不送出，focus 跳到第一個有問題的欄位 | 表單 | 留兩欄不合格按送出 |
 | K3-14 | K3 | 背景發生的事（載入完成、工作結束、遠端送來的變化）不移動 focus、不換畫面 | 都要 | 讓背景的事發生（重新載入、工作結束、遠端的變化），focus 與畫面都不動 |
-| K3-15 | K3 | 新增一項之後（New、Copy、Import 確定之後），cursor 移到新的那一項，捲到看得到 | 都要 | 新增一項，看 cursor 停在新的那一項上 |
+| K3-15 | K3 | 新增一項之後（New、Copy、Import 確定之後），cursor 移到新的那一項，捲到看得到；管的是目的就是新增的動作，其他動作順帶多出的新東西由 app 決定 | 都要 | 新增一項，看 cursor 停在新的那一項上 |
 | K4-1 | K4 | 沒有 popup 時，`Esc` 退出當前模式或往上一層（例：panel filter 不論 focus 在打字列或清單，`Esc` 都清掉篩選） | 都要 | 進模式、或打 panel filter 後按 `Esc` |
 | K4-2 | K4 | `Esc` 一次只退一層：疊了幾層 popup，按一次只關最上面那一個 | 都要 | 疊三層（Space menu → global operation popup → confirm）按一次 `Esc`，只關掉 confirm |
 | K4-3 | K4 | 關掉最上層之後，底下的 popup 階層原樣留著、照原樣呈現 | 都要 | 同上，底下兩層還在，cursor 與內容跟打開 confirm 前一樣 |
