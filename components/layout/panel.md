@@ -617,6 +617,12 @@ on a particular item (e.g. the cursor moving in another panel takes this one to 
 panel.10), the filter is cleared as `Esc` clears it, whether or not it hides that item, and then the list changes or
 the cursor moves. The focus leaving alone does not clear it, as above (the user, 2026-11-19, from gittu; kbu does so).
 
+**An action the user runs on an item of the filtered list keeps the filter**: when it moves that item or takes it away
+(e.g. staging a file moves it to another group, deleting removes it), the filter stays, and which item of the filtered
+list the cursor lands on, the app may decide for itself (e.g. the next one in the same group, so the same key can go
+down the list one item at a time). The cursor stays among the items the filter shows, so nothing is hidden from the
+user (the user, 2026-11-23, from gittu).
+
 **Why**: a panel filter and a finder do different jobs — a finder is "go to one item", and closes once one is chosen; a
 panel filter is "narrow the list and keep using it" (in kbu, keeping the pods whose names contain api to watch their
 status; in sshu, typing `prod` to list a whole group of hosts and connect to them one by one). Their typing rows share
