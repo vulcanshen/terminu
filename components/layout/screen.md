@@ -54,9 +54,11 @@ long work (a transfer, a download) it fills with Green from the left as a progre
 Green too. While a terminal popup is open, the chip row and this separator both stay
 ([`dialog/terminal`](../dialog/terminal.md)): the progress stays in sight from inside a shell.
 
-**A single-screen app has no chip row**: the progress of long work is the app's content, written in the work's own row,
-Green while it runs (e.g. the row in filu's `[3] Tasks` reads `3/10`, and the running glyph is Green). While a terminal
-popup is open, that row is covered and the progress is out of sight; that is fine, and no extra row is opened for it.
+**A single-screen app has no chip row**: the progress of long work is the app's content, written in the work's own
+row, Green while it runs (e.g. the row in filu's `[3] Tasks` reads `3/10`, and the running glyph is Green). Work
+running on the place a panel's location row names may be written in that row instead (e.g. a push of the repository
+the row names; panel.10 in [`panel`](panel.md)). While a terminal popup is open, that row is covered and the progress
+is out of sight; that is fine, and no extra row is opened for it.
 
 ## screen.4 Statusbar
 

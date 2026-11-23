@@ -150,7 +150,8 @@ Rules F7: while a popup is loading, a spinning loading icon always sits after it
 capsule chain in [`panel`](panel.md)), after the whole row of tabs. While a form's button is running (an action that
 keeps the form open, or a submit that takes a while), the loading icon sits after the title too
 ([`dialog/form`](../dialog/form.md)). While a panel is loading, it sits after the whole capsule chain
-([`panel`](panel.md)). One space on each side. The spec:
+([`panel`](panel.md)). One space on each side. While work runs on the place a location row names, it takes the place of
+that row's glyph, where the glyph sits (panel.10 in [`panel`](panel.md)). The spec:
 
 - Glyphs: `nf-md-circle_slice_1` to `nf-md-circle_slice_8` (U+F0A9E–U+F0AA5), eight frames, a circle filling slice by
   slice, then starting over once full.

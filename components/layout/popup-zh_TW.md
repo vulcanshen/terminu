@@ -112,7 +112,8 @@ Rules F2：打開與關閉都有動畫，全家族同一種、一樣長。打開
 
 Rules F7：popup 在 loading 時，標題後面一定放一個輪轉的 loading icon；標題後面接著 tab（[`panel`](panel-zh_TW.md) 的膠囊串）時，
 放在整串 tab 的後面。表單的按鈕（不關表單的動作與跑得久的送出）在跑時，標題後面也放 loading icon
-（[`dialog/form`](../dialog/form-zh_TW.md)）。panel 在 loading 時放在整串膠囊的後面（[`panel`](panel-zh_TW.md)）。前後各空一格。規格：
+（[`dialog/form`](../dialog/form-zh_TW.md)）。panel 在 loading 時放在整串膠囊的後面（[`panel`](panel-zh_TW.md)）。前後各空一格。
+正在位置列寫的那個地方跑工作時，它取代那一列的 icon，放在 icon 的位置（[`panel`](panel-zh_TW.md) 的 panel.10）。規格：
 
 - 字形：`nf-md-circle_slice_1` 到 `nf-md-circle_slice_8`（U+F0A9E–U+F0AA5）八格，一個圓一片一片填滿，滿了再從頭。
 - 速度：一格 90ms，一圈 720ms。

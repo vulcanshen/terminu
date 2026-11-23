@@ -410,13 +410,20 @@ itself**.
 
 - **Where**: the first row in the panel, one cell from the frame; above the header when there is one, and above a panel
   filter's typing row when that shows. Fixed at the top, never scrolled.
-- **Colour**: Lavender (the user footprint and breadcrumb in [`color`](../color.md)); dimmed with the panel when it is
-  unfocused (Rules T2).
+- **Colour**: Lavender (the user footprint and breadcrumb in [`color`](../color.md)); work running on the place is Green
+  (below); dimmed with the panel when it is unfocused (Rules T2).
 - **Too long**: cut at the front with `…`, keeping the end (the level you are on is the last part).
 - **A glyph before it**: the row may start with one glyph for the kind of place it shows (e.g. webu's `󰖟` before a
   page's address), then one space; in the row's colour, dimmed with it. When the row is too long only the text is cut:
   the glyph stays and the `…` follows it. **Whether there is one, and which, the app may decide for itself** (the user,
   2026-11-09, from webu).
+- **The state of the place, and work running on it**: the row may also say what the place it names is in the middle of
+  (e.g. a repository with a merge left half done, `Merging: feature/login`) and work now running on that place (e.g.
+  `Pushing…`), after the where or in its place; what it says, and when, the app may decide for itself. The state is in
+  the row's Lavender, and the glyph may tell it (e.g. one glyph while conflicts are left, another once all are
+  resolved). Work running is Green, as work in progress is in [`color`](../color.md), and while it runs the glyph is
+  the loading icon ([`popup`](popup.md), popup.4), turning in Green; when the work ends the row goes back to its own
+  glyph, or none (the user, 2026-11-23, from gittu).
 - **Shown only**: it cannot be acted on; the cursor never stops on it, and the scroll position does not count it.
 - **Stays when the list is empty, while loading and on an error**: the empty state, the loading line and an error's two
   lines ("Loading and errors") replace the header and the list (a reader's text), not the location row — it says where
@@ -434,6 +441,9 @@ Not every app has a "where" to show, so the row is optional. A glyph only helps 
 does not, so it is the app's to add; it is kept when the row is cut, since it tells what kind of place the rest is.
 Items in items are walked as the family walks directories, so going in and coming out is the same everywhere and
 needs no second kind of list; the cursor going back to the one you came out of saves finding it again.
+A single-screen app with no statusbar has nowhere else to say what state the place it shows is in; the location row
+already names that place, so what the place is in the middle of, and the work running on it, go beside it. The work
+keeps the family's colour for work in progress and the loading icon, so it reads as work, not as where you are.
 
 ### panel.11 Groups
 

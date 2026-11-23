@@ -106,6 +106,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | items of several rows | list items taking more than one row (layout/panel, panel.5) |
 | list with columns | a list with several columns (layout/panel, panel.5) |
 | location row with a glyph | a location row with its optional glyph (layout/panel, panel.10) |
+| location row with state or work | a location row saying what its place is in the middle of, or work running on it (layout/panel, panel.10) |
 | sign | a sign, a panel that only tells (layout/panel, panel.17) |
 | deletes | actions that remove for good: delete, discard, drop (Rules K13) |
 | a command in text | a sentence asking the user to type a command (Rules M5) |

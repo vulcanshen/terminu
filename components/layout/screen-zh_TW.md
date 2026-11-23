@@ -46,7 +46,8 @@ popup 上按 `?` 打開的本來就是這個 popup 的 key reference（Rules M1�
 在 shell 裡照樣看得到進度。
 
 **單畫面的 app 沒有 chip 列**：長時間工作的進度算 app 的內容，寫在那個工作自己的列裡，進行中用 Green（例：filu 的 `[3] Tasks`
-那一列寫 `3/10`，執行中的 glyph 是 Green）。terminal popup 開著時那一列被蓋住、看不到進度，這樣就好，不為了它多開一列。
+那一列寫 `3/10`，執行中的 glyph 是 Green）。正在 panel 位置列寫的那個地方跑的工作，也可以改寫在那一列（例：位置列那個 repo
+的 push；[`panel`](panel-zh_TW.md) 的 panel.10）。terminal popup 開著時那一列被蓋住、看不到進度，這樣就好，不為了它多開一列。
 
 ## screen.4 statusbar
 

@@ -781,6 +781,7 @@ tdp v1.3.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-134 | panel.10 | 清單空了、loading 中、出錯時位置列照樣留著，只有表頭與清單（閱讀用的 panel 是它的文字）被空狀態、loading 的那一句、錯誤的兩句取代 | 位置列 | 讓有位置列的清單空掉（例：進一個空目錄），再開一個讀不了的：位置列都還在 |
 | panel-157 | panel.10 | 位置列有 icon 時，icon 跟這一列同色、後面空一格，太長時 icon 留著、`…` 接在它後面 | 有 icon 的位置列 | 走到位置很長的地方，看這一列的開頭：icon、空一格、`…` |
 | panel-158 | panel.10 | 項目裡還有項目時一層一層進，不畫成可收合的樹：`Enter` 進去、位置列寫路徑，filter 與 `N of M` 只算這一層，`Esc` 回上一層、cursor 停在剛剛出來的那一個，在最上層什麼都不做 | 項目裡還有項目 | 進資料夾兩層、打個 filter，再一直按 `Esc` 到沒反應：filter 先清掉，每按一次回上一層、cursor 停在剛剛離開的資料夾，到最上層就不動了 |
+| panel-197 | panel.10 | 位置列可以寫它那個地方做到一半的事，用 Lavender（icon 可以表示狀態），和正在那個地方跑的工作，用 Green，跑完之前 icon 換成轉著的 loading icon | 寫狀態或工作的位置列 | 在位置列寫的那個地方跑一件長的工作，再留一件做到一半的事：工作是 Green、icon 在轉，跑完換回這一列自己的 icon；做到一半的狀態是 Lavender |
 | panel-159 | panel.16 | app 自己的內容的 panel 只放元件裝不下的東西；一個一個挑出來的東西照清單畫 | app 自己的內容 | 看 panel 放了什麼 |
 | panel-160 | panel.16 | app 自己的內容上，模式外的鍵是 panel 的熱鍵，列在 Space menu；`Enter` 對整個 panel 做最直覺的事 | app 自己的內容 | 打開 Space menu；按 `Enter` |
 | panel-188 | panel.17 | 說明牌畫成沒有 focus 的 panel（Surface2 細框），label 不畫 `[N]`，沒有 tab、hint、捲動位置、模式；數字鍵只編給拿得到 focus 的 panel | 說明牌 | 看說明牌的框，數一數其他 panel 的號碼 |

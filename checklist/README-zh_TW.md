@@ -95,6 +95,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 占好幾列的項目 | 清單的項目占不只一列（layout/panel，panel.5） |
 | 有多欄的清單 | 有好幾欄的清單（layout/panel，panel.5） |
 | 有 icon 的位置列 | 位置列帶著可選的 icon（layout/panel，panel.10） |
+| 寫狀態或工作的位置列 | 位置列寫它那個地方做到一半的事，或正在它上面跑的工作（layout/panel，panel.10） |
 | 說明牌 | 有說明牌，只用來說明的 panel（layout/panel，panel.17） |
 | 會刪除 | 有會永久拿掉東西的動作：刪除、丟掉改動、drop（Rules K13） |
 | 文字裡有指令 | 有句子要使用者打某個指令（Rules M5） |
