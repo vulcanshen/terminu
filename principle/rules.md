@@ -555,10 +555,10 @@ Letters the whole family gives one meaning, so that one press does the same thin
   one of them another key; an app with no Diff mode may give `D` to something that is not a delete (e.g. webu's
   `[D]ownloads` screen) (the user, 2026-11-20, from webu).
 - **`x`**: deletes the item under the cursor, `[x] Delete`; **`X`** deletes many at once (the marked ones, a whole
-  batch), e.g. `[X] Delete marked`. Anything that removes for good counts (deleting, discarding changes, dropping), and
-  it takes no other letter: not `D`, and not `d`, which moves (K12). `x` and `X` mean only that: what can be opened
-  again (e.g. closing a tab, which reopens) is not removing for good and takes another letter (the user, 2026-11-20,
-  from webu).
+  batch), e.g. `[X] Delete marked`. Anything that removes for good counts (deleting, discarding changes, dropping),
+  and it takes no other letter: not `D`, and not `d`, which moves (K12); it may also take none at all (M3). `x` and
+  `X` mean only that: what can be opened again (e.g. closing a tab, which reopens) is not removing for good and takes
+  another letter (the user, 2026-11-20, from webu).
 - **`i`**: opens the note of the item under the cursor ([`components/layout/panel`](../components/layout/panel.md),
   panel.18); no other action takes `i` (the user, 2026-11-20).
 
@@ -617,8 +617,10 @@ has a Space menu of the same shape.
   follows the hint in [components/layout/popup](../components/layout/popup.md) and the hint each component specifies.
 - **A popup with only a typing row** (text, password, number): `?` is a character there (K8), so its hint lists every
   operation, and fits in 60 columns (L1; the hint in [components/layout/popup](../components/layout/popup.md)).
-- **A letter hotkey is a shortcut to a row in some list, not an extra feature.** An action triggered only by hotkey and
-  found nowhere else is a violation.
+- **A letter hotkey is a shortcut to a row in some list, not an extra feature.** An action triggered only by hotkey
+  and found nowhere else is a violation. The other way round is fine: whether an action has a hotkey at all, the app
+  may decide for itself, by what suits the moment the action is used in (e.g. one it wants hard to press by accident);
+  an action without one is reached from its menu (the user, 2026-11-23, from gittu).
 
 Which region an action belongs to depends only on **what it acts on**, never on how important it is (Principle P3).
 
