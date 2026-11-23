@@ -1,5 +1,36 @@
 # Changelog
 
+## v1.3.2 — 2026-11-23
+
+A patch, the user's choice: no app has to change now (most of it loosens or makes plain what an app may do; the lib
+draws the location row's work and keeps a panel's keys); members meet it at their next release. Released with
+terminu-go v1.3.2; it answers the seven questions of gittu's review before its first release.
+
+- panel.10, screen.3, color.2, popup.4: a location row may also say what its place is in the middle of (e.g. a merge
+  left half done), in Lavender, its glyph may tell the state, and work running on that place (e.g. `Pushing…`), in
+  Green with the loading icon turning in place of its glyph until the work ends; a single-screen app may write such
+  work there instead of in a row of its own (the user, from gittu)
+- F6: an action may ask only when this run would lose something or reach further than it usually does (switching
+  branches with changes it would lose, amending a commit already pushed), the same state always asking the same way
+  and nothing else deciding it (the user, from gittu)
+- M3: whether an action has a hotkey at all, the app may decide for itself, by what suits the moment it is used in;
+  one without is reached from its menu (the user, from gittu)
+- K13: an action that removes for good may take no hotkey (M3); only an action whose point is removing counts, and one
+  that does something else, losing something on the way (e.g. abandoning a merge), takes the letter of what it does
+  (`[A]bort`) and asks first by F6 (the user, from gittu)
+- K3: `Enter` is the most intuitive action, the app's for each item as it stands; the same kind of item need no longer
+  get the same action (the user, from gittu); the cursor going to a new item holds for an action whose point is adding
+  it, and items another action makes on the way (a merge's commit, a pull's commits, a local branch made by switching
+  to a remote one) are the app's (the user, from gittu)
+- panel.14: an action the user runs on an item of the filtered list that moves it or takes it away (staging, deleting)
+  keeps the filter, the cursor landing on an item the filter shows, which the app decides (the user, from gittu)
+- M4: a panel's own key that overrides a global one stays the panel's while its row is not shown (M6: no target, e.g.
+  `[M]ark all` on an empty list), and on every tab of a panel with tabs: pressing it then does nothing, never the
+  global action on the same key (the user, from gittu and terminu-go)
+- changed in this version: P5, K3, K13, M3, M4, F6, color.2, panel.10, panel.14, popup.4, screen.3
+- checklist: panel-197, panel-198, F6-6, K13-6, M4-5, M4-6 added; K3-2 removed; F6-1, K3-15, K13-2 reworded; an
+  Applies to name added (location row with state or work) (1553 items); the header names v1.3.2
+
 ## v1.3.1 — 2026-11-22
 
 A patch, the user's choice: no app has to change now (following panels are the app's to use, the lib draws the fade
