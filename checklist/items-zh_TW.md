@@ -234,6 +234,7 @@ tdp v1.3.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | L1-5 | L1 | 比最低尺寸小時按鍵都不作用（不送進 app，也不送進 PTY）；`q` 與單按一次 `Ctrl-C` 不作用，只有連按兩次 `Ctrl-C` 立刻離開 | 都要 | 縮小後按幾個平常會改東西的鍵、`q`、一次 `Ctrl-C`，拉大看什麼都沒變；再縮小連按兩次 `Ctrl-C` |
 | L1-6 | L1 | 視窗拉大到最低尺寸以上，回到原本的畫面，狀態沒變（cursor、開著的 popup 都在） | 都要 | 移動 cursor、打開一個 popup 後縮小，再拉大 |
 | L2-1 | L2 | 標題、statusbar、chip 等動態文字用固定寬度的欄位或 padding，寬度不跟著內容長度變（一列裡最後一個動態欄位可以不補空白） | 都要 | 讓動態文字變長變短（換 tab、進度、計數），看欄位寬度與旁邊的內容不左右移 |
+| L2-2 | L2 | 固定寬度的欄位用什麼補由 app 決定：前面補 0（`01`）或後面補空白（`1 `），膠囊裡也一樣；glyph 與它後面的字之間不超過一格 | 都要 | 找出補過的欄位：前面補 0、後面補空白都可以；glyph 與字之間剛好一格 |
 | L3-1 | L3 | 常駐列的列數固定、不因內容多寡改變：最上面一列（多畫面的 app 是畫面 chip 列加它下面的分隔線；單畫面的 app 有 statusbar 時是一列 statusbar）與 footer 一列 | 都要 | 讓 statusbar、chip 列、footer 的內容變多變少，縮放終端機，最上面一列（含分隔線）與 footer 的列數不變 |
 | L3-2 | L3 | panel 的 tab 畫在 panel 的上框，不另佔一列 | panel tab | 看有 tab 的 panel：tab 在上框的膠囊串裡，框外沒有另一列 tab |
 | L4-1 | L4 | 畫面上的每一列都剛好等於終端機寬度，不多不少 | 都要 | 多種尺寸、icon 一格與兩格下看每一列：右框不折行、不留殘影；或讀程式：畫面測試在 icon、powerline 符號一格與兩格下跑（E5-11） |
@@ -672,7 +673,7 @@ tdp v1.3.3 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-151 | panel.2 | 有 focus 的清單 cursor 那一列代表畫面上另一個 panel 時，那個 panel 的框是 Lavender 細線直角，不變成 focus，膠囊串跟著換色 | 被指到的 panel | 在清單上移動，看對應的 panel 的框 |
 | panel-152 | panel.2 | cursor 換列就換成指那一列的 panel；那一列的 panel 不在畫面上時，沒有 panel 被指到 | 被指到的 panel | 移到 panel 不在畫面上的那一列 |
 | panel-153 | panel.2 | 只在那個清單有 focus 時才指：focus 到被指的 panel 上照 focus 畫，focus 到別的 panel 上沒有 panel 被指到；被 popup 蓋住時一起淡化 | 被指到的 panel | 用 `Tab` 換 panel；開一個 popup |
-| panel-38 | panel.4 | 膠囊裡的字前後不加空白（`[1] TABS`） | 都要 | 看膠囊的字與兩端之間 |
+| panel-38 | panel.4 | 膠囊裡的字前後不加空白（`[1] TABS`）；字尾為了固定寬度補的空白算字的一部分（L2-2），選中時一起填色 | 都要 | 看膠囊的字與兩端之間；補過空白的膠囊選中時，空白那格也填色 |
 | panel-39 | panel.4 | 有 tab 的 panel，`[N]` 自己是一段，一直是選中的 | panel tab | 換到第二個 tab，看 `[N]` 還是填色 |
 | panel-40 | panel.4 | `[N]` 後面每個 tab 一段，只有目前的 tab 選中 | panel tab | 換 tab，看只有目前的 tab 填色 |
 | panel-41 | panel.4 | 有 tab 的 panel 沒有另外的名字，第一個 tab 的名字就是 label | panel tab | 看有 tab 的 panel 上框沒有另外的 label |

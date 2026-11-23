@@ -130,7 +130,8 @@ panel 標題的膠囊、panel 的 tab、[`screen`](screen-zh_TW.md) 的畫面 ch
   - 失焦時：串的顏色換成失焦的框線色，Mantle 不變（T2 只淡化 panel 的內容，膠囊串在邊框上）。被蓋住時：照 F8 跟整個畫面
     一起淡化，Mantle 剛好變成 Crust（[`color`](../color-zh_TW.md) 的淡化）。
   - 斜角與接縫一律各佔一個 powerline 符號的寬度（Rules E5：多半是一格；佔兩格的終端機上是兩格），換選中的段時字不位移。
-- 膠囊裡的字前後不加空白：`[1] TABS`。字一律大寫，名稱照原樣（`[2] PODS: nginx-7d4f`），熱鍵標記裡的字母照原樣
+- 膠囊裡的字前後不加空白：`[1] TABS`。字尾為了固定寬度補上的空白（`LEVEL 1 ` 到 `LEVEL 10`，Rules L2）算字的一部分，
+  不算後面加的空白，選中的段也照樣填色。字一律大寫，名稱照原樣（`[2] PODS: nginx-7d4f`），熱鍵標記裡的字母照原樣
   （[components](../README-zh_TW.md) 的「大寫」）。
 - **panel 的 tab**：`[N]` 自己是一段，一直是選中的；後面每個 tab 一段，只有目前的 tab 選中。panel 沒有另外的名字，第一個 tab 的
   名字就是 label。`[N]` 與第一個 tab 都選中時（在第一個 tab），中間是空白、不畫接縫，看起來跟沒有 tab 的 panel 一樣；這段空白

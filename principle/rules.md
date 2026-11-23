@@ -852,10 +852,14 @@ after the size row when they don't fit (reported by hostu, 2026-10-27).
 
 Dynamic text in titles, statusbars, chips and the like uses fixed-width slots or padding; its width never changes with
 the length of the content. The **last** dynamic slot in a row may go unpadded: nothing after it can be pushed; the slots
-before it keep their fixed width.
+before it keep their fixed width. How a slot is padded, the app may decide for itself: zeros in front (`01`) or blank
+cells after it (`1 `), inside a capsule too, where the blanks are part of the text (panel.4 in
+[components/layout/panel](../components/layout/panel.md)); never more than one cell between a glyph and the text after
+it ([components](../components/README.md) components.2) (the user, 2026-11-23, from kbu).
 
 **Why**: once widths float, the main view shifts sideways with them, and the whole screen shakes as popups open and
-close.
+close. Which padding reads best depends on the field (a counter the user reads as a plain number, `1` rather than
+`01`), and the app knows its fields best.
 
 ### L3 Chrome has a fixed number of rows
 

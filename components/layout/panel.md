@@ -170,8 +170,10 @@ are all drawn the same way:
     (dimming in [`color`](../color.md)).
   - Every end and join takes the width of one powerline symbol (Rules E5: one cell as a rule; two on a terminal where it
     takes two), so changing the selected part shifts no text.
-- No space before or after the text inside a capsule: `[1] TABS`. The text is uppercase, a name as it is
-  (`[2] PODS: nginx-7d4f`), the letters in a hotkey marker as written ("Uppercase" in the [components](../README.md)).
+- No space before or after the text inside a capsule: `[1] TABS`. Blank cells that pad a fixed-width slot at the end of
+  the text (`LEVEL 1 ` to `LEVEL 10`, Rules L2) are part of the text, not a space after it, and a selected part fills
+  them too. The text is uppercase, a name as it is (`[2] PODS: nginx-7d4f`), the letters in a hotkey marker as written
+  ("Uppercase" in the [components](../README.md)).
 - **A panel's tabs**: `[N]` is a part of its own and always selected; each tab after it is a part, and only the current
   tab is selected. The panel has no other name: the first tab's name is the label. When `[N]` and the first tab are
   both selected (on the first tab), a blank joins them instead of a seam, so it looks like a panel without tabs; the
