@@ -648,8 +648,10 @@ Each action that has to be learned in advance is a hole in "usable without the d
   panel. When one clashes with a panel's own hotkey, the panel's wins, and that panel's key reference does not list
   the global key it overrides. The key stays the panel's while its row is not shown (M6: no target, e.g. `[M]ark all`
   on an empty list): pressing it then does nothing, and never the global action on the same key (the user, 2026-11-23,
-  from gittu). `q` follows K9. A global hotkey that is a digit can only be pressed inside the global operation popup
-  (a digit on a panel jumps to a panel, K1); inside a mode, global hotkeys do nothing (K11).
+  from gittu). The same on a panel with tabs: a key one tab uses is the panel's on every tab, and does nothing on a
+  tab without that action (the user, 2026-11-23). `q` follows K9. A global hotkey that is a digit can only be pressed
+  inside the global operation popup (a digit on a panel jumps to a panel, K1); inside a mode, global hotkeys do
+  nothing (K11).
 
 **The key reference** (reading)
 
@@ -661,7 +663,8 @@ in the global operation popup, one step from running; `?` is a permanent cheatsh
 doing live in two boxes, each of one class (F1). With the global actions gathered in one popup, no Space menu has to list
 them again; users who know them press the global hotkeys directly on a panel, without opening two layers of menu every
 time. A key on a panel does not change its meaning because the list happens to be empty: someone used to pressing `M`
-there to mark everything would otherwise start a merge the one time there was nothing to mark.
+there to mark everything would otherwise start a merge the one time there was nothing to mark, and someone used to a
+key on one tab would leave the screen pressing it out of habit on the next.
 
 ### M5 Each row = name + description, hotkeys marked with `[]`
 

@@ -505,8 +505,10 @@ Space menu 列出**當前 panel 能做的所有事**，依作用對象（Princip
 - 目前所在畫面的切換列照 M6 停用（例：在 `[M]anage` 上的 `[M]anage`）。
 - **global 熱鍵**：沒有 popup 開著時，global operation popup 裡的熱鍵在 panel 上也能直接按。跟 panel 自己的熱鍵撞鍵時，
   panel 的優先，那個 panel 的 key reference 不列被蓋掉的 global 鍵。panel 的那一列暫時不出現時（M6：沒有對象，例：清單空了的
-  `[M]ark all`），這個鍵照樣是 panel 的：按下去什麼都不做，不會變成同一個鍵的全域動作（user 2026-11-23，來自 gittu）。`q` 照 K9。
-  用數字的 global 熱鍵只能在 global operation popup 裡按（panel 上的數字跳 panel，K1）；模式裡 global 熱鍵不作用（K11）。
+  `[M]ark all`），這個鍵照樣是 panel 的：按下去什麼都不做，不會變成同一個鍵的全域動作（user 2026-11-23，來自 gittu）。
+  有 tab 的 panel 也一樣：某一個 tab 用的鍵，在每一個 tab 上都是 panel 的，在沒有那個動作的 tab 上什麼都不做（user
+  2026-11-23）。`q` 照 K9。用數字的 global 熱鍵只能在 global operation popup 裡按（panel 上的數字跳 panel，K1）；模式裡
+  global 熱鍵不作用（K11）。
 
 **key reference**（能讀）
 
@@ -517,7 +519,7 @@ Space menu 列出**當前 panel 能做的所有事**，依作用對象（Princip
 global operation popup，一步就能執行；`?` 是在旁邊對照的常駐 cheatsheet。讀與做分成兩個框，
 各自只屬於一類（F1）。全域動作集中在一個 popup，就不用在每個 Space menu 各列一次；熟了的人在 panel 上直接按 global 熱鍵，
 不用每次開兩層 menu。panel 上的鍵不會因為清單剛好空了就換意思：不然習慣在那裡按 `M` 全部標記的人，剛好沒東西可標的那一次，
-按下去就開始 merge 了。
+按下去就開始 merge 了；在某一個 tab 按慣了的鍵，切到下一個 tab 順手一按，畫面也會跳走。
 
 ### M5 每一列 = 名稱 + 說明，熱鍵用 `[]` 標出
 

@@ -177,6 +177,7 @@ The items of tdp v1.3.1. What each column means and what an item applies to: [RE
 | M4-3 | M4 | When a global hotkey clashes with a panel's own hotkey, the panel's wins | everyone | On that panel press the clashing key: the panel's action runs |
 | M4-4 | M4 | The key reference of the panel with the clash does not list the global key it overrides | everyone | Press `?` on that panel |
 | M4-5 | M4 | A panel's own hotkey that overrides a global one stays the panel's while its row is not shown: pressing it does nothing, never the global action | everyone | On that panel make the action's target go away (e.g. empty the list) and press its key: nothing happens, and the global action on that key does not run |
+| M4-6 | M4 | On a panel with tabs, a key one tab uses is the panel's on every tab: on a tab without that action it does nothing, never the global action on the same key | panel tab | On a tab without it, press a key another tab of the panel uses that a global action uses too: nothing happens |
 | M5-1 | M5 | A hotkey letter that appears in the label (in either case) is bracketed in place, once: at its first occurrence unless the app picks another, e.g. the start of the word the key stands for (`[r]ename`, `[n]ew`, `[D]iff`, `UR[L]`, `Ex[P]ort`, `Stage [a]ll`) | everyone | Look at menu rows, statusbar chips and panel titles |
 | M5-3 | M5 | A hotkey letter not in the label goes in front (`[x] Reset`) | everyone | As above |
 | M5-4 | M5 | A hotkey with a modifier goes whole into the brackets (`[Alt-t]erm`) | everyone | As above |

@@ -177,6 +177,7 @@ tdp v1.3.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | M4-3 | M4 | global 熱鍵跟 panel 自己的熱鍵撞鍵時，panel 的優先 | 都要 | 在那個 panel 上按撞的鍵，執行的是 panel 的動作 |
 | M4-4 | M4 | 撞鍵的那個 panel 的 key reference 不列被蓋掉的 global 鍵 | 都要 | 在那個 panel 上按 `?` |
 | M4-5 | M4 | 蓋掉 global 鍵的 panel 熱鍵，在它那一列暫時不出現時照樣是 panel 的：按下去什麼都不做，不會變成全域動作 | 都要 | 在那個 panel 上讓動作的對象消失（例：清空清單），再按它的鍵：什麼都沒發生，同一個鍵的全域動作也沒跑 |
+| M4-6 | M4 | 有 tab 的 panel，某一個 tab 用的鍵在每一個 tab 上都是 panel 的：在沒有那個動作的 tab 上什麼都不做，不會變成同一個鍵的全域動作 | panel tab | 在沒有那個動作的 tab 上，按另一個 tab 用的、全域也有的鍵：什麼都沒發生 |
 | M5-1 | M5 | 熱鍵字母出現在 label 裡（不分大小寫）時，原地包一個：預設是第一次出現的，app 也可以挑別的，例：鍵代表的那個字的開頭（`[r]ename`、`[n]ew`、`[D]iff`、`UR[L]`、`Ex[P]ort`、`Stage [a]ll`） | 都要 | 看 menu 的列、statusbar chip、panel 標題 |
 | M5-3 | M5 | 熱鍵字母不在 label 裡時，放前面（`[x] Reset`） | 都要 | 同上 |
 | M5-4 | M5 | 含 modifier 的熱鍵整個放進括號（`[Alt-t]erm`） | 都要 | 同上 |
