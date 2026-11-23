@@ -1035,9 +1035,10 @@ itself.
 - **Which actions need a confirm, the app may decide for itself**, regardless of whether they are reversible. Once an
   action is set to be confirmed, it is confirmed every time. Two exceptions, each the app's to use: a choice made
   explicitly in a picker may count as the confirmation (e.g. picking the default app from an "open with" list); and an
-  action may ask only when this run would lose something or reach further than it usually does (e.g. switching
-  branches asks only when there are changes not yet saved that the switch would lose, amending a commit only when it
-  has already been pushed and must be pushed again by force). Then the same state always asks the same way, and
+  action may ask only when this run would lose something, reach further than it usually does, or carry something
+  plainly wrong into what it makes (e.g. switching branches asks only when there are changes not yet saved that the
+  switch would lose, amending a commit only when it has already been pushed and must be pushed again by force, marking
+  a file resolved only when it still holds conflict markers). Then the same state always asks the same way, and
   nothing else decides it (not, say, whether it asked before) (the user, 2026-11-23, from gittu).
 - `Enter` accepts, `Esc` cancels (K3, K4). These are the only two answers, with no other keys such as `y` and `n`:
   `y` would only be `Enter` and `n` only `Esc`, a second set for the same thing.
