@@ -645,9 +645,11 @@ Each action that has to be learned in advance is a hole in "usable without the d
 - `Esc` goes back to the Space menu (F4); an action that closes the whole stack once run follows T1.
 - The row that switches to the current screen is disabled as M6 says (e.g. `[M]anage` while on `[M]anage`).
 - **Global hotkeys**: with no popup open, the hotkeys in the global operation popup can also be pressed directly on a
-  panel. When one clashes with a panel's own hotkey, the panel's wins, and that panel's key reference does not list the
-  global key it overrides. `q` follows K9. A global hotkey that is a digit can only be pressed inside the global operation
-  popup (a digit on a panel jumps to a panel, K1); inside a mode, global hotkeys do nothing (K11).
+  panel. When one clashes with a panel's own hotkey, the panel's wins, and that panel's key reference does not list
+  the global key it overrides. The key stays the panel's while its row is not shown (M6: no target, e.g. `[M]ark all`
+  on an empty list): pressing it then does nothing, and never the global action on the same key (the user, 2026-11-23,
+  from gittu). `q` follows K9. A global hotkey that is a digit can only be pressed inside the global operation popup
+  (a digit on a panel jumps to a panel, K1); inside a mode, global hotkeys do nothing (K11).
 
 **The key reference** (reading)
 
@@ -658,7 +660,8 @@ Each action that has to be learned in advance is a hole in "usable without the d
 in the global operation popup, one step from running; `?` is a permanent cheatsheet to glance at alongside. Reading and
 doing live in two boxes, each of one class (F1). With the global actions gathered in one popup, no Space menu has to list
 them again; users who know them press the global hotkeys directly on a panel, without opening two layers of menu every
-time.
+time. A key on a panel does not change its meaning because the list happens to be empty: someone used to pressing `M`
+there to mark everything would otherwise start a merge the one time there was nothing to mark.
 
 ### M5 Each row = name + description, hotkeys marked with `[]`
 
