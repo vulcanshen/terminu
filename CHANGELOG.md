@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.3.4 — 2026-11-23
+
+A patch, the user's choice: no app has to change now (it loosens how a fixed-width slot may be padded); members meet
+it at their next release. Released with terminu-go v1.3.4, which only adds a test: the lib already keeps a capsule's
+trailing blanks.
+
+- L2, panel.4: how a fixed-width slot is padded, the app may decide for itself: zeros in front (`01`) or blank cells
+  after it (`1 `), inside a capsule too, where the blanks are part of the text and a selected part fills them; never
+  more than one cell between a glyph and its text (the user, from kbu)
+- changed in this version: L2, panel.4
+- checklist: L2-2 added; panel-38 reworded (1555 items); the header names v1.3.4
+
 ## v1.3.3 — 2026-11-23
 
 A patch, the user's choice: no app has to change now (K11 opens a way an app may take, F6 loosens when an action may
