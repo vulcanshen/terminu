@@ -279,11 +279,12 @@ The items of tdp v1.3.1. What each column means and what an item applies to: [RE
 | F5-1 | F5 | Errors appear immediately (a toast or a popup) | everyone | Trigger an error (e.g. no network, no permission): a toast or a popup shows at once |
 | F5-2 | F5 | Errors do not block the app | everyone | After an error appears, the app works as usual, and the user can go on to deal with the error itself |
 | F5-3 | F5 | Errors also go into the App Log, to be looked up after the toast has gone | everyone | Cause an error, wait for the toast to go, press `!` |
-| F6-1 | F6 | An action set to be confirmed is confirmed every time (a choice made explicitly in a picker may count as the confirmation) | confirm | Do the same action two or three times: a confirm every time |
+| F6-1 | F6 | An action set to be confirmed is confirmed every time (a choice made explicitly in a picker may count as the confirmation; one asking by its state, F6-6, every time that state holds) | confirm | Do the same action two or three times in the same state: a confirm every time |
 | F6-2 | F6 | On a confirm, `Enter` accepts and `Esc` cancels | confirm | On a confirm press `Enter`, and `Esc` |
 | F6-3 | F6 | A confirm's only answers are the two keys `Enter` and `Esc`; no `y` or `n` | confirm | On a confirm press `y`, `n`: nothing happens |
 | F6-4 | F6 | A confirm's prompt says what accepting will do (verb and object), not an abstract OK | confirm | Read every confirm's question and its `Enter` hint |
 | F6-5 | F6 | A confirm cannot be completed by accident (e.g. a mouse click must not accept it) | confirm | Click on a confirm and press keys other than the answers: none accepts it |
+| F6-6 | F6 | An action that asks only some of the time asks exactly when this run would lose something or reach further than it usually does, the same state always asking the same way and nothing else deciding it | confirm | Do it once with something to lose and once with nothing: a confirm only the first time; do each again: the same as before |
 | F7-1 | F7 | A popup's width is fixed when it opens and does not change while it is open | everyone | In an open popup make the content longer and shorter (typing, filtering): the frame's width does not change |
 | F7-2 | F7 | A popup whose content width is known is at most `min(terminal width − 2, 120)` wide | everyone | Open it once in a 200-column terminal and once in a very narrow one (e.g. a menu, a confirm, a select, a checkbox popup): the width never exceeds the cap |
 | F7-3 | F7 | A popup whose content width is not known is `min(terminal width − 2, 120)` wide | everyone | Open it once at 80 columns and once at 200 (e.g. a URL, search results listed as they come, a form): the width is 78 and 120 |

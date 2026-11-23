@@ -1000,9 +1000,13 @@ itself.
 
 ### F6 Confirm: `Enter` accepts, `Esc` cancels, and it says what will happen
 
-- **Which actions need a confirm, the app may decide for itself**, regardless of whether they are reversible. Once an action is set to
-  be confirmed, it is confirmed every time. The exception: a choice made explicitly in a picker may count as the
-  confirmation (e.g. picking the default app from an "open with" list), which the app may decide for itself.
+- **Which actions need a confirm, the app may decide for itself**, regardless of whether they are reversible. Once an
+  action is set to be confirmed, it is confirmed every time. Two exceptions, each the app's to use: a choice made
+  explicitly in a picker may count as the confirmation (e.g. picking the default app from an "open with" list); and an
+  action may ask only when this run would lose something or reach further than it usually does (e.g. switching
+  branches asks only when there are changes not yet saved that the switch would lose, amending a commit only when it
+  has already been pushed and must be pushed again by force). Then the same state always asks the same way, and
+  nothing else decides it (not, say, whether it asked before) (the user, 2026-11-23, from gittu).
 - `Enter` accepts, `Esc` cancels (K3, K4). These are the only two answers, with no other keys such as `y` and `n`:
   `y` would only be `Enter` and `n` only `Esc`, a second set for the same thing.
 - The prompt says **what accepting will do** (verb and object), not an abstract OK.
@@ -1010,8 +1014,11 @@ itself.
 - How it looks: [components/dialog/confirm](../components/dialog/confirm.md).
 
 **Why**: users must know the consequence before pressing `Enter`. Whether to stop and confirm depends on how much the
-action weighs for the user — launching an external program, cutting a session, deleting a file: the app knows the weight
-best, and no rule such as "reversible means no need to ask" can judge it.
+action weighs for the user — launching an external program, cutting a session, deleting a file: the app knows the
+weight best, and no rule such as "reversible means no need to ask" can judge it. The same action can weigh nothing one
+time and cost something the next: asking every time, even when nothing can be lost, teaches pressing `Enter` without
+reading, and the one time it matters goes unread. Asking only then means a confirm on screen is worth reading; and
+since the same state always asks the same way, it can still be learned.
 
 ### F7 Popup size and position
 

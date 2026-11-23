@@ -279,11 +279,12 @@ tdp v1.3.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | F5-1 | F5 | 錯誤立刻出現（toast 或 popup） | 都要 | 觸發一個錯誤（例：斷網、沒有權限），馬上看到 toast 或 popup |
 | F5-2 | F5 | 錯誤不阻塞 app | 都要 | 錯誤出現後 app 照常運作，使用者能接著處理錯誤本身 |
 | F5-3 | F5 | 錯誤也記進 App Log，toast 收掉之後照樣查得到 | 都要 | 觸發一個錯誤，等 toast 收掉後按 `!` |
-| F6-1 | F6 | 決定要 confirm 的動作每次都 confirm（經由 picker 明確選定的那一次可以算已確認） | confirm | 同一個動作做兩三次，每次都出 confirm |
+| F6-1 | F6 | 決定要 confirm 的動作每次都 confirm（經由 picker 明確選定的那一次可以算已確認；照狀態問的，F6-6，那個狀態每次都問） | confirm | 同一個狀態下，同一個動作做兩三次，每次都出 confirm |
 | F6-2 | F6 | confirm 上 `Enter` 接受、`Esc` 取消 | confirm | 在 confirm 上分別按 `Enter`、`Esc` |
 | F6-3 | F6 | confirm 的回答只有 `Enter`、`Esc` 兩個鍵，沒有 `y`、`n` | confirm | 在 confirm 上按 `y`、`n`，不作用 |
 | F6-4 | F6 | confirm 的提示寫出接受會做的事（動詞與對象），不是抽象的 OK | confirm | 讀每個 confirm 的問句與 `Enter` 的 hint |
 | F6-5 | F6 | confirm 不能被誤觸完成（例：滑鼠點一下不能等於接受） | confirm | 在 confirm 上點滑鼠、按回答以外的鍵，都不會接受 |
+| F6-6 | F6 | 只有某些時候才問的動作，正好在「這一次會丟東西，或做得比平常多」時問；同樣的狀態永遠問法一樣，不看其他事情決定 | confirm | 有東西會丟時做一次、沒東西會丟時做一次：只有第一次出 confirm；兩種各再做一次，跟之前一樣 |
 | F7-1 | F7 | popup 的寬度打開時定好，開著時不變 | 都要 | 在開著的 popup 裡讓內容變長變短（打字、篩選），框的寬度不變 |
 | F7-2 | F7 | 內容寬度確定的 popup，寬度不超過 `min(terminal 寬 − 2, 120)` | 都要 | 在 200 欄與很窄的終端機各開一次（例：menu、confirm、select、checkbox popup），寬度不超過上限 |
 | F7-3 | F7 | 內容寬度不確定的 popup，寬度是 `min(terminal 寬 − 2, 120)` | 都要 | 在 80 欄與 200 欄各開一次（例：網址、邊找邊列的搜尋結果、表單），寬度是 78 與 120 |
