@@ -47,7 +47,6 @@ tdp v1.3.1 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K2-7 | K2 | 只有一塊的 input popup 沒有灰字提議時（含有舊密碼的 password：灰點不是提議，`Tab` 不收進舊密碼），`Tab` 不作用 | input | 打開空的 input popup 按 `Tab`，什麼都沒變 |
 | K2-8 | K2 | 有動作區的 popup 裡一定有 `Shift-Tab`（反向切換） | 表單、color picker | 在表單上按 `Shift-Tab`，focus 往反方向切換 |
 | K3-1 | K3 | `Enter` 對 focus 項目做最直觀的那個動作 | 都要 | 在每種 panel 的項目上按 `Enter`，判斷是不是那種項目最直觀的動作 |
-| K3-2 | K3 | 同一種項目在同一個 app 裡，`Enter` 永遠是同一個動作 | 都要 | 在不同 panel、不同畫面的同一種項目上按 `Enter`，做的事一樣 |
 | K3-3 | K3 | panel 本身是內容區、沒有項目可選時（例：預覽、log），`Enter` 對整個 panel 做最直觀的動作 | 都要 | 在這種 panel 上按 `Enter`，判斷是不是最直觀的動作 |
 | K3-4 | K3 | 按完 `Enter`，focus 原則上留在原處（表單上、一列一個值的 panel 上確定了一欄的 input popup，回到同一欄／同一列；選 radio、翻 checkbox 不動）；會換位置的，是元件寫死的三處（進明細、打字列上的 `Enter` 到清單、表單送出被擋時跳到第一個有問題的欄位），或使用者按下去時就預期會換的 app 動作 | 都要 | 在 panel、表單、radio、checkbox 上按 `Enter`，看 focus 停在哪；換了位置的，判斷使用者按下去時是不是就預期會換 |
 | K3-5 | K3 | `Enter` 換了 panel 或畫面時，落點是使用者按下去時就預期的（例：明細的 `Enter` 到顯示那一項明細的 panel） | 都要 | 在清單上按 `Enter` 換了 panel 或畫面時，判斷落點是不是使用者按下去時就預期的 |

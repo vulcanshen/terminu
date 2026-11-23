@@ -121,7 +121,7 @@ Take core keys as an example:
   state it is a space character, and that exception is fixed by tdp too.
 - `Enter` leaves the how to the app: tdp specifies that it is "the most obvious action on the focused item", and what that
   action is, the app may decide for itself — in filu it enters a directory, in sshu it connects, in locku it flips a
-  setting; inside that scope, the same kind of item always gets the same action within an app (Rules K3).
+  setting (Rules K3).
 
 **When a fixed part does not fit**: it is reported as a gap in tdp, and tdp adds a solution or leaves it to the app
 explicitly. Doing it any other way, outside what is left to the app, is a violation.

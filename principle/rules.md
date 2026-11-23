@@ -113,9 +113,9 @@ same role at different levels. Switching screens is a global operation (P3).
 ### K3 `Enter` does the most intuitive thing to what has focus
 
 `Enter` does **the most intuitive action** to the focused item — enter a directory, connect, open, flip a setting.
-What that action is, the app may decide for itself; inside that scope, the same kind of item always gets the same
-action within an app. When the panel itself is a content area with no "item" to pick (e.g. a preview, a log), `Enter`
-does the most intuitive action to the whole panel, which the app may decide for itself (e.g. open a scrollable view).
+What that action is, the app may decide for itself, for each item as it stands (the user, 2026-11-23, from gittu).
+When the panel itself is a content area with no "item" to pick (e.g. a preview, a log), `Enter` does the most
+intuitive action to the whole panel, which the app may decide for itself (e.g. open a scrollable view).
 
 **The focus moves only when the user expects it to**: after `Enter`, the focus normally stays where it was —
 once a field's input popup on a form is confirmed, the focus is back on the same field; choosing a radio option or
