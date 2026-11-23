@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.3.3 — 2026-11-23
+
+A patch, the user's choice: no app has to change now (K11 opens a way an app may take, F6 loosens when an action may
+ask); members meet it at their next release. Released with terminu-go v1.3.3, which adds what an app's own mode needs
+to hold a PTY.
+
+- K11, K10, terminal.1, terminal.3: an app's own mode may hold a PTY on its panel, gone into and come out of as the
+  mode is: every key but `Esc` goes to the subprocess (`Space`, `?`, `q`, `Ctrl-C` included), `Esc` leaves with no
+  confirm, and a piled `Alt-Esc` is leaving and then one `Esc` sent; K10's exit key and confirm hold for the other
+  PTYs (the user, from ccodu)
+- F6: an action may also ask only when this run would carry something plainly wrong into what it makes (e.g. marking a
+  file resolved only when it still holds conflict markers) (the user, from gittu)
+- changed in this version: K10, K11, F6, terminal.1, terminal.3
+- checklist: K11-28 added; K10-3, K10-4, F6-6 reworded (1554 items); the header names v1.3.3
+
 ## v1.3.2 — 2026-11-23
 
 A patch, the user's choice: no app has to change now (most of it loosens or makes plain what an app may do; the lib
