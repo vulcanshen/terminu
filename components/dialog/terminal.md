@@ -8,7 +8,8 @@ A subprocess running in a frame (a shell, an editor, a remote session): every ke
 key combinations the app keeps, and an interactive terminal's `Alt-v` and `PgUp` ("Which PTYs have these
 modes" below) belong to the app (Rules F1, K10). A PTY placed in a panel (e.g. sshu's grid cells) is
 not a popup: its frame follows [`layout/panel`](../layout/panel.md), and the PTY's keys are written in the footer
-([`layout/screen`](../layout/screen.md)).
+([`layout/screen`](../layout/screen.md)). It may also be held by an app's own mode on its panel, gone into and come out
+of as the mode is, `Esc` its exit key (Rules K11).
 
 ## terminal.2 Look
 
@@ -55,7 +56,8 @@ with no two rows of hints.
   - Never `close`.
 - After the exit key come the key combinations the app keeps (e.g. `Alt-t:hide`), then, in an interactive terminal,
   `Alt-v:select` and `PgUp:history` (below).
-- `Alt-Esc` always asks for confirmation first (Rules K10).
+- `Alt-Esc` always asks for confirmation first (Rules K10); in an app's own mode holding the PTY, `Esc` leaves
+  with no confirm (Rules K11).
 - `Home` and `End` belong to the subprocess (Rules K10); to reach the top or the bottom of the history, use `gg|G` in
   history mode (below).
 

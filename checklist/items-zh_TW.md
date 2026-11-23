@@ -94,8 +94,8 @@ tdp v1.3.2 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K9-7 | K9 | 照表單的 app 自己的 popup（有要送出的值）上，`q` 不進入離開流程，`Ctrl-C` 照樣進入 | app 自己的 popup | 在那種 popup 上按 `q`，再按 `Ctrl-C` |
 | K10-1 | K10 | focus 在 PTY 時（panel 裡或 terminal popup）按鍵都送給子程序，core key 與 app 的熱鍵（含 splash 的 `V`）都失效，只有出口鍵與 app 保留的組合鍵（互動 terminal 還有 `Alt-v`、`PgUp`）屬於 app；`Esc` 也給子程序，toast 開著時只能等時間到收掉 | PTY | 在 PTY 裡按 `Space` `?` `q` `Tab` `Esc` `1` 與 app 的熱鍵，都進子程序 |
 | K10-2 | K10 | 至少有一個出口鍵讓 focus 離開 PTY | PTY | 在 PTY 裡按出口鍵能回到 app |
-| K10-3 | K10 | 出口鍵用 `Alt-Esc` | PTY | 在 PTY 裡按 `Alt-Esc` |
-| K10-4 | K10 | 按 `Alt-Esc` 會讓 focus 離開 PTY 或結束子程序時，一律先跳 confirm：`Enter` 離開、`Esc` 回到 PTY | PTY | 在 PTY 裡按 `Alt-Esc` 出現 confirm；按 `Esc` 回到 PTY，再按一次 `Alt-Esc` 後按 `Enter` 離開 |
+| K10-3 | K10 | 出口鍵用 `Alt-Esc`；裝在 app 自己的模式裡的 PTY 用 `Esc`（K11-28） | PTY | 在 PTY 裡按 `Alt-Esc`（那種模式裡按 `Esc`） |
+| K10-4 | K10 | 按 `Alt-Esc` 會讓 focus 離開 PTY 或結束子程序時，一律先跳 confirm：`Enter` 離開、`Esc` 回到 PTY（裝在 app 自己的模式裡的 PTY 不算，K11-28） | PTY | 在 PTY 裡按 `Alt-Esc` 出現 confirm；按 `Esc` 回到 PTY，再按一次 `Alt-Esc` 後按 `Enter` 離開 |
 | K10-5 | K10 | 子程序還沒準備好收鍵時，`Ctrl-C` 照樣轉送給子程序 | PTY | 子程序啟動或連線中按 `Ctrl-C`；讀程式：有轉送 |
 | K10-6 | K10 | 子程序還沒準備好收鍵時，出口鍵照樣有效、照樣揭露 | PTY | 子程序啟動或連線中看 footer、按出口鍵 |
 | K11-1 | K11 | 模式裡 `Space` 打開模式的 Space menu（app 自己的模式裡使用者把動作放到 `Space` 時除外，K11-27）；tdp（元件或規則）規定的模式只列模式裡能做的事（app 自己的模式見 K11-15） | 模式 | 進模式按 `Space` |
@@ -124,6 +124,7 @@ tdp v1.3.2 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K11-25 | K11 | app 自己的模式讓使用者改鍵時，`Enter` 與移動鍵（K12）也可以改：移動改到別的鍵照樣移動，空出來的字母可以做別的動作（單獨的 `g` 只在模式裡沒有 `g` 開頭的組合作用時）；方向鍵與 `PgUp\|PgDn` 照這個模式給它們的預設，對應的字母改做別的事之後，寫在 `?` 裡那個動作的那一列、用 `\|` 接在使用者選的鍵後面（不用進 Space menu 或 footer）；`?`、`!`、`Esc`、`q`、`Ctrl-C`、`Tab` 與數字鍵照樣拒絕（`Space` 見 K11-27） | 模式的鍵可以讓使用者設定 | 把 `Enter` 上的動作改到沒人用的字母，再把另一個動作放到 `Enter`：都設得上；左移改成 `a`：`a` 往左，`←` 照樣往左，`?` 那一列寫 `a\|←`，`h` 可以給別的動作；app 的選項裡有 `Esc` 的話，把一個鍵設成它：跳 Warning，鍵沒變；模式裡沒有 `g` 開頭的組合作用時，把一個動作放到 `g`：按一下就執行 |
 | K11-26 | K11 | app 自己的模式開出來的 popup（用模式的鍵或從它的 Space menu）是 F1 的一類，照那個元件畫、照那個元件答（confirm：`Enter` 接受、`Esc` 取消）；只有回到模式還是回到開它的 menu，是 app 的事 | app 自己的模式 | 用模式的鍵與從 Space menu 各開一次模式的每個 popup：每個都照它的元件長、照它的元件答 |
 | K11-27 | K11 | app 自己的模式讓使用者改鍵時，使用者可以把模式的一個動作放到 `Space`，只能由使用者自己選（預設 `Space` 打開模式的 Space menu）：放了之後 `Space` 做那個動作，這個模式沒有 Space menu；原本只會在那個 menu 裡的鍵都在 60 欄時畫出來的 footer 裡，footer 最前面、原本 `Space:menu` 的位置寫 `Space:<動作>`（是用一個動詞講的一對的一半時寫那一對，M5）；選 `Space` 時跳 Warning，說出 `Space` 改做什麼、要 menu 先按 `Esc`；`?` 照樣列每個鍵，`Esc` 照樣離開模式，離開後 `Space` 打開 panel 的 Space menu | 模式的鍵可以讓使用者設定 | app 的選項裡有 `Space` 時：照預設的鍵進模式按 `Space`：開 menu；把一個動作放到 `Space`：跳 Warning；進模式按 `Space`：做那個動作，沒有 menu；終端機 60 欄時 footer 最前面是 `Space:<動作>`、沒有 `Space:menu`，模式的每個鍵都在 `?`，除了 core key 與移動鍵也都在 footer；按 `Esc` 再按 `Space`：開 panel 的 Space menu |
+| K11-28 | K11 | 裝著 PTY 的 app 自己的模式，除了 `Esc` 每個鍵都送給子程序（`Space`、`?`、`q`、`Ctrl-C` 也是）；`Esc` 離開模式、不跳 confirm，兩下 `Esc` 被讀成 `Alt-Esc` 時離開再送一個 `Esc` | app 自己的模式 + PTY | 在模式裡打空白、`?`、`q`：子程序收到；按 `Esc`：離開模式、沒有 confirm；再進去，趁子程序忙時快按兩下 `Esc`：離開模式，子程序收到一個 `Esc` |
 | K12-1 | K12 | 不在打字的地方，`j` `k` `u` `d` `g` `G` `h` `l` 不被任何動作佔用（`g` 開頭的兩鍵組合除外；模式裡沒有移動可做的鍵也除外，K12-19） | 都要 | 讀程式或看所有 menu、key reference：除了 K12-19 放行的，這幾個字母沒有登記成動作 |
 | K12-2 | K12 | `h\|j\|k\|l` 就是 `←\|↓\|↑\|→`：方向鍵做一樣的事 | 都要 | 在清單、menu、表單上分別按 hjkl 與方向鍵，效果一樣 |
 | K12-3 | K12 | 有左右結構時（同一個 surface 裡的 tab、左右兩側、格子），`j\|k` 上下、`h\|l` 左右（切 tab、跨到另一側） | 都要 | 在有 tab 的 panel 按 `h\|l` 切 tab |

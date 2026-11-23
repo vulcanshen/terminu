@@ -315,6 +315,8 @@ chord.
   to go back to the PTY.
 - **Other Alt-chord exit keys** (e.g. kbu's `Alt-t` hiding Alterm, `Alt-Enter` on a locked cell in sshu) can likewise be
   spelled by "`Esc` then that key"; whether they confirm, the app may decide for itself.
+- **A PTY held by an app's own mode** (K11): `Esc`, leaving the mode, is its exit key, with no confirm, and a piled
+  `Alt-Esc` is leaving and one `Esc` sent; the exit key and the confirm above are for the other PTYs.
 - An interactive terminal (a PTY where the user types their own commands) always has the history mode (`PgUp`) and the
   selection mode (`Alt-v`); see [components/dialog/terminal](../components/dialog/terminal.md).
 - Beyond that, whether the app keeps other chords of its own inside the PTY besides the exit key (e.g. sshu's zoom and
@@ -442,6 +444,15 @@ With focus inside a mode (the term "mode"), the core keys act like this:
     Where leaving would throw away something the user made in it to keep (e.g. strokes not yet saved), that popup asks,
     the work kept until it is answered; how far a game had got is not such a thing, and when the app ends the mode
     (e.g. a game over), what it shows before is its own (the user, 2026-11-11 and 2026-11-12, from tetru).
+  - **Holding a PTY** (e.g. an agent running in a panel's PTY, gone into to type to it): the one component an app's
+    own mode may hold is a PTY on its panel ([components/dialog/terminal](../components/dialog/terminal.md)), entered
+    and left as any app's own mode (e.g. `Enter` in, as tetru's game). Inside it every key goes to the subprocess as
+    K10 has it, `Space`, `?`, `q` and `Ctrl-C` included, so the core keys above and the mode's Space menu and `?` give
+    way to it; the one key kept is `Esc`, which leaves the mode with no confirm: it is the PTY's exit key, disclosed
+    as K10's (M1), and two `Esc`s read as one `Alt-Esc` are taken as leaving and then one `Esc` sent to the
+    subprocess. K10's exit key that the subprocess almost never uses, and its confirm on `Alt-Esc`, are for the other
+    PTYs. Out of the mode the panel is tdp's again; `Esc` on it may send one `Esc` to the subprocess, cancelling what
+    it is doing (K4). The mode shows itself as any mode (above) (the user, 2026-11-23, from ccodu).
 
 **Why**: "when in doubt, hit `Space`" holds inside a mode too — the family's idea is zero learning cost, so when the
 user in a mode does not know what to do, `Space` must answer (the user, 2026-10-22). A mode's keys are mostly movement
@@ -484,6 +495,10 @@ it may leave something to tell or pick up again (e.g. something paused halfway),
 closes it, so pressing `Esc` again and again still comes back to the panel, one layer a press (K4). A key that does
 nothing outside the mode either needs no reminder: a toast saying to leave the mode first would promise something
 that is not there.
+A PTY held by a mode is gone into and come out of as any mode, the frame telling which side the keys are on. Its
+subprocess takes everything typed, spaces and question marks too, so only `Esc` is kept; the price, two presses of
+`Esc` to send it one, is the app's to weigh against an exit chord that the subprocess's own `Esc`s, piling up while it
+is busy, would spell.
 
 ### K12 Navigation letters are kept for movement; hjkl are the arrow keys
 

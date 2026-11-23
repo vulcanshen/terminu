@@ -6,6 +6,7 @@
 
 框裡跑的子程序（shell、編輯器、遠端 session）：按鍵都給它，只有出口鍵、app 保留的組合鍵，以及互動 terminal 的 `Alt-v`、`PgUp`（見下面的「哪些 PTY 有這兩種模式」）屬於 app（Rules F1、K10）。PTY 放在
 panel 裡時（例：sshu 的格子）不是 popup：框照 [`layout/panel`](../layout/panel-zh_TW.md)，PTY 的鍵寫在 footer（[`layout/screen`](../layout/screen-zh_TW.md)）。
+它也可以裝在那個 panel 上 app 自己的模式裡，照模式進出，`Esc` 是它的出口鍵（Rules K11）。
 
 ## terminal.2 長相
 
@@ -43,7 +44,7 @@ focus 在 PTY 裡時，footer 上的 `Space`、`?`、`q` 都送給子程序，�
   - `Alt-Esc:leave`：離開，子程序還留著。
   - 不寫 `close`。
 - 出口鍵後面跟 app 保留的組合鍵（例：`Alt-t:hide`），互動 terminal 再接 `Alt-v:select`、`PgUp:history`（見下面）。
-- `Alt-Esc` 一律先 confirm（Rules K10）。
+- `Alt-Esc` 一律先 confirm（Rules K10）；裝在 app 自己的模式裡的 PTY，`Esc` 離開、不 confirm（Rules K11）。
 - `Home`、`End` 屬於子程序（Rules K10）；要到歷史的頭尾，用歷史模式的 `gg|G`（見下面）。
 
 ## terminal.4 哪些 PTY 有這兩種模式
