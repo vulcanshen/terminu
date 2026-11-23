@@ -67,7 +67,8 @@ syntax highlighting), the app may decide for itself; this file governs the inter
   the terminal's background; the family colours are designed for a dark background, so on a dark terminal the difference
   is small. The one thing that needs the terminal's background is the fade of an item's other rows (panel.5 in
   [`layout/panel`](layout/panel.md)), which ends in it so nothing shows where the painting stops: it is asked with
-  OSC 11 at startup, with the palette (color.4), and is Base when there is no answer.
+  OSC 11 at startup, with the palette (color.4). With no answer there is no fade: those rows take its start colour
+  flat, as no colour it could end in is known (the user, 2026-11-23, from gittu).
 
 **Why**: the user's terminal theme, transparency and background image stay; none of the family apps paints the
 background today, so moving to the shared lib does not change the screen.
@@ -129,5 +130,7 @@ exactly into Crust, so a covered layer's whole chain falls back; leaning towards
 > still unanswered when the DA1 reply arrives is not available — a terminal without OSC 4 still answers DA1, so there is
 > no timeout to wait for. If DA1 is not answered either, after an overall timeout (e.g. 200ms) all of them take the xterm
 > values.
-> The terminal's background (panel.5's fade, color.2): `ESC ] 11 ; ? ESC \` goes with them, before the DA1, answered
-> with `ESC ] 11 ; rgb:RRRR/GGGG/BBBB`.
+> The terminal's background (panel.5's fade, color.2): `ESC ] 11 ; ? ESC \` goes with them, first, ahead of the OSC 4s
+> and the DA1, answered with `ESC ] 11 ; rgb:RRRR/GGGG/BBBB`. A multiplexer passes the answers back in order, and one
+> holding the rest behind an OSC 4 left unanswered (tmux waits about 500ms) would make it miss the timeout (from
+> gittu).

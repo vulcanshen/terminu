@@ -271,7 +271,10 @@ A panel with one entry per row, like kbu's resource list or filu's file list.
     cell to 1 in the last, each channel rounded half up; a cell within 2 of the background on every channel is left
     unpainted. Dimmed (Rules T2, F8), the start dims with the rest and the fade still ends at the terminal's background.
     No block beside the arrow, so no row ends square there, and nothing drawn over the rows' text (the user, 2026-11-22,
-    from gittu; the bar and underline of 2026-11-21 looked wrong on the screen).
+    from gittu; the bar and underline of 2026-11-21 looked wrong on the screen). When the terminal does not say its
+    background (no answer to OSC 11, color.2), the rows take the start colour flat across the whole inner width, with
+    no fade: a fade into a guessed colour that is not the real one stops halfway with a cut (the user, 2026-11-23,
+    from gittu).
   - Everything counts items, not rows: `j|k` move one item and every movement lands on an item's first row, `N of M`
     counts items, and the item under the cursor is always in view whole, all its rows.
   - The panel filter matches an item by the text of any of its rows (e.g. a branch's name finds its commit).
