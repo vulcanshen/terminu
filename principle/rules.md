@@ -1575,6 +1575,13 @@ start would only be noise. What the app cannot use until it has found it (e.g. a
 start) holds the default until the finding is done; the warning comes only if it is still not there then (the user,
 2026-11-20, from kbu).
 
+**Data naming something outside the app** (e.g. containers or kinds the user pinned, favourites, names to watch:
+lists the user writes for the app are data, above): what is not there now may well come back (a container made again
+under the same name, a CRD installed again), and data is what the user would lose for good. So when the answer from
+outside shows that such an entry's thing is not there, the entry is kept as written: no toast, no WARN entry, never
+left out when the app writes the file again; once the thing is there again, the entry works again. Only the user
+removes it, as any entry. The paragraph above is not for data (the user, 2026-11-26, from boxu).
+
 **Several at one start**: each is a toast of its own, stacked as every toast is
 ([components/dialog/toast](../components/dialog/toast.md), toast.2), in the order they happened, and an entry of its
 own in the App Log; with no screen, each is a line of its own on stderr (the user, 2026-11-20: one way for every
