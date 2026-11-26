@@ -1,5 +1,30 @@
 # Changelog
 
+## v1.3.6 — 2026-11-26
+
+A patch, the user's choice: no app has to change now (the lib holds all of it: the keys, the menu rows, the shared
+lines, the toasts, what is kept); members meet it at their next release, and only an app that took `<` `>` `+` `-` `=`
+on a panel must drop them first. Released with terminu-go v1.3.8.
+
+- screen.9: the user resizes panels from the focused one: `>` and `<` wider and narrower by 2 columns, `+` and `-`
+  taller and shorter by 1 row, `=` every line of the screen back to the default. A line is shared: every panel touching
+  it moves with it, a sign too; with a line on both sides the right one or the one below moves, against the right or the
+  bottom the other one. Each panel has a least size, the app's own, and a press near it moves what is left. A press that
+  moves nothing answers with an Info toast on the panel, at the edge that would have moved. Where a line is left is kept
+  in the state for each screen, by the terminal's width and height, written only once the user moves one; a place panels
+  that follow a leading panel hide gets its line back. `[>] Wider`, `[<] Narrower`, `[+] Taller`, `[-] Shorter` are
+  panel operations, `[=] Default layout` a global one, and on a panel no app takes the five keys (the user, from gittu
+  and ccodu; the details from terminu-go)
+- M6: the resize keys pressed on a panel answer with that toast though their rows are disabled; in the menu their
+  hotkeys do nothing, as any disabled row's (the user)
+- toast.2: the toast of a panel that cannot be resized sits on that panel, the one exception to its place (the user)
+- note.7: resizing a panel goes unrecorded in the App Log, as the panel filter does; it changes no data (the user)
+- E3: a kept line that no longer fits (a new layout or least size) takes the default with nothing said, the one
+  exception to a value that does not fit (the user)
+- L1: points to screen.9 for moving the lines between panels
+- changed in this version: E3, L1, M6, note.7, screen.9, toast.2
+- checklist: screen-37 to screen-52 added; M6-5, note-77, E3-29, toast-3 reworded (1573 items); the header names v1.3.6
+
 ## v1.3.5 — 2026-11-23
 
 A patch, the user's choice: no app has to change now (the lib holds the Drag, draws the fade and asks the terminal);
