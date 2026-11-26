@@ -155,8 +155,9 @@ app keeps where they are left (the user, 2026-11-26, from gittu and ccodu):
 | `-` | shorter, by 1 row |
 | `=` | every line of the current screen back to the default |
 
-**A line is shared**: what moves is the line on the panel's edge, and every panel touching that line moves with it, the
-panels on its other side growing or shrinking. A line runs as far as panels meet along it:
+**A line is shared**: what moves is the line on the panel's edge, and every panel touching that line moves with it, a
+sign too (panel.17 in [`panel`](panel.md): it resizes with the others), the panels on its other side growing or
+shrinking. A line runs as far as panels meet along it:
 
 ```
 ┌───┬───┐      ┌───┬───────┐
@@ -174,11 +175,13 @@ and [3] and [4] shorter. On the right, the upright line runs through the top row
   the width and the one below it for the height; a panel against the right or the bottom of the panel area moves the
   line on its other side, so that `>` always makes it wider and `+` taller.
 - **The least size**: each panel has a least width and height, the app's own, small enough that at 60×32 every panel
-  still fits side by side (Rules L1); a line stops as soon as any panel it moves is at its least.
+  still fits side by side (Rules L1); a line stops as soon as any panel it moves is at its least, so a press near it
+  moves only what is left (1 column, say), and the next brings the toast below.
 - **When nothing moves**: the key never does nothing (Rules M6): an Info toast ([`dialog/toast`](../dialog/toast.md))
-  says why, e.g. `[2] is already full width`, `[2] is already full height`, `[4] is at its minimum width` (naming the
-  panel that stopped the line, the focused one first). Narrow widths (screen.5) and zoom (screen.6) show one panel, so
-  it is full width and full height then. `=` with every line at its default says `The layout is already the default`.
+  says why, e.g. `[2] is already full width`, `[2] is already full height`, `[4] is at its minimum width`, naming the
+  panel that stopped the line, the focused one first, by its `[N]`, and a sign by its label as its frame has it
+  (`INFO is at its minimum height`). Narrow widths (screen.5) and zoom (screen.6) show one panel, so it is full width
+  and full height then. `=` with every line at its default says `The layout is already the default`.
 - **Where that toast sits**: on the panel, at the edge that would have moved, inside its frame and over none of its
   borders: the right edge at its top right, the left edge at its top left, the bottom edge at its bottom centre, the top
   edge at its top centre; a panel already full width counts as its right edge, already full height as its bottom edge.
@@ -189,19 +192,30 @@ and [3] and [4] shorter. On the right, the upright line runs through the top row
   widths by the terminal's width and the heights by its height, and used whenever the terminal is that wide or that high
   again; a size with nothing kept takes the default, the app's own. Nothing is written before the user moves a line. `=`
   also takes out of the state what was kept on this screen for this width and this height.
+- **A hidden place** (panels that follow a leading panel, Rules L5): its line goes with it, and when it shows again the
+  line is where the user left it; the other lines stay where the user put them, and a line the layout puts elsewhere for
+  the hiding is a line of its own, with its own default and its own kept place.
+- **A kept line that no longer fits** (the app changed its layout or a panel's least size): that width or height takes
+  the default and what was kept is taken out of the state, with no toast, no `.bak` and no WARN entry, the one exception
+  to the value that does not fit of Rules E3 (the user, 2026-11-26).
+- **Not in the App Log**: resizing goes unrecorded, as the panel filter does; only the toast when nothing moves is
+  recorded, as every toast is (note.7 in [`dialog/note`](../dialog/note.md); the user, 2026-11-26).
 - **In the menus**: `>` `<` `+` `-` act on the focused panel, so they are panel operations in every panel's Space menu;
   `=` acts on the whole screen, a global operation (Rules M2, M3; Principle P3):
 
 | Row | Description |
 |---|---|
-| `[>] Wider` | `by 2 columns, kept for this width` |
-| `[<] Narrower` | `by 2 columns, kept for this width` |
-| `[+] Taller` | `by 1 row, kept for this height` |
-| `[-] Shorter` | `by 1 row, kept for this height` |
-| `[=] Default layout` | `this screen's lines back as they were` |
+| `[>] Wider` | `2 columns, kept for this width` |
+| `[<] Narrower` | `2 columns, kept for this width` |
+| `[+] Taller` | `1 row, kept for this height` |
+| `[-] Shorter` | `1 row, kept for this height` |
+| `[=] Default layout` | `this screen's lines back` |
 
-A row whose press would only bring the toast is disabled (M6), `[=]` while every line of the screen is at its default;
-on a screen with only one panel the four rows are not shown, and the keys still answer with the toast.
+Each description fits at 60 columns (Rules L1), in the menu and in the key reference. A row whose press would only
+bring the toast is disabled (M6), `[=]` while every line of the screen is at its default; pressed on a panel, its key
+still answers with the toast, while in the menu its hotkey does nothing, as any disabled row's (the dimmed row already
+says it cannot run now). A screen with only one panel has no line, so neither the four rows nor `[=]` are shown there
+(M6: no target), and the keys still answer with the toast.
 
 - **The keys are kept**: on a panel, no app takes these five keys for anything else. Where keys go elsewhere (a popup,
   input state, a PTY, a mode), they are not resize keys there (Rules K8, K10, K11).
@@ -212,4 +226,6 @@ diff), so the user moves it, and the app keeps it for that size: a split set on 
 moving a line the way the arrow points, so it reads the same on every panel; a shared line keeps panels that line up
 lined up. 2 columns and 1 row look about as long, a cell being about twice as tall as it is wide. A press that does
 nothing reads as a broken key, and the user resizing is looking at the panel, so the toast comes at the edge they are
-looking at, not at the bottom of the screen, where it would cover the panel being resized.
+looking at, not at the bottom of the screen, where it would cover the panel being resized. Resizing changes no data,
+only how things are seen, and ten presses would bury what was done; a kept line is only where a line was, put back in a
+few presses, so a warning and a copy of the file would say more than it is worth.

@@ -608,7 +608,8 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 - **對象存在、但現在不能執行**：列照樣出現、用停用色（[components/color](../components/color-zh_TW.md)），說明欄維持原本那句，
   不另外寫原因；cursor 跳過它，按熱鍵也不作用。
 - **調整大小的鍵**（[components/layout/screen](../components/layout/screen-zh_TW.md) 的 screen.9）是唯一的例外：
-  沒有線能動時，它們的列照上面停用，但按鍵照樣有回應，用 toast 說為什麼（user 2026-11-26）。
+  沒有線能動時，它們的列照上面停用，但在 panel 上按它們的鍵照樣有回應，用 toast 說為什麼；在選單裡按熱鍵則跟每一個停用列一樣
+  不作用（user 2026-11-26）。
 - **`?` 的 key reference 照同一套**：對象存在、現在不能按的鍵照樣列出、用停用色；對象不存在就不列 —— 清單空了沒有東西可以移、
   內容整個放得下沒有東西可以捲，也算對象不存在，移動鍵、捲動鍵不列。下框 hint 與 footer
   空間有限、常駐畫面，要不要只列現在按得了的鍵，app 可以自行決定；例外是元件規定一定要拿掉的：表單的按鈕還在跑時、finder 沒有結果時、
@@ -1224,7 +1225,8 @@ config.yaml did not fit: defaults used, yours kept in config.yaml.bak`），每�
 寫的與現在用的（user 2026-11-18，來自 locku）。沒有畫面時也一樣，只是 toast 那句改寫到 stderr：終端機上看得到，也不會混進
 印出來的結果（user）。備份做不出來時（唯讀的資料夾、磁碟滿了），不重寫檔案：預設值只用在這一次，跳 Error toast 說明（例：
 `config.yaml.bak could not be made: <why>; config.yaml left as it was`），每個值或每一筆照樣以 WARN 記進 App Log，下次
-啟動會再遇到一次（user）。
+啟動會再遇到一次（user）。panel 之間的線停在哪裡是唯一的例外（[components/layout/screen](../components/layout/screen-zh_TW.md)
+的 screen.9）：記著的放不下時用預設，什麼都不說（user 2026-11-26）。
 
 打錯一個值不會連累整個檔，使用者當下就知道哪裡錯，原本寫的完整留在備份裡，不會在下次存檔時不見。畫面上不用問，所以沒有
 畫面時也照樣繼續，打錯一個值不會讓 pipe 停擺。

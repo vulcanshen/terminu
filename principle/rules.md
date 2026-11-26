@@ -765,8 +765,8 @@ one line usually means the action is badly named. Digits stay out of words becau
   ([components/color](../components/color.md)), keeping its usual description with no reason added; the cursor skips it,
   and its hotkey does nothing.
 - **The resize keys** (screen.9 in [components/layout/screen](../components/layout/screen.md)) are the one exception:
-  their rows are disabled as above when no line can move, but the keys still answer, with a toast saying why (the user,
-  2026-11-26).
+  their rows are disabled as above when no line can move, but pressed on a panel their keys still answer, with a toast
+  saying why; in the menu, their hotkeys do nothing like any disabled row's (the user, 2026-11-26).
 - **The `?` key reference follows the same rule**: a key whose target exists but can't be pressed now is still listed,
   in the disabled colour; with no target it is not listed — an empty list with nothing to move through and content that
   fits with nothing to scroll also count as no target, so the movement and scroll keys are not listed. The
@@ -1534,7 +1534,9 @@ screen it is the same, the toast's sentence going to stderr instead, seen in the
 printed (the user). When the copy cannot be made (a read-only folder, a full disk), the file is not written again:
 the defaults hold for this run only, an Error toast says so (e.g. `config.yaml.bak could not be made: <why>;
 config.yaml left as it was`), each value or entry still a WARN entry in the App Log, and the next start finds them
-again (the user).
+again (the user). Where a line between panels was left is the one exception (screen.9 in
+[components/layout/screen](../components/layout/screen.md)): one that no longer fits takes the default with nothing
+said (the user, 2026-11-26).
 
 One wrong value does not cost the rest of the file, the user learns at once what was wrong, and what they wrote is
 kept whole in the copy rather than lost at the next save. Nothing is asked on screen, so with no screen it goes on

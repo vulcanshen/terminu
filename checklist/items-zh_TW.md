@@ -214,7 +214,7 @@ tdp v1.3.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | M6-2 | M6 | 對象存在、但現在不能執行的動作：列照樣出現，用停用色 | 停用 | 讓動作暫時不能執行後看 menu |
 | M6-3 | M6 | 停用的列說明欄維持原本那句，不另外寫原因 | 停用 | 同上，比對停用前後的說明 |
 | M6-4 | M6 | cursor 跳過停用的列 | 停用 | 在 menu 上用 `j\|k` 經過停用列 |
-| M6-5 | M6 | 按停用列的熱鍵不作用；調整大小的鍵例外，用 toast 回答（screen.9） | 停用 | 按那一列的熱鍵 |
+| M6-5 | M6 | 按停用列的熱鍵不作用；調整大小的鍵在 panel 上按時例外，用 toast 回答（screen.9） | 停用 | 按那一列的熱鍵 |
 | M6-6 | M6 | key reference 裡，對象不存在的鍵不列 | 都要 | 按 `?` |
 | M6-7 | M6 | key reference 裡另外加標題、說明別的 surface 的一段照常顯示，不用停用色 | 都要 | 按 `?` 看那一段的顏色 |
 | M6-8 | M6 | 說明別的 surface 的那一段排在最後，在 `app-wide` 之後 | 都要 | 按 `?` 看段落順序 |
@@ -431,7 +431,7 @@ tdp v1.3.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | E3-26 | E3 | 只給這一次執行用的檔案（例：從 pipe 讀進來的內容）放在系統的暫存目錄，不在 config、data、cache 的位置，app 結束後就不在了 | 有只給這一次執行用的檔案 | 執行、找到那個檔案、結束：它在 `$TMPDIR` 裡，結束後不在了 |
 | E3-27 | E3 | 沒有畫面時（不打開 app、直接印出來的指令），設定、狀態或資料讀不了：不動任何檔案、什麼都不印，路徑與原因寫到 stderr，以 exit status 1 結束 | 沒有畫面也能印 + 存設定或資料 | 把設定檔弄壞，把印出來的指令接到 pipe：什麼都沒出來，stderr 寫出檔案與原因，`echo $?` 是 1，也沒有出現 `.bak` |
 | E3-28 | E3 | 讀得進來、只有 app 用不了的值，或資料裡有不合規則的一筆（名字空白或重複）的檔案，不算「讀不了」：app 繼續，不開 MOVE ASIDE | 存設定或資料 | 在 config.yaml 寫一個不是 `#rrggbb` 的顏色，啟動 app |
-| E3-29 | E3 | 啟動時先把這種檔案複製成 `<名字>.bak`（已經有了就用 `.bak.1`……），再重寫檔案：那些值換成預設值，那些筆拿掉 | 存設定或資料 | 同上，比對 `.bak` 與檔案 |
+| E3-29 | E3 | 啟動時先把這種檔案複製成 `<名字>.bak`（已經有了就用 `.bak.1`……），再重寫檔案：那些值換成預設值，那些筆拿掉；記著的 panel 之間的線例外，放不下時直接用預設、什麼都不說（screen.9） | 存設定或資料 | 同上，比對 `.bak` 與檔案 |
 | E3-30 | E3 | 跳一個 Warning toast 寫出檔案與備份；每個值或每一筆以 WARN 記進 App Log，寫出 key、原本寫的與現在用的 | 存設定或資料 | 同上，看 toast，再看 App Log |
 | E3-31 | E3 | 沒有畫面時遇到不合規則的值也一樣處理（備份成 `.bak`、重寫成預設值、照樣印出結果），toast 那句改寫到 stderr | 沒有畫面也能印 + 存設定或資料 | 寫一個這種值，把印出來的指令接到 pipe：結果照樣出來，stderr 有那句，`.bak` 在 |
 | E3-32 | E3 | 值不合規則、`.bak` 備份又做不出來時，不重寫檔案：預設值只用在這一次，跳 Error toast 說備份做不出來、檔案維持原樣，WARN 照樣記 | 存設定或資料 | 寫一個這種值，把資料夾設成唯讀再啟動 app：沒有 `.bak`，檔案沒變，跳 Error toast |
@@ -604,17 +604,20 @@ tdp v1.3.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | screen-35 | screen.2 | App Log 有沒看過的錯誤時 footer 的 `!:log` 換成 `!:N errors`（Red），只有警告時 `!:N warning`（Peach）；打開 App Log 後回到 `!:log` | 都要 | 觸發一個錯誤，看 footer；按 `!` 看過後再看 |
 | screen-37 | screen.9 | `>` 讓有 focus 的 panel 變寬 2 欄、`<` 變窄 2 欄，動的是它邊上的線 | 多 panel | 在並排的 panel 上按 `>` 和 `<`，數欄數 |
 | screen-38 | screen.9 | `+` 讓有 focus 的 panel 變高 1 列、`-` 變矮 1 列 | 多 panel | 在上下疊的 panel 上按 `+` 和 `-`，數列數 |
-| screen-39 | screen.9 | 碰到那條線的 panel 全部跟著動；panel 沿著線接多遠，線就只有多長 | 多 panel | 四格的版面在 [1] 按 `>`：[1] 和 [3] 變寬、[2] 和 [4] 變窄；下面有一個全寬的 panel 時，在它上面按 `>`：它不動 |
+| screen-39 | screen.9 | 碰到那條線的 panel 全部跟著動，說明牌也一樣；panel 沿著線接多遠，線就只有多長 | 多 panel | 四格的版面在 [1] 按 `>`：[1] 和 [3] 變寬、[2] 和 [4] 變窄；下面有一個全寬的 panel 時，在它上面按 `>`：它不動 |
 | screen-40 | screen.9 | 兩邊都有線的 panel，寬度動右邊那條、高度動下面那條；貼著 panel 區右邊或底部時改動另一邊，`>` 一定讓它變寬、`+` 一定讓它變高 | 多 panel | 在中間的 panel 按 `>` 和 `+`，再到最右邊和最下面的 panel 按 |
-| screen-41 | screen.9 | 任何一個跟著動的 panel 到最小尺寸，線就停；60×32 時所有 panel 照樣並排 | 多 panel | 一直按 `>` 到停，60×32 時也按一次 |
-| screen-42 | screen.9 | 按了沒有線能動時，跳一個 Info toast 說為什麼（例：`[2] is already full width`、`[4] is at its minimum width`，點名擋住線的 panel，有 focus 的優先），不會沒反應；窄寬和 zoom 時那個 panel 算全寬又全高 | 都要 | 在全寬的 panel 上按 `>`、一直按 `<` 到停、zoom 時按 `>` |
+| screen-41 | screen.9 | 任何一個跟著動的 panel 到最小尺寸，線就停，快到最小時這一下只動剩下的、下一下才跳 toast；60×32 時所有 panel 照樣並排 | 多 panel | 一直按 `>` 到停，60×32 時也按一次 |
+| screen-42 | screen.9 | 按了沒有線能動時，跳一個 Info toast 說為什麼（例：`[2] is already full width`、`[4] is at its minimum width`，點名擋住線的 panel，有 focus 的優先，說明牌用 label：`INFO is at its minimum height`），不會沒反應；窄寬和 zoom 時那個 panel 算全寬又全高 | 都要 | 在全寬的 panel 上按 `>`、一直按 `<` 到停、zoom 時按 `>` |
 | screen-43 | screen.9 | 那個 toast 在那個 panel 上、本來會動的那條邊，放在框裡面、不蓋住任何一邊的框：右邊在右上、左邊在左上、下邊在下方中間、上邊在上方中間；全寬算右邊、全高算下邊；同一個 panel 按 `>` 和 `<` 出現在同一個地方 | 都要 | 在左邊和最右邊的 panel 各按 `>` 和 `<`，在上面和下面的 panel 各按 `+` |
 | screen-44 | screen.9 | `=` 讓目前畫面的每一條線回到預設；每一條線都已經在預設時，在平常的位置跳 Info toast `The layout is already the default` | 多 panel | 移動幾條線，按 `=`，再按一次 `=` |
 | screen-45 | screen.9 | 線停在哪裡每個畫面各記各的，寬度依終端機寬度、高度依終端機高度，同一個尺寸時再用；沒記過的尺寸用預設 | 多 panel | 移動一條線，離開後用同一個尺寸再開，再換一個寬度開 |
 | screen-46 | screen.9 | 使用者移動線之前什麼都不寫進 state；`=` 把這個畫面在這個寬度和這個高度記的值從 state 拿掉 | 多 panel | 移動線之前、之後和按 `=` 之後，各讀一次 state 檔 |
-| screen-47 | screen.9 | `[>] Wider`、`[<] Narrower`、`[+] Taller`、`[-] Shorter` 在每個 panel 的 Space menu 的 panel operation，`[=] Default layout` 在 global operation popup，說明照 screen.9；按了只會跳 toast 的列停用，每一條線都在預設時 `[=]` 停用 | 多 panel | 在每個 panel（包括全寬的）按 `Space`，再打開 global operation popup |
-| screen-48 | screen.9 | 只有一個 panel 的畫面，Space menu 裡沒有那四列，按鍵照樣用 toast 回答 | 都要 | 在只有一個 panel 的畫面按 `Space`，再按 `>` |
+| screen-47 | screen.9 | `[>] Wider`、`[<] Narrower`、`[+] Taller`、`[-] Shorter` 在每個 panel 的 Space menu 的 panel operation，`[=] Default layout` 在 global operation popup，說明照 screen.9；按了只會跳 toast 的列停用，每一條線都在預設時 `[=]` 停用，在選單裡按它的熱鍵不作用；60 欄時選單和 key reference 裡的說明都不截斷 | 多 panel | 在每個 panel（包括全寬的）按 `Space`，再打開 global operation popup |
+| screen-48 | screen.9 | 只有一個 panel 的畫面，Space menu 裡沒有那四列，global operation popup 裡也沒有 `[=]`，按鍵照樣用 toast 回答 | 都要 | 在只有一個 panel 的畫面按 `Space`、打開 global operation popup，再按 `>` 和 `=` |
 | screen-49 | screen.9 | 在 panel 上，`>` `<` `+` `-` `=` 只拿來調整大小，不做別的事 | 都要 | 讀每個 panel 的 key reference |
+| screen-50 | screen.9 | 跟著帶頭的 panel 換的 panel 藏起一塊時，它的線跟著不見；再出現時線回到使用者上次放的地方；其他線留在使用者放的地方 | 跟著換的 panel | 移動幾條線，`Tab` 到會藏起一塊的帶頭 panel，再回來 |
+| screen-51 | screen.9 | 記著的線放不下時（app 改了版面或某個 panel 的最小尺寸），那個尺寸用預設、記著的值從 state 拿掉，不跳 toast、不做 `.bak`、不記 WARN | 多 panel | 改 state 讓某條記著的線使 panel 小於最小，啟動 app，讀 state 和 App Log |
+| screen-52 | screen.9 | 調整大小不記進 App Log；動不了時的 toast 會記 | 多 panel | 按幾下 `>`，再在動不了的地方按一次，然後按 `!` |
 
 ## layout/panel
 
@@ -1132,7 +1135,7 @@ tdp v1.3.5 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-74 | note.2 | viewer 的內容裡，app 一行一行交來的一行夾著 `\n` 時拆成兩行 | viewer | 讓 app 交給 viewer 的一行含 `\n`（例：多行的錯誤訊息），看是兩行 |
 | note-75 | note.2 | viewer 的內容裡，顏色碼（SGR）照著上色，一行裡的 `\r` 只留最後的狀態，不是顏色碼的序列畫成紅色的名字 | viewer | 打開含顏色碼、`10%\r100%`、`\x1b[2J` 的內容 |
 | note-76 | note.7 | 每個 app 都有 App Log，是 viewer，最新的在最下面，開著時新的一筆照樣進來 | 都要 | 按 `!`，做幾件事，看新的一筆進來 |
-| note-77 | note.7 | 記使用者的動作與結果、每一個 toast、app 在背景做的事；動作是 Rules P3 的三種 operation，只看不改的也記，移動 cursor、換 focus、panel filter、`/` 搜尋、Diff 模式、進出其他模式、在 confirm 或表單上取消的不記 | 都要 | 做一個改東西的動作、一個只看的動作（例：開 viewer）、跳一個 toast，移動幾次 cursor，按 `!`；讀程式 |
+| note-77 | note.7 | 記使用者的動作與結果、每一個 toast、app 在背景做的事；動作是 Rules P3 的三種 operation，只看不改的也記，移動 cursor、換 focus、panel filter、`/` 搜尋、Diff 模式、調整 panel 大小、進出其他模式、在 confirm 或表單上取消的不記 | 都要 | 做一個改東西的動作、一個只看的動作（例：開 viewer）、跳一個 toast，移動幾次 cursor，按 `!`；讀程式 |
 | note-104 | note.7 | app 自己重讀的內容，只有讀到變了才記：一筆 INFO，寫出改了什麼；讀到沒變不記，自己一直進來的更新不一筆一筆記 | 會自己重讀內容 | 開著 app 等它重讀幾次：沒有紀錄；在 app 外面改它讀的東西：一筆 INFO，寫出改了什麼 |
 | note-105 | note.7 | app 自己重讀失敗時：第一次跳 Error toast、記一筆 ERR；同一個失敗再發生不跳、不記；換了一個失敗再跳、再記；又讀得到時記一筆 INFO，不跳 toast | 會自己重讀內容 | 讓它讀的東西讀不到、等它重讀幾次，再換一種讀不到的方式，最後讓它讀得到：每一種失敗一個 toast、一筆紀錄，最後一筆 INFO |
 | note-78 | note.7 | 每一筆：時間 `HH:MM:SS`（Overlay0）、等級（`INFO` Text、`OK` Green、`WARN` Peach、`ERR` Red，四格寬靠左）、發生的事（跟 toast 一樣大寫開頭） | 都要 | 看 App Log 的各種等級 |
