@@ -24,7 +24,8 @@ in its note ([`layout/panel`](../layout/panel.md), panel.18), not in a toast.
 - **Position**: at the bottom of the screen, centred horizontally; its bottom border is always on the third row from the
   bottom, whatever is underneath, so the two bottom rows always stay in sight: normally the panel's bottom border (hint,
   scroll position) and the footer; with a terminal popup open, the PTY's last row (the shell prompt) and the terminal's
-  bottom border (the exit key); on a screen without panels, the same position.
+  bottom border (the exit key); on a screen without panels, the same position. The toast saying a panel cannot be
+  resized is the one exception: it sits on that panel (screen.9 in [`layout/screen`](../layout/screen.md)).
 - **Width**: the message is known when it opens, so it follows "content width known when it opens" in
   [`layout/popup`](../layout/popup.md).
 - **Text**: centred. It may have several rows, given by the app a row at a time ("Control characters" in

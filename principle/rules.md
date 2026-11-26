@@ -764,6 +764,9 @@ one line usually means the action is badly named. Digits stay out of words becau
 - **A target, but the action can't run right now**: the row is still shown, in the disabled colour
   ([components/color](../components/color.md)), keeping its usual description with no reason added; the cursor skips it,
   and its hotkey does nothing.
+- **The resize keys** (screen.9 in [components/layout/screen](../components/layout/screen.md)) are the one exception:
+  their rows are disabled as above when no line can move, but the keys still answer, with a toast saying why (the user,
+  2026-11-26).
 - **The `?` key reference follows the same rule**: a key whose target exists but can't be pressed now is still listed,
   in the disabled colour; with no target it is not listed — an empty list with nothing to move through and content that
   fits with nothing to scroll also count as no target, so the movement and scroll keys are not listed. The
@@ -815,7 +818,8 @@ bright is what has focus (Principle P6).
 
 At **60 columns × 32 rows**, the app must be able to complete all its core tasks, with every panel side by side as
 usual. A terminal split in half fits that size (a 155×34 terminal split in half in tmux gives 77×32 a pane). How the panels split, the app may decide for itself; how to draw when not every panel fits: narrow widths
-in [components/layout/screen](../components/layout/screen.md).
+in [components/layout/screen](../components/layout/screen.md); how the user moves the lines between them:
+screen.9 there.
 
 **The minimum size**: every app has a minimum size, 60×32 by default; whether to lower it, the app may decide for itself,
 but it never goes above 60×32. Between the minimum size and 60×32, the app shrinks by the narrow-width rules of components/layout/screen.

@@ -21,7 +21,8 @@
 - **框**：popup 的框，一律用第 1 層的層色。toast 不算一層（Rules F1）：不觸發淡化，也不被淡化。
 - **位置**：畫面下方、水平置中；下框一律在畫面倒數第三列，不管底下是什麼，最下面兩列一直看得到：平常是 panel 的下框（hint、
   捲動位置）與 footer；terminal popup 開著時是 PTY 的最後一列（shell 的提示列）與 terminal 的下框（出口鍵）；沒有 panel 的畫面也是
-  同一個位置。
+  同一個位置。只有說 panel 不能再調大小的 toast 例外：它在那個 panel 上（[`layout/screen`](../layout/screen-zh_TW.md)
+  的 screen.9）。
 - **寬度**：訊息打開時就確定，照 [`layout/popup`](../layout/popup-zh_TW.md) 的「內容的寬度打開時就確定」。
 - **文字**：置中。可以好幾列，app 一列一列給（[components](../README-zh_TW.md) 的「控制字元」），每一列另起一列。太長時折行（照 [components 的「折行」](../README-zh_TW.md)），每一列都置中。最多幾列，app 可以自行決定，規範不設上限；app 設了上限、
   訊息超過時，最後一列結尾加 `…`，完整的訊息走 error popup 或 app 的 log。使用者需要讀完的成功報告（例：寫了哪些檔、寫在哪裡）

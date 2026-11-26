@@ -141,3 +141,75 @@ Press [A] to add a host, or [Space] to see what you can do here
   ordinary list in [`panel`](panel.md)).
 
 A panel's loading and errors use this look too ("Loading and errors" in [`panel`](panel.md)).
+
+## screen.9 Resizing panels
+
+On a screen with more than one panel, the user moves the lines between them from the panel that has the focus, and the
+app keeps where they are left (the user, 2026-11-26, from gittu and ccodu):
+
+| Key | Does |
+|---|---|
+| `>` | the focused panel wider, by 2 columns |
+| `<` | narrower, by 2 columns |
+| `+` | taller, by 1 row |
+| `-` | shorter, by 1 row |
+| `=` | every line of the current screen back to the default |
+
+**A line is shared**: what moves is the line on the panel's edge, and every panel touching that line moves with it, the
+panels on its other side growing or shrinking. A line runs as far as panels meet along it:
+
+```
+┌───┬───┐      ┌───┬───────┐
+│ 1 │ 2 │      │ 1 │   2   │
+├───┼───┤      ├───┴───────┤
+│ 3 │ 4 │      │     3     │
+└───┴───┘      └───────────┘
+```
+
+On the left, `>` on [1] makes [1] and [3] wider together and [2] and [4] narrower; `+` on [1] makes [1] and [2] taller
+and [3] and [4] shorter. On the right, the upright line runs through the top row only: `>` on [1] makes [1] wider and
+[2] narrower, and [3] does not move; `+` on [1] makes [1] and [2] taller and [3] shorter.
+
+- **Which line**: a panel with a line on both sides (the middle of three columns, say) moves the one on its right for
+  the width and the one below it for the height; a panel against the right or the bottom of the panel area moves the
+  line on its other side, so that `>` always makes it wider and `+` taller.
+- **The least size**: each panel has a least width and height, the app's own, small enough that at 60×32 every panel
+  still fits side by side (Rules L1); a line stops as soon as any panel it moves is at its least.
+- **When nothing moves**: the key never does nothing (Rules M6): an Info toast ([`dialog/toast`](../dialog/toast.md))
+  says why, e.g. `[2] is already full width`, `[2] is already full height`, `[4] is at its minimum width` (naming the
+  panel that stopped the line, the focused one first). Narrow widths (screen.5) and zoom (screen.6) show one panel, so
+  it is full width and full height then. `=` with every line at its default says `The layout is already the default`.
+- **Where that toast sits**: on the panel, at the edge that would have moved, inside its frame and over none of its
+  borders: the right edge at its top right, the left edge at its top left, the bottom edge at its bottom centre, the top
+  edge at its top centre; a panel already full width counts as its right edge, already full height as its bottom edge.
+  It goes by the edge, not by the way the line goes: `>` and `<` on [1] above both bring it up at [1]'s top right. The
+  rest is as for any toast: the same words make no new one (`INFO ×3`), and several stack, growing into the panel; one wider
+  than the panel keeps to that side, over the panel beside it, never off the screen. `=`'s toast is at the usual place.
+- **Kept**: once the user moves a line, where it is left is kept in the app's state (Rules E3), for each screen, the
+  widths by the terminal's width and the heights by its height, and used whenever the terminal is that wide or that high
+  again; a size with nothing kept takes the default, the app's own. Nothing is written before the user moves a line. `=`
+  also takes out of the state what was kept on this screen for this width and this height.
+- **In the menus**: `>` `<` `+` `-` act on the focused panel, so they are panel operations in every panel's Space menu;
+  `=` acts on the whole screen, a global operation (Rules M2, M3; Principle P3):
+
+| Row | Description |
+|---|---|
+| `[>] Wider` | `by 2 columns, kept for this width` |
+| `[<] Narrower` | `by 2 columns, kept for this width` |
+| `[+] Taller` | `by 1 row, kept for this height` |
+| `[-] Shorter` | `by 1 row, kept for this height` |
+| `[=] Default layout` | `this screen's lines back as they were` |
+
+A row whose press would only bring the toast is disabled (M6), `[=]` while every line of the screen is at its default;
+on a screen with only one panel the four rows are not shown, and the keys still answer with the toast.
+
+- **The keys are kept**: on a panel, no app takes these five keys for anything else. Where keys go elsewhere (a popup,
+  input state, a PTY, a mode), they are not resize keys there (Rules K8, K10, K11).
+
+**Why**: where a line suits depends on what the panels hold and on the user's terminal (a long branch name, a wide
+diff), so the user moves it, and the app keeps it for that size: a split set on a 200-column terminal means nothing at
+80. The keys are vim's `Ctrl-W` `<` `>` `+` `-` `=`. A key acts on the focused panel ("this one wider") rather than
+moving a line the way the arrow points, so it reads the same on every panel; a shared line keeps panels that line up
+lined up. 2 columns and 1 row look about as long, a cell being about twice as tall as it is wide. A press that does
+nothing reads as a broken key, and the user resizing is looking at the panel, so the toast comes at the edge they are
+looking at, not at the bottom of the screen, where it would cover the panel being resized.

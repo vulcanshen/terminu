@@ -115,3 +115,68 @@ Press [A] to add a host, or [Space] to see what you can do here
 - **清單空了**：空狀態取代整塊，連表頭一起不畫，句子置中在整個 panel（[`panel`](panel-zh_TW.md) 的一般清單）。
 
 panel 的 loading 與錯誤也用這個樣子（[`panel`](panel-zh_TW.md) 的「loading 與錯誤」）。
+
+## screen.9 調整 panel 大小
+
+畫面上不只一個 panel 時，使用者從有 focus 的 panel 移動 panel 之間的線，app 記住線停在哪裡
+（user 2026-11-26，來自 gittu 與 ccodu）：
+
+| 鍵 | 做的事 |
+|---|---|
+| `>` | 有 focus 的 panel 變寬 2 欄 |
+| `<` | 變窄 2 欄 |
+| `+` | 變高 1 列 |
+| `-` | 變矮 1 列 |
+| `=` | 目前畫面的每一條線回到預設 |
+
+**線是共用的**：移動的是 panel 邊上的那條線，碰到這條線的 panel 全部跟著動，線另一邊的 panel 跟著變大或縮小。panel 沿著一條線接
+多遠，那條線就有多長：
+
+```
+┌───┬───┐      ┌───┬───────┐
+│ 1 │ 2 │      │ 1 │   2   │
+├───┼───┤      ├───┴───────┤
+│ 3 │ 4 │      │     3     │
+└───┴───┘      └───────────┘
+```
+
+左邊那個，在 [1] 按 `>`，[1] 和 [3] 一起變寬、[2] 和 [4] 一起變窄；在 [1] 按 `+`，[1] 和 [2] 一起變高、[3] 和 [4] 一起變矮。右邊
+那個，直的那條線只在上排：在 [1] 按 `>`，只有 [1] 變寬、[2] 變窄，[3] 不動；在 [1] 按 `+`，[1] 和 [2] 一起變高、[3] 變矮。
+
+- **動哪一條**：兩邊都有線的 panel（例：三欄的中間那欄），寬度動右邊那條、高度動下面那條；貼著 panel 區右邊或底部的 panel 改動另
+  一邊的線，所以 `>` 一定讓它變寬、`+` 一定讓它變高。
+- **最小尺寸**：每個 panel 有最小寬度和高度，由 app 自己定，小到 60×32 時所有 panel 照樣並排（Rules L1）；線一動到任何一個跟著動
+  的 panel 到最小，就停。
+- **動不了時**：按了一定有反應（Rules M6）：跳一個 Info toast（[`dialog/toast`](../dialog/toast-zh_TW.md)）說為什麼，例：
+  `[2] is already full width`、`[2] is already full height`、`[4] is at its minimum width`（點名擋住線的那個 panel，有 focus 的
+  優先）。窄寬（screen.5）和 zoom（screen.6）只畫一個 panel，那時它就是全寬又全高。每一條線都在預設時按 `=`，說
+  `The layout is already the default`。
+- **那個 toast 放哪裡**：在那個 panel 上、本來會動的那條邊，放在框裡面、不蓋住任何一邊的框：右邊在右上、左邊在左上、下邊在下方中
+  間、上邊在上方中間；已經全寬的算右邊，已經全高的算下邊。看的是哪條邊，不是線往哪走：上面的 [1] 按 `>` 和按 `<`，toast 都在 [1]
+  的右上。其他照一般 toast：同一句不另開一個（`INFO ×3`），好幾個時往 panel 裡面疊；比 panel 寬的照樣靠那一邊、蓋到旁邊的 panel，
+  不跑出畫面。`=` 的 toast 在平常的位置。
+- **記住**：使用者移動過線之後，線停在哪裡記在 app 的 state（Rules E3），每個畫面各記各的，寬度依終端機寬度、高度依終端機高度，
+  終端機再是那個寬度或高度時就用它；沒記過的尺寸用預設，由 app 自己定。使用者移動線之前什麼都不寫。按 `=` 也把這個畫面在這個寬度
+  和這個高度記的值從 state 拿掉。
+- **在選單裡**：`>` `<` `+` `-` 作用在有 focus 的 panel，是每個 panel 的 Space menu 裡的 panel operation；`=` 作用在整個畫面，是
+  global operation（Rules M2、M3，Principle P3）：
+
+| 列 | 說明 |
+|---|---|
+| `[>] Wider` | `by 2 columns, kept for this width` |
+| `[<] Narrower` | `by 2 columns, kept for this width` |
+| `[+] Taller` | `by 1 row, kept for this height` |
+| `[-] Shorter` | `by 1 row, kept for this height` |
+| `[=] Default layout` | `this screen's lines back as they were` |
+
+按了只會跳 toast 的列是停用的（M6），`[=]` 在畫面每一條線都在預設時停用；只有一個 panel 的畫面不列那四列，按鍵照樣用 toast
+回答。
+
+- **鍵保留**：在 panel 上，app 不能把這五個鍵拿去做別的事。鍵送到別處時（popup、輸入狀態、PTY、模式），它們在那裡就不是調整大小
+  的鍵（Rules K8、K10、K11）。
+
+**為什麼**：線放哪裡合適，要看 panel 裡裝什麼，也看使用者的終端機（很長的 branch 名稱、很寬的 diff），所以讓使用者自己移，app 依
+那個尺寸記住：在 200 欄的終端機上調好的位置，到 80 欄就沒有意義。鍵取自 vim 的 `Ctrl-W` `<` `>` `+` `-` `=`。鍵作用在有 focus 的
+panel（「這個變寬」），不是照箭頭方向移線，在每個 panel 上按，意思都一樣；線共用，原本對齊的 panel 就一直對齊。2 欄和 1 列看起來
+差不多長，因為一格的高大約是寬的兩倍。按了沒反應會被當成鍵壞了；調整大小時眼睛看著那個 panel，所以 toast 出現在正在看的那條邊，
+不在畫面下方蓋住正在調的 panel。

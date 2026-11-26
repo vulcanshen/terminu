@@ -607,6 +607,8 @@ menu 的每一列左邊是**動作名稱**，右邊是**一句單行說明**：
 - **對象不存在**：那一列（或那一區）不出現（M2）。
 - **對象存在、但現在不能執行**：列照樣出現、用停用色（[components/color](../components/color-zh_TW.md)），說明欄維持原本那句，
   不另外寫原因；cursor 跳過它，按熱鍵也不作用。
+- **調整大小的鍵**（[components/layout/screen](../components/layout/screen-zh_TW.md) 的 screen.9）是唯一的例外：
+  沒有線能動時，它們的列照上面停用，但按鍵照樣有回應，用 toast 說為什麼（user 2026-11-26）。
 - **`?` 的 key reference 照同一套**：對象存在、現在不能按的鍵照樣列出、用停用色；對象不存在就不列 —— 清單空了沒有東西可以移、
   內容整個放得下沒有東西可以捲，也算對象不存在，移動鍵、捲動鍵不列。下框 hint 與 footer
   空間有限、常駐畫面，要不要只列現在按得了的鍵，app 可以自行決定；例外是元件規定一定要拿掉的：表單的按鈕還在跑時、finder 沒有結果時、
@@ -648,7 +650,8 @@ focus 按下去會觸發哪一個**：會觸發的那個亮、不會的那個暗
 
 在 **60 欄 × 32 列**下，app 必須能完成所有核心任務，所有 panel 照常並排。終端機左右對半分割後一格放得下這個大小
 （例：155×34 的終端機在 tmux 裡對半，一格是 77×32）。panel 怎麼拆，app 可以自行決定；放不下所有 panel 時怎麼畫，見
-[components/layout/screen](../components/layout/screen-zh_TW.md) 的窄寬。
+[components/layout/screen](../components/layout/screen-zh_TW.md) 的窄寬；使用者怎麼移動 panel 之間的線，見同一份的
+screen.9。
 
 **最低尺寸**：每個 app 有一個最低尺寸，預設 60×32；要不要調低，app 可以自行決定，不能高於 60×32。最低尺寸到 60×32 之間，照 components/layout/screen 的窄寬
 那些規則縮。
