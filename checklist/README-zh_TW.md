@@ -44,6 +44,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 |---|---|
 | 多畫面 | 有兩個以上的畫面（畫面 chip 列） |
 | 多 panel | 有一個畫面有兩個以上的 panel |
+| panel 拿數字鍵 | 畫面上唯一有號碼的 panel 拿數字鍵來用（Rules K1） |
 | panel tab | 有 panel 有 tab |
 | 一列一個值的 panel | 有一列一個值的 panel |
 | 分組清單 | panel 上有分組的清單 |

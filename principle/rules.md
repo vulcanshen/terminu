@@ -72,18 +72,28 @@ on every surface. **No letter hotkey may take over a key
 in this table.**
 
 **The digit keys `1`–`9`**: on a panel (with no popup open) they are kept for jumping between panels, and an app may not
-register a digit as a hotkey on a panel. **They work within the current screen only**: each screen numbers its own
+register a digit as a hotkey on a panel (the one exception below). **They work within the current screen only**: each screen numbers its own
 panels that can take the focus from `[1]` (a sign, which cannot, has no number: components/layout/panel, panel.17),
 so after switching screens `1`–`9` are that screen's panels; a digit with no such panel on the screen
 does nothing. Inside a popup the digits are free (e.g. a menu's `[3] Favorites`, digit hotkeys on a select's options); a
 global hotkey that is a digit can only be pressed inside the global operation popup (M4). Inside a mode, K11 applies; the
 key reference lists them in the core keys section as `1–N` ([components/dialog/note](../components/dialog/note.md)).
 
+**The one panel that takes the digits**: on a screen where only one panel has a number (a place L5 hides keeps its
+number and counts; a sign has none), that panel may take `1`–`9` for something of its own (e.g. going to a page):
+`2`–`9` have no panel to jump to there, and `1` is the panel itself. It writes them in its hint as `1–N:<verb>`, after
+`Enter` and `h|l:tab` (N the highest digit that does something, at most 9; no pair while there is only one), and gives
+them a row in its `?`; a digit past N does nothing. Once a second panel with a number is on the screen, the digits jump
+between panels again, the pair and the row gone; inside a mode, and while typing in its panel filter, they do what
+they do there (the user, 2026-11-26, from boxu).
+
 **Why**: what users learn is a **role** ("cancel", "move focus", "what can I do now"), not a key. With the roles fixed,
 one lesson holds on every surface of every app in the family. A single surface where `Space` does something else adds a
 rule to learn: "except here". Every panel has `[N]` drawn on its frame, which promises "press this digit to get here";
 an app that takes the digit for something else makes the frame lie. Jumping to a panel is basic movement, like `Tab`, and
 must always be reliable; the app loses only the digits on a panel, keeping the letters and the digits inside popups.
+The one panel that takes the digits keeps that promise: no other `[N]` is on its screen, so no frame is made to lie
+(the user, 2026-11-26).
 
 ### K2 `Tab` switches focus between objects on the same level
 

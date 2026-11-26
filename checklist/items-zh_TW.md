@@ -35,9 +35,10 @@ tdp v1.3.7 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K1-4 | K1 | panel 上（沒有 popup 開著時）按 `1`–`9`，focus 跳到目前畫面框上標 `[N]` 的那個 panel | 多 panel | 在 panel 上按 `1`、`2`…；多畫面的換到別的畫面再按，跳的是那個畫面的 panel |
 | K1-5 | K1 | 每個畫面的 panel 各自從 `[1]` 編號 | 都要 | 看每個畫面 panel 框上的號碼，從 `[1]` 起 |
 | K1-6 | K1 | 畫面上沒有那個號碼的 panel 時，按那個數字不作用 | 都要 | 在 panel 上按比 panel 數大的數字，什麼都沒發生 |
-| K1-7 | K1 | app 不在 panel 上把數字登記成熱鍵 | 都要 | 讀程式或看 panel 的 Space menu、key reference：沒有數字熱鍵 |
+| K1-7 | K1 | app 不在 panel 上把數字登記成熱鍵，畫面上唯一有號碼的 panel 除外（K1-10） | 都要 | 讀程式或看 panel 的 Space menu、key reference：沒有數字熱鍵 |
 | K1-8 | K1 | 用數字的 global 熱鍵只能在 global operation popup 裡按；在 panel 上按那個數字是跳 panel | 都要 | 在 panel 上按那個數字只跳 panel；在 global operation popup 裡按才執行 |
 | K1-9 | K1 | panel 上按 `!` 打開 App Log | 都要 | 在 panel 上按 `!` |
+| K1-10 | K1 | 畫面上唯一有號碼、拿 `1`–`9` 來用的 panel，hint 寫 `1–N:<動詞>`，放在 `Enter` 與 `h\|l:tab` 後面（只有一個時不寫），`?` 裡也有一列；超過 N 的數字不作用；畫面上一出現第二個有號碼的 panel，數字回去跳 panel，hint 那一組和那一列都拿掉 | panel 拿數字鍵 | 看 hint 與 `?`；按超過 N 的數字；讓畫面多出第二個 panel 再按數字 |
 | K2-1 | K2 | 畫面上 `Tab` 把 focus 移到同一個畫面的下一個 panel，最後一個之後回到第一個，不跨畫面 | 多 panel | 在 panel 上連按 `Tab`，走完一輪回到第一個，畫面不換 |
 | K2-2 | K2 | 有動作區的 popup（表單、有按鈕的 input popup）裡，`Tab` 在欄位區與動作區之間切換 | 表單、color picker | 打開表單按 `Tab`，focus 在欄位區與動作區之間來回 |
 | K2-3 | K2 | `Tab` 回到一區時，停在離開前的那一個項目 | 表單、color picker | 在欄位區移到第三欄，`Tab` 到動作區再 `Tab` 回來，focus 在第三欄 |

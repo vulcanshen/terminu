@@ -55,6 +55,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 |---|---|
 | several screens | two screens or more (the screen chip row) |
 | several panels | a screen with two panels or more |
+| panel digits | the one panel with a number on its screen taking the digits (Rules K1) |
 | panel tab | a panel with tabs |
 | one value per row | a one-value-per-row panel |
 | grouped list | a grouped list on a panel |

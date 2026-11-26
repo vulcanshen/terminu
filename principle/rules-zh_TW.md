@@ -58,17 +58,23 @@ note（K9）。不在 TUI 裡的畫面不是 surface，不照這張表，app 可
 用不用到全部（單一 panel 的 app 不需要 `Tab`）、要不要另外指定自己的 core key，app 可以自行決定；自訂的
 core key 一旦指定，同樣在所有 surface 意義不變。**letter hotkey 不能佔用表上的鍵。**
 
-**數字鍵 `1`–`9`**：在 panel 上（沒有 popup 開著時）保留給跳 panel，app 不能在 panel 上把數字登記成熱鍵。**只在目前的畫面裡**：
+**數字鍵 `1`–`9`**：在 panel 上（沒有 popup 開著時）保留給跳 panel，app 不能在 panel 上把數字登記成熱鍵（唯一的例外見下面）。**只在目前的畫面裡**：
 每個畫面拿得到 focus 的 panel 各自從 `[1]` 編號（拿不到 focus 的說明牌沒有號碼：components/layout/panel，panel.17），
 換了畫面，`1`–`9` 就是那個畫面的 panel；畫面上沒有那個號碼的 panel 時不作用。popup 裡
 數字是自由的（例：menu 的 `[3] Favorites`、select 選項的數字熱鍵）；用數字的 global 熱鍵只能在 global operation popup 裡按（M4）。
 模式裡照 K11；key reference 寫在 core keys 區，寫成 `1–N`（[components/dialog/note](../components/dialog/note-zh_TW.md)）。
 
+**拿數字鍵的那一個 panel**：畫面上只有一個 panel 有號碼時（L5 藏起來的位置保有自己的號碼，也算；說明牌沒有號碼），那個 panel
+可以把 `1`–`9` 拿去做自己的事（例：換頁）：那裡 `2`–`9` 沒有 panel 可以跳，`1` 就是它自己。它把這些鍵寫在 hint，寫成
+`1–N:<動詞>`，放在 `Enter` 與 `h|l:tab` 後面（N 是有作用的最大數字，最多 9；只有一個時不寫這一組），`?` 裡也有一列；超過 N
+的數字不作用。畫面上一出現第二個有號碼的 panel，數字就回去跳 panel，hint 那一組和 `?` 那一列跟著拿掉；在模式裡、在它的
+panel filter 打字時，數字照那裡的做法（user 2026-11-26，來自 boxu）。
+
 **為什麼**：使用者學的單位是**角色**（「取消」「換 focus」「現在能做什麼」），不是
 按鍵。角色固定，學一次就在所有 surface、所有家族 app 有效。只要有一個 surface
 讓 `Space` 做別的事，使用者就得多學一條「哪裡例外」。每個 panel 的框上畫著 `[N]`，等於保證「按這個數字到這裡」；
 讓 app 拿數字去做別的事，框就在騙人。跳 panel 跟 `Tab` 一樣是基本移動，要永遠可靠；app 只在 panel 上少了數字，字母與
-popup 裡的數字都還在。
+popup 裡的數字都還在。拿數字鍵的那一個 panel 也守著這個保證：它的畫面上沒有別的 `[N]`，就沒有框在騙人（user 2026-11-26）。
 
 ### K2 `Tab` 在同層物件之間切換 focus
 
