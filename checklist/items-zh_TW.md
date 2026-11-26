@@ -100,7 +100,7 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K10-6 | K10 | 子程序還沒準備好收鍵時，出口鍵照樣有效、照樣揭露 | PTY | 子程序啟動或連線中看 footer、按出口鍵 |
 | K11-1 | K11 | 模式裡 `Space` 打開模式的 Space menu（app 自己的模式裡使用者把動作放到 `Space` 時除外，K11-27）；tdp（元件或規則）規定的模式只列模式裡能做的事（app 自己的模式見 K11-15） | 模式 | 進模式按 `Space` |
 | K11-2 | K11 | 模式裡 `?` 打開這個模式的 key reference：模式裡能按什麼鍵、做什麼 | 模式 | 進模式按 `?` |
-| K11-3 | K11 | 模式裡 `Esc` 離開模式，回到進入前的狀態（app 自己的模式離開後留下什麼由 app 決定，K11）；模式有好幾層時一次退一層（`Visual>select` 退回 `Visual`）；離開 app 自己的模式時可以跳出一個 popup（K11-16） | 模式 | 進模式做點事後按 `Esc`，狀態回到進入前（app 自己的模式，留下什麼由 app 決定） |
+| K11-3 | K11 | 模式裡 `Esc` 離開模式，回到進入前的狀態（app 自己的模式離開後留下什麼由 app 決定，K11）；模式有好幾層時一次退一層（`Viewing:selecting` 退回 `Viewing`）；離開 app 自己的模式時可以跳出一個 popup（K11-16） | 模式 | 進模式做點事後按 `Esc`，狀態回到進入前（app 自己的模式，留下什麼由 app 決定） |
 | K11-4 | K11 | panel 與 popup 裡的模式，`q`、`Ctrl-C` 照 K9 進入離開流程 | 模式 | 進模式按 `q`、`Ctrl-C` |
 | K11-5 | K11 | 模式在 panel 上暫停 `Tab` 或數字鍵時，按了要有回應，說明先 `Esc` 離開模式；在模式外也不會做事的鍵（例：只有一個 panel 的畫面上的 `Tab`、已經 focus 的 panel 的數字）不作用，不出聲 | 模式（在 panel 上） | 進模式按 `Tab`、`2`，出現說明（例：toast） |
 | K11-6 | K11 | 模式裡只有模式自己的鍵與 K11 表上的 core key 作用：panel 的熱鍵與 global 熱鍵都不作用 | 模式 | 進模式按 panel 的熱鍵與 global 熱鍵，都沒作用 |
@@ -108,7 +108,7 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K11-9 | K11 | 模式自己的鍵揭露在 footer 或下框 hint | 模式 | 進模式看 footer（panel 上的模式）或下框 hint（popup 裡的模式） |
 | K11-10 | K11 | 離開模式，模式名與外框顏色恢復 | 模式 | 按 `Esc` 離開後看那個框 |
 | K11-11 | K11 | 模式在 popup 裡時，`Tab` 與數字鍵照那個 popup 本來的作用（不換 panel），不另外回應；footer 照 popup 開著時的樣子，不換成模式的字 | 模式（在 popup 裡） | 在 popup 裡進模式，按 `Tab`、`2`，看 footer |
-| K11-12 | K11 | 模式在 PTY 上時（terminal 的歷史模式、選取模式），模式自己的鍵、`?`、`Esc` 以外的鍵先離開模式，再送給子程序；`q`、`Ctrl-C` 也一樣，不進離開流程 | PTY | 在 PTY 上進歷史模式，打一個字、按 `q`、`Ctrl-C`，看模式先離開、鍵落在子程序裡 |
+| K11-12 | K11 | 模式在 PTY 上時（terminal 的選取模式），模式自己的鍵、`?`、`Esc` 以外的鍵先離開模式，再送給子程序；`q`、`Ctrl-C` 也一樣，不進離開流程 | PTY | 在 PTY 上按 `Alt-v` 進選取模式，打一個字、按 `q`、`Ctrl-C`，看模式先離開、鍵落在子程序裡 |
 | K11-13 | K11 | 模式裡 `!` 不作用 | 模式 | 進模式按 `!` |
 | K11-14 | K11 | 可以讓使用者設定模式的鍵時，選到這個模式裡已經有作用的鍵（模式的其他鍵、core key）就跳 Warning 寫出被誰用了，不設定；模式的 Space menu、`?` 與提示寫目前作用的鍵 | 模式的鍵可以讓使用者設定 | 把模式的一個鍵設成模式的另一個鍵，再設成 `Space`（app 的選項裡有的話；app 自己的模式見 K11-27）：每次都跳 Warning，鍵沒變；設成沒人用的鍵：menu、`?`、提示都寫新的鍵 |
 | K11-15 | K11 | app 自己的模式（tdp 的元件和規則都沒有規定的模式），`Space` 打開它的 Space menu，至少有一列，標題跟其他模式的一樣（使用者把動作放到 `Space` 時沒有，K11-27）；列模式的哪些動作與鍵由 app 決定，模式外的東西一律不列（沒有其他 panel、畫面或 global 的動作，沒有 `Global operation` 那一列）；列出來的 core key（例：`[q]uit`）做的事照 K11 的表 | app 自己的模式 | 進模式按 `Space`：menu 至少有一列，標題寫模式所在的地方，沒有模式外的東西 |
@@ -120,11 +120,12 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K11-21 | K11 | app 自己的模式不管怎麼離開（按 `Esc`、用模式的鍵，或 app 讓它結束），模式名與外框顏色都恢復，它的 Space menu 與 `?` 一起關掉 | app 自己的模式 | 用每一種方式離開模式，其中一次先打開它的 Space menu |
 | K11-22 | K11 | 同一個 panel 或 popup 上，一次只在一個 app 自己的模式裡：要進另一個，先離開，或用 `>` 加一層 | app 自己的模式 | app 有兩個時，從一個換到另一個 |
 | K11-23 | K11 | 離開 app 自己的模式會丟掉使用者在裡面做出來、要留下的東西時（例：還沒存的筆畫；遊戲玩到哪裡不算），由離開時的 popup 來問，回答之前那些東西都留著 | app 自己的模式 | 在模式裡做點事後離開：跳出 popup 問；回答回到模式：東西都還在 |
-| K11-24 | K11 | 在元件裝不下的內容上，做元件模式的事（選取複製、重排、比較）的模式，沿用家族的名稱與鍵 | app 自己的模式 | 跟 viewer 的選取模式、Drag 對照名稱與鍵 |
+| K11-24 | K11 | 在元件裝不下的內容上，做元件模式的事（選取複製、重排、比較）的模式，沿用家族的名稱與鍵 | app 自己的模式 | 跟 viewer 的選取模式、Dragging 對照名稱與鍵 |
 | K11-25 | K11 | app 自己的模式讓使用者改鍵時，`Enter` 與移動鍵（K12）也可以改：移動改到別的鍵照樣移動，空出來的字母可以做別的動作（單獨的 `g` 只在模式裡沒有 `g` 開頭的組合作用時）；方向鍵與 `PgUp\|PgDn` 照這個模式給它們的預設，對應的字母改做別的事之後，寫在 `?` 裡那個動作的那一列、用 `\|` 接在使用者選的鍵後面（不用進 Space menu 或 footer）；`?`、`!`、`Esc`、`q`、`Ctrl-C`、`Tab` 與數字鍵照樣拒絕（`Space` 見 K11-27） | 模式的鍵可以讓使用者設定 | 把 `Enter` 上的動作改到沒人用的字母，再把另一個動作放到 `Enter`：都設得上；左移改成 `a`：`a` 往左，`←` 照樣往左，`?` 那一列寫 `a\|←`，`h` 可以給別的動作；app 的選項裡有 `Esc` 的話，把一個鍵設成它：跳 Warning，鍵沒變；模式裡沒有 `g` 開頭的組合作用時，把一個動作放到 `g`：按一下就執行 |
 | K11-26 | K11 | app 自己的模式開出來的 popup（用模式的鍵或從它的 Space menu）是 F1 的一類，照那個元件畫、照那個元件答（confirm：`Enter` 接受、`Esc` 取消）；只有回到模式還是回到開它的 menu，是 app 的事 | app 自己的模式 | 用模式的鍵與從 Space menu 各開一次模式的每個 popup：每個都照它的元件長、照它的元件答 |
 | K11-27 | K11 | app 自己的模式讓使用者改鍵時，使用者可以把模式的一個動作放到 `Space`，只能由使用者自己選（預設 `Space` 打開模式的 Space menu）：放了之後 `Space` 做那個動作，這個模式沒有 Space menu；原本只會在那個 menu 裡的鍵都在 60 欄時畫出來的 footer 裡，footer 最前面、原本 `Space:menu` 的位置寫 `Space:<動作>`（是用一個動詞講的一對的一半時寫那一對，M5）；選 `Space` 時跳 Warning，說出 `Space` 改做什麼、要 menu 先按 `Esc`；`?` 照樣列每個鍵，`Esc` 照樣離開模式，離開後 `Space` 打開 panel 的 Space menu | 模式的鍵可以讓使用者設定 | app 的選項裡有 `Space` 時：照預設的鍵進模式按 `Space`：開 menu；把一個動作放到 `Space`：跳 Warning；進模式按 `Space`：做那個動作，沒有 menu；終端機 60 欄時 footer 最前面是 `Space:<動作>`、沒有 `Space:menu`，模式的每個鍵都在 `?`，除了 core key 與移動鍵也都在 footer；按 `Esc` 再按 `Space`：開 panel 的 Space menu |
 | K11-28 | K11 | 裝著 PTY 的 app 自己的模式，除了 `Esc` 每個鍵都送給子程序（`Space`、`?`、`q`、`Ctrl-C` 也是）；`Esc` 離開模式、不跳 confirm，兩下 `Esc` 被讀成 `Alt-Esc` 時離開再送一個 `Esc` | app 自己的模式 + PTY | 在模式裡打空白、`?`、`q`：子程序收到；按 `Esc`：離開模式、沒有 confirm；再進去，趁子程序忙時快按兩下 `Esc`：離開模式，子程序收到一個 `Esc` |
+| K11-29 | K11 | 模式名是在模式裡正在做的事的 -ing 字（`Dragging`、`Viewing`），app 自己的模式也一樣；層用 `:` 接（`Viewing:selecting`） | 模式 | 進每一個模式和它的每一層，讀上框右邊的名字 |
 | K12-1 | K12 | 不在打字的地方，`j` `k` `u` `d` `g` `G` `h` `l` 不被任何動作佔用（`g` 開頭的兩鍵組合除外；模式裡沒有移動可做的鍵也除外，K12-19） | 都要 | 讀程式或看所有 menu、key reference：除了 K12-19 放行的，這幾個字母沒有登記成動作 |
 | K12-2 | K12 | `h\|j\|k\|l` 就是 `←\|↓\|↑\|→`：方向鍵做一樣的事 | 都要 | 在清單、menu、表單上分別按 hjkl 與方向鍵，效果一樣 |
 | K12-3 | K12 | 有左右結構時（同一個 surface 裡的 tab、左右兩側、格子），`j\|k` 上下、`h\|l` 左右（切 tab、跨到另一側） | 都要 | 在有 tab 的 panel 按 `h\|l` 切 tab |
@@ -138,13 +139,13 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | K12-11 | K12 | `Home`、`End` 在打字列把游標移到最前面、最後面 | input、panel filter | 在打字列打幾個字後按 `Home`、`End` |
 | K12-12 | K12 | `Home`、`End` 在清單、menu、viewer、textarea 的移動狀態上不作用 | 都要 | 在清單與 menu 上按 `Home`、`End`，cursor 不動 |
 | K12-13 | K12 | 一步一步的移動（`j\|k`、`h\|l`、方向鍵、`Tab`）在一串項目上到頭尾繞回：最後一個往後一步回到第一個，第一個往前一步到最後一個（panel 清單、menu、表單、panel tab、finder 的清單與打字列上的 `↑\|↓`、reorder、color picker 的 R → G → B、datetime picker 的時欄（23 之後 00）與分欄（55 之後 00）都是） | 都要 | 在 panel 清單、menu、表單、panel tab 等各走到頭尾再多走一步 |
-| K12-14 | K12 | Drag mode 拿著時 `j\|k` 搬動那一項，到頭尾也繞回：拿著最後一項往後一步，它到第一個、其他各往後一格；拿著第一項往前一步，它到最後一個 | Drag | 拿著最後一項按 `j` |
+| K12-14 | K12 | Dragging mode 拿著時 `j\|k` 搬動那一項，到頭尾也繞回：拿著最後一項往後一步，它到第一個、其他各往後一格；拿著第一項往前一步，它到最後一個 | Drag | 拿著最後一項按 `j` |
 | K12-15 | K12 | `u\|d` 到頭尾停在第一個、最後一個，不繞 | 都要 | 在倒數幾列按 `d`，停在最後一列 |
 | K12-16 | K12 | 照空間走、不是一串項目的不繞：日曆的日子、月與年、左右兩側、在一段文字裡移動（含輸入框打字列的游標） | 都要 | 在日曆最後一天往後、在右側再往右、在打字列的最後一個字往右，不繞回 |
 | K12-17 | K12 | 二維內容（一列有好幾個項目，例：網頁內文裡的連結）閱讀時沒有游標，`j\|k`、`u\|d`、`gg\|G` 捲動；一個項目一個項目走是一個模式，模式裡 `j\|k` 照閱讀順序走（同一列從左到右，再到下一列），到頭尾繞回，`gg\|G` 到第一個、最後一個 | 二維內容 | 在內容上按 `j\|k`，畫面捲動；進模式按 `j\|k` 走過最後一個，再按 `gg\|G` |
 | K12-18 | K12 | `PgUp\|PgDn` 就是 `u\|d`：`u\|d` 能移動的地方，它們一樣移動半頁，到第一個、最後一個停住；不列在 `u\|d` 旁邊 | 都要 | 在超過一頁的清單與 viewer 上按 `PgDn`、`PgUp`：跟 `d`、`u` 一樣；按鍵說明有 `u\|d`，沒有 `PgUp\|PgDn` |
 | K12-19 | K12 | 模式裡沒有移動可做的移動鍵，可以做模式自己的動作，同一個鍵的方向鍵或 `PgUp\|PgDn` 做一樣的事（app 自己的模式裡使用者改了那個字母做的事時，不管是改走還是放動作上去，方向鍵或 `PgUp\|PgDn` 照這個模式給它的預設，並在 `?` 裡跟現在做那件事的鍵寫在一起，K11-25）；寫在 `?` 與提示裡，模式的 Space menu 照 K11；模式外面、有移動可做的鍵都照舊 | 模式裡有沒有移動可做的鍵 | 在這種模式裡按那個鍵與它的方向鍵：同一個動作；打開 `?`：列在裡面；到模式外面，那個鍵照樣移動 |
-| K13-1 | K13 | Diff 模式的鍵是 `D`（`[D]iff`），除非同一個 panel 已經把 `D` 給了另一個不是刪除的動作；沒有 Diff 模式的 app 可以把 `D` 給其他不是刪除的事 | Diff 模式 | 打開那個 panel 的 Space menu：Diff 那一列寫 `[D]iff` |
+| K13-1 | K13 | Diffing 模式的鍵是 `D`（`[D]iff`），除非同一個 panel 已經把 `D` 給了另一個不是刪除的動作；沒有 Diffing 模式的 app 可以把 `D` 給其他不是刪除的事 | Diff 模式 | 打開那個 panel 的 Space menu：Diff 那一列寫 `[D]iff` |
 | K13-2 | K13 | `x` 刪掉 cursor 上那一項（`[x] Delete`）；`X` 一次刪很多（標記的那些、整批）；完全沒有熱鍵也可以（M3） | 會刪除 | 找出所有會永久拿掉東西的動作（刪除、丟掉改動、drop）：有熱鍵的，一項的在 `x`，很多的在 `X` |
 | K13-3 | K13 | 會永久拿掉東西的動作不在 `D` 或 `d` 上 | 會刪除 | 看 Space menu 與程式：刪除、丟掉改動、drop 都不在 `D`、`d` 上 |
 | K13-4 | K13 | `i` 打開 cursor 上那一項的附註；其他動作都不用 `i` | 都要 | 在 Space menu 裡找用 `i` 的動作 |
@@ -273,7 +274,7 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | F3-1 | F3 | 任何看得到的 popup（含 toast：不等倒數結束）按 `Esc` 都立即開始關閉（例外只有 F3 列的：PTY、textarea 的寫入狀態、popup 裡的模式、改過的表單／textarea／reorder／照表單的 app 自己的 popup） | 都要 | 在每一類 popup 上按 `Esc`，關閉動畫馬上開始 |
 | F3-2 | F3 | 已經在跑關閉動畫的 popup 不再理會 `Esc`，也不接收其他按鍵 | 都要 | 按 `Esc` 後趁關閉動畫還在播時按 `j`、`Enter`，正在關的那層沒有反應；關閉動畫中再按一次 `Esc`，關的是下一層 |
 | F3-3 | F3 | textarea 在寫入狀態時，`Esc` 是離開寫入狀態、進入移動狀態 | textarea | 在 textarea 寫字時按 `Esc`，回到移動狀態，popup 還在 |
-| F3-4 | F3、K4 | popup 裡正在模式中時（例：viewer 的選取模式、reorder 的 Drag mode），`Esc` 先離開模式、popup 不關；再按一次才關 popup | 模式 | 在 viewer 按 `v` 進選取模式（或在 reorder 按 `D`）後按 `Esc`，模式離開、popup 還在；再按一次 `Esc` popup 才關 |
+| F3-4 | F3、K4 | popup 裡正在模式中時（例：viewer 的選取模式、reorder 的 Dragging mode），`Esc` 先離開模式、popup 不關；再按一次才關 popup | 模式 | 在 viewer 按 `v` 進選取模式（或在 reorder 按 `D`）後按 `Esc`，模式離開、popup 還在；再按一次 `Esc` popup 才關 |
 | F3-5 | F3 | 內容改過的表單按 `Esc`，先開 confirm 問要不要放棄 | 表單 | 改一欄後按 `Esc`，疊出放棄的 confirm |
 | F3-6 | F3 | 內容改過的 textarea 按 `Esc` 關閉時，先開 confirm 問要不要放棄 | textarea | 改過內容、回到移動狀態後按 `Esc`，疊出放棄的 confirm |
 | F3-7 | F3 | 搬過順序的 reorder 按 `Esc`，先開 confirm 問要不要放棄 | reorder | 搬一個項目後按 `Esc`，疊出放棄的 confirm |
@@ -514,7 +515,7 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | components-16 | components.4 | 值不改大小寫（color picker 的 hex 一律大寫是顏色的寫法，不算改值） | 都要 | 看表單、一列一個值的 panel 上的值跟原本的大小寫一樣 |
 | components-17 | components.4 | menu 的 label 與說明不改大小寫 | 都要 | 按 `Space` 看各列的 label 與說明沒被轉成大寫 |
 | components-18 | components.4 | hint 與 footer 的說明不改大小寫 | 都要 | 看 footer 與下框 hint 冒號後面的字 |
-| components-19 | components.4 | 模式名不改大小寫 | 模式 | 進入模式，看上框右邊的模式名（`Drag` 不寫成 `DRAG`） |
+| components-19 | components.4 | 模式名不改大小寫 | 模式 | 進入模式，看上框右邊的模式名（`Dragging` 不寫成 `DRAGGING`） |
 | components-20 | components.4 | app 自己的內容（statusbar、清單裡的資料）不改大小寫 | 都要 | 看 statusbar 與清單裡的資料照原樣 |
 | components-21 | components.4 | 標題裡的名稱、路徑照原樣（`EDIT: filu`、`IDENTITY FILE · ~/.ssh`） | 都要 | 打開對某一個東西做的 popup，看名稱部分沒被轉成大寫 |
 | components-22 | components.6 | 元件的樣子只從 components 列出的方案裡挑，不在 app 裡自己發明 | 都要 | 對照各元件列出的方案，看 app 用的都是其中一種 |
@@ -628,7 +629,7 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-3 | panel.1 | 每個 panel 上框左邊有 `[N] label` 膠囊，緊接著左上角 | 都要 | 看每個 panel 的左上角，膠囊與角之間沒有線 |
 | panel-4 | panel.1 | panel 在 loading 時，loading icon 放在整串膠囊（含 tab）的後面，前後各空一格 | loading | 讓 panel 重新載入，看上框膠囊串後面 |
 | panel-5 | panel.3 | 模式名放在模式所在的框（panel 或 popup）的上框右邊，夾在兩個框線接頭之間 | 模式 | 進入模式，看上框右邊 |
-| panel-6 | panel.3（圖） | 模式名緊貼兩個接頭，中間不加空白（`┫Drag┣`） | 模式 | 進入模式，看接頭與模式名之間 |
+| panel-6 | panel.3（圖） | 模式名緊貼兩個接頭，中間不加空白（`┫Dragging┣`） | 模式 | 進入模式，看接頭與模式名之間 |
 | panel-7 | panel.3 | 模式名的接頭跟框同色 | 模式 | 進入模式，比較接頭與框線的顏色 |
 | panel-8 | panel.3 | 接頭的線型跟著框：粗線框（有 focus 的 panel、popup）用 `┫` `┣`，細線框（失焦的 panel）用 `┤` `├` | 模式（在 panel 上）＋多 panel | 在模式裡按 `Tab` 換走，看接頭從粗線換成細線 |
 | panel-9 | panel.3 | 模式名用模式色加粗 | 模式 | 進入模式，看模式名的顏色與粗細 |
@@ -676,15 +677,15 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-176 | panel.9 | 比兩個裝著許多項目的列（例：資料夾、namespace、commit）時不直接打開 Diff，而是進到一層有差異的項目清單，位置列換成 app 給的 `<anchor> ↔ <另一個>`，每一項的 Diff 第一列寫 app 給的兩邊名字 | Diff 模式 | 比兩個這種列，看清單與位置列 |
 | panel-177 | panel.9 | 清單每一項前面是 `+`（Green，只有另一個有）、`-`（Red，只有 anchor 有）或 `~`（Peach，兩邊都有但不一樣）；兩邊一樣的不列 | Diff 模式 | 同上，對照兩邊檢查標記 |
 | panel-178 | panel.9 | 在一項上按 `Enter` 打開它的 Diff（UNIFIED 與 SPLIT；只有一邊有的，另一邊是空的），裝著許多項目的再進一層 | Diff 模式 | 同上，在改了、加了、還有下一層的項目上各按 `Enter` |
-| panel-179 | panel.9 | `Esc` 一層一層退回，最後回到 Diff 模式、anchor 留著 | Diff 模式 | 同上，一直按 `Esc` 到回到模式 |
-| panel-185 | panel.9 | Diff 模式放在明細 panel 的清單：兩個框都是模式顏色、都寫 `Diff`，粗線在有 focus 的那個；明細跟著 cursor 顯示 anchor 與 cursor 的差異（UNIFIED，或差異項目），在 anchor 或一樣的列上顯示空狀態，不跳 toast | Diff 模式在明細 panel | 進入模式，把 cursor 移過幾列、再移到 anchor 上；看兩個框與明細 |
+| panel-179 | panel.9 | `Esc` 一層一層退回，最後回到 Diffing 模式、anchor 留著 | Diff 模式 | 同上，一直按 `Esc` 到回到模式 |
+| panel-185 | panel.9 | Diffing 模式放在明細 panel 的清單：兩個框都是模式顏色、都寫 `Diffing`，粗線在有 focus 的那個；明細跟著 cursor 顯示 anchor 與 cursor 的差異（UNIFIED，或差異項目），在 anchor 或一樣的列上顯示空狀態，不跳 toast | Diff 模式在明細 panel | 進入模式，把 cursor 移過幾列、再移到 anchor 上；看兩個框與明細 |
 | panel-186 | panel.9 | 在清單上按 Diff 鍵或 `Enter`，focus 移到明細；`Esc` 一層一層退：視窗 → 明細 → 清單（模式還在、anchor 留著）→ 離開模式；`Tab` 與數字鍵在兩者之間移動 | Diff 模式在明細 panel | 進到明細、打開一項的差異，再一直按 `Esc` 到離開模式；在模式裡試 `Tab` 與數字鍵 |
-| panel-187 | panel.9 | Diff 模式放在明細時：不能跟 anchor 比的列，明細顯示空狀態說明；有一邊讀不到，明細顯示 panel.15 的錯誤狀態（Red 的事實，哪一邊、為什麼），不開錯誤視窗 | Diff 模式在明細 panel | 把 cursor 移到跟 anchor 不同種類的列、再移到讀不到的列 |
-| panel-196 | panel.9 | 占好幾列的 anchor：第一列照一般 anchor 用模式色；其他列照 cursor 的做法淡出，起點是 Yellow 淡化兩次，字保留自己的顏色；cursor 停在上面時第一列畫 cursor | Diff 模式 + 占好幾列的項目 | 在占好幾列的項目上進 Diff 模式，移開再移回來 |
+| panel-187 | panel.9 | Diffing 模式放在明細時：不能跟 anchor 比的列，明細顯示空狀態說明；有一邊讀不到，明細顯示 panel.15 的錯誤狀態（Red 的事實，哪一邊、為什麼），不開錯誤視窗 | Diff 模式在明細 panel | 把 cursor 移到跟 anchor 不同種類的列、再移到讀不到的列 |
+| panel-196 | panel.9 | 占好幾列的 anchor：第一列照一般 anchor 用模式色；其他列照 cursor 的做法淡出，起點是 Yellow 淡化兩次，字保留自己的顏色；cursor 停在上面時第一列畫 cursor | Diff 模式 + 占好幾列的項目 | 在占好幾列的項目上進 Diffing 模式，移開再移回來 |
 | panel-146 | panel.3 | 進入模式時模式名從中間打開：兩個接頭並排出現、往兩邊撐開，名字從中間露出來；離開時倒著播；第一幀是兩個接頭，之後每 32ms 一幀多露出一個字 | 模式 | 進入再離開模式，看上框右邊 |
 | panel-147 | panel.3 | 模式名開或關到一半時又切換，從當下的位置轉向，不從頭播 | 模式 | 快速進出模式幾次（例：`D` `Esc` `D`） |
 | panel-148 | panel.3 | 模式立刻生效、外框立刻變色；模式名播動畫時照樣收鍵 | 模式 | 進入模式後馬上按模式的鍵；看外框顏色 |
-| panel-149 | panel.3 | 模式有好幾層時，模式名把層接在後面，用 `>` 隔開、不加空白（例：`Visual>select`） | 模式 | viewer 的選取模式裡按第二次 `v`，看上框右邊 |
+| panel-149 | panel.3 | 模式有好幾層時，模式名把層接在後面，用 `:` 隔開、不加空白（例：`Viewing:selecting`） | 模式 | viewer 的選取模式裡按第二次 `v`，看上框右邊 |
 | panel-150 | panel.3 | 多一層時右端不動，層的字從尾巴每 32ms 一幀長出一個字；退一層從尾巴收掉；一半又切換照樣轉向；從某一層直接離開整個模式時，整個標籤從中間關掉 | 模式 | 選取模式裡按 `v`、`Esc`，再按 `v`、`y`，看上框右邊 |
 | panel-151 | panel.2 | 有 focus 的清單 cursor 那一列代表畫面上另一個 panel 時，那個 panel 的框是 Lavender 細線直角，不變成 focus，膠囊串跟著換色 | 被指到的 panel | 在清單上移動，看對應的 panel 的框 |
 | panel-152 | panel.2 | cursor 換列就換成指那一列的 panel；那一列的 panel 不在畫面上時，沒有 panel 被指到 | 被指到的 panel | 移到 panel 不在畫面上的那一列 |
@@ -719,11 +720,11 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | panel-65 | panel.7 | 每一列最前面保留一格標記欄 | 標記 | 看沒有標記時各列前面也空著一格 |
 | panel-66 | panel.7 | 被標記的列畫 Green 的 U+F0132 | 標記 | 標記一列，看標記欄 |
 | panel-67 | panel.7 | 沒標記的留空白，欄寬一直保留，標記、取消時列不左右位移 | 標記 | 標記再取消，看那一列的字位置不動 |
-| panel-68 | panel.8 | Drag 拿著的那一列照 cursor 的畫法，Yellow 底、Base 粗體 | Drag | 進 Drag 拿起一列 |
+| panel-68 | panel.8 | Dragging mode 拿著的那一列照 cursor 的畫法，Yellow 底、Base 粗體 | Drag | 進 Dragging mode 拿起一列 |
 | panel-69 | panel.8 | 拿著的那一列右邊的箭頭也是 Yellow | Drag | 拿起一列，看最右邊 |
 | panel-70 | panel.8 | 拿著的那一列標記欄畫 U+F04E2 | Drag | 拿起一列，看標記欄 |
 | panel-71 | panel.8 | 放下後回到那一列原本的標記 | Drag | 先標記一列再拿起、放下，看標記回來 |
-| panel-72 | panel.8 | 有 Drag 的 panel，每一列都保留標記欄 | Drag | 看有 Drag 的 panel 各列前面空著一格 |
+| panel-72 | panel.8 | 有 Dragging mode 的 panel，每一列都保留標記欄 | Drag | 看有 Dragging mode 的 panel 各列前面空著一格 |
 | panel-73 | panel.8 | 拿著時 `Enter` 放下 | Drag | 拿起、搬動後按 `Enter` |
 | panel-199 | panel.8 | 在篩選後的清單拿起一項時，拿著的時候篩選先收起來（打字列收起、清單全部列出、那一項在真正的位置）；放下或放回後，篩選照原樣回來，cursor 停在那一項上 | Drag＋panel filter | 篩選一個清單後拿起一項：清單全部列出來；搬動後放下：篩選回來，cursor 停在那一項；再拿起一次按 `Esc`：一樣 |
 | panel-74 | panel.5 | 太長時截斷、加 `…`：預設從尾端截；路徑、檔名這類尾端比較重要的從前面截；兩端都有意義的（例：pod 的名稱）從中間截（`demo-app…66-gm72n`）；每一欄從哪裡截，app 可以自行決定 | 都要 | 看長名字的欄位 |
@@ -1090,10 +1091,10 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-31 | note.4 | 還沒開始選時 hint 是 `v:select Esc:cancel` | viewer | 按一次 `v` 後看下框 |
 | note-32 | note.4 | 第二次 `v` 從游標所在開始選，移動游標把範圍拉開 | viewer | 按第二次 `v` 後移動游標 |
 | note-33 | note.4 | 範圍以字為單位：從起點到游標，含游標那個字 | viewer | 選一段後複製，看頭尾 |
-| note-34 | note.4 | 開始選之後模式名是 `Visual>select`，hint 是 `y:copy Esc:unselect` | viewer | 按第二次 `v` 後看下框 |
+| note-34 | note.4 | 開始選之後模式名是 `Viewing:selecting`，hint 是 `y:copy Esc:unselect` | viewer | 按第二次 `v` 後看下框 |
 | note-35 | note.4 | 開始選之後再按 `v` 不作用（不當離開的別名） | viewer | 開始選之後按 `v` |
 | note-36 | note.4 | `y` 複製選起來的文字，離開選取模式，範圍與游標都消失；跳一個 Success toast 說複製好了 | viewer | 選一段後按 `y` |
-| note-37 | note.4 | `Esc` 一次退一層：開始選之後範圍消失、回到 `Visual`，游標留在原地；還沒開始選時整個離開，游標消失；都不複製 | viewer | 開始選之後按 `Esc`，再按一次 |
+| note-37 | note.4 | `Esc` 一次退一層：開始選之後範圍消失、回到 `Viewing`，游標留在原地；還沒開始選時整個離開，游標消失；都不複製 | viewer | 開始選之後按 `Esc`，再按一次 |
 | note-38 | note.4 | 游標是一格層色底、Base 字 | viewer | 按 `v` 後看游標 |
 | note-39 | note.4 | 範圍是 Yellow 底、Base 字，游標那格維持層色 | viewer | 選一段後看範圍與游標 |
 | note-40 | note.4 | 範圍裡的空行畫一格 | viewer | 選一段跨過空行的範圍 |
@@ -1135,7 +1136,7 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-74 | note.2 | viewer 的內容裡，app 一行一行交來的一行夾著 `\n` 時拆成兩行 | viewer | 讓 app 交給 viewer 的一行含 `\n`（例：多行的錯誤訊息），看是兩行 |
 | note-75 | note.2 | viewer 的內容裡，顏色碼（SGR）照著上色，一行裡的 `\r` 只留最後的狀態，不是顏色碼的序列畫成紅色的名字 | viewer | 打開含顏色碼、`10%\r100%`、`\x1b[2J` 的內容 |
 | note-76 | note.7 | 每個 app 都有 App Log，是 viewer，最新的在最下面，開著時新的一筆照樣進來 | 都要 | 按 `!`，做幾件事，看新的一筆進來 |
-| note-77 | note.7 | 記使用者的動作與結果、每一個 toast、app 在背景做的事；動作是 Rules P3 的三種 operation，只看不改的也記，移動 cursor、換 focus、panel filter、`/` 搜尋、Diff 模式、調整 panel 大小、進出其他模式、在 confirm 或表單上取消的不記 | 都要 | 做一個改東西的動作、一個只看的動作（例：開 viewer）、跳一個 toast，移動幾次 cursor，按 `!`；讀程式 |
+| note-77 | note.7 | 記使用者的動作與結果、每一個 toast、app 在背景做的事；動作是 Rules P3 的三種 operation，只看不改的也記，移動 cursor、換 focus、panel filter、`/` 搜尋、Diffing 模式、調整 panel 大小、進出其他模式、在 confirm 或表單上取消的不記 | 都要 | 做一個改東西的動作、一個只看的動作（例：開 viewer）、跳一個 toast，移動幾次 cursor，按 `!`；讀程式 |
 | note-104 | note.7 | app 自己重讀的內容，只有讀到變了才記：一筆 INFO，寫出改了什麼；讀到沒變不記，自己一直進來的更新不一筆一筆記 | 會自己重讀內容 | 開著 app 等它重讀幾次：沒有紀錄；在 app 外面改它讀的東西：一筆 INFO，寫出改了什麼 |
 | note-105 | note.7 | app 自己重讀失敗時：第一次跳 Error toast、記一筆 ERR；同一個失敗再發生不跳、不記；換了一個失敗再跳、再記；又讀得到時記一筆 INFO，不跳 toast | 會自己重讀內容 | 讓它讀的東西讀不到、等它重讀幾次，再換一種讀不到的方式，最後讓它讀得到：每一種失敗一個 toast、一筆紀錄，最後一筆 INFO |
 | note-78 | note.7 | 每一筆：時間 `HH:MM:SS`（Overlay0）、等級（`INFO` Text、`OK` Green、`WARN` Peach、`ERR` Red，四格寬靠左）、發生的事（跟 toast 一樣大寫開頭） | 都要 | 看 App Log 的各種等級 |
@@ -1155,7 +1156,7 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | note-94 | note.9 | 重新讀進來：搜尋的命中與狀態跟著新內容，目前那一筆是原本位置或之後的第一筆（後面沒有就是第一筆），畫面不動；一筆都不剩時跳 Info toast，命中與狀態消失 | 重新讀進來的內容 | 搜尋後改內容讓命中移位，再改到一筆都不剩 |
 | note-95 | note.9 | 重新讀進來：開著的 Space menu 與 key reference 不為此改變 | 重新讀進來的內容 | 搜尋有命中時打開 Space menu，再讓內容裡的命中消失 |
 | note-96 | note.9 | 選取模式裡重新讀進來，cursor 與選取起點都還在（那一行、那一行裡的那一欄）：什麼都不變，`y` 複製新的字 | 重新讀進來的內容 | 選第 10 到 12 行，改掉那幾行，按 `y` 再貼上 |
-| note-97 | note.9 | 選取模式裡重新讀進來，cursor 在、起點不在：拿掉選取，回到 `Visual`，cursor 留著，跳 Warning toast 說明 | 重新讀進來的內容 | 從第 20 行往上選到第 10 行，再把內容剪到 15 行 |
+| note-97 | note.9 | 選取模式裡重新讀進來，cursor 在、起點不在：拿掉選取，回到 `Viewing`，cursor 留著，跳 Warning toast 說明 | 重新讀進來的內容 | 從第 20 行往上選到第 10 行，再把內容剪到 15 行 |
 | note-98 | note.9 | 選取模式裡重新讀進來，cursor 不在：離開模式，跳 Warning toast；內容讀不到：離開模式，只跳那個 Error toast | 重新讀進來的內容 | 從第 10 行選到第 20 行，把內容剪到 15 行；再讓它讀不到（例：刪掉檔案） |
 | note-99 | note.9 | 選取模式的 Space menu 或 key reference 開著時，重新讀進來讓選取失效（起點或 cursor 不見了）：不跳 toast，改疊一個 Peach、樣子跟 error popup 一樣、Warning 圖示的 note 說明；`Enter` 和 `Esc` 都連同 menu 或 key reference 一起關掉，回到畫面 | 重新讀進來的內容 | 選取模式裡往上選，打開 Space menu，再剪掉內容讓起點不見；按 `Enter`；再用 `Esc` 試一次，也用開著的 `?` 試 |
 | note-100 | note.9 | 選取模式的 Space menu 或 key reference 開著時內容讀不到：不跳 Error toast，改疊 error popup 說明讀不到、原本的選取失效了；`Enter` 和 `Esc` 都連同 menu 或 key reference 一起關掉，回到畫面 | 重新讀進來的內容 | 選取模式裡打開 Space menu，再讓內容讀不到（例：刪掉檔案）；按 `Enter`；再用 `Esc` 試一次 |
@@ -1182,15 +1183,15 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | terminal-12 | terminal.3 | 出口鍵後面跟 app 保留的組合鍵（`Alt-t:hide`、`PgUp:history`） | terminal popup | 看 hint 的順序 |
 | terminal-13 | terminal.2 | terminal popup 開著時 footer 不畫：最後一列的兩端是空白，不露出 footer 的字 | terminal popup | 打開 terminal popup，看最後一列的兩端 |
 | terminal-14 | terminal.2 | PTY 放在 panel 裡時也不留白：panel 的框照畫，PTY 貼著框 | PTY | 看放 PTY 的 panel 裡第一個字與框之間 |
-| terminal-15 | terminal.5 | 在 PTY 上按 `PgUp` 捲上去就進入歷史模式：框與模式名換成模式色，模式名是 `History` | 互動 terminal | 在 PTY 上按 `PgUp`，看框與上框右邊 |
-| terminal-16 | terminal.5 | 歷史模式裡 `j\|k`、`u\|d`、`gg\|G`、`PgUp\|PgDn` 都捲歷史，不送給子程序 | 互動 terminal | 進歷史模式後按這些鍵，看歷史捲動、shell 沒有收到 |
-| terminal-17 | terminal.5 | 歷史模式裡 `Esc` 離開模式，回到即時畫面 | 互動 terminal | 進歷史模式後按 `Esc` |
+| terminal-15 | terminal.5 | 互動 terminal 上按 `PgUp` 捲回去看歷史，不是模式：框不變色、沒有模式名，捲回去的時候下框右邊顯示捲動位置 | 互動 terminal | 在 PTY 上按 `PgUp`，看框、上框右邊和下框 |
+| terminal-16 | terminal.5 | 捲回去的時候，`PgDn` 往下捲，捲到底就是即時畫面；其他任何鍵（含 `j\|k`、`gg\|G` 與方向鍵）先回到即時畫面，再送給子程序 | 互動 terminal | 按 `PgUp` 捲回去後打 `k`，看回到即時畫面、shell 收到 `k`；再捲回去，按 `PgDn` 到底 |
+| terminal-17 | terminal.5 | 只有在選取模式（`Alt-v`）裡，`j\|k`、`u\|d`、`gg\|G` 才在歷史裡走 | 互動 terminal | 按 `Alt-v`，再按 `gg`、`G`，看游標到歷史的頭尾 |
 | terminal-18 | terminal.6 | 互動 terminal 的選取模式用 `Alt-v` 進入（家族的 `v`，PTY 裡加 `Alt` 跳出子程序），跟保留鍵一樣常駐揭露 | 互動 terminal | 看 footer 或 terminal 的下框有 `Alt-v:select`，按下去 |
 | terminal-19 | terminal.6 | 進入 PTY 的選取模式時畫面凍住：子程序後來的輸出先不畫上去，游標可以往上走進歷史；離開時回到即時畫面 | 互動 terminal | 讓 shell 一直輸出時進選取模式，看畫面不動、游標能往上走 |
 | terminal-20 | terminal.6 | PTY 的選取模式照 note 的選取模式：按鍵、顏色、捲動位置、複製後的 toast 都一樣 | 互動 terminal | 在 PTY 的選取模式選一段複製，對照 viewer 的選取模式 |
-| terminal-21 | terminal.4 | app 開一個程式做一件事的 PTY（編輯器、讓 doas 問密碼）沒有歷史模式與選取模式，按鍵全部給那個程式，包括 `PgUp` | PTY | 在開著編輯器的 PTY 按 `PgUp`，看編輯器自己往上翻、框沒有換成模式色 |
-| terminal-22 | terminal.4 | 子程序佔滿整個畫面時（vim、less、htop），`PgUp` 送給它，下框不寫 `PgUp:history`；它回到一般畫面後 `PgUp` 又進歷史模式 | 互動 terminal | 在 shell 裡開 `less` 按 `PgUp`，看 less 往上翻、下框沒有 `PgUp:history`；離開 less 再按 `PgUp` |
-| terminal-23 | terminal.4 | 使用者把所有鍵都給子程序時（例：sshu 鎖住格子），選取模式暫時讓出去，`PgUp\|PgDn` 直接送進去；解開的鍵常駐揭露，解開後兩種模式回來 | 互動 terminal | 有這種狀態的 app：進去後按 `Alt-v`、`PgUp`，看都送進子程序、下框寫著解開的鍵；解開後再按一次 |
+| terminal-21 | terminal.4 | app 開一個程式做一件事的 PTY（編輯器、讓 doas 問密碼）不能捲回去，也沒有選取模式，按鍵全部給那個程式，包括 `PgUp` | PTY | 在開著編輯器的 PTY 按 `PgUp`，看編輯器自己往上翻、terminal 的歷史沒有捲動 |
+| terminal-22 | terminal.4 | 子程序佔滿整個畫面時（vim、less、htop），`PgUp` 送給它，下框不寫 `PgUp:history`；它回到一般畫面後 `PgUp` 又能捲回去 | 互動 terminal | 在 shell 裡開 `less` 按 `PgUp`，看 less 往上翻、下框沒有 `PgUp:history`；離開 less 再按 `PgUp` |
+| terminal-23 | terminal.4 | 使用者把所有鍵都給子程序時（例：sshu 鎖住格子），選取模式暫時讓出去，`PgUp\|PgDn` 直接送進去；解開的鍵常駐揭露，解開後兩樣都回來 | 互動 terminal | 有這種狀態的 app：進去後按 `Alt-v`、`PgUp`，看都送進子程序、下框寫著解開的鍵；解開後再按一次 |
 | terminal-24 | terminal.7 | 要提權時先試不用密碼的；要密碼時用 password popup（解鎖）問，交給工具的標準輸入，打錯時 popup 不關、寫 `Wrong password`；密碼不寫進檔案、不進 App Log、不出現在畫面上、不送到網路上，app 拿不到；工具不能從標準輸入讀時（doas）在 terminal popup 裡讓它自己問 | 提權 | 在要密碼的機器上做要提權的動作，先打錯一次再打對；看 App Log 沒有密碼；讀程式：密碼只交給工具 |
 
 ## dialog/toast
@@ -1744,7 +1745,7 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | reorder-6 | reorder.2 | 拿著的那一項 Yellow 底、Base 粗體，箭頭也是 Yellow | reorder | 按 `D` 後看 |
 | reorder-7 | reorder.2 | 拿著的那一項列首畫 `nf-md-swap_vertical`（U+F04E2） | reorder | 按 `D` 後看列首 |
 | reorder-8 | reorder.3 | 打開時 focus 在清單上，沒拿東西 | reorder | 打開後看 hint |
-| reorder-9 | reorder.3 | `D` 拿起 cursor 那一項，進入 Drag mode | reorder | 按 `D` |
+| reorder-9 | reorder.3 | `D` 拿起 cursor 那一項，進入 Dragging mode | reorder | 按 `D` |
 | reorder-10 | reorder.3 | 沒拿東西時 `Enter`：把整個順序寫回去、popup 關掉，這時才生效 | reorder | 搬過後按 `Enter` |
 | reorder-11 | reorder.3 | 沒拿東西時 `Esc`：順序沒改過，直接關 | reorder | 打開後直接按 `Esc` |
 | reorder-12 | reorder.3 | 放棄的 confirm 上 `Enter`：放棄、popup 關掉 | reorder | 在 confirm 上按 `Enter` |
@@ -1752,7 +1753,7 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | reorder-14 | reorder.3 | 「改過了」：放下的位置跟拿起前不同就算，之後不清掉（搬走又搬回原位也算） | reorder | 搬走再搬回原位後按 `Esc`，照樣先問 |
 | reorder-15 | reorder.3 | 沒拿東西時 hint 是 `Enter:apply D:drag Esc:cancel` | reorder | 看下框 hint |
 | reorder-16 | reorder.3 | 拿著時 `j\|l` 把它跟下一項交換、`h\|k` 跟上一項交換，cursor 跟著它 | reorder | 拿著按 `k`、`l` |
-| reorder-17 | reorder.3 | 拿著時 `Enter`：放下，離開 Drag mode，cursor 留在那一項 | reorder | 拿著按 `Enter` |
-| reorder-18 | reorder.3 | 拿著時 `Esc`：放回拿起前的位置，離開 Drag mode（不關 popup） | reorder | 拿著搬兩格後按 `Esc` |
-| reorder-19 | reorder.3 | 拿著時 `Space` 打開 Drag mode 的 Space menu，其他鍵不作用，`D` 不是放下的別名 | reorder | 拿著按 `Space`、`D` |
+| reorder-17 | reorder.3 | 拿著時 `Enter`：放下，離開 Dragging mode，cursor 留在那一項 | reorder | 拿著按 `Enter` |
+| reorder-18 | reorder.3 | 拿著時 `Esc`：放回拿起前的位置，離開 Dragging mode（不關 popup） | reorder | 拿著搬兩格後按 `Esc` |
+| reorder-19 | reorder.3 | 拿著時 `Space` 打開 Dragging mode 的 Space menu，其他鍵不作用，`D` 不是放下的別名 | reorder | 拿著按 `Space`、`D` |
 | reorder-20 | reorder.3 | 拿著時 hint 是 `Enter:drop Esc:cancel` | reorder | 拿著看下框 hint |

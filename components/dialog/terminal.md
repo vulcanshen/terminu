@@ -5,8 +5,8 @@
 ## terminal.1 Purpose
 
 A subprocess running in a frame (a shell, an editor, a remote session): every key goes to it; only the exit key, the
-key combinations the app keeps, and an interactive terminal's `Alt-v` and `PgUp` ("Which PTYs have these
-modes" below) belong to the app (Rules F1, K10). A PTY placed in a panel (e.g. sshu's grid cells) is
+key combinations the app keeps, and an interactive terminal's `Alt-v` and `PgUp` ("Which PTYs scroll back
+and select" below) belong to the app (Rules F1, K10). A PTY placed in a panel (e.g. sshu's grid cells) is
 not a popup: its frame follows [`layout/panel`](../layout/panel.md), and the PTY's keys are written in the footer
 ([`layout/screen`](../layout/screen.md)). It may also be held by an app's own mode on its panel, gone into and come out
 of as the mode is, `Esc` its exit key (Rules K11).
@@ -59,48 +59,48 @@ with no two rows of hints.
 - `Alt-Esc` always asks for confirmation first (Rules K10); in an app's own mode holding the PTY, `Esc` leaves
   with no confirm (Rules K11).
 - `Home` and `End` belong to the subprocess (Rules K10); to reach the top or the bottom of the history, use `gg|G` in
-  history mode (below).
+  the selection mode (below).
 
-## terminal.4 Which PTYs have these modes
+## terminal.4 Which PTYs scroll back and select
 
-The history and selection modes below go by what a PTY is for, not by its being a PTY:
+Scrolling back and the selection mode below go by what a PTY is for, not by its being a PTY:
 
 - **An interactive terminal**: a PTY where the user types their own commands (a shell, an ssh session, `kubectl exec`)
-  always has both modes.
+  always has both.
 - **A PTY the app opens to run a program for one job** (editing a file in `$EDITOR`, doas asking for a password): it has
-  neither mode, and every key goes to that program, `PgUp` included. Scrolling, moving and selecting are that program's
+  neither, and every key goes to that program, `PgUp` included. Scrolling, moving and selecting are that program's
   own business.
 - **While the subprocess takes the whole screen** (vim, less or htop started in an interactive terminal, switching to the
   terminal's other screen): `PgUp` goes to it and the bottom border has no `PgUp:history`; once it is back on the normal
-  screen, `PgUp` enters the history mode again. The selection mode works as usual, on the frozen screen.
+  screen, `PgUp` scrolls back again. The selection mode works as usual, on the frozen screen.
 - **While the user gives every key to the subprocess** (e.g. a locked cell in sshu, for a sshu started inside it): the
   selection mode steps aside; `PgUp|PgDn` go straight in, and the innermost PTY scrolls its own history, as if used
-  directly. The key that unlocks is always shown, as in Rules K10, and both modes come back after unlocking.
+  directly. The key that unlocks is always shown, as in Rules K10, and both come back after unlocking.
 
 **Why**: what the family looks after is the user's own commands: the output of what they typed in a shell has to scroll
 back and be selectable. Editors and full-screen programs handle their own scrolling and selection; we have not rewritten
 them, so we do not take their keys. Their screens never reach the history either: catching `PgUp` would only stop vim
 from paging and give an empty history instead.
 
-## terminal.5 History mode
+## terminal.5 Scrolling back
 
-On an interactive terminal's live screen every letter belongs to the subprocess (a shell needs `j`, `k`, `g`), so scrolling up into the
-history is a mode (Rules K11), and only there do the family's movement keys work.
+On an interactive terminal `PgUp` scrolls back into the history a page at a time and `PgDn` forward again, as in any
+terminal. It is not a mode (Rules K11): the frame keeps its colour and gets no mode name, and every other key still
+belongs to the subprocess (a shell needs `j`, `k`, `g`).
 
-- **Entering**: scrolling up with `PgUp` enters it. The frame and the mode name take the mode colour, as in K11; the mode
-  name is `History` (`┫History┣`).
-- **In the mode**: `j|k`, `u|d`, `gg|G` and `PgUp|PgDn` all scroll the history and are not sent to the subprocess.
-- **`Esc`**: leaves the mode, back to the live screen.
-- **Any other key**: leaves the mode first, back to the live screen, then goes to the subprocess as usual — typing
-  right after reading the history puts the characters in the shell.
-- **Disclosure**: as in K11, the keys of the mode are written in the bottom border's hint and in the `?` key reference.
-  `PgUp|PgDn` are not listed beside `u|d`, as anywhere else (Rules K12); the way in is the live screen's
-  `PgUp:history`.
+- **While scrolled back**: the scroll position shows on the right of the bottom border, the lines shown out of the whole
+  history (`N-M of T`, as in a viewer with no cursor, [`dialog/note`](note.md)); it goes once the live screen is back.
+- **Back to the live screen**: `PgDn` down to the bottom, or any other key, the arrow keys included: it takes the screen
+  back to the live screen first, then goes to the subprocess as usual — typing right after reading the history puts the
+  characters in the shell.
+- **The family's movement keys** (`j|k`, `u|d`, `gg|G`) go through the history only in the selection mode, `Viewing`
+  (`Alt-v`, terminal.6), whose cursor can go up into it.
+- **Disclosure**: `PgUp:history` in the bottom border's hint (terminal.3), as always.
 
-**Why**: going to the top and the bottom is `gg|G` throughout the family, a PTY's history included; but on the live
-screen every letter must reach the subprocess, so the family's movement keys can only work inside a mode. `PgUp` is the
-old habit for scrolling back in a terminal, so pressing it gets you in; someone who starts typing does not have to press
-`Esc` first, since the first character takes them back to the live screen.
+**Why**: `PgUp|PgDn` are how a terminal has always scrolled back, with no mode, while `j|k` and `gg|G` are the
+family's selection mode's; mixing them made a mode of what every terminal does without one, and gave a mode's keys to
+keys that belong to the shell (the user, 2026-11-26). With no mode nothing changes colour and nothing has to be left:
+the first character typed is in the shell.
 
 ## terminal.6 Selection mode
 
@@ -130,8 +130,8 @@ When an app writes a system file (e.g. hostu writing `/etc/hosts`), the system's
   over it is dropped. An app on the lib only gives the command to run: the lib asks for the password and hands it to the
   tool, and the app never gets hold of it (Rules E8).
 - When the tool cannot read a password on its standard input (e.g. `doas`), open a terminal popup running it and let it
-  ask; the popup closes itself when it is done. This PTY runs a program for one job, so it has no history or selection
-  mode ("Which PTYs have these modes" above).
+  ask; the popup closes itself when it is done. This PTY runs a program for one job, so it neither scrolls back nor has the selection
+  mode ("Which PTYs scroll back and select" above).
 - Which tool, the app may decide for itself by the platform (e.g. sudo, doas when there is none; on Windows gsudo or the built-in
   sudo, with the system's UAC prompt).
 

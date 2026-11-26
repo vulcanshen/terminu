@@ -31,7 +31,7 @@ app 可以自行決定；這裡管的是 tdp 定的介面元素（Principle P4�
 | 層色 | popup 的框（粗線 `┏━┓`）與標題膠囊的底；popup 裡的 cursor 色塊 | 見下面的「popup 的層色」 |
 | 正在編輯、使用者足跡 | input popup 裡的值與游標；使用者留下的位置（panel 的位置列 —— 麵包屑，目前的路徑或 drill 到的層，見 [`layout/panel`](layout/panel-zh_TW.md)；statusbar 上「你現在在哪」的值；被清單 cursor 指到的 panel 的框，見 [`layout/panel`](layout/panel-zh_TW.md)） | Lavender `#b4befe` |
 | 生效中 | 目前生效的值（select 選的、勾著的、開著的；popup 裡跟著畫面上的勾，讀成「按 `Enter` 就是這個值」）；活著的 session；進行中的工作與進度條（單畫面的 app 寫在工作的列裡，或它在跑的那個地方的位置列，見 [`layout/screen`](layout/screen-zh_TW.md)）；成功完成的（Success toast 的字）；Diff 裡加上的行 | Green `#a6e3a1` |
-| 模式 | 模式的外框與模式名、模式裡選起來的範圍、Drag 拿著的那一列（Rules K11） | Yellow `#f9e2af` |
+| 模式 | 模式的外框與模式名、模式裡選起來的範圍、Dragging mode 拿著的那一列（Rules K11） | Yellow `#f9e2af` |
 | 警告：值得注意、但沒壞 | confirm 裡警告的那一句；Warning toast 的字；panel 框上 app 自己的狀態講的事值得注意時（[`layout/panel`](layout/panel-zh_TW.md)） | Peach `#fab387` |
 | 錯誤 | 錯誤列、出錯的 label、error popup、Error toast 的字、畫成名字的控制字元（`\n`、`\x1b`……，[components](README-zh_TW.md) 的「控制字元」；游標停在上面時是它的底，字 Base）；Diff 裡刪掉的行；panel 框上 app 自己的狀態講的事出錯時 | Red `#f38ba8` |
 | 暗字 | menu 的說明與區塊標題；一列一個值的 panel 的表頭與分組標題；hint、footer 的冒號與說明，以及隔開幾個鍵的 `\|`（`j\|k`）；說明列；灰字提議；空值的說明；沒有 focus 的打字列；空狀態；畫面比最低尺寸小時名稱下面的提示；分隔線（popup 裡的、畫面 chip 列下面的） | Overlay0 `#6c7086` |

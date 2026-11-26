@@ -4,7 +4,7 @@
 
 ## terminal.1 用途
 
-框裡跑的子程序（shell、編輯器、遠端 session）：按鍵都給它，只有出口鍵、app 保留的組合鍵，以及互動 terminal 的 `Alt-v`、`PgUp`（見下面的「哪些 PTY 有這兩種模式」）屬於 app（Rules F1、K10）。PTY 放在
+框裡跑的子程序（shell、編輯器、遠端 session）：按鍵都給它，只有出口鍵、app 保留的組合鍵，以及互動 terminal 的 `Alt-v`、`PgUp`（見下面的「哪些 PTY 能捲回去、能選取」）屬於 app（Rules F1、K10）。PTY 放在
 panel 裡時（例：sshu 的格子）不是 popup：框照 [`layout/panel`](../layout/panel-zh_TW.md)，PTY 的鍵寫在 footer（[`layout/screen`](../layout/screen-zh_TW.md)）。
 它也可以裝在那個 panel 上 app 自己的模式裡，照模式進出，`Esc` 是它的出口鍵（Rules K11）。
 
@@ -45,36 +45,33 @@ focus 在 PTY 裡時，footer 上的 `Space`、`?`、`q` 都送給子程序，�
   - 不寫 `close`。
 - 出口鍵後面跟 app 保留的組合鍵（例：`Alt-t:hide`），互動 terminal 再接 `Alt-v:select`、`PgUp:history`（見下面）。
 - `Alt-Esc` 一律先 confirm（Rules K10）；裝在 app 自己的模式裡的 PTY，`Esc` 離開、不 confirm（Rules K11）。
-- `Home`、`End` 屬於子程序（Rules K10）；要到歷史的頭尾，用歷史模式的 `gg|G`（見下面）。
+- `Home`、`End` 屬於子程序（Rules K10）；要到歷史的頭尾，用選取模式的 `gg|G`（見下面）。
 
-## terminal.4 哪些 PTY 有這兩種模式
+## terminal.4 哪些 PTY 能捲回去、能選取
 
-下面的歷史模式與選取模式看 PTY 拿來做什麼，不是看它是不是 PTY：
+下面的捲回去看歷史與選取模式看 PTY 拿來做什麼，不是看它是不是 PTY：
 
-- **互動 terminal**：使用者在裡面打自己指令的 PTY（shell、ssh 連線、`kubectl exec`），一定有這兩種模式。
-- **app 開一個程式做一件事的 PTY**（`$EDITOR` 編檔、讓 doas 問密碼）：沒有這兩種模式，按鍵全部給那個程式，包括 `PgUp`。捲動、
+- **互動 terminal**：使用者在裡面打自己指令的 PTY（shell、ssh 連線、`kubectl exec`），兩樣都有。
+- **app 開一個程式做一件事的 PTY**（`$EDITOR` 編檔、讓 doas 問密碼）：兩樣都沒有，按鍵全部給那個程式，包括 `PgUp`。捲動、
   移動、選取是那個程式自己的事。
 - **子程序佔滿整個畫面時**（在互動 terminal 裡開了 vim、less、htop，它們切到終端機的另一個畫面）：`PgUp` 送給它，下框不寫
-  `PgUp:history`；它回到一般畫面後，`PgUp` 又進歷史模式。選取模式照常，選的是凍住的那個畫面。
+  `PgUp:history`；它回到一般畫面後，`PgUp` 又能捲回去。選取模式照常，選的是凍住的那個畫面。
 - **使用者把所有鍵都給子程序時**（例：sshu 鎖住格子，給在裡面再開的 sshu 用）：選取模式暫時讓出去；`PgUp|PgDn` 直接送進去，
-  由最裡面的 PTY 捲它自己的歷史，就像直接在那個 terminal 裡操作。解開的鍵照 Rules K10 常駐揭露，解開後兩種模式回來。
+  由最裡面的 PTY 捲它自己的歷史，就像直接在那個 terminal 裡操作。解開的鍵照 Rules K10 常駐揭露，解開後兩樣都回來。
 
 **為什麼**：要顧的是使用者自己的指令：在 shell 裡打的指令，輸出要捲得回去、選得起來。編輯器與佔滿畫面的程式自己管捲動與選取，
 我們沒有重寫它們，就不搶它們的鍵。它們的畫面也不會留進歷史，攔下 `PgUp` 只會讓 vim 翻不了頁，換來一個空的歷史。
 
-## terminal.5 歷史模式
+## terminal.5 捲回去看歷史
 
-互動 terminal 的即時畫面上，字母都屬於子程序（shell 要 `j`、`k`、`g`），所以捲上去看歷史就是一個模式（Rules K11），裡面才用家族的移動鍵。
+互動 terminal 上，`PgUp` 一次往回捲一頁看歷史，`PgDn` 往下捲回來，跟所有終端機一樣。這不是模式（Rules K11）：框不變色、不出現模式名，其他鍵照樣屬於子程序（shell 要 `j`、`k`、`g`）。
 
-- **進入**：`PgUp` 捲上去就進入。框與模式名照 K11 換成模式色，模式名是 `History`（`┫History┣`）。
-- **模式裡**：`j|k`、`u|d`、`gg|G`、`PgUp|PgDn` 都捲歷史，不送給子程序。
-- **`Esc`**：離開模式，回到即時畫面。
-- **其他鍵**：先離開模式回到即時畫面，再照常送給子程序 —— 看完歷史直接打字，字就落在 shell 裡。
-- **揭露**：照 K11，模式裡能按的鍵寫在下框的 hint 與 `?` 的 key reference。`PgUp|PgDn` 跟別處一樣不列在 `u|d`
-  旁邊（Rules K12）；怎麼進來寫在即時畫面的 `PgUp:history`。
+- **捲回去的時候**：下框右邊顯示捲動位置，是畫面上的行在整個歷史裡的哪一段（`N-M of T`，跟沒有游標的 viewer 一樣，[`dialog/note`](note-zh_TW.md)）；回到即時畫面就拿掉。
+- **回到即時畫面**：`PgDn` 捲到底，或按其他任何鍵（方向鍵也算）：先回到即時畫面，再照常送給子程序 —— 看完歷史直接打字，字就落在 shell 裡。
+- **家族的移動鍵**（`j|k`、`u|d`、`gg|G`）只在選取模式 `Viewing`（`Alt-v`，terminal.6）裡走歷史，它的游標可以往上走進歷史。
+- **揭露**：照舊是下框 hint 的 `PgUp:history`（terminal.3）。
 
-**為什麼**：到頭到尾在家族裡是 `gg|G`，PTY 的歷史也一樣；但即時畫面上每個字母都要送給子程序，家族的移動鍵只能在模式裡用。
-`PgUp` 是終端機裡捲歷史的老習慣，按下去就進得來；打字的人不用先按 `Esc`，打下第一個字就回到即時畫面。
+**為什麼**：`PgUp|PgDn` 是終端機一直以來捲回去的方式，本來就沒有模式；`j|k`、`gg|G` 是家族選取模式的鍵。混在一起，把每個終端機不用模式就做得到的事變成一個模式，也把屬於 shell 的鍵拿來當模式的鍵（user 2026-11-26）。沒有模式，就沒有東西要變色，也沒有東西要離開：打下的第一個字就在 shell 裡。
 
 ## terminal.6 選取模式
 
@@ -97,7 +94,7 @@ app 要寫系統檔（例：hostu 寫 `/etc/hosts`）時，交給系統的提權
 - **密碼只交給提權工具**：除了交給工具的標準輸入，不寫進任何檔案、不進 App Log、不出現在畫面上（toast、錯誤訊息）、不送到網路上，
   交出去就丟。用 lib 的 app 只給要跑的指令：問密碼、交給工具都由 lib 做，app 碰不到密碼（Rules E8）。
 - 工具不能從標準輸入讀密碼時（例：`doas`），開 terminal popup 跑它，讓它自己問；跑完 popup 自己關。這個 PTY 是 app 開一個程式做
-  一件事，沒有歷史模式與選取模式（上面的「哪些 PTY 有這兩種模式」）。
+  一件事，不能捲回去，也沒有選取模式（上面的「哪些 PTY 能捲回去、能選取」）。
 - 用哪個工具，app 可以依平台自行決定（例：sudo，沒有時 doas；Windows 用 gsudo 或內建的 sudo，由系統跳 UAC）。
 
 **為什麼**：問一行密碼，用不著撐滿畫面的終端機；問密碼的樣子跟家族其他 password popup 一樣。密碼因此經過 app，但家族是開源的，

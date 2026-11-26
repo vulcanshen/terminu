@@ -125,17 +125,17 @@ Every viewer (a YAML view, the App Log, a file's content…) has a selection mod
 it; the key reference, the error popup and a form's typing explanation have no such mode, and `j|k` only scroll there.
 
 - **No cursor by default**: `j|k`, `u|d`, `gg|G` scroll; with tabs, `h|l` switch tabs (Rules K12).
-- **The first `v`**: enters the selection mode (a mode, Rules K11: the frame and the mode name turn the mode colour
-  Yellow). The cursor appears at the start of the first visible line, with nothing selected yet. `h|j|k|l`, `w|b|e`,
+- **The first `v`**: enters the selection mode, `Viewing` (a mode, Rules K11: the frame and the mode name turn the mode
+  colour Yellow). The cursor appears at the start of the first visible line, with nothing selected yet. `h|j|k|l`, `w|b|e`,
   `0|$`, `u|d`, `gg|G` move it, and the view scrolls when it reaches the edge. Hint `v:select Esc:cancel`.
 - **The second `v`**: starts the selection where the cursor is; moving the cursor then stretches it. The selection runs
   by characters (vim's `v`): from the start to the cursor, the cursor's character included; for whole lines, move the
-  cursor to the start of the line first. The mode name becomes `Visual>select` (the mode name in
+  cursor to the start of the line first. The mode name becomes `Viewing:selecting` (the mode name in
   [`layout/panel`](../layout/panel.md)). Hint `y:copy Esc:unselect`. Once selecting, `v` does nothing.
 - **`y`**: copies the selection and leaves the mode; the selection and the cursor disappear, and a Success toast says
   it is copied ([`dialog/toast`](toast.md)).
 - **`Esc`**: goes back one layer at a time (Rules K4, K11): once selecting, the selection disappears and it is back to
-  `Visual`, the cursor where it is; before selecting, it leaves the whole mode and the cursor disappears. Neither copies.
+  `Viewing`, the cursor where it is; before selecting, it leaves the whole mode and the cursor disappears. Neither copies.
   `v` is not taken as an alias for going back (K12).
 - **Colours**: the cursor is one cell of the layer colour background with Base text (the same as Move in
   [`input/textarea`](../input/textarea.md)); the selection has a Yellow background with Base text, the cursor's cell
@@ -148,7 +148,7 @@ it; the key reference, the error popup and a form's typing explanation have no s
 start, and with selection starting on the first `v`, the start would always be the first visible line. With no cursor
 by default, `j|k` still scroll and `h|l` still switch tabs, and a note read and closed carries no cursor it never uses.
 By characters: what is copied out of a note is often a word, a command or a URL. Copying usually finishes the job, so it
-takes no extra `Esc`. `Esc` goes back one layer as everywhere else: one layer back from `Visual>select` is `Visual`,
+takes no extra `Esc`. `Esc` goes back one layer as everywhere else: one layer back from `Viewing:selecting` is `Viewing`,
 so a start picked wrong is put right by going back, moving and selecting again (the user, 2026-10-24). Every viewer has it: nobody has to remember which viewers can select and which cannot, and any
 stretch of text you can see in the family can be copied.
 
@@ -276,10 +276,10 @@ keep arriving, as in streaming content.
   what is in view, like moving the cursor, and a record of it means nothing (the user, 2026-10-27, from terminu-go); nor
   does a `/` search, in a viewer or in a panel without a cursor (note.3, panel.14): finding text only moves what is in
   view, as filtering changes it, and a search with no hit is recorded only by its Info toast, as every toast is (the
-  user, 2026-11-04, from catu); nor does a panel's diff mode (note.8; the user, 2026-10-27, from kbu), nor resizing a
+  user, 2026-11-04, from catu); nor does a panel's Diffing mode (note.8; the user, 2026-10-27, from kbu), nor resizing a
   panel (screen.9 in [`layout/screen`](../layout/screen.md): it changes no data; the user, 2026-11-26), nor going
   into or out of any other mode (Rules K11, e.g.
-  webu's Visual and Focus, kbu's Drag): a mode only changes how you move or look, and what is done in it (copying,
+  webu's Viewing and Focusing, kbu's Dragging): a mode only changes how you move or look, and what is done in it (copying,
   dropping, pressing a link) is recorded by its result (the user, 2026-10-29). An operation
   is done once it is accepted: cancelled with `Esc` at the confirm before it, or at the form or input popup that takes
   its values, it was not done and has no result, and goes unrecorded (a confirm is only a door, Rules T1; from sshu).
@@ -315,7 +315,7 @@ matters is what happened while the app was open this time, with no further kind 
 
 ## note.8 Diff
 
-The popup the diff mode of a panel opens, directly or from the list of the items that differ it goes into
+The popup the Diffing mode of a panel opens, directly or from the list of the items that differ it goes into
 ([`layout/panel`](../layout/panel.md), panel.9): a viewer (the viewer's rules and its selection mode above apply).
 The title glyph is `nf-md-compare` (U+F018A), the title `DIFF`; two tabs follow it, `UNIFIED` and `SPLIT`, switched
 with `h|l` (Rules K12). It is `terminal width − 2` wide, with no 120-column cap (Rules F7; the user, 2026-11-19, from
@@ -340,7 +340,7 @@ gittu).
 - **It opens on UNIFIED**, the first tab, every time: the two are tabs one key apart, so the choice is not kept (the
   user, 2026-11-19). On a terminal narrower than 96 `SPLIT` is disabled (Rules M6).
 
-**Two versions of one item**: besides the diff mode, an action of the app's own that shows two versions of one item
+**Two versions of one item**: besides the Diffing mode, an action of the app's own that shows two versions of one item
 (e.g. a file in a commit against the commit before it, a file being edited against its last commit) opens this
 diff too, not a viewer of a patch: the older one as the anchor, the first row `<older> ↔ <newer>`, each named
 by the app. When what changed holds many (e.g. a commit against the one before it), going into it lists the items that
@@ -386,7 +386,7 @@ Whether to read content again, and when, the app may decide for itself.
   - In the selection mode (note.4) only the positions of the cursor and of the selection's start are kept, never the
     text; a position is there when its line, and that column in it, still are. Both there: nothing changes, what
     they cover is the new text, and `y` copies that. The cursor there but not the start: the selection goes and it
-    is back to `Visual`, as one `Esc` does, the cursor kept. The cursor not there: the mode is left, as `Esc` to the
+    is back to `Viewing`, as one `Esc` does, the cursor kept. The cursor not there: the mode is left, as `Esc` to the
     bottom does. Either way a Warning toast says so. When the content cannot be read at all (e.g. the file is gone),
     the mode is left, and the Error toast saying it cannot be read is the only toast
     ([`layout/panel`](../layout/panel.md), panel.15; with a menu open, below).

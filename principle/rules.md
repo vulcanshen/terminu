@@ -317,7 +317,7 @@ chord.
   spelled by "`Esc` then that key"; whether they confirm, the app may decide for itself.
 - **A PTY held by an app's own mode** (K11): `Esc`, leaving the mode, is its exit key, with no confirm, and a piled
   `Alt-Esc` is leaving and one `Esc` sent; the exit key and the confirm above are for the other PTYs.
-- An interactive terminal (a PTY where the user types their own commands) always has the history mode (`PgUp`) and the
+- An interactive terminal (a PTY where the user types their own commands) always scrolls back with `PgUp` and has the
   selection mode (`Alt-v`); see [components/dialog/terminal](../components/dialog/terminal.md).
 - Beyond that, whether the app keeps other chords of its own inside the PTY besides the exit key (e.g. sshu's zoom and
   cell switching inside a cell), the app may decide for itself. Any it keeps are disclosed permanently, like the exit key (M1).
@@ -346,8 +346,8 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 | `Space` | opens the mode's Space menu (below); in an app's own mode where the user has put one of its actions on `Space`, does that action (below) |
 | `!` | does nothing (the App Log opens outside a mode) |
 | `?` | the mode's key reference (read-only, K6): which keys work in the mode and what they do |
-| `Enter` | does the most intuitive thing in the mode (K3): in a mode tdp specifies, as written there (e.g. Drag drops the row held); in an app's own mode, the app's (below) |
-| `Esc` | leaves the mode (K4), back to the state before it was entered (what an app's own mode leaves behind: below); in a mode with layers, back one layer at a time (e.g. `Visual>select` back to `Visual`); leaving an app's own mode may open a popup (below) |
+| `Enter` | does the most intuitive thing in the mode (K3): in a mode tdp specifies, as written there (e.g. Dragging drops the row held); in an app's own mode, the app's (below) |
+| `Esc` | leaves the mode (K4), back to the state before it was entered (what an app's own mode leaves behind: below); in a mode with layers, back one layer at a time (e.g. `Viewing:selecting` back to `Viewing`); leaving an app's own mode may open a popup (below) |
 | `q`, `Ctrl-C` | run the quit flow, as K9 |
 | `Tab`, `1`–`9` | with the mode on a panel: a mode may suspend `Tab` and the digit keys, but pressing them must respond, saying to leave the mode with `Esc` first (e.g. a toast); while the toast is up, the first `Esc` closes it (K4). A key that does nothing outside the mode either (e.g. `Tab` or `2` on a screen with one panel, or the digit of the panel already focused, K1) does nothing in the mode too, silently. With the mode in a popup, see below |
 
@@ -356,25 +356,26 @@ With focus inside a mode (the term "mode"), the core keys act like this:
 - **The mode's Space menu** ("Inside a mode" in [components/dialog/menu](../components/dialog/menu.md); an app's own
   mode: below): it lists only
   what can be done in the mode, in two sections — **item operations**: what can be done now to the item under the
-  cursor (or the selected range), picking one being the same as pressing its key (e.g. `[D]iff` in the Diff mode,
+  cursor (or the selected range), picking one being the same as pressing its key (e.g. `[D]iff` in the Diffing mode,
   `Cop[y]` once a selection has started); **mode operations**: the mode's own keys — the movement keys are only shown,
   not run, while what really does something, such as leaving the mode, runs as usual. Panel, item and global actions are
   never listed. The mode's keys are also disclosed in the `?` key reference and in the footer / bottom-border hint (how
   the footer looks inside a mode: [components/layout/screen](../components/layout/screen.md)).
 - **A mode shows itself**: the mode name appears at the right of the top border of the frame the mode lives in (panel or
   popup), and the frame turns the mode colour; leaving the mode restores both. A mode spanning a list and its details
-  panel (the Diff mode, [components/layout/panel](../components/layout/panel.md), panel.9) shows itself on both frames,
+  panel (the Diffing mode, [components/layout/panel](../components/layout/panel.md), panel.9) shows itself on both frames,
   the heavy line telling which has the focus (L5). The mode name opens and closes with a
   short animation that never holds the mode up: the mode and the frame colour change at once. The mode name is a word,
-  not colour alone: a focused panel in a mode still shows that it has focus (L5). A mode with layers adds each layer to its
-  name after a `>` (e.g. a viewer's selection mode, once selecting, is `Visual>select`), and `Esc` goes back one layer
-  at a time. How it looks:
+  not colour alone: a focused panel in a mode still shows that it has focus (L5). It is the -ing word of what is being
+  done (`Dragging`, `Viewing`), an app's own mode's too (the user, 2026-11-26). A mode with layers adds each layer to its
+  name after a `:` (e.g. a viewer's selection mode, once selecting, is `Viewing:selecting`), and `Esc` goes back one
+  layer at a time. How it looks:
   [components/layout/panel](../components/layout/panel.md).
-- **A mode inside a popup** (e.g. a viewer's selection mode, a reorder's Drag mode): the frame and mode name, `Space`,
+- **A mode inside a popup** (e.g. a viewer's selection mode, a reorder's Dragging mode): the frame and mode name, `Space`,
   `?`, `Esc`, `q` and `Ctrl-C` work as above; `Tab` and the digit keys keep whatever they do in that popup (in a popup
   they never switch panels) and need no extra response; the footer stays as it is while a popup is open and does not
   change to the mode's words ([components/layout/screen](../components/layout/screen.md), the footer).
-- **A mode on a PTY** (e.g. a terminal's history mode or selection mode): the focus is still in the PTY, so any key other
+- **A mode on a PTY** (e.g. a terminal's selection mode): the focus is still in the PTY, so any key other
   than the mode's own keys, `Space`, `?` and `Esc` first leaves the mode, then goes to the child process by K10 — `q` and `Ctrl-C`
   too; they do not start the quit flow ([components/dialog/terminal](../components/dialog/terminal.md)).
 - **Keys the user sets**: whether the user may change a mode's
@@ -401,15 +402,15 @@ With focus inside a mode (the term "mode"), the core keys act like this:
   leaves the mode, after which `Space` opens the panel's Space menu (K5). Picking `Space` shows a Warning
   saying what `Space` now does in the mode and that for a menu, `Esc` comes first (the user, 2026-11-16, from
   tetru).
-- **An app's own mode** (a mode neither a component nor a rule of tdp specifies; the components' Diff, Drag,
-  selection and history modes and K12's item-to-item mode are tdp's), tdp's opening for what no component holds
+- **An app's own mode** (a mode neither a component nor a rule of tdp specifies; the components' Diffing,
+  Dragging and selection modes and K12's item-to-item mode are tdp's), tdp's opening for what no component holds
   (Principle P5):
   - **When an app may make one**: only for what neither a component nor a rule of tdp does, e.g. playing a game or
     drawing ([components/layout/panel](../components/layout/panel.md), panel.16). Things the user picks out one by one
     to act on are a list however they are laid out (a grid, cards, a board), and are done with a list and its modes. A
     mode doing what a component's mode does (selecting text to copy, reordering, comparing) is that mode on the
     component's content; on content no component holds the app may make it, keeping the family's names and keys (e.g.
-    `Visual`, `v`, `y`, `Esc:cancel`). Where a component's content needs a mode the component lacks (e.g. panning a
+    `Viewing`, `v`, `y`, `Esc:cancel`). Where a component's content needs a mode the component lacks (e.g. panning a
     picture), it is a gap reported to tdp, not an app's own mode.
   - **The way in**: only by the user's action, disclosed as any other (the Space menu and `?`, M3), never on its own
     (not at start-up, not when something happens in the background, K3).
@@ -513,7 +514,7 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
 - A one-dimensional list in a panel with tabs: `h|l` switch tabs, `j|k` still move in the list.
 - **Two-dimensional content** (several items to a row, e.g. the links in the text of a page webu shows): it is read with
   no cursor, `j|k`, `u|d` and `gg|G` scrolling as in a panel without a cursor; going from item to item is a mode (K11,
-  e.g. webu's Focus), where `j|k` step item by item in reading order (left to right along a row, then the next row),
+  e.g. webu's Focusing), where `j|k` step item by item in reading order (left to right along a row, then the next row),
   wrapping at the ends, and `gg|G` go to the first and the last item (the user, 2026-10-29, as webu's reader).
 - **`u|d` move half a page, `gg|G` to the top and the bottom.** `g` is only the start of a two-key chord: `gg` goes to
   the top, and other chords starting with `g` may be hotkeys (e.g. filu's `[go]to`); a single `g` does
@@ -528,7 +529,7 @@ Where you are not typing (outside the input state, K8), `j k u d g G h l` are ke
 - **Stepping wraps at the ends**: moving one step at a time along a run of items (`j|k`, `h|l`, the arrow keys, `Tab`)
   — a panel's list, a one-value-per-row panel, a menu, a form, the list of a finder, a select or a checkbox popup, a
   panel's tabs, the columns and items inside a picker — one step past the last item goes to the first, and one step back
-  from the first goes to the last. So does the item held in a Drag mode (a panel's Drag,
+  from the first goes to the last. So does the item held in a Dragging mode (on a panel, and in
   [components/input/reorder](../components/input/reorder.md)): one step past the last, it goes to the first and every
   other item moves down one. `u|d` stop at the first and the last item and do not wrap; `gg|G` go to the top
   and the bottom anyway. What moves through space rather than along a run of items does not wrap: the days of a
@@ -569,9 +570,9 @@ forms keep every key as it is.
 Letters the whole family gives one meaning, so that one press does the same thing in every app (the user,
 2026-11-20, from kbu):
 
-- **`D`**: the Diff mode's key ([`components/layout/panel`](../components/layout/panel.md), panel.9), written `[D]iff`.
-  Where the same panel already uses `D` for an action of its own that is not a delete (e.g. a Drag), the app may give
-  one of them another key; an app with no Diff mode may give `D` to something that is not a delete (e.g. webu's
+- **`D`**: the Diffing mode's key ([`components/layout/panel`](../components/layout/panel.md), panel.9), written `[D]iff`.
+  Where the same panel already uses `D` for an action of its own that is not a delete (e.g. entering a Dragging mode), the app may give
+  one of them another key; an app with no Diffing mode may give `D` to something that is not a delete (e.g. webu's
   `[D]ownloads` screen) (the user, 2026-11-20, from webu).
 - **`x`**: deletes the item under the cursor, `[x] Delete`; **`X`** deletes many at once (the marked ones, a whole
   batch), e.g. `[X] Delete marked`. Anything whose point is removing for good counts (deleting, discarding changes,
@@ -1007,7 +1008,7 @@ takes no other keys either.
 - With focus in a PTY, `Esc` belongs to the subprocess (K10); a terminal is left with the exit key. A toast can then only
   wait for its timer to go.
 - In a textarea's writing state, `Esc` leaves the writing state for the moving state (K8).
-- While a popup is in a mode (e.g. a viewer's selection mode, a reorder's Drag mode), `Esc` leaves the mode first (K11);
+- While a popup is in a mode (e.g. a viewer's selection mode, a reorder's Dragging mode), `Esc` leaves the mode first (K11);
   the next press closes the popup.
 - In a form, a textarea, a reorder or an app's own popup that works like a form (F1) whose content changed, `Esc` first opens a confirm asking whether to discard it
   ([components/dialog/form](../components/dialog/form.md)).

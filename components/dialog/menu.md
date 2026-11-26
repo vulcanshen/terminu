@@ -84,13 +84,13 @@ stay as follows:
 
 - **Title**: where the mode lives, as usual — the focused panel's `[N] label` on a panel, that popup's title in a popup.
 - **`ITEM OPERATION`**: what can be done now to the item under the cursor (or the selected range); rows run as usual,
-  picking one being the same as pressing its key (e.g. `[D]iff` in the Diff mode, described `with <anchor>`;
+  picking one being the same as pressing its key (e.g. `[D]iff` in the Diffing mode, described `with <anchor>`;
   `[v] Select` before a selection starts and `Cop[y]` after). What cannot be done now is disabled by M6 (e.g. with the
   cursor on the anchor).
-- **`<mode name> MODE`** (e.g. `DIFF MODE`; with layers the whole name, e.g. `VISUAL>SELECT MODE`): the mode's own keys. The movement keys are only shown — the key in the
+- **`<mode name> MODE`** (e.g. `DIFFING MODE`; with layers the whole name, e.g. `VIEWING:SELECTING MODE`): the mode's own keys. The movement keys are only shown — the key in the
   label's place, in Blue (as in the key reference, "a key that can be pressed now"), the description in Overlay0; the
   cursor skips them and `Enter` does nothing there. What really does something runs like any other row: leaving the
-  mode, named with the verb `Esc` has in the mode's hint (`[Esc] Leave` in the Diff mode, `[Esc] Cancel` where the
+  mode, named with the verb `Esc` has in the mode's hint (`[Esc] Leave` in the Diffing mode, `[Esc] Cancel` where the
   hint says `Esc:cancel`).
 - Panel, item and global actions and the `Global operation` row are never listed.
 - `Esc` in the menu still closes the menu (K4), back to the mode; the `[Esc]` of the leaving row is the key pressed in

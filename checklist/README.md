@@ -65,7 +65,7 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | sorting | a list that can be sorted |
 | marks | a list that can be marked for batch operations |
 | flags | a list drawing a domain flag in its mark column (one that cannot be marked, panel.7) |
-| Drag | a Drag mode |
+| Drag | a Dragging mode |
 | panel filter | a panel filter |
 | statusbar | a statusbar |
 | panel status | an app's own status on a panel's frame (layout/panel, panel.1) |
@@ -75,8 +75,8 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | panel without a cursor | a panel without a cursor (a preview, a log) |
 | loading | a panel or popup that waits for its content |
 | mode | a mode (Rules K11) |
-| mode (on a panel) | a mode opened on a panel (e.g. a panel's Drag) |
-| mode (in a popup) | a mode opened in a popup (e.g. a viewer's selection mode, a reorder's Drag) |
+| mode (on a panel) | a mode opened on a panel (e.g. a panel's Dragging mode) |
+| mode (in a popup) | a mode opened in a popup (e.g. a viewer's selection mode, a reorder's Dragging mode) |
 | an app's own mode | a mode neither a component nor a rule of tdp specifies (e.g. playing a game) |
 | disabled | actions that cannot run for now, or disabled items or fields |
 | long task | a long task (the progress under the screen chip row, or in the task's row in a single-screen app) |
@@ -98,9 +98,9 @@ decided by the terminu harness, not in tdp (see "How to judge" below).
 | finder with a preview | a finder with a preview: an ordinary finder, a file-picker (a select and a checkbox popup have none) |
 | file preview | a popup previewing files and directories: a file-picker, or a finder previewing files |
 | stores settings or data | settings, data, state or a cache written to disk |
-| diff mode | a panel's Diff mode (an anchor first, then another row to diff with) |
+| diff mode | a panel's Diffing mode (an anchor first, then another row to diff with) |
 | panels that follow | panels whose content follows which leading panel last had the focus (Rules L5) |
-| diff mode in a details panel | a Diff mode shown in a list's details panel (layout/panel, panel.9) |
+| diff mode in a details panel | a Diffing mode shown in a list's details panel (layout/panel, panel.9) |
 | shows two versions of one item | an action showing two versions of one item (dialog/note, note.8) |
 | items in items | items that hold items, walked a level at a time (layout/panel, panel.10) |
 | items of several rows | list items taking more than one row (layout/panel, panel.5) |

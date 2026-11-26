@@ -66,12 +66,12 @@
 （列開出的 popup 回到哪裡除外，Rules K11），以及模式外的東西一律不列，照下面：
 
 - **標題**：跟平常一樣寫模式所在的地方 —— panel 上寫 focus panel 的 `[N] label`，popup 裡寫那個 popup 的標題。
-- **`ITEM OPERATION`**：現在對 cursor 上那一項（或選起來的範圍）能做的事，跟平常的列一樣能執行，選了就等於按那個鍵（例：Diff
+- **`ITEM OPERATION`**：現在對 cursor 上那一項（或選起來的範圍）能做的事，跟平常的列一樣能執行，選了就等於按那個鍵（例：Diffing
   模式的 `[D]iff`，說明 `with <anchor>`；選取模式還沒開始選時的 `[v] Select`、開始選之後的 `Cop[y]`）。現在不能做的照 M6 停用
   （例：cursor 在 anchor 上）。
-- **`<模式名> MODE`**（例：`DIFF MODE`；有好幾層時寫整個名字，例：`VISUAL>SELECT MODE`）：模式本身的鍵。移動鍵只顯示 —— 鍵寫在 label 的位置、Blue（跟 key reference 一樣是
+- **`<模式名> MODE`**（例：`DIFFING MODE`；有好幾層時寫整個名字，例：`VIEWING:SELECTING MODE`）：模式本身的鍵。移動鍵只顯示 —— 鍵寫在 label 的位置、Blue（跟 key reference 一樣是
   「現在按得了的鍵」），說明 Overlay0；cursor 跳過，`Enter` 不作用。真的做事的跟一般的列一樣能執行：離開模式，
-  字用模式 hint 裡 `Esc` 的動詞（Diff 模式是 `[Esc] Leave`，hint 寫 `Esc:cancel` 的是 `[Esc] Cancel`）。
+  字用模式 hint 裡 `Esc` 的動詞（Diffing 模式是 `[Esc] Leave`，hint 寫 `Esc:cancel` 的是 `[Esc] Cancel`）。
 - panel、item、global 的動作與 `Global operation` 那一列一律不列。
 - menu 裡按 `Esc` 照舊是關掉 menu（K4）、回到模式；離開那一列的 `[Esc]` 是在模式裡按的鍵，跟 `[Enter] Connect` 一樣。
 

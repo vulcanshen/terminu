@@ -54,7 +54,7 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 排序 | 有可以排序的清單 |
 | 標記 | 有可以標記、整批操作的清單 |
 | 旗標 | 有在標記欄畫領域旗標的清單（不能標記的清單，panel.7） |
-| Drag | 有 Drag mode |
+| Drag | 有 Dragging mode |
 | panel filter | 有 panel filter |
 | statusbar | 有 statusbar |
 | panel 狀態 | 有 panel 框上 app 自己的狀態（layout/panel，panel.1） |
@@ -64,8 +64,8 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 沒有 cursor 的 panel | 有沒有 cursor 的 panel（預覽、log） |
 | loading | 有 panel 或 popup 要等內容載入 |
 | 模式 | 有模式（Rules K11） |
-| 模式（在 panel 上） | 有開在 panel 上的模式（例：panel 的 Drag） |
-| 模式（在 popup 裡） | 有開在 popup 裡的模式（例：viewer 的選取模式、reorder 的 Drag） |
+| 模式（在 panel 上） | 有開在 panel 上的模式（例：panel 的 Dragging mode） |
+| 模式（在 popup 裡） | 有開在 popup 裡的模式（例：viewer 的選取模式、reorder 的 Dragging mode） |
 | app 自己的模式 | 有 tdp 的元件和規則都沒有規定的模式（例：玩遊戲） |
 | 停用 | 有暫時不能執行的動作、停用的項目或欄位 |
 | 長時間工作 | 有長時間的工作（畫面 chip 列下的進度，或單畫面 app 工作那一列的進度） |
@@ -87,9 +87,9 @@ terminu checklist 是 [tdp](../principle/README-zh_TW.md) 的條目清單：把 
 | 有預覽的 finder | 有帶預覽的 finder：一般的 finder、file-picker（select、checkbox popup 沒有預覽） |
 | 有檔案預覽 | 有預覽檔案、目錄的 popup：file-picker，或預覽檔案的 finder |
 | 存設定或資料 | 有設定、資料、狀態或快取寫到磁碟 |
-| Diff 模式 | 有 panel 的 Diff 模式（先挑 anchor、再挑另一列來比） |
+| Diff 模式 | 有 panel 的 Diffing 模式（先挑 anchor、再挑另一列來比） |
 | 跟著換的 panel | 有 panel 的內容跟著最後拿到 focus 的帶頭 panel 換（Rules L5） |
-| Diff 模式在明細 panel | 清單的 Diff 模式顯示在它的明細 panel 裡（layout/panel，panel.9） |
+| Diff 模式在明細 panel | 清單的 Diffing 模式顯示在它的明細 panel 裡（layout/panel，panel.9） |
 | 看同一項的兩個版本 | 有看同一項兩個版本的動作（dialog/note，note.8） |
 | 項目裡還有項目 | 項目裡還有項目，一層一層進（layout/panel，panel.10） |
 | 占好幾列的項目 | 清單的項目占不只一列（layout/panel，panel.5） |

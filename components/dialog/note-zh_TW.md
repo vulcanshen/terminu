@@ -96,13 +96,13 @@
 這個模式，`j|k` 只捲動。
 
 - **平常沒有游標**：`j|k`、`u|d`、`gg|G` 捲動畫面；有 tab 時 `h|l` 切 tab（Rules K12）。
-- **第一次 `v`**：進入選取模式（模式，Rules K11：框與模式名換成模式色 Yellow）。游標出現在畫面第一行的行首，還沒開始選。
+- **第一次 `v`**：進入選取模式 `Viewing`（模式，Rules K11：框與模式名換成模式色 Yellow）。游標出現在畫面第一行的行首，還沒開始選。
   `h|j|k|l`、`w|b|e`、`0|$`、`u|d`、`gg|G` 移動游標，走到畫面邊緣時畫面跟著捲。hint `v:select Esc:cancel`。
 - **第二次 `v`**：從游標所在開始選，接著移動游標把範圍拉開。範圍以字為單位（vim 的 `v`）：從起點到游標，含游標那個字；要整行，
-  就先把游標移到行首。模式名變成 `Visual>select`（[`layout/panel`](../layout/panel-zh_TW.md) 的模式名）。hint `y:copy Esc:unselect`。
+  就先把游標移到行首。模式名變成 `Viewing:selecting`（[`layout/panel`](../layout/panel-zh_TW.md) 的模式名）。hint `y:copy Esc:unselect`。
   開始選之後再按 `v` 不作用。
 - **`y`**：複製選起來的文字，離開選取模式，範圍與游標都消失；跳一個 Success toast 說複製好了（[`dialog/toast`](toast-zh_TW.md)）。
-- **`Esc`**：一次退一層（Rules K4、K11）：開始選之後按，範圍消失、回到 `Visual`，游標留在原地；還沒開始選時按，整個離開，
+- **`Esc`**：一次退一層（Rules K4、K11）：開始選之後按，範圍消失、回到 `Viewing`，游標留在原地；還沒開始選時按，整個離開，
   游標消失。都不複製。不收 `v` 當退回的別名（K12）。
 - **顏色**：游標一格層色底、Base 字（跟 [`input/textarea`](../input/textarea-zh_TW.md)「移」的游標一樣）；範圍 Yellow 底、Base 字，
   游標那格維持層色；範圍裡的空行畫一格。
@@ -111,8 +111,8 @@
 
 **為什麼**：先移到起點再開始選 —— 游標一出現的地方不一定是要選的地方，按一次 `v` 就開始選的話，起點永遠被固定在畫面第一行。
 平常沒有游標，`j|k` 照樣捲、`h|l` 照樣切 tab，看完就關的 note 不多一個用不到的游標。以字為單位：從 note 裡複製的常常是一個字、
-一段指令或一個網址。複製完通常就做完了，不用再多按一次 `Esc`。`Esc` 跟其他地方一樣一次退一層：`Visual>select` 退一層就是
-`Visual`，起點選錯了，退回去移好再選（user 2026-10-24）。每個 viewer 都有：使用者不用記哪個 viewer 能選、哪個不能，
+一段指令或一個網址。複製完通常就做完了，不用再多按一次 `Esc`。`Esc` 跟其他地方一樣一次退一層：`Viewing:selecting` 退一層就是
+`Viewing`，起點選錯了，退回去移好再選（user 2026-10-24）。每個 viewer 都有：使用者不用記哪個 viewer 能選、哪個不能，
 家族裡看得到一段文字的地方就複製得到。
 
 ## note.5 key reference
@@ -214,9 +214,9 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
   （來自 demou）；popup 裡的操作不另外記，記的是它所屬那個動作的結果。panel filter（[`layout/panel`](../layout/panel-zh_TW.md)）
   也不記：篩選只是換看得到的範圍，跟移動 cursor 一樣，記下來沒有意義（user 2026-10-27，來自 terminu-go）；viewer 與沒有
   cursor 的 panel 的 `/` 搜尋（note.3、panel.14）也不記：找字只是換看到的地方，跟篩選換範圍一樣，找不到時只記它的 Info toast，
-  跟每一個 toast 一樣（user 2026-11-04，來自 catu）；panel 的 Diff 模式
+  跟每一個 toast 一樣（user 2026-11-04，來自 catu）；panel 的 Diffing 模式
   （note.8）也不記（user 2026-10-27，來自 kbu），調整 panel 大小也不記（[`layout/screen`](../layout/screen-zh_TW.md)
-  的 screen.9：它不改任何資料；user 2026-11-26），進出其他模式也不記（Rules K11，例：webu 的 Visual、Focus，kbu 的 Drag）：
+  的 screen.9：它不改任何資料；user 2026-11-26），進出其他模式也不記（Rules K11，例：webu 的 Viewing、Focusing，kbu 的 Dragging）：
   模式只是換一種移動或看的方式，在模式裡做完的事（複製、放下、按連結）照它的結果記（user 2026-10-29）。動作確定了才算做了：
   在動作前面的 confirm、或填值的表單與 input popup 上按 `Esc` 取消，動作沒做、沒有結果，不記（confirm 只是門，Rules T1；來自 sshu）。
 - **app 自己重讀的內容**（定時重讀，或看著的東西變了才讀；note.9）：讀到沒變不記；讀到變了，記一筆 INFO，寫出改了什麼（例：
@@ -242,7 +242,7 @@ popup 本身不是錯誤，只是裡面有一個值不合格，所以那裡的�
 
 ## note.8 Diff
 
-panel 的 Diff 模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）直接打開、或從它進去的差異項目清單打開的 popup：
+panel 的 Diffing 模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）直接打開、或從它進去的差異項目清單打開的 popup：
 一個 viewer（上面 viewer 的規定與選取模式照樣適用）。
 標題 glyph `nf-md-compare`（U+F018A），寫 `DIFF`；後面接兩個 tab：`UNIFIED`、`SPLIT`，`h|l` 切（Rules K12）。寬度是
 `terminal 寬 − 2`，不受 120 欄上限（Rules F7；user 2026-11-19，來自 gittu）。
@@ -262,7 +262,7 @@ panel 的 Diff 模式（[`layout/panel`](../layout/panel-zh_TW.md)，panel.9）�
 - **每次都從 UNIFIED 開始**（第一個 tab）：兩種只是隔一個鍵的 tab，選了哪一種不記（user 2026-11-19）。終端機寬不到 96 時
   `SPLIT` 停用（Rules M6）。
 
-**同一項的兩個版本**：除了 Diff 模式，app 自己的動作要看同一項的兩個版本時（例：一個 commit 裡的檔案對它的上一個 commit、正在改的
+**同一項的兩個版本**：除了 Diffing 模式，app 自己的動作要看同一項的兩個版本時（例：一個 commit 裡的檔案對它的上一個 commit、正在改的
 檔案對最後一次 commit），也打開這個 Diff，不用顯示 patch 的 viewer：舊的那個當 anchor，第一列寫 `<舊的> ↔ <新的>`，名字由 app
 給。改到的東西裝著許多項目時（例：一個 commit 對它的上一個），進去後照 panel.9 列出有差異的項目，標記、`Enter`、`Esc` 都一樣
 （[`layout/panel`](../layout/panel-zh_TW.md)）（user 2026-11-19，來自 gittu）。
@@ -293,7 +293,7 @@ panel.14），開著的時候可能會變：一直有新的行進來（串流內
     跟 `n` 繞回開頭一樣），畫面不為此移動；一筆都不剩時，就是一次沒找到的搜尋（Info toast，命中與狀態消失）。開著的
     Space menu 與 key reference 不為此改變。
   - 選取模式（note.4）只保留 cursor 與選取起點的位置，不保留字；那一行、那一行裡的那一欄都還在，位置才算還在。兩個都在：
-    什麼都不變，選到的是新的字，`y` 複製新的字。cursor 在、起點不在：拿掉選取，回到 `Visual`，跟按一次 `Esc` 一樣，
+    什麼都不變，選到的是新的字，`y` 複製新的字。cursor 在、起點不在：拿掉選取，回到 `Viewing`，跟按一次 `Esc` 一樣，
     cursor 留著。cursor 不在：離開模式，跟 `Esc` 退到底一樣。這兩種都跳 Warning toast 說明。內容整個讀不到時（例：檔案
     被刪了），離開模式，只跳那個讀不到的 Error toast（[`layout/panel`](../layout/panel-zh_TW.md)，panel.15；menu 開著時見
     下面）。

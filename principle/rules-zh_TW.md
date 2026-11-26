@@ -258,7 +258,7 @@ focus 在 PTY（跑在 app 裡的 shell、編輯器、遠端 session）時，**�
   拼出來；要不要 confirm，app 可以自行決定。
 - **裝在 app 自己的模式裡的 PTY**（K11）：離開模式的 `Esc` 就是它的出口鍵，不跳 confirm，黏成的 `Alt-Esc` 是離開再送一個
   `Esc`；上面的出口鍵與 confirm 管的是其他 PTY。
-- 互動 terminal（使用者在裡面打自己指令的 PTY）一定有歷史模式（`PgUp`）與選取模式（`Alt-v`），見
+- 互動 terminal（使用者在裡面打自己指令的 PTY）一定能用 `PgUp` 捲回去看歷史，也有選取模式（`Alt-v`），見
   [components/dialog/terminal](../components/dialog/terminal-zh_TW.md)。
 - 除此之外，PTY 裡要不要再保留其他 app 的組合鍵（例：sshu 在格子裡的放大、換格），app 可以自行決定。
   保留的鍵跟出口鍵一樣常駐揭露（M1）。
@@ -282,27 +282,28 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
 | `Space` | 打開這個模式的 Space menu（見下面）；app 自己的模式裡，使用者把模式的一個動作放到 `Space` 時，做那個動作（見下面） |
 | `!` | 不作用（App Log 在模式外打開） |
 | `?` | 這個模式的 key reference（唯讀，K6）：模式裡能按什麼鍵、做什麼 |
-| `Enter` | 在模式裡做最直覺的事（K3）：tdp 規定的模式照那裡寫的（例：Drag 放下拿著的那一列）；app 自己的模式由 app 決定（見下面） |
-| `Esc` | 離開模式（K4），回到進入前的狀態（app 自己的模式離開後留下什麼見下面）；模式有好幾層時一次退一層（例：`Visual>select` 退回 `Visual`）；離開 app 自己的模式時可以跳出 popup（見下面） |
+| `Enter` | 在模式裡做最直覺的事（K3）：tdp 規定的模式照那裡寫的（例：Dragging 放下拿著的那一列）；app 自己的模式由 app 決定（見下面） |
+| `Esc` | 離開模式（K4），回到進入前的狀態（app 自己的模式離開後留下什麼見下面）；模式有好幾層時一次退一層（例：`Viewing:selecting` 退回 `Viewing`）；離開 app 自己的模式時可以跳出 popup（見下面） |
 | `q`、`Ctrl-C` | 照 K9 進入離開流程 |
 | `Tab`、`1`–`9` | 模式在 panel 上時：模式可以暫停 `Tab` 與數字鍵，但按了要有回應，說明先 `Esc` 離開模式（例：toast）；toast 還在時，第一個 `Esc` 先收掉它（K4）。在模式外也不會做事的鍵（例：只有一個 panel 的畫面上的 `Tab`、`2`，或已經 focus 的那個 panel 的數字，K1），在模式裡也不作用，不出聲。模式在 popup 裡時見下面 |
 
 - **模式裡只有模式自己的鍵與上表的 core key 作用**：panel 的熱鍵與 global 熱鍵都不作用，按了不出聲。
 - **模式的 Space menu**（[components/dialog/menu](../components/dialog/menu-zh_TW.md) 的「模式裡」；app 自己的模式見下面）：只列模式裡能做的事，分兩區 ——
-  **項目操作**：現在對 cursor 上那一項（或選起來的範圍）能做的事，選了就等於按那個鍵（例：Diff 模式的 `[D]iff`、選取模式
+  **項目操作**：現在對 cursor 上那一項（或選起來的範圍）能做的事，選了就等於按那個鍵（例：Diffing 模式的 `[D]iff`、選取模式
   開始選之後的 `Cop[y]`）；**模式操作**：這個模式本身的鍵 —— 移動鍵只顯示、不能執行，離開模式這種真的做事的照樣能執行。
   panel、item、global 的動作一律不列。模式的鍵也揭露在 `?` 的 key reference 與 footer / 下框 hint（footer 在模式裡的樣子見
   [components/layout/screen](../components/layout/screen-zh_TW.md)）。
 - **模式要標示自己**：模式名顯示在模式所在的框（panel 或 popup）的上框右側，外框換成模式色；離開模式就恢復。同時涵蓋清單與明細 panel
-  的模式（Diff 模式，[components/layout/panel](../components/layout/panel-zh_TW.md)，panel.9）兩個框都標示，粗線表示 focus 在哪一個
+  的模式（Diffing 模式，[components/layout/panel](../components/layout/panel-zh_TW.md)，panel.9）兩個框都標示，粗線表示 focus 在哪一個
   （L5）。模式名開關時有一小段
   動畫，不會讓模式等它：模式與外框顏色都立刻換。模式名是字，
-  不只靠顏色：模式裡 focus 的 panel 照樣看得出是 focus（L5）。模式有好幾層時，模式名把層接在後面、用 `>` 隔開（例：viewer 的
-  選取模式開始選之後是 `Visual>select`），`Esc` 一次退一層。樣子見 [components/layout/panel](../components/layout/panel-zh_TW.md)。
-- **模式在 popup 裡時**（例：viewer 的選取模式、reorder 的 Drag mode）：框與模式名、`Space`、`?`、`Esc`、`q` 與 `Ctrl-C` 照上面；
+  不只靠顏色：模式裡 focus 的 panel 照樣看得出是 focus（L5）。它是正在做的事的 -ing 字（`Dragging`、`Viewing`），app 自己的
+  模式也一樣（user 2026-11-26）。模式有好幾層時，模式名把層接在後面、用 `:` 隔開（例：viewer 的
+  選取模式開始選之後是 `Viewing:selecting`），`Esc` 一次退一層。樣子見 [components/layout/panel](../components/layout/panel-zh_TW.md)。
+- **模式在 popup 裡時**（例：viewer 的選取模式、reorder 的 Dragging mode）：框與模式名、`Space`、`?`、`Esc`、`q` 與 `Ctrl-C` 照上面；
   `Tab` 與數字鍵照那個 popup 本來的作用（popup 裡它們不換 panel），不用另外回應；footer 照 popup 開著時的樣子，不換成模式的字
   （[components/layout/screen](../components/layout/screen-zh_TW.md) 的 footer）。
-- **模式在 PTY 上時**（例：terminal 的歷史模式、選取模式）：focus 還在 PTY 裡，模式自己的鍵、`Space`、`?`、`Esc` 以外的鍵，先離開模式、再照 K10
+- **模式在 PTY 上時**（例：terminal 的選取模式）：focus 還在 PTY 裡，模式自己的鍵、`Space`、`?`、`Esc` 以外的鍵，先離開模式、再照 K10
   送給子程序 —— `q` 與 `Ctrl-C` 也一樣，不進離開流程（[components/dialog/terminal](../components/dialog/terminal-zh_TW.md)）。
 - **使用者自己設定的鍵**：要不要讓使用者改模式自己的鍵、能選哪些鍵、怎麼設定，
   **app 可以自行決定**。要守的：使用者選的鍵不能是這個模式裡已經有作用的鍵（模式的其他鍵、上表的 core key）；選到時跳
@@ -321,12 +322,12 @@ focus 在一個模式裡時（術語「模式」），core key 這樣作用：
   寫 `Space:<動作>`（`Space` 是用一個動詞講的一對的一半時，照 M5 寫那一對，例：`j|Space:move`）；`?` 照樣列每個鍵，
   `Esc` 照樣離開模式，離開後 `Space` 打開 panel 的 Space menu（K5）。使用者選了 `Space` 時跳 Warning，說出 `Space` 在
   模式裡改做什麼、要 menu 先按 `Esc`（user 2026-11-16，來自 tetru）。
-- **app 自己的模式**（tdp 的元件和規則都沒有規定的模式；元件的 Diff、Drag、選取、歷史模式與 K12 的逐項模式是 tdp 的），
+- **app 自己的模式**（tdp 的元件和規則都沒有規定的模式；元件的 Diffing、Dragging、選取模式與 K12 的逐項模式是 tdp 的），
   tdp 給元件裝不下的東西開的口（Principle P5）：
   - **什麼時候能做**：只限 tdp 的元件和規則都沒有的事，例：玩遊戲、畫圖（[components/layout/panel](../components/layout/panel-zh_TW.md)
     的 panel.16）。使用者一個一個挑出來操作的東西，不管排成格子、卡片還是看板，都是清單，用清單和清單的模式做。做的事跟元件的
     模式一樣（選字複製、重排、比較），在元件的內容上就是那個模式；在元件裝不下的內容上，app 可以自己做，名稱和鍵沿用家族的（例：
-    `Visual`、`v`、`y`、`Esc:cancel`）。元件的內容需要一個元件沒有的模式（例：平移圖片），是回報給 tdp 的缺口，不是 app 自己的模式。
+    `Viewing`、`v`、`y`、`Esc:cancel`）。元件的內容需要一個元件沒有的模式（例：平移圖片），是回報給 tdp 的缺口，不是 app 自己的模式。
   - **怎麼進去**：只能由使用者的動作進入，照一般的方式揭露（Space menu 與 `?`，M3），不會自己進入（啟動時、背景發生事情時都不會，K3）。
   - **裡面 app 可以自行決定**：模式的鍵和鍵做什麼（包括 `Enter`）；內容怎麼畫、怎麼變；Space menu 列什麼、怎麼分區；footer 在
     `Space:menu ?:help` 與最後的 `Esc:<離開的動詞>` 中間寫哪些鍵（core key 也可以，例：`q:quit`，做的事照上面的表；
@@ -399,7 +400,7 @@ app 在模式裡最多只能離開模式，之後由 tdp 接手，使用者一�
   往後。
 - 一維清單放在有 tab 的 panel 裡：`h|l` 給 tab，`j|k` 照樣在清單裡移。
 - **二維內容**（一列有好幾個項目，例：webu 顯示的網頁內文裡的連結）：閱讀時沒有游標，`j|k`、`u|d`、`gg|G` 照沒有游標的 panel
-  捲動；要一個項目一個項目走時進一個模式（K11，例：webu 的 Focus），模式裡 `j|k` 照閱讀順序一個項目一個項目走（同一列從左到右，
+  捲動；要一個項目一個項目走時進一個模式（K11，例：webu 的 Focusing），模式裡 `j|k` 照閱讀順序一個項目一個項目走（同一列從左到右，
   再到下一列），到頭尾繞回，`gg|G` 到第一個、最後一個（user 2026-10-29，照 webu 的閱讀器）。
 - **`u|d` 半頁，`gg|G` 到頭、到尾**。`g` 只當兩鍵組合的開頭：`gg` 是到頭，其他 `g` 開頭的組合可以當熱鍵（例：filu、
   `[go]to`）；單按 `g` 不做任何事。`g` 後面接的鍵沒有登記成組合時，當作 `g` 沒按過，那個鍵照常作用（`g` 然後
@@ -410,7 +411,7 @@ app 在模式裡最多只能離開模式，之後由 tdp 接手，使用者一�
   viewer、textarea 的移動狀態都不作用：那裡有 `gg|G`、`0|$`。
 - **一步一步的移動到頭尾繞回**：在一串項目上一次走一步（`j|k`、`h|l`、方向鍵、`Tab`）—— panel 的清單、一列一個值的 panel、
   menu、表單、finder 與 select、checkbox popup 的清單、panel 的 tab、picker 裡的欄與項目 —— 走到最後一個再往後一步回到第一個，
-  在第一個再往前一步到最後一個。Drag mode 拿著的一項也一樣（panel 的 Drag、[components/input/reorder](../components/input/reorder-zh_TW.md)）：
+  在第一個再往前一步到最後一個。Dragging mode 拿著的一項也一樣（panel 上的、[components/input/reorder](../components/input/reorder-zh_TW.md) 裡的）：
   拿著最後一項往後一步，它到第一個、其他各往後一格。`u|d` 到頭尾停在第一個、最後一個，不繞；`gg|G` 本來就是到頭、到尾。
   照空間走、不是一串項目的不繞：日曆的日子、月與年、左右兩側、在一段文字裡移動（含輸入框打字列的游標）。
 - **在一段文字裡移動**（viewer 的選取模式、textarea 的移動狀態）：再加上 `w|b|e`（下一個字頭、上一個字頭、字尾）與
@@ -438,8 +439,8 @@ app 在模式裡最多只能離開模式，之後由 tdp 接手，使用者一�
 
 整個家族只給一個意思的幾個字母，按下去在每個 app 都做同一件事（user 2026-11-20，來自 kbu）：
 
-- **`D`**：Diff 模式的鍵（[`components/layout/panel`](../components/layout/panel-zh_TW.md)，panel.9），寫成 `[D]iff`。同一個
-  panel 已經把 `D` 給了自己的另一個動作、又不是刪除（例：Drag）時，app 可以把其中一個換成別的鍵；沒有 Diff 模式的 app，
+- **`D`**：Diffing 模式的鍵（[`components/layout/panel`](../components/layout/panel-zh_TW.md)，panel.9），寫成 `[D]iff`。同一個
+  panel 已經把 `D` 給了自己的另一個動作、又不是刪除（例：進入 Dragging mode）時，app 可以把其中一個換成別的鍵；沒有 Diffing 模式的 app，
   可以把 `D` 給其他不是刪除的事（例：webu 的 `[D]ownloads` 畫面）（user 2026-11-20，來自 webu）。
 - **`x`**：刪掉 cursor 上那一項，`[x] Delete`；**`X`**：一次刪很多（標記的那些、整批），例：`[X] Delete marked`。目的就是
   永久拿掉東西的都算（刪除、丟掉改動、drop），不用其他字母：不用 `D`，也不用會移動的 `d`（K12）；但可以完全沒有熱鍵（M3）。
@@ -804,7 +805,7 @@ popup 打開與關閉**都要有動畫**，全家族同一種、一樣長：中�
 
 - focus 在 PTY 裡時，`Esc` 屬於子程序（K10）；terminal 用出口鍵離開。這時 toast 只能等時間到收掉。
 - textarea 在寫入狀態時，`Esc` 是離開寫入狀態、進入移動狀態（K8）。
-- popup 裡正在模式中時（例：viewer 的選取模式、reorder 的 Drag mode），`Esc` 先離開模式（K11），再按一次才關。
+- popup 裡正在模式中時（例：viewer 的選取模式、reorder 的 Dragging mode），`Esc` 先離開模式（K11），再按一次才關。
 - 內容改過的表單、textarea、reorder 與照表單的 app 自己的 popup（F1），`Esc` 先開 confirm 問要不要放棄（[components/dialog/form](../components/dialog/form-zh_TW.md)）。
 
 **為什麼**：使用者沒有等倒數的義務。已經在關的 popup 再收一次 `Esc`，或還吃其他鍵，使用者的

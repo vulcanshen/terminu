@@ -26,7 +26,7 @@ in [`screen`](screen.md).
   text (e.g. `󰓦 17:43:42`, a file being watched and when it was last read); whether to have one, what it says and
   which corner it goes in, the app may decide for itself. In its corner it goes on the inner side of what is already
   there, a space either side and one line segment between them: top left after the capsule chain and the loading icon
-  (`┏[2] README.md━ 󰓦 17:43:42 ━━━┓`), top right left of the mode name (`━ 󰓦 17:43:42 ━┫Select┣━┓`), bottom left after
+  (`┏[2] README.md━ 󰓦 17:43:42 ━━━┓`), top right left of the mode name (`━ 󰓦 17:43:42 ━┫Selecting┣━┓`), bottom left after
   the hint (`┗━ o:open ━ 󰓦 17:43:42 ━━━┛`), bottom right left of a search's status and the scroll position
   (`━ 󰓦 17:43:42 ━ /needle 2 of 5 ━ 1-2 of 9 ━┛`); alone in its corner, one line segment from the corner like all
   text on the frame. In the border colour, like the scroll position; when what it tells has gone wrong, Peach (worth
@@ -34,7 +34,7 @@ in [`screen`](screen.md).
   streaming one too, as it is on the frame like the hint (Rules T2). When the border is too narrow, it is the first to
   go, whole, before the hint's pairs, in every corner, and it comes back when there is room.
 - **Text on the frame always keeps one line segment away from the corner**; only the `[N] label` capsule sits right after
-  the top-left corner: the hint is `┗━ Enter:logs`, the scroll position `3 of 40 ━┛`, the mode name `┫Drag┣━┓`.
+  the top-left corner: the hint is `┗━ Enter:logs`, the scroll position `3 of 40 ━┛`, the mode name `┫Dragging┣━┓`.
 
 ```
 ┏[2] PODS━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -96,28 +96,29 @@ cursor points here now" (the user, 2026-10-25, from sshu).
 ### panel.3 The mode name
 
 The right of the top border holds the mode name (Rules K11), set between two border junctions like a tag inlaid in the
-frame: `┏[1] KINDS━━━┫Drag┣━┓`, `┏━YAML━━━━┫Visual┣━┓`. The junctions take the frame's colour and follow its
+frame: `┏[1] KINDS━━━┫Dragging┣━┓`, `┏━YAML━━━━┫Viewing┣━┓`. The junctions take the frame's colour and follow its
 line style — `┫` `┣` on a heavy frame (a focused panel, a popup), `┤` `├` on a light one (an unfocused panel); the mode
 name is bold in the mode colour, its case as written. The mode name is
-one word if possible (`Drag`, `Visual`, `Select`: a narrow panel has no room for two, and the whole top-right text
-would be dropped); when space runs out, the title is clipped first and the mode name stays. The capsule turns the mode
-colour along with the frame.
-A mode with layers (e.g. a viewer's selection mode, once selecting) adds each layer to its name after a `>`, with no
-spaces: `┫Visual>select┣`; each part is one word if possible. The `>` reads as one layer in, and `Esc` goes back one
-layer at a time (Rules K11).
+the -ing word of what is being done in it, one word if possible (`Dragging`, `Viewing`, `Selecting`: a narrow panel has
+no room for two, and the whole top-right text would be dropped); an app's own mode is named the same way (e.g. a game,
+`Playing`). When space runs out, the title is clipped first and the mode name stays. The capsule turns the mode colour
+along with the frame.
+A mode with layers (e.g. a viewer's selection mode, once selecting) adds each layer to its name after a `:`, with no
+spaces: `┫Viewing:selecting┣`; each part is one -ing word if possible. The `:` reads as one layer in, and `Esc` goes
+back one layer at a time (Rules K11).
 
 - **It opens and closes**: entering the mode, the tag opens from its middle: the two junctions start side by side
   there and move apart, the name showing from its middle; leaving plays it backwards, down to the plain line. The
   junctions take the first frame and every frame after shows one more letter, 32ms a frame as in a popup (Rules F2):
-  every frame changes something, so the length follows the name (`Drag` 5 frames, about 160ms; `Select` 7, about
-  224ms), the progress taken from the clock. An odd length leaves the middle half a cell off, either side will do. The title keeps room for the whole tag for as long
+  every frame changes something, so the length follows the name (`Dragging` 9 frames, about 288ms; `Selecting` 10, about
+  320ms), the progress taken from the clock. An odd length leaves the middle half a cell off, either side will do. The title keeps room for the whole tag for as long
   as the tag is there, so it never shifts frame by frame.
 
   ```
-  ━━━━━━━━━┓   before
-  ━━━━┫┣━━━┓   the junctions appear side by side at the tag's middle
-  ━━━┫ra┣━━┓   moving apart, the name showing from its middle
-  ━━┫Drag┣━┓   open
+  ━━━━━━━━━━━━━┓   before
+  ━━━━━━┫┣━━━━━┓   the junctions appear side by side at the tag's middle
+  ━━━━━┫gg┣━━━━┓   moving apart, the name showing from its middle
+  ━━┫Dragging┣━┓   open
   ```
 
 - **Turning around**: switched again halfway (entering and leaving in quick runs), the tag turns around from where it
@@ -128,10 +129,10 @@ layer at a time (Rules K11).
   from a layer (e.g. `y` in the selection mode) closes the whole tag from its middle as above.
 
   ```
-  ━━━━━━━━┫Visual┣━┓   before
-  ━━━━━━━┫Visual>┣━┓   a letter a frame
-  ━━━━━━┫Visual>s┣━┓
-  ━┫Visual>select┣━┓   grown
+  ━━━━━━━━━━━┫Viewing┣━┓   before
+  ━━━━━━━━━━┫Viewing:┣━┓   a letter a frame
+  ━━━━━━━━━┫Viewing:s┣━┓
+  ━┫Viewing:selecting┣━┓   grown
   ```
 
 - **Only the tag animates**: the mode takes effect at once and the frame turns its colour at once; keys are taken all
@@ -141,9 +142,11 @@ layer at a time (Rules K11).
 **Why**: as with a popup, the animation lets the switch be felt; modes are entered and left in quick runs, so the
 animation never holds a key and never starts over (the user, 2026-10-22). A tag has only as many steps as its name
 has letters: spread over a fixed 288ms, each step held for about 72ms and the tag stuttered, so it goes a letter a
-frame instead (the user, testing kbu). A layer added moves only what it adds: the mode has not changed, and `Visual`
-stays in sight. The `>` reads as one layer in, where a colon is how hints are written and a slash looks like the
-joins of a capsule chain, which part things side by side (the user, 2026-10-24).
+frame instead (the user, testing kbu). A layer added moves only what it adds: the mode has not changed, and `Viewing`
+stays in sight. The `:` reads as one layer in: `>` was picked first, a colon being how hints are written (the user,
+2026-10-24), but `>` did not look right, and a tag set into the frame is not read as a hint (the user, 2026-11-26); a
+slash looks like the joins of a capsule chain, which part things side by side. The name is an -ing word: the tag is
+up only while it is going on (the user, 2026-11-26).
 
 ## panel.4 Capsule chain
 
@@ -333,12 +336,12 @@ groups' (from locku); drawn in the mark column, the text starts where every othe
 one sign: a tick and a flag in it would hide one another, so a list that can be marked keeps it for the tick (the
 user, 2026-10-27, from locku).
 
-### panel.8 Drag mode
+### panel.8 Dragging mode
 
-A list with a Drag mode (Rules K11; the key that enters the Drag, the app may decide for itself, e.g. `D` in the
+A list with a Dragging mode (Rules K11; the key that enters it, the app may decide for itself, e.g. `D` in the
 showcase and kbu): the row held is drawn as the cursor with Subtext1 swapped for the mode colour — a Yellow background, Base bold,
 the arrow on the right Yellow too; the mark column shows `nf-md-swap_vertical` (U+F04E2), and the row's own mark
-comes back once it is dropped. A panel with a Drag keeps the mark column on every row too. The keys are those of
+comes back once it is dropped. A panel with a Dragging mode keeps the mark column on every row too. The keys are those of
 [`input/reorder`](../input/reorder.md) while holding an item: `j|k` move it (wrapping at the ends, Rules K12),
 `Enter` drops it, `Esc` puts it back.
 
@@ -347,9 +350,9 @@ away and the whole list shown, the item where it really is: only among all the i
 with (the same reason [`input/reorder`](../input/reorder.md) has no search). Once it is dropped or put back, the
 filter comes back as it was, the cursor on that item (the user, 2026-11-23, from kbu).
 
-### panel.9 Diff mode
+### panel.9 Diffing mode
 
-A list with a diff mode (Rules K11; the diff key is `D`, Rules K13): the diff key on a row enters
+A list with a Diffing mode (Rules K11; the diff key is `D`, Rules K13): the diff key on a row enters
 the mode and makes that row the anchor; then another row is picked and the two are compared ("Diff" in
 [`dialog/note`](../dialog/note.md)).
 
@@ -385,7 +388,7 @@ the mode and makes that row the anchor; then another row is picked and the two a
 - **With a details panel** (panel.13): a list whose details panel follows its cursor may show the diff there instead of
   opening it or going into the list; which of the two, the app may decide for itself. The mode then spans the list and
   its details (the user, 2026-11-20, from gittu):
-  - Both frames are in the mode, each in the mode colour with `Diff` on it; the heavy line tells which has the focus
+  - Both frames are in the mode, each in the mode colour with `Diffing` on it; the heavy line tells which has the focus
     (Rules L5). Entering the mode leaves the focus on the list.
   - The details follow the cursor at once, with no key: the diff between the anchor and the row under the cursor, drawn
     as a panel draws one ([`dialog/note`](../dialog/note.md), note.8 "In a panel": UNIFIED for text, the items that
@@ -631,7 +634,7 @@ the cursor moves. The focus leaving alone does not clear it, as above (the user,
 (e.g. staging a file moves it to another group, deleting removes it), the filter stays, and which item of the filtered
 list the cursor lands on, the app may decide for itself (e.g. the next one in the same group, so the same key can go
 down the list one item at a time). The cursor stays among the items the filter shows, so nothing is hidden from the
-user (the user, 2026-11-23, from gittu). A Drag sets the filter aside only while the item is held, and brings it back
+user (the user, 2026-11-23, from gittu). A Dragging mode sets the filter aside only while the item is held, and brings it back
 once the item is dropped or put back (panel.8; the user, 2026-11-23, from kbu).
 
 **Why**: a panel filter and a finder do different jobs — a finder is "go to one item", and closes once one is chosen; a
