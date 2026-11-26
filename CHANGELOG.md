@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.3.8 — 2026-11-26
+
+A patch, the user's choice: an exception to K1 that terminu-go's `Panel.Digits` (v1.3.9) already keeps, and data an
+app keeps rather than leaves out (E3); an app that leaves such an entry out today changes at its next release. Released
+with terminu-go v1.3.10.
+
+- K1: the one panel with a number on its screen may take `1`–`9` for something of its own (e.g. going to a page): `2`–`9`
+  have no panel to jump to there, and `1` is the panel itself. A place L5 hides keeps its number and counts; a sign has
+  none. The panel writes them in its hint as `1–N:<verb>` after `Enter` and `h|l:tab` and gives them a row in its `?`;
+  a digit past N does nothing. Once a second panel with a number is on the screen, the digits jump between panels again;
+  inside a mode, and while typing in its panel filter, they do what they do there (the user, from boxu)
+- E3: data naming something outside the app (e.g. containers or kinds the user pinned, favourites, names to watch) is
+  kept as written when its thing is not there: no toast, no WARN entry, never left out when the file is written again;
+  it works again once the thing is back, and only the user removes it. Warning once and leaving the entry out is for a
+  value in the state, not for data: a container made again under the same name comes back to its pin (the user, from
+  boxu)
+- changed in this version: E3, K1
+- checklist: K1-10, E3-43 and the label "panel digits" added, K1-7 and E3-41 reworded (1577 items); the header names
+  v1.3.8
+
 ## v1.3.7 — 2026-11-26
 
 A patch, the user's choice: tdp's own modes and a terminal's scrolling back are the lib's, so an app on terminu-go
