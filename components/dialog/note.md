@@ -109,7 +109,7 @@ a file looks the same in the preview and in a viewer.
   ([`layout/panel`](../layout/panel.md), panel.14). Run from the Space menu, the menu goes once the search runs, and
   `Esc` on the input popup goes back to the menu (Rules T1).
 - **Hint**: the note's own hotkeys first, `Esc:close` last; with tabs, `h|l:tab` comes first (the hint in
-  [`layout/popup`](../layout/popup.md)). E.g. `y:copy /:search v:visual Esc:close`.
+  [`layout/popup`](../layout/popup.md)). E.g. `y:copy /:search v:viewing Esc:close`.
 
 **Why**: for a note the user opened, `Esc` after reading is the most natural; `Space` pages down in readers such as
 `less` and `man`, and someone used to them presses `Space` on a note to page down, only to have the note close. When an

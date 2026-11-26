@@ -243,7 +243,7 @@ select or a picker, and a form itself, are not input state. See Rules K8.
 ### terms.8 Mode
 
 A temporary state inside a panel or popup: once in it, some keys take on the mode's own meaning, and `Esc` leaves it.
-E.g. webu's visual mode (selecting text), kbu's drag mode (reordering pins), sshu's `Alt-v` selection mode, the selection
+E.g. webu's Viewing mode (selecting text), kbu's Dragging mode (reordering pins), sshu's `Alt-v` selection mode, the selection
 in filu's yank viewport. A mode is not input state — keys do not become characters. Switching the layout (e.g. zoom,
 which fills the screen with one panel) is not a mode either: no key changes meaning, `Esc` need not leave it, and its own
 key restores it. A mode neither a component nor a rule of tdp specifies is an app's own mode (Principle P5).

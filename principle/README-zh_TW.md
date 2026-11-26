@@ -217,7 +217,7 @@ locku 的 PIN 輸入、panel filter 與 finder 的打字列。select 與 picker 
 ### terms.8 模式
 
 panel 或 popup 裡的一個暫時狀態：進入之後，一部分鍵換成這個模式自己的意思，`Esc` 離開。
-例：webu 的 visual mode（選字）、kbu 的拖曳模式（排 pin 的順序）、sshu 的 `Alt-v` 選取模式、
+例：webu 的 Viewing 模式（選字）、kbu 的 Dragging 模式（排 pin 的順序）、sshu 的 `Alt-v` 選取模式、
 filu yank viewport 裡的選取。模式不是輸入態 —— 按鍵不會變成字元。版面的切換（例：zoom 把一個 panel 放大到
 全畫面）也不是模式：沒有鍵換意思，`Esc` 不必退出它，由它自己的鍵還原。tdp 的元件和規則都沒有規定的模式，是 app 自己的模式（Principle P5）。規則見 Rules K11。
 

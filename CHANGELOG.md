@@ -1,5 +1,35 @@
 # Changelog
 
+## v1.3.7 — 2026-11-26
+
+A patch, the user's choice: tdp's own modes and a terminal's scrolling back are the lib's, so an app on terminu-go
+v1.3.9 has them with nothing to change; an app's own mode takes its -ing name at the app's next release. Released with
+terminu-go v1.3.9.
+
+- panel.3, K11: a mode is named by the -ing word of what is being done in it, an app's own mode too (e.g. a game,
+  `Playing`): Drag is Dragging, the selection mode's Visual is Viewing, Diff is Diffing. A layer is joined with `:`
+  instead of `>` (`Viewing:selecting`): `>` did not look right, and a tag set into the frame is not read as a hint (the
+  user, from boxu)
+- panel.8, panel.9: titled Dragging mode and Diffing mode; the Diff popup, the `[D]iff` row and K13 keep the name Diff
+- menu.4: a mode's Space menu heading follows the name (`DIFFING MODE`, `VIEWING:SELECTING MODE`)
+- note.3, note.4: the viewer's hint enters the selection mode with `v:viewing`, the mode's name; note.4 names it
+  `Viewing`
+- terminal.5: the History mode goes. `PgUp` scrolls back a page at a time and `PgDn` forward again, as in any terminal,
+  with no mode: no colour, no name on the frame, the scroll position on the bottom border meanwhile. Any other key
+  goes back to the live screen first and then on to the subprocess; `Alt-v` alone starts the selection mode on the
+  screen as it is. `j|k`, `u|d`, `gg|G` go through the history only in `Viewing` (the user; Alt-v from terminu-go)
+- terminal.1, terminal.3, terminal.4, terminal.7, K10: follow terminal.5; terminal.4 is titled "Which PTYs scroll back
+  and select"
+- F3, K12, K13, color.2, note.7, note.8, note.9, panel.1, panel.14, reorder, the principle README's terms.8: the new
+  names in their words and examples (webu's Focus is Focusing)
+- changed in this version: F3, K10, K11, K12, K13, color.2, menu.4, note.3, note.4, note.7, note.8, note.9, panel.1,
+  panel.3, panel.8, panel.9, panel.14, reorder.1, reorder.2, reorder.3, terminal.1, terminal.3, terminal.4,
+  terminal.5, terminal.7, terms.8
+- checklist: K11-29 and terminal-25 added; terminal-15 to terminal-17 rewritten; K11-3, K11-12, K11-24, K12-14, K13-1,
+  F3-4, components-19, panel-6, panel-68, panel-72, panel-149, panel-185, panel-187, panel-196, note-34, note-37,
+  note-97, terminal-21 to terminal-23, reorder-9, reorder-17 to reorder-19 reworded (1575 items); the header names
+  v1.3.7
+
 ## v1.3.6 — 2026-11-26
 
 A patch, the user's choice: no app has to change now (the lib holds all of it: the keys, the menu rows, the shared

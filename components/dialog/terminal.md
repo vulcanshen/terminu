@@ -93,6 +93,9 @@ belongs to the subprocess (a shell needs `j`, `k`, `g`).
 - **Back to the live screen**: `PgDn` down to the bottom, or any other key, the arrow keys included: it takes the screen
   back to the live screen first, then goes to the subprocess as usual — typing right after reading the history puts the
   characters in the shell.
+- **`Alt-v` while scrolled back** is the one key that does not go back first: the selection mode starts on the screen
+  as it is, the cursor at the start of the first visible line (terminal.6), since what is looked for back there is
+  usually what is to be copied (the user, 2026-11-26).
 - **The family's movement keys** (`j|k`, `u|d`, `gg|G`) go through the history only in the selection mode, `Viewing`
   (`Alt-v`, terminal.6), whose cursor can go up into it.
 - **Disclosure**: `PgUp:history` in the bottom border's hint (terminal.3), as always.

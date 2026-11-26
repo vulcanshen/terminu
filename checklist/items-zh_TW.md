@@ -2,7 +2,7 @@
 
 **Language**: [English](items.md) · 繁體中文
 
-tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
+tdp v1.3.7 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-zh_TW.md)。
 
 ## principle — P0–P6
 
@@ -1193,6 +1193,7 @@ tdp v1.3.6 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | terminal-22 | terminal.4 | 子程序佔滿整個畫面時（vim、less、htop），`PgUp` 送給它，下框不寫 `PgUp:history`；它回到一般畫面後 `PgUp` 又能捲回去 | 互動 terminal | 在 shell 裡開 `less` 按 `PgUp`，看 less 往上翻、下框沒有 `PgUp:history`；離開 less 再按 `PgUp` |
 | terminal-23 | terminal.4 | 使用者把所有鍵都給子程序時（例：sshu 鎖住格子），選取模式暫時讓出去，`PgUp\|PgDn` 直接送進去；解開的鍵常駐揭露，解開後兩樣都回來 | 互動 terminal | 有這種狀態的 app：進去後按 `Alt-v`、`PgUp`，看都送進子程序、下框寫著解開的鍵；解開後再按一次 |
 | terminal-24 | terminal.7 | 要提權時先試不用密碼的；要密碼時用 password popup（解鎖）問，交給工具的標準輸入，打錯時 popup 不關、寫 `Wrong password`；密碼不寫進檔案、不進 App Log、不出現在畫面上、不送到網路上，app 拿不到；工具不能從標準輸入讀時（doas）在 terminal popup 裡讓它自己問 | 提權 | 在要密碼的機器上做要提權的動作，先打錯一次再打對；看 App Log 沒有密碼；讀程式：密碼只交給工具 |
+| terminal-25 | terminal.5 | 捲回去時按 `Alt-v`，不先回到即時畫面，選取模式從畫面現在的樣子開始，游標在畫面第一行的行首 | 互動 terminal | 按 `PgUp` 捲回去後按 `Alt-v`，看游標在畫面上第一行、在歷史裡 |
 
 ## dialog/toast
 

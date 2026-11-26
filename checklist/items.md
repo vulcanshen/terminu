@@ -2,7 +2,7 @@
 
 **Language**: English · [繁體中文](items-zh_TW.md)
 
-The items of tdp v1.3.6. What each column means and what an item applies to: [README.md](README.md).
+The items of tdp v1.3.7. What each column means and what an item applies to: [README.md](README.md).
 
 ## principle — P0–P6
 
@@ -681,7 +681,7 @@ The items of tdp v1.3.6. What each column means and what an item applies to: [RE
 | panel-185 | panel.9 | A list whose Diffing mode shows in its details panel: both frames in the mode colour with `Diffing`, the heavy line on the focused one; the details follow the cursor with the anchor↔cursor diff (UNIFIED, or the items that differ), an empty state on the anchor or an identical row, no toast | diff mode in a details panel | Enter the mode, move the cursor over several rows and onto the anchor; look at both frames and the details |
 | panel-186 | panel.9 | The diff key or `Enter` on the list moves the focus to the details; `Esc` goes back one layer at a time: popup → details → list (still in the mode, anchor kept) → out of the mode; `Tab` and the digits move between the two | diff mode in a details panel | Go into the details, open an item's diff, then press `Esc` until the mode is left; try `Tab` and the digits in the mode |
 | panel-187 | panel.9 | In the Diffing mode shown in the details: a row that cannot be diffed with the anchor shows an empty state saying so; a side that cannot be read shows the panel.15 error state (Red fact, which side and why), no error popup | diff mode in a details panel | Move the cursor onto a row of another kind than the anchor, and onto one that cannot be read |
-| panel-196 | panel.9 | An anchor of several rows: the first row in the mode colour as any anchor; the other rows fade out as the cursor's do, from Yellow dimmed twice, their text keeping its colours; with the cursor on it, the first row is the cursor | diff mode + items of several rows | Enter the Diff mode on an item of several rows, move away, then back onto it |
+| panel-196 | panel.9 | An anchor of several rows: the first row in the mode colour as any anchor; the other rows fade out as the cursor's do, from Yellow dimmed twice, their text keeping its colours; with the cursor on it, the first row is the cursor | diff mode + items of several rows | Enter the Diffing mode on an item of several rows, move away, then back onto it |
 | panel-146 | panel.3 | Entering a mode, the mode name opens from its middle: the junctions start side by side and move apart, the name showing from its middle; leaving plays it backwards; the junctions take the first frame, then one more letter every 32ms frame | mode | Enter and leave a mode and watch the right of the top border |
 | panel-147 | panel.3 | Switched again while the mode name is opening or closing, it turns around from where it is, without starting over | mode | Enter and leave a mode quickly several times (e.g. `D` `Esc` `D`) |
 | panel-148 | panel.3 | The mode takes effect at once and the frame turns its colour at once; keys are taken while the mode name animates | mode | Enter a mode and press one of its keys at once; watch the frame colour |
@@ -1193,6 +1193,7 @@ The items of tdp v1.3.6. What each column means and what an item applies to: [RE
 | terminal-22 | terminal.4 | While the subprocess takes the whole screen (vim, less, htop), `PgUp` goes to it and the bottom border has no `PgUp:history`; once it is back on the normal screen, `PgUp` scrolls back again | interactive terminal | Run `less` in the shell and press `PgUp`: less pages up and the bottom border has no `PgUp:history`; quit less and press `PgUp` again |
 | terminal-23 | terminal.4 | While the user gives every key to the subprocess (e.g. a locked cell in sshu), the selection mode steps aside and `PgUp\|PgDn` go straight in; the key that unlocks is always shown, and both come back after unlocking | interactive terminal | In an app with such a state: enter it, press `Alt-v` and `PgUp` and check that both reach the subprocess and the bottom border shows the unlocking key; unlock and press them again |
 | terminal-24 | terminal.7 | When privileges are raised the app first tries without a password; when one is needed it asks in a password popup (unlock style) and hands it to the tool's standard input, a wrong one keeping the popup open with `Wrong password`; the password is written to no file, not in the App Log, not on screen, not sent over the network, and out of the app's reach; a tool that cannot read it on standard input (doas) asks by itself in a terminal popup | raising privileges | Do something that needs privileges on a machine that asks for a password, once wrong and then right; the App Log has no password; read the code: the password goes only to the tool |
+| terminal-25 | terminal.5 | `Alt-v` while scrolled back enters the selection mode on the screen as it is, the cursor at the start of the first visible line, without going back to the live screen first | interactive terminal | Scroll back with `PgUp` and press `Alt-v`: the cursor is on the first line in sight, in the history |
 
 ## dialog/toast
 

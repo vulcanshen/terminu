@@ -82,7 +82,7 @@
   總共幾筆，也看得出 `n` 已經繞回第一筆（user 2026-11-09，來自 webu）。viewer 關掉，
   命中的字跟著不見。沒有 cursor 的 panel 搜自己的文字也一樣，在那裡 `Esc` 先清掉命中的字（[`layout/panel`](../layout/panel-zh_TW.md)，panel.14）。
   從 Space menu 執行時，真的搜了 menu 才收起，在 input popup 上按 `Esc` 回到 menu（Rules T1）。
-- **hint**：note 自己的熱鍵寫在前面，`Esc:close` 放最後；有 tab 時 `h|l:tab` 寫在最前面（[`layout/popup`](../layout/popup-zh_TW.md) 的 hint）。例：`y:copy /:search v:visual Esc:close`。
+- **hint**：note 自己的熱鍵寫在前面，`Esc:close` 放最後；有 tab 時 `h|l:tab` 寫在最前面（[`layout/popup`](../layout/popup-zh_TW.md) 的 hint）。例：`y:copy /:search v:viewing Esc:close`。
 
 **為什麼**：使用者自己打開的 note，看完按 `Esc` 是最直覺的；`Space` 在 `less`、`man` 這類閱讀器裡是往下翻頁，熟的人在 note 上按
 `Space` 想往下翻，note 卻關掉了。自己跳出來的 error popup 與打字說明，出現時使用者的手正在打字或正要送出，`Enter` 是反射動作；
