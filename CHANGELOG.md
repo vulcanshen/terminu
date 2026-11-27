@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.3.9 — 2026-11-27
+
+A patch, the user's choice: an app whose README does not show its icon yet adds it at its next release. Released with
+terminu-go v1.3.11.
+
+- E7: README section 1 is the title, the icon, the badges and the language switch. The icon is `docs/icon.svg` (E6),
+  right under the title and above the badges, centred, 128 wide, its alt text `<app> icon`; what is fixed is how it
+  shows, not how the source is written (the user, from boxu)
+- README: gittu and boxu join the terminu family table
+- changed in this version: E7
+- checklist: E7-4 reworded (1577 items); the header names v1.3.9
+
 ## v1.3.8 — 2026-11-26
 
 A patch, the user's choice: an exception to K1 that terminu-go's `Panel.Digits` (v1.3.9) already keeps, and data an
