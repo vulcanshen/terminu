@@ -1721,7 +1721,7 @@ for Go and goreleaser, and stay with the family's tools (the user, 2026-11-03). 
 **README**: `README.md` (English) and `README-zh_TW.md` (Traditional Chinese) stay in step, and cover only what users
 need to know:
 
-1. Title, badges, language switch (`English · 繁體中文`)
+1. Title, icon, badges, language switch (`English · 繁體中文`)
 2. A one-line positioning plus a paragraph on what it can do
 3. **One** representative demo gif
 4. Features: what users get, not how it is done
@@ -1740,6 +1740,10 @@ need to know:
 - **Whether content that belongs to none of them gets a section of the app's own, the app may decide for itself**; the
   section goes right after the section it relates to most, but only between section 4 (Features) and section 9 (Limitations): the start (1–3) and the end (10–12) are fixed.
   Common sections get their place here: **Troubleshooting** goes after "Usage and keys".
+- **The icon in section 1** is `docs/icon.svg` (E6), right under the title and above the badges, centred, 128 wide,
+  its alt text `<app> icon` (e.g. `<p align="center"><img src="docs/icon.svg" width="128" alt="sshu icon" /></p>`).
+  What is fixed is how it shows, not how the source is written: the same picture written over several lines is as
+  good (the user, 2026-11-27, from boxu).
 - **Section 3 holds just one** representative gif. Whether other sections carry a gif or a screenshot explaining that
   section, the app may decide for itself — the fewer the better.
 

@@ -473,7 +473,7 @@ tdp v1.3.8 的條目。每一欄的意思與適用見 [README-zh_TW.md](README-z
 | E7-1 | E7 | 有 `README.md`（英文）與 `README-zh_TW.md`（繁中） | 都要 | 讀檔案 |
 | E7-2 | E7 | 兩份 README 內容對齊 | 都要 | 讀檔案：兩份逐段對照 |
 | E7-3 | E7 | README 只寫使用者需要知道的 | 都要 | 讀兩份 README：每一段都是使用者用這個工具需要知道的 |
-| E7-4 | E7 | README 第 1 段：標題、badge、語言切換（`English · 繁體中文`） | 都要 | 讀兩份 README 的開頭 |
+| E7-4 | E7 | README 第 1 段：標題、icon、badge、語言切換（`English · 繁體中文`）；icon 是 `docs/icon.svg`，在標題下面、badge 上面，置中，寬 128，alt 寫 `<app> icon` | 都要 | 讀兩份 README 的開頭，看 GitHub 畫出來的樣子 |
 | E7-5 | E7 | README 第 2 段：一句話定位 + 一段「它能做什麼」 | 都要 | 讀兩份 README |
 | E7-6 | E7 | README 第 3 段只有一張代表性的 demo gif | 都要 | 讀兩份 README 的第 3 段，數 gif |
 | E7-7 | E7 | README 第 4 段：特色，寫使用者拿到什麼，不寫怎麼做到的 | 都要 | 讀兩份 README 的特色段 |

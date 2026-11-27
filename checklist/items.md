@@ -473,7 +473,7 @@ The items of tdp v1.3.8. What each column means and what an item applies to: [RE
 | E7-1 | E7 | There are a `README.md` (English) and a `README-zh_TW.md` (Traditional Chinese) | everyone | Read the files |
 | E7-2 | E7 | The two READMEs stay in step | everyone | Read the files: compare the two section by section |
 | E7-3 | E7 | The README covers only what users need to know | everyone | Read both READMEs: every section is something users need to know to use the tool |
-| E7-4 | E7 | README section 1: title, badges, language switch (`English · 繁體中文`) | everyone | Read the opening of both READMEs |
+| E7-4 | E7 | README section 1: title, icon, badges, language switch (`English · 繁體中文`); the icon is `docs/icon.svg`, right under the title and above the badges, centred, 128 wide, its alt text `<app> icon` | everyone | Read the opening of both READMEs, as GitHub shows them |
 | E7-5 | E7 | README section 2: a one-line positioning plus a paragraph on what it can do | everyone | Read both READMEs |
 | E7-6 | E7 | README section 3 holds one representative demo gif, and only one | everyone | Read section 3 of both READMEs and count the gifs |
 | E7-7 | E7 | README section 4: features, saying what users get, not how it is done | everyone | Read the features section of both READMEs |
