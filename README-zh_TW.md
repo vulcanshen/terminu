@@ -70,6 +70,8 @@ go run github.com/vulcanshen/terminu-go/examples/showcase@latest
 | [demou](https://github.com/vulcanshen/demou) | 家族的操作教學 app：動手按，學會 terminu 家族的操作 |
 | [catu](https://github.com/vulcanshen/catu) | 終端機裡看檔案的工具：Markdown 畫成文件、mermaid 畫成圖 |
 | [tetru](https://github.com/vulcanshen/tetru) | 在終端機裡玩的落塊消行遊戲 |
+| [gittu](https://github.com/vulcanshen/gittu) | 終端機的 git 工具：左邊是分支，右邊是分支圖 |
+| [boxu](https://github.com/vulcanshen/boxu) | 每一種 container runtime，都在同一個終端機畫面裡 |
 
 ## 歷史
 

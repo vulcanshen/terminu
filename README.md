@@ -77,6 +77,8 @@ patched first, then the library follows.
 | [demou](https://github.com/vulcanshen/demou) | The family's app for learning the operations, hands-on |
 | [catu](https://github.com/vulcanshen/catu) | A file viewer for the terminal: Markdown drawn as a document, mermaid as diagrams |
 | [tetru](https://github.com/vulcanshen/tetru) | A falling-block game for the terminal |
+| [gittu](https://github.com/vulcanshen/gittu) | A git client for the terminal: the branches beside the history graph |
+| [boxu](https://github.com/vulcanshen/boxu) | Every container runtime in one terminal screen |
 
 ## History
 
